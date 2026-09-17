@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptSDKData Data object for a flattened LLM Observability prompt version returned for SDK consumption.
+// LLMObsPromptSDKData Data object for a flattened Agent Observability prompt version returned for SDK consumption.
 type LLMObsPromptSDKData struct {
 	// Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned.
 	Attributes LLMObsPromptSDKDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability prompt.
+	// Resource type of an Agent Observability prompt.
 	Type LLMObsPromptType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

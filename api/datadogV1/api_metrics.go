@@ -292,7 +292,9 @@ func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchRe
 }
 
 // QueryMetrics Query timeseries points.
-// Query timeseries points.
+// Query timeseries points. Datadog recommends using the v2
+// `/api/v2/query/timeseries` endpoint over this endpoint for
+// querying timeseries data.
 func (a *MetricsApi) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

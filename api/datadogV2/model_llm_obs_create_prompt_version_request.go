@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptVersionRequest Request to create a new version of an LLM Observability prompt.
+// LLMObsCreatePromptVersionRequest Request to create a new version of an Agent Observability prompt.
 type LLMObsCreatePromptVersionRequest struct {
-	// Data object for creating an LLM Observability prompt version.
+	// Data object for creating an Agent Observability prompt version.
 	Data LLMObsCreatePromptVersionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

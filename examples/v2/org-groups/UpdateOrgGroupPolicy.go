@@ -21,6 +21,7 @@ func main() {
 					"value": "UTC",
 				},
 				EnforcementTier: datadogV2.ORGGROUPPOLICYENFORCEMENTTIER_OVERRIDE_ALLOWED.Ptr(),
+				PolicyName:      datadog.PtrString("monitor_timezone"),
 			},
 			Id:   uuid.MustParse("1a2b3c4d-5e6f-7890-abcd-ef0123456789"),
 			Type: datadogV2.ORGGROUPPOLICYTYPE_ORG_GROUP_POLICIES,

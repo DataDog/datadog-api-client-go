@@ -16,6 +16,8 @@ type ScannedAssetMetadata struct {
 	Attributes ScannedAssetMetadataAttributes `json:"attributes"`
 	// The ID of the scanned asset metadata.
 	Id string `json:"id"`
+	// The JSON:API type.
+	Type ScannedAssetMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +27,11 @@ type ScannedAssetMetadata struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScannedAssetMetadata(attributes ScannedAssetMetadataAttributes, id string) *ScannedAssetMetadata {
+func NewScannedAssetMetadata(attributes ScannedAssetMetadataAttributes, id string, typeVar ScannedAssetMetadataType) *ScannedAssetMetadata {
 	this := ScannedAssetMetadata{}
 	this.Attributes = attributes
 	this.Id = id
+	this.Type = typeVar
 	return &this
 }
 
@@ -86,6 +89,29 @@ func (o *ScannedAssetMetadata) SetId(v string) {
 	o.Id = v
 }
 
+// GetType returns the Type field value.
+func (o *ScannedAssetMetadata) GetType() ScannedAssetMetadataType {
+	if o == nil {
+		var ret ScannedAssetMetadataType
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ScannedAssetMetadata) GetTypeOk() (*ScannedAssetMetadataType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value.
+func (o *ScannedAssetMetadata) SetType(v ScannedAssetMetadataType) {
+	o.Type = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScannedAssetMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -94,6 +120,7 @@ func (o ScannedAssetMetadata) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -106,6 +133,7 @@ func (o *ScannedAssetMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ScannedAssetMetadataAttributes `json:"attributes"`
 		Id         *string                         `json:"id"`
+		Type       *ScannedAssetMetadataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -116,9 +144,12 @@ func (o *ScannedAssetMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -129,6 +160,11 @@ func (o *ScannedAssetMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

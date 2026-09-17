@@ -61,6 +61,30 @@ Feature: Monitors
     And the response "type" is equal to "data-quality alert"
 
   @team:DataDog/monitor-app
+  Scenario: Create a Data Quality monitor with a model configuration returns "OK" response
+    Given new "CreateMonitor" request
+    And body with value {"name": "{{ unique }}", "type": "data-quality alert", "query": "formula(\"query1\").last(\"5m\") > 100", "message": "Data quality alert triggered", "tags": ["test:{{ unique_lower_alnum }}", "env:ci"], "priority": 3, "options": {"thresholds": {"critical": 100}, "variables": [{"name": "query1", "data_source": "data_quality_metrics", "measure": "row_count", "filter": "search for column where `database:production AND table:users`", "group_by": ["entity_id"], "monitor_options": {"model_configuration": {"auto_resolve_days": 7, "enable_flatline_detection": true, "function": "DIFF", "min_lower_bound_size": 10.0, "min_upper_bound_size": 10.0, "model_bounds_override": "UPPER_ONLY"}}}]}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}"
+    And the response "type" is equal to "data-quality alert"
+    And the response "options.variables[0].monitor_options.model_configuration.auto_resolve_days" is equal to 7
+    And the response "options.variables[0].monitor_options.model_configuration.function" is equal to "DIFF"
+    And the response "options.variables[0].monitor_options.model_configuration.model_bounds_override" is equal to "UPPER_ONLY"
+
+  @team:DataDog/monitor-app
+  Scenario: Create a Data Quality monitor with a source to target configuration returns "OK" response
+    Given new "CreateMonitor" request
+    And body with value {"name": "{{ unique }}", "type": "data-quality alert", "query": "formula(\"query1\").last(\"5m\") > 100", "message": "Data quality alert triggered", "tags": ["test:{{ unique_lower_alnum }}", "env:ci"], "priority": 3, "options": {"thresholds": {"critical": 100}, "variables": [{"name": "query1", "data_source": "data_quality_metrics", "measure": "row_count", "filter": "search for column where `database:production AND table:users`", "group_by": ["entity_id"], "monitor_options": {"source_to_target_config": {"source": {"entity_id": "source-entity-id", "entity_type": "table"}, "target": {"entity_id": "target-entity-id", "entity_type": "table"}, "diff_type": "absolute", "entity_type": "table"}}}]}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}"
+    And the response "type" is equal to "data-quality alert"
+    And the response "options.variables[0].monitor_options.source_to_target_config.diff_type" is equal to "absolute"
+    And the response "options.variables[0].monitor_options.source_to_target_config.source.entity_id" is equal to "source-entity-id"
+    And the response "options.variables[0].monitor_options.source_to_target_config.target.entity_id" is equal to "target-entity-id"
+
+  @team:DataDog/monitor-app
   Scenario: Create a Data Quality monitor with sensitivity returns "OK" response
     Given new "CreateMonitor" request
     And body with value {"name": "{{ unique }}", "type": "data-quality alert", "query": "formula(\"query1\").last(\"5m\") > 100", "message": "Data quality alert triggered", "tags": ["test:{{ unique_lower_alnum }}", "env:ci"], "priority": 3, "options": {"thresholds": {"critical": 100}, "variables": [{"name": "query1", "data_source": "data_quality_metrics", "measure": "row_count", "filter": "search for column where `database:production AND table:users`", "group_by": ["entity_id"], "monitor_options": {"sensitivity": 2.5}}]}}
@@ -201,6 +225,15 @@ Feature: Monitors
     And the response "type" is equal to "error-tracking alert"
     And the response "query" is equal to "error-tracking-rum(\"service:foo AND @error.source:source\").rollup(\"count\").by(\"@issue.id\").last(\"1h\") >= 1"
     And the response "draft_status" is equal to "draft"
+
+  @team:DataDog/monitor-app
+  Scenario: Create an LLM Observability monitor returns "OK" response
+    Given new "CreateMonitor" request
+    And body with value {"name": "{{ unique }}", "type": "llm-observability alert", "query": "llm-observability(\"*\").rollup(\"count\").last(\"2h\") > 0", "message": "LLM observability alert triggered", "tags": ["test:{{ unique_lower_alnum }}", "env:ci"], "options": {"thresholds": {"critical": 0}, "include_tags": true, "notify_audit": false}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}"
+    And the response "type" is equal to "llm-observability alert"
 
   @generated @skip @team:DataDog/monitor-app
   Scenario: Delete a monitor returns "Bad Request" response

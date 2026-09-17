@@ -16,6 +16,12 @@ type DataDeletionResponseItemAttributes struct {
 	CreatedAt string `json:"created_at"`
 	// User who created the deletion request.
 	CreatedBy string `json:"created_by"`
+	// A message for the customer regarding the deletion request, if any.
+	CustomerMessage *string `json:"customer_message,omitempty"`
+	// Total number of elements to be deleted as displayed to the user.
+	DisplayedTotal int64 `json:"displayed_total"`
+	// The category of the error for the deletion request, if any.
+	ErrorCategory *string `json:"error_category,omitempty"`
 	// Start of requested time window, milliseconds since Unix epoch.
 	FromTime int64 `json:"from_time"`
 	// List of indexes for the search. If not provided, the search is performed in all indexes.
@@ -47,10 +53,11 @@ type DataDeletionResponseItemAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDataDeletionResponseItemAttributes(createdAt string, createdBy string, fromTime int64, isCreated bool, orgId int64, product string, query string, startingAt string, status string, toTime int64, totalUnrestricted int64, updatedAt string) *DataDeletionResponseItemAttributes {
+func NewDataDeletionResponseItemAttributes(createdAt string, createdBy string, displayedTotal int64, fromTime int64, isCreated bool, orgId int64, product string, query string, startingAt string, status string, toTime int64, totalUnrestricted int64, updatedAt string) *DataDeletionResponseItemAttributes {
 	this := DataDeletionResponseItemAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
+	this.DisplayedTotal = displayedTotal
 	this.FromTime = fromTime
 	this.IsCreated = isCreated
 	this.OrgId = orgId
@@ -116,6 +123,85 @@ func (o *DataDeletionResponseItemAttributes) GetCreatedByOk() (*string, bool) {
 // SetCreatedBy sets field value.
 func (o *DataDeletionResponseItemAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = v
+}
+
+// GetCustomerMessage returns the CustomerMessage field value if set, zero value otherwise.
+func (o *DataDeletionResponseItemAttributes) GetCustomerMessage() string {
+	if o == nil || o.CustomerMessage == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomerMessage
+}
+
+// GetCustomerMessageOk returns a tuple with the CustomerMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetCustomerMessageOk() (*string, bool) {
+	if o == nil || o.CustomerMessage == nil {
+		return nil, false
+	}
+	return o.CustomerMessage, true
+}
+
+// HasCustomerMessage returns a boolean if a field has been set.
+func (o *DataDeletionResponseItemAttributes) HasCustomerMessage() bool {
+	return o != nil && o.CustomerMessage != nil
+}
+
+// SetCustomerMessage gets a reference to the given string and assigns it to the CustomerMessage field.
+func (o *DataDeletionResponseItemAttributes) SetCustomerMessage(v string) {
+	o.CustomerMessage = &v
+}
+
+// GetDisplayedTotal returns the DisplayedTotal field value.
+func (o *DataDeletionResponseItemAttributes) GetDisplayedTotal() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+	return o.DisplayedTotal
+}
+
+// GetDisplayedTotalOk returns a tuple with the DisplayedTotal field value
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetDisplayedTotalOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayedTotal, true
+}
+
+// SetDisplayedTotal sets field value.
+func (o *DataDeletionResponseItemAttributes) SetDisplayedTotal(v int64) {
+	o.DisplayedTotal = v
+}
+
+// GetErrorCategory returns the ErrorCategory field value if set, zero value otherwise.
+func (o *DataDeletionResponseItemAttributes) GetErrorCategory() string {
+	if o == nil || o.ErrorCategory == nil {
+		var ret string
+		return ret
+	}
+	return *o.ErrorCategory
+}
+
+// GetErrorCategoryOk returns a tuple with the ErrorCategory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetErrorCategoryOk() (*string, bool) {
+	if o == nil || o.ErrorCategory == nil {
+		return nil, false
+	}
+	return o.ErrorCategory, true
+}
+
+// HasErrorCategory returns a boolean if a field has been set.
+func (o *DataDeletionResponseItemAttributes) HasErrorCategory() bool {
+	return o != nil && o.ErrorCategory != nil
+}
+
+// SetErrorCategory gets a reference to the given string and assigns it to the ErrorCategory field.
+func (o *DataDeletionResponseItemAttributes) SetErrorCategory(v string) {
+	o.ErrorCategory = &v
 }
 
 // GetFromTime returns the FromTime field value.
@@ -384,6 +470,13 @@ func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["created_by"] = o.CreatedBy
+	if o.CustomerMessage != nil {
+		toSerialize["customer_message"] = o.CustomerMessage
+	}
+	toSerialize["displayed_total"] = o.DisplayedTotal
+	if o.ErrorCategory != nil {
+		toSerialize["error_category"] = o.ErrorCategory
+	}
 	toSerialize["from_time"] = o.FromTime
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
@@ -409,6 +502,9 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	all := struct {
 		CreatedAt         *string  `json:"created_at"`
 		CreatedBy         *string  `json:"created_by"`
+		CustomerMessage   *string  `json:"customer_message,omitempty"`
+		DisplayedTotal    *int64   `json:"displayed_total"`
+		ErrorCategory     *string  `json:"error_category,omitempty"`
 		FromTime          *int64   `json:"from_time"`
 		Indexes           []string `json:"indexes,omitempty"`
 		IsCreated         *bool    `json:"is_created"`
@@ -429,6 +525,9 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	if all.CreatedBy == nil {
 		return fmt.Errorf("required field created_by missing")
+	}
+	if all.DisplayedTotal == nil {
+		return fmt.Errorf("required field displayed_total missing")
 	}
 	if all.FromTime == nil {
 		return fmt.Errorf("required field from_time missing")
@@ -462,12 +561,15 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "customer_message", "displayed_total", "error_category", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
 	} else {
 		return err
 	}
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
+	o.CustomerMessage = all.CustomerMessage
+	o.DisplayedTotal = *all.DisplayedTotal
+	o.ErrorCategory = all.ErrorCategory
 	o.FromTime = *all.FromTime
 	o.Indexes = all.Indexes
 	o.IsCreated = *all.IsCreated

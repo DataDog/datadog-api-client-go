@@ -21,7 +21,11 @@ type WorkflowListItemAttributes struct {
 	Name string `json:"name"`
 	// Whether the workflow is published. Unpublished workflows can only be run manually. Automatic triggers such as Schedule do not fire until the workflow is published.
 	Published *bool `json:"published,omitempty"`
-	// The spec defines what the workflow does.
+	// The effective type of identity used to run the workflow.
+	RunAsUserMode *WorkflowRunAsUserMode `json:"runAsUserMode,omitempty"`
+	// Whether the workflow requires sensitive privileges to run. Only the workflow owner can update this field. This allows it to run actions that use [Execution Policies](https://docs.datadoghq.com/actions/private_actions/execution_policies/).
+	SensitivePrivileges *bool `json:"sensitivePrivileges,omitempty"`
+	// A complete Workflow Automation definition, including its triggers, steps, and connections.
 	Spec *Spec `json:"spec,omitempty"`
 	// Tags of the workflow.
 	Tags []string `json:"tags,omitempty"`
@@ -157,6 +161,62 @@ func (o *WorkflowListItemAttributes) SetPublished(v bool) {
 	o.Published = &v
 }
 
+// GetRunAsUserMode returns the RunAsUserMode field value if set, zero value otherwise.
+func (o *WorkflowListItemAttributes) GetRunAsUserMode() WorkflowRunAsUserMode {
+	if o == nil || o.RunAsUserMode == nil {
+		var ret WorkflowRunAsUserMode
+		return ret
+	}
+	return *o.RunAsUserMode
+}
+
+// GetRunAsUserModeOk returns a tuple with the RunAsUserMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkflowListItemAttributes) GetRunAsUserModeOk() (*WorkflowRunAsUserMode, bool) {
+	if o == nil || o.RunAsUserMode == nil {
+		return nil, false
+	}
+	return o.RunAsUserMode, true
+}
+
+// HasRunAsUserMode returns a boolean if a field has been set.
+func (o *WorkflowListItemAttributes) HasRunAsUserMode() bool {
+	return o != nil && o.RunAsUserMode != nil
+}
+
+// SetRunAsUserMode gets a reference to the given WorkflowRunAsUserMode and assigns it to the RunAsUserMode field.
+func (o *WorkflowListItemAttributes) SetRunAsUserMode(v WorkflowRunAsUserMode) {
+	o.RunAsUserMode = &v
+}
+
+// GetSensitivePrivileges returns the SensitivePrivileges field value if set, zero value otherwise.
+func (o *WorkflowListItemAttributes) GetSensitivePrivileges() bool {
+	if o == nil || o.SensitivePrivileges == nil {
+		var ret bool
+		return ret
+	}
+	return *o.SensitivePrivileges
+}
+
+// GetSensitivePrivilegesOk returns a tuple with the SensitivePrivileges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkflowListItemAttributes) GetSensitivePrivilegesOk() (*bool, bool) {
+	if o == nil || o.SensitivePrivileges == nil {
+		return nil, false
+	}
+	return o.SensitivePrivileges, true
+}
+
+// HasSensitivePrivileges returns a boolean if a field has been set.
+func (o *WorkflowListItemAttributes) HasSensitivePrivileges() bool {
+	return o != nil && o.SensitivePrivileges != nil
+}
+
+// SetSensitivePrivileges gets a reference to the given bool and assigns it to the SensitivePrivileges field.
+func (o *WorkflowListItemAttributes) SetSensitivePrivileges(v bool) {
+	o.SensitivePrivileges = &v
+}
+
 // GetSpec returns the Spec field value if set, zero value otherwise.
 func (o *WorkflowListItemAttributes) GetSpec() Spec {
 	if o == nil || o.Spec == nil {
@@ -261,6 +321,12 @@ func (o WorkflowListItemAttributes) MarshalJSON() ([]byte, error) {
 	if o.Published != nil {
 		toSerialize["published"] = o.Published
 	}
+	if o.RunAsUserMode != nil {
+		toSerialize["runAsUserMode"] = o.RunAsUserMode
+	}
+	if o.SensitivePrivileges != nil {
+		toSerialize["sensitivePrivileges"] = o.SensitivePrivileges
+	}
 	if o.Spec != nil {
 		toSerialize["spec"] = o.Spec
 	}
@@ -284,13 +350,15 @@ func (o WorkflowListItemAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WorkflowListItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt   *time.Time `json:"createdAt,omitempty"`
-		Description *string    `json:"description,omitempty"`
-		Name        *string    `json:"name"`
-		Published   *bool      `json:"published,omitempty"`
-		Spec        *Spec      `json:"spec,omitempty"`
-		Tags        []string   `json:"tags,omitempty"`
-		UpdatedAt   *time.Time `json:"updatedAt,omitempty"`
+		CreatedAt           *time.Time             `json:"createdAt,omitempty"`
+		Description         *string                `json:"description,omitempty"`
+		Name                *string                `json:"name"`
+		Published           *bool                  `json:"published,omitempty"`
+		RunAsUserMode       *WorkflowRunAsUserMode `json:"runAsUserMode,omitempty"`
+		SensitivePrivileges *bool                  `json:"sensitivePrivileges,omitempty"`
+		Spec                *Spec                  `json:"spec,omitempty"`
+		Tags                []string               `json:"tags,omitempty"`
+		UpdatedAt           *time.Time             `json:"updatedAt,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -300,7 +368,7 @@ func (o *WorkflowListItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "spec", "tags", "updatedAt"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "runAsUserMode", "sensitivePrivileges", "spec", "tags", "updatedAt"})
 	} else {
 		return err
 	}
@@ -310,6 +378,12 @@ func (o *WorkflowListItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.Name = *all.Name
 	o.Published = all.Published
+	if all.RunAsUserMode != nil && !all.RunAsUserMode.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.RunAsUserMode = all.RunAsUserMode
+	}
+	o.SensitivePrivileges = all.SensitivePrivileges
 	if all.Spec != nil && all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

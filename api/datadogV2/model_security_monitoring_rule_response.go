@@ -65,6 +65,36 @@ func (obj *SecurityMonitoringRuleResponse) UnmarshalJSON(data []byte) error {
 		obj.SecurityMonitoringSignalRuleResponse = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.SecurityMonitoringStandardRuleResponse != nil {
+			allQueriesUnparsed := len(obj.SecurityMonitoringStandardRuleResponse.Queries) > 0
+			for _, item := range obj.SecurityMonitoringStandardRuleResponse.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allQueriesUnparsed {
+				obj.SecurityMonitoringStandardRuleResponse = nil
+				match--
+			}
+		}
+		if obj.SecurityMonitoringSignalRuleResponse != nil {
+			allQueriesUnparsed := len(obj.SecurityMonitoringSignalRuleResponse.Queries) > 0
+			for _, item := range obj.SecurityMonitoringSignalRuleResponse.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allQueriesUnparsed {
+				obj.SecurityMonitoringSignalRuleResponse = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SecurityMonitoringStandardRuleResponse = nil

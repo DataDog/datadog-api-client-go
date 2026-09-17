@@ -150,6 +150,11 @@ func ReadFixture(path string) (string, error) {
 
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
+	os.Exit(RunWithTracer(m))
+}
+
+// RunWithTracer runs tests with CI Visibility configured and returns their exit code.
+func RunWithTracer(m *testing.M) int {
 	tracerOptions := make([]tracer.StartOption, 0, 2)
 	if _, ok := os.LookupEnv("DD_SERVICE"); !ok {
 		tracerOptions = append(tracerOptions, tracer.WithService("datadog-api-client-go"))
@@ -157,8 +162,7 @@ func ConfigureTracer(m *testing.M) {
 	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
 		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
 	}
-	code := ddtesting.Run(m, tracerOptions...)
-	os.Exit(code)
+	return ddtesting.Run(m, tracerOptions...)
 }
 
 // getEndpointTagValue traverses callstack frames to find the test function that invoked this call;
@@ -285,6 +289,11 @@ func WithClock(ctx context.Context, path string) (context.Context, error) {
 		return nil, err
 	}
 	return context.WithValue(ctx, clockKey, fc), nil
+}
+
+// WithClockAt sets a fixed clock in the context without reading a VCR cassette.
+func WithClockAt(ctx context.Context, now time.Time) context.Context {
+	return context.WithValue(ctx, clockKey, clockwork.NewFakeClockAt(now))
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...

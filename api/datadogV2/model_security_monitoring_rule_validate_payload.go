@@ -88,6 +88,63 @@ func (obj *SecurityMonitoringRuleValidatePayload) UnmarshalJSON(data []byte) err
 		obj.CloudConfigurationRulePayload = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.SecurityMonitoringStandardRulePayload != nil {
+			allCasesUnparsed := len(obj.SecurityMonitoringStandardRulePayload.Cases) > 0
+			for _, item := range obj.SecurityMonitoringStandardRulePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			allQueriesUnparsed := len(obj.SecurityMonitoringStandardRulePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringStandardRulePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed || allQueriesUnparsed {
+				obj.SecurityMonitoringStandardRulePayload = nil
+				match--
+			}
+		}
+		if obj.SecurityMonitoringSignalRulePayload != nil {
+			allCasesUnparsed := len(obj.SecurityMonitoringSignalRulePayload.Cases) > 0
+			for _, item := range obj.SecurityMonitoringSignalRulePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			allQueriesUnparsed := len(obj.SecurityMonitoringSignalRulePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringSignalRulePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed || allQueriesUnparsed {
+				obj.SecurityMonitoringSignalRulePayload = nil
+				match--
+			}
+		}
+		if obj.CloudConfigurationRulePayload != nil {
+			allCasesUnparsed := len(obj.CloudConfigurationRulePayload.Cases) > 0
+			for _, item := range obj.CloudConfigurationRulePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed {
+				obj.CloudConfigurationRulePayload = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SecurityMonitoringStandardRulePayload = nil

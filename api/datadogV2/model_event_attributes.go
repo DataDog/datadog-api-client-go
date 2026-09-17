@@ -32,7 +32,8 @@ type EventAttributes struct {
 	MonitorGroups datadog.NullableList[string] `json:"monitor_groups,omitempty"`
 	// ID of the monitor that triggered the event. When an event isn't related to a monitor, this field is empty.
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
-	// The priority of the event's monitor. For example, `normal` or `low`.
+	// The priority of the event alert. Legacy events use `normal` or `low`.
+	// Alert events use `1` (highest priority) through `5` (lowest priority).
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// Related event ID.
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
@@ -44,9 +45,9 @@ type EventAttributes struct {
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// Identifier for the source of the event, such as a monitor alert, an externally-submitted event, or an integration.
 	Sourcecategory *string `json:"sourcecategory,omitempty"`
-	// If an alert event is enabled, its status is one of the following:
-	// `failure`, `error`, `warning`, `info`, `success`, `user_update`,
-	// `recommendation`, or `snapshot`.
+	// The event status. Legacy events can use `failure`, `error`, `warning`,
+	// `info`, `success`, `user_update`, `recommendation`, or `snapshot`.
+	// Alert events can use `error`, `warn`, or `ok`.
 	Status *EventStatusType `json:"status,omitempty"`
 	// A list of tags to apply to the event.
 	Tags []string `json:"tags,omitempty"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpansResponse Response containing a list of LLM Observability spans.
+// LLMObsSpansResponse Response containing a list of Agent Observability spans.
 type LLMObsSpansResponse struct {
 	// List of spans matching the query.
 	Data []LLMObsSpanData `json:"data"`

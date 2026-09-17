@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetType Resource type of an LLM Observability dataset.
+// LLMObsDatasetType Resource type of an Agent Observability dataset.
 type LLMObsDatasetType string
 
 // List of LLMObsDatasetType.

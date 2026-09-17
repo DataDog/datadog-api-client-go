@@ -3,6 +3,8 @@ package test
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"net/url"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -62,4 +64,29 @@ func TestConfigurationServersAccess(t *testing.T) {
 			assert.Error(err, tc.Err)
 		})
 	}
+}
+
+func TestConfigurationSetIsIaC(t *testing.T) {
+	assert := tests.Assert(context.Background(), t)
+
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+
+	buildRequest := func() *http.Request {
+		headerParams := map[string]string{}
+		req, err := apiClient.PrepareRequest(context.Background(), "https://example.com", "GET", nil, headerParams, url.Values{}, url.Values{}, nil)
+		if err != nil {
+			t.Fatalf("Could not prepare request: %v", err)
+		}
+		return req
+	}
+
+	// Disabled by default: no callers should see this header unless they opt in.
+	assert.Equal(buildRequest().Header.Get("X-Datadog-Managed-By"), "")
+
+	configuration.SetIsIaC(true)
+	assert.Equal(buildRequest().Header.Get("X-Datadog-Managed-By"), "iac")
+
+	configuration.SetIsIaC(false)
+	assert.Equal(buildRequest().Header.Get("X-Datadog-Managed-By"), "")
 }

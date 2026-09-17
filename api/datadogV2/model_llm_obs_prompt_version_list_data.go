@@ -16,7 +16,7 @@ type LLMObsPromptVersionListData struct {
 	Attributes LLMObsPromptVersionListDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt version.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability prompt version.
+	// Resource type of an Agent Observability prompt version.
 	Type LLMObsPromptVersionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

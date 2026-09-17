@@ -12,12 +12,16 @@ import (
 type Event struct {
 	// Event ID.
 	Id *string `json:"id,omitempty"`
+	// The integration ID of the event.
+	IntegrationId *string `json:"integration_id,omitempty"`
 	// The event name.
 	Name *string `json:"name,omitempty"`
 	// Event source ID.
 	SourceId *int64 `json:"source_id,omitempty"`
 	// Event type.
 	Type *string `json:"type,omitempty"`
+	// A unique identifier for the event. You can use this identifier to query or reference the event.
+	Uid *string `json:"uid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -66,6 +70,34 @@ func (o *Event) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Event) SetId(v string) {
 	o.Id = &v
+}
+
+// GetIntegrationId returns the IntegrationId field value if set, zero value otherwise.
+func (o *Event) GetIntegrationId() string {
+	if o == nil || o.IntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetIntegrationIdOk() (*string, bool) {
+	if o == nil || o.IntegrationId == nil {
+		return nil, false
+	}
+	return o.IntegrationId, true
+}
+
+// HasIntegrationId returns a boolean if a field has been set.
+func (o *Event) HasIntegrationId() bool {
+	return o != nil && o.IntegrationId != nil
+}
+
+// SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+func (o *Event) SetIntegrationId(v string) {
+	o.IntegrationId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -152,6 +184,34 @@ func (o *Event) SetType(v string) {
 	o.Type = &v
 }
 
+// GetUid returns the Uid field value if set, zero value otherwise.
+func (o *Event) GetUid() string {
+	if o == nil || o.Uid == nil {
+		var ret string
+		return ret
+	}
+	return *o.Uid
+}
+
+// GetUidOk returns a tuple with the Uid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetUidOk() (*string, bool) {
+	if o == nil || o.Uid == nil {
+		return nil, false
+	}
+	return o.Uid, true
+}
+
+// HasUid returns a boolean if a field has been set.
+func (o *Event) HasUid() bool {
+	return o != nil && o.Uid != nil
+}
+
+// SetUid gets a reference to the given string and assigns it to the Uid field.
+func (o *Event) SetUid(v string) {
+	o.Uid = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -161,6 +221,9 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.IntegrationId != nil {
+		toSerialize["integration_id"] = o.IntegrationId
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -169,6 +232,9 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+	if o.Uid != nil {
+		toSerialize["uid"] = o.Uid
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -180,24 +246,28 @@ func (o Event) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id       *string `json:"id,omitempty"`
-		Name     *string `json:"name,omitempty"`
-		SourceId *int64  `json:"source_id,omitempty"`
-		Type     *string `json:"type,omitempty"`
+		Id            *string `json:"id,omitempty"`
+		IntegrationId *string `json:"integration_id,omitempty"`
+		Name          *string `json:"name,omitempty"`
+		SourceId      *int64  `json:"source_id,omitempty"`
+		Type          *string `json:"type,omitempty"`
+		Uid           *string `json:"uid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name", "source_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "integration_id", "name", "source_id", "type", "uid"})
 	} else {
 		return err
 	}
 	o.Id = all.Id
+	o.IntegrationId = all.IntegrationId
 	o.Name = all.Name
 	o.SourceId = all.SourceId
 	o.Type = all.Type
+	o.Uid = all.Uid
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

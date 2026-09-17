@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetDataRequest Data object for creating an LLM Observability dataset.
+// LLMObsDatasetDataRequest Data object for creating an Agent Observability dataset.
 type LLMObsDatasetDataRequest struct {
-	// Attributes for creating an LLM Observability dataset.
+	// Attributes for creating an Agent Observability dataset.
 	Attributes LLMObsDatasetDataAttributesRequest `json:"attributes"`
-	// Resource type of an LLM Observability dataset.
+	// Resource type of an Agent Observability dataset.
 	Type LLMObsDatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

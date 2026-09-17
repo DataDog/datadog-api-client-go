@@ -14,6 +14,8 @@ import (
 type LLMObsDisplayBlockAnnotatedInteractionItem struct {
 	// List of annotations for this interaction.
 	Annotations []LLMObsAnnotationItem `json:"annotations"`
+	// Whether the current caller can annotate this interaction.
+	CanAnnotate bool `json:"can_annotate"`
 	// Server-generated deterministic identifier derived from the block list.
 	ContentId string `json:"content_id"`
 	// List of content blocks that make up a `display_block` interaction.
@@ -32,9 +34,10 @@ type LLMObsDisplayBlockAnnotatedInteractionItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsDisplayBlockAnnotatedInteractionItem(annotations []LLMObsAnnotationItem, contentId string, displayBlock []LLMObsContentBlock, id string, typeVar LLMObsDisplayBlockInteractionType) *LLMObsDisplayBlockAnnotatedInteractionItem {
+func NewLLMObsDisplayBlockAnnotatedInteractionItem(annotations []LLMObsAnnotationItem, canAnnotate bool, contentId string, displayBlock []LLMObsContentBlock, id string, typeVar LLMObsDisplayBlockInteractionType) *LLMObsDisplayBlockAnnotatedInteractionItem {
 	this := LLMObsDisplayBlockAnnotatedInteractionItem{}
 	this.Annotations = annotations
+	this.CanAnnotate = canAnnotate
 	this.ContentId = contentId
 	this.DisplayBlock = displayBlock
 	this.Id = id
@@ -71,6 +74,29 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMO
 // SetAnnotations sets field value.
 func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItem) {
 	o.Annotations = v
+}
+
+// GetCanAnnotate returns the CanAnnotate field value.
+func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotate() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.CanAnnotate
+}
+
+// GetCanAnnotateOk returns a tuple with the CanAnnotate field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CanAnnotate, true
+}
+
+// SetCanAnnotate sets field value.
+func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetCanAnnotate(v bool) {
+	o.CanAnnotate = v
 }
 
 // GetContentId returns the ContentId field value.
@@ -172,6 +198,7 @@ func (o LLMObsDisplayBlockAnnotatedInteractionItem) MarshalJSON() ([]byte, error
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["annotations"] = o.Annotations
+	toSerialize["can_annotate"] = o.CanAnnotate
 	toSerialize["content_id"] = o.ContentId
 	toSerialize["display_block"] = o.DisplayBlock
 	toSerialize["id"] = o.Id
@@ -187,6 +214,7 @@ func (o LLMObsDisplayBlockAnnotatedInteractionItem) MarshalJSON() ([]byte, error
 func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Annotations  *[]LLMObsAnnotationItem            `json:"annotations"`
+		CanAnnotate  *bool                              `json:"can_annotate"`
 		ContentId    *string                            `json:"content_id"`
 		DisplayBlock *[]LLMObsContentBlock              `json:"display_block"`
 		Id           *string                            `json:"id"`
@@ -197,6 +225,9 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte)
 	}
 	if all.Annotations == nil {
 		return fmt.Errorf("required field annotations missing")
+	}
+	if all.CanAnnotate == nil {
+		return fmt.Errorf("required field can_annotate missing")
 	}
 	if all.ContentId == nil {
 		return fmt.Errorf("required field content_id missing")
@@ -212,13 +243,14 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "content_id", "display_block", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "display_block", "id", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Annotations = *all.Annotations
+	o.CanAnnotate = *all.CanAnnotate
 	o.ContentId = *all.ContentId
 	o.DisplayBlock = *all.DisplayBlock
 	o.Id = *all.Id

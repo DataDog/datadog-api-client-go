@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionLabel A label attached to an LLM Observability prompt version.
+// LLMObsPromptVersionLabel A label attached to an Agent Observability prompt version.
 type LLMObsPromptVersionLabel string
 
 // List of LLMObsPromptVersionLabel.

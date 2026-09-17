@@ -16,7 +16,8 @@ func main() {
 	body := datadogV2.CreateDataDeletionRequestBody{
 		Data: datadogV2.CreateDataDeletionRequestBodyData{
 			Attributes: datadogV2.CreateDataDeletionRequestBodyAttributes{
-				From: 1672527600000,
+				DisplayedTotal: 100,
+				From:           1672527600000,
 				Indexes: []string{
 					"test-index",
 					"test-index-2",
@@ -32,7 +33,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateDataDeletionRequest", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDataDeletionApi(apiClient)
 	resp, r, err := api.CreateDataDeletionRequest(ctx, "logs", body)

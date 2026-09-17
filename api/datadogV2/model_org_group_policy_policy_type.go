@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OrgGroupPolicyPolicyType The type of the policy. Only `org_config` is supported, indicating a policy backed by an organization configuration setting.
+// OrgGroupPolicyPolicyType The type of the policy. `org_config` indicates a policy backed by an organization configuration setting. `role` indicates a policy backed by a Datadog custom role.
 type OrgGroupPolicyPolicyType string
 
 // List of OrgGroupPolicyPolicyType.
 const (
 	ORGGROUPPOLICYPOLICYTYPE_ORG_CONFIG OrgGroupPolicyPolicyType = "org_config"
+	ORGGROUPPOLICYPOLICYTYPE_ROLE       OrgGroupPolicyPolicyType = "role"
 )
 
 var allowedOrgGroupPolicyPolicyTypeEnumValues = []OrgGroupPolicyPolicyType{
 	ORGGROUPPOLICYPOLICYTYPE_ORG_CONFIG,
+	ORGGROUPPOLICYPOLICYTYPE_ROLE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsMetricScoreType Type of metric recorded for an LLM Observability experiment.
+// LLMObsMetricScoreType Type of metric recorded for an Agent Observability experiment.
 type LLMObsMetricScoreType string
 
 // List of LLMObsMetricScoreType.

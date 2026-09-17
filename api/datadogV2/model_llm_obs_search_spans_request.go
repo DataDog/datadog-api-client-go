@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSearchSpansRequest Request body for searching LLM Observability spans.
+// LLMObsSearchSpansRequest Request body for searching Agent Observability spans.
 type LLMObsSearchSpansRequest struct {
-	// Data object for an LLM Observability spans search request.
+	// Data object for an Agent Observability spans search request.
 	Data LLMObsSearchSpansRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanAttributes Attributes of an LLM Observability span.
+// LLMObsSpanAttributes Attributes of an Agent Observability span.
 type LLMObsSpanAttributes struct {
 	// Duration of the span in nanoseconds.
 	Duration float64 `json:"duration"`
 	// Evaluation metrics keyed by evaluator name.
 	Evaluation map[string]LLMObsSpanEvaluationMetric `json:"evaluation,omitempty"`
-	// Input or output content of an LLM Observability span.
+	// Input or output content of an Agent Observability span.
 	Input *LLMObsSpanIO `json:"input,omitempty"`
 	// Detected intent of the span.
 	Intent *string `json:"intent,omitempty"`
@@ -32,7 +32,7 @@ type LLMObsSpanAttributes struct {
 	ModelProvider *string `json:"model_provider,omitempty"`
 	// Name of the span.
 	Name string `json:"name"`
-	// Input or output content of an LLM Observability span.
+	// Input or output content of an Agent Observability span.
 	Output *LLMObsSpanIO `json:"output,omitempty"`
 	// Identifier of the parent span, if any.
 	ParentId *string `json:"parent_id,omitempty"`

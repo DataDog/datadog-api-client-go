@@ -10,6 +10,8 @@ import (
 
 // CustomRuleRequest Request body for creating or updating a custom rule.
 type CustomRuleRequest struct {
+	// CSRF token for security, sent by browser-based clients. Ignored by the API when absent.
+	AuthenticationToken *string `json:"_authentication_token,omitempty"`
 	// Data object for a custom rule create or update request.
 	Data *CustomRuleRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,6 +34,34 @@ func NewCustomRuleRequest() *CustomRuleRequest {
 func NewCustomRuleRequestWithDefaults() *CustomRuleRequest {
 	this := CustomRuleRequest{}
 	return &this
+}
+
+// GetAuthenticationToken returns the AuthenticationToken field value if set, zero value otherwise.
+func (o *CustomRuleRequest) GetAuthenticationToken() string {
+	if o == nil || o.AuthenticationToken == nil {
+		var ret string
+		return ret
+	}
+	return *o.AuthenticationToken
+}
+
+// GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomRuleRequest) GetAuthenticationTokenOk() (*string, bool) {
+	if o == nil || o.AuthenticationToken == nil {
+		return nil, false
+	}
+	return o.AuthenticationToken, true
+}
+
+// HasAuthenticationToken returns a boolean if a field has been set.
+func (o *CustomRuleRequest) HasAuthenticationToken() bool {
+	return o != nil && o.AuthenticationToken != nil
+}
+
+// SetAuthenticationToken gets a reference to the given string and assigns it to the AuthenticationToken field.
+func (o *CustomRuleRequest) SetAuthenticationToken(v string) {
+	o.AuthenticationToken = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -68,6 +98,9 @@ func (o CustomRuleRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AuthenticationToken != nil {
+		toSerialize["_authentication_token"] = o.AuthenticationToken
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -81,19 +114,21 @@ func (o CustomRuleRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRuleRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *CustomRuleRequestData `json:"data,omitempty"`
+		AuthenticationToken *string                `json:"_authentication_token,omitempty"`
+		Data                *CustomRuleRequestData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"_authentication_token", "data"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AuthenticationToken = all.AuthenticationToken
 	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

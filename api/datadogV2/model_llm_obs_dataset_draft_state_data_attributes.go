@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetDraftStateDataAttributes Attributes of an LLM Observability dataset draft state.
+// LLMObsDatasetDraftStateDataAttributes Attributes of an Agent Observability dataset draft state.
 type LLMObsDatasetDraftStateDataAttributes struct {
 	// Timestamp when the dataset draft session started.
 	DraftingSince time.Time `json:"drafting_since"`

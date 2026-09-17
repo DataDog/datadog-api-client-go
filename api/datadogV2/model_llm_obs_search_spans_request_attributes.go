@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSearchSpansRequestAttributes Attributes of an LLM Observability spans search request.
+// LLMObsSearchSpansRequestAttributes Attributes of an Agent Observability spans search request.
 type LLMObsSearchSpansRequestAttributes struct {
-	// Filter criteria for an LLM Observability span search.
+	// Filter criteria for an Agent Observability span search.
 	Filter *LLMObsSpanFilter `json:"filter,omitempty"`
 	// Additional options for a span search request.
 	Options *LLMObsSpanSearchOptions `json:"options,omitempty"`

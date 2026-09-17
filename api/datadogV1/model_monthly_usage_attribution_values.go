@@ -182,9 +182,9 @@ type MonthlyUsageAttributionValues struct {
 	LambdaTracedInvocationsPercentage *float64 `json:"lambda_traced_invocations_percentage,omitempty"`
 	// The Serverless APM usage by tag(s).
 	LambdaTracedInvocationsUsage *float64 `json:"lambda_traced_invocations_usage,omitempty"`
-	// The percentage of LLM Observability usage by tag(s).
+	// The percentage of Agent Observability usage by tag(s).
 	LlmObservabilityPercentage *float64 `json:"llm_observability_percentage,omitempty"`
-	// The LLM Observability usage by tag(s).
+	// The Agent Observability usage by tag(s).
 	LlmObservabilityUsage *float64 `json:"llm_observability_usage,omitempty"`
 	// The percentage of LLM Spans usage by tag(s).
 	LlmSpansPercentage *float64 `json:"llm_spans_percentage,omitempty"`

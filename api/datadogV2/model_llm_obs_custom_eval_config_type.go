@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigType Type of the custom LLM Observability evaluator configuration resource.
+// LLMObsCustomEvalConfigType Type of the custom Agent Observability evaluator configuration resource.
 type LLMObsCustomEvalConfigType string
 
 // List of LLMObsCustomEvalConfigType.

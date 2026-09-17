@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeletedPromptDataAttributes Attributes confirming that an LLM Observability prompt was deleted.
+// LLMObsDeletedPromptDataAttributes Attributes confirming that an Agent Observability prompt was deleted.
 type LLMObsDeletedPromptDataAttributes struct {
 	// Timestamp when the prompt was deleted.
 	DeletedAt time.Time `json:"deleted_at"`

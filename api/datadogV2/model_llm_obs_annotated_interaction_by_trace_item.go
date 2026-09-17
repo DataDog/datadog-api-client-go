@@ -15,6 +15,8 @@ import (
 type LLMObsAnnotatedInteractionByTraceItem struct {
 	// List of annotations for this interaction.
 	Annotations []LLMObsAnnotationItem `json:"annotations"`
+	// Whether the current caller can annotate this interaction.
+	CanAnnotate bool `json:"can_annotate"`
 	// Upstream entity identifier (trace ID, session ID, or deterministic display_block ID).
 	ContentId string `json:"content_id"`
 	// Timestamp when the interaction was added to the queue.
@@ -41,9 +43,10 @@ type LLMObsAnnotatedInteractionByTraceItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsAnnotatedInteractionByTraceItem(annotations []LLMObsAnnotationItem, contentId string, createdAt time.Time, id string, modifiedAt time.Time, queueId string, queueName string, typeVar LLMObsAnyInteractionType) *LLMObsAnnotatedInteractionByTraceItem {
+func NewLLMObsAnnotatedInteractionByTraceItem(annotations []LLMObsAnnotationItem, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, queueId string, queueName string, typeVar LLMObsAnyInteractionType) *LLMObsAnnotatedInteractionByTraceItem {
 	this := LLMObsAnnotatedInteractionByTraceItem{}
 	this.Annotations = annotations
+	this.CanAnnotate = canAnnotate
 	this.ContentId = contentId
 	this.CreatedAt = createdAt
 	this.Id = id
@@ -83,6 +86,29 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotationsOk() (*[]LLMObsAnn
 // SetAnnotations sets field value.
 func (o *LLMObsAnnotatedInteractionByTraceItem) SetAnnotations(v []LLMObsAnnotationItem) {
 	o.Annotations = v
+}
+
+// GetCanAnnotate returns the CanAnnotate field value.
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetCanAnnotate() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.CanAnnotate
+}
+
+// GetCanAnnotateOk returns a tuple with the CanAnnotate field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetCanAnnotateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CanAnnotate, true
+}
+
+// SetCanAnnotate sets field value.
+func (o *LLMObsAnnotatedInteractionByTraceItem) SetCanAnnotate(v bool) {
+	o.CanAnnotate = v
 }
 
 // GetContentId returns the ContentId field value.
@@ -281,6 +307,7 @@ func (o LLMObsAnnotatedInteractionByTraceItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["annotations"] = o.Annotations
+	toSerialize["can_annotate"] = o.CanAnnotate
 	toSerialize["content_id"] = o.ContentId
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -310,6 +337,7 @@ func (o LLMObsAnnotatedInteractionByTraceItem) MarshalJSON() ([]byte, error) {
 func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Annotations  *[]LLMObsAnnotationItem   `json:"annotations"`
+		CanAnnotate  *bool                     `json:"can_annotate"`
 		ContentId    *string                   `json:"content_id"`
 		CreatedAt    *time.Time                `json:"created_at"`
 		DisplayBlock []LLMObsContentBlock      `json:"display_block,omitempty"`
@@ -324,6 +352,9 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err
 	}
 	if all.Annotations == nil {
 		return fmt.Errorf("required field annotations missing")
+	}
+	if all.CanAnnotate == nil {
+		return fmt.Errorf("required field can_annotate missing")
 	}
 	if all.ContentId == nil {
 		return fmt.Errorf("required field content_id missing")
@@ -348,13 +379,14 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "content_id", "created_at", "display_block", "id", "modified_at", "queue_id", "queue_name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "created_at", "display_block", "id", "modified_at", "queue_id", "queue_name", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Annotations = *all.Annotations
+	o.CanAnnotate = *all.CanAnnotate
 	o.ContentId = *all.ContentId
 	o.CreatedAt = *all.CreatedAt
 	o.DisplayBlock = all.DisplayBlock

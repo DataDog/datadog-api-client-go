@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptRequest Request to create an LLM Observability prompt.
+// LLMObsCreatePromptRequest Request to create an Agent Observability prompt.
 type LLMObsCreatePromptRequest struct {
-	// Data object for creating an LLM Observability prompt.
+	// Data object for creating an Agent Observability prompt.
 	Data LLMObsCreatePromptData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanData A single LLM Observability span.
+// LLMObsSpanData A single Agent Observability span.
 type LLMObsSpanData struct {
-	// Attributes of an LLM Observability span.
+	// Attributes of an Agent Observability span.
 	Attributes LLMObsSpanAttributes `json:"attributes"`
 	// Unique identifier of the span.
 	Id string `json:"id"`
-	// Resource type for an LLM Observability span.
+	// Resource type for an Agent Observability span.
 	Type LLMObsSpanType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

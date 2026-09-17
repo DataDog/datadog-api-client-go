@@ -14,6 +14,8 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
 	// The version of the Agent
 	AgentConstraint *string `json:"agentConstraint,omitempty"`
+	// The version constraint of the Datadog Agent the rule applies to
+	AgentVersion *string `json:"agent_version,omitempty"`
 	// The blocking policies that the rule belongs to
 	Blocking []string `json:"blocking,omitempty"`
 	// The category of the Agent rule
@@ -32,10 +34,14 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	Disabled []string `json:"disabled,omitempty"`
 	// Whether the Agent rule is enabled
 	Enabled *bool `json:"enabled,omitempty"`
+	// The rate limiting duration of the Agent rule, in nanoseconds
+	Every *int64 `json:"every,omitempty"`
 	// The SECL expression of the Agent rule
 	Expression *string `json:"expression,omitempty"`
 	// The platforms the Agent rule is supported on
 	Filters []string `json:"filters,omitempty"`
+	// The group of rules the Agent rule belongs to
+	GroupId *string `json:"group_id,omitempty"`
 	// The monitoring policies that the rule belongs to
 	Monitoring []string `json:"monitoring,omitempty"`
 	// The name of the Agent rule
@@ -131,6 +137,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasAgentConstraint() bool {
 // SetAgentConstraint gets a reference to the given string and assigns it to the AgentConstraint field.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetAgentConstraint(v string) {
 	o.AgentConstraint = &v
+}
+
+// GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetAgentVersion() string {
+	if o == nil || o.AgentVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.AgentVersion
+}
+
+// GetAgentVersionOk returns a tuple with the AgentVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetAgentVersionOk() (*string, bool) {
+	if o == nil || o.AgentVersion == nil {
+		return nil, false
+	}
+	return o.AgentVersion, true
+}
+
+// HasAgentVersion returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasAgentVersion() bool {
+	return o != nil && o.AgentVersion != nil
+}
+
+// SetAgentVersion gets a reference to the given string and assigns it to the AgentVersion field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetAgentVersion(v string) {
+	o.AgentVersion = &v
 }
 
 // GetBlocking returns the Blocking field value if set, zero value otherwise.
@@ -385,6 +419,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetEvery returns the Every field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetEvery() int64 {
+	if o == nil || o.Every == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Every
+}
+
+// GetEveryOk returns a tuple with the Every field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetEveryOk() (*int64, bool) {
+	if o == nil || o.Every == nil {
+		return nil, false
+	}
+	return o.Every, true
+}
+
+// HasEvery returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasEvery() bool {
+	return o != nil && o.Every != nil
+}
+
+// SetEvery gets a reference to the given int64 and assigns it to the Every field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetEvery(v int64) {
+	o.Every = &v
+}
+
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetExpression() string {
 	if o == nil || o.Expression == nil {
@@ -439,6 +501,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasFilters() bool {
 // SetFilters gets a reference to the given []string and assigns it to the Filters field.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetFilters(v []string) {
 	o.Filters = v
+}
+
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetGroupId() string {
+	if o == nil || o.GroupId == nil {
+		var ret string
+		return ret
+	}
+	return *o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetGroupIdOk() (*string, bool) {
+	if o == nil || o.GroupId == nil {
+		return nil, false
+	}
+	return o.GroupId, true
+}
+
+// HasGroupId returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasGroupId() bool {
+	return o != nil && o.GroupId != nil
+}
+
+// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetGroupId(v string) {
+	o.GroupId = &v
 }
 
 // GetMonitoring returns the Monitoring field value if set, zero value otherwise.
@@ -705,6 +795,9 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	if o.AgentConstraint != nil {
 		toSerialize["agentConstraint"] = o.AgentConstraint
 	}
+	if o.AgentVersion != nil {
+		toSerialize["agent_version"] = o.AgentVersion
+	}
 	if o.Blocking != nil {
 		toSerialize["blocking"] = o.Blocking
 	}
@@ -732,11 +825,17 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
+	if o.Every != nil {
+		toSerialize["every"] = o.Every
+	}
 	if o.Expression != nil {
 		toSerialize["expression"] = o.Expression
 	}
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
+	}
+	if o.GroupId != nil {
+		toSerialize["group_id"] = o.GroupId
 	}
 	if o.Monitoring != nil {
 		toSerialize["monitoring"] = o.Monitoring
@@ -777,6 +876,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	all := struct {
 		Actions            []CloudWorkloadSecurityAgentRuleAction           `json:"actions,omitempty"`
 		AgentConstraint    *string                                          `json:"agentConstraint,omitempty"`
+		AgentVersion       *string                                          `json:"agent_version,omitempty"`
 		Blocking           []string                                         `json:"blocking,omitempty"`
 		Category           *string                                          `json:"category,omitempty"`
 		CreationAuthorUuId *string                                          `json:"creationAuthorUuId,omitempty"`
@@ -786,8 +886,10 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 		Description        *string                                          `json:"description,omitempty"`
 		Disabled           []string                                         `json:"disabled,omitempty"`
 		Enabled            *bool                                            `json:"enabled,omitempty"`
+		Every              *int64                                           `json:"every,omitempty"`
 		Expression         *string                                          `json:"expression,omitempty"`
 		Filters            []string                                         `json:"filters,omitempty"`
+		GroupId            *string                                          `json:"group_id,omitempty"`
 		Monitoring         []string                                         `json:"monitoring,omitempty"`
 		Name               *string                                          `json:"name,omitempty"`
 		ProductTags        []string                                         `json:"product_tags,omitempty"`
@@ -803,7 +905,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agentConstraint", "blocking", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "disabled", "enabled", "expression", "filters", "monitoring", "name", "product_tags", "silent", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agentConstraint", "agent_version", "blocking", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "disabled", "enabled", "every", "expression", "filters", "group_id", "monitoring", "name", "product_tags", "silent", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
 	} else {
 		return err
 	}
@@ -811,6 +913,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	hasInvalidField := false
 	o.Actions = all.Actions
 	o.AgentConstraint = all.AgentConstraint
+	o.AgentVersion = all.AgentVersion
 	o.Blocking = all.Blocking
 	o.Category = all.Category
 	o.CreationAuthorUuId = all.CreationAuthorUuId
@@ -823,8 +926,10 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.Description = all.Description
 	o.Disabled = all.Disabled
 	o.Enabled = all.Enabled
+	o.Every = all.Every
 	o.Expression = all.Expression
 	o.Filters = all.Filters
+	o.GroupId = all.GroupId
 	o.Monitoring = all.Monitoring
 	o.Name = all.Name
 	o.ProductTags = all.ProductTags

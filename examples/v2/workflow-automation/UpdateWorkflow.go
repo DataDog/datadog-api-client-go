@@ -22,6 +22,11 @@ func main() {
 				Description: datadog.PtrString("A sample workflow."),
 				Name:        datadog.PtrString("Example Workflow"),
 				Published:   datadog.PtrBool(true),
+				RunAs: &datadogV2.WorkflowRunAs{
+					WorkflowRunAsOwner: &datadogV2.WorkflowRunAsOwner{
+						Type: datadogV2.WORKFLOWRUNASOWNERTYPE_OWNER,
+					}},
+				SensitivePrivileges: datadog.PtrBool(false),
 				Spec: &datadogV2.Spec{
 					ConnectionEnvs: []datadogV2.ConnectionEnv{
 						{

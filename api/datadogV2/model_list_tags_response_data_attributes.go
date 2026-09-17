@@ -10,6 +10,8 @@ import (
 
 // ListTagsResponseDataAttributes The definition of ListTagsResponseDataAttributes object.
 type ListTagsResponseDataAttributes struct {
+	// The list of device tags grouped by source.
+	BySource []DeviceTagsBySource `json:"by_source,omitempty"`
 	// The list of tags
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,6 +34,34 @@ func NewListTagsResponseDataAttributes() *ListTagsResponseDataAttributes {
 func NewListTagsResponseDataAttributesWithDefaults() *ListTagsResponseDataAttributes {
 	this := ListTagsResponseDataAttributes{}
 	return &this
+}
+
+// GetBySource returns the BySource field value if set, zero value otherwise.
+func (o *ListTagsResponseDataAttributes) GetBySource() []DeviceTagsBySource {
+	if o == nil || o.BySource == nil {
+		var ret []DeviceTagsBySource
+		return ret
+	}
+	return o.BySource
+}
+
+// GetBySourceOk returns a tuple with the BySource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListTagsResponseDataAttributes) GetBySourceOk() (*[]DeviceTagsBySource, bool) {
+	if o == nil || o.BySource == nil {
+		return nil, false
+	}
+	return &o.BySource, true
+}
+
+// HasBySource returns a boolean if a field has been set.
+func (o *ListTagsResponseDataAttributes) HasBySource() bool {
+	return o != nil && o.BySource != nil
+}
+
+// SetBySource gets a reference to the given []DeviceTagsBySource and assigns it to the BySource field.
+func (o *ListTagsResponseDataAttributes) SetBySource(v []DeviceTagsBySource) {
+	o.BySource = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -68,6 +98,9 @@ func (o ListTagsResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.BySource != nil {
+		toSerialize["by_source"] = o.BySource
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -81,17 +114,19 @@ func (o ListTagsResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListTagsResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Tags []string `json:"tags,omitempty"`
+		BySource []DeviceTagsBySource `json:"by_source,omitempty"`
+		Tags     []string             `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"by_source", "tags"})
 	} else {
 		return err
 	}
+	o.BySource = all.BySource
 	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {

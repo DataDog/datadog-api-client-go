@@ -13,8 +13,8 @@ import (
 // SlackTriggerWrapper Schema for a Slack-based trigger.
 type SlackTriggerWrapper struct {
 	// Trigger a workflow from Slack. The workflow must be published.
-	SlackTrigger interface{} `json:"slackTrigger"`
-	// A list of steps that run first after a trigger fires.
+	SlackTrigger SlackTrigger `json:"slackTrigger"`
+	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -25,7 +25,7 @@ type SlackTriggerWrapper struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSlackTriggerWrapper(slackTrigger interface{}) *SlackTriggerWrapper {
+func NewSlackTriggerWrapper(slackTrigger SlackTrigger) *SlackTriggerWrapper {
 	this := SlackTriggerWrapper{}
 	this.SlackTrigger = slackTrigger
 	return &this
@@ -40,9 +40,9 @@ func NewSlackTriggerWrapperWithDefaults() *SlackTriggerWrapper {
 }
 
 // GetSlackTrigger returns the SlackTrigger field value.
-func (o *SlackTriggerWrapper) GetSlackTrigger() interface{} {
+func (o *SlackTriggerWrapper) GetSlackTrigger() SlackTrigger {
 	if o == nil {
-		var ret interface{}
+		var ret SlackTrigger
 		return ret
 	}
 	return o.SlackTrigger
@@ -50,7 +50,7 @@ func (o *SlackTriggerWrapper) GetSlackTrigger() interface{} {
 
 // GetSlackTriggerOk returns a tuple with the SlackTrigger field value
 // and a boolean to check if the value has been set.
-func (o *SlackTriggerWrapper) GetSlackTriggerOk() (*interface{}, bool) {
+func (o *SlackTriggerWrapper) GetSlackTriggerOk() (*SlackTrigger, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *SlackTriggerWrapper) GetSlackTriggerOk() (*interface{}, bool) {
 }
 
 // SetSlackTrigger sets field value.
-func (o *SlackTriggerWrapper) SetSlackTrigger(v interface{}) {
+func (o *SlackTriggerWrapper) SetSlackTrigger(v SlackTrigger) {
 	o.SlackTrigger = v
 }
 
@@ -110,8 +110,8 @@ func (o SlackTriggerWrapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SlackTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		SlackTrigger   *interface{} `json:"slackTrigger"`
-		StartStepNames []string     `json:"startStepNames,omitempty"`
+		SlackTrigger   *SlackTrigger `json:"slackTrigger"`
+		StartStepNames []string      `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -125,11 +125,20 @@ func (o *SlackTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.SlackTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.SlackTrigger = *all.SlackTrigger
 	o.StartStepNames = all.StartStepNames
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

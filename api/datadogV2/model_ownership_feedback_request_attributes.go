@@ -14,10 +14,6 @@ import (
 type OwnershipFeedbackRequestAttributes struct {
 	// The feedback action to apply to an inference.
 	Action OwnershipFeedbackAction `json:"action"`
-	// The handle of the actor submitting the feedback.
-	ActorHandle string `json:"actor_handle"`
-	// The type of actor submitting the feedback, for example `user` or `service`.
-	ActorType string `json:"actor_type"`
 	// The corrected owner handle. Required when `action` is `correct`.
 	CorrectedOwnerHandle datadog.NullableString `json:"corrected_owner_handle,omitempty"`
 	// The corrected owner type. Required when `action` is `correct`.
@@ -35,11 +31,9 @@ type OwnershipFeedbackRequestAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewOwnershipFeedbackRequestAttributes(action OwnershipFeedbackAction, actorHandle string, actorType string, inferenceChecksum string) *OwnershipFeedbackRequestAttributes {
+func NewOwnershipFeedbackRequestAttributes(action OwnershipFeedbackAction, inferenceChecksum string) *OwnershipFeedbackRequestAttributes {
 	this := OwnershipFeedbackRequestAttributes{}
 	this.Action = action
-	this.ActorHandle = actorHandle
-	this.ActorType = actorType
 	this.InferenceChecksum = inferenceChecksum
 	return &this
 }
@@ -73,52 +67,6 @@ func (o *OwnershipFeedbackRequestAttributes) GetActionOk() (*OwnershipFeedbackAc
 // SetAction sets field value.
 func (o *OwnershipFeedbackRequestAttributes) SetAction(v OwnershipFeedbackAction) {
 	o.Action = v
-}
-
-// GetActorHandle returns the ActorHandle field value.
-func (o *OwnershipFeedbackRequestAttributes) GetActorHandle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ActorHandle
-}
-
-// GetActorHandleOk returns a tuple with the ActorHandle field value
-// and a boolean to check if the value has been set.
-func (o *OwnershipFeedbackRequestAttributes) GetActorHandleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ActorHandle, true
-}
-
-// SetActorHandle sets field value.
-func (o *OwnershipFeedbackRequestAttributes) SetActorHandle(v string) {
-	o.ActorHandle = v
-}
-
-// GetActorType returns the ActorType field value.
-func (o *OwnershipFeedbackRequestAttributes) GetActorType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ActorType
-}
-
-// GetActorTypeOk returns a tuple with the ActorType field value
-// and a boolean to check if the value has been set.
-func (o *OwnershipFeedbackRequestAttributes) GetActorTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ActorType, true
-}
-
-// SetActorType sets field value.
-func (o *OwnershipFeedbackRequestAttributes) SetActorType(v string) {
-	o.ActorType = v
 }
 
 // GetCorrectedOwnerHandle returns the CorrectedOwnerHandle field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -268,8 +216,6 @@ func (o OwnershipFeedbackRequestAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["action"] = o.Action
-	toSerialize["actor_handle"] = o.ActorHandle
-	toSerialize["actor_type"] = o.ActorType
 	if o.CorrectedOwnerHandle.IsSet() {
 		toSerialize["corrected_owner_handle"] = o.CorrectedOwnerHandle.Get()
 	}
@@ -291,8 +237,6 @@ func (o OwnershipFeedbackRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *OwnershipFeedbackRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Action               *OwnershipFeedbackAction `json:"action"`
-		ActorHandle          *string                  `json:"actor_handle"`
-		ActorType            *string                  `json:"actor_type"`
 		CorrectedOwnerHandle datadog.NullableString   `json:"corrected_owner_handle,omitempty"`
 		CorrectedOwnerType   datadog.NullableString   `json:"corrected_owner_type,omitempty"`
 		InferenceChecksum    *string                  `json:"inference_checksum"`
@@ -304,18 +248,12 @@ func (o *OwnershipFeedbackRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	if all.Action == nil {
 		return fmt.Errorf("required field action missing")
 	}
-	if all.ActorHandle == nil {
-		return fmt.Errorf("required field actor_handle missing")
-	}
-	if all.ActorType == nil {
-		return fmt.Errorf("required field actor_type missing")
-	}
 	if all.InferenceChecksum == nil {
 		return fmt.Errorf("required field inference_checksum missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "actor_handle", "actor_type", "corrected_owner_handle", "corrected_owner_type", "inference_checksum", "reason"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "corrected_owner_handle", "corrected_owner_type", "inference_checksum", "reason"})
 	} else {
 		return err
 	}
@@ -326,8 +264,6 @@ func (o *OwnershipFeedbackRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		o.Action = *all.Action
 	}
-	o.ActorHandle = *all.ActorHandle
-	o.ActorType = *all.ActorType
 	o.CorrectedOwnerHandle = all.CorrectedOwnerHandle
 	o.CorrectedOwnerType = all.CorrectedOwnerType
 	o.InferenceChecksum = *all.InferenceChecksum

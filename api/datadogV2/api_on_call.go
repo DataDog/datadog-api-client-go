@@ -1521,6 +1521,189 @@ func (a *OnCallApi) GetUserNotificationRule(ctx _context.Context, userId string,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListOnCallSchedulesOptionalParameters holds optional parameters for ListOnCallSchedules.
+type ListOnCallSchedulesOptionalParameters struct {
+	PageSize    *int64
+	PageNumber  *int64
+	FilterQuery *string
+	Include     *string
+}
+
+// NewListOnCallSchedulesOptionalParameters creates an empty struct for parameters.
+func NewListOnCallSchedulesOptionalParameters() *ListOnCallSchedulesOptionalParameters {
+	this := ListOnCallSchedulesOptionalParameters{}
+	return &this
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallSchedulesOptionalParameters) WithPageSize(pageSize int64) *ListOnCallSchedulesOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallSchedulesOptionalParameters) WithPageNumber(pageNumber int64) *ListOnCallSchedulesOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallSchedulesOptionalParameters) WithFilterQuery(filterQuery string) *ListOnCallSchedulesOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallSchedulesOptionalParameters) WithInclude(include string) *ListOnCallSchedulesOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// ListOnCallSchedules List On-Call schedules.
+// Retrieve a list of On-Call schedules.
+func (a *OnCallApi) ListOnCallSchedules(ctx _context.Context, o ...ListOnCallSchedulesOptionalParameters) (Schedules, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue Schedules
+		optionalParams      ListOnCallSchedulesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListOnCallSchedulesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OnCallApi.ListOnCallSchedules")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/on-call/schedules"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListOnCallSchedulesWithPagination provides a paginated version of ListOnCallSchedules returning a channel with all items.
+func (a *OnCallApi) ListOnCallSchedulesWithPagination(ctx _context.Context, o ...ListOnCallSchedulesOptionalParameters) (<-chan datadog.PaginationResult[ScheduleListItem], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListOnCallSchedulesOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[ScheduleListItem], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListOnCallSchedules(ctx, o...)
+			if err != nil {
+				var returnItem ScheduleListItem
+				items <- datadog.PaginationResult[ScheduleListItem]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[ScheduleListItem]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListUserNotificationChannels List On-Call notification channels for a user.
 // List the notification channels for a user. The authenticated user must be the target user or have the `on_call_admin` permission
 func (a *OnCallApi) ListUserNotificationChannels(ctx _context.Context, userId string) (ListNotificationChannelsResponse, *_nethttp.Response, error) {

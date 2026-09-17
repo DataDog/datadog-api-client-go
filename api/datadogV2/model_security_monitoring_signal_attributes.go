@@ -13,7 +13,9 @@ import (
 // SecurityMonitoringSignalAttributes The object containing all signal attributes and their
 // associated values.
 type SecurityMonitoringSignalAttributes struct {
-	// A JSON object of attributes in the security signal.
+	// A JSON object of attributes in the security signal, returned when listing or searching signals.
+	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// A JSON object of attributes in the security signal, returned when retrieving a single signal.
 	Custom map[string]interface{} `json:"custom,omitempty"`
 	// The message in the security signal defined by the rule that generated the signal.
 	Message *string `json:"message,omitempty"`
@@ -41,6 +43,34 @@ func NewSecurityMonitoringSignalAttributes() *SecurityMonitoringSignalAttributes
 func NewSecurityMonitoringSignalAttributesWithDefaults() *SecurityMonitoringSignalAttributes {
 	this := SecurityMonitoringSignalAttributes{}
 	return &this
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *SecurityMonitoringSignalAttributes) GetAttributes() map[string]interface{} {
+	if o == nil || o.Attributes == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringSignalAttributes) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *SecurityMonitoringSignalAttributes) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+func (o *SecurityMonitoringSignalAttributes) SetAttributes(v map[string]interface{}) {
+	o.Attributes = v
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
@@ -161,6 +191,9 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	if o.Custom != nil {
 		toSerialize["custom"] = o.Custom
 	}
@@ -187,20 +220,22 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Custom    map[string]interface{} `json:"custom,omitempty"`
-		Message   *string                `json:"message,omitempty"`
-		Tags      []string               `json:"tags,omitempty"`
-		Timestamp *time.Time             `json:"timestamp,omitempty"`
+		Attributes map[string]interface{} `json:"attributes,omitempty"`
+		Custom     map[string]interface{} `json:"custom,omitempty"`
+		Message    *string                `json:"message,omitempty"`
+		Tags       []string               `json:"tags,omitempty"`
+		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom", "message", "tags", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "custom", "message", "tags", "timestamp"})
 	} else {
 		return err
 	}
+	o.Attributes = all.Attributes
 	o.Custom = all.Custom
 	o.Message = all.Message
 	o.Tags = all.Tags

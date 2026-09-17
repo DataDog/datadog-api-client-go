@@ -10,28 +10,41 @@ import (
 
 // Trigger - One of the triggers that can start the execution of a workflow.
 type Trigger struct {
-	APITriggerWrapper                *APITriggerWrapper
-	AppTriggerWrapper                *AppTriggerWrapper
-	CaseTriggerWrapper               *CaseTriggerWrapper
-	ChangeEventTriggerWrapper        *ChangeEventTriggerWrapper
-	DatabaseMonitoringTriggerWrapper *DatabaseMonitoringTriggerWrapper
-	DatastoreTriggerWrapper          *DatastoreTriggerWrapper
-	DashboardTriggerWrapper          *DashboardTriggerWrapper
-	FormTriggerWrapper               *FormTriggerWrapper
-	GithubWebhookTriggerWrapper      *GithubWebhookTriggerWrapper
-	IncidentTriggerWrapper           *IncidentTriggerWrapper
-	MonitorTriggerWrapper            *MonitorTriggerWrapper
-	NotebookTriggerWrapper           *NotebookTriggerWrapper
-	OnCallTriggerWrapper             *OnCallTriggerWrapper
-	ScheduleTriggerWrapper           *ScheduleTriggerWrapper
-	SecurityTriggerWrapper           *SecurityTriggerWrapper
-	SelfServiceTriggerWrapper        *SelfServiceTriggerWrapper
-	SlackTriggerWrapper              *SlackTriggerWrapper
-	SoftwareCatalogTriggerWrapper    *SoftwareCatalogTriggerWrapper
-	WorkflowTriggerWrapper           *WorkflowTriggerWrapper
+	AgentTriggerWrapper                     *AgentTriggerWrapper
+	APITriggerWrapper                       *APITriggerWrapper
+	AppTriggerWrapper                       *AppTriggerWrapper
+	CaseTriggerWrapper                      *CaseTriggerWrapper
+	ChangeEventTriggerWrapper               *ChangeEventTriggerWrapper
+	DatabaseMonitoringTriggerWrapper        *DatabaseMonitoringTriggerWrapper
+	DatastoreTriggerWrapper                 *DatastoreTriggerWrapper
+	DashboardTriggerWrapper                 *DashboardTriggerWrapper
+	FormTriggerWrapper                      *FormTriggerWrapper
+	GithubWebhookTriggerWrapper             *GithubWebhookTriggerWrapper
+	IncidentCreatedTriggerWrapper           *IncidentCreatedTriggerWrapper
+	IncidentImpactCreatedTriggerWrapper     *IncidentImpactCreatedTriggerWrapper
+	IncidentImpactUpdatedTriggerWrapper     *IncidentImpactUpdatedTriggerWrapper
+	IncidentPostmortemUpdatedTriggerWrapper *IncidentPostmortemUpdatedTriggerWrapper
+	IncidentResponderCreatedTriggerWrapper  *IncidentResponderCreatedTriggerWrapper
+	IncidentSavedTriggerWrapper             *IncidentSavedTriggerWrapper
+	IncidentScheduleTriggerWrapper          *IncidentScheduleTriggerWrapper
+	IncidentTriggerWrapper                  *IncidentTriggerWrapper
+	MonitorTriggerWrapper                   *MonitorTriggerWrapper
+	NotebookTriggerWrapper                  *NotebookTriggerWrapper
+	OnCallTriggerWrapper                    *OnCallTriggerWrapper
+	ScheduleTriggerWrapper                  *ScheduleTriggerWrapper
+	SecurityTriggerWrapper                  *SecurityTriggerWrapper
+	SelfServiceTriggerWrapper               *SelfServiceTriggerWrapper
+	SlackTriggerWrapper                     *SlackTriggerWrapper
+	SoftwareCatalogTriggerWrapper           *SoftwareCatalogTriggerWrapper
+	WorkflowTriggerWrapper                  *WorkflowTriggerWrapper
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+}
+
+// AgentTriggerWrapperAsTrigger is a convenience function that returns AgentTriggerWrapper wrapped in Trigger.
+func AgentTriggerWrapperAsTrigger(v *AgentTriggerWrapper) Trigger {
+	return Trigger{AgentTriggerWrapper: v}
 }
 
 // APITriggerWrapperAsTrigger is a convenience function that returns APITriggerWrapper wrapped in Trigger.
@@ -77,6 +90,41 @@ func FormTriggerWrapperAsTrigger(v *FormTriggerWrapper) Trigger {
 // GithubWebhookTriggerWrapperAsTrigger is a convenience function that returns GithubWebhookTriggerWrapper wrapped in Trigger.
 func GithubWebhookTriggerWrapperAsTrigger(v *GithubWebhookTriggerWrapper) Trigger {
 	return Trigger{GithubWebhookTriggerWrapper: v}
+}
+
+// IncidentCreatedTriggerWrapperAsTrigger is a convenience function that returns IncidentCreatedTriggerWrapper wrapped in Trigger.
+func IncidentCreatedTriggerWrapperAsTrigger(v *IncidentCreatedTriggerWrapper) Trigger {
+	return Trigger{IncidentCreatedTriggerWrapper: v}
+}
+
+// IncidentImpactCreatedTriggerWrapperAsTrigger is a convenience function that returns IncidentImpactCreatedTriggerWrapper wrapped in Trigger.
+func IncidentImpactCreatedTriggerWrapperAsTrigger(v *IncidentImpactCreatedTriggerWrapper) Trigger {
+	return Trigger{IncidentImpactCreatedTriggerWrapper: v}
+}
+
+// IncidentImpactUpdatedTriggerWrapperAsTrigger is a convenience function that returns IncidentImpactUpdatedTriggerWrapper wrapped in Trigger.
+func IncidentImpactUpdatedTriggerWrapperAsTrigger(v *IncidentImpactUpdatedTriggerWrapper) Trigger {
+	return Trigger{IncidentImpactUpdatedTriggerWrapper: v}
+}
+
+// IncidentPostmortemUpdatedTriggerWrapperAsTrigger is a convenience function that returns IncidentPostmortemUpdatedTriggerWrapper wrapped in Trigger.
+func IncidentPostmortemUpdatedTriggerWrapperAsTrigger(v *IncidentPostmortemUpdatedTriggerWrapper) Trigger {
+	return Trigger{IncidentPostmortemUpdatedTriggerWrapper: v}
+}
+
+// IncidentResponderCreatedTriggerWrapperAsTrigger is a convenience function that returns IncidentResponderCreatedTriggerWrapper wrapped in Trigger.
+func IncidentResponderCreatedTriggerWrapperAsTrigger(v *IncidentResponderCreatedTriggerWrapper) Trigger {
+	return Trigger{IncidentResponderCreatedTriggerWrapper: v}
+}
+
+// IncidentSavedTriggerWrapperAsTrigger is a convenience function that returns IncidentSavedTriggerWrapper wrapped in Trigger.
+func IncidentSavedTriggerWrapperAsTrigger(v *IncidentSavedTriggerWrapper) Trigger {
+	return Trigger{IncidentSavedTriggerWrapper: v}
+}
+
+// IncidentScheduleTriggerWrapperAsTrigger is a convenience function that returns IncidentScheduleTriggerWrapper wrapped in Trigger.
+func IncidentScheduleTriggerWrapperAsTrigger(v *IncidentScheduleTriggerWrapper) Trigger {
+	return Trigger{IncidentScheduleTriggerWrapper: v}
 }
 
 // IncidentTriggerWrapperAsTrigger is a convenience function that returns IncidentTriggerWrapper wrapped in Trigger.
@@ -133,6 +181,23 @@ func WorkflowTriggerWrapperAsTrigger(v *WorkflowTriggerWrapper) Trigger {
 func (obj *Trigger) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into AgentTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.AgentTriggerWrapper)
+	if err == nil {
+		if obj.AgentTriggerWrapper != nil && obj.AgentTriggerWrapper.UnparsedObject == nil {
+			jsonAgentTriggerWrapper, _ := datadog.Marshal(obj.AgentTriggerWrapper)
+			if string(jsonAgentTriggerWrapper) == "{}" { // empty struct
+				obj.AgentTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.AgentTriggerWrapper = nil
+		}
+	} else {
+		obj.AgentTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into APITriggerWrapper
 	err = datadog.Unmarshal(data, &obj.APITriggerWrapper)
 	if err == nil {
@@ -284,6 +349,125 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.GithubWebhookTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentCreatedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentCreatedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentCreatedTriggerWrapper != nil && obj.IncidentCreatedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentCreatedTriggerWrapper, _ := datadog.Marshal(obj.IncidentCreatedTriggerWrapper)
+			if string(jsonIncidentCreatedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentCreatedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentCreatedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentCreatedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentImpactCreatedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentImpactCreatedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentImpactCreatedTriggerWrapper != nil && obj.IncidentImpactCreatedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentImpactCreatedTriggerWrapper, _ := datadog.Marshal(obj.IncidentImpactCreatedTriggerWrapper)
+			if string(jsonIncidentImpactCreatedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentImpactCreatedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentImpactCreatedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentImpactCreatedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentImpactUpdatedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentImpactUpdatedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentImpactUpdatedTriggerWrapper != nil && obj.IncidentImpactUpdatedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentImpactUpdatedTriggerWrapper, _ := datadog.Marshal(obj.IncidentImpactUpdatedTriggerWrapper)
+			if string(jsonIncidentImpactUpdatedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentImpactUpdatedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentImpactUpdatedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentImpactUpdatedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentPostmortemUpdatedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentPostmortemUpdatedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentPostmortemUpdatedTriggerWrapper != nil && obj.IncidentPostmortemUpdatedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentPostmortemUpdatedTriggerWrapper, _ := datadog.Marshal(obj.IncidentPostmortemUpdatedTriggerWrapper)
+			if string(jsonIncidentPostmortemUpdatedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentPostmortemUpdatedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentPostmortemUpdatedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentPostmortemUpdatedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentResponderCreatedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentResponderCreatedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentResponderCreatedTriggerWrapper != nil && obj.IncidentResponderCreatedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentResponderCreatedTriggerWrapper, _ := datadog.Marshal(obj.IncidentResponderCreatedTriggerWrapper)
+			if string(jsonIncidentResponderCreatedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentResponderCreatedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentResponderCreatedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentResponderCreatedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentSavedTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentSavedTriggerWrapper)
+	if err == nil {
+		if obj.IncidentSavedTriggerWrapper != nil && obj.IncidentSavedTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentSavedTriggerWrapper, _ := datadog.Marshal(obj.IncidentSavedTriggerWrapper)
+			if string(jsonIncidentSavedTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentSavedTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentSavedTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentSavedTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into IncidentScheduleTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.IncidentScheduleTriggerWrapper)
+	if err == nil {
+		if obj.IncidentScheduleTriggerWrapper != nil && obj.IncidentScheduleTriggerWrapper.UnparsedObject == nil {
+			jsonIncidentScheduleTriggerWrapper, _ := datadog.Marshal(obj.IncidentScheduleTriggerWrapper)
+			if string(jsonIncidentScheduleTriggerWrapper) == "{}" { // empty struct
+				obj.IncidentScheduleTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentScheduleTriggerWrapper = nil
+		}
+	} else {
+		obj.IncidentScheduleTriggerWrapper = nil
 	}
 
 	// try to unmarshal data into IncidentTriggerWrapper
@@ -458,6 +642,7 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
+		obj.AgentTriggerWrapper = nil
 		obj.APITriggerWrapper = nil
 		obj.AppTriggerWrapper = nil
 		obj.CaseTriggerWrapper = nil
@@ -467,6 +652,13 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.DashboardTriggerWrapper = nil
 		obj.FormTriggerWrapper = nil
 		obj.GithubWebhookTriggerWrapper = nil
+		obj.IncidentCreatedTriggerWrapper = nil
+		obj.IncidentImpactCreatedTriggerWrapper = nil
+		obj.IncidentImpactUpdatedTriggerWrapper = nil
+		obj.IncidentPostmortemUpdatedTriggerWrapper = nil
+		obj.IncidentResponderCreatedTriggerWrapper = nil
+		obj.IncidentSavedTriggerWrapper = nil
+		obj.IncidentScheduleTriggerWrapper = nil
 		obj.IncidentTriggerWrapper = nil
 		obj.MonitorTriggerWrapper = nil
 		obj.NotebookTriggerWrapper = nil
@@ -484,6 +676,10 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj Trigger) MarshalJSON() ([]byte, error) {
+	if obj.AgentTriggerWrapper != nil {
+		return datadog.Marshal(&obj.AgentTriggerWrapper)
+	}
+
 	if obj.APITriggerWrapper != nil {
 		return datadog.Marshal(&obj.APITriggerWrapper)
 	}
@@ -518,6 +714,34 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 
 	if obj.GithubWebhookTriggerWrapper != nil {
 		return datadog.Marshal(&obj.GithubWebhookTriggerWrapper)
+	}
+
+	if obj.IncidentCreatedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentCreatedTriggerWrapper)
+	}
+
+	if obj.IncidentImpactCreatedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentImpactCreatedTriggerWrapper)
+	}
+
+	if obj.IncidentImpactUpdatedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentImpactUpdatedTriggerWrapper)
+	}
+
+	if obj.IncidentPostmortemUpdatedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentPostmortemUpdatedTriggerWrapper)
+	}
+
+	if obj.IncidentResponderCreatedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentResponderCreatedTriggerWrapper)
+	}
+
+	if obj.IncidentSavedTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentSavedTriggerWrapper)
+	}
+
+	if obj.IncidentScheduleTriggerWrapper != nil {
+		return datadog.Marshal(&obj.IncidentScheduleTriggerWrapper)
 	}
 
 	if obj.IncidentTriggerWrapper != nil {
@@ -568,6 +792,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 
 // GetActualInstance returns the actual instance.
 func (obj *Trigger) GetActualInstance() interface{} {
+	if obj.AgentTriggerWrapper != nil {
+		return obj.AgentTriggerWrapper
+	}
+
 	if obj.APITriggerWrapper != nil {
 		return obj.APITriggerWrapper
 	}
@@ -602,6 +830,34 @@ func (obj *Trigger) GetActualInstance() interface{} {
 
 	if obj.GithubWebhookTriggerWrapper != nil {
 		return obj.GithubWebhookTriggerWrapper
+	}
+
+	if obj.IncidentCreatedTriggerWrapper != nil {
+		return obj.IncidentCreatedTriggerWrapper
+	}
+
+	if obj.IncidentImpactCreatedTriggerWrapper != nil {
+		return obj.IncidentImpactCreatedTriggerWrapper
+	}
+
+	if obj.IncidentImpactUpdatedTriggerWrapper != nil {
+		return obj.IncidentImpactUpdatedTriggerWrapper
+	}
+
+	if obj.IncidentPostmortemUpdatedTriggerWrapper != nil {
+		return obj.IncidentPostmortemUpdatedTriggerWrapper
+	}
+
+	if obj.IncidentResponderCreatedTriggerWrapper != nil {
+		return obj.IncidentResponderCreatedTriggerWrapper
+	}
+
+	if obj.IncidentSavedTriggerWrapper != nil {
+		return obj.IncidentSavedTriggerWrapper
+	}
+
+	if obj.IncidentScheduleTriggerWrapper != nil {
+		return obj.IncidentScheduleTriggerWrapper
 	}
 
 	if obj.IncidentTriggerWrapper != nil {

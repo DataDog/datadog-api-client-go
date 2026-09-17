@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsRunStatusType Resource type of an LLM Observability patterns run status.
+// LLMObsPatternsRunStatusType Resource type of an Agent Observability patterns run status.
 type LLMObsPatternsRunStatusType string
 
 // List of LLMObsPatternsRunStatusType.

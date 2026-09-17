@@ -14,55 +14,55 @@ import (
 // GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems A static analysis rule within a ruleset, including its definition, metadata, and associated test cases.
 type GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems struct {
 	// The list of configurable arguments accepted by this rule.
-	Arguments []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems `json:"arguments,omitempty"`
+	Arguments []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems `json:"arguments"`
 	// The category classifying the type of issue this rule detects (e.g., security, style, performance).
-	Category *string `json:"category,omitempty"`
+	Category string `json:"category"`
 	// A checksum of the rule definition used to detect changes.
-	Checksum *string `json:"checksum,omitempty"`
+	Checksum string `json:"checksum"`
 	// The rule implementation code used by the static analysis engine.
-	Code *string `json:"code,omitempty"`
+	Code string `json:"code"`
 	// The date and time when the rule was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
 	// The identifier of the user or system that created the rule.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy string `json:"created_by"`
 	// The CVE identifier associated with the vulnerability this rule detects, if applicable.
 	Cve *string `json:"cve,omitempty"`
 	// The CWE identifier associated with the weakness category this rule detects, if applicable.
 	Cwe *string `json:"cwe,omitempty"`
-	// The resource identifier and type for a static analysis rule.
-	Data GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData `json:"data"`
 	// A detailed explanation of what the rule detects and why it matters.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// A URL pointing to additional documentation for this rule.
 	DocumentationUrl *string `json:"documentation_url,omitempty"`
 	// The code entity type (e.g., function, class, variable) that this rule inspects.
 	EntityChecked *string `json:"entity_checked,omitempty"`
+	// The unique identifier of the rule, which is the same as its name.
+	Id string `json:"id"`
 	// Indicates whether the rule is publicly published and available to all users.
-	IsPublished *bool `json:"is_published,omitempty"`
+	IsPublished bool `json:"is_published"`
 	// Indicates whether the rule is in testing mode and not yet promoted to production.
-	IsTesting *bool `json:"is_testing,omitempty"`
+	IsTesting bool `json:"is_testing"`
 	// The programming language this rule applies to.
-	Language *string `json:"language,omitempty"`
+	Language string `json:"language"`
 	// The date and time when the rule was last modified.
-	LastUpdatedAt *time.Time `json:"last_updated_at,omitempty"`
+	LastUpdatedAt time.Time `json:"last_updated_at"`
 	// The identifier of the user or system that last updated the rule.
-	LastUpdatedBy *string `json:"last_updated_by,omitempty"`
+	LastUpdatedBy string `json:"last_updated_by"`
 	// The unique name identifying this rule within its ruleset.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// A regular expression pattern used by the rule for pattern-based detection.
 	Regex *string `json:"regex,omitempty"`
 	// The severity level of findings produced by this rule (e.g., ERROR, WARNING, NOTICE).
-	Severity *string `json:"severity,omitempty"`
+	Severity string `json:"severity"`
 	// A brief summary of what the rule detects, suitable for display in listings.
-	ShortDescription *string `json:"short_description,omitempty"`
+	ShortDescription string `json:"short_description"`
 	// Indicates whether an AI-generated fix suggestion should be offered for findings from this rule.
-	ShouldUseAiFix *bool `json:"should_use_ai_fix,omitempty"`
+	ShouldUseAiFix bool `json:"should_use_ai_fix"`
 	// The list of test cases used to validate the rule's behavior.
-	Tests []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems `json:"tests,omitempty"`
+	Tests []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems `json:"tests"`
 	// The Tree-sitter query expression used by the rule to match code patterns in the AST.
 	TreeSitterQuery *string `json:"tree_sitter_query,omitempty"`
 	// The rule type indicating the detection mechanism used (e.g., tree_sitter, regex).
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -72,9 +72,27 @@ type GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems(data GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData) *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems {
+func NewGetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems(arguments []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems, category string, checksum string, code string, createdAt time.Time, createdBy string, description string, id string, isPublished bool, isTesting bool, language string, lastUpdatedAt time.Time, lastUpdatedBy string, name string, severity string, shortDescription string, shouldUseAiFix bool, tests []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems, typeVar string) *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems {
 	this := GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems{}
-	this.Data = data
+	this.Arguments = arguments
+	this.Category = category
+	this.Checksum = checksum
+	this.Code = code
+	this.CreatedAt = createdAt
+	this.CreatedBy = createdBy
+	this.Description = description
+	this.Id = id
+	this.IsPublished = isPublished
+	this.IsTesting = isTesting
+	this.Language = language
+	this.LastUpdatedAt = lastUpdatedAt
+	this.LastUpdatedBy = lastUpdatedBy
+	this.Name = name
+	this.Severity = severity
+	this.ShortDescription = shortDescription
+	this.ShouldUseAiFix = shouldUseAiFix
+	this.Tests = tests
+	this.Type = typeVar
 	return &this
 }
 
@@ -86,172 +104,142 @@ func NewGetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsWithDefa
 	return &this
 }
 
-// GetArguments returns the Arguments field value if set, zero value otherwise.
+// GetArguments returns the Arguments field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetArguments() []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems {
-	if o == nil || o.Arguments == nil {
+	if o == nil {
 		var ret []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems
 		return ret
 	}
 	return o.Arguments
 }
 
-// GetArgumentsOk returns a tuple with the Arguments field value if set, nil otherwise
+// GetArgumentsOk returns a tuple with the Arguments field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetArgumentsOk() (*[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems, bool) {
-	if o == nil || o.Arguments == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Arguments, true
 }
 
-// HasArguments returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasArguments() bool {
-	return o != nil && o.Arguments != nil
-}
-
-// SetArguments gets a reference to the given []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems and assigns it to the Arguments field.
+// SetArguments sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetArguments(v []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems) {
 	o.Arguments = v
 }
 
-// GetCategory returns the Category field value if set, zero value otherwise.
+// GetCategory returns the Category field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCategory() string {
-	if o == nil || o.Category == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Category
+	return o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
+// GetCategoryOk returns a tuple with the Category field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCategoryOk() (*string, bool) {
-	if o == nil || o.Category == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Category, true
+	return &o.Category, true
 }
 
-// HasCategory returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasCategory() bool {
-	return o != nil && o.Category != nil
-}
-
-// SetCategory gets a reference to the given string and assigns it to the Category field.
+// SetCategory sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetCategory(v string) {
-	o.Category = &v
+	o.Category = v
 }
 
-// GetChecksum returns the Checksum field value if set, zero value otherwise.
+// GetChecksum returns the Checksum field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetChecksum() string {
-	if o == nil || o.Checksum == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Checksum
+	return o.Checksum
 }
 
-// GetChecksumOk returns a tuple with the Checksum field value if set, nil otherwise
+// GetChecksumOk returns a tuple with the Checksum field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetChecksumOk() (*string, bool) {
-	if o == nil || o.Checksum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Checksum, true
+	return &o.Checksum, true
 }
 
-// HasChecksum returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasChecksum() bool {
-	return o != nil && o.Checksum != nil
-}
-
-// SetChecksum gets a reference to the given string and assigns it to the Checksum field.
+// SetChecksum sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetChecksum(v string) {
-	o.Checksum = &v
+	o.Checksum = v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasCode() bool {
-	return o != nil && o.Code != nil
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasCreatedAt() bool {
-	return o != nil && o.CreatedAt != nil
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+// GetCreatedBy returns the CreatedBy field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCreatedBy() string {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatedBy
+	return o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetCreatedByOk() (*string, bool) {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedBy, true
+	return &o.CreatedBy, true
 }
 
-// HasCreatedBy returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasCreatedBy() bool {
-	return o != nil && o.CreatedBy != nil
-}
-
-// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
+// SetCreatedBy sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetCreatedBy(v string) {
-	o.CreatedBy = &v
+	o.CreatedBy = v
 }
 
 // GetCve returns the Cve field value if set, zero value otherwise.
@@ -310,55 +298,27 @@ func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetCw
 	o.Cwe = &v
 }
 
-// GetData returns the Data field value.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetData() GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData {
-	if o == nil {
-		var ret GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetDataOk() (*GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetData(v GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData) {
-	o.Data = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasDescription() bool {
-	return o != nil && o.Description != nil
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
 // GetDocumentationUrl returns the DocumentationUrl field value if set, zero value otherwise.
@@ -417,172 +377,165 @@ func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetEn
 	o.EntityChecked = &v
 }
 
-// GetIsPublished returns the IsPublished field value if set, zero value otherwise.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsPublished() bool {
-	if o == nil || o.IsPublished == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsPublished
-}
-
-// GetIsPublishedOk returns a tuple with the IsPublished field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsPublishedOk() (*bool, bool) {
-	if o == nil || o.IsPublished == nil {
-		return nil, false
-	}
-	return o.IsPublished, true
-}
-
-// HasIsPublished returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasIsPublished() bool {
-	return o != nil && o.IsPublished != nil
-}
-
-// SetIsPublished gets a reference to the given bool and assigns it to the IsPublished field.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetIsPublished(v bool) {
-	o.IsPublished = &v
-}
-
-// GetIsTesting returns the IsTesting field value if set, zero value otherwise.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsTesting() bool {
-	if o == nil || o.IsTesting == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsTesting
-}
-
-// GetIsTestingOk returns a tuple with the IsTesting field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsTestingOk() (*bool, bool) {
-	if o == nil || o.IsTesting == nil {
-		return nil, false
-	}
-	return o.IsTesting, true
-}
-
-// HasIsTesting returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasIsTesting() bool {
-	return o != nil && o.IsTesting != nil
-}
-
-// SetIsTesting gets a reference to the given bool and assigns it to the IsTesting field.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetIsTesting(v bool) {
-	o.IsTesting = &v
-}
-
-// GetLanguage returns the Language field value if set, zero value otherwise.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLanguage() string {
-	if o == nil || o.Language == nil {
+// GetId returns the Id field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Language
+	return o.Id
 }
 
-// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLanguageOk() (*string, bool) {
-	if o == nil || o.Language == nil {
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Language, true
+	return &o.Id, true
 }
 
-// HasLanguage returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasLanguage() bool {
-	return o != nil && o.Language != nil
+// SetId sets field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetId(v string) {
+	o.Id = v
 }
 
-// SetLanguage gets a reference to the given string and assigns it to the Language field.
+// GetIsPublished returns the IsPublished field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsPublished() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.IsPublished
+}
+
+// GetIsPublishedOk returns a tuple with the IsPublished field value
+// and a boolean to check if the value has been set.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsPublishedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsPublished, true
+}
+
+// SetIsPublished sets field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetIsPublished(v bool) {
+	o.IsPublished = v
+}
+
+// GetIsTesting returns the IsTesting field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsTesting() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.IsTesting
+}
+
+// GetIsTestingOk returns a tuple with the IsTesting field value
+// and a boolean to check if the value has been set.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetIsTestingOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsTesting, true
+}
+
+// SetIsTesting sets field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetIsTesting(v bool) {
+	o.IsTesting = v
+}
+
+// GetLanguage returns the Language field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLanguage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.Language
+}
+
+// GetLanguageOk returns a tuple with the Language field value
+// and a boolean to check if the value has been set.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLanguageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Language, true
+}
+
+// SetLanguage sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetLanguage(v string) {
-	o.Language = &v
+	o.Language = v
 }
 
-// GetLastUpdatedAt returns the LastUpdatedAt field value if set, zero value otherwise.
+// GetLastUpdatedAt returns the LastUpdatedAt field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLastUpdatedAt() time.Time {
-	if o == nil || o.LastUpdatedAt == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastUpdatedAt
+	return o.LastUpdatedAt
 }
 
-// GetLastUpdatedAtOk returns a tuple with the LastUpdatedAt field value if set, nil otherwise
+// GetLastUpdatedAtOk returns a tuple with the LastUpdatedAt field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLastUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.LastUpdatedAt == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastUpdatedAt, true
+	return &o.LastUpdatedAt, true
 }
 
-// HasLastUpdatedAt returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasLastUpdatedAt() bool {
-	return o != nil && o.LastUpdatedAt != nil
-}
-
-// SetLastUpdatedAt gets a reference to the given time.Time and assigns it to the LastUpdatedAt field.
+// SetLastUpdatedAt sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetLastUpdatedAt(v time.Time) {
-	o.LastUpdatedAt = &v
+	o.LastUpdatedAt = v
 }
 
-// GetLastUpdatedBy returns the LastUpdatedBy field value if set, zero value otherwise.
+// GetLastUpdatedBy returns the LastUpdatedBy field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLastUpdatedBy() string {
-	if o == nil || o.LastUpdatedBy == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastUpdatedBy
+	return o.LastUpdatedBy
 }
 
-// GetLastUpdatedByOk returns a tuple with the LastUpdatedBy field value if set, nil otherwise
+// GetLastUpdatedByOk returns a tuple with the LastUpdatedBy field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetLastUpdatedByOk() (*string, bool) {
-	if o == nil || o.LastUpdatedBy == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastUpdatedBy, true
+	return &o.LastUpdatedBy, true
 }
 
-// HasLastUpdatedBy returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasLastUpdatedBy() bool {
-	return o != nil && o.LastUpdatedBy != nil
-}
-
-// SetLastUpdatedBy gets a reference to the given string and assigns it to the LastUpdatedBy field.
+// SetLastUpdatedBy sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetLastUpdatedBy(v string) {
-	o.LastUpdatedBy = &v
+	o.LastUpdatedBy = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetRegex returns the Regex field value if set, zero value otherwise.
@@ -613,114 +566,94 @@ func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetRe
 	o.Regex = &v
 }
 
-// GetSeverity returns the Severity field value if set, zero value otherwise.
+// GetSeverity returns the Severity field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetSeverity() string {
-	if o == nil || o.Severity == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Severity
+	return o.Severity
 }
 
-// GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
+// GetSeverityOk returns a tuple with the Severity field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetSeverityOk() (*string, bool) {
-	if o == nil || o.Severity == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Severity, true
+	return &o.Severity, true
 }
 
-// HasSeverity returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasSeverity() bool {
-	return o != nil && o.Severity != nil
-}
-
-// SetSeverity gets a reference to the given string and assigns it to the Severity field.
+// SetSeverity sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetSeverity(v string) {
-	o.Severity = &v
+	o.Severity = v
 }
 
-// GetShortDescription returns the ShortDescription field value if set, zero value otherwise.
+// GetShortDescription returns the ShortDescription field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetShortDescription() string {
-	if o == nil || o.ShortDescription == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ShortDescription
+	return o.ShortDescription
 }
 
-// GetShortDescriptionOk returns a tuple with the ShortDescription field value if set, nil otherwise
+// GetShortDescriptionOk returns a tuple with the ShortDescription field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetShortDescriptionOk() (*string, bool) {
-	if o == nil || o.ShortDescription == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ShortDescription, true
+	return &o.ShortDescription, true
 }
 
-// HasShortDescription returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasShortDescription() bool {
-	return o != nil && o.ShortDescription != nil
-}
-
-// SetShortDescription gets a reference to the given string and assigns it to the ShortDescription field.
+// SetShortDescription sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetShortDescription(v string) {
-	o.ShortDescription = &v
+	o.ShortDescription = v
 }
 
-// GetShouldUseAiFix returns the ShouldUseAiFix field value if set, zero value otherwise.
+// GetShouldUseAiFix returns the ShouldUseAiFix field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetShouldUseAiFix() bool {
-	if o == nil || o.ShouldUseAiFix == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.ShouldUseAiFix
+	return o.ShouldUseAiFix
 }
 
-// GetShouldUseAiFixOk returns a tuple with the ShouldUseAiFix field value if set, nil otherwise
+// GetShouldUseAiFixOk returns a tuple with the ShouldUseAiFix field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetShouldUseAiFixOk() (*bool, bool) {
-	if o == nil || o.ShouldUseAiFix == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ShouldUseAiFix, true
+	return &o.ShouldUseAiFix, true
 }
 
-// HasShouldUseAiFix returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasShouldUseAiFix() bool {
-	return o != nil && o.ShouldUseAiFix != nil
-}
-
-// SetShouldUseAiFix gets a reference to the given bool and assigns it to the ShouldUseAiFix field.
+// SetShouldUseAiFix sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetShouldUseAiFix(v bool) {
-	o.ShouldUseAiFix = &v
+	o.ShouldUseAiFix = v
 }
 
-// GetTests returns the Tests field value if set, zero value otherwise.
+// GetTests returns the Tests field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetTests() []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems {
-	if o == nil || o.Tests == nil {
+	if o == nil {
 		var ret []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems
 		return ret
 	}
 	return o.Tests
 }
 
-// GetTestsOk returns a tuple with the Tests field value if set, nil otherwise
+// GetTestsOk returns a tuple with the Tests field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetTestsOk() (*[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems, bool) {
-	if o == nil || o.Tests == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Tests, true
 }
 
-// HasTests returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasTests() bool {
-	return o != nil && o.Tests != nil
-}
-
-// SetTests gets a reference to the given []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems and assigns it to the Tests field.
+// SetTests sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetTests(v []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems) {
 	o.Tests = v
 }
@@ -753,32 +686,27 @@ func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetTr
 	o.TreeSitterQuery = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -787,87 +715,51 @@ func (o GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) Marsha
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Arguments != nil {
-		toSerialize["arguments"] = o.Arguments
+	toSerialize["arguments"] = o.Arguments
+	toSerialize["category"] = o.Category
+	toSerialize["checksum"] = o.Checksum
+	toSerialize["code"] = o.Code
+	if o.CreatedAt.Nanosecond() == 0 {
+		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
-	if o.Category != nil {
-		toSerialize["category"] = o.Category
-	}
-	if o.Checksum != nil {
-		toSerialize["checksum"] = o.Checksum
-	}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
-	}
-	if o.CreatedAt != nil {
-		if o.CreatedAt.Nanosecond() == 0 {
-			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
-		} else {
-			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
-		}
-	}
-	if o.CreatedBy != nil {
-		toSerialize["created_by"] = o.CreatedBy
-	}
+	toSerialize["created_by"] = o.CreatedBy
 	if o.Cve != nil {
 		toSerialize["cve"] = o.Cve
 	}
 	if o.Cwe != nil {
 		toSerialize["cwe"] = o.Cwe
 	}
-	toSerialize["data"] = o.Data
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["description"] = o.Description
 	if o.DocumentationUrl != nil {
 		toSerialize["documentation_url"] = o.DocumentationUrl
 	}
 	if o.EntityChecked != nil {
 		toSerialize["entity_checked"] = o.EntityChecked
 	}
-	if o.IsPublished != nil {
-		toSerialize["is_published"] = o.IsPublished
+	toSerialize["id"] = o.Id
+	toSerialize["is_published"] = o.IsPublished
+	toSerialize["is_testing"] = o.IsTesting
+	toSerialize["language"] = o.Language
+	if o.LastUpdatedAt.Nanosecond() == 0 {
+		toSerialize["last_updated_at"] = o.LastUpdatedAt.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["last_updated_at"] = o.LastUpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
-	if o.IsTesting != nil {
-		toSerialize["is_testing"] = o.IsTesting
-	}
-	if o.Language != nil {
-		toSerialize["language"] = o.Language
-	}
-	if o.LastUpdatedAt != nil {
-		if o.LastUpdatedAt.Nanosecond() == 0 {
-			toSerialize["last_updated_at"] = o.LastUpdatedAt.Format("2006-01-02T15:04:05Z07:00")
-		} else {
-			toSerialize["last_updated_at"] = o.LastUpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
-		}
-	}
-	if o.LastUpdatedBy != nil {
-		toSerialize["last_updated_by"] = o.LastUpdatedBy
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["last_updated_by"] = o.LastUpdatedBy
+	toSerialize["name"] = o.Name
 	if o.Regex != nil {
 		toSerialize["regex"] = o.Regex
 	}
-	if o.Severity != nil {
-		toSerialize["severity"] = o.Severity
-	}
-	if o.ShortDescription != nil {
-		toSerialize["short_description"] = o.ShortDescription
-	}
-	if o.ShouldUseAiFix != nil {
-		toSerialize["should_use_ai_fix"] = o.ShouldUseAiFix
-	}
-	if o.Tests != nil {
-		toSerialize["tests"] = o.Tests
-	}
+	toSerialize["severity"] = o.Severity
+	toSerialize["short_description"] = o.ShortDescription
+	toSerialize["should_use_ai_fix"] = o.ShouldUseAiFix
+	toSerialize["tests"] = o.Tests
 	if o.TreeSitterQuery != nil {
 		toSerialize["tree_sitter_query"] = o.TreeSitterQuery
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -878,81 +770,126 @@ func (o GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) Marsha
 // UnmarshalJSON deserializes the given payload.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arguments        []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems `json:"arguments,omitempty"`
-		Category         *string                                                                          `json:"category,omitempty"`
-		Checksum         *string                                                                          `json:"checksum,omitempty"`
-		Code             *string                                                                          `json:"code,omitempty"`
-		CreatedAt        *time.Time                                                                       `json:"created_at,omitempty"`
-		CreatedBy        *string                                                                          `json:"created_by,omitempty"`
-		Cve              *string                                                                          `json:"cve,omitempty"`
-		Cwe              *string                                                                          `json:"cwe,omitempty"`
-		Data             *GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData            `json:"data"`
-		Description      *string                                                                          `json:"description,omitempty"`
-		DocumentationUrl *string                                                                          `json:"documentation_url,omitempty"`
-		EntityChecked    *string                                                                          `json:"entity_checked,omitempty"`
-		IsPublished      *bool                                                                            `json:"is_published,omitempty"`
-		IsTesting        *bool                                                                            `json:"is_testing,omitempty"`
-		Language         *string                                                                          `json:"language,omitempty"`
-		LastUpdatedAt    *time.Time                                                                       `json:"last_updated_at,omitempty"`
-		LastUpdatedBy    *string                                                                          `json:"last_updated_by,omitempty"`
-		Name             *string                                                                          `json:"name,omitempty"`
-		Regex            *string                                                                          `json:"regex,omitempty"`
-		Severity         *string                                                                          `json:"severity,omitempty"`
-		ShortDescription *string                                                                          `json:"short_description,omitempty"`
-		ShouldUseAiFix   *bool                                                                            `json:"should_use_ai_fix,omitempty"`
-		Tests            []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems     `json:"tests,omitempty"`
-		TreeSitterQuery  *string                                                                          `json:"tree_sitter_query,omitempty"`
-		Type             *string                                                                          `json:"type,omitempty"`
+		Arguments        *[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArgumentsItems `json:"arguments"`
+		Category         *string                                                                           `json:"category"`
+		Checksum         *string                                                                           `json:"checksum"`
+		Code             *string                                                                           `json:"code"`
+		CreatedAt        *time.Time                                                                        `json:"created_at"`
+		CreatedBy        *string                                                                           `json:"created_by"`
+		Cve              *string                                                                           `json:"cve,omitempty"`
+		Cwe              *string                                                                           `json:"cwe,omitempty"`
+		Description      *string                                                                           `json:"description"`
+		DocumentationUrl *string                                                                           `json:"documentation_url,omitempty"`
+		EntityChecked    *string                                                                           `json:"entity_checked,omitempty"`
+		Id               *string                                                                           `json:"id"`
+		IsPublished      *bool                                                                             `json:"is_published"`
+		IsTesting        *bool                                                                             `json:"is_testing"`
+		Language         *string                                                                           `json:"language"`
+		LastUpdatedAt    *time.Time                                                                        `json:"last_updated_at"`
+		LastUpdatedBy    *string                                                                           `json:"last_updated_by"`
+		Name             *string                                                                           `json:"name"`
+		Regex            *string                                                                           `json:"regex,omitempty"`
+		Severity         *string                                                                           `json:"severity"`
+		ShortDescription *string                                                                           `json:"short_description"`
+		ShouldUseAiFix   *bool                                                                             `json:"should_use_ai_fix"`
+		Tests            *[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsTestsItems     `json:"tests"`
+		TreeSitterQuery  *string                                                                           `json:"tree_sitter_query,omitempty"`
+		Type             *string                                                                           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
+	if all.Arguments == nil {
+		return fmt.Errorf("required field arguments missing")
+	}
+	if all.Category == nil {
+		return fmt.Errorf("required field category missing")
+	}
+	if all.Checksum == nil {
+		return fmt.Errorf("required field checksum missing")
+	}
+	if all.Code == nil {
+		return fmt.Errorf("required field code missing")
+	}
+	if all.CreatedAt == nil {
+		return fmt.Errorf("required field created_at missing")
+	}
+	if all.CreatedBy == nil {
+		return fmt.Errorf("required field created_by missing")
+	}
+	if all.Description == nil {
+		return fmt.Errorf("required field description missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.IsPublished == nil {
+		return fmt.Errorf("required field is_published missing")
+	}
+	if all.IsTesting == nil {
+		return fmt.Errorf("required field is_testing missing")
+	}
+	if all.Language == nil {
+		return fmt.Errorf("required field language missing")
+	}
+	if all.LastUpdatedAt == nil {
+		return fmt.Errorf("required field last_updated_at missing")
+	}
+	if all.LastUpdatedBy == nil {
+		return fmt.Errorf("required field last_updated_by missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Severity == nil {
+		return fmt.Errorf("required field severity missing")
+	}
+	if all.ShortDescription == nil {
+		return fmt.Errorf("required field short_description missing")
+	}
+	if all.ShouldUseAiFix == nil {
+		return fmt.Errorf("required field should_use_ai_fix missing")
+	}
+	if all.Tests == nil {
+		return fmt.Errorf("required field tests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "cve", "cwe", "data", "description", "documentation_url", "entity_checked", "is_published", "is_testing", "language", "last_updated_at", "last_updated_by", "name", "regex", "severity", "short_description", "should_use_ai_fix", "tests", "tree_sitter_query", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "cve", "cwe", "description", "documentation_url", "entity_checked", "id", "is_published", "is_testing", "language", "last_updated_at", "last_updated_by", "name", "regex", "severity", "short_description", "should_use_ai_fix", "tests", "tree_sitter_query", "type"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	o.Arguments = all.Arguments
-	o.Category = all.Category
-	o.Checksum = all.Checksum
-	o.Code = all.Code
-	o.CreatedAt = all.CreatedAt
-	o.CreatedBy = all.CreatedBy
+	o.Arguments = *all.Arguments
+	o.Category = *all.Category
+	o.Checksum = *all.Checksum
+	o.Code = *all.Code
+	o.CreatedAt = *all.CreatedAt
+	o.CreatedBy = *all.CreatedBy
 	o.Cve = all.Cve
 	o.Cwe = all.Cwe
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Data = *all.Data
-	o.Description = all.Description
+	o.Description = *all.Description
 	o.DocumentationUrl = all.DocumentationUrl
 	o.EntityChecked = all.EntityChecked
-	o.IsPublished = all.IsPublished
-	o.IsTesting = all.IsTesting
-	o.Language = all.Language
-	o.LastUpdatedAt = all.LastUpdatedAt
-	o.LastUpdatedBy = all.LastUpdatedBy
-	o.Name = all.Name
+	o.Id = *all.Id
+	o.IsPublished = *all.IsPublished
+	o.IsTesting = *all.IsTesting
+	o.Language = *all.Language
+	o.LastUpdatedAt = *all.LastUpdatedAt
+	o.LastUpdatedBy = *all.LastUpdatedBy
+	o.Name = *all.Name
 	o.Regex = all.Regex
-	o.Severity = all.Severity
-	o.ShortDescription = all.ShortDescription
-	o.ShouldUseAiFix = all.ShouldUseAiFix
-	o.Tests = all.Tests
+	o.Severity = *all.Severity
+	o.ShortDescription = *all.ShortDescription
+	o.ShouldUseAiFix = *all.ShouldUseAiFix
+	o.Tests = *all.Tests
 	o.TreeSitterQuery = all.TreeSitterQuery
-	o.Type = all.Type
+	o.Type = *all.Type
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

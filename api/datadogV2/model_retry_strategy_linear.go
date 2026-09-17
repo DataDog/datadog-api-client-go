@@ -15,17 +15,16 @@ type RetryStrategyLinear struct {
 	// The `RetryStrategyLinear` `interval`. The expected format is the number of seconds ending with an s. For example, 1 day is 86400s
 	Interval string `json:"interval"`
 	// The `RetryStrategyLinear` `maxRetries`.
-	MaxRetries float64 `json:"maxRetries"`
+	MaxRetries int32 `json:"maxRetries"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewRetryStrategyLinear instantiates a new RetryStrategyLinear object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRetryStrategyLinear(interval string, maxRetries float64) *RetryStrategyLinear {
+func NewRetryStrategyLinear(interval string, maxRetries int32) *RetryStrategyLinear {
 	this := RetryStrategyLinear{}
 	this.Interval = interval
 	this.MaxRetries = maxRetries
@@ -64,9 +63,9 @@ func (o *RetryStrategyLinear) SetInterval(v string) {
 }
 
 // GetMaxRetries returns the MaxRetries field value.
-func (o *RetryStrategyLinear) GetMaxRetries() float64 {
+func (o *RetryStrategyLinear) GetMaxRetries() int32 {
 	if o == nil {
-		var ret float64
+		var ret int32
 		return ret
 	}
 	return o.MaxRetries
@@ -74,7 +73,7 @@ func (o *RetryStrategyLinear) GetMaxRetries() float64 {
 
 // GetMaxRetriesOk returns a tuple with the MaxRetries field value
 // and a boolean to check if the value has been set.
-func (o *RetryStrategyLinear) GetMaxRetriesOk() (*float64, bool) {
+func (o *RetryStrategyLinear) GetMaxRetriesOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +81,7 @@ func (o *RetryStrategyLinear) GetMaxRetriesOk() (*float64, bool) {
 }
 
 // SetMaxRetries sets field value.
-func (o *RetryStrategyLinear) SetMaxRetries(v float64) {
+func (o *RetryStrategyLinear) SetMaxRetries(v int32) {
 	o.MaxRetries = v
 }
 
@@ -94,18 +93,14 @@ func (o RetryStrategyLinear) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["interval"] = o.Interval
 	toSerialize["maxRetries"] = o.MaxRetries
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RetryStrategyLinear) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Interval   *string  `json:"interval"`
-		MaxRetries *float64 `json:"maxRetries"`
+		Interval   *string `json:"interval"`
+		MaxRetries *int32  `json:"maxRetries"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -116,18 +111,8 @@ func (o *RetryStrategyLinear) UnmarshalJSON(bytes []byte) (err error) {
 	if all.MaxRetries == nil {
 		return fmt.Errorf("required field maxRetries missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"interval", "maxRetries"})
-	} else {
-		return err
-	}
 	o.Interval = *all.Interval
 	o.MaxRetries = *all.MaxRetries
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

@@ -20,8 +20,6 @@ type CreateStatusPageRequestDataAttributes struct {
 	DomainPrefix string `json:"domain_prefix"`
 	// Base64-encoded image data included in email notifications sent to status page subscribers.
 	EmailHeaderImage *string `json:"email_header_image,omitempty"`
-	// Whether the status page is enabled.
-	Enabled *bool `json:"enabled,omitempty"`
 	// Base64-encoded image data displayed in the browser tab.
 	Favicon *string `json:"favicon,omitempty"`
 	// The name of the status page.
@@ -167,34 +165,6 @@ func (o *CreateStatusPageRequestDataAttributes) HasEmailHeaderImage() bool {
 // SetEmailHeaderImage gets a reference to the given string and assigns it to the EmailHeaderImage field.
 func (o *CreateStatusPageRequestDataAttributes) SetEmailHeaderImage(v string) {
 	o.EmailHeaderImage = &v
-}
-
-// GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *CreateStatusPageRequestDataAttributes) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStatusPageRequestDataAttributes) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
-		return nil, false
-	}
-	return o.Enabled, true
-}
-
-// HasEnabled returns a boolean if a field has been set.
-func (o *CreateStatusPageRequestDataAttributes) HasEnabled() bool {
-	return o != nil && o.Enabled != nil
-}
-
-// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *CreateStatusPageRequestDataAttributes) SetEnabled(v bool) {
-	o.Enabled = &v
 }
 
 // GetFavicon returns the Favicon field value if set, zero value otherwise.
@@ -394,9 +364,6 @@ func (o CreateStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.EmailHeaderImage != nil {
 		toSerialize["email_header_image"] = o.EmailHeaderImage
 	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
 	if o.Favicon != nil {
 		toSerialize["favicon"] = o.Favicon
 	}
@@ -426,7 +393,6 @@ func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 		Components                []CreateStatusPageRequestDataAttributesComponentsItems  `json:"components,omitempty"`
 		DomainPrefix              *string                                                 `json:"domain_prefix"`
 		EmailHeaderImage          *string                                                 `json:"email_header_image,omitempty"`
-		Enabled                   *bool                                                   `json:"enabled,omitempty"`
 		Favicon                   *string                                                 `json:"favicon,omitempty"`
 		Name                      *string                                                 `json:"name"`
 		SlackAppIcon              *string                                                 `json:"slack_app_icon,omitempty"`
@@ -452,7 +418,7 @@ func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "domain_prefix", "email_header_image", "enabled", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "domain_prefix", "email_header_image", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
 	} else {
 		return err
 	}
@@ -462,7 +428,6 @@ func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 	o.Components = all.Components
 	o.DomainPrefix = *all.DomainPrefix
 	o.EmailHeaderImage = all.EmailHeaderImage
-	o.Enabled = all.Enabled
 	o.Favicon = all.Favicon
 	o.Name = *all.Name
 	o.SlackAppIcon = all.SlackAppIcon

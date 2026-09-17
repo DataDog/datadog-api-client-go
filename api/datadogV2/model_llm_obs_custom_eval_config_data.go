@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigData Data object for a custom LLM Observability evaluator configuration.
+// LLMObsCustomEvalConfigData Data object for a custom Agent Observability evaluator configuration.
 type LLMObsCustomEvalConfigData struct {
-	// Attributes of a custom LLM Observability evaluator configuration.
+	// Attributes of a custom Agent Observability evaluator configuration.
 	Attributes LLMObsCustomEvalConfigAttributes `json:"attributes"`
 	// Unique name identifier of the evaluator configuration.
 	Id string `json:"id"`
-	// Type of the custom LLM Observability evaluator configuration resource.
+	// Type of the custom Agent Observability evaluator configuration resource.
 	Type LLMObsCustomEvalConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

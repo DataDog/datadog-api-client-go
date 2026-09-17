@@ -12,6 +12,7 @@ import (
 type DeploymentRulesOptions struct {
 	DeploymentRuleOptionsFaultyDeploymentDetection *DeploymentRuleOptionsFaultyDeploymentDetection
 	DeploymentRuleOptionsMonitor                   *DeploymentRuleOptionsMonitor
+	DeploymentRuleOptionsMonitorIds                *DeploymentRuleOptionsMonitorIds
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func DeploymentRuleOptionsFaultyDeploymentDetectionAsDeploymentRulesOptions(v *D
 // DeploymentRuleOptionsMonitorAsDeploymentRulesOptions is a convenience function that returns DeploymentRuleOptionsMonitor wrapped in DeploymentRulesOptions.
 func DeploymentRuleOptionsMonitorAsDeploymentRulesOptions(v *DeploymentRuleOptionsMonitor) DeploymentRulesOptions {
 	return DeploymentRulesOptions{DeploymentRuleOptionsMonitor: v}
+}
+
+// DeploymentRuleOptionsMonitorIdsAsDeploymentRulesOptions is a convenience function that returns DeploymentRuleOptionsMonitorIds wrapped in DeploymentRulesOptions.
+func DeploymentRuleOptionsMonitorIdsAsDeploymentRulesOptions(v *DeploymentRuleOptionsMonitorIds) DeploymentRulesOptions {
+	return DeploymentRulesOptions{DeploymentRuleOptionsMonitorIds: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *DeploymentRulesOptions) UnmarshalJSON(data []byte) error {
 		obj.DeploymentRuleOptionsMonitor = nil
 	}
 
+	// try to unmarshal data into DeploymentRuleOptionsMonitorIds
+	err = datadog.Unmarshal(data, &obj.DeploymentRuleOptionsMonitorIds)
+	if err == nil {
+		if obj.DeploymentRuleOptionsMonitorIds != nil && obj.DeploymentRuleOptionsMonitorIds.UnparsedObject == nil {
+			jsonDeploymentRuleOptionsMonitorIds, _ := datadog.Marshal(obj.DeploymentRuleOptionsMonitorIds)
+			if string(jsonDeploymentRuleOptionsMonitorIds) == "{}" { // empty struct
+				obj.DeploymentRuleOptionsMonitorIds = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DeploymentRuleOptionsMonitorIds = nil
+		}
+	} else {
+		obj.DeploymentRuleOptionsMonitorIds = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.DeploymentRuleOptionsFaultyDeploymentDetection = nil
 		obj.DeploymentRuleOptionsMonitor = nil
+		obj.DeploymentRuleOptionsMonitorIds = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj DeploymentRulesOptions) MarshalJSON() ([]byte, error) {
 
 	if obj.DeploymentRuleOptionsMonitor != nil {
 		return datadog.Marshal(&obj.DeploymentRuleOptionsMonitor)
+	}
+
+	if obj.DeploymentRuleOptionsMonitorIds != nil {
+		return datadog.Marshal(&obj.DeploymentRuleOptionsMonitorIds)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *DeploymentRulesOptions) GetActualInstance() interface{} {
 
 	if obj.DeploymentRuleOptionsMonitor != nil {
 		return obj.DeploymentRuleOptionsMonitor
+	}
+
+	if obj.DeploymentRuleOptionsMonitorIds != nil {
+		return obj.DeploymentRuleOptionsMonitorIds
 	}
 
 	// all schemas are nil

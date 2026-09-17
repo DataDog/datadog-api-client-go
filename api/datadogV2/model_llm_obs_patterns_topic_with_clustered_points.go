@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsTopicWithClusteredPoints A topic discovered by an LLM Observability patterns run, including the
+// LLMObsPatternsTopicWithClusteredPoints A topic discovered by an Agent Observability patterns run, including the
 // clustered points attached to leaf topics.
 type LLMObsPatternsTopicWithClusteredPoints struct {
 	// List of clustered points attached to a topic.

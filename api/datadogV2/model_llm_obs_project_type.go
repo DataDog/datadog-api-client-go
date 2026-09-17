@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsProjectType Resource type of an LLM Observability project.
+// LLMObsProjectType Resource type of an Agent Observability project.
 type LLMObsProjectType string
 
 // List of LLMObsProjectType.

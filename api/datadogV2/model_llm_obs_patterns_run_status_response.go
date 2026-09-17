@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsRunStatusResponse Response containing the status of an LLM Observability patterns run.
+// LLMObsPatternsRunStatusResponse Response containing the status of an Agent Observability patterns run.
 type LLMObsPatternsRunStatusResponse struct {
-	// Data object of an LLM Observability patterns run status response.
+	// Data object of an Agent Observability patterns run status response.
 	Data LLMObsPatternsRunStatusResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

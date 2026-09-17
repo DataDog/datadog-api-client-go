@@ -86,7 +86,6 @@ mcwMY5r/WZ2qjFlPjeAqbL62aPDLidGjoaVo2iIoBPK/gjxQ/5f0MS4N/YQ0zWoYBueSQ0DGs
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateTenancyConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOCIIntegrationApi(apiClient)
 	resp, r, err := api.CreateTenancyConfig(ctx, body)

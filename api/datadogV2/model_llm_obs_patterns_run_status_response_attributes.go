@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsRunStatusResponseAttributes Attributes of an LLM Observability patterns run status.
+// LLMObsPatternsRunStatusResponseAttributes Attributes of an Agent Observability patterns run status.
 type LLMObsPatternsRunStatusResponseAttributes struct {
 	// Timestamp when the run was created.
 	CreatedAt time.Time `json:"created_at"`

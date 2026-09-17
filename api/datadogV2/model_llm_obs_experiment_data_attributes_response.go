@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentDataAttributesResponse Attributes of an LLM Observability experiment.
+// LLMObsExperimentDataAttributesResponse Attributes of an Agent Observability experiment.
 type LLMObsExperimentDataAttributesResponse struct {
 	// Pre-computed aggregate metrics for this experiment run, including eval score distributions, token costs, and error rates.
 	AggregateData map[string]interface{} `json:"aggregate_data,omitempty"`
@@ -46,7 +46,7 @@ type LLMObsExperimentDataAttributesResponse struct {
 	ProjectId string `json:"project_id"`
 	// Expected number of runs for this experiment.
 	RunCount *int32 `json:"run_count,omitempty"`
-	// Execution status of an LLM Observability experiment.
+	// Execution status of an Agent Observability experiment.
 	Status *LLMObsExperimentStatus `json:"status,omitempty"`
 	// Timestamp when the experiment was last updated.
 	UpdatedAt time.Time `json:"updated_at"`

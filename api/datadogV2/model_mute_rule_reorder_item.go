@@ -14,7 +14,7 @@ import (
 
 // MuteRuleReorderItem A reference to a mute rule used for reordering.
 type MuteRuleReorderItem struct {
-	// The ID of the automation rule.
+	// The ID of the mute rule.
 	Id uuid.UUID `json:"id"`
 	// The JSON:API type for mute rules.
 	Type MuteRuleType `json:"type"`

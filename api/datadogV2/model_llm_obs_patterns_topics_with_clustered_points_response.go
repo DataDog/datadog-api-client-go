@@ -11,9 +11,9 @@ import (
 )
 
 // LLMObsPatternsTopicsWithClusteredPointsResponse Response containing the topics, and the clustered points of their leaf topics,
-// discovered by an LLM Observability patterns run.
+// discovered by an Agent Observability patterns run.
 type LLMObsPatternsTopicsWithClusteredPointsResponse struct {
-	// Data object of an LLM Observability patterns topics-with-clustered-points response.
+	// Data object of an Agent Observability patterns topics-with-clustered-points response.
 	Data LLMObsPatternsTopicsWithClusteredPointsResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

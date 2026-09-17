@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetResponse Response containing a single LLM Observability dataset.
+// LLMObsDatasetResponse Response containing a single Agent Observability dataset.
 type LLMObsDatasetResponse struct {
-	// Data object for an LLM Observability dataset.
+	// Data object for an Agent Observability dataset.
 	Data LLMObsDatasetDataResponse `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsProjectRequest Request to create an LLM Observability project.
+// LLMObsProjectRequest Request to create an Agent Observability project.
 type LLMObsProjectRequest struct {
-	// Data object for creating an LLM Observability project.
+	// Data object for creating an Agent Observability project.
 	Data LLMObsProjectDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

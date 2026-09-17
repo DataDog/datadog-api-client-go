@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsRunsResponseAttributes Attributes of an LLM Observability patterns runs response.
+// LLMObsPatternsRunsResponseAttributes Attributes of an Agent Observability patterns runs response.
 type LLMObsPatternsRunsResponseAttributes struct {
 	// List of patterns runs.
 	Runs []LLMObsPatternsRunSummary `json:"runs"`

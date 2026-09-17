@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentDataAttributesRequest Attributes for creating an LLM Observability experiment.
+// LLMObsExperimentDataAttributesRequest Attributes for creating an Agent Observability experiment.
 type LLMObsExperimentDataAttributesRequest struct {
 	// Configuration parameters for the experiment.
 	Config map[string]interface{} `json:"config,omitempty"`

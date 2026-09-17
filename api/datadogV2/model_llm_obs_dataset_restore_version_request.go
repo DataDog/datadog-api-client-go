@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetRestoreVersionRequest Request to restore an LLM Observability dataset to a previous version.
+// LLMObsDatasetRestoreVersionRequest Request to restore an Agent Observability dataset to a previous version.
 type LLMObsDatasetRestoreVersionRequest struct {
-	// Data object for restoring an LLM Observability dataset to a previous version.
+	// Data object for restoring an Agent Observability dataset to a previous version.
 	Data LLMObsDatasetRestoreVersionDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

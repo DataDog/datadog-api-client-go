@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanIO Input or output content of an LLM Observability span.
+// LLMObsSpanIO Input or output content of an Agent Observability span.
 type LLMObsSpanIO struct {
 	// List of messages in the input or output.
 	Messages []LLMObsSpanMessage `json:"messages,omitempty"`

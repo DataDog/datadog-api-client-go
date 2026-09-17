@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeleteAnnotationQueueInteractionsRequest Request to delete interactions from an LLM Observability annotation queue.
+// LLMObsDeleteAnnotationQueueInteractionsRequest Request to delete interactions from an Agent Observability annotation queue.
 type LLMObsDeleteAnnotationQueueInteractionsRequest struct {
 	// Data object for deleting interactions from an annotation queue.
 	Data LLMObsDeleteAnnotationQueueInteractionsDataRequest `json:"data"`

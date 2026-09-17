@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentUpdateDataAttributesRequest Attributes for updating an LLM Observability experiment.
+// LLMObsExperimentUpdateDataAttributesRequest Attributes for updating an Agent Observability experiment.
 type LLMObsExperimentUpdateDataAttributesRequest struct {
 	// Updated identifier of the dataset used in this experiment.
 	DatasetId *string `json:"dataset_id,omitempty"`
@@ -20,7 +20,7 @@ type LLMObsExperimentUpdateDataAttributesRequest struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Updated name of the experiment.
 	Name *string `json:"name,omitempty"`
-	// Execution status of an LLM Observability experiment.
+	// Execution status of an Agent Observability experiment.
 	Status *LLMObsExperimentStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

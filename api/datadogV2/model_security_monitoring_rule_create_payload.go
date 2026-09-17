@@ -88,6 +88,63 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 		obj.CloudConfigurationRuleCreatePayload = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.SecurityMonitoringStandardRuleCreatePayload != nil {
+			allCasesUnparsed := len(obj.SecurityMonitoringStandardRuleCreatePayload.Cases) > 0
+			for _, item := range obj.SecurityMonitoringStandardRuleCreatePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			allQueriesUnparsed := len(obj.SecurityMonitoringStandardRuleCreatePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringStandardRuleCreatePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed || allQueriesUnparsed {
+				obj.SecurityMonitoringStandardRuleCreatePayload = nil
+				match--
+			}
+		}
+		if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
+			allCasesUnparsed := len(obj.SecurityMonitoringSignalRuleCreatePayload.Cases) > 0
+			for _, item := range obj.SecurityMonitoringSignalRuleCreatePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			allQueriesUnparsed := len(obj.SecurityMonitoringSignalRuleCreatePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringSignalRuleCreatePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed || allQueriesUnparsed {
+				obj.SecurityMonitoringSignalRuleCreatePayload = nil
+				match--
+			}
+		}
+		if obj.CloudConfigurationRuleCreatePayload != nil {
+			allCasesUnparsed := len(obj.CloudConfigurationRuleCreatePayload.Cases) > 0
+			for _, item := range obj.CloudConfigurationRuleCreatePayload.Cases {
+				if item.UnparsedObject == nil {
+					allCasesUnparsed = false
+					break
+				}
+			}
+			if allCasesUnparsed {
+				obj.CloudConfigurationRuleCreatePayload = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SecurityMonitoringStandardRuleCreatePayload = nil

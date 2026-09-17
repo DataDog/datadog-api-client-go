@@ -49,7 +49,7 @@ Feature: Deployment Gates
     Given operation "CreateDeploymentRule" enabled
     And new "CreateDeploymentRule" request
     And request contains "gate_id" parameter from "REPLACE.ME"
-    And body with value {"data": {"attributes": {"dry_run": false, "name": "My deployment rule", "options": {"duration": 3600, "excluded_resources": ["resource1", "resource2"]}, "type": "faulty_deployment_detection"}, "type": "deployment_rule"}}
+    And body with value {"data": {"attributes": {"dry_run": false, "name": "My deployment rule", "options": {"allowed_resources": ["resource1", "resource2"], "duration": 3600, "excluded_resources": ["resource1", "resource2"]}, "type": "faulty_deployment_detection"}, "type": "deployment_rule"}}
     When the request is sent
     Then the response status is 400 Bad request.
 
@@ -60,6 +60,37 @@ Feature: Deployment Gates
     And new "CreateDeploymentRule" request
     And request contains "gate_id" parameter from "deployment_gate.data.id"
     And body with value {"data": {"attributes": {"dry_run": false, "name": "My deployment rule", "options": {"excluded_resources": []}, "type": "faulty_deployment_detection"}, "type": "deployment_rule"}}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/ci-app-backend
+  Scenario: Create monitor deployment rule with monitor IDs returns "OK" response
+    Given there is a valid "deployment_gate" in the system
+    And there is a valid "monitor" in the system
+    And operation "CreateDeploymentRule" enabled
+    And new "CreateDeploymentRule" request
+    And request contains "gate_id" parameter from "deployment_gate.data.id"
+    And body with value {"data": {"attributes": {"dry_run": false, "name": "Specific monitor deployment rule", "options": {"monitor_ids": [{"id": "{{ monitor.id }}", "groups": []}]}, "type": "monitor"}, "type": "deployment_rule"}}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/ci-app-backend
+  Scenario: Create monitor deployment rule with query and monitor IDs returns "Bad Request" response
+    Given there is a valid "deployment_gate" in the system
+    And operation "CreateDeploymentRule" enabled
+    And new "CreateDeploymentRule" request
+    And request contains "gate_id" parameter from "deployment_gate.data.id"
+    And body with value {"data": {"attributes": {"dry_run": false, "name": "Ambiguous monitor deployment rule", "options": {"query": "service:transaction-backend env:production", "monitor_ids": [{"id": "123456", "groups": []}]}, "type": "monitor"}, "type": "deployment_rule"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/ci-app-backend
+  Scenario: Create monitor deployment rule with query returns "OK" response
+    Given there is a valid "deployment_gate" in the system
+    And operation "CreateDeploymentRule" enabled
+    And new "CreateDeploymentRule" request
+    And request contains "gate_id" parameter from "deployment_gate.data.id"
+    And body with value {"data": {"attributes": {"dry_run": false, "name": "Query monitor deployment rule", "options": {"query": "service:transaction-backend env:production"}, "type": "monitor"}, "type": "deployment_rule"}}
     When the request is sent
     Then the response status is 200 OK
 
@@ -388,7 +419,7 @@ Feature: Deployment Gates
     And new "UpdateDeploymentRule" request
     And request contains "gate_id" parameter from "REPLACE.ME"
     And request contains "id" parameter from "REPLACE.ME"
-    And body with value {"data": {"attributes": {"dry_run": false, "name": "Updated deployment rule", "options": {"duration": 3600, "excluded_resources": ["resource1", "resource2"]}}, "type": "deployment_rule"}}
+    And body with value {"data": {"attributes": {"dry_run": false, "name": "Updated deployment rule", "options": {"allowed_resources": ["resource1", "resource2"], "duration": 3600, "excluded_resources": ["resource1", "resource2"]}}, "type": "deployment_rule"}}
     When the request is sent
     Then the response status is 400 Bad request.
 

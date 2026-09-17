@@ -12,7 +12,7 @@ import (
 
 // CreateTableRequestDataAttributesSchema Schema defining the structure and columns of the reference table.
 type CreateTableRequestDataAttributesSchema struct {
-	// The schema fields.
+	// The schema fields. Maximum of 200 columns.
 	Fields []CreateTableRequestDataAttributesSchemaFieldsItems `json:"fields"`
 	// List of field names that serve as primary keys for the table. Only one primary key is supported, and it is used as an ID to retrieve rows.
 	PrimaryKeys []string `json:"primary_keys"`

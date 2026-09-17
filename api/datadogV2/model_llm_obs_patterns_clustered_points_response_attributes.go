@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsClusteredPointsResponseAttributes Attributes of an LLM Observability patterns clustered points response.
+// LLMObsPatternsClusteredPointsResponseAttributes Attributes of an Agent Observability patterns clustered points response.
 type LLMObsPatternsClusteredPointsResponseAttributes struct {
 	// Pagination token for the next page of points. Null if there are no more pages.
 	NextPageToken datadog.NullableString `json:"next_page_token"`

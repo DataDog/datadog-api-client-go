@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetExportFormat Supported export format for an LLM Observability dataset.
+// LLMObsDatasetExportFormat Supported export format for an Agent Observability dataset.
 type LLMObsDatasetExportFormat string
 
 // List of LLMObsDatasetExportFormat.

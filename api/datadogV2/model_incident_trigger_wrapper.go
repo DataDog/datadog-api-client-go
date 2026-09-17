@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentTriggerWrapper Schema for an Incident-based trigger.
+// IncidentTriggerWrapper Schema for an incident-based trigger.
 type IncidentTriggerWrapper struct {
-	// Trigger a workflow from an Incident. For automatic triggering a handle must be configured and the workflow must be published.
+	// Trigger a workflow from an incident. For automatic triggering a handle must be configured and the workflow must be published.
 	IncidentTrigger IncidentTrigger `json:"incidentTrigger"`
-	// A list of steps that run first after a trigger fires.
+	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Spec The spec defines what the workflow does.
+// Spec A complete Workflow Automation definition, including its triggers, steps, and connections.
 type Spec struct {
-	// A list of annotations used in the workflow. These are like sticky notes for your workflow!
+	// Up to 100 text annotations displayed on the workflow canvas.
 	Annotations []Annotation `json:"annotations,omitempty"`
 	// A list of connections or connection groups used in the workflow.
 	ConnectionEnvs []ConnectionEnv `json:"connectionEnvs,omitempty"`
 	// Unique identifier used to trigger workflows automatically in Datadog.
 	Handle *string `json:"handle,omitempty"`
-	// A list of input parameters for the workflow. These can be used as dynamic runtime values in your workflow.
+	// A list of input parameters for the workflow. Input parameters are available under the `Trigger` object and can be referenced in workflow steps using `{{ Trigger.<parameter_name> }}`.
 	InputSchema *InputSchema `json:"inputSchema,omitempty"`
 	// A list of output parameters for the workflow.
 	OutputSchema *OutputSchema `json:"outputSchema,omitempty"`

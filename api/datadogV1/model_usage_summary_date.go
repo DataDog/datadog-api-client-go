@@ -385,17 +385,17 @@ type UsageSummaryDate struct {
 	IotDeviceSum *int64 `json:"iot_device_sum,omitempty"`
 	// Shows the 99th percentile of all IoT devices over all hours in the current date all organizations.
 	IotDeviceTop99p *int64 `json:"iot_device_top99p,omitempty"`
-	// Shows the sum of all LLM Observability 15-day retention spans over all hours in the current date for all organizations.
+	// Shows the sum of all Agent Observability 15-day retention spans over all hours in the current date for all organizations.
 	LlmObservability15dayRetentionSpansSum *int64 `json:"llm_observability_15day_retention_spans_sum,omitempty"`
-	// Shows the sum of all LLM Observability 30-day retention spans over all hours in the current date for all organizations.
+	// Shows the sum of all Agent Observability 30-day retention spans over all hours in the current date for all organizations.
 	LlmObservability30dayRetentionSpansSum *int64 `json:"llm_observability_30day_retention_spans_sum,omitempty"`
-	// Shows the sum of all LLM Observability 60-day retention spans over all hours in the current date for all organizations.
+	// Shows the sum of all Agent Observability 60-day retention spans over all hours in the current date for all organizations.
 	LlmObservability60dayRetentionSpansSum *int64 `json:"llm_observability_60day_retention_spans_sum,omitempty"`
-	// Shows the sum of all LLM Observability 90-day retention spans over all hours in the current date for all organizations.
+	// Shows the sum of all Agent Observability 90-day retention spans over all hours in the current date for all organizations.
 	LlmObservability90dayRetentionSpansSum *int64 `json:"llm_observability_90day_retention_spans_sum,omitempty"`
-	// Sum of all LLM observability minimum spend over all hours in the current date for all organizations.
+	// Sum of all Agent observability minimum spend over all hours in the current date for all organizations.
 	LlmObservabilityMinSpendSum *int64 `json:"llm_observability_min_spend_sum,omitempty"`
-	// Sum of all LLM observability sessions over all hours in the current date for all organizations.
+	// Sum of all Agent observability sessions over all hours in the current date for all organizations.
 	LlmObservabilitySum *int64 `json:"llm_observability_sum,omitempty"`
 	// Shows the sum of all Logs Archive Search scanned data over all hours in the current date for all organizations.
 	LogsArchiveSearchGbScannedSum *int64 `json:"logs_archive_search_gb_scanned_sum,omitempty"`

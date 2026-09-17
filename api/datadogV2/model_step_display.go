@@ -8,7 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StepDisplay The definition of `StepDisplay` object.
+// StepDisplay The position of a step on the workflow canvas. Omit `display` from every step to use
+// automatic layout, or provide it for every step to preserve a manual layout.
 type StepDisplay struct {
 	// The definition of `StepDisplayBounds` object.
 	Bounds *StepDisplayBounds `json:"bounds,omitempty"`

@@ -15,6 +15,7 @@ import (
 	"io"
 	"log"
 	"math"
+	"math/rand"
 	"mime/multipart"
 	"net/http"
 	"net/http/httputil"
@@ -214,15 +215,28 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		if !shouldRetry {
 			return resp, requestErr
 		}
-
-		select {
-		case <-ctx.Done():
+		if deadline, ok := ctx.Deadline(); ok && *retryDuration >= time.Until(deadline) {
 			return resp, requestErr
-		case <-time.After(*retryDuration):
-			retryCount++
-			continue
 		}
 
+		if !retryDelayElapsed(ctx, time.After(*retryDuration)) {
+			return resp, requestErr
+		}
+		if resp.Body != nil {
+			resp.Body.Close()
+		}
+		retryCount++
+		continue
+
+	}
+}
+
+func retryDelayElapsed(ctx context.Context, delay <-chan time.Time) bool {
+	select {
+	case <-ctx.Done():
+		return false
+	case <-delay:
+		return ctx.Err() == nil
 	}
 }
 
@@ -230,31 +244,50 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {
 	enableRetry := c.Cfg.RetryConfiguration.EnableRetry
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
-	if !enableRetry || retryCount == maxRetries {
+	if !enableRetry || retryCount >= maxRetries {
 		return nil, false
 	}
-	var err error
-	if v := response.Header.Get(rateLimitResetHeader); response.StatusCode == 429 && v != "" {
-		vInt, err := strconv.ParseInt(v, 10, 64)
-		if err == nil {
-			retryDuration := time.Duration(vInt) * time.Second
-			return &retryDuration, true
-		}
+	isRateLimited := response.StatusCode == http.StatusTooManyRequests
+	isServerError := response.StatusCode >= http.StatusInternalServerError
+	isRetryableStatusCode := isRateLimited || isServerError
+	if !isRetryableStatusCode {
+		return nil, false
 	}
 
-	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
-	// or if the `rateLimitResetHeader` header is missing or if status code >= 500.
-	if err != nil || response.StatusCode == 429 || response.StatusCode >= 500 {
-		// Calculate the retry val (base * multiplier^retryCount)
-		retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
-		// retry duration shouldn't exceed the configured timeout period (skip cap when Timeout==0, which means no timeout)
-		if c.Cfg.HTTPClient.Timeout > 0 {
-			retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
-		}
-		retryDuration := time.Duration(retryVal) * time.Second
-		return &retryDuration, true
+	retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
+	retryDuration := time.Duration(retryVal) * time.Second
+
+	if isRateLimited {
+		retryDuration = max(retryDuration, parseRateLimitReset(response.Header.Get(rateLimitResetHeader)))
 	}
-	return nil, false
+
+	retryDuration = addRetryJitter(retryDuration, c.retryJitter())
+	return &retryDuration, true
+}
+
+func parseRateLimitReset(value string) time.Duration {
+	const maxResetSeconds = math.MaxInt64 / int64(time.Second)
+
+	seconds, err := strconv.ParseInt(value, 10, 64)
+	if err != nil || seconds < 0 || seconds > maxResetSeconds {
+		return 0
+	}
+	return time.Duration(seconds) * time.Second
+}
+
+func addRetryJitter(retryDuration, jitter time.Duration) time.Duration {
+	if jitter > time.Duration(math.MaxInt64)-retryDuration {
+		return time.Duration(math.MaxInt64)
+	}
+	return retryDuration + jitter
+}
+
+func (c *APIClient) retryJitter() time.Duration {
+	max := c.Cfg.RetryConfiguration.RetryJitter
+	if max <= 0 {
+		return 0
+	}
+	return time.Duration(rand.Int63n(int64(max)))
 }
 
 // GetConfig allows modification of underlying config for alternate implementations and testing.

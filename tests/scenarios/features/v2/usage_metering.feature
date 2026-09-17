@@ -14,6 +14,42 @@ Feature: Usage Metering
     And a valid "appKeyAuth" key in the system
     And an instance of "UsageMetering" API
 
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Create or update usage quotas returns "Bad Request" response
+    Given operation "CreateQuotas" enabled
+    And new "CreateQuotas" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And body with value {"data": [{"attributes": {"enforced": true, "scope": {"user_handle": "jane@example.com"}, "usage_limit": 100000}, "type": "quotas"}]}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Create or update usage quotas returns "OK. The response includes each item's result; see each item's `error` attribute for any that failed to write." response
+    Given operation "CreateQuotas" enabled
+    And new "CreateQuotas" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And body with value {"data": [{"attributes": {"enforced": true, "scope": {"user_handle": "jane@example.com"}, "usage_limit": 100000}, "type": "quotas"}]}
+    When the request is sent
+    Then the response status is 200 OK. The response includes each item's result; see each item's `error` attribute for any that failed to write.
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Delete a usage quota returns "No Content" response
+    Given operation "DeleteQuota" enabled
+    And new "DeleteQuota" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And request contains "id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 204 No Content
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Delete a usage quota returns "Not Found" response
+    Given operation "DeleteQuota" enabled
+    And new "DeleteQuota" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And request contains "id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
   @replay-only @team:DataDog/billing-hub
   Scenario: Get Monthly Cost Attribution returns "Bad Request" response
     Given new "GetMonthlyCostAttribution" request
@@ -86,7 +122,7 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @replay-only @team:DataDog/billing-hub
+  @replay-only @skip @team:DataDog/billing-hub
   Scenario: Get cost across multi-org account returns "OK" response
     Given new "GetCostByOrg" request
     And request contains "start_month" parameter with value "{{ timeISO('now - 3d') }}"
@@ -139,7 +175,7 @@ Feature: Usage Metering
     And the response "data[0].type" is equal to "usage_timeseries"
     And the response "data[0].attributes.region" is equal to "us"
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for Application Security returns "Bad Request" response
     Given new "GetUsageApplicationSecurityMonitoring" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 3d') }}"
@@ -147,7 +183,7 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for Lambda traced invocations returns "Bad Request" response
     Given new "GetUsageLambdaTracedInvocations" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 3d') }}"
@@ -155,7 +191,7 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for Lambda traced invocations returns "OK" response
     Given new "GetUsageLambdaTracedInvocations" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 5d') }}"
@@ -165,7 +201,7 @@ Feature: Usage Metering
     And the response "data[0].type" is equal to "usage_timeseries"
     And the response "data[0].attributes.product_family" is equal to "lambda-traced-invocations"
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for Observability Pipelines returns "Bad Request" response
     Given new "GetUsageObservabilityPipelines" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 3d') }}"
@@ -180,7 +216,7 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for application security returns "OK" response
     Given new "GetUsageApplicationSecurityMonitoring" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 5d') }}"
@@ -197,7 +233,7 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @team:DataDog/billing-hub
+  @skip @team:DataDog/billing-hub
   Scenario: Get hourly usage for observability pipelines returns "OK" response
     Given new "GetUsageObservabilityPipelines" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 5d') }}"
@@ -240,5 +276,59 @@ Feature: Usage Metering
     Given new "GetEstimatedCostByOrg" request
     And request contains "view" parameter with value "sub-org"
     And request contains "start_month" parameter with value "{{ timeISO('now') }}"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: List usage quotas returns "Bad Request" response
+    Given operation "ListQuotas" enabled
+    And new "ListQuotas" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: List usage quotas returns "OK" response
+    Given operation "ListQuotas" enabled
+    And new "ListQuotas" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/billing-hub @with-pagination
+  Scenario: List usage quotas returns "OK" response with pagination
+    Given operation "ListQuotas" enabled
+    And new "ListQuotas" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    When the request with pagination is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Update a usage quota returns "Bad Request. Returned if the request is malformed, or if the `id` in the request body does not match the `id` in the request path." response
+    Given operation "UpdateQuota" enabled
+    And new "UpdateQuota" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And request contains "id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"enforced": false, "usage_limit": 120000}, "id": "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f", "type": "quotas"}}
+    When the request is sent
+    Then the response status is 400 Bad Request. Returned if the request is malformed, or if the `id` in the request body does not match the `id` in the request path.
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Update a usage quota returns "Not Found" response
+    Given operation "UpdateQuota" enabled
+    And new "UpdateQuota" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And request contains "id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"enforced": false, "usage_limit": 120000}, "id": "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f", "type": "quotas"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/billing-hub
+  Scenario: Update a usage quota returns "OK" response
+    Given operation "UpdateQuota" enabled
+    And new "UpdateQuota" request
+    And request contains "quota_namespace" parameter from "REPLACE.ME"
+    And request contains "id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"enforced": false, "usage_limit": 120000}, "id": "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f", "type": "quotas"}}
     When the request is sent
     Then the response status is 200 OK

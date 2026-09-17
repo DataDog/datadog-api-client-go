@@ -16,11 +16,14 @@ import (
 type ObservabilityPipelineSplunkHecDestination struct {
 	// If `true`, Splunk tries to extract timestamps from incoming log events.
 	// If `false`, Splunk assigns the time the event was received.
+	// Only applies when `endpoint_target` is `event`; cannot be `true` when `endpoint_target` is `raw`.
 	AutoExtractTimestamp *bool `json:"auto_extract_timestamp,omitempty"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Encoding format for log events.
 	Encoding *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
+	// The Splunk HEC endpoint to send events to. Use `event` to send structured events to the `/event` endpoint, or `raw` to send the raw message to the `/raw` endpoint.
+	EndpointTarget *ObservabilityPipelineSplunkHecDestinationEndpointTarget `json:"endpoint_target,omitempty"`
 	// Name of the environment variable or secret that holds the Splunk HEC endpoint URL.
 	EndpointUrlKey *string `json:"endpoint_url_key,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
@@ -148,6 +151,34 @@ func (o *ObservabilityPipelineSplunkHecDestination) HasEncoding() bool {
 // SetEncoding gets a reference to the given ObservabilityPipelineSplunkHecDestinationEncoding and assigns it to the Encoding field.
 func (o *ObservabilityPipelineSplunkHecDestination) SetEncoding(v ObservabilityPipelineSplunkHecDestinationEncoding) {
 	o.Encoding = &v
+}
+
+// GetEndpointTarget returns the EndpointTarget field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSplunkHecDestination) GetEndpointTarget() ObservabilityPipelineSplunkHecDestinationEndpointTarget {
+	if o == nil || o.EndpointTarget == nil {
+		var ret ObservabilityPipelineSplunkHecDestinationEndpointTarget
+		return ret
+	}
+	return *o.EndpointTarget
+}
+
+// GetEndpointTargetOk returns a tuple with the EndpointTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSplunkHecDestination) GetEndpointTargetOk() (*ObservabilityPipelineSplunkHecDestinationEndpointTarget, bool) {
+	if o == nil || o.EndpointTarget == nil {
+		return nil, false
+	}
+	return o.EndpointTarget, true
+}
+
+// HasEndpointTarget returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSplunkHecDestination) HasEndpointTarget() bool {
+	return o != nil && o.EndpointTarget != nil
+}
+
+// SetEndpointTarget gets a reference to the given ObservabilityPipelineSplunkHecDestinationEndpointTarget and assigns it to the EndpointTarget field.
+func (o *ObservabilityPipelineSplunkHecDestination) SetEndpointTarget(v ObservabilityPipelineSplunkHecDestinationEndpointTarget) {
+	o.EndpointTarget = &v
 }
 
 // GetEndpointUrlKey returns the EndpointUrlKey field value if set, zero value otherwise.
@@ -402,6 +433,9 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 	if o.Encoding != nil {
 		toSerialize["encoding"] = o.Encoding
 	}
+	if o.EndpointTarget != nil {
+		toSerialize["endpoint_target"] = o.EndpointTarget
+	}
 	if o.EndpointUrlKey != nil {
 		toSerialize["endpoint_url_key"] = o.EndpointUrlKey
 	}
@@ -433,18 +467,19 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AutoExtractTimestamp *bool                                                   `json:"auto_extract_timestamp,omitempty"`
-		Buffer               *ObservabilityPipelineBufferOptions                     `json:"buffer,omitempty"`
-		Encoding             *ObservabilityPipelineSplunkHecDestinationEncoding      `json:"encoding,omitempty"`
-		EndpointUrlKey       *string                                                 `json:"endpoint_url_key,omitempty"`
-		Id                   *string                                                 `json:"id"`
-		Index                *string                                                 `json:"index,omitempty"`
-		IndexedFields        []string                                                `json:"indexed_fields,omitempty"`
-		Inputs               *[]string                                               `json:"inputs"`
-		Sourcetype           *string                                                 `json:"sourcetype,omitempty"`
-		TokenKey             *string                                                 `json:"token_key,omitempty"`
-		TokenStrategy        *ObservabilityPipelineSplunkHecDestinationTokenStrategy `json:"token_strategy,omitempty"`
-		Type                 *ObservabilityPipelineSplunkHecDestinationType          `json:"type"`
+		AutoExtractTimestamp *bool                                                    `json:"auto_extract_timestamp,omitempty"`
+		Buffer               *ObservabilityPipelineBufferOptions                      `json:"buffer,omitempty"`
+		Encoding             *ObservabilityPipelineSplunkHecDestinationEncoding       `json:"encoding,omitempty"`
+		EndpointTarget       *ObservabilityPipelineSplunkHecDestinationEndpointTarget `json:"endpoint_target,omitempty"`
+		EndpointUrlKey       *string                                                  `json:"endpoint_url_key,omitempty"`
+		Id                   *string                                                  `json:"id"`
+		Index                *string                                                  `json:"index,omitempty"`
+		IndexedFields        []string                                                 `json:"indexed_fields,omitempty"`
+		Inputs               *[]string                                                `json:"inputs"`
+		Sourcetype           *string                                                  `json:"sourcetype,omitempty"`
+		TokenKey             *string                                                  `json:"token_key,omitempty"`
+		TokenStrategy        *ObservabilityPipelineSplunkHecDestinationTokenStrategy  `json:"token_strategy,omitempty"`
+		Type                 *ObservabilityPipelineSplunkHecDestinationType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -460,7 +495,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "buffer", "encoding", "endpoint_url_key", "id", "index", "indexed_fields", "inputs", "sourcetype", "token_key", "token_strategy", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "buffer", "encoding", "endpoint_target", "endpoint_url_key", "id", "index", "indexed_fields", "inputs", "sourcetype", "token_key", "token_strategy", "type"})
 	} else {
 		return err
 	}
@@ -472,6 +507,11 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 		hasInvalidField = true
 	} else {
 		o.Encoding = all.Encoding
+	}
+	if all.EndpointTarget != nil && !all.EndpointTarget.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.EndpointTarget = all.EndpointTarget
 	}
 	o.EndpointUrlKey = all.EndpointUrlKey
 	o.Id = *all.Id

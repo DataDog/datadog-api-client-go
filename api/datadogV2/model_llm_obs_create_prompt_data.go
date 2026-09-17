@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptData Data object for creating an LLM Observability prompt.
+// LLMObsCreatePromptData Data object for creating an Agent Observability prompt.
 type LLMObsCreatePromptData struct {
-	// Attributes for creating an LLM Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
+	// Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
 	Attributes LLMObsCreatePromptDataAttributes `json:"attributes"`
-	// Resource type of an LLM Observability prompt.
+	// Resource type of an Agent Observability prompt.
 	Type LLMObsPromptType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

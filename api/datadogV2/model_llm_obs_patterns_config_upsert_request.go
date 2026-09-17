@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsConfigUpsertRequest Request to create or update an LLM Observability patterns configuration.
+// LLMObsPatternsConfigUpsertRequest Request to create or update an Agent Observability patterns configuration.
 type LLMObsPatternsConfigUpsertRequest struct {
-	// Data object for creating or updating an LLM Observability patterns configuration.
+	// Data object for creating or updating an Agent Observability patterns configuration.
 	Data LLMObsPatternsConfigUpsertRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetRecordItem A single record to append to an LLM Observability dataset.
+// LLMObsDatasetRecordItem A single record to append to an Agent Observability dataset.
 type LLMObsDatasetRecordItem struct {
 	// Represents any valid JSON value.
 	ExpectedOutput NullableAnyValue `json:"expected_output,omitempty"`

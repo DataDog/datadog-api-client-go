@@ -2646,6 +2646,7 @@ type ListStatusPagesOptionalParameters struct {
 	PageOffset         *int64
 	PageLimit          *int64
 	FilterDomainPrefix *string
+	FilterName         *string
 	Include            *string
 }
 
@@ -2670,6 +2671,12 @@ func (r *ListStatusPagesOptionalParameters) WithPageLimit(pageLimit int64) *List
 // WithFilterDomainPrefix sets the corresponding parameter name and returns the struct.
 func (r *ListStatusPagesOptionalParameters) WithFilterDomainPrefix(filterDomainPrefix string) *ListStatusPagesOptionalParameters {
 	r.FilterDomainPrefix = &filterDomainPrefix
+	return r
+}
+
+// WithFilterName sets the corresponding parameter name and returns the struct.
+func (r *ListStatusPagesOptionalParameters) WithFilterName(filterName string) *ListStatusPagesOptionalParameters {
+	r.FilterName = &filterName
 	return r
 }
 
@@ -2714,6 +2721,9 @@ func (a *StatusPagesApi) ListStatusPages(ctx _context.Context, o ...ListStatusPa
 	}
 	if optionalParams.FilterDomainPrefix != nil {
 		localVarQueryParams.Add("filter[domain_prefix]", datadog.ParameterToString(*optionalParams.FilterDomainPrefix, ""))
+	}
+	if optionalParams.FilterName != nil {
+		localVarQueryParams.Add("filter[name]", datadog.ParameterToString(*optionalParams.FilterName, ""))
 	}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
@@ -2860,7 +2870,7 @@ func (a *StatusPagesApi) PatchMaintenanceUpdate(ctx _context.Context, pageId uui
 }
 
 // PublishStatusPage Publish status page.
-// Publishes a status page. For pages of type `public`, makes the status page available on the public internet and requires the `status_pages_public_page_publish` permission. For pages of type `internal`, makes the status page available under the `status-pages/$domain_prefix/view` route within the Datadog organization and requires the `status_pages_internal_page_publish` permission. The `status_pages_settings_write` permission is temporarily honored as we migrate publishing functionality from the update status page endpoint to the publish status page endpoint.
+// Publishes a status page. For pages of type `public`, makes the status page available on the public internet and requires the `status_pages_public_page_publish` permission. For pages of type `internal`, makes the status page available under the `status-pages/$domain_prefix/view` route within the Datadog organization and requires the `status_pages_internal_page_publish` permission.
 func (a *StatusPagesApi) PublishStatusPage(ctx _context.Context, pageId uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -2998,7 +3008,7 @@ func (a *StatusPagesApi) SoftDeleteDegradationUpdate(ctx _context.Context, degra
 }
 
 // UnpublishStatusPage Unpublish status page.
-// Unpublishes a status page. For pages of type `public`, removes the status page from the public internet and requires the `status_pages_public_page_publish` permission. For pages of type `internal`, removes the `status-pages/$domain_prefix/view` route from the Datadog organization and requires the `status_pages_internal_page_publish` permission. The `status_pages_settings_write` permission is temporarily honored as we migrate unpublishing functionality from the update status page endpoint to the unpublish status page endpoint.
+// Unpublishes a status page. For pages of type `public`, removes the status page from the public internet and requires the `status_pages_public_page_publish` permission. For pages of type `internal`, removes the `status-pages/$domain_prefix/view` route from the Datadog organization and requires the `status_pages_internal_page_publish` permission.
 func (a *StatusPagesApi) UnpublishStatusPage(ctx _context.Context, pageId uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -3660,7 +3670,7 @@ func (r *UpdateStatusPageOptionalParameters) WithInclude(include string) *Update
 }
 
 // UpdateStatusPage Update status page.
-// Updates an existing status page's attributes. **Note**: Publishing and unpublishing via the `enabled` property will be deprecated on this endpoint. Use the dedicated [publish](#publish-status-page) and [unpublish](#unpublish-status-page) status page endpoints instead.
+// Updates an existing status page's attributes. To publish and unpublish status pages, use the dedicated [publish](#publish-status-page) and [unpublish](#unpublish-status-page) status page endpoints.
 func (a *StatusPagesApi) UpdateStatusPage(ctx _context.Context, pageId uuid.UUID, body PatchStatusPageRequest, o ...UpdateStatusPageOptionalParameters) (StatusPage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

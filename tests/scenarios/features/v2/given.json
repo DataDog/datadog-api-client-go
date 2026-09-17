@@ -53,6 +53,18 @@
     "operationId": "CreateActionConnection"
   },
   {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"execution_policy\",\n    \"attributes\": {\n      \"name\": \"Cassette Execution Policy {{ unique_lower_alnum }}\",\n      \"effect\": \"allow\",\n      \"action_pattern\": {\n        \"integration\": \"INTEGRATION_SCRIPT\",\n        \"action_fqns\": [\"com.datadoghq.script.*\"]\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"execution_policy\" in the system",
+    "key": "execution_policy",
+    "tag": "Execution Policy",
+    "operationId": "CreateExecutionPolicy"
+  },
+  {
     "source": "data[0]",
     "step": "there is a valid \"aws_scan_options\" in the system",
     "key": "aws_scan_options",
@@ -354,7 +366,7 @@
       },
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"from\": 1672527600000,\n      \"to\": 1704063600000,\n      \"indexes\": [\"test-index\", \"test-index-2\"],\n      \"query\": {\"host\": \"abc\", \"service\": \"xyz\"}\n    },\n    \"type\": \"create_deletion_req\"\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"from\": 1672527600000,\n      \"to\": 1704063600000,\n      \"indexes\": [\"test-index\", \"test-index-2\"],\n      \"query\": {\"host\": \"abc\", \"service\": \"xyz\"},\n      \"displayed_total\": 100\n    },\n    \"type\": \"create_deletion_req\"\n  }\n}"
       }
     ],
     "step": "there is a valid \"deletion_request\" in the system",
@@ -867,7 +879,7 @@
     ],
     "step": "there is a valid \"prompt\" in the system",
     "key": "prompt",
-    "tag": "LLM Observability",
+    "tag": "Agent Observability",
     "operationId": "CreateLLMObsPrompt"
   },
   {
@@ -883,7 +895,7 @@
     ],
     "step": "there is a valid \"prompt_version\" in the system",
     "key": "prompt_version",
-    "tag": "LLM Observability",
+    "tag": "Agent Observability",
     "operationId": "CreateLLMObsPromptVersion"
   },
   {
@@ -1037,6 +1049,18 @@
     "key": "monitor_notification_rule",
     "tag": "Monitors",
     "operationId": "CreateMonitorNotificationRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"monitor-config-policy\",\n    \"attributes\": {\n      \"policy_type\": \"downtime\",\n      \"policy\": {\n        \"max_duration_ms\": 3600000\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"monitor_configuration_downtime_policy\" in the system",
+    "key": "monitor_configuration_downtime_policy",
+    "tag": "Monitors",
+    "operationId": "CreateMonitorConfigPolicy"
   },
   {
     "parameters": [
@@ -1322,6 +1346,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\"data\":{\"type\":\"teams_ownership_mappings\",\"attributes\":{\"team_handle\":\"team-rum\",\"view_name\":\"/checkout-{{ unique_lower_alnum }}\",\"service\":\"web-checkout-{{ unique_lower_alnum }}\",\"match_type\":\"exact\"}}}"
+      }
+    ],
+    "step": "there is a valid \"teams_ownership_mapping\" in the system",
+    "key": "teams_ownership_mapping",
+    "tag": "Rum Teams Ownership",
+    "operationId": "CreateTeamsOwnershipMapping"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"type\": \"rule\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"enabled\": true,\n      \"owner\": \"Datadog\",\n      \"scorecard_name\": \"OpenAPI Spec Test Best Practices\"\n    }\n  }\n}"
       }
     ],
@@ -1346,6 +1382,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"inbox_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"enabled\": true,\n      \"rule\": {\n        \"finding_types\": [\"misconfiguration\"],\n        \"query\": \"env:staging\"\n      },\n      \"action\": {\n        \"description\": \"Needs triage\"\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"valid_inbox_rule\" in the system",
+    "key": "valid_inbox_rule",
+    "tag": "Security Monitoring",
+    "operationId": "CreateSecurityFindingsAutomationInboxRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"type\": \"mute_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"enabled\": true,\n      \"rule\": {\n        \"finding_types\": [\"misconfiguration\"],\n        \"query\": \"env:staging\"\n      },\n      \"action\": {\n        \"reason\": \"risk_accepted\"\n      }\n    }\n  }\n}"
       }
     ],
@@ -1353,6 +1401,18 @@
     "key": "valid_mute_rule",
     "tag": "Security Monitoring",
     "operationId": "CreateSecurityFindingsAutomationMuteRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"severity_modifier_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"enabled\": true,\n      \"rule\": {\n        \"finding_types\": [\"misconfiguration\"],\n        \"query\": \"env:staging\"\n      },\n      \"action\": {\n        \"type\": \"set\",\n        \"severity\": \"low\"\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"valid_severity_modifier_rule\" in the system",
+    "key": "valid_severity_modifier_rule",
+    "tag": "Security Monitoring",
+    "operationId": "CreateSecurityFindingsAutomationSeverityModifierRule"
   },
   {
     "parameters": [
@@ -1370,7 +1430,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"selectors\": {\n        \"rule_types\": [\"signal_correlation\"],\n        \"trigger_source\": \"security_signals\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"Rule {{ uuid }}\",\n      \"selectors\": {\n        \"rule_types\": [\"signal_correlation\"],\n        \"trigger_source\": \"security_signals\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"valid_signal_notification_rule\" in the system",
@@ -1382,7 +1442,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"selectors\": {\n        \"rule_types\": [\"misconfiguration\", \"attack_path\"],\n        \"trigger_source\": \"security_findings\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"time_aggregation\": 86400,\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"Rule {{ uuid }}\",\n      \"selectors\": {\n        \"rule_types\": [\"misconfiguration\", \"attack_path\"],\n        \"trigger_source\": \"security_findings\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"time_aggregation\": 86400,\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"valid_vulnerability_notification_rule\" in the system",
@@ -1810,7 +1870,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"type\": \"workflows\",\n    \"attributes\": {\n        \"name\": \"Cassette Workflow x-given\",\n        \"spec\": {\n            \"triggers\": [\n                {\n                    \"startStepNames\": [\"No_op\"],\n                    \"workflowTrigger\": {}\n                }\n            ],\n            \"steps\": [\n              {\n                \"name\": \"No_op\",\n                \"actionId\": \"com.datadoghq.core.noop\"\n              }\n            ]\n        }\n    }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"type\": \"workflows\",\n    \"attributes\": {\n        \"name\": \"Cassette Workflow x-given\",\n        \"runAs\": {\"type\": \"owner\"},\n        \"spec\": {\n            \"triggers\": [\n                {\n                    \"startStepNames\": [\"No_op\"],\n                    \"workflowTrigger\": {}\n                }\n            ],\n            \"steps\": [\n              {\n                \"name\": \"No_op\",\n                \"actionId\": \"com.datadoghq.core.noop\"\n              }\n            ]\n        }\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"workflow\" in the system",

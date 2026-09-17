@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsClusteredPointsType Resource type of an LLM Observability patterns clustered points response.
+// LLMObsPatternsClusteredPointsType Resource type of an Agent Observability patterns clustered points response.
 type LLMObsPatternsClusteredPointsType string
 
 // List of LLMObsPatternsClusteredPointsType.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationsType Resource type for LLM Observability annotations.
+// LLMObsAnnotationsType Resource type for Agent Observability annotations.
 type LLMObsAnnotationsType string
 
 // List of LLMObsAnnotationsType.

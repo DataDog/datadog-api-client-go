@@ -351,3 +351,252 @@ func TestDeserializationUnknownNestedOneOf(t *testing.T) {
 	assert.Equal("A non existent destination", resp.Data.Attributes.Destination.Get().UnparsedObject.(map[string]interface{})["type"])
 	assert.True(datadog.ContainsUnparsedObject(resp))
 }
+
+func TestDeserializationOneOfTopologyMapDiscriminatedInsideList(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
+	assert := tests.Assert(ctx, t)
+	api := datadogV1.NewDashboardsApi(testV1.Client(ctx))
+
+	responseBody := `
+{
+    "id": "abc-def-ghi",
+    "title": "Topology",
+    "layout_type": "ordered",
+    "widgets": [
+        {
+            "id": 1,
+            "definition": {
+                "type": "topology_map",
+                "title": "Service map",
+                "requests": [
+                    {
+                        "request_type": "topology",
+                        "query": {
+                            "data_source": "service_map",
+                            "filters": ["env:prod"],
+                            "service": "master-db"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+`
+	// Mock the dashboards API.
+	URL, err := testV1.Client(ctx).GetConfig().ServerURLWithContext(ctx, "v1.DashboardsApi.GetDashboard")
+	assert.NoError(err)
+
+	gock.New(URL).
+		Get("dashboard/dashboard_id").
+		Reply(299).
+		AddHeader("Content-Type", "application/json").
+		Body(strings.NewReader(responseBody))
+	defer gock.Off()
+
+	resp, httpresp, err := api.GetDashboard(ctx, "dashboard_id")
+	assert.Nil(err)
+	assert.Equal(299, httpresp.StatusCode)
+	// Root object deserializes correctly, and holds the expected widget
+	assert.Nil(resp.UnparsedObject)
+	assert.Len(resp.GetWidgets(), 1)
+	assert.False(datadog.ContainsUnparsedObject(resp))
+
+	// The widget resolves to the service_map variant, not the data_streams one
+	definition := resp.GetWidgets()[0].Definition.TopologyMapWidgetDefinition
+	assert.NotNil(definition)
+	assert.NotNil(definition.TopologyMapWidgetDefinitionServiceMap)
+	assert.Nil(definition.TopologyMapWidgetDefinitionDataStreams)
+
+	// The dashboard round-trips
+	out, err := datadog.Marshal(&resp)
+	assert.NoError(err)
+	assert.JSONEq(responseBody, string(out))
+}
+
+func TestDeserializationOneOfFunnelDiscriminatedInsideList(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
+	assert := tests.Assert(ctx, t)
+	api := datadogV1.NewDashboardsApi(testV1.Client(ctx))
+
+	responseBody := `
+{
+    "id": "abc-def-ghi",
+    "title": "Funnels",
+    "layout_type": "ordered",
+    "widgets": [
+        {
+            "id": 1,
+            "definition": {
+                "type": "funnel",
+                "title": "Checkout funnel",
+                "requests": [
+                    {
+                        "request_type": "funnel",
+                        "query": {
+                            "data_source": "rum",
+                            "query_string": "@browser.name:Chrome",
+                            "steps": [
+                                {
+                                    "facet": "@view.name",
+                                    "value": "/home"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+`
+	// Mock the dashboards API.
+	URL, err := testV1.Client(ctx).GetConfig().ServerURLWithContext(ctx, "v1.DashboardsApi.GetDashboard")
+	assert.NoError(err)
+
+	gock.New(URL).
+		Get("dashboard/dashboard_id").
+		Reply(299).
+		AddHeader("Content-Type", "application/json").
+		Body(strings.NewReader(responseBody))
+	defer gock.Off()
+
+	resp, httpresp, err := api.GetDashboard(ctx, "dashboard_id")
+	assert.Nil(err)
+	assert.Equal(299, httpresp.StatusCode)
+	// Root object deserializes correctly, and holds the expected widget
+	assert.Nil(resp.UnparsedObject)
+	assert.Len(resp.GetWidgets(), 1)
+	assert.False(datadog.ContainsUnparsedObject(resp))
+
+	// The widget resolves to the funnel variant, not the product analytics one
+	definition := resp.GetWidgets()[0].Definition
+	assert.NotNil(definition.FunnelWidgetDefinition)
+	assert.Nil(definition.ProductAnalyticsFunnelWidgetDefinition)
+
+	// The dashboard round-trips
+	out, err := datadog.Marshal(&resp)
+	assert.NoError(err)
+	assert.JSONEq(responseBody, string(out))
+}
+
+func TestDeserializationOneOfWithPartiallyUnparsedList(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
+	assert := tests.Assert(ctx, t)
+	api := datadogV2.NewSecurityMonitoringApi(testV2.Client(ctx))
+
+	responseBody := `
+{
+    "id": "abc-def-ghi",
+    "name": "Correlated logins",
+    "message": "Two rules fired for the same user",
+    "isEnabled": true,
+    "queries": [
+        {
+            "name": "a",
+            "ruleId": "org-ru1-e1d",
+            "dataSource": "A non existent data source"
+        },
+        {
+            "name": "b",
+            "ruleId": "org-ru1-e1e",
+            "aggregation": "A non existent aggregation"
+        }
+    ]
+}
+`
+	// Mock the security monitoring API.
+	URL, err := testV2.Client(ctx).GetConfig().ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringRule")
+	assert.NoError(err)
+
+	gock.New(URL).
+		Get("security_monitoring/rules/rule_id").
+		Reply(299).
+		AddHeader("Content-Type", "application/json").
+		Body(strings.NewReader(responseBody))
+	defer gock.Off()
+
+	resp, httpresp, err := api.GetSecurityMonitoringRule(ctx, "rule_id")
+	assert.Nil(err)
+	assert.Equal(299, httpresp.StatusCode)
+	assert.True(datadog.ContainsUnparsedObject(resp))
+
+	// The standard rule variant reads dataSource, so both of its queries are unparsed and it is
+	// rejected. The signal rule variant keeps the first query, so exactly one variant matches.
+	assert.Nil(resp.UnparsedObject)
+	assert.Nil(resp.SecurityMonitoringStandardRuleResponse)
+	signal := resp.SecurityMonitoringSignalRuleResponse
+	assert.NotNil(signal)
+	assert.Nil(signal.UnparsedObject)
+	assert.Len(signal.GetQueries(), 2)
+	assert.Nil(signal.GetQueries()[0].UnparsedObject)
+	assert.NotNil(signal.GetQueries()[1].UnparsedObject)
+
+	// The rule round-trips
+	out, err := datadog.Marshal(&resp)
+	assert.NoError(err)
+	assert.JSONEq(responseBody, string(out))
+}
+
+func TestDeserializationOneOfWithUnrelatedAmbiguity(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
+	assert := tests.Assert(ctx, t)
+	api := datadogV2.NewDowntimesApi(testV2.Client(ctx))
+
+	responseBody := `
+{
+    "data": {
+        "type": "downtime",
+        "id": "00000000-0000-1234-0000-000000000000",
+        "attributes": {
+            "message": "Ambiguous schedule",
+            "schedule": {
+                "start": "2020-01-02T03:04:00+00:00",
+                "timezone": "UTC",
+                "recurrences": [
+                    {
+                        "duration": "1h",
+                        "rrule": "FREQ=DAILY;INTERVAL=1"
+                    }
+                ]
+            }
+        }
+    }
+}
+`
+	// Mock the downtimes API.
+	URL, err := testV2.Client(ctx).GetConfig().ServerURLWithContext(ctx, "v2.DowntimesApi.GetDowntime")
+	assert.NoError(err)
+
+	gock.New(URL).
+		Get("downtime/downtime_id").
+		Reply(299).
+		AddHeader("Content-Type", "application/json").
+		Body(strings.NewReader(responseBody))
+	defer gock.Off()
+
+	resp, httpresp, err := api.GetDowntime(ctx, "downtime_id")
+	assert.Nil(err)
+	assert.Equal(299, httpresp.StatusCode)
+
+	// Both variants parse, so nothing tells them apart: the schedule stays unparsed instead of
+	// silently picking a variant.
+	schedule := resp.Data.Attributes.Schedule
+	assert.NotNil(schedule.UnparsedObject)
+	assert.Nil(schedule.DowntimeScheduleRecurrencesResponse)
+	assert.Nil(schedule.DowntimeScheduleOneTimeResponse)
+	assert.True(datadog.ContainsUnparsedObject(resp))
+
+	// The downtime round-trips
+	out, err := datadog.Marshal(&resp)
+	assert.NoError(err)
+	assert.JSONEq(responseBody, string(out))
+}

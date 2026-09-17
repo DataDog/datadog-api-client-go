@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentRunDataResponse Data object for an LLM Observability experiment run.
+// LLMObsExperimentRunDataResponse Data object for an Agent Observability experiment run.
 type LLMObsExperimentRunDataResponse struct {
 	// Aggregated metric data for this run.
 	AggregateData map[string]interface{} `json:"aggregate_data,omitempty"`

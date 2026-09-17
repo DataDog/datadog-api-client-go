@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanEvaluationMetric An evaluation metric associated with an LLM Observability span.
+// LLMObsSpanEvaluationMetric An evaluation metric associated with an Agent Observability span.
 type LLMObsSpanEvaluationMetric struct {
 	// Assessment result (e.g., pass or fail).
 	Assessment *string `json:"assessment,omitempty"`

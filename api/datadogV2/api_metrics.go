@@ -881,6 +881,7 @@ func (a *MetricsApi) DeleteTagIndexingRuleExemption(ctx _context.Context, metric
 // EstimateMetricsOutputSeriesOptionalParameters holds optional parameters for EstimateMetricsOutputSeries.
 type EstimateMetricsOutputSeriesOptionalParameters struct {
 	FilterGroups          *string
+	FilterExcludeTagsMode *bool
 	FilterHoursAgo        *int32
 	FilterNumAggregations *int32
 	FilterPct             *bool
@@ -896,6 +897,12 @@ func NewEstimateMetricsOutputSeriesOptionalParameters() *EstimateMetricsOutputSe
 // WithFilterGroups sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterGroups(filterGroups string) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterGroups = &filterGroups
+	return r
+}
+
+// WithFilterExcludeTagsMode sets the corresponding parameter name and returns the struct.
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterExcludeTagsMode(filterExcludeTagsMode bool) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterExcludeTagsMode = &filterExcludeTagsMode
 	return r
 }
 
@@ -953,6 +960,9 @@ func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricNam
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.FilterGroups != nil {
 		localVarQueryParams.Add("filter[groups]", datadog.ParameterToString(*optionalParams.FilterGroups, ""))
+	}
+	if optionalParams.FilterExcludeTagsMode != nil {
+		localVarQueryParams.Add("filter[exclude_tags_mode]", datadog.ParameterToString(*optionalParams.FilterExcludeTagsMode, ""))
 	}
 	if optionalParams.FilterHoursAgo != nil {
 		localVarQueryParams.Add("filter[hours_ago]", datadog.ParameterToString(*optionalParams.FilterHoursAgo, ""))
@@ -1563,6 +1573,10 @@ func (a *MetricsApi) ListMetricAssets(ctx _context.Context, metricName string) (
 
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
+//
+// A metric may exist and submit data without having a tag configuration. If no tag configuration exists
+// for the metric, this endpoint returns `404 Not Found`. This response does not indicate that the metric
+// itself is missing.
 func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2505,7 +2519,9 @@ func (a *MetricsApi) QueryScalarData(ctx _context.Context, body ScalarFormulaQue
 
 // QueryTimeseriesData Query timeseries data across multiple products.
 // Query timeseries data across various data sources and
-// process the data by applying formulas and functions.
+// process the data by applying formulas and functions. Datadog recommends
+// using this endpoint over the v1 `/api/v1/query` endpoint for querying
+// timeseries data.
 func (a *MetricsApi) QueryTimeseriesData(ctx _context.Context, body TimeseriesFormulaQueryRequest) (TimeseriesFormulaQueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

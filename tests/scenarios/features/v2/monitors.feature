@@ -11,6 +11,16 @@ Feature: Monitors
     And a valid "appKeyAuth" key in the system
     And an instance of "Monitors" API
 
+  @team:DataDog/monitor-app
+  Scenario: Create a downtime duration monitor configuration policy returns "OK" response
+    Given new "CreateMonitorConfigPolicy" request
+    And body with value {"data": {"attributes": {"policy_type": "downtime", "policy": {"max_duration_ms": 3600000}}, "type": "monitor-config-policy"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "data.type" is equal to "monitor-config-policy"
+    And the response "data.attributes.policy_type" is equal to "downtime"
+    And the response "data.attributes.policy.max_duration_ms" is equal to 3600000
+
   @skip-validation @team:DataDog/monitor-app
   Scenario: Create a monitor configuration policy returns "Bad Request" response
     Given new "CreateMonitorConfigPolicy" request
@@ -40,6 +50,14 @@ Feature: Monitors
   Scenario: Create a monitor notification rule returns "OK" response
     Given new "CreateMonitorNotificationRule" request
     And body with value {"data": {"attributes": {"filter": {"tags": ["test:{{ unique_lower }}"]}, "name": "test rule", "recipients": ["slack-test-channel", "jira-test"]}, "type": "monitor-notification-rule"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "data.attributes.name" is equal to "test rule"
+
+  @team:DataDog/monitor-app
+  Scenario: Create a monitor notification rule with bundle config returns "OK" response
+    Given new "CreateMonitorNotificationRule" request
+    And body with value {"data": {"attributes": {"filter": {"tags": ["test:{{ unique_lower }}"]}, "name": "test rule", "recipients": ["slack-test-channel"], "bundle_config": {"duration": 3600}}, "type": "monitor-notification-rule"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.attributes.name" is equal to "test rule"
@@ -269,6 +287,16 @@ Feature: Monitors
     And new "UpdateMonitorNotificationRule" request
     And request contains "rule_id" parameter from "monitor_notification_rule.data.id"
     And body with value {"data": {"attributes": {"filter": {"tags": ["test:{{ unique_lower }}", "host:abc"]}, "name": "updated rule", "recipients": ["slack-test-channel"]}, "id": "{{ monitor_notification_rule.data.id }}", "type": "monitor-notification-rule"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "data.attributes.name" is equal to "updated rule"
+
+  @team:DataDog/monitor-app
+  Scenario: Update a monitor notification rule with bundle config returns "OK" response
+    Given there is a valid "monitor_notification_rule" in the system
+    And new "UpdateMonitorNotificationRule" request
+    And request contains "rule_id" parameter from "monitor_notification_rule.data.id"
+    And body with value {"data": {"attributes": {"filter": {"tags": ["test:{{ unique_lower }}"]}, "name": "updated rule", "recipients": ["slack-test-channel"], "bundle_config": {"duration": 3600}}, "id": "{{ monitor_notification_rule.data.id }}", "type": "monitor-notification-rule"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.attributes.name" is equal to "updated rule"

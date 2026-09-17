@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptVersionDataAttributes Attributes for creating a new version of an LLM Observability prompt. `template` is required; all other attributes are optional.
+// LLMObsCreatePromptVersionDataAttributes Attributes for creating a new version of an Agent Observability prompt. `template` is required; all other attributes are optional.
 type LLMObsCreatePromptVersionDataAttributes struct {
 	// Optional description of this version.
 	Description *string `json:"description,omitempty"`

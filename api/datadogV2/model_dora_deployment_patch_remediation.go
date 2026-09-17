@@ -8,12 +8,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORADeploymentPatchRemediation Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time.
+// DORADeploymentPatchRemediation Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time. Specify either `id` or `version` to identify the remediation deployment, but not both.
 type DORADeploymentPatchRemediation struct {
-	// The ID of the remediation deployment. Required when the failed deployment must be linked to a remediation deployment.
+	// The ID of the remediation deployment. Use this or `version` to identify the remediation deployment, but not both.
 	Id *string `json:"id,omitempty"`
 	// The type of remediation action taken. Required when the failed deployment must be linked to a remediation deployment.
 	Type *DORADeploymentPatchRemediationType `json:"type,omitempty"`
+	// The version of the remediation deployment, matched against the same service and environment as the failed deployment. Use this or `id` to identify the remediation deployment, but not both.
+	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -92,6 +94,34 @@ func (o *DORADeploymentPatchRemediation) SetType(v DORADeploymentPatchRemediatio
 	o.Type = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *DORADeploymentPatchRemediation) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DORADeploymentPatchRemediation) GetVersionOk() (*string, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *DORADeploymentPatchRemediation) HasVersion() bool {
+	return o != nil && o.Version != nil
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *DORADeploymentPatchRemediation) SetVersion(v string) {
+	o.Version = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DORADeploymentPatchRemediation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,6 +134,9 @@ func (o DORADeploymentPatchRemediation) MarshalJSON() ([]byte, error) {
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -114,15 +147,16 @@ func (o DORADeploymentPatchRemediation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORADeploymentPatchRemediation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                             `json:"id,omitempty"`
-		Type *DORADeploymentPatchRemediationType `json:"type,omitempty"`
+		Id      *string                             `json:"id,omitempty"`
+		Type    *DORADeploymentPatchRemediationType `json:"type,omitempty"`
+		Version *string                             `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type", "version"})
 	} else {
 		return err
 	}
@@ -134,6 +168,7 @@ func (o *DORADeploymentPatchRemediation) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		o.Type = all.Type
 	}
+	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

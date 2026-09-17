@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsClusteredPointsResponse Response containing the clustered points of an LLM Observability topic.
+// LLMObsPatternsClusteredPointsResponse Response containing the clustered points of an Agent Observability topic.
 type LLMObsPatternsClusteredPointsResponse struct {
-	// Data object of an LLM Observability patterns clustered points response.
+	// Data object of an Agent Observability patterns clustered points response.
 	Data LLMObsPatternsClusteredPointsResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

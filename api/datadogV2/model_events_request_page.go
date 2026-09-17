@@ -12,7 +12,7 @@ import (
 type EventsRequestPage struct {
 	// The returned paging point to use to get the next results.
 	Cursor *string `json:"cursor,omitempty"`
-	// The maximum number of logs in the response.
+	// The maximum number of events in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

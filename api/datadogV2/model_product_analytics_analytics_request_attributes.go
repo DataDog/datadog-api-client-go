@@ -18,7 +18,7 @@ type ProductAnalyticsAnalyticsRequestAttributes struct {
 	From int64 `json:"from"`
 	// The analytics query definition containing a base query, compute rule, and optional grouping.
 	Query ProductAnalyticsAnalyticsQuery `json:"query"`
-	// Optional request ID for multi-step query continuation.
+	// Unique identifier of the query.
 	RequestId *string `json:"request_id,omitempty"`
 	// End time in epoch milliseconds.
 	To int64 `json:"to"`

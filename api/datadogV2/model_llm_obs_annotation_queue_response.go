@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueResponse Response containing a single LLM Observability annotation queue.
+// LLMObsAnnotationQueueResponse Response containing a single Agent Observability annotation queue.
 type LLMObsAnnotationQueueResponse struct {
-	// Data object for an LLM Observability annotation queue.
+	// Data object for an Agent Observability annotation queue.
 	Data LLMObsAnnotationQueueDataResponse `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

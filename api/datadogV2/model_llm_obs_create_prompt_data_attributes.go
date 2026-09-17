@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptDataAttributes Attributes for creating an LLM Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
+// LLMObsCreatePromptDataAttributes Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
 type LLMObsCreatePromptDataAttributes struct {
 	// Optional description of the prompt.
 	Description *string `json:"description,omitempty"`

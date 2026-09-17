@@ -10,7 +10,8 @@ import (
 
 // ProductAnalyticsTimeseriesResponseData Data object for a timeseries analytics response.
 type ProductAnalyticsTimeseriesResponseData struct {
-	// Attributes of a timeseries analytics response, containing series data, timestamps, and interval definitions.
+	// Attributes of a timeseries analytics response, containing series data, timestamps, and
+	// interval definitions.
 	Attributes *ProductAnalyticsTimeseriesResponseAttributes `json:"attributes,omitempty"`
 	// Unique identifier for this response data object.
 	Id *string `json:"id,omitempty"`

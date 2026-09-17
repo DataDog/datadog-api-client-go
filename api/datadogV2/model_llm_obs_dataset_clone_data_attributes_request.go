@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetCloneDataAttributesRequest Attributes for cloning an LLM Observability dataset.
+// LLMObsDatasetCloneDataAttributesRequest Attributes for cloning an Agent Observability dataset.
 type LLMObsDatasetCloneDataAttributesRequest struct {
 	// Description of the cloned dataset.
 	Description *string `json:"description,omitempty"`

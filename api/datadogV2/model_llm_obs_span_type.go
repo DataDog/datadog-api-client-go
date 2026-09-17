@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanType Resource type for an LLM Observability span.
+// LLMObsSpanType Resource type for an Agent Observability span.
 type LLMObsSpanType string
 
 // List of LLMObsSpanType.

@@ -17,8 +17,7 @@ type MonitorConfigPolicyTagPolicy struct {
 	// Valid values for the tag.
 	ValidTagValues []string `json:"valid_tag_values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewMonitorConfigPolicyTagPolicy instantiates a new MonitorConfigPolicyTagPolicy object.
@@ -137,10 +136,6 @@ func (o MonitorConfigPolicyTagPolicy) MarshalJSON() ([]byte, error) {
 	if o.ValidTagValues != nil {
 		toSerialize["valid_tag_values"] = o.ValidTagValues
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -154,19 +149,9 @@ func (o *MonitorConfigPolicyTagPolicy) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_key_required", "valid_tag_values"})
-	} else {
-		return err
-	}
 	o.TagKey = all.TagKey
 	o.TagKeyRequired = all.TagKeyRequired
 	o.ValidTagValues = all.ValidTagValues
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

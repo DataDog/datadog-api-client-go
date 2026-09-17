@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Annotation A list of annotations used in the workflow. These are like sticky notes for your workflow!
+// Annotation A text annotation displayed on the workflow canvas.
 type Annotation struct {
-	// The definition of `AnnotationDisplay` object.
+	// The annotation's position and size on the workflow canvas.
 	Display AnnotationDisplay `json:"display"`
-	// The `Annotation` `id`.
+	// The unique identifier of this annotation within the workflow.
 	Id string `json:"id"`
-	// The definition of `AnnotationMarkdownTextAnnotation` object.
+	// Markdown content displayed in an annotation.
 	MarkdownTextAnnotation AnnotationMarkdownTextAnnotation `json:"markdownTextAnnotation"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

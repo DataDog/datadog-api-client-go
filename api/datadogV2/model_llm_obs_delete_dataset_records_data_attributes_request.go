@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeleteDatasetRecordsDataAttributesRequest Attributes for deleting records from an LLM Observability dataset.
+// LLMObsDeleteDatasetRecordsDataAttributesRequest Attributes for deleting records from an Agent Observability dataset.
 type LLMObsDeleteDatasetRecordsDataAttributesRequest struct {
 	// List of record IDs to delete.
 	RecordIds []string `json:"record_ids"`

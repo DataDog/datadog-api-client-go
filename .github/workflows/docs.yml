@@ -4,6 +4,8 @@ permissions:
   contents: write
 
 on:
+  pull_request:
+    branches: [master]
   push:
     branches:
       - master
@@ -26,8 +28,11 @@ jobs:
           rm -rf tests
           go install github.com/johnstarich/go/gopages@latest
           gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base /datadog-api-client-go
+          find dist -type f -name '*.html' -exec perl -ni -e 'print unless /^[\t ]+$/' {} +
+          ! find dist -type f -size +100M -print -quit | grep .
 
-      - uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+      - if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist

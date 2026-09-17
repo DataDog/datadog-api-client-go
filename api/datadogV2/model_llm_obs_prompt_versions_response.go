@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionsResponse Response containing the versions of an LLM Observability prompt.
+// LLMObsPromptVersionsResponse Response containing the versions of an Agent Observability prompt.
 type LLMObsPromptVersionsResponse struct {
 	// Prompt versions ordered from newest to oldest.
 	Data []LLMObsPromptVersionListData `json:"data"`

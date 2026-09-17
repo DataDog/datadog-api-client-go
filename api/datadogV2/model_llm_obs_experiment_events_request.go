@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentEventsRequest Request to push spans and metrics for an LLM Observability experiment.
+// LLMObsExperimentEventsRequest Request to push spans and metrics for an Agent Observability experiment.
 type LLMObsExperimentEventsRequest struct {
 	// Data object for pushing experiment events.
 	Data LLMObsExperimentEventsDataRequest `json:"data"`

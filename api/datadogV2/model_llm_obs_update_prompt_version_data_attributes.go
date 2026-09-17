@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsUpdatePromptVersionDataAttributes Attributes for updating an LLM Observability prompt version. At least one of `description`, `labels`, or `env_ids` must be provided; all three attributes are optional individually.
+// LLMObsUpdatePromptVersionDataAttributes Attributes for updating an Agent Observability prompt version. At least one of `description`, `labels`, or `env_ids` must be provided; all three attributes are optional individually.
 type LLMObsUpdatePromptVersionDataAttributes struct {
 	// Optional new description for this version.
 	Description *string `json:"description,omitempty"`

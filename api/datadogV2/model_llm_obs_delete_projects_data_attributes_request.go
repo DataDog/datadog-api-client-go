@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeleteProjectsDataAttributesRequest Attributes for deleting LLM Observability projects.
+// LLMObsDeleteProjectsDataAttributesRequest Attributes for deleting Agent Observability projects.
 type LLMObsDeleteProjectsDataAttributesRequest struct {
 	// List of project IDs to delete.
 	ProjectIds []string `json:"project_ids"`

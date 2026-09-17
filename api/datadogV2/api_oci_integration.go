@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -25,15 +23,6 @@ func (a *OCIIntegrationApi) CreateTenancyConfig(ctx _context.Context, body Creat
 		localVarPostBody    interface{}
 		localVarReturnValue TenancyConfig
 	)
-
-	operationId := "v2.CreateTenancyConfig"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OCIIntegrationApi.CreateTenancyConfig")
 	if err != nil {
@@ -260,15 +249,6 @@ func (a *OCIIntegrationApi) GetTenancyConfigs(ctx _context.Context) (TenancyConf
 		localVarPostBody    interface{}
 		localVarReturnValue TenancyConfigList
 	)
-
-	operationId := "v2.GetTenancyConfigs"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OCIIntegrationApi.GetTenancyConfigs")
 	if err != nil {

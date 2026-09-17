@@ -17,6 +17,7 @@ type WidgetDefinition struct {
 	CheckStatusWidgetDefinition            *CheckStatusWidgetDefinition
 	CohortWidgetDefinition                 *CohortWidgetDefinition
 	DistributionWidgetDefinition           *DistributionWidgetDefinition
+	EmbeddedAppWidgetDefinition            *EmbeddedAppWidgetDefinition
 	EventStreamWidgetDefinition            *EventStreamWidgetDefinition
 	EventTimelineWidgetDefinition          *EventTimelineWidgetDefinition
 	FreeTextWidgetDefinition               *FreeTextWidgetDefinition
@@ -89,6 +90,11 @@ func CohortWidgetDefinitionAsWidgetDefinition(v *CohortWidgetDefinition) WidgetD
 // DistributionWidgetDefinitionAsWidgetDefinition is a convenience function that returns DistributionWidgetDefinition wrapped in WidgetDefinition.
 func DistributionWidgetDefinitionAsWidgetDefinition(v *DistributionWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{DistributionWidgetDefinition: v}
+}
+
+// EmbeddedAppWidgetDefinitionAsWidgetDefinition is a convenience function that returns EmbeddedAppWidgetDefinition wrapped in WidgetDefinition.
+func EmbeddedAppWidgetDefinitionAsWidgetDefinition(v *EmbeddedAppWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{EmbeddedAppWidgetDefinition: v}
 }
 
 // EventStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns EventStreamWidgetDefinition wrapped in WidgetDefinition.
@@ -382,6 +388,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.DistributionWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into EmbeddedAppWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.EmbeddedAppWidgetDefinition)
+	if err == nil {
+		if obj.EmbeddedAppWidgetDefinition != nil && obj.EmbeddedAppWidgetDefinition.UnparsedObject == nil {
+			jsonEmbeddedAppWidgetDefinition, _ := datadog.Marshal(obj.EmbeddedAppWidgetDefinition)
+			if string(jsonEmbeddedAppWidgetDefinition) == "{}" { // empty struct
+				obj.EmbeddedAppWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.EmbeddedAppWidgetDefinition = nil
+		}
+	} else {
+		obj.EmbeddedAppWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into EventStreamWidgetDefinition
@@ -962,6 +985,36 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.WildcardWidgetDefinition = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.FunnelWidgetDefinition != nil {
+			allRequestsUnparsed := len(obj.FunnelWidgetDefinition.Requests) > 0
+			for _, item := range obj.FunnelWidgetDefinition.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.FunnelWidgetDefinition = nil
+				match--
+			}
+		}
+		if obj.ProductAnalyticsFunnelWidgetDefinition != nil {
+			allRequestsUnparsed := len(obj.ProductAnalyticsFunnelWidgetDefinition.Requests) > 0
+			for _, item := range obj.ProductAnalyticsFunnelWidgetDefinition.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.ProductAnalyticsFunnelWidgetDefinition = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.AlertGraphWidgetDefinition = nil
@@ -971,6 +1024,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.CheckStatusWidgetDefinition = nil
 		obj.CohortWidgetDefinition = nil
 		obj.DistributionWidgetDefinition = nil
+		obj.EmbeddedAppWidgetDefinition = nil
 		obj.EventStreamWidgetDefinition = nil
 		obj.EventTimelineWidgetDefinition = nil
 		obj.FreeTextWidgetDefinition = nil
@@ -1038,6 +1092,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.DistributionWidgetDefinition != nil {
 		return datadog.Marshal(&obj.DistributionWidgetDefinition)
+	}
+
+	if obj.EmbeddedAppWidgetDefinition != nil {
+		return datadog.Marshal(&obj.EmbeddedAppWidgetDefinition)
 	}
 
 	if obj.EventStreamWidgetDefinition != nil {
@@ -1210,6 +1268,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.DistributionWidgetDefinition != nil {
 		return obj.DistributionWidgetDefinition
+	}
+
+	if obj.EmbeddedAppWidgetDefinition != nil {
+		return obj.EmbeddedAppWidgetDefinition
 	}
 
 	if obj.EventStreamWidgetDefinition != nil {

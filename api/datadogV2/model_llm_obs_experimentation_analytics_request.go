@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentationAnalyticsRequest Request to run an analytics aggregation over LLM Observability experimentation data.
+// LLMObsExperimentationAnalyticsRequest Request to run an analytics aggregation over Agent Observability experimentation data.
 type LLMObsExperimentationAnalyticsRequest struct {
 	// Data object for an analytics request.
 	Data LLMObsExperimentationAnalyticsDataRequest `json:"data"`

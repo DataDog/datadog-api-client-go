@@ -15,6 +15,8 @@ import (
 type LLMObsTraceAnnotatedInteractionItem struct {
 	// List of annotations for this interaction.
 	Annotations []LLMObsAnnotationItem `json:"annotations"`
+	// Whether the current caller can annotate this interaction.
+	CanAnnotate bool `json:"can_annotate"`
 	// Upstream entity identifier supplied by the caller.
 	ContentId string `json:"content_id"`
 	// Timestamp when the interaction was added to the queue.
@@ -34,9 +36,10 @@ type LLMObsTraceAnnotatedInteractionItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsTraceAnnotatedInteractionItem(annotations []LLMObsAnnotationItem, contentId string, createdAt time.Time, id string, modifiedAt time.Time, typeVar LLMObsTraceInteractionType) *LLMObsTraceAnnotatedInteractionItem {
+func NewLLMObsTraceAnnotatedInteractionItem(annotations []LLMObsAnnotationItem, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, typeVar LLMObsTraceInteractionType) *LLMObsTraceAnnotatedInteractionItem {
 	this := LLMObsTraceAnnotatedInteractionItem{}
 	this.Annotations = annotations
+	this.CanAnnotate = canAnnotate
 	this.ContentId = contentId
 	this.CreatedAt = createdAt
 	this.Id = id
@@ -74,6 +77,29 @@ func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnot
 // SetAnnotations sets field value.
 func (o *LLMObsTraceAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItem) {
 	o.Annotations = v
+}
+
+// GetCanAnnotate returns the CanAnnotate field value.
+func (o *LLMObsTraceAnnotatedInteractionItem) GetCanAnnotate() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.CanAnnotate
+}
+
+// GetCanAnnotateOk returns a tuple with the CanAnnotate field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsTraceAnnotatedInteractionItem) GetCanAnnotateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CanAnnotate, true
+}
+
+// SetCanAnnotate sets field value.
+func (o *LLMObsTraceAnnotatedInteractionItem) SetCanAnnotate(v bool) {
+	o.CanAnnotate = v
 }
 
 // GetContentId returns the ContentId field value.
@@ -198,6 +224,7 @@ func (o LLMObsTraceAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["annotations"] = o.Annotations
+	toSerialize["can_annotate"] = o.CanAnnotate
 	toSerialize["content_id"] = o.ContentId
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -222,6 +249,7 @@ func (o LLMObsTraceAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
 func (o *LLMObsTraceAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Annotations *[]LLMObsAnnotationItem     `json:"annotations"`
+		CanAnnotate *bool                       `json:"can_annotate"`
 		ContentId   *string                     `json:"content_id"`
 		CreatedAt   *time.Time                  `json:"created_at"`
 		Id          *string                     `json:"id"`
@@ -233,6 +261,9 @@ func (o *LLMObsTraceAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err e
 	}
 	if all.Annotations == nil {
 		return fmt.Errorf("required field annotations missing")
+	}
+	if all.CanAnnotate == nil {
+		return fmt.Errorf("required field can_annotate missing")
 	}
 	if all.ContentId == nil {
 		return fmt.Errorf("required field content_id missing")
@@ -251,13 +282,14 @@ func (o *LLMObsTraceAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "content_id", "created_at", "id", "modified_at", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "created_at", "id", "modified_at", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Annotations = *all.Annotations
+	o.CanAnnotate = *all.CanAnnotate
 	o.ContentId = *all.ContentId
 	o.CreatedAt = *all.CreatedAt
 	o.Id = *all.Id

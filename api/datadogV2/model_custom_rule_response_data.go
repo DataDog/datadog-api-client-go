@@ -12,8 +12,8 @@ import (
 
 // CustomRuleResponseData Data object returned in a custom rule response, including its ID, type, and attributes.
 type CustomRuleResponseData struct {
-	// A custom static analysis rule within a ruleset.
-	Attributes CustomRule `json:"attributes"`
+	// Attributes of a custom static analysis rule, including its most recent revision and revision history.
+	Attributes CustomRuleAttributes `json:"attributes"`
 	// Rule identifier
 	Id string `json:"id"`
 	// Resource type
@@ -27,7 +27,7 @@ type CustomRuleResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRuleResponseData(attributes CustomRule, id string, typeVar CustomRuleDataType) *CustomRuleResponseData {
+func NewCustomRuleResponseData(attributes CustomRuleAttributes, id string, typeVar CustomRuleDataType) *CustomRuleResponseData {
 	this := CustomRuleResponseData{}
 	this.Attributes = attributes
 	this.Id = id
@@ -44,9 +44,9 @@ func NewCustomRuleResponseDataWithDefaults() *CustomRuleResponseData {
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *CustomRuleResponseData) GetAttributes() CustomRule {
+func (o *CustomRuleResponseData) GetAttributes() CustomRuleAttributes {
 	if o == nil {
-		var ret CustomRule
+		var ret CustomRuleAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *CustomRuleResponseData) GetAttributes() CustomRule {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *CustomRuleResponseData) GetAttributesOk() (*CustomRule, bool) {
+func (o *CustomRuleResponseData) GetAttributesOk() (*CustomRuleAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *CustomRuleResponseData) GetAttributesOk() (*CustomRule, bool) {
 }
 
 // SetAttributes sets field value.
-func (o *CustomRuleResponseData) SetAttributes(v CustomRule) {
+func (o *CustomRuleResponseData) SetAttributes(v CustomRuleAttributes) {
 	o.Attributes = v
 }
 
@@ -131,9 +131,9 @@ func (o CustomRuleResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRuleResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *CustomRule         `json:"attributes"`
-		Id         *string             `json:"id"`
-		Type       *CustomRuleDataType `json:"type"`
+		Attributes *CustomRuleAttributes `json:"attributes"`
+		Id         *string               `json:"id"`
+		Type       *CustomRuleDataType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsProjectUpdateRequest Request to partially update an LLM Observability project.
+// LLMObsProjectUpdateRequest Request to partially update an Agent Observability project.
 type LLMObsProjectUpdateRequest struct {
-	// Data object for updating an LLM Observability project.
+	// Data object for updating an Agent Observability project.
 	Data LLMObsProjectUpdateDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeleteProjectsDataRequest Data object for deleting LLM Observability projects.
+// LLMObsDeleteProjectsDataRequest Data object for deleting Agent Observability projects.
 type LLMObsDeleteProjectsDataRequest struct {
-	// Attributes for deleting LLM Observability projects.
+	// Attributes for deleting Agent Observability projects.
 	Attributes LLMObsDeleteProjectsDataAttributesRequest `json:"attributes"`
-	// Resource type of an LLM Observability project.
+	// Resource type of an Agent Observability project.
 	Type LLMObsProjectType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

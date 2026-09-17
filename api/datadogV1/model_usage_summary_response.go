@@ -400,17 +400,17 @@ type UsageSummaryResponse struct {
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all live logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
-	// Shows the sum of all LLM Observability 15-day retention spans over all hours in the current month for all organizations.
+	// Shows the sum of all Agent Observability 15-day retention spans over all hours in the current month for all organizations.
 	LlmObservability15dayRetentionSpansAggSum *int64 `json:"llm_observability_15day_retention_spans_agg_sum,omitempty"`
-	// Shows the sum of all LLM Observability 30-day retention spans over all hours in the current month for all organizations.
+	// Shows the sum of all Agent Observability 30-day retention spans over all hours in the current month for all organizations.
 	LlmObservability30dayRetentionSpansAggSum *int64 `json:"llm_observability_30day_retention_spans_agg_sum,omitempty"`
-	// Shows the sum of all LLM Observability 60-day retention spans over all hours in the current month for all organizations.
+	// Shows the sum of all Agent Observability 60-day retention spans over all hours in the current month for all organizations.
 	LlmObservability60dayRetentionSpansAggSum *int64 `json:"llm_observability_60day_retention_spans_agg_sum,omitempty"`
-	// Shows the sum of all LLM Observability 90-day retention spans over all hours in the current month for all organizations.
+	// Shows the sum of all Agent Observability 90-day retention spans over all hours in the current month for all organizations.
 	LlmObservability90dayRetentionSpansAggSum *int64 `json:"llm_observability_90day_retention_spans_agg_sum,omitempty"`
-	// Sum of all LLM observability sessions for all hours in the current month for all organizations.
+	// Sum of all Agent observability sessions for all hours in the current month for all organizations.
 	LlmObservabilityAggSum *int64 `json:"llm_observability_agg_sum,omitempty"`
-	// Minimum spend for LLM observability sessions for all hours in the current month for all organizations.
+	// Minimum spend for Agent observability sessions for all hours in the current month for all organizations.
 	LlmObservabilityMinSpendAggSum *int64 `json:"llm_observability_min_spend_agg_sum,omitempty"`
 	// Shows the sum of all Logs Archive Search scanned data over all hours in the current month for all organizations.
 	LogsArchiveSearchGbScannedAggSum *int64 `json:"logs_archive_search_gb_scanned_agg_sum,omitempty"`

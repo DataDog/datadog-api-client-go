@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsClusteredPointsResponseData Data object of an LLM Observability patterns clustered points response.
+// LLMObsPatternsClusteredPointsResponseData Data object of an Agent Observability patterns clustered points response.
 type LLMObsPatternsClusteredPointsResponseData struct {
-	// Attributes of an LLM Observability patterns clustered points response.
+	// Attributes of an Agent Observability patterns clustered points response.
 	Attributes LLMObsPatternsClusteredPointsResponseAttributes `json:"attributes"`
 	// Identifier of the topic the points belong to.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability patterns clustered points response.
+	// Resource type of an Agent Observability patterns clustered points response.
 	Type LLMObsPatternsClusteredPointsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -19,29 +19,33 @@ func main() {
 				Dependencies: []datadogV2.ScaRequestDataAttributesDependenciesItems{
 					{
 						Exclusions: []string{},
+						Group:      *datadog.NewNullableString(nil),
+						IsDirect:   *datadog.NewNullableBool(nil),
 						Locations: []datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItems{
 							{
 								Block: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition{
 									End:   &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
 									Start: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
 								},
-								Name: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition{
+								Name: *datadogV2.NewNullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition(&datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition{
 									End:   &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
 									Start: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
-								},
-								Namespace: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition{
+								}),
+								Namespace: *datadogV2.NewNullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition(&datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition{
 									End:   &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
 									Start: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
-								},
-								Version: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition{
+								}),
+								Version: *datadogV2.NewNullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition(&datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition{
 									End:   &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
 									Start: &datadogV2.ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition{},
-								},
+								}),
 							},
 						},
 						ReachableSymbolProperties: []datadogV2.ScaRequestDataAttributesDependenciesItemsReachableSymbolPropertiesItems{
 							{},
 						},
+						TargetFrameworks: []string{},
+						Version:          *datadog.NewNullableString(nil),
 					},
 				},
 				Files: []datadogV2.ScaRequestDataAttributesFilesItems{
@@ -52,7 +56,13 @@ func main() {
 						DependsOn: []string{},
 					},
 				},
-				Repository: &datadogV2.ScaRequestDataAttributesRepository{},
+				Repository:         &datadogV2.ScaRequestDataAttributesRepository{},
+				ScanStartTimestamp: *datadogV2.NewNullableScaRequestDataAttributesScanStartTimestamp(&datadogV2.ScaRequestDataAttributesScanStartTimestamp{}),
+				Tags: &datadogV2.ScaRequestDataAttributesTags{
+					Tool: &datadogV2.ScaRequestDataAttributesTagsTool{
+						Generator: &datadogV2.ScaRequestDataAttributesTagsToolGenerator{},
+					},
+				},
 				Vulnerabilities: []datadogV2.ScaRequestDataAttributesVulnerabilitiesItems{
 					{
 						Affects: []datadogV2.ScaRequestDataAttributesVulnerabilitiesItemsAffectsItems{

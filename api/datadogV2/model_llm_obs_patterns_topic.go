@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsTopic A topic discovered by an LLM Observability patterns run.
+// LLMObsPatternsTopic A topic discovered by an Agent Observability patterns run.
 type LLMObsPatternsTopic struct {
 	// Timestamp when the topic was created.
 	CreatedAt time.Time `json:"created_at"`

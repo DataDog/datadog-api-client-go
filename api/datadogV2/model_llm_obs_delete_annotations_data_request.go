@@ -14,7 +14,7 @@ import (
 type LLMObsDeleteAnnotationsDataRequest struct {
 	// Attributes for deleting annotations.
 	Attributes LLMObsDeleteAnnotationsDataAttributesRequest `json:"attributes"`
-	// Resource type for LLM Observability annotations.
+	// Resource type for Agent Observability annotations.
 	Type LLMObsAnnotationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

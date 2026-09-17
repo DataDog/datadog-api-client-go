@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetRecordsDataAttributesRequest Attributes for appending records to an LLM Observability dataset.
+// LLMObsDatasetRecordsDataAttributesRequest Attributes for appending records to an Agent Observability dataset.
 type LLMObsDatasetRecordsDataAttributesRequest struct {
 	// Whether to deduplicate records before appending. Defaults to `true`.
 	Deduplicate *bool `json:"deduplicate,omitempty"`
