@@ -307,7 +307,7 @@ func (a *BitsAIApi) ListInvestigationsWithPagination(ctx _context.Context, o ...
 }
 
 // TriggerInvestigation Trigger a Bits AI investigation.
-// Trigger a new Bits AI investigation based on a monitor alert.
+// Trigger a new Bits AI investigation from either a monitor alert or a general investigation request.
 func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInvestigationRequest) (TriggerInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
