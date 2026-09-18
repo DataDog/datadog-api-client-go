@@ -320,7 +320,7 @@ func (r *ListDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListDo
 }
 
 // ListDowntimes Get all downtimes.
-// Get all scheduled downtimes.
+// List scheduled downtimes, optionally filtering to those that are active when the request is made.
 func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) (ListDowntimesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
