@@ -10,11 +10,12 @@ import (
 
 // EntityV3 - Entity schema v3.
 type EntityV3 struct {
-	EntityV3Service   *EntityV3Service
-	EntityV3Datastore *EntityV3Datastore
-	EntityV3Queue     *EntityV3Queue
-	EntityV3System    *EntityV3System
-	EntityV3API       *EntityV3API
+	EntityV3Service    *EntityV3Service
+	EntityV3Datastore  *EntityV3Datastore
+	EntityV3Queue      *EntityV3Queue
+	EntityV3System     *EntityV3System
+	EntityV3API        *EntityV3API
+	EntityV3Repository *EntityV3Repository
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -43,6 +44,11 @@ func EntityV3SystemAsEntityV3(v *EntityV3System) EntityV3 {
 // EntityV3APIAsEntityV3 is a convenience function that returns EntityV3API wrapped in EntityV3.
 func EntityV3APIAsEntityV3(v *EntityV3API) EntityV3 {
 	return EntityV3{EntityV3API: v}
+}
+
+// EntityV3RepositoryAsEntityV3 is a convenience function that returns EntityV3Repository wrapped in EntityV3.
+func EntityV3RepositoryAsEntityV3(v *EntityV3Repository) EntityV3 {
+	return EntityV3{EntityV3Repository: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -134,6 +140,23 @@ func (obj *EntityV3) UnmarshalJSON(data []byte) error {
 		obj.EntityV3API = nil
 	}
 
+	// try to unmarshal data into EntityV3Repository
+	err = datadog.Unmarshal(data, &obj.EntityV3Repository)
+	if err == nil {
+		if obj.EntityV3Repository != nil && obj.EntityV3Repository.UnparsedObject == nil {
+			jsonEntityV3Repository, _ := datadog.Marshal(obj.EntityV3Repository)
+			if string(jsonEntityV3Repository) == "{}" { // empty struct
+				obj.EntityV3Repository = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.EntityV3Repository = nil
+		}
+	} else {
+		obj.EntityV3Repository = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.EntityV3Service = nil
@@ -141,6 +164,7 @@ func (obj *EntityV3) UnmarshalJSON(data []byte) error {
 		obj.EntityV3Queue = nil
 		obj.EntityV3System = nil
 		obj.EntityV3API = nil
+		obj.EntityV3Repository = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -166,6 +190,10 @@ func (obj EntityV3) MarshalJSON() ([]byte, error) {
 
 	if obj.EntityV3API != nil {
 		return datadog.Marshal(&obj.EntityV3API)
+	}
+
+	if obj.EntityV3Repository != nil {
+		return datadog.Marshal(&obj.EntityV3Repository)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -194,6 +222,10 @@ func (obj *EntityV3) GetActualInstance() interface{} {
 
 	if obj.EntityV3API != nil {
 		return obj.EntityV3API
+	}
+
+	if obj.EntityV3Repository != nil {
+		return obj.EntityV3Repository
 	}
 
 	// all schemas are nil
