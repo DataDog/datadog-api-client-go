@@ -5,142 +5,101 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TriggerAttributes The trigger definition for starting an investigation.
+// TriggerAttributes - The trigger definition for starting an investigation.
 type TriggerAttributes struct {
-	// Attributes for a monitor alert trigger.
-	MonitorAlertTrigger MonitorAlertTriggerAttributes `json:"monitor_alert_trigger"`
-	// The type of trigger for the investigation.
-	Type TriggerType `json:"type"`
+	MonitorAlertTrigger         *MonitorAlertTrigger
+	GeneralInvestigationTrigger *GeneralInvestigationTrigger
+
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject interface{}
 }
 
-// NewTriggerAttributes instantiates a new TriggerAttributes object.
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed.
-func NewTriggerAttributes(monitorAlertTrigger MonitorAlertTriggerAttributes, typeVar TriggerType) *TriggerAttributes {
-	this := TriggerAttributes{}
-	this.MonitorAlertTrigger = monitorAlertTrigger
-	this.Type = typeVar
-	return &this
+// MonitorAlertTriggerAsTriggerAttributes is a convenience function that returns MonitorAlertTrigger wrapped in TriggerAttributes.
+func MonitorAlertTriggerAsTriggerAttributes(v *MonitorAlertTrigger) TriggerAttributes {
+	return TriggerAttributes{MonitorAlertTrigger: v}
 }
 
-// NewTriggerAttributesWithDefaults instantiates a new TriggerAttributes object.
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set.
-func NewTriggerAttributesWithDefaults() *TriggerAttributes {
-	this := TriggerAttributes{}
-	return &this
+// GeneralInvestigationTriggerAsTriggerAttributes is a convenience function that returns GeneralInvestigationTrigger wrapped in TriggerAttributes.
+func GeneralInvestigationTriggerAsTriggerAttributes(v *GeneralInvestigationTrigger) TriggerAttributes {
+	return TriggerAttributes{GeneralInvestigationTrigger: v}
 }
 
-// GetMonitorAlertTrigger returns the MonitorAlertTrigger field value.
-func (o *TriggerAttributes) GetMonitorAlertTrigger() MonitorAlertTriggerAttributes {
-	if o == nil {
-		var ret MonitorAlertTriggerAttributes
-		return ret
-	}
-	return o.MonitorAlertTrigger
-}
-
-// GetMonitorAlertTriggerOk returns a tuple with the MonitorAlertTrigger field value
-// and a boolean to check if the value has been set.
-func (o *TriggerAttributes) GetMonitorAlertTriggerOk() (*MonitorAlertTriggerAttributes, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MonitorAlertTrigger, true
-}
-
-// SetMonitorAlertTrigger sets field value.
-func (o *TriggerAttributes) SetMonitorAlertTrigger(v MonitorAlertTriggerAttributes) {
-	o.MonitorAlertTrigger = v
-}
-
-// GetType returns the Type field value.
-func (o *TriggerAttributes) GetType() TriggerType {
-	if o == nil {
-		var ret TriggerType
-		return ret
-	}
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *TriggerAttributes) GetTypeOk() (*TriggerType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value.
-func (o *TriggerAttributes) SetType(v TriggerType) {
-	o.Type = v
-}
-
-// MarshalJSON serializes the struct using spec logic.
-func (o TriggerAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.UnparsedObject != nil {
-		return datadog.Marshal(o.UnparsedObject)
-	}
-	toSerialize["monitor_alert_trigger"] = o.MonitorAlertTrigger
-	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-	return datadog.Marshal(toSerialize)
-}
-
-// UnmarshalJSON deserializes the given payload.
-func (o *TriggerAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	all := struct {
-		MonitorAlertTrigger *MonitorAlertTriggerAttributes `json:"monitor_alert_trigger"`
-		Type                *TriggerType                   `json:"type"`
-	}{}
-	if err = datadog.Unmarshal(bytes, &all); err != nil {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.MonitorAlertTrigger == nil {
-		return fmt.Errorf("required field monitor_alert_trigger missing")
-	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"monitor_alert_trigger", "type"})
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *TriggerAttributes) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into MonitorAlertTrigger
+	err = datadog.Unmarshal(data, &obj.MonitorAlertTrigger)
+	if err == nil {
+		if obj.MonitorAlertTrigger != nil && obj.MonitorAlertTrigger.UnparsedObject == nil {
+			jsonMonitorAlertTrigger, _ := datadog.Marshal(obj.MonitorAlertTrigger)
+			if string(jsonMonitorAlertTrigger) == "{}" { // empty struct
+				obj.MonitorAlertTrigger = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.MonitorAlertTrigger = nil
+		}
 	} else {
-		return err
+		obj.MonitorAlertTrigger = nil
 	}
 
-	hasInvalidField := false
-	if all.MonitorAlertTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.MonitorAlertTrigger = *all.MonitorAlertTrigger
-	if !all.Type.IsValid() {
-		hasInvalidField = true
+	// try to unmarshal data into GeneralInvestigationTrigger
+	err = datadog.Unmarshal(data, &obj.GeneralInvestigationTrigger)
+	if err == nil {
+		if obj.GeneralInvestigationTrigger != nil && obj.GeneralInvestigationTrigger.UnparsedObject == nil {
+			jsonGeneralInvestigationTrigger, _ := datadog.Marshal(obj.GeneralInvestigationTrigger)
+			if string(jsonGeneralInvestigationTrigger) == "{}" { // empty struct
+				obj.GeneralInvestigationTrigger = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.GeneralInvestigationTrigger = nil
+		}
 	} else {
-		o.Type = *all.Type
+		obj.GeneralInvestigationTrigger = nil
 	}
 
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
+	if match != 1 { // more than 1 match
+		// reset to nil
+		obj.MonitorAlertTrigger = nil
+		obj.GeneralInvestigationTrigger = nil
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
+	}
+	return nil // exactly one match
+}
+
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj TriggerAttributes) MarshalJSON() ([]byte, error) {
+	if obj.MonitorAlertTrigger != nil {
+		return datadog.Marshal(&obj.MonitorAlertTrigger)
 	}
 
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	if obj.GeneralInvestigationTrigger != nil {
+		return datadog.Marshal(&obj.GeneralInvestigationTrigger)
 	}
 
+	if obj.UnparsedObject != nil {
+		return datadog.Marshal(obj.UnparsedObject)
+	}
+	return nil, nil // no data in oneOf schemas
+}
+
+// GetActualInstance returns the actual instance.
+func (obj *TriggerAttributes) GetActualInstance() interface{} {
+	if obj.MonitorAlertTrigger != nil {
+		return obj.MonitorAlertTrigger
+	}
+
+	if obj.GeneralInvestigationTrigger != nil {
+		return obj.GeneralInvestigationTrigger
+	}
+
+	// all schemas are nil
 	return nil
 }
