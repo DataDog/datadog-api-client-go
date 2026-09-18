@@ -174,6 +174,10 @@ func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...Submi
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
+	if optionalParams.ContentEncoding == nil {
+		value := CONTENTENCODING_GZIP
+		optionalParams.ContentEncoding = &value
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsApi.SubmitLog")
 	if err != nil {
