@@ -104,6 +104,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "GovernanceConsoleApi": reflect.ValueOf(datadogV2.NewGovernanceConsoleApi),
 	    "TagRulesApi": reflect.ValueOf(datadogV2.NewTagRulesApi),
 	    "HighAvailabilityMultiRegionApi": reflect.ValueOf(datadogV2.NewHighAvailabilityMultiRegionApi),
+	    "TerraformStateFilesApi": reflect.ValueOf(datadogV2.NewTerraformStateFilesApi),
 	    "IdentityProvidersApi": reflect.ValueOf(datadogV2.NewIdentityProvidersApi),
 	    "EntityIntegrationConfigsApi": reflect.ValueOf(datadogV2.NewEntityIntegrationConfigsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
