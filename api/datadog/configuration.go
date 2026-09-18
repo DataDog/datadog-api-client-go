@@ -958,6 +958,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetFinding":                                             false,
 			"v2.GetHistoricalJob":                                       false,
 			"v2.GetIndicatorOfCompromise":                               false,
+			"v2.GetMatchingSignals":                                     false,
 			"v2.GetRuleVersionHistory":                                  false,
 			"v2.GetSecretsRules":                                        false,
 			"v2.GetSecurityFindingsAutomationDefaultInboxRule":          false,
