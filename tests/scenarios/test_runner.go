@@ -35,7 +35,8 @@ type testRunnerPlan struct {
 	API         string `json:"api"`
 	OperationID string `json:"operation_id"`
 	Request     struct {
-		Body *struct {
+		SelectedCompression string `json:"selected_compression"`
+		Body                *struct {
 			Value interface{} `json:"value"`
 		} `json:"body"`
 		Parameters []struct {
@@ -262,6 +263,13 @@ func applyTestRunnerPlan(t gobdd.StepTest, ctx gobdd.Context, pagination bool) {
 		GetRequestParameters(ctx)["body"] = string(body)
 		pathCount, _ := ctx.Get(pathParamCountKey{})
 		ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+	}
+	if plan.Request.SelectedCompression != "" {
+		encoded, err := json.Marshal(plan.Request.SelectedCompression)
+		if err != nil {
+			t.Fatal(err)
+		}
+		addParameterWithValueNative(t, ctx, "content_encoding", string(encoded))
 	}
 	for _, parameter := range plan.Request.Parameters {
 		if parameter.In != "path" && !parameter.Required {
