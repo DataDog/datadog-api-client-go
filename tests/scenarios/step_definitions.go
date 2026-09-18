@@ -558,6 +558,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`request contains "([^"]+)" parameter from "([^"]+)"`:                  addParameterFrom,
 		`request contains "([^"]+)" parameter with value (.+)`:                 addParameterWithValue,
 		`the request uses "([^"]+)" compression`:                               requestUsesCompression,
+		`the user selects "([^"]+)" compression`:                               requestUsesCompression,
 		`the request is sent`:                                                  requestIsSent,
 		`the request with pagination is sent`:                                  requestWithPaginationIsSent,
 		`the response status is (\d+) (.*)`:                                    statusIs,
