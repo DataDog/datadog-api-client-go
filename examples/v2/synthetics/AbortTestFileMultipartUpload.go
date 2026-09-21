@@ -17,6 +17,7 @@ func main() {
 		UploadId: "upload-id-abc123",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSyntheticsApi(apiClient)
