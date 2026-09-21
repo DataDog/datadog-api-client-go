@@ -1208,6 +1208,7 @@
 //   - [SecurityMonitoringApi.GetHistoricalJob]
 //   - [SecurityMonitoringApi.GetIndicatorOfCompromise]
 //   - [SecurityMonitoringApi.GetInvestigationLogQueriesMatchingSignal]
+//   - [SecurityMonitoringApi.GetMatchingSignals]
 //   - [SecurityMonitoringApi.GetResourceEvaluationFilters]
 //   - [SecurityMonitoringApi.GetRuleVersionHistory]
 //   - [SecurityMonitoringApi.GetSBOM]
