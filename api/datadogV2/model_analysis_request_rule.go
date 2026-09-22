@@ -31,6 +31,8 @@ type AnalysisRequestRule struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The identifier of the user or system that created the rule. Server-assigned by the rulesets endpoints; ignored by this operation.
 	CreatedBy *string `json:"created_by,omitempty"`
+	// The message associated with the custom rule revision. Forwarded from the custom rulesets endpoints; ignored by this operation.
+	CreationMessage *string `json:"creation_message,omitempty"`
 	// The CVE identifier associated with the rule. Forwarded from the rulesets endpoints; ignored by this operation.
 	Cve *string `json:"cve,omitempty"`
 	// The CWE identifier associated with the rule. Forwarded from the rulesets endpoints; ignored by this operation.
@@ -63,12 +65,16 @@ type AnalysisRequestRule struct {
 	ShortDescription *string `json:"short_description,omitempty"`
 	// Whether an AI-generated fix should be offered. Forwarded from the rulesets endpoints; ignored by this operation.
 	ShouldUseAiFix *bool `json:"should_use_ai_fix,omitempty"`
+	// Tags associated with the custom rule revision. Forwarded from the custom rulesets endpoints; ignored by this operation.
+	Tags []string `json:"tags,omitempty"`
 	// The test cases associated with the rule. Forwarded from the rulesets endpoints; ignored by this operation.
 	Tests []AnalysisRequestRuleTest `json:"tests,omitempty"`
 	// The base64-encoded tree-sitter query used by the rule.
 	TreeSitterQuery string `json:"tree_sitter_query"`
 	// The rule type indicating the detection mechanism (for example, `TREE_SITTER_QUERY`).
 	Type string `json:"type"`
+	// The custom rule revision version. Forwarded from the custom rulesets endpoints; ignored by this operation.
+	VersionId *int64 `json:"version_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -250,6 +256,34 @@ func (o *AnalysisRequestRule) HasCreatedBy() bool {
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *AnalysisRequestRule) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetCreationMessage returns the CreationMessage field value if set, zero value otherwise.
+func (o *AnalysisRequestRule) GetCreationMessage() string {
+	if o == nil || o.CreationMessage == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreationMessage
+}
+
+// GetCreationMessageOk returns a tuple with the CreationMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalysisRequestRule) GetCreationMessageOk() (*string, bool) {
+	if o == nil || o.CreationMessage == nil {
+		return nil, false
+	}
+	return o.CreationMessage, true
+}
+
+// HasCreationMessage returns a boolean if a field has been set.
+func (o *AnalysisRequestRule) HasCreationMessage() bool {
+	return o != nil && o.CreationMessage != nil
+}
+
+// SetCreationMessage gets a reference to the given string and assigns it to the CreationMessage field.
+func (o *AnalysisRequestRule) SetCreationMessage(v string) {
+	o.CreationMessage = &v
 }
 
 // GetCve returns the Cve field value if set, zero value otherwise.
@@ -707,6 +741,34 @@ func (o *AnalysisRequestRule) SetShouldUseAiFix(v bool) {
 	o.ShouldUseAiFix = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *AnalysisRequestRule) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalysisRequestRule) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *AnalysisRequestRule) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *AnalysisRequestRule) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetTests returns the Tests field value if set, zero value otherwise.
 func (o *AnalysisRequestRule) GetTests() []AnalysisRequestRuleTest {
 	if o == nil || o.Tests == nil {
@@ -781,6 +843,34 @@ func (o *AnalysisRequestRule) SetType(v string) {
 	o.Type = v
 }
 
+// GetVersionId returns the VersionId field value if set, zero value otherwise.
+func (o *AnalysisRequestRule) GetVersionId() int64 {
+	if o == nil || o.VersionId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.VersionId
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalysisRequestRule) GetVersionIdOk() (*int64, bool) {
+	if o == nil || o.VersionId == nil {
+		return nil, false
+	}
+	return o.VersionId, true
+}
+
+// HasVersionId returns a boolean if a field has been set.
+func (o *AnalysisRequestRule) HasVersionId() bool {
+	return o != nil && o.VersionId != nil
+}
+
+// SetVersionId gets a reference to the given int64 and assigns it to the VersionId field.
+func (o *AnalysisRequestRule) SetVersionId(v int64) {
+	o.VersionId = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AnalysisRequestRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -802,6 +892,9 @@ func (o AnalysisRequestRule) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedBy != nil {
 		toSerialize["created_by"] = o.CreatedBy
+	}
+	if o.CreationMessage != nil {
+		toSerialize["creation_message"] = o.CreationMessage
 	}
 	if o.Cve != nil {
 		toSerialize["cve"] = o.Cve
@@ -849,11 +942,17 @@ func (o AnalysisRequestRule) MarshalJSON() ([]byte, error) {
 	if o.ShouldUseAiFix != nil {
 		toSerialize["should_use_ai_fix"] = o.ShouldUseAiFix
 	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests
 	}
 	toSerialize["tree_sitter_query"] = o.TreeSitterQuery
 	toSerialize["type"] = o.Type
+	if o.VersionId != nil {
+		toSerialize["version_id"] = o.VersionId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -870,6 +969,7 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 		Code             *string                       `json:"code"`
 		CreatedAt        *time.Time                    `json:"created_at,omitempty"`
 		CreatedBy        *string                       `json:"created_by,omitempty"`
+		CreationMessage  *string                       `json:"creation_message,omitempty"`
 		Cve              *string                       `json:"cve,omitempty"`
 		Cwe              *string                       `json:"cwe,omitempty"`
 		Description      *string                       `json:"description,omitempty"`
@@ -886,9 +986,11 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 		Severity         *string                       `json:"severity"`
 		ShortDescription *string                       `json:"short_description,omitempty"`
 		ShouldUseAiFix   *bool                         `json:"should_use_ai_fix,omitempty"`
+		Tags             []string                      `json:"tags,omitempty"`
 		Tests            []AnalysisRequestRuleTest     `json:"tests,omitempty"`
 		TreeSitterQuery  *string                       `json:"tree_sitter_query"`
 		Type             *string                       `json:"type"`
+		VersionId        *int64                        `json:"version_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -919,7 +1021,7 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "cve", "cwe", "description", "documentation_url", "entity_checked", "id", "is_published", "is_testing", "language", "last_updated_at", "last_updated_by", "name", "regex", "severity", "short_description", "should_use_ai_fix", "tests", "tree_sitter_query", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "creation_message", "cve", "cwe", "description", "documentation_url", "entity_checked", "id", "is_published", "is_testing", "language", "last_updated_at", "last_updated_by", "name", "regex", "severity", "short_description", "should_use_ai_fix", "tags", "tests", "tree_sitter_query", "type", "version_id"})
 	} else {
 		return err
 	}
@@ -929,6 +1031,7 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	o.Code = *all.Code
 	o.CreatedAt = all.CreatedAt
 	o.CreatedBy = all.CreatedBy
+	o.CreationMessage = all.CreationMessage
 	o.Cve = all.Cve
 	o.Cwe = all.Cwe
 	o.Description = all.Description
@@ -945,9 +1048,11 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	o.Severity = *all.Severity
 	o.ShortDescription = all.ShortDescription
 	o.ShouldUseAiFix = all.ShouldUseAiFix
+	o.Tags = all.Tags
 	o.Tests = all.Tests
 	o.TreeSitterQuery = *all.TreeSitterQuery
 	o.Type = *all.Type
+	o.VersionId = all.VersionId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

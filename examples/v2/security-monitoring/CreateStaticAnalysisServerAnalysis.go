@@ -34,6 +34,7 @@ func main() {
 						Name:          datadog.PtrString("no-exit"),
 						Regex:         *datadog.NewNullableString(nil),
 						Severity:      "WARNING",
+						Tags:          []string{},
 						Tests: []datadogV2.AnalysisRequestRuleTest{
 							{},
 						},
