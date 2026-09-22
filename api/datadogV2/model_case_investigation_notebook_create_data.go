@@ -10,63 +10,63 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// NotebookCreateRequest Notebook creation request
-type NotebookCreateRequest struct {
-	// Notebook creation data
-	Data NotebookCreateData `json:"data"`
+// CaseInvestigationNotebookCreateData Case investigation notebook creation data.
+type CaseInvestigationNotebookCreateData struct {
+	// Case investigation notebook resource type.
+	Type CaseInvestigationNotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewNotebookCreateRequest instantiates a new NotebookCreateRequest object.
+// NewCaseInvestigationNotebookCreateData instantiates a new CaseInvestigationNotebookCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewNotebookCreateRequest(data NotebookCreateData) *NotebookCreateRequest {
-	this := NotebookCreateRequest{}
-	this.Data = data
+func NewCaseInvestigationNotebookCreateData(typeVar CaseInvestigationNotebookResourceType) *CaseInvestigationNotebookCreateData {
+	this := CaseInvestigationNotebookCreateData{}
+	this.Type = typeVar
 	return &this
 }
 
-// NewNotebookCreateRequestWithDefaults instantiates a new NotebookCreateRequest object.
+// NewCaseInvestigationNotebookCreateDataWithDefaults instantiates a new CaseInvestigationNotebookCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewNotebookCreateRequestWithDefaults() *NotebookCreateRequest {
-	this := NotebookCreateRequest{}
+func NewCaseInvestigationNotebookCreateDataWithDefaults() *CaseInvestigationNotebookCreateData {
+	this := CaseInvestigationNotebookCreateData{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *NotebookCreateRequest) GetData() NotebookCreateData {
+// GetType returns the Type field value.
+func (o *CaseInvestigationNotebookCreateData) GetType() CaseInvestigationNotebookResourceType {
 	if o == nil {
-		var ret NotebookCreateData
+		var ret CaseInvestigationNotebookResourceType
 		return ret
 	}
-	return o.Data
+	return o.Type
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NotebookCreateRequest) GetDataOk() (*NotebookCreateData, bool) {
+func (o *CaseInvestigationNotebookCreateData) GetTypeOk() (*CaseInvestigationNotebookResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return &o.Type, true
 }
 
-// SetData sets field value.
-func (o *NotebookCreateRequest) SetData(v NotebookCreateData) {
-	o.Data = v
+// SetType sets field value.
+func (o *CaseInvestigationNotebookCreateData) SetType(v CaseInvestigationNotebookResourceType) {
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
+func (o CaseInvestigationNotebookCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,28 +75,29 @@ func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *NotebookCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CaseInvestigationNotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *NotebookCreateData `json:"data"`
+		Type *CaseInvestigationNotebookResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
 	}
-	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
