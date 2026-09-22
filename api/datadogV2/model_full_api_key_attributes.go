@@ -26,6 +26,8 @@ type FullAPIKeyAttributes struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the API key.
 	Name *string `json:"name,omitempty"`
+	// Whether the API key can enroll a Private Action Runner.
+	PrivateActionRunnerEnrollEnabled *bool `json:"private_action_runner_enroll_enabled,omitempty"`
 	// The remote config read enabled status.
 	RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -257,6 +259,34 @@ func (o *FullAPIKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetPrivateActionRunnerEnrollEnabled returns the PrivateActionRunnerEnrollEnabled field value if set, zero value otherwise.
+func (o *FullAPIKeyAttributes) GetPrivateActionRunnerEnrollEnabled() bool {
+	if o == nil || o.PrivateActionRunnerEnrollEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PrivateActionRunnerEnrollEnabled
+}
+
+// GetPrivateActionRunnerEnrollEnabledOk returns a tuple with the PrivateActionRunnerEnrollEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FullAPIKeyAttributes) GetPrivateActionRunnerEnrollEnabledOk() (*bool, bool) {
+	if o == nil || o.PrivateActionRunnerEnrollEnabled == nil {
+		return nil, false
+	}
+	return o.PrivateActionRunnerEnrollEnabled, true
+}
+
+// HasPrivateActionRunnerEnrollEnabled returns a boolean if a field has been set.
+func (o *FullAPIKeyAttributes) HasPrivateActionRunnerEnrollEnabled() bool {
+	return o != nil && o.PrivateActionRunnerEnrollEnabled != nil
+}
+
+// SetPrivateActionRunnerEnrollEnabled gets a reference to the given bool and assigns it to the PrivateActionRunnerEnrollEnabled field.
+func (o *FullAPIKeyAttributes) SetPrivateActionRunnerEnrollEnabled(v bool) {
+	o.PrivateActionRunnerEnrollEnabled = &v
+}
+
 // GetRemoteConfigReadEnabled returns the RemoteConfigReadEnabled field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetRemoteConfigReadEnabled() bool {
 	if o == nil || o.RemoteConfigReadEnabled == nil {
@@ -320,6 +350,9 @@ func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.PrivateActionRunnerEnrollEnabled != nil {
+		toSerialize["private_action_runner_enroll_enabled"] = o.PrivateActionRunnerEnrollEnabled
+	}
 	if o.RemoteConfigReadEnabled != nil {
 		toSerialize["remote_config_read_enabled"] = o.RemoteConfigReadEnabled
 	}
@@ -333,21 +366,22 @@ func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category                *string              `json:"category,omitempty"`
-		CreatedAt               *time.Time           `json:"created_at,omitempty"`
-		DateLastUsed            datadog.NullableTime `json:"date_last_used,omitempty"`
-		Key                     *string              `json:"key,omitempty"`
-		Last4                   *string              `json:"last4,omitempty"`
-		ModifiedAt              *time.Time           `json:"modified_at,omitempty"`
-		Name                    *string              `json:"name,omitempty"`
-		RemoteConfigReadEnabled *bool                `json:"remote_config_read_enabled,omitempty"`
+		Category                         *string              `json:"category,omitempty"`
+		CreatedAt                        *time.Time           `json:"created_at,omitempty"`
+		DateLastUsed                     datadog.NullableTime `json:"date_last_used,omitempty"`
+		Key                              *string              `json:"key,omitempty"`
+		Last4                            *string              `json:"last4,omitempty"`
+		ModifiedAt                       *time.Time           `json:"modified_at,omitempty"`
+		Name                             *string              `json:"name,omitempty"`
+		PrivateActionRunnerEnrollEnabled *bool                `json:"private_action_runner_enroll_enabled,omitempty"`
+		RemoteConfigReadEnabled          *bool                `json:"remote_config_read_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "date_last_used", "key", "last4", "modified_at", "name", "remote_config_read_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "date_last_used", "key", "last4", "modified_at", "name", "private_action_runner_enroll_enabled", "remote_config_read_enabled"})
 	} else {
 		return err
 	}
@@ -358,6 +392,7 @@ func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Last4 = all.Last4
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
+	o.PrivateActionRunnerEnrollEnabled = all.PrivateActionRunnerEnrollEnabled
 	o.RemoteConfigReadEnabled = all.RemoteConfigReadEnabled
 
 	if len(additionalProperties) > 0 {
