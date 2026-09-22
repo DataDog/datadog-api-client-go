@@ -2078,6 +2078,11 @@ func (a *IncidentsApi) CreateOnCallPageFromIncident(ctx _context.Context, incide
 
 // CreatePageFromIncident Create a page from an incident.
 // Create a page from an incident using the Cases service.
+//
+// **Deprecated**: This endpoint is deprecated. Use
+// [Create an on-call page from an incident](#create-an-on-call-page-from-an-incident) instead.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) CreatePageFromIncident(ctx _context.Context, incidentId string, body IncidentCreatePageFromIncidentRequest) (IncidentPageUUIDResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
