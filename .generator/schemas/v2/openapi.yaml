@@ -71576,32 +71576,6 @@ components:
       required:
         - data
       type: object
-    MonitorConfigPolicyDowntimePolicy:
-      additionalProperties: false
-      description: Downtime duration attributes of a monitor configuration policy.
-      properties:
-        max_duration_ms:
-          description: The maximum allowed downtime duration, in milliseconds.
-          example: 3600000
-          format: int64
-          minimum: 1
-          type: integer
-      required:
-        - max_duration_ms
-      type: object
-    MonitorConfigPolicyDowntimePolicyCreateRequest:
-      additionalProperties: false
-      description: Downtime duration attributes of a monitor configuration policy.
-      properties:
-        max_duration_ms:
-          description: The maximum allowed downtime duration, in milliseconds.
-          example: 3600000
-          format: int64
-          minimum: 1
-          type: integer
-      required:
-        - max_duration_ms
-      type: object
     MonitorConfigPolicyEditData:
       description: A monitor configuration policy data.
       properties:
@@ -71639,12 +71613,10 @@ components:
       description: Configuration for the policy.
       oneOf:
         - $ref: "#/components/schemas/MonitorConfigPolicyTagPolicy"
-        - $ref: "#/components/schemas/MonitorConfigPolicyDowntimePolicy"
     MonitorConfigPolicyPolicyCreateRequest:
       description: Configuration for the policy.
       oneOf:
         - $ref: "#/components/schemas/MonitorConfigPolicyTagPolicyCreateRequest"
-        - $ref: "#/components/schemas/MonitorConfigPolicyDowntimePolicyCreateRequest"
     MonitorConfigPolicyResourceType:
       default: monitor-config-policy
       description: Monitor configuration policy resource type.
@@ -71673,7 +71645,6 @@ components:
           $ref: "#/components/schemas/MonitorConfigPolicyResourceType"
       type: object
     MonitorConfigPolicyTagPolicy:
-      additionalProperties: false
       description: Tag attributes of a monitor configuration policy.
       properties:
         tag_key:
@@ -71695,7 +71666,6 @@ components:
           type: array
       type: object
     MonitorConfigPolicyTagPolicyCreateRequest:
-      additionalProperties: false
       description: Tag attributes of a monitor configuration policy.
       properties:
         tag_key:
@@ -71722,18 +71692,13 @@ components:
       type: object
     MonitorConfigPolicyType:
       default: tag
-      description: |-
-        The monitor configuration policy type.
-        `tag` enforces required tags on monitors.
-        `downtime` sets a maximum downtime duration for the organization.
+      description: The monitor configuration policy type.
       enum:
         - tag
-        - downtime
       example: "tag"
       type: string
       x-enum-varnames:
         - TAG
-        - DOWNTIME
     MonitorDowntimeMatchResourceType:
       default: downtime_match
       description: Monitor Downtime Match resource type.
@@ -169740,6 +169705,7 @@ paths:
           - manage_integrations
   /api/v2/integration/salesforce-incidents/incident-templates:
     get:
+      deprecated: true
       description: Get all Salesforce incident templates configured for your organization.
       operationId: GetIncidentTemplates
       responses:
@@ -169774,6 +169740,7 @@ paths:
         permissions:
           - integrations_read
     post:
+      deprecated: true
       description: |-
         Create a new Salesforce incident template for your organization. Template
         names must be unique within an organization.
@@ -169837,6 +169804,7 @@ paths:
           - manage_integrations
   /api/v2/integration/salesforce-incidents/incident-templates/{incident_template_id}:
     delete:
+      deprecated: true
       description: Delete a single Salesforce incident template from your organization.
       operationId: DeleteIncidentTemplate
       parameters:
@@ -169858,6 +169826,7 @@ paths:
         permissions:
           - manage_integrations
     patch:
+      deprecated: true
       description: Update a single Salesforce incident template in your organization.
       operationId: UpdateIncidentTemplate
       parameters:
@@ -169917,6 +169886,7 @@ paths:
           - manage_integrations
   /api/v2/integration/salesforce-incidents/organizations:
     get:
+      deprecated: true
       description: |-
         Get all Salesforce organizations connected to your Datadog organization
         through the Salesforce integration. Salesforce organizations are connected
@@ -169957,6 +169927,7 @@ paths:
           - integrations_read
   /api/v2/integration/salesforce-incidents/organizations/{salesforce_org_id}:
     delete:
+      deprecated: true
       description: |-
         Disconnect a Salesforce organization from your Datadog organization.
         This also deletes any incident templates referencing the organization.
@@ -183695,16 +183666,6 @@ paths:
                           policy_type: tag
                         id: "00000000-0000-1234-0000-000000000000"
                         type: monitor-config-policy
-                downtime:
-                  summary: Downtime duration policy
-                  value:
-                    data:
-                      - attributes:
-                          policy:
-                            max_duration_ms: 3600000
-                          policy_type: downtime
-                        id: "00000000-0000-1234-0000-000000000000"
-                        type: monitor-config-policy
               schema:
                 $ref: "#/components/schemas/MonitorConfigPolicyListResponse"
           description: OK
@@ -183747,15 +183708,6 @@ paths:
                           - staging
                       policy_type: tag
                     type: monitor-config-policy
-              downtime:
-                summary: Downtime duration policy
-                value:
-                  data:
-                    attributes:
-                      policy:
-                        max_duration_ms: 3600000
-                      policy_type: downtime
-                    type: monitor-config-policy
             schema:
               $ref: "#/components/schemas/MonitorConfigPolicyCreateRequest"
         description: Create a monitor configuration policy request body.
@@ -183776,16 +183728,6 @@ paths:
                             - prod
                             - staging
                         policy_type: tag
-                      id: "00000000-0000-1234-0000-000000000000"
-                      type: monitor-config-policy
-                downtime:
-                  summary: Downtime duration policy
-                  value:
-                    data:
-                      attributes:
-                        policy:
-                          max_duration_ms: 3600000
-                        policy_type: downtime
                       id: "00000000-0000-1234-0000-000000000000"
                       type: monitor-config-policy
               schema:
@@ -183884,16 +183826,6 @@ paths:
                         policy_type: tag
                       id: "00000000-0000-1234-0000-000000000000"
                       type: monitor-config-policy
-                downtime:
-                  summary: Downtime duration policy
-                  value:
-                    data:
-                      attributes:
-                        policy:
-                          max_duration_ms: 3600000
-                        policy_type: downtime
-                      id: "00000000-0000-1234-0000-000000000000"
-                      type: monitor-config-policy
               schema:
                 $ref: "#/components/schemas/MonitorConfigPolicyResponse"
           description: OK
@@ -183951,16 +183883,6 @@ paths:
                       policy_type: tag
                     id: 00000000-0000-1234-0000-000000000000
                     type: monitor-config-policy
-              downtime:
-                summary: Downtime duration policy
-                value:
-                  data:
-                    attributes:
-                      policy:
-                        max_duration_ms: 3600000
-                      policy_type: downtime
-                    id: 00000000-0000-1234-0000-000000000000
-                    type: monitor-config-policy
             schema:
               $ref: "#/components/schemas/MonitorConfigPolicyEditRequest"
         description: Description of the update.
@@ -183981,16 +183903,6 @@ paths:
                             - prod
                             - staging
                         policy_type: tag
-                      id: "00000000-0000-1234-0000-000000000000"
-                      type: monitor-config-policy
-                downtime:
-                  summary: Downtime duration policy
-                  value:
-                    data:
-                      attributes:
-                        policy:
-                          max_duration_ms: 3600000
-                        policy_type: downtime
                       id: "00000000-0000-1234-0000-000000000000"
                       type: monitor-config-policy
               schema:
