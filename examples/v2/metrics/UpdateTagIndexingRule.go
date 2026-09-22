@@ -26,10 +26,7 @@ func main() {
 				Name: datadog.PtrString("my-indexing-rule"),
 				Options: &datadogV2.TagIndexingRuleOptions{
 					Data: &datadogV2.TagIndexingRuleOptionsData{
-						DynamicTags: &datadogV2.TagIndexingRuleDynamicTags{
-							QueriedTagsWindowSeconds: datadog.PtrInt64(3600),
-							RelatedAssetTags:         datadog.PtrBool(false),
-						},
+						DynamicTags:              &datadogV2.TagIndexingRuleDynamicTags{},
 						ManagePreexistingMetrics: datadog.PtrBool(true),
 						MetricMatch: &datadogV2.TagIndexingRuleMetricMatch{
 							QueriedWindowSeconds: datadog.PtrInt64(3600),
