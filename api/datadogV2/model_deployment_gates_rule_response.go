@@ -16,10 +16,10 @@ type DeploymentGatesRuleResponse struct {
 	Name *string `json:"name,omitempty"`
 	// The reason for the rule result, if applicable.
 	Reason *string `json:"reason,omitempty"`
-	// The overall status of the gate evaluation.
+	// The recorded result of a gate or rule evaluation.
 	// - `in_progress`: The evaluation is still running.
-	// - `pass`: All rules passed successfully and the deployment is allowed to proceed.
-	// - `fail`: One or more rules did not pass; the deployment should not proceed.
+	// - `pass`: All rules passed successfully.
+	// - `fail`: One or more rules did not pass.
 	Status *DeploymentGatesEvaluationResultResponseAttributesGateStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
