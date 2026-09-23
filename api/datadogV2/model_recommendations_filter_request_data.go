@@ -15,8 +15,9 @@ import (
 type RecommendationsFilterRequestData struct {
 	// Attributes used to filter and sort cost recommendations.
 	Attributes *RecommendationsFilterRequestDataAttributes `json:"attributes,omitempty"`
-	// Filter expression applied to the recommendations. The server treats an omitted ID as `*`
-	// and returns all recommendations.
+	// Filter expression applied to the recommendations when `attributes.filter` is omitted.
+	// When supplied, `attributes.filter` overrides this value, including when empty. If the
+	// resulting filter is empty, it defaults to `*`. Scope, view, and pagination still apply.
 	Id *string `json:"id,omitempty"`
 	// Legacy JSON:API resource type required by the cost recommendations search decoder.
 	Type RecommendationsFilterRequestDataType `json:"type"`

@@ -10,6 +10,10 @@ import (
 
 // RecommendationsFilterRequestDataAttributes Attributes used to filter and sort cost recommendations.
 type RecommendationsFilterRequestDataAttributes struct {
+	// Filter expression applied to the recommendations. When supplied, this attribute overrides
+	// `data.id`, including when empty. When omitted, `data.id` is used. If the resulting filter
+	// is empty, it defaults to `*`. Scope, view, and pagination still apply.
+	Filter *string `json:"filter,omitempty"`
 	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations or `*` for both.
 	Scope *RecommendationsFilterRequestScope `json:"scope,omitempty"`
 	// Ordered list of sort clauses applied to the result set.
@@ -36,6 +40,34 @@ func NewRecommendationsFilterRequestDataAttributes() *RecommendationsFilterReque
 func NewRecommendationsFilterRequestDataAttributesWithDefaults() *RecommendationsFilterRequestDataAttributes {
 	this := RecommendationsFilterRequestDataAttributes{}
 	return &this
+}
+
+// GetFilter returns the Filter field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequestDataAttributes) GetFilter() string {
+	if o == nil || o.Filter == nil {
+		var ret string
+		return ret
+	}
+	return *o.Filter
+}
+
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequestDataAttributes) GetFilterOk() (*string, bool) {
+	if o == nil || o.Filter == nil {
+		return nil, false
+	}
+	return o.Filter, true
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequestDataAttributes) HasFilter() bool {
+	return o != nil && o.Filter != nil
+}
+
+// SetFilter gets a reference to the given string and assigns it to the Filter field.
+func (o *RecommendationsFilterRequestDataAttributes) SetFilter(v string) {
+	o.Filter = &v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
@@ -128,6 +160,9 @@ func (o RecommendationsFilterRequestDataAttributes) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Filter != nil {
+		toSerialize["filter"] = o.Filter
+	}
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
@@ -147,21 +182,23 @@ func (o RecommendationsFilterRequestDataAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *RecommendationsFilterRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Scope *RecommendationsFilterRequestScope      `json:"scope,omitempty"`
-		Sort  []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
-		View  *string                                 `json:"view,omitempty"`
+		Filter *string                                 `json:"filter,omitempty"`
+		Scope  *RecommendationsFilterRequestScope      `json:"scope,omitempty"`
+		Sort   []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
+		View   *string                                 `json:"view,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"scope", "sort", "view"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "scope", "sort", "view"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Filter = all.Filter
 	if all.Scope != nil && !all.Scope.IsValid() {
 		hasInvalidField = true
 	} else {
