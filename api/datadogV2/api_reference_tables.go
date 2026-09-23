@@ -17,7 +17,7 @@ import (
 type ReferenceTablesApi datadog.Service
 
 // BatchRowsQuery Batch rows query.
-// Batch query reference table rows by their primary key values.  Returns only found rows in the included array.
+// Batch query reference table rows by their primary key values. Returns only found rows in the included array.
 func (a *ReferenceTablesApi) BatchRowsQuery(ctx _context.Context, body BatchRowsQueryRequest) (BatchRowsQueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

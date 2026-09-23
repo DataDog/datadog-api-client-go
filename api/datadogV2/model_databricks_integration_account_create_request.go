@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchUpsertRowsRequestArray The request body for creating or updating multiple rows into a reference table.
-type BatchUpsertRowsRequestArray struct {
-	// List of row resources to create or update in the reference table. The request payload can be up to 1 MiB.
-	Data []BatchUpsertRowsRequestData `json:"data"`
+// DatabricksIntegrationAccountCreateRequest Request payload to create a Databricks integration account.
+type DatabricksIntegrationAccountCreateRequest struct {
+	// Data envelope for creating a Databricks integration account.
+	Data DatabricksIntegrationAccountCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewBatchUpsertRowsRequestArray instantiates a new BatchUpsertRowsRequestArray object.
+// NewDatabricksIntegrationAccountCreateRequest instantiates a new DatabricksIntegrationAccountCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBatchUpsertRowsRequestArray(data []BatchUpsertRowsRequestData) *BatchUpsertRowsRequestArray {
-	this := BatchUpsertRowsRequestArray{}
+func NewDatabricksIntegrationAccountCreateRequest(data DatabricksIntegrationAccountCreateData) *DatabricksIntegrationAccountCreateRequest {
+	this := DatabricksIntegrationAccountCreateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewBatchUpsertRowsRequestArrayWithDefaults instantiates a new BatchUpsertRowsRequestArray object.
+// NewDatabricksIntegrationAccountCreateRequestWithDefaults instantiates a new DatabricksIntegrationAccountCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewBatchUpsertRowsRequestArrayWithDefaults() *BatchUpsertRowsRequestArray {
-	this := BatchUpsertRowsRequestArray{}
+func NewDatabricksIntegrationAccountCreateRequestWithDefaults() *DatabricksIntegrationAccountCreateRequest {
+	this := DatabricksIntegrationAccountCreateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *BatchUpsertRowsRequestArray) GetData() []BatchUpsertRowsRequestData {
+func (o *DatabricksIntegrationAccountCreateRequest) GetData() DatabricksIntegrationAccountCreateData {
 	if o == nil {
-		var ret []BatchUpsertRowsRequestData
+		var ret DatabricksIntegrationAccountCreateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *BatchUpsertRowsRequestArray) GetData() []BatchUpsertRowsRequestData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *BatchUpsertRowsRequestArray) GetDataOk() (*[]BatchUpsertRowsRequestData, bool) {
+func (o *DatabricksIntegrationAccountCreateRequest) GetDataOk() (*DatabricksIntegrationAccountCreateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *BatchUpsertRowsRequestArray) GetDataOk() (*[]BatchUpsertRowsRequestData
 }
 
 // SetData sets field value.
-func (o *BatchUpsertRowsRequestArray) SetData(v []BatchUpsertRowsRequestData) {
+func (o *DatabricksIntegrationAccountCreateRequest) SetData(v DatabricksIntegrationAccountCreateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o BatchUpsertRowsRequestArray) MarshalJSON() ([]byte, error) {
+func (o DatabricksIntegrationAccountCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o BatchUpsertRowsRequestArray) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *BatchUpsertRowsRequestArray) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DatabricksIntegrationAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]BatchUpsertRowsRequestData `json:"data"`
+		Data *DatabricksIntegrationAccountCreateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -91,10 +91,19 @@ func (o *BatchUpsertRowsRequestArray) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
