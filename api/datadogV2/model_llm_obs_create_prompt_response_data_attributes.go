@@ -11,10 +11,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptDataAttributes Attributes of an Agent Observability prompt registry entry. Prompt list and metadata-update responses omit complete template and configuration data.
-type LLMObsPromptDataAttributes struct {
+// LLMObsCreatePromptResponseDataAttributes Attributes returned after creating an Agent Observability prompt and its first version. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
+type LLMObsCreatePromptResponseDataAttributes struct {
 	// UUID of the user who authored the prompt.
 	Author *string `json:"author,omitempty"`
+	// Versioned prompt configuration is in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager. Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config,omitempty"`
 	// Timestamp when the prompt was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Source that created the prompt, such as `ui-registry`, `sdk-registry`, or `sdk-instrumentation`.
@@ -50,12 +52,12 @@ type LLMObsPromptDataAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewLLMObsPromptDataAttributes instantiates a new LLMObsPromptDataAttributes object.
+// NewLLMObsCreatePromptResponseDataAttributes instantiates a new LLMObsCreatePromptResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsPromptDataAttributes(createdFrom string, inRegistry bool, numVersions int64, promptId string, source LLMObsPromptResponseSource) *LLMObsPromptDataAttributes {
-	this := LLMObsPromptDataAttributes{}
+func NewLLMObsCreatePromptResponseDataAttributes(createdFrom string, inRegistry bool, numVersions int64, promptId string, source LLMObsPromptResponseSource) *LLMObsCreatePromptResponseDataAttributes {
+	this := LLMObsCreatePromptResponseDataAttributes{}
 	this.CreatedFrom = createdFrom
 	this.InRegistry = inRegistry
 	this.NumVersions = numVersions
@@ -64,16 +66,16 @@ func NewLLMObsPromptDataAttributes(createdFrom string, inRegistry bool, numVersi
 	return &this
 }
 
-// NewLLMObsPromptDataAttributesWithDefaults instantiates a new LLMObsPromptDataAttributes object.
+// NewLLMObsCreatePromptResponseDataAttributesWithDefaults instantiates a new LLMObsCreatePromptResponseDataAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewLLMObsPromptDataAttributesWithDefaults() *LLMObsPromptDataAttributes {
-	this := LLMObsPromptDataAttributes{}
+func NewLLMObsCreatePromptResponseDataAttributesWithDefaults() *LLMObsCreatePromptResponseDataAttributes {
+	this := LLMObsCreatePromptResponseDataAttributes{}
 	return &this
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetAuthor() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetAuthor() string {
 	if o == nil || o.Author == nil {
 		var ret string
 		return ret
@@ -83,7 +85,7 @@ func (o *LLMObsPromptDataAttributes) GetAuthor() string {
 
 // GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetAuthorOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetAuthorOk() (*string, bool) {
 	if o == nil || o.Author == nil {
 		return nil, false
 	}
@@ -91,17 +93,45 @@ func (o *LLMObsPromptDataAttributes) GetAuthorOk() (*string, bool) {
 }
 
 // HasAuthor returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasAuthor() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasAuthor() bool {
 	return o != nil && o.Author != nil
 }
 
 // SetAuthor gets a reference to the given string and assigns it to the Author field.
-func (o *LLMObsPromptDataAttributes) SetAuthor(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetAuthor(v string) {
 	o.Author = &v
 }
 
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *LLMObsCreatePromptResponseDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil || o.Config == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsCreatePromptResponseDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Config == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *LLMObsCreatePromptResponseDataAttributes) HasConfig() bool {
+	return o != nil && o.Config != nil
+}
+
+// SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
+func (o *LLMObsCreatePromptResponseDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
+}
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetCreatedAt() time.Time {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -111,7 +141,7 @@ func (o *LLMObsPromptDataAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -119,17 +149,17 @@ func (o *LLMObsPromptDataAttributes) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasCreatedAt() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *LLMObsPromptDataAttributes) SetCreatedAt(v time.Time) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetCreatedFrom returns the CreatedFrom field value.
-func (o *LLMObsPromptDataAttributes) GetCreatedFrom() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetCreatedFrom() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -139,7 +169,7 @@ func (o *LLMObsPromptDataAttributes) GetCreatedFrom() string {
 
 // GetCreatedFromOk returns a tuple with the CreatedFrom field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetCreatedFromOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetCreatedFromOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,12 +177,12 @@ func (o *LLMObsPromptDataAttributes) GetCreatedFromOk() (*string, bool) {
 }
 
 // SetCreatedFrom sets field value.
-func (o *LLMObsPromptDataAttributes) SetCreatedFrom(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetCreatedFrom(v string) {
 	o.CreatedFrom = v
 }
 
 // GetDatasets returns the Datasets field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetDatasets() []LLMObsPromptDataset {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetDatasets() []LLMObsPromptDataset {
 	if o == nil || o.Datasets == nil {
 		var ret []LLMObsPromptDataset
 		return ret
@@ -162,7 +192,7 @@ func (o *LLMObsPromptDataAttributes) GetDatasets() []LLMObsPromptDataset {
 
 // GetDatasetsOk returns a tuple with the Datasets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetDatasetsOk() (*[]LLMObsPromptDataset, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetDatasetsOk() (*[]LLMObsPromptDataset, bool) {
 	if o == nil || o.Datasets == nil {
 		return nil, false
 	}
@@ -170,17 +200,17 @@ func (o *LLMObsPromptDataAttributes) GetDatasetsOk() (*[]LLMObsPromptDataset, bo
 }
 
 // HasDatasets returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasDatasets() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasDatasets() bool {
 	return o != nil && o.Datasets != nil
 }
 
 // SetDatasets gets a reference to the given []LLMObsPromptDataset and assigns it to the Datasets field.
-func (o *LLMObsPromptDataAttributes) SetDatasets(v []LLMObsPromptDataset) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetDatasets(v []LLMObsPromptDataset) {
 	o.Datasets = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetDescription() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -190,7 +220,7 @@ func (o *LLMObsPromptDataAttributes) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetDescriptionOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -198,17 +228,17 @@ func (o *LLMObsPromptDataAttributes) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasDescription() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasDescription() bool {
 	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *LLMObsPromptDataAttributes) SetDescription(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetExtractedFrom returns the ExtractedFrom field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetExtractedFrom() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetExtractedFrom() string {
 	if o == nil || o.ExtractedFrom == nil {
 		var ret string
 		return ret
@@ -218,7 +248,7 @@ func (o *LLMObsPromptDataAttributes) GetExtractedFrom() string {
 
 // GetExtractedFromOk returns a tuple with the ExtractedFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetExtractedFromOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetExtractedFromOk() (*string, bool) {
 	if o == nil || o.ExtractedFrom == nil {
 		return nil, false
 	}
@@ -226,17 +256,17 @@ func (o *LLMObsPromptDataAttributes) GetExtractedFromOk() (*string, bool) {
 }
 
 // HasExtractedFrom returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasExtractedFrom() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasExtractedFrom() bool {
 	return o != nil && o.ExtractedFrom != nil
 }
 
 // SetExtractedFrom gets a reference to the given string and assigns it to the ExtractedFrom field.
-func (o *LLMObsPromptDataAttributes) SetExtractedFrom(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetExtractedFrom(v string) {
 	o.ExtractedFrom = &v
 }
 
 // GetInRegistry returns the InRegistry field value.
-func (o *LLMObsPromptDataAttributes) GetInRegistry() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetInRegistry() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -246,7 +276,7 @@ func (o *LLMObsPromptDataAttributes) GetInRegistry() bool {
 
 // GetInRegistryOk returns a tuple with the InRegistry field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetInRegistryOk() (*bool, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetInRegistryOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -254,12 +284,12 @@ func (o *LLMObsPromptDataAttributes) GetInRegistryOk() (*bool, bool) {
 }
 
 // SetInRegistry sets field value.
-func (o *LLMObsPromptDataAttributes) SetInRegistry(v bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetInRegistry(v bool) {
 	o.InRegistry = v
 }
 
 // GetLastSeenAt returns the LastSeenAt field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetLastSeenAt() time.Time {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetLastSeenAt() time.Time {
 	if o == nil || o.LastSeenAt == nil {
 		var ret time.Time
 		return ret
@@ -269,7 +299,7 @@ func (o *LLMObsPromptDataAttributes) GetLastSeenAt() time.Time {
 
 // GetLastSeenAtOk returns a tuple with the LastSeenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetLastSeenAtOk() (*time.Time, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetLastSeenAtOk() (*time.Time, bool) {
 	if o == nil || o.LastSeenAt == nil {
 		return nil, false
 	}
@@ -277,17 +307,17 @@ func (o *LLMObsPromptDataAttributes) GetLastSeenAtOk() (*time.Time, bool) {
 }
 
 // HasLastSeenAt returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasLastSeenAt() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasLastSeenAt() bool {
 	return o != nil && o.LastSeenAt != nil
 }
 
 // SetLastSeenAt gets a reference to the given time.Time and assigns it to the LastSeenAt field.
-func (o *LLMObsPromptDataAttributes) SetLastSeenAt(v time.Time) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetLastSeenAt(v time.Time) {
 	o.LastSeenAt = &v
 }
 
 // GetLastVersionCreatedAt returns the LastVersionCreatedAt field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetLastVersionCreatedAt() time.Time {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetLastVersionCreatedAt() time.Time {
 	if o == nil || o.LastVersionCreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -297,7 +327,7 @@ func (o *LLMObsPromptDataAttributes) GetLastVersionCreatedAt() time.Time {
 
 // GetLastVersionCreatedAtOk returns a tuple with the LastVersionCreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetLastVersionCreatedAtOk() (*time.Time, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetLastVersionCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.LastVersionCreatedAt == nil {
 		return nil, false
 	}
@@ -305,17 +335,17 @@ func (o *LLMObsPromptDataAttributes) GetLastVersionCreatedAtOk() (*time.Time, bo
 }
 
 // HasLastVersionCreatedAt returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasLastVersionCreatedAt() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasLastVersionCreatedAt() bool {
 	return o != nil && o.LastVersionCreatedAt != nil
 }
 
 // SetLastVersionCreatedAt gets a reference to the given time.Time and assigns it to the LastVersionCreatedAt field.
-func (o *LLMObsPromptDataAttributes) SetLastVersionCreatedAt(v time.Time) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetLastVersionCreatedAt(v time.Time) {
 	o.LastVersionCreatedAt = &v
 }
 
 // GetMlApp returns the MlApp field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetMlApp() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetMlApp() string {
 	if o == nil || o.MlApp == nil {
 		var ret string
 		return ret
@@ -325,7 +355,7 @@ func (o *LLMObsPromptDataAttributes) GetMlApp() string {
 
 // GetMlAppOk returns a tuple with the MlApp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetMlAppOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetMlAppOk() (*string, bool) {
 	if o == nil || o.MlApp == nil {
 		return nil, false
 	}
@@ -333,17 +363,17 @@ func (o *LLMObsPromptDataAttributes) GetMlAppOk() (*string, bool) {
 }
 
 // HasMlApp returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasMlApp() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasMlApp() bool {
 	return o != nil && o.MlApp != nil
 }
 
 // SetMlApp gets a reference to the given string and assigns it to the MlApp field.
-func (o *LLMObsPromptDataAttributes) SetMlApp(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetMlApp(v string) {
 	o.MlApp = &v
 }
 
 // GetMlApps returns the MlApps field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetMlApps() []string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetMlApps() []string {
 	if o == nil || o.MlApps == nil {
 		var ret []string
 		return ret
@@ -353,7 +383,7 @@ func (o *LLMObsPromptDataAttributes) GetMlApps() []string {
 
 // GetMlAppsOk returns a tuple with the MlApps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetMlAppsOk() (*[]string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetMlAppsOk() (*[]string, bool) {
 	if o == nil || o.MlApps == nil {
 		return nil, false
 	}
@@ -361,17 +391,17 @@ func (o *LLMObsPromptDataAttributes) GetMlAppsOk() (*[]string, bool) {
 }
 
 // HasMlApps returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasMlApps() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasMlApps() bool {
 	return o != nil && o.MlApps != nil
 }
 
 // SetMlApps gets a reference to the given []string and assigns it to the MlApps field.
-func (o *LLMObsPromptDataAttributes) SetMlApps(v []string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetMlApps(v []string) {
 	o.MlApps = v
 }
 
 // GetNumVersions returns the NumVersions field value.
-func (o *LLMObsPromptDataAttributes) GetNumVersions() int64 {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetNumVersions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -381,7 +411,7 @@ func (o *LLMObsPromptDataAttributes) GetNumVersions() int64 {
 
 // GetNumVersionsOk returns a tuple with the NumVersions field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetNumVersionsOk() (*int64, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetNumVersionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -389,12 +419,12 @@ func (o *LLMObsPromptDataAttributes) GetNumVersionsOk() (*int64, bool) {
 }
 
 // SetNumVersions sets field value.
-func (o *LLMObsPromptDataAttributes) SetNumVersions(v int64) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetNumVersions(v int64) {
 	o.NumVersions = v
 }
 
 // GetPromptId returns the PromptId field value.
-func (o *LLMObsPromptDataAttributes) GetPromptId() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetPromptId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -404,7 +434,7 @@ func (o *LLMObsPromptDataAttributes) GetPromptId() string {
 
 // GetPromptIdOk returns a tuple with the PromptId field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetPromptIdOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetPromptIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -412,12 +442,12 @@ func (o *LLMObsPromptDataAttributes) GetPromptIdOk() (*string, bool) {
 }
 
 // SetPromptId sets field value.
-func (o *LLMObsPromptDataAttributes) SetPromptId(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetPromptId(v string) {
 	o.PromptId = v
 }
 
 // GetSource returns the Source field value.
-func (o *LLMObsPromptDataAttributes) GetSource() LLMObsPromptResponseSource {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetSource() LLMObsPromptResponseSource {
 	if o == nil {
 		var ret LLMObsPromptResponseSource
 		return ret
@@ -427,7 +457,7 @@ func (o *LLMObsPromptDataAttributes) GetSource() LLMObsPromptResponseSource {
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetSourceOk() (*LLMObsPromptResponseSource, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetSourceOk() (*LLMObsPromptResponseSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -435,12 +465,12 @@ func (o *LLMObsPromptDataAttributes) GetSourceOk() (*LLMObsPromptResponseSource,
 }
 
 // SetSource sets field value.
-func (o *LLMObsPromptDataAttributes) SetSource(v LLMObsPromptResponseSource) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetSource(v LLMObsPromptResponseSource) {
 	o.Source = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetTags() []string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -450,7 +480,7 @@ func (o *LLMObsPromptDataAttributes) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetTagsOk() (*[]string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -458,17 +488,17 @@ func (o *LLMObsPromptDataAttributes) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasTags() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasTags() bool {
 	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *LLMObsPromptDataAttributes) SetTags(v []string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *LLMObsPromptDataAttributes) GetTitle() string {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -478,7 +508,7 @@ func (o *LLMObsPromptDataAttributes) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptDataAttributes) GetTitleOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseDataAttributes) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -486,23 +516,26 @@ func (o *LLMObsPromptDataAttributes) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *LLMObsPromptDataAttributes) HasTitle() bool {
+func (o *LLMObsCreatePromptResponseDataAttributes) HasTitle() bool {
 	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *LLMObsPromptDataAttributes) SetTitle(v string) {
+func (o *LLMObsCreatePromptResponseDataAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o LLMObsPromptDataAttributes) MarshalJSON() ([]byte, error) {
+func (o LLMObsCreatePromptResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
+	}
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
 	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
@@ -559,9 +592,10 @@ func (o LLMObsPromptDataAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *LLMObsPromptDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *LLMObsCreatePromptResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Author               *string                     `json:"author,omitempty"`
+		Config               map[string]interface{}      `json:"config,omitempty"`
 		CreatedAt            *time.Time                  `json:"created_at,omitempty"`
 		CreatedFrom          *string                     `json:"created_from"`
 		Datasets             []LLMObsPromptDataset       `json:"datasets,omitempty"`
@@ -598,13 +632,14 @@ func (o *LLMObsPromptDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "created_from", "datasets", "description", "extracted_from", "in_registry", "last_seen_at", "last_version_created_at", "ml_app", "ml_apps", "num_versions", "prompt_id", "source", "tags", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "config", "created_at", "created_from", "datasets", "description", "extracted_from", "in_registry", "last_seen_at", "last_version_created_at", "ml_app", "ml_apps", "num_versions", "prompt_id", "source", "tags", "title"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Author = all.Author
+	o.Config = all.Config
 	o.CreatedAt = all.CreatedAt
 	o.CreatedFrom = *all.CreatedFrom
 	o.Datasets = all.Datasets
