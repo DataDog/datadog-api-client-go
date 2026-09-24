@@ -12,7 +12,7 @@ import (
 
 // LLMObsCreatePromptVersionData Data object for creating an Agent Observability prompt version.
 type LLMObsCreatePromptVersionData struct {
-	// Attributes for creating a new version of an Agent Observability prompt. `template` is required; all other attributes are optional.
+	// Attributes for creating a new version of an Agent Observability prompt. `template` is required; all other attributes are optional. If `config` is omitted, the latest version's configuration is carried forward. An explicit empty object clears it. Configuration authoring must be enabled for your organization to supply `config`. Otherwise, supplying it, including an empty object, returns HTTP 403. Omitting `config` still carries forward the latest configuration.
 	Attributes LLMObsCreatePromptVersionDataAttributes `json:"attributes"`
 	// Resource type of an Agent Observability prompt version.
 	Type LLMObsPromptVersionType `json:"type"`

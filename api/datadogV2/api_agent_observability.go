@@ -1116,11 +1116,11 @@ func (a *AgentObservabilityApi) CreateLLMObsProject(ctx _context.Context, body L
 
 // CreateLLMObsPrompt Create an Agent Observability prompt.
 // Create a new prompt (and its first version) in the Agent Observability prompt registry.
-func (a *AgentObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LLMObsCreatePromptRequest) (LLMObsPromptResponse, *_nethttp.Response, error) {
+func (a *AgentObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LLMObsCreatePromptRequest) (LLMObsCreatePromptResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue LLMObsPromptResponse
+		localVarReturnValue LLMObsCreatePromptResponse
 	)
 
 	operationId := "v2.CreateLLMObsPrompt"
@@ -3389,7 +3389,7 @@ func (a *AgentObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId s
 }
 
 // GetLLMObsPromptVersion Get a specific Agent Observability prompt version.
-// Get the full template of a single, specific version of an Agent Observability prompt.
+// Get the full template and configuration of a single, specific version of an Agent Observability prompt.
 func (a *AgentObservabilityApi) GetLLMObsPromptVersion(ctx _context.Context, promptId string, version int64) (LLMObsPromptVersionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
