@@ -8,7 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptTemplate - A text template or a list of chat messages.
+// LLMObsPromptTemplate - A text template or a list of chat messages and named message placeholders.
+// **Preview:** Message placeholders are available in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager.
 type LLMObsPromptTemplate struct {
 	LLMObsPromptTextTemplate *string
 	LLMObsPromptChatTemplate *LLMObsPromptChatTemplate

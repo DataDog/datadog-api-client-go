@@ -8,9 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptChatTemplate A chat prompt template.
+// LLMObsPromptChatTemplate A chat prompt template containing messages and optional named message placeholders.
+// **Preview:** Message placeholders are available in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager.
 type LLMObsPromptChatTemplate struct {
-	Items []LLMObsPromptChatMessage
+	Items []LLMObsPromptChatTemplateItem
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`
