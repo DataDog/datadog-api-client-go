@@ -16,6 +16,7 @@ func main() {
 	EscalationPolicyDataID := os.Getenv("ESCALATION_POLICY_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)

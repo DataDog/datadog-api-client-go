@@ -111,6 +111,7 @@ func main() {
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateLLMObsIntegrationInference", true)
 	apiClient := datadog.NewAPIClient(configuration)
