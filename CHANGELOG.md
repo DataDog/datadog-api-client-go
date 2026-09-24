@@ -1,5 +1,70 @@
 # CHANGELOG
 
+## 2.66.0/2026-09-24
+
+### Added
+* Document Deployment Gate evaluation APIs [#4643](https://github.com/DataDog/datadog-api-client-go/pull/4643)
+* Update GCP V2 API spec to support is_org_folder_resource_collection_enabled  [#4636](https://github.com/DataDog/datadog-api-client-go/pull/4636)
+* allow billing read for ListQuotas GET endpoint [#4626](https://github.com/DataDog/datadog-api-client-go/pull/4626)
+* Document run_as attribute and with_run_as param for downtime v2 API [#4619](https://github.com/DataDog/datadog-api-client-go/pull/4619)
+* Add draft monitor permissions definition [#4613](https://github.com/DataDog/datadog-api-client-go/pull/4613)
+* Add sensitivePrivileges field to Workflow Automation spec [#4612](https://github.com/DataDog/datadog-api-client-go/pull/4612)
+* Document NDM device tag sources [#4605](https://github.com/DataDog/datadog-api-client-go/pull/4605)
+* Document GetBudget response metadata [#4602](https://github.com/DataDog/datadog-api-client-go/pull/4602)
+* Add versioned prompt configuration [#4596](https://github.com/DataDog/datadog-api-client-go/pull/4596)
+* Document OAuth v2 OIDC discovery endpoint [#4595](https://github.com/DataDog/datadog-api-client-go/pull/4595)
+* Add prometheus remote write source and sink to obs-pipelines public api spec [#4589](https://github.com/DataDog/datadog-api-client-go/pull/4589)
+* Allow up to three timeseries anomaly investigation results [#4588](https://github.com/DataDog/datadog-api-client-go/pull/4588)
+* Security findings default and regular inbox rules API spec [#4586](https://github.com/DataDog/datadog-api-client-go/pull/4586)
+* Add Integration Accounts v2 API for Snowflake [#4585](https://github.com/DataDog/datadog-api-client-go/pull/4585)
+* Add downtime duration policy to Monitor Config Policy API spec [#4582](https://github.com/DataDog/datadog-api-client-go/pull/4582)
+* Add overflow and metrics destinations, deprecate generate_datadog_metrics, add custom auth for http_client [#4581](https://github.com/DataDog/datadog-api-client-go/pull/4581)
+* promote GET `/api/v2/on-call/schedules` to a public ListOnCallSchedules operation [#4580](https://github.com/DataDog/datadog-api-client-go/pull/4580)
+* Add documentation for name filter query parameter in ListStatusPages [#4579](https://github.com/DataDog/datadog-api-client-go/pull/4579)
+* Add embedded app widgets to the Dashboard API [#4572](https://github.com/DataDog/datadog-api-client-go/pull/4572)
+* Support frontend annotation display blocks [#4571](https://github.com/DataDog/datadog-api-client-go/pull/4571)
+* Accept the linear ticket creation target in security pipelines automation [#4570](https://github.com/DataDog/datadog-api-client-go/pull/4570)
+* Add timeseries anomaly investigations API [#4560](https://github.com/DataDog/datadog-api-client-go/pull/4560)
+* Add monitor IDs to deployment rules [#4558](https://github.com/DataDog/datadog-api-client-go/pull/4558)
+* Change usage quotas public APIs to only required billing_edit [#4557](https://github.com/DataDog/datadog-api-client-go/pull/4557)
+* Add `sensitive_data` and `serverless_function_code_vulnerability` to security finding notification API spec [#4556](https://github.com/DataDog/datadog-api-client-go/pull/4556)
+* Add Integration Accounts v2 API for Databricks [#4551](https://github.com/DataDog/datadog-api-client-go/pull/4551)
+* Add source to target and model configuration options to data quality monitors [#4548](https://github.com/DataDog/datadog-api-client-go/pull/4548)
+* Publish product catalog SKUs and pricing API in preview [#4547](https://github.com/DataDog/datadog-api-client-go/pull/4547)
+* Add unit cost ROI endpoints to Cloud Cost Management [#4546](https://github.com/DataDog/datadog-api-client-go/pull/4546)
+* Update Observability Pipelines Splunk TCP source in OpenAPI spec [#4545](https://github.com/DataDog/datadog-api-client-go/pull/4545)
+* Add annotated interaction details endpoint [#4538](https://github.com/DataDog/datadog-api-client-go/pull/4538)
+* [DEM-68] - Publish DEM Journey APIs [#4536](https://github.com/DataDog/datadog-api-client-go/pull/4536)
+* Add canceled_description to maintenance response attributes [#4533](https://github.com/DataDog/datadog-api-client-go/pull/4533)
+* Improve Go client retry timing [#4530](https://github.com/DataDog/datadog-api-client-go/pull/4530)
+* Add Feature Flag creation options [#4526](https://github.com/DataDog/datadog-api-client-go/pull/4526)
+* Add workflow run as configuration [#4506](https://github.com/DataDog/datadog-api-client-go/pull/4506)
+* Document NDM device tag sources [#4486](https://github.com/DataDog/datadog-api-client-go/pull/4486)
+* Promote Code Coverage v2 endpoints to stable [#4455](https://github.com/DataDog/datadog-api-client-go/pull/4455)
+* Document include_scopes query param on GET /api/v2/permissions [#4415](https://github.com/DataDog/datadog-api-client-go/pull/4415)
+
+### Removed
+* Remove deprecated queried_tags_window_seconds and related_asset_tags fields [#4639](https://github.com/DataDog/datadog-api-client-go/pull/4639)
+* Deprecate POST incidents /cases/page endpoint [#4627](https://github.com/DataDog/datadog-api-client-go/pull/4627)
+* Remove actor_handle and actor_type from the CSM ownership feedback request [#4552](https://github.com/DataDog/datadog-api-client-go/pull/4552)
+
+### Fixed
+* Fix static analysis OpenAPI drift [#4638](https://github.com/DataDog/datadog-api-client-go/pull/4638)
+* Fix cost recommendations JSON API request schema [#4620](https://github.com/DataDog/datadog-api-client-go/pull/4620)
+* Add Private Action Runner flag to API key schemas [#4617](https://github.com/DataDog/datadog-api-client-go/pull/4617)
+* Document monitor scope for investigations [#4592](https://github.com/DataDog/datadog-api-client-go/pull/4592)
+* Fix static-analysis-api spec drift [#4574](https://github.com/DataDog/datadog-api-client-go/pull/4574)
+
+### Changed
+* Normalize Twilio and Elastic Cloud integration account specs [#4610](https://github.com/DataDog/datadog-api-client-go/pull/4610)
+* Use JSONAPI error schema for cost tag endpoints [#4607](https://github.com/DataDog/datadog-api-client-go/pull/4607)
+* Fix GetBudget costs_unit.id type to integer [#4604](https://github.com/DataDog/datadog-api-client-go/pull/4604)
+* Add role policy type to org group policies [#4549](https://github.com/DataDog/datadog-api-client-go/pull/4549)
+* Improve Go client retry timing [#4530](https://github.com/DataDog/datadog-api-client-go/pull/4530)
+
+### Deprecated
+* Deprecate OCI config listing endpoint [#4527](https://github.com/DataDog/datadog-api-client-go/pull/4527)
+
 ## 2.65.0/2026-09-02
 
 ### Added
