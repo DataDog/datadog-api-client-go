@@ -1116,6 +1116,8 @@ func (a *AgentObservabilityApi) CreateLLMObsProject(ctx _context.Context, body L
 
 // CreateLLMObsPrompt Create an Agent Observability prompt.
 // Create a new prompt (and its first version) in the Agent Observability prompt registry.
+//
+// > **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
 func (a *AgentObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LLMObsCreatePromptRequest) (LLMObsCreatePromptResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1214,6 +1216,8 @@ func (a *AgentObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LL
 
 // CreateLLMObsPromptVersion Create a new Agent Observability prompt version.
 // Create a new version of an existing Agent Observability prompt.
+//
+// > **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
 func (a *AgentObservabilityApi) CreateLLMObsPromptVersion(ctx _context.Context, promptId string, body LLMObsCreatePromptVersionRequest) (LLMObsPromptVersionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

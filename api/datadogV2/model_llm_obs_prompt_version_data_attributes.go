@@ -11,10 +11,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionDataAttributes Attributes of a specific version of an Agent Observability prompt. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
+// LLMObsPromptVersionDataAttributes Attributes of a specific version of an Agent Observability prompt. For a composed version, `authoring_template` contains its pinned include-bearing source; ordinary versions omit that attribute. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
 type LLMObsPromptVersionDataAttributes struct {
 	// UUID of the user who authored this version.
 	Author *string `json:"author,omitempty"`
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`; other text, including `{{>...}}` sequences without a version, remains literal. Use an authored chat object when including prompts as chat messages.
+	// **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
+	// Without access, inline references remain literal text and structured includes are unsupported. Previously compiled prompt versions remain available for execution.
+	AuthoringTemplate *LLMObsPromptTemplate `json:"authoring_template,omitempty"`
 	// Versioned prompt configuration is in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager. Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
 	Config map[string]interface{} `json:"config,omitempty"`
 	// Timestamp stored on this prompt version.
@@ -38,7 +42,9 @@ type LLMObsPromptVersionDataAttributes struct {
 	PromptUuid string `json:"prompt_uuid"`
 	// Tags observed on runs of this prompt version.
 	Tags []string `json:"tags,omitempty"`
-	// A text template or a list of chat messages.
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`; other text, including `{{>...}}` sequences without a version, remains literal. Use an authored chat object when including prompts as chat messages.
+	// **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
+	// Without access, inline references remain literal text and structured includes are unsupported. Previously compiled prompt versions remain available for execution.
 	Template LLMObsPromptTemplate `json:"template"`
 	// User-supplied identifier for this version.
 	UserVersion *string `json:"user_version,omitempty"`
@@ -98,6 +104,34 @@ func (o *LLMObsPromptVersionDataAttributes) HasAuthor() bool {
 // SetAuthor gets a reference to the given string and assigns it to the Author field.
 func (o *LLMObsPromptVersionDataAttributes) SetAuthor(v string) {
 	o.Author = &v
+}
+
+// GetAuthoringTemplate returns the AuthoringTemplate field value if set, zero value otherwise.
+func (o *LLMObsPromptVersionDataAttributes) GetAuthoringTemplate() LLMObsPromptTemplate {
+	if o == nil || o.AuthoringTemplate == nil {
+		var ret LLMObsPromptTemplate
+		return ret
+	}
+	return *o.AuthoringTemplate
+}
+
+// GetAuthoringTemplateOk returns a tuple with the AuthoringTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPromptVersionDataAttributes) GetAuthoringTemplateOk() (*LLMObsPromptTemplate, bool) {
+	if o == nil || o.AuthoringTemplate == nil {
+		return nil, false
+	}
+	return o.AuthoringTemplate, true
+}
+
+// HasAuthoringTemplate returns a boolean if a field has been set.
+func (o *LLMObsPromptVersionDataAttributes) HasAuthoringTemplate() bool {
+	return o != nil && o.AuthoringTemplate != nil
+}
+
+// SetAuthoringTemplate gets a reference to the given LLMObsPromptTemplate and assigns it to the AuthoringTemplate field.
+func (o *LLMObsPromptVersionDataAttributes) SetAuthoringTemplate(v LLMObsPromptTemplate) {
+	o.AuthoringTemplate = &v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -512,6 +546,9 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
 	}
+	if o.AuthoringTemplate != nil {
+		toSerialize["authoring_template"] = o.AuthoringTemplate
+	}
 	if o.Config != nil {
 		toSerialize["config"] = o.Config
 	}
@@ -571,22 +608,23 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author           *string                `json:"author,omitempty"`
-		Config           map[string]interface{} `json:"config,omitempty"`
-		CreatedAt        *time.Time             `json:"created_at,omitempty"`
-		Datasets         []LLMObsPromptDataset  `json:"datasets,omitempty"`
-		Description      *string                `json:"description,omitempty"`
-		Labels           []string               `json:"labels,omitempty"`
-		LastSeenAt       *time.Time             `json:"last_seen_at,omitempty"`
-		MlApp            *string                `json:"ml_app,omitempty"`
-		MlApps           []string               `json:"ml_apps,omitempty"`
-		PromptId         *string                `json:"prompt_id"`
-		PromptUuid       *string                `json:"prompt_uuid"`
-		Tags             []string               `json:"tags,omitempty"`
-		Template         *LLMObsPromptTemplate  `json:"template"`
-		UserVersion      *string                `json:"user_version,omitempty"`
-		Version          *int64                 `json:"version"`
-		VersionCreatedAt *time.Time             `json:"version_created_at,omitempty"`
+		Author            *string                `json:"author,omitempty"`
+		AuthoringTemplate *LLMObsPromptTemplate  `json:"authoring_template,omitempty"`
+		Config            map[string]interface{} `json:"config,omitempty"`
+		CreatedAt         *time.Time             `json:"created_at,omitempty"`
+		Datasets          []LLMObsPromptDataset  `json:"datasets,omitempty"`
+		Description       *string                `json:"description,omitempty"`
+		Labels            []string               `json:"labels,omitempty"`
+		LastSeenAt        *time.Time             `json:"last_seen_at,omitempty"`
+		MlApp             *string                `json:"ml_app,omitempty"`
+		MlApps            []string               `json:"ml_apps,omitempty"`
+		PromptId          *string                `json:"prompt_id"`
+		PromptUuid        *string                `json:"prompt_uuid"`
+		Tags              []string               `json:"tags,omitempty"`
+		Template          *LLMObsPromptTemplate  `json:"template"`
+		UserVersion       *string                `json:"user_version,omitempty"`
+		Version           *int64                 `json:"version"`
+		VersionCreatedAt  *time.Time             `json:"version_created_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -605,11 +643,12 @@ func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "config", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "authoring_template", "config", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
 	} else {
 		return err
 	}
 	o.Author = all.Author
+	o.AuthoringTemplate = all.AuthoringTemplate
 	o.Config = all.Config
 	o.CreatedAt = all.CreatedAt
 	o.Datasets = all.Datasets
