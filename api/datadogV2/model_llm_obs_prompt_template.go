@@ -8,10 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptTemplate - A text template or a list of chat messages.
+// LLMObsPromptTemplate - A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`; other text, including `{{>...}}` sequences without a version, remains literal. Use an authored chat object when including prompts as chat messages.
+// **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
+// Without access, inline references remain literal text and structured includes are unsupported. Previously compiled prompt versions remain available for execution.
 type LLMObsPromptTemplate struct {
-	LLMObsPromptTextTemplate *string
-	LLMObsPromptChatTemplate *LLMObsPromptChatTemplate
+	LLMObsPromptTextTemplate              *string
+	LLMObsPromptChatTemplate              *LLMObsPromptChatTemplate
+	LLMObsPromptAuthoringMessagesTemplate *LLMObsPromptAuthoringMessagesTemplate
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +28,11 @@ func LLMObsPromptTextTemplateAsLLMObsPromptTemplate(v *string) LLMObsPromptTempl
 // LLMObsPromptChatTemplateAsLLMObsPromptTemplate is a convenience function that returns LLMObsPromptChatTemplate wrapped in LLMObsPromptTemplate.
 func LLMObsPromptChatTemplateAsLLMObsPromptTemplate(v *LLMObsPromptChatTemplate) LLMObsPromptTemplate {
 	return LLMObsPromptTemplate{LLMObsPromptChatTemplate: v}
+}
+
+// LLMObsPromptAuthoringMessagesTemplateAsLLMObsPromptTemplate is a convenience function that returns LLMObsPromptAuthoringMessagesTemplate wrapped in LLMObsPromptTemplate.
+func LLMObsPromptAuthoringMessagesTemplateAsLLMObsPromptTemplate(v *LLMObsPromptAuthoringMessagesTemplate) LLMObsPromptTemplate {
+	return LLMObsPromptTemplate{LLMObsPromptAuthoringMessagesTemplate: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +73,28 @@ func (obj *LLMObsPromptTemplate) UnmarshalJSON(data []byte) error {
 		obj.LLMObsPromptChatTemplate = nil
 	}
 
+	// try to unmarshal data into LLMObsPromptAuthoringMessagesTemplate
+	err = datadog.Unmarshal(data, &obj.LLMObsPromptAuthoringMessagesTemplate)
+	if err == nil {
+		if obj.LLMObsPromptAuthoringMessagesTemplate != nil && obj.LLMObsPromptAuthoringMessagesTemplate.UnparsedObject == nil {
+			jsonLLMObsPromptAuthoringMessagesTemplate, _ := datadog.Marshal(obj.LLMObsPromptAuthoringMessagesTemplate)
+			if string(jsonLLMObsPromptAuthoringMessagesTemplate) == "{}" { // empty struct
+				obj.LLMObsPromptAuthoringMessagesTemplate = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LLMObsPromptAuthoringMessagesTemplate = nil
+		}
+	} else {
+		obj.LLMObsPromptAuthoringMessagesTemplate = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.LLMObsPromptTextTemplate = nil
 		obj.LLMObsPromptChatTemplate = nil
+		obj.LLMObsPromptAuthoringMessagesTemplate = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +108,10 @@ func (obj LLMObsPromptTemplate) MarshalJSON() ([]byte, error) {
 
 	if obj.LLMObsPromptChatTemplate != nil {
 		return datadog.Marshal(&obj.LLMObsPromptChatTemplate)
+	}
+
+	if obj.LLMObsPromptAuthoringMessagesTemplate != nil {
+		return datadog.Marshal(&obj.LLMObsPromptAuthoringMessagesTemplate)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +128,10 @@ func (obj *LLMObsPromptTemplate) GetActualInstance() interface{} {
 
 	if obj.LLMObsPromptChatTemplate != nil {
 		return obj.LLMObsPromptChatTemplate
+	}
+
+	if obj.LLMObsPromptAuthoringMessagesTemplate != nil {
+		return obj.LLMObsPromptAuthoringMessagesTemplate
 	}
 
 	// all schemas are nil
