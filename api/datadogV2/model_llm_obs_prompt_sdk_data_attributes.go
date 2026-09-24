@@ -8,10 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptSDKDataAttributes Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned.
+// LLMObsPromptSDKDataAttributes Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
 type LLMObsPromptSDKDataAttributes struct {
 	// Chat template for this prompt version, as a list of role and content messages. Omitted for text templates.
 	ChatTemplate []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
+	// Versioned prompt configuration is in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager. Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config,omitempty"`
 	// Labels attached to the selected version.
 	// Deprecated
 	Labels []string `json:"labels,omitempty"`
@@ -71,6 +73,34 @@ func (o *LLMObsPromptSDKDataAttributes) HasChatTemplate() bool {
 // SetChatTemplate gets a reference to the given []LLMObsPromptChatMessage and assigns it to the ChatTemplate field.
 func (o *LLMObsPromptSDKDataAttributes) SetChatTemplate(v []LLMObsPromptChatMessage) {
 	o.ChatTemplate = v
+}
+
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *LLMObsPromptSDKDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil || o.Config == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPromptSDKDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Config == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *LLMObsPromptSDKDataAttributes) HasConfig() bool {
+	return o != nil && o.Config != nil
+}
+
+// SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
+func (o *LLMObsPromptSDKDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -225,6 +255,9 @@ func (o LLMObsPromptSDKDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.ChatTemplate != nil {
 		toSerialize["chat_template"] = o.ChatTemplate
 	}
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
+	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
@@ -251,6 +284,7 @@ func (o LLMObsPromptSDKDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *LLMObsPromptSDKDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChatTemplate      []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
+		Config            map[string]interface{}    `json:"config,omitempty"`
 		Labels            []string                  `json:"labels,omitempty"`
 		PromptId          *string                   `json:"prompt_id,omitempty"`
 		PromptVersionUuid *string                   `json:"prompt_version_uuid,omitempty"`
@@ -262,11 +296,12 @@ func (o *LLMObsPromptSDKDataAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"chat_template", "labels", "prompt_id", "prompt_version_uuid", "template", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"chat_template", "config", "labels", "prompt_id", "prompt_version_uuid", "template", "version"})
 	} else {
 		return err
 	}
 	o.ChatTemplate = all.ChatTemplate
+	o.Config = all.Config
 	o.Labels = all.Labels
 	o.PromptId = all.PromptId
 	o.PromptVersionUuid = all.PromptVersionUuid

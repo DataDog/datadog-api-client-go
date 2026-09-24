@@ -12,7 +12,7 @@ import (
 
 // LLMObsPromptVersionData Data object for a specific version of an Agent Observability prompt.
 type LLMObsPromptVersionData struct {
-	// Attributes of a specific version of an Agent Observability prompt.
+	// Attributes of a specific version of an Agent Observability prompt. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
 	Attributes LLMObsPromptVersionDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt version.
 	Id string `json:"id"`
