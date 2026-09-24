@@ -17,6 +17,7 @@ func main() {
 	TeamsOwnershipMappingDataAttributesViewName := os.Getenv("TEAMS_OWNERSHIP_MAPPING_DATA_ATTRIBUTES_VIEW_NAME")
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumTeamsOwnershipApi(apiClient)

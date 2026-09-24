@@ -18,6 +18,7 @@ func main() {
 	ValidInboxRuleDataID := uuid.MustParse(os.Getenv("VALID_INBOX_RULE_DATA_ID"))
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetSecurityFindingsAutomationInboxRule", true)
 	apiClient := datadog.NewAPIClient(configuration)

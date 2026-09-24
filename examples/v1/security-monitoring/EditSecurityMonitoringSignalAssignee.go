@@ -17,6 +17,7 @@ func main() {
 		Assignee: "773b045d-ccf8-4808-bd3b-955ef6a8c940",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSecurityMonitoringApi(apiClient)
