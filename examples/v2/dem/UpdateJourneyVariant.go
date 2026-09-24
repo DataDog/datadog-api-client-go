@@ -16,13 +16,14 @@ func main() {
 	body := datadogV2.DemVariantRequest{
 		Data: datadogV2.DemVariantRequestData{
 			Attributes: datadogV2.DemVariantAttributes{
-				Filter: datadog.PtrString("device.type:mobile"),
+				Filter: datadog.PtrString("@device.type:mobile"),
 				Name:   "Mobile checkout",
 				RumSteps: []datadogV2.DemRumStep{
 					{
 						Nodes: []datadogV2.DemRumNode{
 							{
-								Query: "action.name:'checkout'",
+								AppId: "11111111-2222-3333-4444-555555555555",
+								Query: `@action.name:"Checkout"`,
 							},
 						},
 						Type: datadogV2.DEMRUMSTEPTYPE_START,
@@ -30,7 +31,8 @@ func main() {
 					{
 						Nodes: []datadogV2.DemRumNode{
 							{
-								Query: "action.name:'confirmation'",
+								AppId: "11111111-2222-3333-4444-555555555555",
+								Query: `@view.url_path:"/confirmation"`,
 							},
 						},
 						Type: datadogV2.DEMRUMSTEPTYPE_STOP,

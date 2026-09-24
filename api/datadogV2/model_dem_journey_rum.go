@@ -12,7 +12,7 @@ import (
 
 // DemJourneyRum The RUM definition for a DEM journey.
 type DemJourneyRum struct {
-	// An optional RUM query filter applied to the entire journey.
+	// An optional RUM query filter applied to the entire journey. For a single-application journey, include the application as `@application.id:<application_id>` in addition to setting `app_id` on every RUM node.
 	Filter *string `json:"filter,omitempty"`
 	// List of RUM journey steps.
 	RumSteps []DemRumStep `json:"rum_steps"`

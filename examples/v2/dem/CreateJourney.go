@@ -18,12 +18,13 @@ func main() {
 			Attributes: datadogV2.DemJourneyCreateAttributes{
 				Description: datadog.PtrString("Tracks the user checkout flow from cart to confirmation."),
 				JourneyRum: datadogV2.DemJourneyRum{
-					Filter: datadog.PtrString("env:prod"),
+					Filter: datadog.PtrString("@application.id:11111111-2222-3333-4444-555555555555 env:prod"),
 					RumSteps: []datadogV2.DemRumStep{
 						{
 							Nodes: []datadogV2.DemRumNode{
 								{
-									Query: "action.name:'checkout'",
+									AppId: "11111111-2222-3333-4444-555555555555",
+									Query: `@action.name:"Checkout"`,
 								},
 							},
 							Type: datadogV2.DEMRUMSTEPTYPE_START,
@@ -31,7 +32,8 @@ func main() {
 						{
 							Nodes: []datadogV2.DemRumNode{
 								{
-									Query: "action.name:'confirmation'",
+									AppId: "11111111-2222-3333-4444-555555555555",
+									Query: `@view.url_path:"/confirmation"`,
 								},
 							},
 							Type: datadogV2.DEMRUMSTEPTYPE_STOP,
@@ -44,7 +46,8 @@ func main() {
 								{
 									Nodes: []datadogV2.DemRumNode{
 										{
-											Query: "action.name:'checkout'",
+											AppId: "11111111-2222-3333-4444-555555555555",
+											Query: `@action.name:"Checkout"`,
 										},
 									},
 									Type: datadogV2.DEMRUMSTEPTYPE_START,
@@ -52,7 +55,8 @@ func main() {
 								{
 									Nodes: []datadogV2.DemRumNode{
 										{
-											Query: "action.name:'confirmation'",
+											AppId: "11111111-2222-3333-4444-555555555555",
+											Query: `@view.url_path:"/confirmation"`,
 										},
 									},
 									Type: datadogV2.DEMRUMSTEPTYPE_STOP,
@@ -73,7 +77,8 @@ func main() {
 							{
 								Nodes: []datadogV2.DemRumNode{
 									{
-										Query: "action.name:'checkout'",
+										AppId: "11111111-2222-3333-4444-555555555555",
+										Query: `@action.name:"Checkout"`,
 									},
 								},
 								Type: datadogV2.DEMRUMSTEPTYPE_START,
@@ -81,7 +86,8 @@ func main() {
 							{
 								Nodes: []datadogV2.DemRumNode{
 									{
-										Query: "action.name:'confirmation'",
+										AppId: "11111111-2222-3333-4444-555555555555",
+										Query: `@view.url_path:"/confirmation"`,
 									},
 								},
 								Type: datadogV2.DEMRUMSTEPTYPE_STOP,
