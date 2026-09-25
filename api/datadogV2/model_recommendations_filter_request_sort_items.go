@@ -10,7 +10,7 @@ import (
 
 // RecommendationsFilterRequestSortItems A single sort clause applied to the cost recommendations result set.
 type RecommendationsFilterRequestSortItems struct {
-	// Field to sort by (for example, `potential_daily_savings.amount`).
+	// Field to sort by (for example, `@potential_daily_savings`).
 	Expression *string `json:"expression,omitempty"`
 	// Sort direction, either `ASC` or `DESC`.
 	Order *string `json:"order,omitempty"`
