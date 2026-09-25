@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -15,11 +17,11 @@ type DatabricksIntegrationAccountPrivateActionRunnerAuthResponse struct {
 	// The authentication method type.
 	AuthType DatabricksIntegrationAccountPrivateActionRunnerAuthType `json:"auth_type"`
 	// Unique identifier of the Private Action Runner connection holding the credentials.
-	ConnectionId string `json:"connection_id"`
+	ConnectionId uuid.UUID `json:"connection_id"`
 	// Path of the credential inside the secret backend configured on the runner.
 	SecretPath *string `json:"secret_path,omitempty"`
 	// Unique identifier of the user the Private Action Runner connection belongs to.
-	UserUuid string `json:"user_uuid"`
+	UserUuid uuid.UUID `json:"user_uuid"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,7 +31,7 @@ type DatabricksIntegrationAccountPrivateActionRunnerAuthResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDatabricksIntegrationAccountPrivateActionRunnerAuthResponse(authType DatabricksIntegrationAccountPrivateActionRunnerAuthType, connectionId string, userUuid string) *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse {
+func NewDatabricksIntegrationAccountPrivateActionRunnerAuthResponse(authType DatabricksIntegrationAccountPrivateActionRunnerAuthType, connectionId uuid.UUID, userUuid uuid.UUID) *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse {
 	this := DatabricksIntegrationAccountPrivateActionRunnerAuthResponse{}
 	this.AuthType = authType
 	this.ConnectionId = connectionId
@@ -71,9 +73,9 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetAuthTyp
 }
 
 // GetConnectionId returns the ConnectionId field value.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnectionId() string {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnectionId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.ConnectionId
@@ -81,7 +83,7 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnect
 
 // GetConnectionIdOk returns a tuple with the ConnectionId field value
 // and a boolean to check if the value has been set.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnectionIdOk() (*string, bool) {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnectionIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +91,7 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetConnect
 }
 
 // SetConnectionId sets field value.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetConnectionId(v string) {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetConnectionId(v uuid.UUID) {
 	o.ConnectionId = v
 }
 
@@ -122,9 +124,9 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetSecretP
 }
 
 // GetUserUuid returns the UserUuid field value.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUuid() string {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUuid() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.UserUuid
@@ -132,7 +134,7 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUui
 
 // GetUserUuidOk returns a tuple with the UserUuid field value
 // and a boolean to check if the value has been set.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUuidOk() (*string, bool) {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUuidOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,7 +142,7 @@ func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) GetUserUui
 }
 
 // SetUserUuid sets field value.
-func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetUserUuid(v string) {
+func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) SetUserUuid(v uuid.UUID) {
 	o.UserUuid = v
 }
 
@@ -167,9 +169,9 @@ func (o DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) MarshalJSON
 func (o *DatabricksIntegrationAccountPrivateActionRunnerAuthResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AuthType     *DatabricksIntegrationAccountPrivateActionRunnerAuthType `json:"auth_type"`
-		ConnectionId *string                                                  `json:"connection_id"`
+		ConnectionId *uuid.UUID                                               `json:"connection_id"`
 		SecretPath   *string                                                  `json:"secret_path,omitempty"`
-		UserUuid     *string                                                  `json:"user_uuid"`
+		UserUuid     *uuid.UUID                                               `json:"user_uuid"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
