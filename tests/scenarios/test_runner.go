@@ -8,6 +8,7 @@ package scenarios
 
 import (
 	"bytes"
+	"compress/zlib"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -35,7 +36,8 @@ type testRunnerPlan struct {
 	API         string `json:"api"`
 	OperationID string `json:"operation_id"`
 	Request     struct {
-		Body *struct {
+		SelectedCompression string `json:"selected_compression"`
+		Body                *struct {
 			Value interface{} `json:"value"`
 		} `json:"body"`
 		Parameters []struct {
@@ -263,6 +265,13 @@ func applyTestRunnerPlan(t gobdd.StepTest, ctx gobdd.Context, pagination bool) {
 		pathCount, _ := ctx.Get(pathParamCountKey{})
 		ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
 	}
+	if plan.Request.SelectedCompression != "" {
+		encoded, err := json.Marshal(plan.Request.SelectedCompression)
+		if err != nil {
+			t.Fatal(err)
+		}
+		addParameterWithValueNative(t, ctx, "content_encoding", string(encoded))
+	}
 	for _, parameter := range plan.Request.Parameters {
 		if parameter.In != "path" && !parameter.Required {
 			applyParameter(parameter)
@@ -278,5 +287,42 @@ func (transport testServerTransport) RoundTrip(request *http.Request) (*http.Res
 	cloned := request.Clone(request.Context())
 	cloned.Close = true
 	cloned.Header.Set("x-openapi-test-session", transport.session)
-	return http.DefaultTransport.RoundTrip(cloned)
+	response, err := http.DefaultTransport.RoundTrip(cloned)
+	if err != nil {
+		return nil, err
+	}
+	if !strings.EqualFold(strings.TrimSpace(response.Header.Get("Content-Encoding")), "deflate") {
+		return response, nil
+	}
+
+	compressedBody := response.Body
+	decompressedBody, err := zlib.NewReader(compressedBody)
+	if err != nil {
+		compressedBody.Close()
+		return nil, fmt.Errorf("decompress deflate test server response: %w", err)
+	}
+	response.Body = &testServerResponseBody{
+		Reader:       decompressedBody,
+		decompressed: decompressedBody,
+		compressed:   compressedBody,
+	}
+	response.Header.Del("Content-Encoding")
+	response.Header.Del("Content-Length")
+	response.ContentLength = -1
+	return response, nil
+}
+
+type testServerResponseBody struct {
+	io.Reader
+	decompressed io.Closer
+	compressed   io.Closer
+}
+
+func (body *testServerResponseBody) Close() error {
+	decompressedErr := body.decompressed.Close()
+	compressedErr := body.compressed.Close()
+	if decompressedErr != nil {
+		return decompressedErr
+	}
+	return compressedErr
 }
