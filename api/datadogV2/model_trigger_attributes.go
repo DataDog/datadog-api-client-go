@@ -5,17 +5,17 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TriggerAttributes The trigger definition for starting an investigation.
 type TriggerAttributes struct {
+	// Attributes for a general investigation, not tied to a specific monitor alert.
+	GeneralInvestigation *GeneralInvestigationAttributes `json:"general_investigation,omitempty"`
 	// Attributes for a monitor alert trigger.
-	MonitorAlertTrigger MonitorAlertTriggerAttributes `json:"monitor_alert_trigger"`
+	MonitorAlertTrigger *MonitorAlertTriggerAttributes `json:"monitor_alert_trigger,omitempty"`
 	// The type of trigger for the investigation.
-	Type TriggerType `json:"type"`
+	Type *TriggerType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +25,8 @@ type TriggerAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTriggerAttributes(monitorAlertTrigger MonitorAlertTriggerAttributes, typeVar TriggerType) *TriggerAttributes {
+func NewTriggerAttributes() *TriggerAttributes {
 	this := TriggerAttributes{}
-	this.MonitorAlertTrigger = monitorAlertTrigger
-	this.Type = typeVar
 	return &this
 }
 
@@ -40,50 +38,88 @@ func NewTriggerAttributesWithDefaults() *TriggerAttributes {
 	return &this
 }
 
-// GetMonitorAlertTrigger returns the MonitorAlertTrigger field value.
+// GetGeneralInvestigation returns the GeneralInvestigation field value if set, zero value otherwise.
+func (o *TriggerAttributes) GetGeneralInvestigation() GeneralInvestigationAttributes {
+	if o == nil || o.GeneralInvestigation == nil {
+		var ret GeneralInvestigationAttributes
+		return ret
+	}
+	return *o.GeneralInvestigation
+}
+
+// GetGeneralInvestigationOk returns a tuple with the GeneralInvestigation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TriggerAttributes) GetGeneralInvestigationOk() (*GeneralInvestigationAttributes, bool) {
+	if o == nil || o.GeneralInvestigation == nil {
+		return nil, false
+	}
+	return o.GeneralInvestigation, true
+}
+
+// HasGeneralInvestigation returns a boolean if a field has been set.
+func (o *TriggerAttributes) HasGeneralInvestigation() bool {
+	return o != nil && o.GeneralInvestigation != nil
+}
+
+// SetGeneralInvestigation gets a reference to the given GeneralInvestigationAttributes and assigns it to the GeneralInvestigation field.
+func (o *TriggerAttributes) SetGeneralInvestigation(v GeneralInvestigationAttributes) {
+	o.GeneralInvestigation = &v
+}
+
+// GetMonitorAlertTrigger returns the MonitorAlertTrigger field value if set, zero value otherwise.
 func (o *TriggerAttributes) GetMonitorAlertTrigger() MonitorAlertTriggerAttributes {
-	if o == nil {
+	if o == nil || o.MonitorAlertTrigger == nil {
 		var ret MonitorAlertTriggerAttributes
 		return ret
 	}
-	return o.MonitorAlertTrigger
+	return *o.MonitorAlertTrigger
 }
 
-// GetMonitorAlertTriggerOk returns a tuple with the MonitorAlertTrigger field value
+// GetMonitorAlertTriggerOk returns a tuple with the MonitorAlertTrigger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TriggerAttributes) GetMonitorAlertTriggerOk() (*MonitorAlertTriggerAttributes, bool) {
-	if o == nil {
+	if o == nil || o.MonitorAlertTrigger == nil {
 		return nil, false
 	}
-	return &o.MonitorAlertTrigger, true
+	return o.MonitorAlertTrigger, true
 }
 
-// SetMonitorAlertTrigger sets field value.
+// HasMonitorAlertTrigger returns a boolean if a field has been set.
+func (o *TriggerAttributes) HasMonitorAlertTrigger() bool {
+	return o != nil && o.MonitorAlertTrigger != nil
+}
+
+// SetMonitorAlertTrigger gets a reference to the given MonitorAlertTriggerAttributes and assigns it to the MonitorAlertTrigger field.
 func (o *TriggerAttributes) SetMonitorAlertTrigger(v MonitorAlertTriggerAttributes) {
-	o.MonitorAlertTrigger = v
+	o.MonitorAlertTrigger = &v
 }
 
-// GetType returns the Type field value.
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *TriggerAttributes) GetType() TriggerType {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret TriggerType
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TriggerAttributes) GetTypeOk() (*TriggerType, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value.
+// HasType returns a boolean if a field has been set.
+func (o *TriggerAttributes) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given TriggerType and assigns it to the Type field.
 func (o *TriggerAttributes) SetType(v TriggerType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -92,8 +128,15 @@ func (o TriggerAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["monitor_alert_trigger"] = o.MonitorAlertTrigger
-	toSerialize["type"] = o.Type
+	if o.GeneralInvestigation != nil {
+		toSerialize["general_investigation"] = o.GeneralInvestigation
+	}
+	if o.MonitorAlertTrigger != nil {
+		toSerialize["monitor_alert_trigger"] = o.MonitorAlertTrigger
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -104,34 +147,30 @@ func (o TriggerAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TriggerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MonitorAlertTrigger *MonitorAlertTriggerAttributes `json:"monitor_alert_trigger"`
-		Type                *TriggerType                   `json:"type"`
+		GeneralInvestigation *GeneralInvestigationAttributes `json:"general_investigation,omitempty"`
+		MonitorAlertTrigger  *MonitorAlertTriggerAttributes  `json:"monitor_alert_trigger,omitempty"`
+		Type                 *TriggerType                    `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.MonitorAlertTrigger == nil {
-		return fmt.Errorf("required field monitor_alert_trigger missing")
-	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"monitor_alert_trigger", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"general_investigation", "monitor_alert_trigger", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.MonitorAlertTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.GeneralInvestigation = all.GeneralInvestigation
+	if all.MonitorAlertTrigger != nil && all.MonitorAlertTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.MonitorAlertTrigger = *all.MonitorAlertTrigger
-	if !all.Type.IsValid() {
+	o.MonitorAlertTrigger = all.MonitorAlertTrigger
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = *all.Type
+		o.Type = all.Type
 	}
 
 	if len(additionalProperties) > 0 {
