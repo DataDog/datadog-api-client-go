@@ -23,6 +23,8 @@ const (
 	PERSONALACCESSTOKENSSORT_EXPIRES_AT_DESCENDING   PersonalAccessTokensSort = "-expires_at"
 	PERSONALACCESSTOKENSSORT_LAST_USED_AT_ASCENDING  PersonalAccessTokensSort = "last_used_at"
 	PERSONALACCESSTOKENSSORT_LAST_USED_AT_DESCENDING PersonalAccessTokensSort = "-last_used_at"
+	PERSONALACCESSTOKENSSORT_LEAKED_ASCENDING        PersonalAccessTokensSort = "leaked"
+	PERSONALACCESSTOKENSSORT_LEAKED_DESCENDING       PersonalAccessTokensSort = "-leaked"
 )
 
 var allowedPersonalAccessTokensSortEnumValues = []PersonalAccessTokensSort{
@@ -34,6 +36,8 @@ var allowedPersonalAccessTokensSortEnumValues = []PersonalAccessTokensSort{
 	PERSONALACCESSTOKENSSORT_EXPIRES_AT_DESCENDING,
 	PERSONALACCESSTOKENSSORT_LAST_USED_AT_ASCENDING,
 	PERSONALACCESSTOKENSSORT_LAST_USED_AT_DESCENDING,
+	PERSONALACCESSTOKENSSORT_LEAKED_ASCENDING,
+	PERSONALACCESSTOKENSSORT_LEAKED_DESCENDING,
 }
 
 // GetAllowedValues reeturns the list of possible values.

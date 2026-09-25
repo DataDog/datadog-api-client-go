@@ -326,14 +326,39 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 	return localVarHTTPResponse, nil
 }
 
+// GetServiceAccountAccessTokenOptionalParameters holds optional parameters for GetServiceAccountAccessToken.
+type GetServiceAccountAccessTokenOptionalParameters struct {
+	Include *[]PersonalAccessTokensIncludeQueryParameterItem
+}
+
+// NewGetServiceAccountAccessTokenOptionalParameters creates an empty struct for parameters.
+func NewGetServiceAccountAccessTokenOptionalParameters() *GetServiceAccountAccessTokenOptionalParameters {
+	this := GetServiceAccountAccessTokenOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *GetServiceAccountAccessTokenOptionalParameters) WithInclude(include []PersonalAccessTokensIncludeQueryParameterItem) *GetServiceAccountAccessTokenOptionalParameters {
+	r.Include = &include
+	return r
+}
+
 // GetServiceAccountAccessToken Get an access token for a service account.
 // Get a specific access token for a service account by its ID.
-func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, tokenId string) (ServiceAccessTokenResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, tokenId string, o ...GetServiceAccountAccessTokenOptionalParameters) (ServiceAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceAccessTokenResponse
+		optionalParams      GetServiceAccountAccessTokenOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetServiceAccountAccessTokenOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.GetServiceAccountAccessToken")
 	if err != nil {
@@ -347,6 +372,9 @@ func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -486,10 +514,12 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 
 // ListServiceAccountAccessTokensOptionalParameters holds optional parameters for ListServiceAccountAccessTokens.
 type ListServiceAccountAccessTokensOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	Sort       *PersonalAccessTokensSort
-	Filter     *string
+	PageSize     *int64
+	PageNumber   *int64
+	Sort         *PersonalAccessTokensSort
+	Filter       *string
+	FilterLeaked *bool
+	Include      *[]PersonalAccessTokensIncludeQueryParameterItem
 }
 
 // NewListServiceAccountAccessTokensOptionalParameters creates an empty struct for parameters.
@@ -519,6 +549,18 @@ func (r *ListServiceAccountAccessTokensOptionalParameters) WithSort(sort Persona
 // WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountAccessTokensOptionalParameters) WithFilter(filter string) *ListServiceAccountAccessTokensOptionalParameters {
 	r.Filter = &filter
+	return r
+}
+
+// WithFilterLeaked sets the corresponding parameter name and returns the struct.
+func (r *ListServiceAccountAccessTokensOptionalParameters) WithFilterLeaked(filterLeaked bool) *ListServiceAccountAccessTokensOptionalParameters {
+	r.FilterLeaked = &filterLeaked
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListServiceAccountAccessTokensOptionalParameters) WithInclude(include []PersonalAccessTokensIncludeQueryParameterItem) *ListServiceAccountAccessTokensOptionalParameters {
+	r.Include = &include
 	return r
 }
 
@@ -561,6 +603,12 @@ func (a *ServiceAccountsApi) ListServiceAccountAccessTokens(ctx _context.Context
 	}
 	if optionalParams.Filter != nil {
 		localVarQueryParams.Add("filter", datadog.ParameterToString(*optionalParams.Filter, ""))
+	}
+	if optionalParams.FilterLeaked != nil {
+		localVarQueryParams.Add("filter[leaked]", datadog.ParameterToString(*optionalParams.FilterLeaked, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -847,11 +895,11 @@ func (a *ServiceAccountsApi) RevokeServiceAccountAccessToken(ctx _context.Contex
 
 // UpdateServiceAccountAccessToken Update an access token for a service account.
 // Update a specific access token for a service account.
-func (a *ServiceAccountsApi) UpdateServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, tokenId string, body ServiceAccountAccessTokenUpdateRequest) (ServiceAccessTokenResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) UpdateServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, tokenId string, body ServiceAccountAccessTokenUpdateRequest) (UpdatedServiceAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue ServiceAccessTokenResponse
+		localVarReturnValue UpdatedServiceAccessTokenResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.UpdateServiceAccountAccessToken")

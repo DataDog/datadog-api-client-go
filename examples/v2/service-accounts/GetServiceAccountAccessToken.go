@@ -24,7 +24,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceAccountsApi(apiClient)
-	resp, r, err := api.GetServiceAccountAccessToken(ctx, ServiceAccountUserDataID, ServiceAccountAccessTokenDataID)
+	resp, r, err := api.GetServiceAccountAccessToken(ctx, ServiceAccountUserDataID, ServiceAccountAccessTokenDataID, *datadogV2.NewGetServiceAccountAccessTokenOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.GetServiceAccountAccessToken`: %v\n", err)
