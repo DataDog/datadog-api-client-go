@@ -15,7 +15,7 @@ type FullPersonalAccessToken struct {
 	// ID of the access token.
 	Id *string `json:"id,omitempty"`
 	// Resources related to the access token.
-	Relationships *PersonalAccessTokenRelationships `json:"relationships,omitempty"`
+	Relationships *FullPersonalAccessTokenRelationships `json:"relationships,omitempty"`
 	// Personal access tokens resource type.
 	Type *PersonalAccessTokensType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -101,9 +101,9 @@ func (o *FullPersonalAccessToken) SetId(v string) {
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *FullPersonalAccessToken) GetRelationships() PersonalAccessTokenRelationships {
+func (o *FullPersonalAccessToken) GetRelationships() FullPersonalAccessTokenRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret PersonalAccessTokenRelationships
+		var ret FullPersonalAccessTokenRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -111,7 +111,7 @@ func (o *FullPersonalAccessToken) GetRelationships() PersonalAccessTokenRelation
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FullPersonalAccessToken) GetRelationshipsOk() (*PersonalAccessTokenRelationships, bool) {
+func (o *FullPersonalAccessToken) GetRelationshipsOk() (*FullPersonalAccessTokenRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -123,8 +123,8 @@ func (o *FullPersonalAccessToken) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given PersonalAccessTokenRelationships and assigns it to the Relationships field.
-func (o *FullPersonalAccessToken) SetRelationships(v PersonalAccessTokenRelationships) {
+// SetRelationships gets a reference to the given FullPersonalAccessTokenRelationships and assigns it to the Relationships field.
+func (o *FullPersonalAccessToken) SetRelationships(v FullPersonalAccessTokenRelationships) {
 	o.Relationships = &v
 }
 
@@ -184,10 +184,10 @@ func (o FullPersonalAccessToken) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FullPersonalAccessToken) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *FullPersonalAccessTokenAttributes `json:"attributes,omitempty"`
-		Id            *string                            `json:"id,omitempty"`
-		Relationships *PersonalAccessTokenRelationships  `json:"relationships,omitempty"`
-		Type          *PersonalAccessTokensType          `json:"type,omitempty"`
+		Attributes    *FullPersonalAccessTokenAttributes    `json:"attributes,omitempty"`
+		Id            *string                               `json:"id,omitempty"`
+		Relationships *FullPersonalAccessTokenRelationships `json:"relationships,omitempty"`
+		Type          *PersonalAccessTokensType             `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

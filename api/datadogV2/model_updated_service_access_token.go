@@ -5,49 +5,51 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FullServiceAccessToken Datadog access token, including the token key.
-type FullServiceAccessToken struct {
-	// Attributes of a full access token, including the token key.
-	Attributes *FullServiceAccessTokenAttributes `json:"attributes,omitempty"`
+// UpdatedServiceAccessToken Datadog access token returned by the update endpoint.
+type UpdatedServiceAccessToken struct {
+	// Attributes of an access token.
+	Attributes *ServiceAccessTokenAttributes `json:"attributes,omitempty"`
 	// ID of the access token.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Resources related to the access token.
-	Relationships *FullServiceAccessTokenRelationships `json:"relationships,omitempty"`
+	Relationships *UpdatedServiceAccessTokenRelationships `json:"relationships,omitempty"`
 	// Service access tokens resource type.
-	Type *ServiceAccessTokensType `json:"type,omitempty"`
+	Type ServiceAccessTokensType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewFullServiceAccessToken instantiates a new FullServiceAccessToken object.
+// NewUpdatedServiceAccessToken instantiates a new UpdatedServiceAccessToken object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFullServiceAccessToken() *FullServiceAccessToken {
-	this := FullServiceAccessToken{}
-	var typeVar ServiceAccessTokensType = SERVICEACCESSTOKENSTYPE_SERVICE_ACCESS_TOKENS
-	this.Type = &typeVar
+func NewUpdatedServiceAccessToken(id string, typeVar ServiceAccessTokensType) *UpdatedServiceAccessToken {
+	this := UpdatedServiceAccessToken{}
+	this.Id = id
+	this.Type = typeVar
 	return &this
 }
 
-// NewFullServiceAccessTokenWithDefaults instantiates a new FullServiceAccessToken object.
+// NewUpdatedServiceAccessTokenWithDefaults instantiates a new UpdatedServiceAccessToken object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFullServiceAccessTokenWithDefaults() *FullServiceAccessToken {
-	this := FullServiceAccessToken{}
+func NewUpdatedServiceAccessTokenWithDefaults() *UpdatedServiceAccessToken {
+	this := UpdatedServiceAccessToken{}
 	var typeVar ServiceAccessTokensType = SERVICEACCESSTOKENSTYPE_SERVICE_ACCESS_TOKENS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *FullServiceAccessToken) GetAttributes() FullServiceAccessTokenAttributes {
+func (o *UpdatedServiceAccessToken) GetAttributes() ServiceAccessTokenAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret FullServiceAccessTokenAttributes
+		var ret ServiceAccessTokenAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -55,7 +57,7 @@ func (o *FullServiceAccessToken) GetAttributes() FullServiceAccessTokenAttribute
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FullServiceAccessToken) GetAttributesOk() (*FullServiceAccessTokenAttributes, bool) {
+func (o *UpdatedServiceAccessToken) GetAttributesOk() (*ServiceAccessTokenAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -63,47 +65,42 @@ func (o *FullServiceAccessToken) GetAttributesOk() (*FullServiceAccessTokenAttri
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *FullServiceAccessToken) HasAttributes() bool {
+func (o *UpdatedServiceAccessToken) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given FullServiceAccessTokenAttributes and assigns it to the Attributes field.
-func (o *FullServiceAccessToken) SetAttributes(v FullServiceAccessTokenAttributes) {
+// SetAttributes gets a reference to the given ServiceAccessTokenAttributes and assigns it to the Attributes field.
+func (o *UpdatedServiceAccessToken) SetAttributes(v ServiceAccessTokenAttributes) {
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *FullServiceAccessToken) GetId() string {
-	if o == nil || o.Id == nil {
+// GetId returns the Id field value.
+func (o *UpdatedServiceAccessToken) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FullServiceAccessToken) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *UpdatedServiceAccessToken) GetIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *FullServiceAccessToken) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *FullServiceAccessToken) SetId(v string) {
-	o.Id = &v
+// SetId sets field value.
+func (o *UpdatedServiceAccessToken) SetId(v string) {
+	o.Id = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *FullServiceAccessToken) GetRelationships() FullServiceAccessTokenRelationships {
+func (o *UpdatedServiceAccessToken) GetRelationships() UpdatedServiceAccessTokenRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret FullServiceAccessTokenRelationships
+		var ret UpdatedServiceAccessTokenRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -111,7 +108,7 @@ func (o *FullServiceAccessToken) GetRelationships() FullServiceAccessTokenRelati
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FullServiceAccessToken) GetRelationshipsOk() (*FullServiceAccessTokenRelationships, bool) {
+func (o *UpdatedServiceAccessToken) GetRelationshipsOk() (*UpdatedServiceAccessTokenRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -119,45 +116,40 @@ func (o *FullServiceAccessToken) GetRelationshipsOk() (*FullServiceAccessTokenRe
 }
 
 // HasRelationships returns a boolean if a field has been set.
-func (o *FullServiceAccessToken) HasRelationships() bool {
+func (o *UpdatedServiceAccessToken) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given FullServiceAccessTokenRelationships and assigns it to the Relationships field.
-func (o *FullServiceAccessToken) SetRelationships(v FullServiceAccessTokenRelationships) {
+// SetRelationships gets a reference to the given UpdatedServiceAccessTokenRelationships and assigns it to the Relationships field.
+func (o *UpdatedServiceAccessToken) SetRelationships(v UpdatedServiceAccessTokenRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *FullServiceAccessToken) GetType() ServiceAccessTokensType {
-	if o == nil || o.Type == nil {
+// GetType returns the Type field value.
+func (o *UpdatedServiceAccessToken) GetType() ServiceAccessTokensType {
+	if o == nil {
 		var ret ServiceAccessTokensType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *FullServiceAccessToken) GetTypeOk() (*ServiceAccessTokensType, bool) {
-	if o == nil || o.Type == nil {
+func (o *UpdatedServiceAccessToken) GetTypeOk() (*ServiceAccessTokensType, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *FullServiceAccessToken) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given ServiceAccessTokensType and assigns it to the Type field.
-func (o *FullServiceAccessToken) SetType(v ServiceAccessTokensType) {
-	o.Type = &v
+// SetType sets field value.
+func (o *UpdatedServiceAccessToken) SetType(v ServiceAccessTokensType) {
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FullServiceAccessToken) MarshalJSON() ([]byte, error) {
+func (o UpdatedServiceAccessToken) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -165,15 +157,11 @@ func (o FullServiceAccessToken) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -182,15 +170,21 @@ func (o FullServiceAccessToken) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FullServiceAccessToken) UnmarshalJSON(bytes []byte) (err error) {
+func (o *UpdatedServiceAccessToken) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *FullServiceAccessTokenAttributes    `json:"attributes,omitempty"`
-		Id            *string                              `json:"id,omitempty"`
-		Relationships *FullServiceAccessTokenRelationships `json:"relationships,omitempty"`
-		Type          *ServiceAccessTokensType             `json:"type,omitempty"`
+		Attributes    *ServiceAccessTokenAttributes           `json:"attributes,omitempty"`
+		Id            *string                                 `json:"id"`
+		Relationships *UpdatedServiceAccessTokenRelationships `json:"relationships,omitempty"`
+		Type          *ServiceAccessTokensType                `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -204,15 +198,15 @@ func (o *FullServiceAccessToken) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Id = *all.Id
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {
