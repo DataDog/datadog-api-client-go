@@ -543,9 +543,9 @@ func expectArrayContainsValue(t gobdd.StepTest, ctx gobdd.Context, responsePath 
 	t.Errorf("could not find value: %v", templatedValue)
 }
 
-// requestUsesCompression is declarative; the generated replay server validates
-// the Content-Encoding header and compressed request body from the request plan.
-func requestUsesCompression(_ gobdd.StepTest, _ gobdd.Context, _ string) {}
+// compressionStep is declarative; the generated request plan selects request
+// compression and makes the replay response use the asserted encoding.
+func compressionStep(_ gobdd.StepTest, _ gobdd.Context, _ string) {}
 
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
@@ -557,8 +557,8 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`new "([^"]+)" request`:                                                newRequest,
 		`request contains "([^"]+)" parameter from "([^"]+)"`:                  addParameterFrom,
 		`request contains "([^"]+)" parameter with value (.+)`:                 addParameterWithValue,
-		`the request uses "([^"]+)" compression`:                               requestUsesCompression,
-		`the user selects "([^"]+)" compression`:                               requestUsesCompression,
+		`the request and response use "([^"]+)" compression`:                   compressionStep,
+		`the client selects "([^"]+)" compression`:                             compressionStep,
 		`the request is sent`:                                                  requestIsSent,
 		`the request with pagination is sent`:                                  requestWithPaginationIsSent,
 		`the response status is (\d+) (.*)`:                                    statusIs,
