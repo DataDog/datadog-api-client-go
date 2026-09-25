@@ -18,6 +18,8 @@ type DashboardUsageUser struct {
 	IsDisabled *bool `json:"is_disabled,omitempty"`
 	// Display name of the user.
 	Name *string `json:"name,omitempty"`
+	// just testing generation
+	Test *bool `json:"test,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -152,6 +154,34 @@ func (o *DashboardUsageUser) SetName(v string) {
 	o.Name = &v
 }
 
+// GetTest returns the Test field value if set, zero value otherwise.
+func (o *DashboardUsageUser) GetTest() bool {
+	if o == nil || o.Test == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Test
+}
+
+// GetTestOk returns a tuple with the Test field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DashboardUsageUser) GetTestOk() (*bool, bool) {
+	if o == nil || o.Test == nil {
+		return nil, false
+	}
+	return o.Test, true
+}
+
+// HasTest returns a boolean if a field has been set.
+func (o *DashboardUsageUser) HasTest() bool {
+	return o != nil && o.Test != nil
+}
+
+// SetTest gets a reference to the given bool and assigns it to the Test field.
+func (o *DashboardUsageUser) SetTest(v bool) {
+	o.Test = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardUsageUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -170,6 +200,9 @@ func (o DashboardUsageUser) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.Test != nil {
+		toSerialize["test"] = o.Test
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -184,13 +217,14 @@ func (o *DashboardUsageUser) UnmarshalJSON(bytes []byte) (err error) {
 		Id         *string `json:"id,omitempty"`
 		IsDisabled *bool   `json:"is_disabled,omitempty"`
 		Name       *string `json:"name,omitempty"`
+		Test       *bool   `json:"test,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "id", "is_disabled", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "id", "is_disabled", "name", "test"})
 	} else {
 		return err
 	}
@@ -198,6 +232,7 @@ func (o *DashboardUsageUser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.IsDisabled = all.IsDisabled
 	o.Name = all.Name
+	o.Test = all.Test
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
