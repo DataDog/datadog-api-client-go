@@ -21,7 +21,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewKeyManagementApi(apiClient)
-	resp, r, err := api.GetPersonalAccessToken(ctx, PersonalAccessTokenDataID)
+	resp, r, err := api.GetPersonalAccessToken(ctx, PersonalAccessTokenDataID, *datadogV2.NewGetPersonalAccessTokenOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetPersonalAccessToken`: %v\n", err)
