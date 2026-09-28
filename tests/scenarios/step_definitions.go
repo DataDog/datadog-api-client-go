@@ -15,6 +15,7 @@ import (
 	"reflect"
 	"regexp"
 	"strconv"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
@@ -543,6 +544,32 @@ func expectArrayContainsValue(t gobdd.StepTest, ctx gobdd.Context, responsePath 
 	t.Errorf("could not find value: %v", templatedValue)
 }
 
+func requestUsesCompression(t gobdd.StepTest, ctx gobdd.Context, compression string) {
+	if !testServerEnabled() {
+		return
+	}
+	value, err := ctx.Get(testServerSessionKey{})
+	if err != nil {
+		t.Errorf("generated test-server session has not been started: %v", err)
+		return
+	}
+	var result struct {
+		Request struct {
+			Headers map[string]string `json:"headers"`
+		} `json:"request"`
+	}
+	if err := testServerGet(fmt.Sprintf("/sessions/%s/last-request", value.(string)), &result); err != nil {
+		t.Errorf("failed to inspect generated test-server request: %v", err)
+		return
+	}
+	actual := result.Request.Headers["content-encoding"]
+	if actual != strings.ToLower(compression) {
+		t.Errorf("expected Content-Encoding %q, got %q", compression, actual)
+	}
+}
+
+func clientSelectsCompression(_ gobdd.StepTest, _ gobdd.Context, _ string) {}
+
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
@@ -553,6 +580,8 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`new "([^"]+)" request`:                                                newRequest,
 		`request contains "([^"]+)" parameter from "([^"]+)"`:                  addParameterFrom,
 		`request contains "([^"]+)" parameter with value (.+)`:                 addParameterWithValue,
+		`the request uses "([^"]+)" compression`:                               requestUsesCompression,
+		`the client selects "([^"]+)" compression`:                             clientSelectsCompression,
 		`the request is sent`:                                                  requestIsSent,
 		`the request with pagination is sent`:                                  requestWithPaginationIsSent,
 		`the response status is (\d+) (.*)`:                                    statusIs,
