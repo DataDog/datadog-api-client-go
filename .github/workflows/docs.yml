@@ -29,7 +29,7 @@ jobs:
           go install github.com/johnstarich/go/gopages@latest
           go install github.com/tdewolff/minify/v2/cmd/minify@v2.24.17
           gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base /datadog-api-client-go
-          find dist -type f -name '*.html' -exec minify --html-keep-document-tags --html-keep-end-tags --html-keep-whitespace --inplace {} +
+          find dist -path 'dist/lib' -prune -o -type f -name '*.html' -exec minify --html-keep-document-tags --html-keep-end-tags --html-keep-whitespace --inplace {} +
           ! find dist -type f -size +100M -print -quit | grep .
 
       - if: github.event_name == 'push'
