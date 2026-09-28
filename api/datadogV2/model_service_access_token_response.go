@@ -12,6 +12,8 @@ import (
 type ServiceAccessTokenResponse struct {
 	// Datadog access token.
 	Data *ServiceAccessToken `json:"data,omitempty"`
+	// Array of objects related to the access tokens.
+	Included []AccessTokenResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *ServiceAccessTokenResponse) SetData(v ServiceAccessToken) {
 	o.Data = &v
 }
 
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *ServiceAccessTokenResponse) GetIncluded() []AccessTokenResponseIncludedItem {
+	if o == nil || o.Included == nil {
+		var ret []AccessTokenResponseIncludedItem
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenResponse) GetIncludedOk() (*[]AccessTokenResponseIncludedItem, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *ServiceAccessTokenResponse) HasIncluded() bool {
+	return o != nil && o.Included != nil
+}
+
+// SetIncluded gets a reference to the given []AccessTokenResponseIncludedItem and assigns it to the Included field.
+func (o *ServiceAccessTokenResponse) SetIncluded(v []AccessTokenResponseIncludedItem) {
+	o.Included = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceAccessTokenResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o ServiceAccessTokenResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +114,15 @@ func (o ServiceAccessTokenResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccessTokenResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *ServiceAccessToken `json:"data,omitempty"`
+		Data     *ServiceAccessToken               `json:"data,omitempty"`
+		Included []AccessTokenResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
@@ -98,6 +132,7 @@ func (o *ServiceAccessTokenResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -10,6 +10,8 @@ import (
 
 // ServiceAccessTokenRelationships Resources related to the access token.
 type ServiceAccessTokenRelationships struct {
+	// Relationship to the leak the access token was found in. `data` is null when the access token has not been detected as leaked.
+	LeakInformation *RelationshipToLeakedKey `json:"leak_information,omitempty"`
 	// Relationship to service account.
 	OwnedBy *RelationshipToServiceAccount `json:"owned_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,6 +34,34 @@ func NewServiceAccessTokenRelationships() *ServiceAccessTokenRelationships {
 func NewServiceAccessTokenRelationshipsWithDefaults() *ServiceAccessTokenRelationships {
 	this := ServiceAccessTokenRelationships{}
 	return &this
+}
+
+// GetLeakInformation returns the LeakInformation field value if set, zero value otherwise.
+func (o *ServiceAccessTokenRelationships) GetLeakInformation() RelationshipToLeakedKey {
+	if o == nil || o.LeakInformation == nil {
+		var ret RelationshipToLeakedKey
+		return ret
+	}
+	return *o.LeakInformation
+}
+
+// GetLeakInformationOk returns a tuple with the LeakInformation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenRelationships) GetLeakInformationOk() (*RelationshipToLeakedKey, bool) {
+	if o == nil || o.LeakInformation == nil {
+		return nil, false
+	}
+	return o.LeakInformation, true
+}
+
+// HasLeakInformation returns a boolean if a field has been set.
+func (o *ServiceAccessTokenRelationships) HasLeakInformation() bool {
+	return o != nil && o.LeakInformation != nil
+}
+
+// SetLeakInformation gets a reference to the given RelationshipToLeakedKey and assigns it to the LeakInformation field.
+func (o *ServiceAccessTokenRelationships) SetLeakInformation(v RelationshipToLeakedKey) {
+	o.LeakInformation = &v
 }
 
 // GetOwnedBy returns the OwnedBy field value if set, zero value otherwise.
@@ -68,6 +98,9 @@ func (o ServiceAccessTokenRelationships) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.LeakInformation != nil {
+		toSerialize["leak_information"] = o.LeakInformation
+	}
 	if o.OwnedBy != nil {
 		toSerialize["owned_by"] = o.OwnedBy
 	}
@@ -81,19 +114,24 @@ func (o ServiceAccessTokenRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccessTokenRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		OwnedBy *RelationshipToServiceAccount `json:"owned_by,omitempty"`
+		LeakInformation *RelationshipToLeakedKey      `json:"leak_information,omitempty"`
+		OwnedBy         *RelationshipToServiceAccount `json:"owned_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"owned_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"leak_information", "owned_by"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.LeakInformation != nil && all.LeakInformation.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.LeakInformation = all.LeakInformation
 	if all.OwnedBy != nil && all.OwnedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
