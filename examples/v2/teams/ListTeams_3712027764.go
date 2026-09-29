@@ -1,4 +1,4 @@
-// Get all teams with a test returns "OK" response
+// Get all teams returns "OK" response
 
 package main
 
