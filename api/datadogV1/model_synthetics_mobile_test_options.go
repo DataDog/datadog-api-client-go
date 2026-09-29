@@ -16,6 +16,8 @@ type SyntheticsMobileTestOptions struct {
 	AllowApplicationCrash *bool `json:"allowApplicationCrash,omitempty"`
 	// Array of bindings used for the mobile test.
 	Bindings []SyntheticsTestRestrictionPolicyBinding `json:"bindings,omitempty"`
+	// Whether Bits AI automatically investigates alerts from the test monitor.
+	BitsAiAutoInvestigate *bool `json:"bits_ai_auto_investigate,omitempty"`
 	// CI/CD options for a Synthetic test.
 	Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
 	// The default timeout for steps in the test (in seconds).
@@ -127,6 +129,34 @@ func (o *SyntheticsMobileTestOptions) HasBindings() bool {
 // SetBindings gets a reference to the given []SyntheticsTestRestrictionPolicyBinding and assigns it to the Bindings field.
 func (o *SyntheticsMobileTestOptions) SetBindings(v []SyntheticsTestRestrictionPolicyBinding) {
 	o.Bindings = v
+}
+
+// GetBitsAiAutoInvestigate returns the BitsAiAutoInvestigate field value if set, zero value otherwise.
+func (o *SyntheticsMobileTestOptions) GetBitsAiAutoInvestigate() bool {
+	if o == nil || o.BitsAiAutoInvestigate == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BitsAiAutoInvestigate
+}
+
+// GetBitsAiAutoInvestigateOk returns a tuple with the BitsAiAutoInvestigate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsMobileTestOptions) GetBitsAiAutoInvestigateOk() (*bool, bool) {
+	if o == nil || o.BitsAiAutoInvestigate == nil {
+		return nil, false
+	}
+	return o.BitsAiAutoInvestigate, true
+}
+
+// HasBitsAiAutoInvestigate returns a boolean if a field has been set.
+func (o *SyntheticsMobileTestOptions) HasBitsAiAutoInvestigate() bool {
+	return o != nil && o.BitsAiAutoInvestigate != nil
+}
+
+// SetBitsAiAutoInvestigate gets a reference to the given bool and assigns it to the BitsAiAutoInvestigate field.
+func (o *SyntheticsMobileTestOptions) SetBitsAiAutoInvestigate(v bool) {
+	o.BitsAiAutoInvestigate = &v
 }
 
 // GetCi returns the Ci field value if set, zero value otherwise.
@@ -549,6 +579,9 @@ func (o SyntheticsMobileTestOptions) MarshalJSON() ([]byte, error) {
 	if o.Bindings != nil {
 		toSerialize["bindings"] = o.Bindings
 	}
+	if o.BitsAiAutoInvestigate != nil {
+		toSerialize["bits_ai_auto_investigate"] = o.BitsAiAutoInvestigate
+	}
 	if o.Ci != nil {
 		toSerialize["ci"] = o.Ci
 	}
@@ -600,6 +633,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllowApplicationCrash  *bool                                    `json:"allowApplicationCrash,omitempty"`
 		Bindings               []SyntheticsTestRestrictionPolicyBinding `json:"bindings,omitempty"`
+		BitsAiAutoInvestigate  *bool                                    `json:"bits_ai_auto_investigate,omitempty"`
 		Ci                     *SyntheticsTestCiOptions                 `json:"ci,omitempty"`
 		DefaultStepTimeout     *int32                                   `json:"defaultStepTimeout,omitempty"`
 		DeviceIds              *[]string                                `json:"device_ids"`
@@ -630,7 +664,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allowApplicationCrash", "bindings", "ci", "defaultStepTimeout", "device_ids", "disableAutoAcceptAlert", "min_failure_duration", "mobileApplication", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "scheduling", "tick_every", "verbosity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allowApplicationCrash", "bindings", "bits_ai_auto_investigate", "ci", "defaultStepTimeout", "device_ids", "disableAutoAcceptAlert", "min_failure_duration", "mobileApplication", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "scheduling", "tick_every", "verbosity"})
 	} else {
 		return err
 	}
@@ -638,6 +672,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AllowApplicationCrash = all.AllowApplicationCrash
 	o.Bindings = all.Bindings
+	o.BitsAiAutoInvestigate = all.BitsAiAutoInvestigate
 	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
