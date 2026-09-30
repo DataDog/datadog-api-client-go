@@ -304,7 +304,7 @@ func (a *RUMOperationsApi) DeleteRUMOperation(ctx _context.Context, rumOperation
 
 // DeleteRUMOperationStrongLink Delete a RUM operation strong link.
 // Delete the strong link between a RUM operation and a feature.
-func (a *RUMOperationsApi) DeleteRUMOperationStrongLink(ctx _context.Context, rumOperationId string, featureId string) (*_nethttp.Response, error) {
+func (a *RUMOperationsApi) DeleteRUMOperationStrongLink(ctx _context.Context, rumOperationId string, journeyId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -324,9 +324,9 @@ func (a *RUMOperationsApi) DeleteRUMOperationStrongLink(ctx _context.Context, ru
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/rum/operations/strong_links/{rum_operation_id}/{feature_id}"
+	localVarPath := localBasePath + "/api/v2/rum/operations/strong_links/{rum_operation_id}/{journey_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rum_operation_id}", _neturl.PathEscape(datadog.ParameterToString(rumOperationId, "")))
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{feature_id}", _neturl.PathEscape(datadog.ParameterToString(featureId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{journey_id}", _neturl.PathEscape(datadog.ParameterToString(journeyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1012,7 +1012,7 @@ func (a *RUMOperationsApi) UpdateRUMOperation(ctx _context.Context, rumOperation
 
 // UpdateRUMOperationStrongLink Update a RUM operation strong link.
 // Update the status of a strong link between a RUM operation and a feature.
-func (a *RUMOperationsApi) UpdateRUMOperationStrongLink(ctx _context.Context, rumOperationId string, featureId string, body RUMOperationStrongLinkUpdateRequest) (RUMOperationStrongLinkResponse, *_nethttp.Response, error) {
+func (a *RUMOperationsApi) UpdateRUMOperationStrongLink(ctx _context.Context, rumOperationId string, journeyId string, body RUMOperationStrongLinkUpdateRequest) (RUMOperationStrongLinkResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -1033,9 +1033,9 @@ func (a *RUMOperationsApi) UpdateRUMOperationStrongLink(ctx _context.Context, ru
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/rum/operations/strong_links/{rum_operation_id}/{feature_id}"
+	localVarPath := localBasePath + "/api/v2/rum/operations/strong_links/{rum_operation_id}/{journey_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rum_operation_id}", _neturl.PathEscape(datadog.ParameterToString(rumOperationId, "")))
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{feature_id}", _neturl.PathEscape(datadog.ParameterToString(featureId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{journey_id}", _neturl.PathEscape(datadog.ParameterToString(journeyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

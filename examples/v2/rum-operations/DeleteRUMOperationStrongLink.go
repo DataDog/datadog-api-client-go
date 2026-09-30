@@ -18,7 +18,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.DeleteRUMOperationStrongLink", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	r, err := api.DeleteRUMOperationStrongLink(ctx, "rum_operation_id", "feature_id")
+	r, err := api.DeleteRUMOperationStrongLink(ctx, "rum_operation_id", "journey_id")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.DeleteRUMOperationStrongLink`: %v\n", err)
