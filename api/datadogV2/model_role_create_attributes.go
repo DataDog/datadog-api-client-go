@@ -15,6 +15,10 @@ import (
 type RoleCreateAttributes struct {
 	// Creation time of the role.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Whether to exclude restricted default permissions from this role.
+	// Restricted default permissions are automatically assigned to every role by default. Set this field to `true` to exclude them.
+	// Some of these permissions can only be excluded after Minimal Access Roles is enabled for the organization.
+	DefaultPermissionsOptOut *bool `json:"default_permissions_opt_out,omitempty"`
 	// Time of last role modification.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the role.
@@ -72,6 +76,34 @@ func (o *RoleCreateAttributes) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *RoleCreateAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDefaultPermissionsOptOut returns the DefaultPermissionsOptOut field value if set, zero value otherwise.
+func (o *RoleCreateAttributes) GetDefaultPermissionsOptOut() bool {
+	if o == nil || o.DefaultPermissionsOptOut == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DefaultPermissionsOptOut
+}
+
+// GetDefaultPermissionsOptOutOk returns a tuple with the DefaultPermissionsOptOut field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleCreateAttributes) GetDefaultPermissionsOptOutOk() (*bool, bool) {
+	if o == nil || o.DefaultPermissionsOptOut == nil {
+		return nil, false
+	}
+	return o.DefaultPermissionsOptOut, true
+}
+
+// HasDefaultPermissionsOptOut returns a boolean if a field has been set.
+func (o *RoleCreateAttributes) HasDefaultPermissionsOptOut() bool {
+	return o != nil && o.DefaultPermissionsOptOut != nil
+}
+
+// SetDefaultPermissionsOptOut gets a reference to the given bool and assigns it to the DefaultPermissionsOptOut field.
+func (o *RoleCreateAttributes) SetDefaultPermissionsOptOut(v bool) {
+	o.DefaultPermissionsOptOut = &v
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
@@ -166,6 +198,9 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.DefaultPermissionsOptOut != nil {
+		toSerialize["default_permissions_opt_out"] = o.DefaultPermissionsOptOut
+	}
 	if o.ModifiedAt != nil {
 		if o.ModifiedAt.Nanosecond() == 0 {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -187,10 +222,11 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt               *time.Time `json:"created_at,omitempty"`
-		ModifiedAt              *time.Time `json:"modified_at,omitempty"`
-		Name                    *string    `json:"name"`
-		ReceivesPermissionsFrom []string   `json:"receives_permissions_from,omitempty"`
+		CreatedAt                *time.Time `json:"created_at,omitempty"`
+		DefaultPermissionsOptOut *bool      `json:"default_permissions_opt_out,omitempty"`
+		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
+		Name                     *string    `json:"name"`
+		ReceivesPermissionsFrom  []string   `json:"receives_permissions_from,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -200,11 +236,12 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "modified_at", "name", "receives_permissions_from"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "default_permissions_opt_out", "modified_at", "name", "receives_permissions_from"})
 	} else {
 		return err
 	}
 	o.CreatedAt = all.CreatedAt
+	o.DefaultPermissionsOptOut = all.DefaultPermissionsOptOut
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = *all.Name
 	o.ReceivesPermissionsFrom = all.ReceivesPermissionsFrom
