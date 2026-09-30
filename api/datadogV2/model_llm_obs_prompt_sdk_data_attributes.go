@@ -10,8 +10,9 @@ import (
 
 // LLMObsPromptSDKDataAttributes Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
 type LLMObsPromptSDKDataAttributes struct {
-	// Chat template for this prompt version, as a list of role and content messages. Omitted for text templates.
-	ChatTemplate []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
+	// Chat template for this prompt version, as a list of messages and named message placeholders. Omitted for text templates.
+	// **Preview:** Message placeholders are available in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager.
+	ChatTemplate []LLMObsPromptChatTemplateItem `json:"chat_template,omitempty"`
 	// Versioned prompt configuration is in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager. Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
 	Config map[string]interface{} `json:"config,omitempty"`
 	// Labels attached to the selected version.
@@ -48,9 +49,9 @@ func NewLLMObsPromptSDKDataAttributesWithDefaults() *LLMObsPromptSDKDataAttribut
 }
 
 // GetChatTemplate returns the ChatTemplate field value if set, zero value otherwise.
-func (o *LLMObsPromptSDKDataAttributes) GetChatTemplate() []LLMObsPromptChatMessage {
+func (o *LLMObsPromptSDKDataAttributes) GetChatTemplate() []LLMObsPromptChatTemplateItem {
 	if o == nil || o.ChatTemplate == nil {
-		var ret []LLMObsPromptChatMessage
+		var ret []LLMObsPromptChatTemplateItem
 		return ret
 	}
 	return o.ChatTemplate
@@ -58,7 +59,7 @@ func (o *LLMObsPromptSDKDataAttributes) GetChatTemplate() []LLMObsPromptChatMess
 
 // GetChatTemplateOk returns a tuple with the ChatTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptSDKDataAttributes) GetChatTemplateOk() (*[]LLMObsPromptChatMessage, bool) {
+func (o *LLMObsPromptSDKDataAttributes) GetChatTemplateOk() (*[]LLMObsPromptChatTemplateItem, bool) {
 	if o == nil || o.ChatTemplate == nil {
 		return nil, false
 	}
@@ -70,8 +71,8 @@ func (o *LLMObsPromptSDKDataAttributes) HasChatTemplate() bool {
 	return o != nil && o.ChatTemplate != nil
 }
 
-// SetChatTemplate gets a reference to the given []LLMObsPromptChatMessage and assigns it to the ChatTemplate field.
-func (o *LLMObsPromptSDKDataAttributes) SetChatTemplate(v []LLMObsPromptChatMessage) {
+// SetChatTemplate gets a reference to the given []LLMObsPromptChatTemplateItem and assigns it to the ChatTemplate field.
+func (o *LLMObsPromptSDKDataAttributes) SetChatTemplate(v []LLMObsPromptChatTemplateItem) {
 	o.ChatTemplate = v
 }
 
@@ -283,13 +284,13 @@ func (o LLMObsPromptSDKDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsPromptSDKDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ChatTemplate      []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
-		Config            map[string]interface{}    `json:"config,omitempty"`
-		Labels            []string                  `json:"labels,omitempty"`
-		PromptId          *string                   `json:"prompt_id,omitempty"`
-		PromptVersionUuid *string                   `json:"prompt_version_uuid,omitempty"`
-		Template          *string                   `json:"template,omitempty"`
-		Version           *string                   `json:"version,omitempty"`
+		ChatTemplate      []LLMObsPromptChatTemplateItem `json:"chat_template,omitempty"`
+		Config            map[string]interface{}         `json:"config,omitempty"`
+		Labels            []string                       `json:"labels,omitempty"`
+		PromptId          *string                        `json:"prompt_id,omitempty"`
+		PromptVersionUuid *string                        `json:"prompt_version_uuid,omitempty"`
+		Template          *string                        `json:"template,omitempty"`
+		Version           *string                        `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
