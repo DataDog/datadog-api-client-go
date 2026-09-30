@@ -566,6 +566,7 @@
 //   - [FleetAutomationApi.CreateFleetSchedule]
 //   - [FleetAutomationApi.DeleteFleetSchedule]
 //   - [FleetAutomationApi.GetFleetAgentDetailV2]
+//   - [FleetAutomationApi.GetFleetConfigFileSchemaV2]
 //   - [FleetAutomationApi.GetFleetDeploymentV2]
 //   - [FleetAutomationApi.GetFleetScheduleV2]
 //   - [FleetAutomationApi.ListFleetAgentTracers]
