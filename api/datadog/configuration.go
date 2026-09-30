@@ -954,6 +954,7 @@ func NewConfiguration() *Configuration {
 			"v2.ExportSecurityMonitoringTerraformResource":              false,
 			"v2.GetContentPacksStates":                                  false,
 			"v2.GetEntityContext":                                       false,
+			"v2.GetEntityContextRecentlyUpdated":                        false,
 			"v2.GetEntraIdAzureAppRegistrations":                        false,
 			"v2.GetFinding":                                             false,
 			"v2.GetHistoricalJob":                                       false,

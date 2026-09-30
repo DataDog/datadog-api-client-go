@@ -1208,6 +1208,7 @@
 //   - [SecurityMonitoringApi.GetCriticalAssetsAffectingRule]
 //   - [SecurityMonitoringApi.GetCustomFramework]
 //   - [SecurityMonitoringApi.GetEntityContext]
+//   - [SecurityMonitoringApi.GetEntityContextRecentlyUpdated]
 //   - [SecurityMonitoringApi.GetEntraIdAzureAppRegistrations]
 //   - [SecurityMonitoringApi.GetFinding]
 //   - [SecurityMonitoringApi.GetHistoricalJob]
