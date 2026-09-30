@@ -15,6 +15,8 @@ type SyntheticsTestOptions struct {
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// Allows loading insecure content for an HTTP request in an API test.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
+	// Whether Bits AI automatically investigates alerts from the test monitor.
+	BitsAiAutoInvestigate *bool `json:"bits_ai_auto_investigate,omitempty"`
 	// Array of URL patterns to block.
 	BlockedRequestPatterns []string `json:"blockedRequestPatterns,omitempty"`
 	// Capture HTTP request/response headers and bodies for Fetch/XHR calls made during browser tests.
@@ -157,6 +159,34 @@ func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
 // SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
 func (o *SyntheticsTestOptions) SetAllowInsecure(v bool) {
 	o.AllowInsecure = &v
+}
+
+// GetBitsAiAutoInvestigate returns the BitsAiAutoInvestigate field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetBitsAiAutoInvestigate() bool {
+	if o == nil || o.BitsAiAutoInvestigate == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BitsAiAutoInvestigate
+}
+
+// GetBitsAiAutoInvestigateOk returns a tuple with the BitsAiAutoInvestigate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetBitsAiAutoInvestigateOk() (*bool, bool) {
+	if o == nil || o.BitsAiAutoInvestigate == nil {
+		return nil, false
+	}
+	return o.BitsAiAutoInvestigate, true
+}
+
+// HasBitsAiAutoInvestigate returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasBitsAiAutoInvestigate() bool {
+	return o != nil && o.BitsAiAutoInvestigate != nil
+}
+
+// SetBitsAiAutoInvestigate gets a reference to the given bool and assigns it to the BitsAiAutoInvestigate field.
+func (o *SyntheticsTestOptions) SetBitsAiAutoInvestigate(v bool) {
+	o.BitsAiAutoInvestigate = &v
 }
 
 // GetBlockedRequestPatterns returns the BlockedRequestPatterns field value if set, zero value otherwise.
@@ -905,6 +935,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.AllowInsecure != nil {
 		toSerialize["allow_insecure"] = o.AllowInsecure
 	}
+	if o.BitsAiAutoInvestigate != nil {
+		toSerialize["bits_ai_auto_investigate"] = o.BitsAiAutoInvestigate
+	}
 	if o.BlockedRequestPatterns != nil {
 		toSerialize["blockedRequestPatterns"] = o.BlockedRequestPatterns
 	}
@@ -995,6 +1028,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AcceptSelfSigned               *bool                                `json:"accept_self_signed,omitempty"`
 		AllowInsecure                  *bool                                `json:"allow_insecure,omitempty"`
+		BitsAiAutoInvestigate          *bool                                `json:"bits_ai_auto_investigate,omitempty"`
 		BlockedRequestPatterns         []string                             `json:"blockedRequestPatterns,omitempty"`
 		CaptureNetworkPayloads         *bool                                `json:"captureNetworkPayloads,omitempty"`
 		CheckCertificateRevocation     *bool                                `json:"checkCertificateRevocation,omitempty"`
@@ -1027,7 +1061,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "blockedRequestPatterns", "captureNetworkPayloads", "checkCertificateRevocation", "ci", "device_ids", "disableAiaIntermediateFetching", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "ignore_certificate_validation", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "bits_ai_auto_investigate", "blockedRequestPatterns", "captureNetworkPayloads", "checkCertificateRevocation", "ci", "device_ids", "disableAiaIntermediateFetching", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "ignore_certificate_validation", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
 	} else {
 		return err
 	}
@@ -1035,6 +1069,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AcceptSelfSigned = all.AcceptSelfSigned
 	o.AllowInsecure = all.AllowInsecure
+	o.BitsAiAutoInvestigate = all.BitsAiAutoInvestigate
 	o.BlockedRequestPatterns = all.BlockedRequestPatterns
 	o.CaptureNetworkPayloads = all.CaptureNetworkPayloads
 	o.CheckCertificateRevocation = all.CheckCertificateRevocation
