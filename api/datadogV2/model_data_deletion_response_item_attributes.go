@@ -34,6 +34,8 @@ type DataDeletionResponseItemAttributes struct {
 	Product string `json:"product"`
 	// Query for creating a data deletion request.
 	Query string `json:"query"`
+	// The source of the deletion request.
+	Source *string `json:"source,omitempty"`
 	// Starting time of the process to delete the requested data.
 	StartingAt string `json:"starting_at"`
 	// Status of the deletion request.
@@ -347,6 +349,34 @@ func (o *DataDeletionResponseItemAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *DataDeletionResponseItemAttributes) GetSource() string {
+	if o == nil || o.Source == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetSourceOk() (*string, bool) {
+	if o == nil || o.Source == nil {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *DataDeletionResponseItemAttributes) HasSource() bool {
+	return o != nil && o.Source != nil
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *DataDeletionResponseItemAttributes) SetSource(v string) {
+	o.Source = &v
+}
+
 // GetStartingAt returns the StartingAt field value.
 func (o *DataDeletionResponseItemAttributes) GetStartingAt() string {
 	if o == nil {
@@ -485,6 +515,9 @@ func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["org_id"] = o.OrgId
 	toSerialize["product"] = o.Product
 	toSerialize["query"] = o.Query
+	if o.Source != nil {
+		toSerialize["source"] = o.Source
+	}
 	toSerialize["starting_at"] = o.StartingAt
 	toSerialize["status"] = o.Status
 	toSerialize["to_time"] = o.ToTime
@@ -511,6 +544,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 		OrgId             *int64   `json:"org_id"`
 		Product           *string  `json:"product"`
 		Query             *string  `json:"query"`
+		Source            *string  `json:"source,omitempty"`
 		StartingAt        *string  `json:"starting_at"`
 		Status            *string  `json:"status"`
 		ToTime            *int64   `json:"to_time"`
@@ -561,7 +595,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "customer_message", "displayed_total", "error_category", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "customer_message", "displayed_total", "error_category", "from_time", "indexes", "is_created", "org_id", "product", "query", "source", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
 	} else {
 		return err
 	}
@@ -576,6 +610,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.OrgId = *all.OrgId
 	o.Product = *all.Product
 	o.Query = *all.Query
+	o.Source = all.Source
 	o.StartingAt = *all.StartingAt
 	o.Status = *all.Status
 	o.ToTime = *all.ToTime
