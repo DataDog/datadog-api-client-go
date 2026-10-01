@@ -1,4 +1,4 @@
-// Update a RUM operation strong link returns "OK" response
+// Update a RUM operation link returns "OK" response
 
 package main
 

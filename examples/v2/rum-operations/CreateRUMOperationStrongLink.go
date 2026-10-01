@@ -1,4 +1,4 @@
-// Create a RUM operation strong link returns "Created" response
+// Create a RUM operation link returns "Created" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.RUMOperationStrongLinkCreateRequestData{
 			Attributes: datadogV2.RUMOperationStrongLinkCreateRequestAttributes{
 				Description: *datadog.NewNullableString(nil),
-				FeatureId:   "feature-123",
+				FeatureId:   "journey-123",
 				OperationId: datadog.PtrString("abc12345-1234-5678-abcd-ef1234567890"),
 				Status:      datadogV2.RUMOPERATIONSTRONGLINKSTATUS_CONFIRMED.Ptr(),
 				Tags:        []string{},

@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinksListResponse The response for a list of RUM operation strong links.
+// RUMOperationStrongLinksListResponse The response for a list of RUM operation links.
 type RUMOperationStrongLinksListResponse struct {
 	//
 	Data []RUMOperationStrongLinkResponseData `json:"data"`
-	// Metadata for a list of RUM operation strong links.
+	// Metadata for a list of RUM operation links.
 	Meta *RUMOperationStrongLinksListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
