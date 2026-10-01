@@ -1,7 +1,7 @@
 name: docs
 
-permissions: 
-  contents: write
+permissions:
+  contents: read
 
 on:
   pull_request:
@@ -27,20 +27,29 @@ jobs:
           rm -rf examples
           rm -rf tests
           go install github.com/johnstarich/go/gopages@latest
+          go install github.com/tdewolff/minify/v2/cmd/minify@v2.24.17
           gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base /datadog-api-client-go
           find dist -type f -name '*.html' -exec perl -ni -e 'print unless /^[\t ]+$/' {} +
-          ! find dist -type f -size +100M -print -quit | grep .
+          # dist/lib/godoc contains Go templates, not standalone HTML.
+          find dist/pkg dist/src -type f -name '*.html' -exec minify --quiet --inplace {} +
 
-      - if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          commit_message: ${{ github.event.head_commit.message }}
-          # Write .nojekyll at the root, see:
-          # https://help.github.com/en/github/working-with-github-pages/about-github-pages#static-site-generators
-          enable_jekyll: false
-          # Only deploy if there were changes
-          allow_empty_commit: false
-          # GH pages branch is getting super big, so we want to reduce it by creating an orphan branch
-          force_orphan: true
+          path: ./dist
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: publish
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
