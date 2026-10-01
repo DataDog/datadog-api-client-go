@@ -22,7 +22,7 @@ type RUMOperationRequestAttributes struct {
 	Description datadog.NullableString `json:"description,omitempty"`
 	// A human-readable display name for the RUM operation.
 	DisplayName *string `json:"display_name,omitempty"`
-	// The list of feature IDs associated with the RUM operation.
+	// The list of journey IDs associated with the RUM operation.
 	FeatureIds []string `json:"feature_ids,omitempty"`
 	// The definition of a RUM operation's journey, used to detect it from RUM events.
 	JourneyRum RUMOperationJourneyRum `json:"journey_rum"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkType The JSON:API type for RUM operation strong link resources.
+// RUMOperationStrongLinkType The JSON:API type for RUM operation link resources.
 type RUMOperationStrongLinkType string
 
 // List of RUMOperationStrongLinkType.
