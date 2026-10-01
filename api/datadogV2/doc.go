@@ -1543,6 +1543,7 @@
 //   - [TwilioIntegrationApi.ListTwilioIntegrationAccounts]
 //   - [TwilioIntegrationApi.UpdateTwilioIntegrationAccount]
 //   - [UsageMeteringApi.CreateQuotas]
+//   - [UsageMeteringApi.DeletePendingQuota]
 //   - [UsageMeteringApi.DeleteQuota]
 //   - [UsageMeteringApi.GetActiveBillingDimensions]
 //   - [UsageMeteringApi.GetBillingDimensionMapping]

@@ -1,4 +1,4 @@
-// Delete a usage quota returns "No Content" response
+// Cancel a scheduled usage quota limit returns "No Content" response
 
 package main
 
@@ -15,13 +15,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteQuota", true)
+	configuration.SetUnstableOperationEnabled("v2.DeletePendingQuota", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	r, err := api.DeleteQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18")
+	r, err := api.DeletePendingQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.DeleteQuota`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.DeletePendingQuota`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
