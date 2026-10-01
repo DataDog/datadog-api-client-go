@@ -1,7 +1,7 @@
 name: docs
 
-permissions: 
-  contents: write
+permissions:
+  contents: read
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,18 +29,28 @@ jobs:
           go install github.com/johnstarich/go/gopages@latest
           gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base /datadog-api-client-go
           find dist -type f -name '*.html' -exec perl -ni -e 'print unless /^[\t ]+$/' {} +
-          ! find dist -type f -size +100M -print -quit | grep .
 
+      # Deploy as a Pages artifact rather than pushing to a gh-pages branch:
+      # git rejects files over 100 MiB, which the datadogV2 package page exceeds.
       - if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          commit_message: ${{ github.event.head_commit.message }}
-          # Write .nojekyll at the root, see:
-          # https://help.github.com/en/github/working-with-github-pages/about-github-pages#static-site-generators
-          enable_jekyll: false
-          # Only deploy if there were changes
-          allow_empty_commit: false
-          # GH pages branch is getting super big, so we want to reduce it by creating an orphan branch
-          force_orphan: true
+          path: ./dist
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
