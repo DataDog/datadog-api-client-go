@@ -12,8 +12,8 @@ import (
 
 // SeverityModifierRuleUpdateRequest The body of a severity modifier rule update request.
 type SeverityModifierRuleUpdateRequest struct {
-	// The data object for a severity modifier rule create or update request.
-	Data SeverityModifierRuleDataCreate `json:"data"`
+	// The data object for a severity modifier rule update request. The `id` must match the `rule_id` path parameter.
+	Data SeverityModifierRuleDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type SeverityModifierRuleUpdateRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSeverityModifierRuleUpdateRequest(data SeverityModifierRuleDataCreate) *SeverityModifierRuleUpdateRequest {
+func NewSeverityModifierRuleUpdateRequest(data SeverityModifierRuleDataUpdate) *SeverityModifierRuleUpdateRequest {
 	this := SeverityModifierRuleUpdateRequest{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewSeverityModifierRuleUpdateRequestWithDefaults() *SeverityModifierRuleUpd
 }
 
 // GetData returns the Data field value.
-func (o *SeverityModifierRuleUpdateRequest) GetData() SeverityModifierRuleDataCreate {
+func (o *SeverityModifierRuleUpdateRequest) GetData() SeverityModifierRuleDataUpdate {
 	if o == nil {
-		var ret SeverityModifierRuleDataCreate
+		var ret SeverityModifierRuleDataUpdate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *SeverityModifierRuleUpdateRequest) GetData() SeverityModifierRuleDataCr
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *SeverityModifierRuleUpdateRequest) GetDataOk() (*SeverityModifierRuleDataCreate, bool) {
+func (o *SeverityModifierRuleUpdateRequest) GetDataOk() (*SeverityModifierRuleDataUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *SeverityModifierRuleUpdateRequest) GetDataOk() (*SeverityModifierRuleDa
 }
 
 // SetData sets field value.
-func (o *SeverityModifierRuleUpdateRequest) SetData(v SeverityModifierRuleDataCreate) {
+func (o *SeverityModifierRuleUpdateRequest) SetData(v SeverityModifierRuleDataUpdate) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o SeverityModifierRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SeverityModifierRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SeverityModifierRuleDataCreate `json:"data"`
+		Data *SeverityModifierRuleDataUpdate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

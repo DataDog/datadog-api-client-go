@@ -18,7 +18,7 @@ func main() {
 	ValidTicketCreationRuleDataID := uuid.MustParse(os.Getenv("VALID_TICKET_CREATION_RULE_DATA_ID"))
 
 	body := datadogV2.TicketCreationRuleUpdateRequest{
-		Data: datadogV2.TicketCreationRuleDataCreate{
+		Data: datadogV2.TicketCreationRuleDataUpdate{
 			Attributes: datadogV2.TicketCreationRuleAttributesCreate{
 				Action: datadogV2.TicketCreationRuleAction{
 					MaxTicketsPerDay: 5,
@@ -34,6 +34,7 @@ func main() {
 					Query: datadog.PtrString("env:staging"),
 				},
 			},
+			Id:   ValidTicketCreationRuleDataID,
 			Type: datadogV2.TICKETCREATIONRULETYPE_TICKET_CREATION_RULES,
 		},
 	}

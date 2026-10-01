@@ -7,43 +7,48 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeverityModifierRuleDataCreate The data object for a severity modifier rule create request.
-type SeverityModifierRuleDataCreate struct {
-	// Attributes for creating or updating a severity modifier rule.
-	Attributes SeverityModifierRuleAttributesCreate `json:"attributes"`
-	// The JSON:API type for severity modifier rules.
-	Type SeverityModifierRuleType `json:"type"`
+// DueDateRuleDataUpdate The data object for a due date rule update request. The `id` must match the `rule_id` path parameter.
+type DueDateRuleDataUpdate struct {
+	// Attributes for creating or updating a due date rule.
+	Attributes DueDateRuleAttributesCreate `json:"attributes"`
+	// The ID of the due date rule to update.
+	Id uuid.UUID `json:"id"`
+	// The JSON:API type for due date rules.
+	Type DueDateRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSeverityModifierRuleDataCreate instantiates a new SeverityModifierRuleDataCreate object.
+// NewDueDateRuleDataUpdate instantiates a new DueDateRuleDataUpdate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSeverityModifierRuleDataCreate(attributes SeverityModifierRuleAttributesCreate, typeVar SeverityModifierRuleType) *SeverityModifierRuleDataCreate {
-	this := SeverityModifierRuleDataCreate{}
+func NewDueDateRuleDataUpdate(attributes DueDateRuleAttributesCreate, id uuid.UUID, typeVar DueDateRuleType) *DueDateRuleDataUpdate {
+	this := DueDateRuleDataUpdate{}
 	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewSeverityModifierRuleDataCreateWithDefaults instantiates a new SeverityModifierRuleDataCreate object.
+// NewDueDateRuleDataUpdateWithDefaults instantiates a new DueDateRuleDataUpdate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSeverityModifierRuleDataCreateWithDefaults() *SeverityModifierRuleDataCreate {
-	this := SeverityModifierRuleDataCreate{}
+func NewDueDateRuleDataUpdateWithDefaults() *DueDateRuleDataUpdate {
+	this := DueDateRuleDataUpdate{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *SeverityModifierRuleDataCreate) GetAttributes() SeverityModifierRuleAttributesCreate {
+func (o *DueDateRuleDataUpdate) GetAttributes() DueDateRuleAttributesCreate {
 	if o == nil {
-		var ret SeverityModifierRuleAttributesCreate
+		var ret DueDateRuleAttributesCreate
 		return ret
 	}
 	return o.Attributes
@@ -51,7 +56,7 @@ func (o *SeverityModifierRuleDataCreate) GetAttributes() SeverityModifierRuleAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *SeverityModifierRuleDataCreate) GetAttributesOk() (*SeverityModifierRuleAttributesCreate, bool) {
+func (o *DueDateRuleDataUpdate) GetAttributesOk() (*DueDateRuleAttributesCreate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +64,37 @@ func (o *SeverityModifierRuleDataCreate) GetAttributesOk() (*SeverityModifierRul
 }
 
 // SetAttributes sets field value.
-func (o *SeverityModifierRuleDataCreate) SetAttributes(v SeverityModifierRuleAttributesCreate) {
+func (o *DueDateRuleDataUpdate) SetAttributes(v DueDateRuleAttributesCreate) {
 	o.Attributes = v
 }
 
-// GetType returns the Type field value.
-func (o *SeverityModifierRuleDataCreate) GetType() SeverityModifierRuleType {
+// GetId returns the Id field value.
+func (o *DueDateRuleDataUpdate) GetId() uuid.UUID {
 	if o == nil {
-		var ret SeverityModifierRuleType
+		var ret uuid.UUID
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *DueDateRuleDataUpdate) GetIdOk() (*uuid.UUID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value.
+func (o *DueDateRuleDataUpdate) SetId(v uuid.UUID) {
+	o.Id = v
+}
+
+// GetType returns the Type field value.
+func (o *DueDateRuleDataUpdate) GetType() DueDateRuleType {
+	if o == nil {
+		var ret DueDateRuleType
 		return ret
 	}
 	return o.Type
@@ -74,7 +102,7 @@ func (o *SeverityModifierRuleDataCreate) GetType() SeverityModifierRuleType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SeverityModifierRuleDataCreate) GetTypeOk() (*SeverityModifierRuleType, bool) {
+func (o *DueDateRuleDataUpdate) GetTypeOk() (*DueDateRuleType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,17 +110,18 @@ func (o *SeverityModifierRuleDataCreate) GetTypeOk() (*SeverityModifierRuleType,
 }
 
 // SetType sets field value.
-func (o *SeverityModifierRuleDataCreate) SetType(v SeverityModifierRuleType) {
+func (o *DueDateRuleDataUpdate) SetType(v DueDateRuleType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SeverityModifierRuleDataCreate) MarshalJSON() ([]byte, error) {
+func (o DueDateRuleDataUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -102,10 +131,11 @@ func (o SeverityModifierRuleDataCreate) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DueDateRuleDataUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *SeverityModifierRuleAttributesCreate `json:"attributes"`
-		Type       *SeverityModifierRuleType             `json:"type"`
+		Attributes *DueDateRuleAttributesCreate `json:"attributes"`
+		Id         *uuid.UUID                   `json:"id"`
+		Type       *DueDateRuleType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -113,12 +143,15 @@ func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error)
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
 	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -128,6 +161,7 @@ func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

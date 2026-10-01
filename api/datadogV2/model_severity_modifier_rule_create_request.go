@@ -12,7 +12,7 @@ import (
 
 // SeverityModifierRuleCreateRequest The body of a severity modifier rule create request.
 type SeverityModifierRuleCreateRequest struct {
-	// The data object for a severity modifier rule create or update request.
+	// The data object for a severity modifier rule create request.
 	Data SeverityModifierRuleDataCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

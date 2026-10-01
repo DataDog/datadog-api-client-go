@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TicketCreationRuleDataCreate The data object for a ticket creation rule create or update request.
+// TicketCreationRuleDataCreate The data object for a ticket creation rule create request.
 type TicketCreationRuleDataCreate struct {
 	// Attributes for creating or updating a ticket creation rule.
 	Attributes TicketCreationRuleAttributesCreate `json:"attributes"`

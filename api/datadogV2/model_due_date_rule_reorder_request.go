@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DueDateRuleReorderRequest The body of the due date rule reorder request.
+// DueDateRuleReorderRequest The body of a due date rule reorder request.
 type DueDateRuleReorderRequest struct {
 	// The ordered list of all due date rules. Every rule must be included.
 	Data []DueDateRuleReorderItem `json:"data"`

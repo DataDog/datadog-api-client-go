@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteRuleDataCreate The data object for a mute rule create or update request.
+// MuteRuleDataCreate The data object for a mute rule create request.
 type MuteRuleDataCreate struct {
 	// Attributes for creating or updating a mute rule.
 	Attributes MuteRuleAttributesCreate `json:"attributes"`

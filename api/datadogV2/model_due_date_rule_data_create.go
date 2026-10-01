@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DueDateRuleDataCreate The data object for a due date rule create or update request.
+// DueDateRuleDataCreate The data object for a due date rule create request.
 type DueDateRuleDataCreate struct {
 	// Attributes for creating or updating a due date rule.
 	Attributes DueDateRuleAttributesCreate `json:"attributes"`

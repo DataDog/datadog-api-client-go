@@ -7,43 +7,48 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeverityModifierRuleDataCreate The data object for a severity modifier rule create request.
-type SeverityModifierRuleDataCreate struct {
-	// Attributes for creating or updating a severity modifier rule.
-	Attributes SeverityModifierRuleAttributesCreate `json:"attributes"`
-	// The JSON:API type for severity modifier rules.
-	Type SeverityModifierRuleType `json:"type"`
+// TicketCreationRuleDataUpdate The data object for a ticket creation rule update request. The `id` must match the `rule_id` path parameter.
+type TicketCreationRuleDataUpdate struct {
+	// Attributes for creating or updating a ticket creation rule.
+	Attributes TicketCreationRuleAttributesCreate `json:"attributes"`
+	// The ID of the ticket creation rule to update.
+	Id uuid.UUID `json:"id"`
+	// The JSON:API type for ticket creation rules.
+	Type TicketCreationRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSeverityModifierRuleDataCreate instantiates a new SeverityModifierRuleDataCreate object.
+// NewTicketCreationRuleDataUpdate instantiates a new TicketCreationRuleDataUpdate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSeverityModifierRuleDataCreate(attributes SeverityModifierRuleAttributesCreate, typeVar SeverityModifierRuleType) *SeverityModifierRuleDataCreate {
-	this := SeverityModifierRuleDataCreate{}
+func NewTicketCreationRuleDataUpdate(attributes TicketCreationRuleAttributesCreate, id uuid.UUID, typeVar TicketCreationRuleType) *TicketCreationRuleDataUpdate {
+	this := TicketCreationRuleDataUpdate{}
 	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewSeverityModifierRuleDataCreateWithDefaults instantiates a new SeverityModifierRuleDataCreate object.
+// NewTicketCreationRuleDataUpdateWithDefaults instantiates a new TicketCreationRuleDataUpdate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSeverityModifierRuleDataCreateWithDefaults() *SeverityModifierRuleDataCreate {
-	this := SeverityModifierRuleDataCreate{}
+func NewTicketCreationRuleDataUpdateWithDefaults() *TicketCreationRuleDataUpdate {
+	this := TicketCreationRuleDataUpdate{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *SeverityModifierRuleDataCreate) GetAttributes() SeverityModifierRuleAttributesCreate {
+func (o *TicketCreationRuleDataUpdate) GetAttributes() TicketCreationRuleAttributesCreate {
 	if o == nil {
-		var ret SeverityModifierRuleAttributesCreate
+		var ret TicketCreationRuleAttributesCreate
 		return ret
 	}
 	return o.Attributes
@@ -51,7 +56,7 @@ func (o *SeverityModifierRuleDataCreate) GetAttributes() SeverityModifierRuleAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *SeverityModifierRuleDataCreate) GetAttributesOk() (*SeverityModifierRuleAttributesCreate, bool) {
+func (o *TicketCreationRuleDataUpdate) GetAttributesOk() (*TicketCreationRuleAttributesCreate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +64,37 @@ func (o *SeverityModifierRuleDataCreate) GetAttributesOk() (*SeverityModifierRul
 }
 
 // SetAttributes sets field value.
-func (o *SeverityModifierRuleDataCreate) SetAttributes(v SeverityModifierRuleAttributesCreate) {
+func (o *TicketCreationRuleDataUpdate) SetAttributes(v TicketCreationRuleAttributesCreate) {
 	o.Attributes = v
 }
 
-// GetType returns the Type field value.
-func (o *SeverityModifierRuleDataCreate) GetType() SeverityModifierRuleType {
+// GetId returns the Id field value.
+func (o *TicketCreationRuleDataUpdate) GetId() uuid.UUID {
 	if o == nil {
-		var ret SeverityModifierRuleType
+		var ret uuid.UUID
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *TicketCreationRuleDataUpdate) GetIdOk() (*uuid.UUID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value.
+func (o *TicketCreationRuleDataUpdate) SetId(v uuid.UUID) {
+	o.Id = v
+}
+
+// GetType returns the Type field value.
+func (o *TicketCreationRuleDataUpdate) GetType() TicketCreationRuleType {
+	if o == nil {
+		var ret TicketCreationRuleType
 		return ret
 	}
 	return o.Type
@@ -74,7 +102,7 @@ func (o *SeverityModifierRuleDataCreate) GetType() SeverityModifierRuleType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SeverityModifierRuleDataCreate) GetTypeOk() (*SeverityModifierRuleType, bool) {
+func (o *TicketCreationRuleDataUpdate) GetTypeOk() (*TicketCreationRuleType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,17 +110,18 @@ func (o *SeverityModifierRuleDataCreate) GetTypeOk() (*SeverityModifierRuleType,
 }
 
 // SetType sets field value.
-func (o *SeverityModifierRuleDataCreate) SetType(v SeverityModifierRuleType) {
+func (o *TicketCreationRuleDataUpdate) SetType(v TicketCreationRuleType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SeverityModifierRuleDataCreate) MarshalJSON() ([]byte, error) {
+func (o TicketCreationRuleDataUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -102,10 +131,11 @@ func (o SeverityModifierRuleDataCreate) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TicketCreationRuleDataUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *SeverityModifierRuleAttributesCreate `json:"attributes"`
-		Type       *SeverityModifierRuleType             `json:"type"`
+		Attributes *TicketCreationRuleAttributesCreate `json:"attributes"`
+		Id         *uuid.UUID                          `json:"id"`
+		Type       *TicketCreationRuleType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -113,12 +143,15 @@ func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error)
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
 	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -128,6 +161,7 @@ func (o *SeverityModifierRuleDataCreate) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

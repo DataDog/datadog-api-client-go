@@ -12,8 +12,8 @@ import (
 
 // TicketCreationRuleUpdateRequest The body of a ticket creation rule update request.
 type TicketCreationRuleUpdateRequest struct {
-	// The data object for a ticket creation rule create or update request.
-	Data TicketCreationRuleDataCreate `json:"data"`
+	// The data object for a ticket creation rule update request. The `id` must match the `rule_id` path parameter.
+	Data TicketCreationRuleDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type TicketCreationRuleUpdateRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTicketCreationRuleUpdateRequest(data TicketCreationRuleDataCreate) *TicketCreationRuleUpdateRequest {
+func NewTicketCreationRuleUpdateRequest(data TicketCreationRuleDataUpdate) *TicketCreationRuleUpdateRequest {
 	this := TicketCreationRuleUpdateRequest{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewTicketCreationRuleUpdateRequestWithDefaults() *TicketCreationRuleUpdateR
 }
 
 // GetData returns the Data field value.
-func (o *TicketCreationRuleUpdateRequest) GetData() TicketCreationRuleDataCreate {
+func (o *TicketCreationRuleUpdateRequest) GetData() TicketCreationRuleDataUpdate {
 	if o == nil {
-		var ret TicketCreationRuleDataCreate
+		var ret TicketCreationRuleDataUpdate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *TicketCreationRuleUpdateRequest) GetData() TicketCreationRuleDataCreate
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TicketCreationRuleUpdateRequest) GetDataOk() (*TicketCreationRuleDataCreate, bool) {
+func (o *TicketCreationRuleUpdateRequest) GetDataOk() (*TicketCreationRuleDataUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *TicketCreationRuleUpdateRequest) GetDataOk() (*TicketCreationRuleDataCr
 }
 
 // SetData sets field value.
-func (o *TicketCreationRuleUpdateRequest) SetData(v TicketCreationRuleDataCreate) {
+func (o *TicketCreationRuleUpdateRequest) SetData(v TicketCreationRuleDataUpdate) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o TicketCreationRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TicketCreationRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TicketCreationRuleDataCreate `json:"data"`
+		Data *TicketCreationRuleDataUpdate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

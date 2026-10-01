@@ -18,7 +18,7 @@ func main() {
 	ValidDueDateRuleDataID := uuid.MustParse(os.Getenv("VALID_DUE_DATE_RULE_DATA_ID"))
 
 	body := datadogV2.DueDateRuleUpdateRequest{
-		Data: datadogV2.DueDateRuleDataCreate{
+		Data: datadogV2.DueDateRuleDataUpdate{
 			Attributes: datadogV2.DueDateRuleAttributesCreate{
 				Action: datadogV2.DueDateRuleAction{
 					DueDaysPerSeverity: []datadogV2.DueDatePerSeverityItem{
@@ -38,6 +38,7 @@ func main() {
 					Query: datadog.PtrString("env:staging"),
 				},
 			},
+			Id:   ValidDueDateRuleDataID,
 			Type: datadogV2.DUEDATERULETYPE_DUE_DATE_RULES,
 		},
 	}
