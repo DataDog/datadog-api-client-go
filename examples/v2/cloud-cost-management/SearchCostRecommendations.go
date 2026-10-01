@@ -19,7 +19,7 @@ func main() {
 				Scope: datadogV2.RECOMMENDATIONSFILTERREQUESTSCOPE_CCM.Ptr(),
 				Sort: []datadogV2.RecommendationsFilterRequestSortItems{
 					{
-						Expression: datadog.PtrString("potential_daily_savings.amount"),
+						Expression: datadog.PtrString("@potential_daily_savings"),
 						Order:      datadog.PtrString("DESC"),
 					},
 				},
