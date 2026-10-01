@@ -32,6 +32,7 @@ const (
 	LISTSTREAMSOURCE_SECURITY_RUNTIME_STREAM  ListStreamSource = "security_runtime_stream"
 	LISTSTREAMSOURCE_SECURITY_SIGNALS_STREAM  ListStreamSource = "security_signals_stream"
 	LISTSTREAMSOURCE_INCIDENTS_STREAM         ListStreamSource = "incidents_stream"
+	LISTSTREAMSOURCE_CASE_STREAM              ListStreamSource = "case_stream"
 )
 
 var allowedListStreamSourceEnumValues = []ListStreamSource{
@@ -52,6 +53,7 @@ var allowedListStreamSourceEnumValues = []ListStreamSource{
 	LISTSTREAMSOURCE_SECURITY_RUNTIME_STREAM,
 	LISTSTREAMSOURCE_SECURITY_SIGNALS_STREAM,
 	LISTSTREAMSOURCE_INCIDENTS_STREAM,
+	LISTSTREAMSOURCE_CASE_STREAM,
 }
 
 // GetAllowedValues reeturns the list of possible values.
