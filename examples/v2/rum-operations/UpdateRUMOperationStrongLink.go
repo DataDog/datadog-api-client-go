@@ -27,7 +27,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.UpdateRUMOperationStrongLink", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	resp, r, err := api.UpdateRUMOperationStrongLink(ctx, "rum_operation_id", "feature_id", body)
+	resp, r, err := api.UpdateRUMOperationStrongLink(ctx, "rum_operation_id", "journey_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.UpdateRUMOperationStrongLink`: %v\n", err)
