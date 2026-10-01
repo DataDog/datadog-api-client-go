@@ -131,6 +131,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "OktaIntegrationApi": reflect.ValueOf(datadogV2.NewOktaIntegrationApi),
 	    "IPAllowlistApi": reflect.ValueOf(datadogV2.NewIPAllowlistApi),
 	    "LogsApi": reflect.ValueOf(datadogV2.NewLogsApi),
+	    "LogsArchiveSearchesApi": reflect.ValueOf(datadogV2.NewLogsArchiveSearchesApi),
 	    "LogsArchivesApi": reflect.ValueOf(datadogV2.NewLogsArchivesApi),
 	    "LogsCustomDestinationsApi": reflect.ValueOf(datadogV2.NewLogsCustomDestinationsApi),
 	    "LogsMetricsApi": reflect.ValueOf(datadogV2.NewLogsMetricsApi),
