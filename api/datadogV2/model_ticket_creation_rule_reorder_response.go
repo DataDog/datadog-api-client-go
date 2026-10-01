@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DueDateRuleUpdateRequest The body of a due date rule update request.
-type DueDateRuleUpdateRequest struct {
-	// The data object for a due date rule update request. The `id` must match the `rule_id` path parameter.
-	Data DueDateRuleDataUpdate `json:"data"`
+// TicketCreationRuleReorderResponse The response of a ticket creation rule reorder request.
+type TicketCreationRuleReorderResponse struct {
+	// The ordered list of all ticket creation rules. Every rule must be included.
+	Data []TicketCreationRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDueDateRuleUpdateRequest instantiates a new DueDateRuleUpdateRequest object.
+// NewTicketCreationRuleReorderResponse instantiates a new TicketCreationRuleReorderResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDueDateRuleUpdateRequest(data DueDateRuleDataUpdate) *DueDateRuleUpdateRequest {
-	this := DueDateRuleUpdateRequest{}
+func NewTicketCreationRuleReorderResponse(data []TicketCreationRuleReorderItem) *TicketCreationRuleReorderResponse {
+	this := TicketCreationRuleReorderResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewDueDateRuleUpdateRequestWithDefaults instantiates a new DueDateRuleUpdateRequest object.
+// NewTicketCreationRuleReorderResponseWithDefaults instantiates a new TicketCreationRuleReorderResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDueDateRuleUpdateRequestWithDefaults() *DueDateRuleUpdateRequest {
-	this := DueDateRuleUpdateRequest{}
+func NewTicketCreationRuleReorderResponseWithDefaults() *TicketCreationRuleReorderResponse {
+	this := TicketCreationRuleReorderResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *DueDateRuleUpdateRequest) GetData() DueDateRuleDataUpdate {
+func (o *TicketCreationRuleReorderResponse) GetData() []TicketCreationRuleReorderItem {
 	if o == nil {
-		var ret DueDateRuleDataUpdate
+		var ret []TicketCreationRuleReorderItem
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DueDateRuleUpdateRequest) GetData() DueDateRuleDataUpdate {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DueDateRuleUpdateRequest) GetDataOk() (*DueDateRuleDataUpdate, bool) {
+func (o *TicketCreationRuleReorderResponse) GetDataOk() (*[]TicketCreationRuleReorderItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *DueDateRuleUpdateRequest) GetDataOk() (*DueDateRuleDataUpdate, bool) {
 }
 
 // SetData sets field value.
-func (o *DueDateRuleUpdateRequest) SetData(v DueDateRuleDataUpdate) {
+func (o *TicketCreationRuleReorderResponse) SetData(v []TicketCreationRuleReorderItem) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DueDateRuleUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o TicketCreationRuleReorderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o DueDateRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DueDateRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TicketCreationRuleReorderResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DueDateRuleDataUpdate `json:"data"`
+		Data *[]TicketCreationRuleReorderItem `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -91,19 +91,10 @@ func (o *DueDateRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

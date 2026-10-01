@@ -12,7 +12,7 @@ import (
 
 // TicketCreationRuleCreateRequest The body of a ticket creation rule create request.
 type TicketCreationRuleCreateRequest struct {
-	// The data object for a ticket creation rule create or update request.
+	// The data object for a ticket creation rule create request.
 	Data TicketCreationRuleDataCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

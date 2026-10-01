@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TicketCreationRuleReorderRequest The body of the ticket creation rule reorder request.
+// TicketCreationRuleReorderRequest The body of a ticket creation rule reorder request.
 type TicketCreationRuleReorderRequest struct {
 	// The ordered list of all ticket creation rules. Every rule must be included.
 	Data []TicketCreationRuleReorderItem `json:"data"`

@@ -12,7 +12,7 @@ import (
 
 // MuteRuleCreateRequest The body of a mute rule create request.
 type MuteRuleCreateRequest struct {
-	// The data object for a mute rule create or update request.
+	// The data object for a mute rule create request.
 	Data MuteRuleDataCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

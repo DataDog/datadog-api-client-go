@@ -12,7 +12,7 @@ import (
 
 // DueDateRuleCreateRequest The body of a due date rule create request.
 type DueDateRuleCreateRequest struct {
-	// The data object for a due date rule create or update request.
+	// The data object for a due date rule create request.
 	Data DueDateRuleDataCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

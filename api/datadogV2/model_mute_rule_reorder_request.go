@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteRuleReorderRequest The body of the mute rule reorder request.
+// MuteRuleReorderRequest The body of a mute rule reorder request.
 type MuteRuleReorderRequest struct {
 	// The ordered list of all mute rules. Every rule must be included.
 	Data []MuteRuleReorderItem `json:"data"`
