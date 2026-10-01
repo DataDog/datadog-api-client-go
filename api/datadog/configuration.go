@@ -1244,6 +1244,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListJiraAccounts":                                       false,
 			"v2.ListJiraIssueTemplates":                                 false,
 			"v2.UpdateJiraIssueTemplate":                                false,
+			"v2.CreateArchiveSearch":                                    false,
+			"v2.GetArchiveSearch":                                       false,
 			"v2.AddRoleToRestrictionQuery":                              false,
 			"v2.CreateRestrictionQuery":                                 false,
 			"v2.DeleteRestrictionQuery":                                 false,

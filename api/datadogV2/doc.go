@@ -753,6 +753,8 @@
 //   - [LogsApi.ListLogs]
 //   - [LogsApi.ListLogsGet]
 //   - [LogsApi.SubmitLog]
+//   - [LogsArchiveSearchesApi.CreateArchiveSearch]
+//   - [LogsArchiveSearchesApi.GetArchiveSearch]
 //   - [LogsArchivesApi.AddReadRoleToArchive]
 //   - [LogsArchivesApi.CreateLogsArchive]
 //   - [LogsArchivesApi.DeleteLogsArchive]
