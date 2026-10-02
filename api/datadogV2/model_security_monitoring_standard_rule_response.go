@@ -14,6 +14,8 @@ type SecurityMonitoringStandardRuleResponse struct {
 	CalculatedFields []CalculatedField `json:"calculatedFields,omitempty"`
 	// Cases for generating signals.
 	Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
+	// The version of the rule at which its detection logic last changed. Updates that only change the name, message, tags, or notifications do not change this value.
+	CompatibleVersion *int64 `json:"compatibleVersion,omitempty"`
 	// How to generate compliance signals. Useful for cloud_configuration rules only.
 	ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 	// When the rule was created, timestamp in milliseconds.
@@ -142,6 +144,34 @@ func (o *SecurityMonitoringStandardRuleResponse) HasCases() bool {
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
 func (o *SecurityMonitoringStandardRuleResponse) SetCases(v []SecurityMonitoringRuleCase) {
 	o.Cases = v
+}
+
+// GetCompatibleVersion returns the CompatibleVersion field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetCompatibleVersion() int64 {
+	if o == nil || o.CompatibleVersion == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CompatibleVersion
+}
+
+// GetCompatibleVersionOk returns a tuple with the CompatibleVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetCompatibleVersionOk() (*int64, bool) {
+	if o == nil || o.CompatibleVersion == nil {
+		return nil, false
+	}
+	return o.CompatibleVersion, true
+}
+
+// HasCompatibleVersion returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasCompatibleVersion() bool {
+	return o != nil && o.CompatibleVersion != nil
+}
+
+// SetCompatibleVersion gets a reference to the given int64 and assigns it to the CompatibleVersion field.
+func (o *SecurityMonitoringStandardRuleResponse) SetCompatibleVersion(v int64) {
+	o.CompatibleVersion = &v
 }
 
 // GetComplianceSignalOptions returns the ComplianceSignalOptions field value if set, zero value otherwise.
@@ -895,6 +925,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Cases != nil {
 		toSerialize["cases"] = o.Cases
 	}
+	if o.CompatibleVersion != nil {
+		toSerialize["compatibleVersion"] = o.CompatibleVersion
+	}
 	if o.ComplianceSignalOptions != nil {
 		toSerialize["complianceSignalOptions"] = o.ComplianceSignalOptions
 	}
@@ -985,6 +1018,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	all := struct {
 		CalculatedFields        []CalculatedField                              `json:"calculatedFields,omitempty"`
 		Cases                   []SecurityMonitoringRuleCase                   `json:"cases,omitempty"`
+		CompatibleVersion       *int64                                         `json:"compatibleVersion,omitempty"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 		CreatedAt               *int64                                         `json:"createdAt,omitempty"`
 		CreationAuthorId        *int64                                         `json:"creationAuthorId,omitempty"`
@@ -1017,7 +1051,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "customMessage", "customName", "defaultTags", "deprecationDate", "filters", "groupSignalsBy", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "referenceTables", "schedulingOptions", "tags", "thirdPartyCases", "type", "updateAuthorId", "updatedAt", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "compatibleVersion", "complianceSignalOptions", "createdAt", "creationAuthorId", "customMessage", "customName", "defaultTags", "deprecationDate", "filters", "groupSignalsBy", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "referenceTables", "schedulingOptions", "tags", "thirdPartyCases", "type", "updateAuthorId", "updatedAt", "version"})
 	} else {
 		return err
 	}
@@ -1025,6 +1059,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	hasInvalidField := false
 	o.CalculatedFields = all.CalculatedFields
 	o.Cases = all.Cases
+	o.CompatibleVersion = all.CompatibleVersion
 	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
