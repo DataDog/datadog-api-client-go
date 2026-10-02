@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScaRequestDataAttributesDependenciesItems A dependency found in the repository, including its identity, location, and reachability metadata.
+// ScaRequestDataAttributesDependenciesItems A dependency found in the repository, including its identity, location, and `reachability metadata`.
 type ScaRequestDataAttributesDependenciesItems struct {
 	// A list of patterns or identifiers that should be excluded from analysis for this dependency.
 	Exclusions []string `json:"exclusions,omitempty"`
