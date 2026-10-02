@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdatePriorityRequest Case update priority request
+// CaseUpdatePriorityRequest Work item update priority request
 type CaseUpdatePriorityRequest struct {
-	// Case priority status
+	// Work item priority status
 	Data CaseUpdatePriority `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

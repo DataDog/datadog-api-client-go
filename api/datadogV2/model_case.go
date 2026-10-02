@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Case A case
+// Case A work item
 type Case struct {
-	// Case resource attributes
+	// Work item resource attributes
 	Attributes CaseAttributes `json:"attributes"`
-	// Case's identifier
+	// Work item's identifier
 	Id string `json:"id"`
-	// Resources related to a case
+	// Resources related to a work item
 	Relationships *CaseRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

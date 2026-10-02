@@ -12,9 +12,9 @@ import (
 
 // CaseBulkUpdateRequestData Data object wrapping the bulk update type and attributes.
 type CaseBulkUpdateRequestData struct {
-	// Attributes for the bulk update, specifying which cases to update and the action to apply.
+	// Attributes for the bulk update, specifying which work items to update and the action to apply.
 	Attributes CaseBulkUpdateRequestAttributes `json:"attributes"`
-	// JSON:API resource type for bulk case operations.
+	// JSON:API resource type for bulk work item operations.
 	Type CaseBulkResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

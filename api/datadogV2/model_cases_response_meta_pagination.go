@@ -12,7 +12,7 @@ import (
 type CasesResponseMetaPagination struct {
 	// Current page number
 	Current *int64 `json:"current,omitempty"`
-	// Number of cases in current page
+	// Number of work items in current page
 	Size *int64 `json:"size,omitempty"`
 	// Total number of pages
 	Total *int64 `json:"total,omitempty"`

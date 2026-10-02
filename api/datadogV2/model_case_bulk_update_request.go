@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseBulkUpdateRequest Request payload for applying a single action (such as changing priority, status, or assignment) to multiple cases at once.
+// CaseBulkUpdateRequest Request payload for applying a single action (such as changing priority, status, or assignment) to multiple work items at once.
 type CaseBulkUpdateRequest struct {
 	// Data object wrapping the bulk update type and attributes.
 	Data CaseBulkUpdateRequestData `json:"data"`

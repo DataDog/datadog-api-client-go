@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewUpdateAttributes Attributes that can be updated on a case view. All fields are optional; only provided fields are changed.
+// CaseViewUpdateAttributes Attributes that can be updated on a work item view. All fields are optional; only provided fields are changed.
 type CaseViewUpdateAttributes struct {
 	// The name of the view.
 	Name *string `json:"name,omitempty"`
-	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching cases.
+	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching work items.
 	NpRuleId *string `json:"np_rule_id,omitempty"`
-	// The query used to filter cases in this view.
+	// The query used to filter work items in this view.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

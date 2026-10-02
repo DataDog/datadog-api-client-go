@@ -10,7 +10,7 @@ import (
 
 // CaseNotificationRuleResponse Notification rule response
 type CaseNotificationRuleResponse struct {
-	// A notification rule for case management
+	// A notification rule for Work Management
 	Data *CaseNotificationRule `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

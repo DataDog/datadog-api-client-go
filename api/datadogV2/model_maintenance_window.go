@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceWindow A maintenance window that defines a scheduled time period during which case-related notifications and automation rules are suppressed. Each maintenance window applies to cases matching a specified query.
+// MaintenanceWindow A maintenance window that defines a scheduled time period during which notifications and automation rules related to work items are suppressed. Each maintenance window applies to work items matching a specified query.
 type MaintenanceWindow struct {
-	// Attributes of a maintenance window, including its schedule and the query that determines which cases are affected.
+	// Attributes of a maintenance window, including its schedule and the query that determines which work items are affected.
 	Attributes MaintenanceWindowAttributes `json:"attributes"`
 	// The maintenance window's identifier.
 	Id string `json:"id"`

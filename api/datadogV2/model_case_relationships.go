@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseRelationships Resources related to a case
+// CaseRelationships Resources related to a work item
 type CaseRelationships struct {
 	// Relationship to user.
 	Assignee NullableNullableUserRelationship `json:"assignee,omitempty"`

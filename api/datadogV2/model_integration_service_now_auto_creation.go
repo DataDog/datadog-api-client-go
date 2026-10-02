@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationServiceNowAutoCreation Auto-creation settings for ServiceNow incidents from cases.
+// IntegrationServiceNowAutoCreation Auto-creation settings for ServiceNow incidents from work items.
 type IntegrationServiceNowAutoCreation struct {
 	// Whether automatic ServiceNow incident creation is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

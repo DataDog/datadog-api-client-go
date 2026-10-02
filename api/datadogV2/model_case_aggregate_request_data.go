@@ -14,7 +14,7 @@ import (
 type CaseAggregateRequestData struct {
 	// Attributes for the aggregation request, including the search query and grouping configuration.
 	Attributes CaseAggregateRequestAttributes `json:"attributes"`
-	// JSON:API resource type for case aggregation requests.
+	// JSON:API resource type for work item aggregation requests.
 	Type CaseAggregateResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceWindowAttributes Attributes of a maintenance window, including its schedule and the query that determines which cases are affected.
+// MaintenanceWindowAttributes Attributes of a maintenance window, including its schedule and the query that determines which work items are affected.
 type MaintenanceWindowAttributes struct {
 	// The UUID of the user who created this maintenance window. Read-only.
 	CreatedBy *string `json:"created_by,omitempty"`
@@ -19,7 +19,7 @@ type MaintenanceWindowAttributes struct {
 	EndAt time.Time `json:"end_at"`
 	// A human-readable name for the maintenance window (for example, `Database migration - Dec 15`).
 	Name string `json:"name"`
-	// A case search query that determines which cases are affected during the maintenance window. Uses the same syntax as the Case Management search bar.
+	// A work item search query that determines which work items are affected during the maintenance window. Uses the same syntax as the Work Management search bar.
 	Query string `json:"query"`
 	// The ISO 8601 timestamp when the maintenance window begins and notifications start being suppressed.
 	StartAt time.Time `json:"start_at"`

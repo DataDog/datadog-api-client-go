@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseWatcherResourceType JSON:API resource type for case watchers.
+// CaseWatcherResourceType JSON:API resource type for work item watchers.
 type CaseWatcherResourceType string
 
 // List of CaseWatcherResourceType.

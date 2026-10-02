@@ -12,9 +12,9 @@ import (
 
 // CaseInsightsData Data object containing the insights to add or remove.
 type CaseInsightsData struct {
-	// Attributes for adding or removing insights from a case.
+	// Attributes for adding or removing insights from a work item.
 	Attributes CaseInsightsAttributes `json:"attributes"`
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectFavorite Represents a case project that the current user has bookmarked for quick access. Favorited projects appear prominently in the Case Management UI.
+// ProjectFavorite Represents a Work Management project that the current user has bookmarked for quick access. Favorited projects appear prominently in the Work Management UI.
 type ProjectFavorite struct {
 	// The UUID of the favorited project.
 	Id string `json:"id"`

@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ServiceNowTicket ServiceNow ticket attached to case
+// ServiceNowTicket ServiceNow ticket attached to work item
 type ServiceNowTicket struct {
 	// ServiceNow ticket information
 	Result *ServiceNowTicketResult `json:"result,omitempty"`
-	// Case status
+	// Work item status
 	Status *Case3rdPartyTicketStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

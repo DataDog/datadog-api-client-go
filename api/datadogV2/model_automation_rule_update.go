@@ -14,7 +14,7 @@ import (
 type AutomationRuleUpdate struct {
 	// Attributes required to create an automation rule.
 	Attributes *AutomationRuleCreateAttributes `json:"attributes,omitempty"`
-	// JSON:API resource type for case automation rules.
+	// JSON:API resource type for work item automation rules.
 	Type CaseAutomationRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

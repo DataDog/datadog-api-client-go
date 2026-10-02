@@ -12,7 +12,7 @@ import (
 type IntegrationMonitor struct {
 	// Whether auto-resolve is enabled.
 	AutoResolveEnabled *bool `json:"auto_resolve_enabled,omitempty"`
-	// Case type ID for monitor integration.
+	// Work item type ID for monitor integration.
 	CaseTypeId *string `json:"case_type_id,omitempty"`
 	// Whether monitor integration is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

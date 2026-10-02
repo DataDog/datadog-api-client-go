@@ -12,7 +12,7 @@ import (
 
 // ProjectCreateAttributes Project creation attributes.
 type ProjectCreateAttributes struct {
-	// List of enabled custom case type IDs.
+	// List of enabled custom work item type IDs.
 	EnabledCustomCaseTypes []string `json:"enabled_custom_case_types,omitempty"`
 	// Project's key. Cannot be "CASE".
 	Key string `json:"key"`
