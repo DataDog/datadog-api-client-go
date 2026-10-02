@@ -3,6 +3,7 @@
 // Copyright 2019-Present Datadog, Inc.
 
 // List of APIs:
+//   - [AIImpactApi.CreateAIImpactUserActivity]
 //   - [APIManagementApi.CreateOpenAPI]
 //   - [APIManagementApi.DeleteOpenAPI]
 //   - [APIManagementApi.GetOpenAPI]
