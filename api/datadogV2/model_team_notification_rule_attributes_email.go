@@ -12,6 +12,8 @@ import (
 type TeamNotificationRuleAttributesEmail struct {
 	// Flag indicating email notification
 	Enabled *bool `json:"enabled,omitempty"`
+	// Email address to notify. When omitted and email notifications are enabled, notifications are sent to all team members.
+	RecipientEmail *string `json:"recipient_email,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *TeamNotificationRuleAttributesEmail) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetRecipientEmail returns the RecipientEmail field value if set, zero value otherwise.
+func (o *TeamNotificationRuleAttributesEmail) GetRecipientEmail() string {
+	if o == nil || o.RecipientEmail == nil {
+		var ret string
+		return ret
+	}
+	return *o.RecipientEmail
+}
+
+// GetRecipientEmailOk returns a tuple with the RecipientEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamNotificationRuleAttributesEmail) GetRecipientEmailOk() (*string, bool) {
+	if o == nil || o.RecipientEmail == nil {
+		return nil, false
+	}
+	return o.RecipientEmail, true
+}
+
+// HasRecipientEmail returns a boolean if a field has been set.
+func (o *TeamNotificationRuleAttributesEmail) HasRecipientEmail() bool {
+	return o != nil && o.RecipientEmail != nil
+}
+
+// SetRecipientEmail gets a reference to the given string and assigns it to the RecipientEmail field.
+func (o *TeamNotificationRuleAttributesEmail) SetRecipientEmail(v string) {
+	o.RecipientEmail = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamNotificationRuleAttributesEmail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o TeamNotificationRuleAttributesEmail) MarshalJSON() ([]byte, error) {
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
+	}
+	if o.RecipientEmail != nil {
+		toSerialize["recipient_email"] = o.RecipientEmail
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,18 +114,20 @@ func (o TeamNotificationRuleAttributesEmail) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamNotificationRuleAttributesEmail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled *bool `json:"enabled,omitempty"`
+		Enabled        *bool   `json:"enabled,omitempty"`
+		RecipientEmail *string `json:"recipient_email,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "recipient_email"})
 	} else {
 		return err
 	}
 	o.Enabled = all.Enabled
+	o.RecipientEmail = all.RecipientEmail
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -16,6 +16,8 @@ type TeamNotificationRuleAttributes struct {
 	MsTeams *TeamNotificationRuleAttributesMsTeams `json:"ms_teams,omitempty"`
 	// PagerDuty notification settings for the team
 	Pagerduty *TeamNotificationRuleAttributesPagerduty `json:"pagerduty,omitempty"`
+	// ServiceNow notification settings for the team.
+	Servicenow *TeamNotificationRuleAttributesServiceNow `json:"servicenow,omitempty"`
 	// Slack notification settings for the team
 	Slack *TeamNotificationRuleAttributesSlack `json:"slack,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -124,6 +126,34 @@ func (o *TeamNotificationRuleAttributes) SetPagerduty(v TeamNotificationRuleAttr
 	o.Pagerduty = &v
 }
 
+// GetServicenow returns the Servicenow field value if set, zero value otherwise.
+func (o *TeamNotificationRuleAttributes) GetServicenow() TeamNotificationRuleAttributesServiceNow {
+	if o == nil || o.Servicenow == nil {
+		var ret TeamNotificationRuleAttributesServiceNow
+		return ret
+	}
+	return *o.Servicenow
+}
+
+// GetServicenowOk returns a tuple with the Servicenow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamNotificationRuleAttributes) GetServicenowOk() (*TeamNotificationRuleAttributesServiceNow, bool) {
+	if o == nil || o.Servicenow == nil {
+		return nil, false
+	}
+	return o.Servicenow, true
+}
+
+// HasServicenow returns a boolean if a field has been set.
+func (o *TeamNotificationRuleAttributes) HasServicenow() bool {
+	return o != nil && o.Servicenow != nil
+}
+
+// SetServicenow gets a reference to the given TeamNotificationRuleAttributesServiceNow and assigns it to the Servicenow field.
+func (o *TeamNotificationRuleAttributes) SetServicenow(v TeamNotificationRuleAttributesServiceNow) {
+	o.Servicenow = &v
+}
+
 // GetSlack returns the Slack field value if set, zero value otherwise.
 func (o *TeamNotificationRuleAttributes) GetSlack() TeamNotificationRuleAttributesSlack {
 	if o == nil || o.Slack == nil {
@@ -167,6 +197,9 @@ func (o TeamNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.Pagerduty != nil {
 		toSerialize["pagerduty"] = o.Pagerduty
 	}
+	if o.Servicenow != nil {
+		toSerialize["servicenow"] = o.Servicenow
+	}
 	if o.Slack != nil {
 		toSerialize["slack"] = o.Slack
 	}
@@ -180,17 +213,18 @@ func (o TeamNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email     *TeamNotificationRuleAttributesEmail     `json:"email,omitempty"`
-		MsTeams   *TeamNotificationRuleAttributesMsTeams   `json:"ms_teams,omitempty"`
-		Pagerduty *TeamNotificationRuleAttributesPagerduty `json:"pagerduty,omitempty"`
-		Slack     *TeamNotificationRuleAttributesSlack     `json:"slack,omitempty"`
+		Email      *TeamNotificationRuleAttributesEmail      `json:"email,omitempty"`
+		MsTeams    *TeamNotificationRuleAttributesMsTeams    `json:"ms_teams,omitempty"`
+		Pagerduty  *TeamNotificationRuleAttributesPagerduty  `json:"pagerduty,omitempty"`
+		Servicenow *TeamNotificationRuleAttributesServiceNow `json:"servicenow,omitempty"`
+		Slack      *TeamNotificationRuleAttributesSlack      `json:"slack,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "ms_teams", "pagerduty", "slack"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"email", "ms_teams", "pagerduty", "servicenow", "slack"})
 	} else {
 		return err
 	}
@@ -208,6 +242,10 @@ func (o *TeamNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.Pagerduty = all.Pagerduty
+	if all.Servicenow != nil && all.Servicenow.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Servicenow = all.Servicenow
 	if all.Slack != nil && all.Slack.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
