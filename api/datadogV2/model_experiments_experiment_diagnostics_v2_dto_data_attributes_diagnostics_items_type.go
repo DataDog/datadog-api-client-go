@@ -1,0 +1,94 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType Kind of diagnostic check performed.
+type ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType string
+
+// List of ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType.
+const (
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_EXPERIMENT_HAS_ASSIGNMENTS       ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "EXPERIMENT_HAS_ASSIGNMENTS"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_METRIC_HAS_DATA                  ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "METRIC_HAS_DATA"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_ASSIGNMENT_IMBALANCE             ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "ASSIGNMENT_IMBALANCE"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_METRIC_WINSORIZE_ZERO            ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "METRIC_WINSORIZE_ZERO"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_PRE_EXPERIMENT_IMBALANCE         ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "PRE_EXPERIMENT_IMBALANCE"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MIXED_ASSIGNMENTS                ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MIXED_ASSIGNMENTS"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_DIMENSIONAL_ASSIGNMENT_IMBALANCE ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "DIMENSIONAL_ASSIGNMENT_IMBALANCE"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_FLAG_HAS_EVALUATIONS             ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "FLAG_HAS_EVALUATIONS"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_IMPLAUSIBLE_PRIOR                ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "IMPLAUSIBLE_PRIOR"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_DIMENSIONAL_DEGRADATION          ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "DIMENSIONAL_DEGRADATION"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_PIPELINE_STATUS                  ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "PIPELINE_STATUS"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_CONFIGURATION    ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MAPPED_ANALYSIS_CONFIGURATION"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_COVERAGE         ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MAPPED_ANALYSIS_COVERAGE"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_COLLISIONS       ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MAPPED_ANALYSIS_COLLISIONS"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_FANOUT           ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MAPPED_ANALYSIS_FANOUT"
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_CHANGE           ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType = "MAPPED_ANALYSIS_CHANGE"
+)
+
+var allowedExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeEnumValues = []ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType{
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_EXPERIMENT_HAS_ASSIGNMENTS,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_METRIC_HAS_DATA,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_ASSIGNMENT_IMBALANCE,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_METRIC_WINSORIZE_ZERO,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_PRE_EXPERIMENT_IMBALANCE,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MIXED_ASSIGNMENTS,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_DIMENSIONAL_ASSIGNMENT_IMBALANCE,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_FLAG_HAS_EVALUATIONS,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_IMPLAUSIBLE_PRIOR,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_DIMENSIONAL_DEGRADATION,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_PIPELINE_STATUS,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_CONFIGURATION,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_COVERAGE,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_COLLISIONS,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_FANOUT,
+	EXPERIMENTSEXPERIMENTDIAGNOSTICSV2DTODATAATTRIBUTESDIAGNOSTICSITEMSTYPE_MAPPED_ANALYSIS_CHANGE,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType) GetAllowedValues() []ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType {
+	return allowedExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeEnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType(value)
+	return nil
+}
+
+// NewExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeFromValue returns a pointer to a valid ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeFromValue(v string) (*ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType, error) {
+	ev := ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType: valid values are %v", v, allowedExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeEnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType) IsValid() bool {
+	for _, existing := range allowedExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType value.
+func (v ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType) Ptr() *ExperimentsExperimentDiagnosticsV2DTODataAttributesDiagnosticsItemsType {
+	return &v
+}
