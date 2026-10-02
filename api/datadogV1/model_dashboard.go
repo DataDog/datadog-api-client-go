@@ -24,6 +24,8 @@ type Dashboard struct {
 	DefaultTimeframe *DashboardDefaultTimeframeSetting `json:"default_timeframe,omitempty"`
 	// Description of the dashboard.
 	Description datadog.NullableString `json:"description,omitempty"`
+	// The experience type of the dashboard.
+	ExperienceType *DashboardExperienceType `json:"experience_type,omitempty"`
 	// ID of the dashboard.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
@@ -242,6 +244,34 @@ func (o *Dashboard) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil.
 func (o *Dashboard) UnsetDescription() {
 	o.Description.Unset()
+}
+
+// GetExperienceType returns the ExperienceType field value if set, zero value otherwise.
+func (o *Dashboard) GetExperienceType() DashboardExperienceType {
+	if o == nil || o.ExperienceType == nil {
+		var ret DashboardExperienceType
+		return ret
+	}
+	return *o.ExperienceType
+}
+
+// GetExperienceTypeOk returns a tuple with the ExperienceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetExperienceTypeOk() (*DashboardExperienceType, bool) {
+	if o == nil || o.ExperienceType == nil {
+		return nil, false
+	}
+	return o.ExperienceType, true
+}
+
+// HasExperienceType returns a boolean if a field has been set.
+func (o *Dashboard) HasExperienceType() bool {
+	return o != nil && o.ExperienceType != nil
+}
+
+// SetExperienceType gets a reference to the given DashboardExperienceType and assigns it to the ExperienceType field.
+func (o *Dashboard) SetExperienceType(v DashboardExperienceType) {
+	o.ExperienceType = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -674,6 +704,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	if o.ExperienceType != nil {
+		toSerialize["experience_type"] = o.ExperienceType
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -729,6 +762,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
 		DefaultTimeframe        *DashboardDefaultTimeframeSetting `json:"default_timeframe,omitempty"`
 		Description             datadog.NullableString            `json:"description,omitempty"`
+		ExperienceType          *DashboardExperienceType          `json:"experience_type,omitempty"`
 		Id                      *string                           `json:"id,omitempty"`
 		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
 		LayoutType              *DashboardLayoutType              `json:"layout_type"`
@@ -758,7 +792,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "default_timeframe", "description", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "default_timeframe", "description", "experience_type", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
 	} else {
 		return err
 	}
@@ -769,6 +803,11 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.DefaultTimeframe = all.DefaultTimeframe
 	o.Description = all.Description
+	if all.ExperienceType != nil && !all.ExperienceType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ExperienceType = all.ExperienceType
+	}
 	o.Id = all.Id
 	o.IsReadOnly = all.IsReadOnly
 	if !all.LayoutType.IsValid() {
