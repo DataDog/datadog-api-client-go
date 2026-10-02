@@ -4788,7 +4788,8 @@ func (a *CloudCostManagementApi) ListCostTagMetadata(ctx _context.Context, filte
 
 // ListCostTagMetadataMetricsOptionalParameters holds optional parameters for ListCostTagMetadataMetrics.
 type ListCostTagMetadataMetricsOptionalParameters struct {
-	FilterProvider *string
+	FilterProvider           *string
+	FilterEnabledMetricsOnly *bool
 }
 
 // NewListCostTagMetadataMetricsOptionalParameters creates an empty struct for parameters.
@@ -4800,6 +4801,12 @@ func NewListCostTagMetadataMetricsOptionalParameters() *ListCostTagMetadataMetri
 // WithFilterProvider sets the corresponding parameter name and returns the struct.
 func (r *ListCostTagMetadataMetricsOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagMetadataMetricsOptionalParameters {
 	r.FilterProvider = &filterProvider
+	return r
+}
+
+// WithFilterEnabledMetricsOnly sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataMetricsOptionalParameters) WithFilterEnabledMetricsOnly(filterEnabledMetricsOnly bool) *ListCostTagMetadataMetricsOptionalParameters {
+	r.FilterEnabledMetricsOnly = &filterEnabledMetricsOnly
 	return r
 }
 
@@ -4842,6 +4849,9 @@ func (a *CloudCostManagementApi) ListCostTagMetadataMetrics(ctx _context.Context
 	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
 	if optionalParams.FilterProvider != nil {
 		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	if optionalParams.FilterEnabledMetricsOnly != nil {
+		localVarQueryParams.Add("filter[enabled_metrics_only]", datadog.ParameterToString(*optionalParams.FilterEnabledMetricsOnly, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
