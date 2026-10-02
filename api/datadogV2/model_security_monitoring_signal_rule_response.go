@@ -12,6 +12,8 @@ import (
 type SecurityMonitoringSignalRuleResponse struct {
 	// Cases for generating signals.
 	Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
+	// The version of the rule at which its detection logic last changed. Updates that only change the name, message, tags, or notifications do not change this value.
+	CompatibleVersion *int64 `json:"compatibleVersion,omitempty"`
 	// When the rule was created, timestamp in milliseconds.
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// User ID of the user who created the rule.
@@ -98,6 +100,34 @@ func (o *SecurityMonitoringSignalRuleResponse) HasCases() bool {
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
 func (o *SecurityMonitoringSignalRuleResponse) SetCases(v []SecurityMonitoringRuleCase) {
 	o.Cases = v
+}
+
+// GetCompatibleVersion returns the CompatibleVersion field value if set, zero value otherwise.
+func (o *SecurityMonitoringSignalRuleResponse) GetCompatibleVersion() int64 {
+	if o == nil || o.CompatibleVersion == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CompatibleVersion
+}
+
+// GetCompatibleVersionOk returns a tuple with the CompatibleVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringSignalRuleResponse) GetCompatibleVersionOk() (*int64, bool) {
+	if o == nil || o.CompatibleVersion == nil {
+		return nil, false
+	}
+	return o.CompatibleVersion, true
+}
+
+// HasCompatibleVersion returns a boolean if a field has been set.
+func (o *SecurityMonitoringSignalRuleResponse) HasCompatibleVersion() bool {
+	return o != nil && o.CompatibleVersion != nil
+}
+
+// SetCompatibleVersion gets a reference to the given int64 and assigns it to the CompatibleVersion field.
+func (o *SecurityMonitoringSignalRuleResponse) SetCompatibleVersion(v int64) {
+	o.CompatibleVersion = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -641,6 +671,9 @@ func (o SecurityMonitoringSignalRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Cases != nil {
 		toSerialize["cases"] = o.Cases
 	}
+	if o.CompatibleVersion != nil {
+		toSerialize["compatibleVersion"] = o.CompatibleVersion
+	}
 	if o.CreatedAt != nil {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
@@ -708,39 +741,41 @@ func (o SecurityMonitoringSignalRuleResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases            []SecurityMonitoringRuleCase                `json:"cases,omitempty"`
-		CreatedAt        *int64                                      `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                                      `json:"creationAuthorId,omitempty"`
-		CustomMessage    *string                                     `json:"customMessage,omitempty"`
-		CustomName       *string                                     `json:"customName,omitempty"`
-		DeprecationDate  *int64                                      `json:"deprecationDate,omitempty"`
-		Filters          []SecurityMonitoringFilter                  `json:"filters,omitempty"`
-		HasExtendedTitle *bool                                       `json:"hasExtendedTitle,omitempty"`
-		Id               *string                                     `json:"id,omitempty"`
-		IsDefault        *bool                                       `json:"isDefault,omitempty"`
-		IsDeleted        *bool                                       `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                                       `json:"isEnabled,omitempty"`
-		Message          *string                                     `json:"message,omitempty"`
-		Name             *string                                     `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions              `json:"options,omitempty"`
-		Queries          []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
-		Tags             []string                                    `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleType           `json:"type,omitempty"`
-		UpdateAuthorId   *int64                                      `json:"updateAuthorId,omitempty"`
-		Version          *int64                                      `json:"version,omitempty"`
+		Cases             []SecurityMonitoringRuleCase                `json:"cases,omitempty"`
+		CompatibleVersion *int64                                      `json:"compatibleVersion,omitempty"`
+		CreatedAt         *int64                                      `json:"createdAt,omitempty"`
+		CreationAuthorId  *int64                                      `json:"creationAuthorId,omitempty"`
+		CustomMessage     *string                                     `json:"customMessage,omitempty"`
+		CustomName        *string                                     `json:"customName,omitempty"`
+		DeprecationDate   *int64                                      `json:"deprecationDate,omitempty"`
+		Filters           []SecurityMonitoringFilter                  `json:"filters,omitempty"`
+		HasExtendedTitle  *bool                                       `json:"hasExtendedTitle,omitempty"`
+		Id                *string                                     `json:"id,omitempty"`
+		IsDefault         *bool                                       `json:"isDefault,omitempty"`
+		IsDeleted         *bool                                       `json:"isDeleted,omitempty"`
+		IsEnabled         *bool                                       `json:"isEnabled,omitempty"`
+		Message           *string                                     `json:"message,omitempty"`
+		Name              *string                                     `json:"name,omitempty"`
+		Options           *SecurityMonitoringRuleOptions              `json:"options,omitempty"`
+		Queries           []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
+		Tags              []string                                    `json:"tags,omitempty"`
+		Type              *SecurityMonitoringSignalRuleType           `json:"type,omitempty"`
+		UpdateAuthorId    *int64                                      `json:"updateAuthorId,omitempty"`
+		Version           *int64                                      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "createdAt", "creationAuthorId", "customMessage", "customName", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "type", "updateAuthorId", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "compatibleVersion", "createdAt", "creationAuthorId", "customMessage", "customName", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "type", "updateAuthorId", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Cases = all.Cases
+	o.CompatibleVersion = all.CompatibleVersion
 	o.CreatedAt = all.CreatedAt
 	o.CreationAuthorId = all.CreationAuthorId
 	o.CustomMessage = all.CustomMessage
