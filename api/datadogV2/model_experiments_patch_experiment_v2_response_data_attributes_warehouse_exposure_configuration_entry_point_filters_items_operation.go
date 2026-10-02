@@ -1,0 +1,66 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation Comparison applied by the warehouse entry-point filter.
+type ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation string
+
+// List of ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation.
+const (
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESWAREHOUSEEXPOSURECONFIGURATIONENTRYPOINTFILTERSITEMSOPERATION_IS     ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation = "IS"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESWAREHOUSEEXPOSURECONFIGURATIONENTRYPOINTFILTERSITEMSOPERATION_IS_NOT ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation = "IS_NOT"
+)
+
+var allowedExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationEnumValues = []ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation{
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESWAREHOUSEEXPOSURECONFIGURATIONENTRYPOINTFILTERSITEMSOPERATION_IS,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESWAREHOUSEEXPOSURECONFIGURATIONENTRYPOINTFILTERSITEMSOPERATION_IS_NOT,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) GetAllowedValues() []ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation {
+	return allowedExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationEnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation(value)
+	return nil
+}
+
+// NewExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationFromValue returns a pointer to a valid ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationFromValue(v string) (*ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation, error) {
+	ev := ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation: valid values are %v", v, allowedExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationEnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) IsValid() bool {
+	for _, existing := range allowedExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperationEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation value.
+func (v ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) Ptr() *ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation {
+	return &v
+}

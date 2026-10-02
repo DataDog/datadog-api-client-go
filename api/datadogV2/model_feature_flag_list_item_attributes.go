@@ -27,6 +27,8 @@ type FeatureFlagListItemAttributes struct {
 	DistributionChannel *string `json:"distribution_channel,omitempty"`
 	// Environment-specific settings for the feature flag.
 	FeatureFlagEnvironments []FeatureFlagEnvironmentListItem `json:"feature_flag_environments,omitempty"`
+	// Indicates whether the current user has marked the feature flag as a favorite.
+	IsFavorite *bool `json:"is_favorite,omitempty"`
 	// JSON schema for validation when value_type is JSON.
 	JsonSchema datadog.NullableString `json:"json_schema,omitempty"`
 	// The unique key of the feature flag.
@@ -37,6 +39,8 @@ type FeatureFlagListItemAttributes struct {
 	Name string `json:"name"`
 	// Indicates whether this feature flag requires approval for changes.
 	RequireApproval *bool `json:"require_approval,omitempty"`
+	// The feature flag's current staleness state and suggested actions.
+	StalenessDetails *FeatureFlagStalenessDetails `json:"staleness_details,omitempty"`
 	// Indicates the staleness status of the feature flag.
 	StalenessStatus *string `json:"staleness_status,omitempty"`
 	// Tags associated with the feature flag.
@@ -248,6 +252,34 @@ func (o *FeatureFlagListItemAttributes) SetFeatureFlagEnvironments(v []FeatureFl
 	o.FeatureFlagEnvironments = v
 }
 
+// GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
+func (o *FeatureFlagListItemAttributes) GetIsFavorite() bool {
+	if o == nil || o.IsFavorite == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsFavorite
+}
+
+// GetIsFavoriteOk returns a tuple with the IsFavorite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagListItemAttributes) GetIsFavoriteOk() (*bool, bool) {
+	if o == nil || o.IsFavorite == nil {
+		return nil, false
+	}
+	return o.IsFavorite, true
+}
+
+// HasIsFavorite returns a boolean if a field has been set.
+func (o *FeatureFlagListItemAttributes) HasIsFavorite() bool {
+	return o != nil && o.IsFavorite != nil
+}
+
+// SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
+func (o *FeatureFlagListItemAttributes) SetIsFavorite(v bool) {
+	o.IsFavorite = &v
+}
+
 // GetJsonSchema returns the JsonSchema field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FeatureFlagListItemAttributes) GetJsonSchema() string {
 	if o == nil || o.JsonSchema.Get() == nil {
@@ -387,6 +419,34 @@ func (o *FeatureFlagListItemAttributes) HasRequireApproval() bool {
 // SetRequireApproval gets a reference to the given bool and assigns it to the RequireApproval field.
 func (o *FeatureFlagListItemAttributes) SetRequireApproval(v bool) {
 	o.RequireApproval = &v
+}
+
+// GetStalenessDetails returns the StalenessDetails field value if set, zero value otherwise.
+func (o *FeatureFlagListItemAttributes) GetStalenessDetails() FeatureFlagStalenessDetails {
+	if o == nil || o.StalenessDetails == nil {
+		var ret FeatureFlagStalenessDetails
+		return ret
+	}
+	return *o.StalenessDetails
+}
+
+// GetStalenessDetailsOk returns a tuple with the StalenessDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagListItemAttributes) GetStalenessDetailsOk() (*FeatureFlagStalenessDetails, bool) {
+	if o == nil || o.StalenessDetails == nil {
+		return nil, false
+	}
+	return o.StalenessDetails, true
+}
+
+// HasStalenessDetails returns a boolean if a field has been set.
+func (o *FeatureFlagListItemAttributes) HasStalenessDetails() bool {
+	return o != nil && o.StalenessDetails != nil
+}
+
+// SetStalenessDetails gets a reference to the given FeatureFlagStalenessDetails and assigns it to the StalenessDetails field.
+func (o *FeatureFlagListItemAttributes) SetStalenessDetails(v FeatureFlagStalenessDetails) {
+	o.StalenessDetails = &v
 }
 
 // GetStalenessStatus returns the StalenessStatus field value if set, zero value otherwise.
@@ -545,6 +605,9 @@ func (o FeatureFlagListItemAttributes) MarshalJSON() ([]byte, error) {
 	if o.FeatureFlagEnvironments != nil {
 		toSerialize["feature_flag_environments"] = o.FeatureFlagEnvironments
 	}
+	if o.IsFavorite != nil {
+		toSerialize["is_favorite"] = o.IsFavorite
+	}
 	if o.JsonSchema.IsSet() {
 		toSerialize["json_schema"] = o.JsonSchema.Get()
 	}
@@ -555,6 +618,9 @@ func (o FeatureFlagListItemAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["name"] = o.Name
 	if o.RequireApproval != nil {
 		toSerialize["require_approval"] = o.RequireApproval
+	}
+	if o.StalenessDetails != nil {
+		toSerialize["staleness_details"] = o.StalenessDetails
 	}
 	if o.StalenessStatus != nil {
 		toSerialize["staleness_status"] = o.StalenessStatus
@@ -587,11 +653,13 @@ func (o *FeatureFlagListItemAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		Description             *string                          `json:"description"`
 		DistributionChannel     *string                          `json:"distribution_channel,omitempty"`
 		FeatureFlagEnvironments []FeatureFlagEnvironmentListItem `json:"feature_flag_environments,omitempty"`
+		IsFavorite              *bool                            `json:"is_favorite,omitempty"`
 		JsonSchema              datadog.NullableString           `json:"json_schema,omitempty"`
 		Key                     *string                          `json:"key"`
 		LastUpdatedBy           *uuid.UUID                       `json:"last_updated_by,omitempty"`
 		Name                    *string                          `json:"name"`
 		RequireApproval         *bool                            `json:"require_approval,omitempty"`
+		StalenessDetails        *FeatureFlagStalenessDetails     `json:"staleness_details,omitempty"`
 		StalenessStatus         *string                          `json:"staleness_status,omitempty"`
 		Tags                    []string                         `json:"tags,omitempty"`
 		UpdatedAt               *time.Time                       `json:"updated_at,omitempty"`
@@ -618,7 +686,7 @@ func (o *FeatureFlagListItemAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_status", "tags", "updated_at", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "is_favorite", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_details", "staleness_status", "tags", "updated_at", "value_type", "variants"})
 	} else {
 		return err
 	}
@@ -630,11 +698,16 @@ func (o *FeatureFlagListItemAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Description = *all.Description
 	o.DistributionChannel = all.DistributionChannel
 	o.FeatureFlagEnvironments = all.FeatureFlagEnvironments
+	o.IsFavorite = all.IsFavorite
 	o.JsonSchema = all.JsonSchema
 	o.Key = *all.Key
 	o.LastUpdatedBy = all.LastUpdatedBy
 	o.Name = *all.Name
 	o.RequireApproval = all.RequireApproval
+	if all.StalenessDetails != nil && all.StalenessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.StalenessDetails = all.StalenessDetails
 	o.StalenessStatus = all.StalenessStatus
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt

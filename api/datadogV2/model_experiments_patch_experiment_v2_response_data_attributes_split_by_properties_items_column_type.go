@@ -1,0 +1,90 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType Type of the Datadog exposure field or Warehouse column.
+type ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType string
+
+// List of ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType.
+const (
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_VARCHAR           ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "varchar"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INT               ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "int"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DOUBLE            ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "double"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_BOOLEAN_DATADOG   ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "boolean"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_VARCHAR_ARRAY     ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "varchar_array"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INT_ARRAY         ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "int_array"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DOUBLE_ARRAY      ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "double_array"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_RAW               ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "raw"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_STRING            ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "STRING"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INTEGER           ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "INTEGER"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_FLOAT             ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "FLOAT"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_BOOLEAN_WAREHOUSE ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "BOOLEAN"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DATE              ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "DATE"
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_TIMESTAMP         ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType = "TIMESTAMP"
+)
+
+var allowedExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeEnumValues = []ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType{
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_VARCHAR,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INT,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DOUBLE,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_BOOLEAN_DATADOG,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_VARCHAR_ARRAY,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INT_ARRAY,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DOUBLE_ARRAY,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_RAW,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_STRING,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_INTEGER,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_FLOAT,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_BOOLEAN_WAREHOUSE,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_DATE,
+	EXPERIMENTSPATCHEXPERIMENTV2RESPONSEDATAATTRIBUTESSPLITBYPROPERTIESITEMSCOLUMNTYPE_TIMESTAMP,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType) GetAllowedValues() []ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType {
+	return allowedExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeEnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType(value)
+	return nil
+}
+
+// NewExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeFromValue returns a pointer to a valid ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeFromValue(v string) (*ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType, error) {
+	ev := ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType: valid values are %v", v, allowedExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeEnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType) IsValid() bool {
+	for _, existing := range allowedExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType value.
+func (v ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType) Ptr() *ExperimentsPatchExperimentV2ResponseDataAttributesSplitByPropertiesItemsColumnType {
+	return &v
+}
