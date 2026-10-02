@@ -1391,6 +1391,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetSloStatus":                                           false,
 			"v2.CreateSnapshot":                                         false,
 			"v2.GetSPARecommendations":                                  false,
+			"v2.GetSPARecommendationsV2":                                false,
 			"v2.GetSPARecommendationsWithShard":                         false,
 			"v2.CreateAiCustomRule":                                     false,
 			"v2.CreateAiCustomRuleRevision":                             false,
