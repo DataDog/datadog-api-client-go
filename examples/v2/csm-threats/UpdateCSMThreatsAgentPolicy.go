@@ -13,14 +13,14 @@ import (
 )
 
 func main() {
-	// there is a valid "policy_rc" in the system
-	PolicyDataID := os.Getenv("POLICY_DATA_ID")
+	// there is a valid "policy_rc_disabled" in the system
+	PolicyDisabledDataID := os.Getenv("POLICY_DISABLED_DATA_ID")
 
 	body := datadogV2.CloudWorkloadSecurityAgentPolicyUpdateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentPolicyUpdateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentPolicyUpdateAttributes{
 				Description: datadog.PtrString("Updated agent policy"),
-				Enabled:     datadog.PtrBool(true),
+				Enabled:     datadog.PtrBool(false),
 				HostTagsLists: [][]string{
 					{
 						"env:test",
@@ -28,7 +28,7 @@ func main() {
 				},
 				Name: datadog.PtrString("updated_agent_policy"),
 			},
-			Id:   datadog.PtrString(PolicyDataID),
+			Id:   datadog.PtrString(PolicyDisabledDataID),
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTPOLICYTYPE_POLICY,
 		},
 	}
@@ -37,7 +37,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.UpdateCSMThreatsAgentPolicy(ctx, PolicyDataID, body)
+	resp, r, err := api.UpdateCSMThreatsAgentPolicy(ctx, PolicyDisabledDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.UpdateCSMThreatsAgentPolicy`: %v\n", err)
