@@ -89,6 +89,7 @@ jobs:
         with:
           app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
           private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+          owner: ddoghq
           repositories: ${{ inputs.target-repo || 'datadog-api-spec' }}
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -100,6 +101,7 @@ jobs:
         uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
+          owner: ddoghq
           repo: ${{ inputs.target-repo || 'datadog-api-spec' }}
           status: pending
           context: ${{ inputs.status-context || 'integration' }}
@@ -128,6 +130,7 @@ jobs:
         uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
+          owner: ddoghq
           repo: ${{ inputs.target-repo || 'datadog-api-spec' }}
           status: failure
           context: ${{ inputs.status-context || 'integration' }}
@@ -136,6 +139,7 @@ jobs:
         uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
+          owner: ddoghq
           repo: ${{ inputs.target-repo || 'datadog-api-spec' }}
           status: success
           context: ${{ inputs.status-context || 'integration' }}
