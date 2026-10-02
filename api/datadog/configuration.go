@@ -1380,7 +1380,6 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateRUMOperation":                                     false,
 			"v2.UpdateRUMOperationStrongLink":                           false,
 			"v2.QueryAggregatedLongTasks":                               false,
-			"v2.QueryAggregatedSignalsProblems":                         false,
 			"v2.QueryAggregatedWaterfall":                               false,
 			"v2.CreateScorecardOutcomesBatch":                           false,
 			"v2.GetEntityRiskScore":                                     false,

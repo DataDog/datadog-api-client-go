@@ -1007,7 +1007,6 @@
 //   - [RUMConfigApi.GetRumConfig]
 //   - [RUMConfigApi.UpdateRumConfig]
 //   - [RUMInsightsApi.QueryAggregatedLongTasks]
-//   - [RUMInsightsApi.QueryAggregatedSignalsProblems]
 //   - [RUMInsightsApi.QueryAggregatedWaterfall]
 //   - [RUMOperationsApi.CreateRUMOperation]
 //   - [RUMOperationsApi.CreateRUMOperationStrongLink]
