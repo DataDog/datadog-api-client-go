@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseLink A directional link representing a relationship between two entities. At least one entity must be a case.
+// CaseLink A directional link representing a relationship between two entities. At least one entity must be a work item.
 type CaseLink struct {
-	// Attributes describing a directional relationship between two entities (cases, incidents, or pages).
+	// Attributes describing a directional relationship between two entities (work items, incidents, or pages).
 	Attributes CaseLinkAttributes `json:"attributes"`
-	// The case link identifier.
+	// The work item link identifier.
 	Id string `json:"id"`
-	// JSON:API resource type for case links.
+	// JSON:API resource type for work item links.
 	Type CaseLinkResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

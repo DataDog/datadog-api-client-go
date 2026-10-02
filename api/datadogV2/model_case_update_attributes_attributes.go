@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateAttributesAttributes Case update attributes attributes
+// CaseUpdateAttributesAttributes Work item update attributes.
 type CaseUpdateAttributesAttributes struct {
-	// Key-value pairs of case attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
+	// Key-value pairs of work item attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
 	Attributes map[string][]string `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

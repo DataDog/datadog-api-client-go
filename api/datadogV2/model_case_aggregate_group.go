@@ -14,7 +14,7 @@ import (
 type CaseAggregateGroup struct {
 	// The value of the field being grouped on (for example, `OPEN` when grouping by status).
 	Group string `json:"group"`
-	// The count of cases in this group.
+	// The count of work items in this group.
 	Value []float64 `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

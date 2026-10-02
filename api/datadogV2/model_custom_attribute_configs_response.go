@@ -10,7 +10,7 @@ import (
 
 // CustomAttributeConfigsResponse Response containing a list of custom attribute configurations.
 type CustomAttributeConfigsResponse struct {
-	// List of custom attribute configs of case type
+	// List of custom attribute configs of work item type
 	Data []CustomAttributeConfig `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAggregateGroupBy Configuration for grouping aggregated results by one or more case fields.
+// CaseAggregateGroupBy Configuration for grouping aggregated results by one or more work item fields.
 type CaseAggregateGroupBy struct {
 	// Fields to group by.
 	Groups []string `json:"groups"`

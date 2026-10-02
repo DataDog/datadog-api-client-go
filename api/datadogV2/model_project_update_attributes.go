@@ -12,7 +12,7 @@ import (
 type ProjectUpdateAttributes struct {
 	// Project columns configuration.
 	ColumnsConfig *ProjectColumnsConfig `json:"columns_config,omitempty"`
-	// List of enabled custom case type IDs.
+	// List of enabled custom work item type IDs.
 	EnabledCustomCaseTypes []string `json:"enabled_custom_case_types,omitempty"`
 	// Project name.
 	Name *string `json:"name,omitempty"`

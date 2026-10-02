@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseLinkCreate Data object for creating a case link.
+// CaseLinkCreate Data object for creating a work item link.
 type CaseLinkCreate struct {
-	// Attributes describing a directional relationship between two entities (cases, incidents, or pages).
+	// Attributes describing a directional relationship between two entities (work items, incidents, or pages).
 	Attributes CaseLinkAttributes `json:"attributes"`
-	// JSON:API resource type for case links.
+	// JSON:API resource type for work item links.
 	Type CaseLinkResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

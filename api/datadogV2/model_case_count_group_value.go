@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCountGroupValue A single value within a count group, representing the number of cases with that specific field value.
+// CaseCountGroupValue A single value within a count group, representing the number of work items with that specific field value.
 type CaseCountGroupValue struct {
-	// Count of cases for this value.
+	// Count of work items for this value.
 	Count int64 `json:"count"`
 	// The group value.
 	Value string `json:"value"`

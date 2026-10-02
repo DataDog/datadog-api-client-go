@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCreateRelationships Relationships formed with the case on creation
+// CaseCreateRelationships Relationships formed with the work item on creation
 type CaseCreateRelationships struct {
 	// Relationship to user.
 	Assignee NullableNullableUserRelationship `json:"assignee,omitempty"`

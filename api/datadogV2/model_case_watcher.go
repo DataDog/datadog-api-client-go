@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseWatcher Represents a user who is subscribed to notifications for a case. Watchers receive updates when the case's status, priority, assignee, or comments change.
+// CaseWatcher Represents a user who is subscribed to notifications for a work item. Watchers receive updates when the work item's status, priority, assignee, or comments change.
 type CaseWatcher struct {
-	// The primary identifier of the case watcher.
+	// The primary identifier of the work item watcher.
 	Id string `json:"id"`
-	// Relationships for a case watcher, linking to the underlying user resource.
+	// Relationships for a work item watcher, linking to the underlying user resource.
 	Relationships CaseWatcherRelationships `json:"relationships"`
-	// JSON:API resource type for case watchers.
+	// JSON:API resource type for work item watchers.
 	Type CaseWatcherResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

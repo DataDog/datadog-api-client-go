@@ -10,9 +10,9 @@ import (
 
 // ProjectSettings Project settings.
 type ProjectSettings struct {
-	// Auto-close inactive cases settings.
+	// Auto-close inactive work items settings.
 	AutoCloseInactiveCases *AutoCloseInactiveCases `json:"auto_close_inactive_cases,omitempty"`
-	// Auto-transition assigned cases settings.
+	// Auto-transition assigned work items settings.
 	AutoTransitionAssignedCases *AutoTransitionAssignedCases `json:"auto_transition_assigned_cases,omitempty"`
 	// Incident integration settings.
 	IntegrationIncident *IntegrationIncident `json:"integration_incident,omitempty"`

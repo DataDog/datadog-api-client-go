@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutoCloseInactiveCases Auto-close inactive cases settings.
+// AutoCloseInactiveCases Auto-close inactive work items settings.
 type AutoCloseInactiveCases struct {
 	// Whether auto-close is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

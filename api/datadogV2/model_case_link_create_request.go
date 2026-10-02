@@ -12,7 +12,7 @@ import (
 
 // CaseLinkCreateRequest Request payload for creating a link between two entities.
 type CaseLinkCreateRequest struct {
-	// Data object for creating a case link.
+	// Data object for creating a work item link.
 	Data CaseLinkCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

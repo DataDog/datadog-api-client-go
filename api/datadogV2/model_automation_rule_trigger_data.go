@@ -14,7 +14,7 @@ type AutomationRuleTriggerData struct {
 	ApprovalType *string `json:"approval_type,omitempty"`
 	// The kind of attribute change to match. Allowed values: `VALUE_ADDED`, `VALUE_DELETED`, `ANY_CHANGES`. Used with `ATTRIBUTE_VALUE_CHANGED` triggers.
 	ChangeType *string `json:"change_type,omitempty"`
-	// The case attribute field name to monitor for changes. Used with `ATTRIBUTE_VALUE_CHANGED` triggers.
+	// The work item attribute field name to monitor for changes. Used with `ATTRIBUTE_VALUE_CHANGED` triggers.
 	Field *string `json:"field,omitempty"`
 	// The originating status name. Used with `STATUS_TRANSITIONED` triggers to match transitions from this status.
 	FromStatusName *string `json:"from_status_name,omitempty"`

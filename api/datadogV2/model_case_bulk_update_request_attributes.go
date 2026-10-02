@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseBulkUpdateRequestAttributes Attributes for the bulk update, specifying which cases to update and the action to apply.
+// CaseBulkUpdateRequestAttributes Attributes for the bulk update, specifying which work items to update and the action to apply.
 type CaseBulkUpdateRequestAttributes struct {
-	// An array of case identifiers to apply the bulk action to.
+	// An array of work item identifiers to apply the bulk action to.
 	CaseIds []string `json:"case_ids"`
 	// A key-value map of action-specific parameters. The required keys depend on the action type (for example, `priority` for the priority action, `assignee_id` for assign).
 	Payload map[string]string `json:"payload,omitempty"`

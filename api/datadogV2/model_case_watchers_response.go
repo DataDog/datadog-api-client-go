@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseWatchersResponse Response containing the list of users watching a case.
+// CaseWatchersResponse Response containing the list of users watching a work item.
 type CaseWatchersResponse struct {
-	// List of case watchers.
+	// List of work item watchers.
 	Data []CaseWatcher `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

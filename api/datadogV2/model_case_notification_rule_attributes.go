@@ -12,7 +12,7 @@ import (
 type CaseNotificationRuleAttributes struct {
 	// Whether the notification rule is enabled
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Query to filter cases for this notification rule
+	// Query to filter work items for this notification rule
 	Query *string `json:"query,omitempty"`
 	// List of notification recipients
 	Recipients []CaseNotificationRuleRecipient `json:"recipients,omitempty"`

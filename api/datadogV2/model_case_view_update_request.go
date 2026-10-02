@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewUpdateRequest Request payload for updating a case view.
+// CaseViewUpdateRequest Request payload for updating a work item view.
 type CaseViewUpdateRequest struct {
-	// Data object for updating a case view.
+	// Data object for updating a work item view.
 	Data CaseViewUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

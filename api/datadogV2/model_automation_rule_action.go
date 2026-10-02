@@ -14,7 +14,7 @@ import (
 type AutomationRuleAction struct {
 	// Configuration for the action to execute, dependent on the action type.
 	Data AutomationRuleActionData `json:"data"`
-	// The type of automated action to perform when the rule triggers. `EXECUTE_WORKFLOW` runs a Datadog workflow; `ASSIGN_AGENT` assigns an AI agent to the case.
+	// The type of automated action to perform when the rule triggers. `EXECUTE_WORKFLOW` runs a Datadog workflow; `ASSIGN_AGENT` assigns an AI agent to the work item.
 	Type AutomationRuleActionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

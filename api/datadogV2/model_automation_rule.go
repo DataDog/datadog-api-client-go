@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutomationRule An automation rule that executes an action (such as running a Datadog workflow or assigning an AI agent) when a specified case event occurs within a project.
+// AutomationRule An automation rule that executes an action (such as running a Datadog workflow or assigning an AI agent) when a specified work item event occurs within a project.
 type AutomationRule struct {
 	// Core attributes of an automation rule, including its name, trigger condition, action to execute, and current state.
 	Attributes AutomationRuleAttributes `json:"attributes"`
@@ -18,7 +18,7 @@ type AutomationRule struct {
 	Id string `json:"id"`
 	// Related resources for the automation rule, including the users who created and last modified it.
 	Relationships *AutomationRuleRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for case automation rules.
+	// JSON:API resource type for work item automation rules.
 	Type CaseAutomationRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

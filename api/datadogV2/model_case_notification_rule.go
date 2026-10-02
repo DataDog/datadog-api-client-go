@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseNotificationRule A notification rule for case management
+// CaseNotificationRule A notification rule for Work Management
 type CaseNotificationRule struct {
 	// Notification rule attributes
 	Attributes CaseNotificationRuleAttributes `json:"attributes"`

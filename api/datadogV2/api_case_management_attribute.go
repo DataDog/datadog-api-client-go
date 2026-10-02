@@ -16,7 +16,7 @@ import (
 type CaseManagementAttributeApi datadog.Service
 
 // CreateCustomAttributeConfig Create custom attribute config for a case type.
-// Create custom attribute config for a case type
+// Create a custom attribute configuration for a work item type.
 func (a *CaseManagementAttributeApi) CreateCustomAttributeConfig(ctx _context.Context, caseTypeId string, body CustomAttributeConfigCreateRequest) (CustomAttributeConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -166,7 +166,7 @@ func (a *CaseManagementAttributeApi) DeleteCustomAttributeConfig(ctx _context.Co
 }
 
 // GetAllCustomAttributeConfigsByCaseType Get all custom attributes config of case type.
-// Get all custom attribute config of case type
+// Get custom attribute configurations for a work item type.
 func (a *CaseManagementAttributeApi) GetAllCustomAttributeConfigsByCaseType(ctx _context.Context, caseTypeId string) (CustomAttributeConfigsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -321,7 +321,7 @@ func (a *CaseManagementAttributeApi) GetAllCustomAttributes(ctx _context.Context
 }
 
 // UpdateCustomAttributeConfig Update custom attribute config.
-// Updates the display name, description, type, or options of an existing custom attribute configuration for a case type.
+// Updates the display name, description, type, or options of an existing custom attribute configuration for a work item type.
 func (a *CaseManagementAttributeApi) UpdateCustomAttributeConfig(ctx _context.Context, caseTypeId string, customAttributeId string, body CustomAttributeConfigUpdateRequest) (CustomAttributeConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

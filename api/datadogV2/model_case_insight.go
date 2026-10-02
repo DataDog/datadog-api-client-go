@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseInsight A reference to an external Datadog resource that provides investigative context for a case, such as a security signal, monitor alert, error tracking issue, or incident.
+// CaseInsight A reference to an external Datadog resource that provides investigative context for a work item, such as a security signal, monitor alert, error tracking issue, or incident.
 type CaseInsight struct {
 	// The URL path or deep link to the insight resource within Datadog (for example, `/monitors/12345?q=total`).
 	Ref string `json:"ref"`
 	// The unique identifier of the referenced Datadog resource (for example, a monitor ID, incident ID, or signal ID).
 	ResourceId string `json:"resource_id"`
-	// The type of Datadog resource linked to the case as contextual evidence. Each type corresponds to a different Datadog product signal (for example, a security finding, a monitor alert, or an incident).
+	// The type of Datadog resource linked to the work item as contextual evidence. Each type corresponds to a different Datadog product signal (for example, a security finding, a monitor alert, or an incident).
 	Type CaseInsightType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

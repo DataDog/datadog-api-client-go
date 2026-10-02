@@ -11,17 +11,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewAttributes Attributes of a case view, including the filter query and optional notification rule.
+// CaseViewAttributes Attributes of a work item view, including the filter query and optional notification rule.
 type CaseViewAttributes struct {
 	// Timestamp when the view was created.
 	CreatedAt time.Time `json:"created_at"`
 	// Timestamp when the view was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// A human-readable name for the view, displayed in the Case Management UI.
+	// A human-readable name for the view, displayed in the Work Management UI.
 	Name string `json:"name"`
-	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching cases.
+	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching work items.
 	NpRuleId *string `json:"np_rule_id,omitempty"`
-	// The search query that determines which cases appear in this view. Uses the same syntax as the Case Management search bar (for example, `status:open priority:P1`).
+	// The search query that determines which work items appear in this view. Uses the same syntax as the Work Management search bar (for example, `status:open priority:P1`).
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
