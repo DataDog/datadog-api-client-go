@@ -18,6 +18,8 @@ type SyntheticsGlobalVariableRequest struct {
 	Description string `json:"description"`
 	// Unique identifier of the global variable.
 	Id *string `json:"id,omitempty"`
+	// Whether this global variable is a persistent email variable. Set this when creating the variable and omit `value`; Datadog generates an immutable email address. The variable cannot be converted to or from a persistent email variable.
+	IsEmail *bool `json:"is_email,omitempty"`
 	// Determines if the global variable is a FIDO variable.
 	IsFido *bool `json:"is_fido,omitempty"`
 	// Determines if the global variable is a TOTP/MFA variable.
@@ -134,6 +136,34 @@ func (o *SyntheticsGlobalVariableRequest) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *SyntheticsGlobalVariableRequest) SetId(v string) {
 	o.Id = &v
+}
+
+// GetIsEmail returns the IsEmail field value if set, zero value otherwise.
+func (o *SyntheticsGlobalVariableRequest) GetIsEmail() bool {
+	if o == nil || o.IsEmail == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsEmail
+}
+
+// GetIsEmailOk returns a tuple with the IsEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGlobalVariableRequest) GetIsEmailOk() (*bool, bool) {
+	if o == nil || o.IsEmail == nil {
+		return nil, false
+	}
+	return o.IsEmail, true
+}
+
+// HasIsEmail returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableRequest) HasIsEmail() bool {
+	return o != nil && o.IsEmail != nil
+}
+
+// SetIsEmail gets a reference to the given bool and assigns it to the IsEmail field.
+func (o *SyntheticsGlobalVariableRequest) SetIsEmail(v bool) {
+	o.IsEmail = &v
 }
 
 // GetIsFido returns the IsFido field value if set, zero value otherwise.
@@ -335,6 +365,9 @@ func (o SyntheticsGlobalVariableRequest) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.IsEmail != nil {
+		toSerialize["is_email"] = o.IsEmail
+	}
 	if o.IsFido != nil {
 		toSerialize["is_fido"] = o.IsFido
 	}
@@ -365,6 +398,7 @@ func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error
 		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
 		Description       *string                                   `json:"description"`
 		Id                *string                                   `json:"id,omitempty"`
+		IsEmail           *bool                                     `json:"is_email,omitempty"`
 		IsFido            *bool                                     `json:"is_fido,omitempty"`
 		IsTotp            *bool                                     `json:"is_totp,omitempty"`
 		Name              *string                                   `json:"name"`
@@ -387,7 +421,7 @@ func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "description", "id", "is_fido", "is_totp", "name", "parse_test_options", "parse_test_public_id", "tags", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "description", "id", "is_email", "is_fido", "is_totp", "name", "parse_test_options", "parse_test_public_id", "tags", "value"})
 	} else {
 		return err
 	}
@@ -399,6 +433,7 @@ func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error
 	o.Attributes = all.Attributes
 	o.Description = *all.Description
 	o.Id = all.Id
+	o.IsEmail = all.IsEmail
 	o.IsFido = all.IsFido
 	o.IsTotp = all.IsTotp
 	o.Name = *all.Name
