@@ -1041,6 +1041,7 @@ func NewConfiguration() *Configuration {
 			"v2.SearchCostRecommendations":                              false,
 			"v2.UpdateUnitCost":                                         false,
 			"v2.CreateQuotas":                                           false,
+			"v2.DeletePendingQuota":                                     false,
 			"v2.DeleteQuota":                                            false,
 			"v2.ListQuotas":                                             false,
 			"v2.UpdateQuota":                                            false,

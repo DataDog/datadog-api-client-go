@@ -16,10 +16,11 @@ func main() {
 	body := datadogV2.UsageQuotaUpdateRequest{
 		Data: datadogV2.UsageQuotaUpdateData{
 			Attributes: datadogV2.UsageQuotaUpdateAttributes{
-				Enforced:   *datadog.NewNullableBool(datadog.PtrBool(false)),
-				UsageLimit: *datadog.NewNullableInt64(datadog.PtrInt64(120000)),
+				Enforced:          *datadog.NewNullableBool(datadog.PtrBool(false)),
+				PendingUsageLimit: *datadog.NewNullableInt64(datadog.PtrInt64(50000)),
+				UsageLimit:        *datadog.NewNullableInt64(datadog.PtrInt64(120000)),
 			},
-			Id:   "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f",
+			Id:   "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18",
 			Type: datadogV2.USAGEQUOTATYPE_QUOTAS,
 		},
 	}
@@ -29,7 +30,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.UpdateQuota", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.UpdateQuota(ctx, "ai_credits", "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f", body)
+	resp, r, err := api.UpdateQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.UpdateQuota`: %v\n", err)

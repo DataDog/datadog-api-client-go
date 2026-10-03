@@ -8,10 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageQuotaUpdateAttributes Attributes to update on a usage quota. Omitting a property leaves its current value unchanged.
+// UsageQuotaUpdateAttributes Attributes to update on a usage quota. At least one of `usage_limit`, `enforced`, or `pending_usage_limit` must be provided. Omitting a property leaves its current value unchanged.
 type UsageQuotaUpdateAttributes struct {
 	// Whether to actively block usage above the limit. Omit this field to leave the current enforcement setting unchanged.
 	Enforced datadog.NullableBool `json:"enforced,omitempty"`
+	// The non-negative, whole-number limit to schedule for the organization-wide quota in the usage units defined by the quota namespace. It is not checked against current usage. Each write schedules the value for 00:00 UTC on the first day of the next calendar month and replaces any previously scheduled change; the server computes `pending_effective_from`. Omit this field to leave any scheduled change unchanged, including when raising `usage_limit`; use `DELETE /api/v2/usage/quotas/{quota_namespace}/{id}/pending` to cancel one.
+	PendingUsageLimit datadog.NullableInt64 `json:"pending_usage_limit,omitempty"`
 	// The new quota limit in the usage units defined by the quota namespace. For an organization-wide quota (empty scope), the limit must be greater than the usage already recorded in the current period. Omit this field to leave the current limit unchanged.
 	UsageLimit datadog.NullableInt64 `json:"usage_limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -75,6 +77,45 @@ func (o *UsageQuotaUpdateAttributes) UnsetEnforced() {
 	o.Enforced.Unset()
 }
 
+// GetPendingUsageLimit returns the PendingUsageLimit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UsageQuotaUpdateAttributes) GetPendingUsageLimit() int64 {
+	if o == nil || o.PendingUsageLimit.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.PendingUsageLimit.Get()
+}
+
+// GetPendingUsageLimitOk returns a tuple with the PendingUsageLimit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *UsageQuotaUpdateAttributes) GetPendingUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PendingUsageLimit.Get(), o.PendingUsageLimit.IsSet()
+}
+
+// HasPendingUsageLimit returns a boolean if a field has been set.
+func (o *UsageQuotaUpdateAttributes) HasPendingUsageLimit() bool {
+	return o != nil && o.PendingUsageLimit.IsSet()
+}
+
+// SetPendingUsageLimit gets a reference to the given datadog.NullableInt64 and assigns it to the PendingUsageLimit field.
+func (o *UsageQuotaUpdateAttributes) SetPendingUsageLimit(v int64) {
+	o.PendingUsageLimit.Set(&v)
+}
+
+// SetPendingUsageLimitNil sets the value for PendingUsageLimit to be an explicit nil.
+func (o *UsageQuotaUpdateAttributes) SetPendingUsageLimitNil() {
+	o.PendingUsageLimit.Set(nil)
+}
+
+// UnsetPendingUsageLimit ensures that no value is present for PendingUsageLimit, not even an explicit nil.
+func (o *UsageQuotaUpdateAttributes) UnsetPendingUsageLimit() {
+	o.PendingUsageLimit.Unset()
+}
+
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageQuotaUpdateAttributes) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit.Get() == nil {
@@ -123,6 +164,9 @@ func (o UsageQuotaUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.Enforced.IsSet() {
 		toSerialize["enforced"] = o.Enforced.Get()
 	}
+	if o.PendingUsageLimit.IsSet() {
+		toSerialize["pending_usage_limit"] = o.PendingUsageLimit.Get()
+	}
 	if o.UsageLimit.IsSet() {
 		toSerialize["usage_limit"] = o.UsageLimit.Get()
 	}
@@ -136,19 +180,21 @@ func (o UsageQuotaUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageQuotaUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enforced   datadog.NullableBool  `json:"enforced,omitempty"`
-		UsageLimit datadog.NullableInt64 `json:"usage_limit,omitempty"`
+		Enforced          datadog.NullableBool  `json:"enforced,omitempty"`
+		PendingUsageLimit datadog.NullableInt64 `json:"pending_usage_limit,omitempty"`
+		UsageLimit        datadog.NullableInt64 `json:"usage_limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enforced", "usage_limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enforced", "pending_usage_limit", "usage_limit"})
 	} else {
 		return err
 	}
 	o.Enforced = all.Enforced
+	o.PendingUsageLimit = all.PendingUsageLimit
 	o.UsageLimit = all.UsageLimit
 
 	if len(additionalProperties) > 0 {
