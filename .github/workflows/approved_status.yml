@@ -22,15 +22,15 @@ jobs:
       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/') &&
       contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
+    permissions:
+      id-token: write
     steps:
-      - name: Get GitHub App token
+      - name: Get datadog-api-spec token
         id: get_token
-        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        uses: DataDog/dd-octo-sts-action@96a25462dbcb10ebf0bfd6e2ccc917d2ab235b9a # v1.0.4
         with:
-          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
-          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
-          owner: ddoghq
-          repositories: datadog-api-spec
+          scope: ddoghq/datadog-api-spec
+          policy: datadog-api-client-go.approved_status.post-review-status
       - name: Post PR review status check
         uses: DataDog/github-actions/post-review-status@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:

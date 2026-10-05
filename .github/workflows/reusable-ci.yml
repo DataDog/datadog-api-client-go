@@ -58,10 +58,7 @@ jobs:
       target-branch: ${{ inputs.target-branch }}
       has-integration-label: ${{ contains(github.event.pull_request.labels.*.name, 'ci/integrations') }}
     secrets:
-      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
-      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
       DD_API_KEY: ${{ secrets.DD_API_KEY }}
       DD_CLIENT_API_KEY: ${{ secrets.DD_CLIENT_API_KEY }}
       DD_CLIENT_APP_KEY: ${{ secrets.DD_CLIENT_APP_KEY }}
       SLEEP_AFTER_REQUEST: ${{ secrets.SLEEP_AFTER_REQUEST }}
-
