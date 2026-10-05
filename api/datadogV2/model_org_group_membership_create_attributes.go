@@ -10,35 +10,35 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OrgGroupMembershipBulkUpdateAttributes Attributes for bulk updating org group memberships.
-type OrgGroupMembershipBulkUpdateAttributes struct {
-	// List of organizations to move. Between 1 and 100 per request. Each `org_uuid` and `org_site` pair must be unique.
+// OrgGroupMembershipCreateAttributes Attributes for adding organizations to an org group.
+type OrgGroupMembershipCreateAttributes struct {
+	// List of organizations to add. Between 1 and 100 per request. Each `org_uuid` and `org_site` pair must be unique.
 	Orgs []GlobalOrgIdentifier `json:"orgs"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewOrgGroupMembershipBulkUpdateAttributes instantiates a new OrgGroupMembershipBulkUpdateAttributes object.
+// NewOrgGroupMembershipCreateAttributes instantiates a new OrgGroupMembershipCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewOrgGroupMembershipBulkUpdateAttributes(orgs []GlobalOrgIdentifier) *OrgGroupMembershipBulkUpdateAttributes {
-	this := OrgGroupMembershipBulkUpdateAttributes{}
+func NewOrgGroupMembershipCreateAttributes(orgs []GlobalOrgIdentifier) *OrgGroupMembershipCreateAttributes {
+	this := OrgGroupMembershipCreateAttributes{}
 	this.Orgs = orgs
 	return &this
 }
 
-// NewOrgGroupMembershipBulkUpdateAttributesWithDefaults instantiates a new OrgGroupMembershipBulkUpdateAttributes object.
+// NewOrgGroupMembershipCreateAttributesWithDefaults instantiates a new OrgGroupMembershipCreateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewOrgGroupMembershipBulkUpdateAttributesWithDefaults() *OrgGroupMembershipBulkUpdateAttributes {
-	this := OrgGroupMembershipBulkUpdateAttributes{}
+func NewOrgGroupMembershipCreateAttributesWithDefaults() *OrgGroupMembershipCreateAttributes {
+	this := OrgGroupMembershipCreateAttributes{}
 	return &this
 }
 
 // GetOrgs returns the Orgs field value.
-func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgs() []GlobalOrgIdentifier {
+func (o *OrgGroupMembershipCreateAttributes) GetOrgs() []GlobalOrgIdentifier {
 	if o == nil {
 		var ret []GlobalOrgIdentifier
 		return ret
@@ -48,7 +48,7 @@ func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgs() []GlobalOrgIdentifier
 
 // GetOrgsOk returns a tuple with the Orgs field value
 // and a boolean to check if the value has been set.
-func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgsOk() (*[]GlobalOrgIdentifier, bool) {
+func (o *OrgGroupMembershipCreateAttributes) GetOrgsOk() (*[]GlobalOrgIdentifier, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgsOk() (*[]GlobalOrgIdenti
 }
 
 // SetOrgs sets field value.
-func (o *OrgGroupMembershipBulkUpdateAttributes) SetOrgs(v []GlobalOrgIdentifier) {
+func (o *OrgGroupMembershipCreateAttributes) SetOrgs(v []GlobalOrgIdentifier) {
 	o.Orgs = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o OrgGroupMembershipBulkUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o OrgGroupMembershipCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,7 +75,7 @@ func (o OrgGroupMembershipBulkUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *OrgGroupMembershipBulkUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *OrgGroupMembershipCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Orgs *[]GlobalOrgIdentifier `json:"orgs"`
 	}{}

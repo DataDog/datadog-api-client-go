@@ -10,63 +10,63 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OrgGroupMembershipBulkUpdateAttributes Attributes for bulk updating org group memberships.
-type OrgGroupMembershipBulkUpdateAttributes struct {
-	// List of organizations to move. Between 1 and 100 per request. Each `org_uuid` and `org_site` pair must be unique.
-	Orgs []GlobalOrgIdentifier `json:"orgs"`
+// OrgGroupMembershipCreateRequest Request to add organizations to an org group.
+type OrgGroupMembershipCreateRequest struct {
+	// Data for adding organizations to an org group.
+	Data OrgGroupMembershipCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewOrgGroupMembershipBulkUpdateAttributes instantiates a new OrgGroupMembershipBulkUpdateAttributes object.
+// NewOrgGroupMembershipCreateRequest instantiates a new OrgGroupMembershipCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewOrgGroupMembershipBulkUpdateAttributes(orgs []GlobalOrgIdentifier) *OrgGroupMembershipBulkUpdateAttributes {
-	this := OrgGroupMembershipBulkUpdateAttributes{}
-	this.Orgs = orgs
+func NewOrgGroupMembershipCreateRequest(data OrgGroupMembershipCreateData) *OrgGroupMembershipCreateRequest {
+	this := OrgGroupMembershipCreateRequest{}
+	this.Data = data
 	return &this
 }
 
-// NewOrgGroupMembershipBulkUpdateAttributesWithDefaults instantiates a new OrgGroupMembershipBulkUpdateAttributes object.
+// NewOrgGroupMembershipCreateRequestWithDefaults instantiates a new OrgGroupMembershipCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewOrgGroupMembershipBulkUpdateAttributesWithDefaults() *OrgGroupMembershipBulkUpdateAttributes {
-	this := OrgGroupMembershipBulkUpdateAttributes{}
+func NewOrgGroupMembershipCreateRequestWithDefaults() *OrgGroupMembershipCreateRequest {
+	this := OrgGroupMembershipCreateRequest{}
 	return &this
 }
 
-// GetOrgs returns the Orgs field value.
-func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgs() []GlobalOrgIdentifier {
+// GetData returns the Data field value.
+func (o *OrgGroupMembershipCreateRequest) GetData() OrgGroupMembershipCreateData {
 	if o == nil {
-		var ret []GlobalOrgIdentifier
+		var ret OrgGroupMembershipCreateData
 		return ret
 	}
-	return o.Orgs
+	return o.Data
 }
 
-// GetOrgsOk returns a tuple with the Orgs field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *OrgGroupMembershipBulkUpdateAttributes) GetOrgsOk() (*[]GlobalOrgIdentifier, bool) {
+func (o *OrgGroupMembershipCreateRequest) GetDataOk() (*OrgGroupMembershipCreateData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Orgs, true
+	return &o.Data, true
 }
 
-// SetOrgs sets field value.
-func (o *OrgGroupMembershipBulkUpdateAttributes) SetOrgs(v []GlobalOrgIdentifier) {
-	o.Orgs = v
+// SetData sets field value.
+func (o *OrgGroupMembershipCreateRequest) SetData(v OrgGroupMembershipCreateData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o OrgGroupMembershipBulkUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o OrgGroupMembershipCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["orgs"] = o.Orgs
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,26 +75,35 @@ func (o OrgGroupMembershipBulkUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *OrgGroupMembershipBulkUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *OrgGroupMembershipCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Orgs *[]GlobalOrgIdentifier `json:"orgs"`
+		Data *OrgGroupMembershipCreateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Orgs == nil {
-		return fmt.Errorf("required field orgs missing")
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"orgs"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.Orgs = *all.Orgs
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
