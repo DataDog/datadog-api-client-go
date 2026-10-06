@@ -1,4 +1,4 @@
-// List all teams returns "OK" response
+// List all teams returns "OK" response with pagination
 
 package main
 
@@ -18,13 +18,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	resp, r, err := api.ListTeams(ctx, *datadogV2.NewListTeamsOptionalParameters())
+	resp, _ := api.ListTeamsWithPagination(ctx, *datadogV2.NewListTeamsOptionalParameters())
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeams`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeams`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
+		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
-
-	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.ListTeams`:\n%s\n", responseContent)
 }
