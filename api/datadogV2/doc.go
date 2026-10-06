@@ -916,7 +916,6 @@
 //   - [NetworkDeviceMonitoringApi.ListInterfaceUserTags]
 //   - [NetworkDeviceMonitoringApi.UpdateDeviceUserTags]
 //   - [NetworkDeviceMonitoringApi.UpdateInterfaceUserTags]
-//   - [NetworkHealthInsightsApi.ListNetworkHealthInsights]
 //   - [OAuth2ClientPublicApi.DeleteScopesRestriction]
 //   - [OAuth2ClientPublicApi.GetOAuth2WellKnownSites]
 //   - [OAuth2ClientPublicApi.GetOIDCDiscoveryDocument]
