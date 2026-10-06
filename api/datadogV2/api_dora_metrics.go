@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -862,22 +860,13 @@ func (a *DORAMetricsApi) PatchDORADeployment(ctx _context.Context, deploymentId 
 	return localVarHTTPResponse, nil
 }
 
-// PatchDORADeploymentByVersion Patch a deployment event by version.
+// PatchDORADeploymentByVersion Mark a deployment as failed by version.
 // Update a deployment's change failure status, identifying the deployment by its service, environment, and version instead of its ID. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation. If multiple deployments match the given service, environment, and version, the most recently finished one is updated.
 func (a *DORAMetricsApi) PatchDORADeploymentByVersion(ctx _context.Context, body DORADeploymentPatchByVersionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPatch
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.PatchDORADeploymentByVersion"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.PatchDORADeploymentByVersion")
 	if err != nil {
