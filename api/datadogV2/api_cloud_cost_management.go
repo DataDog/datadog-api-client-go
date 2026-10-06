@@ -4121,6 +4121,127 @@ func (a *CloudCostManagementApi) ListCostAzureUCConfigs(ctx _context.Context) (A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListCostCloudAccountsV2OptionalParameters holds optional parameters for ListCostCloudAccountsV2.
+type ListCostCloudAccountsV2OptionalParameters struct {
+	FilterCloud *string
+}
+
+// NewListCostCloudAccountsV2OptionalParameters creates an empty struct for parameters.
+func NewListCostCloudAccountsV2OptionalParameters() *ListCostCloudAccountsV2OptionalParameters {
+	this := ListCostCloudAccountsV2OptionalParameters{}
+	return &this
+}
+
+// WithFilterCloud sets the corresponding parameter name and returns the struct.
+func (r *ListCostCloudAccountsV2OptionalParameters) WithFilterCloud(filterCloud string) *ListCostCloudAccountsV2OptionalParameters {
+	r.FilterCloud = &filterCloud
+	return r
+}
+
+// ListCostCloudAccountsV2 List Cloud Cost Management cloud accounts.
+// List the OCI and AWS CUR 2.0 cloud accounts for your organization, including account IDs, status, and validation errors.
+// Use `filter[cloud]=oci` or `filter[cloud]=aws_cur2` to return a single cloud. When omitted or empty, both clouds are returned.
+// AWS CUR 1.0, Azure, and GCP accounts are available through their dedicated configuration endpoints.
+// Archived accounts are excluded. The response contains all matching accounts and is not paginated.
+//
+// This endpoint replaces `GET /api/v2/cost/oci_config`. To migrate, use `filter[cloud]=oci` and update clients to accept
+// the `cloud_account` resource type instead of `oci_config`. Account IDs and the existing attributes are preserved;
+// each account also includes the `cloud` attribute.
+func (a *CloudCostManagementApi) ListCostCloudAccountsV2(ctx _context.Context, o ...ListCostCloudAccountsV2OptionalParameters) (CloudCostAccountsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudCostAccountsResponse
+		optionalParams      ListCostCloudAccountsV2OptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostCloudAccountsV2OptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostCloudAccountsV2")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/cloud_accounts"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterCloud != nil {
+		localVarQueryParams.Add("filter[cloud]", datadog.ParameterToString(*optionalParams.FilterCloud, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListCostGCPUsageCostConfigs List Google Cloud Usage Cost configs.
 // List the Google Cloud Usage Cost configs.
 func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Context) (GCPUsageCostConfigsResponse, *_nethttp.Response, error) {
@@ -4199,7 +4320,9 @@ func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Contex
 }
 
 // ListCostOCIConfigs List Cloud Cost Management OCI configs.
-// **Note**: This endpoint is deprecated. View OCI accounts in Cloud Cost Settings in the Datadog web application instead.
+// **Note**: This endpoint is deprecated. Use [List Cloud Cost Management cloud accounts](https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-cloud-cost-management-cloud-accounts)
+// with `filter[cloud]=oci` instead. Update clients to accept the `cloud_account` resource type instead of `oci_config`.
+// Account IDs and the existing attributes are preserved; each account also includes the `cloud` attribute.
 //
 // List the OCI configs.
 //

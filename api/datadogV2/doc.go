@@ -374,6 +374,7 @@
 //   - [CloudCostManagementApi.ListCostAWSCURConfigs]
 //   - [CloudCostManagementApi.ListCostAnomalies]
 //   - [CloudCostManagementApi.ListCostAzureUCConfigs]
+//   - [CloudCostManagementApi.ListCostCloudAccountsV2]
 //   - [CloudCostManagementApi.ListCostGCPUsageCostConfigs]
 //   - [CloudCostManagementApi.ListCostOCIConfigs]
 //   - [CloudCostManagementApi.ListCostTagDescriptions]
