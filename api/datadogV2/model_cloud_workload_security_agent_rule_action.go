@@ -10,6 +10,8 @@ import (
 
 // CloudWorkloadSecurityAgentRuleAction The action the rule can perform if triggered
 type CloudWorkloadSecurityAgentRuleAction struct {
+	// The core dump action applied on the process matching the rule.
+	Coredump *CloudWorkloadSecurityAgentRuleActionCoreDump `json:"coredump,omitempty"`
 	// Whether the action is disabled
 	Disabled *bool `json:"disabled,omitempty"`
 	// SECL expression used to target the container to apply the action on
@@ -18,8 +20,12 @@ type CloudWorkloadSecurityAgentRuleAction struct {
 	Hash *CloudWorkloadSecurityAgentRuleActionHash `json:"hash,omitempty"`
 	// Kill system call applied on the container matching the rule
 	Kill *CloudWorkloadSecurityAgentRuleKill `json:"kill,omitempty"`
+	// The log action applied when the rule is triggered.
+	Log *CloudWorkloadSecurityAgentRuleActionLog `json:"log,omitempty"`
 	// The metadata action applied on the scope matching the rule
 	Metadata *CloudWorkloadSecurityAgentRuleActionMetadata `json:"metadata,omitempty"`
+	// The network filter action applied on the network traffic matching the rule.
+	NetworkFilter *CloudWorkloadSecurityAgentRuleActionNetworkFilter `json:"network_filter,omitempty"`
 	// The set action applied on the scope matching the rule
 	Set *CloudWorkloadSecurityAgentRuleActionSet `json:"set,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -42,6 +48,34 @@ func NewCloudWorkloadSecurityAgentRuleAction() *CloudWorkloadSecurityAgentRuleAc
 func NewCloudWorkloadSecurityAgentRuleActionWithDefaults() *CloudWorkloadSecurityAgentRuleAction {
 	this := CloudWorkloadSecurityAgentRuleAction{}
 	return &this
+}
+
+// GetCoredump returns the Coredump field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetCoredump() CloudWorkloadSecurityAgentRuleActionCoreDump {
+	if o == nil || o.Coredump == nil {
+		var ret CloudWorkloadSecurityAgentRuleActionCoreDump
+		return ret
+	}
+	return *o.Coredump
+}
+
+// GetCoredumpOk returns a tuple with the Coredump field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetCoredumpOk() (*CloudWorkloadSecurityAgentRuleActionCoreDump, bool) {
+	if o == nil || o.Coredump == nil {
+		return nil, false
+	}
+	return o.Coredump, true
+}
+
+// HasCoredump returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) HasCoredump() bool {
+	return o != nil && o.Coredump != nil
+}
+
+// SetCoredump gets a reference to the given CloudWorkloadSecurityAgentRuleActionCoreDump and assigns it to the Coredump field.
+func (o *CloudWorkloadSecurityAgentRuleAction) SetCoredump(v CloudWorkloadSecurityAgentRuleActionCoreDump) {
+	o.Coredump = &v
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
@@ -156,6 +190,34 @@ func (o *CloudWorkloadSecurityAgentRuleAction) SetKill(v CloudWorkloadSecurityAg
 	o.Kill = &v
 }
 
+// GetLog returns the Log field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetLog() CloudWorkloadSecurityAgentRuleActionLog {
+	if o == nil || o.Log == nil {
+		var ret CloudWorkloadSecurityAgentRuleActionLog
+		return ret
+	}
+	return *o.Log
+}
+
+// GetLogOk returns a tuple with the Log field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetLogOk() (*CloudWorkloadSecurityAgentRuleActionLog, bool) {
+	if o == nil || o.Log == nil {
+		return nil, false
+	}
+	return o.Log, true
+}
+
+// HasLog returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) HasLog() bool {
+	return o != nil && o.Log != nil
+}
+
+// SetLog gets a reference to the given CloudWorkloadSecurityAgentRuleActionLog and assigns it to the Log field.
+func (o *CloudWorkloadSecurityAgentRuleAction) SetLog(v CloudWorkloadSecurityAgentRuleActionLog) {
+	o.Log = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAction) GetMetadata() CloudWorkloadSecurityAgentRuleActionMetadata {
 	if o == nil || o.Metadata == nil {
@@ -182,6 +244,34 @@ func (o *CloudWorkloadSecurityAgentRuleAction) HasMetadata() bool {
 // SetMetadata gets a reference to the given CloudWorkloadSecurityAgentRuleActionMetadata and assigns it to the Metadata field.
 func (o *CloudWorkloadSecurityAgentRuleAction) SetMetadata(v CloudWorkloadSecurityAgentRuleActionMetadata) {
 	o.Metadata = &v
+}
+
+// GetNetworkFilter returns the NetworkFilter field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetNetworkFilter() CloudWorkloadSecurityAgentRuleActionNetworkFilter {
+	if o == nil || o.NetworkFilter == nil {
+		var ret CloudWorkloadSecurityAgentRuleActionNetworkFilter
+		return ret
+	}
+	return *o.NetworkFilter
+}
+
+// GetNetworkFilterOk returns a tuple with the NetworkFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetNetworkFilterOk() (*CloudWorkloadSecurityAgentRuleActionNetworkFilter, bool) {
+	if o == nil || o.NetworkFilter == nil {
+		return nil, false
+	}
+	return o.NetworkFilter, true
+}
+
+// HasNetworkFilter returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) HasNetworkFilter() bool {
+	return o != nil && o.NetworkFilter != nil
+}
+
+// SetNetworkFilter gets a reference to the given CloudWorkloadSecurityAgentRuleActionNetworkFilter and assigns it to the NetworkFilter field.
+func (o *CloudWorkloadSecurityAgentRuleAction) SetNetworkFilter(v CloudWorkloadSecurityAgentRuleActionNetworkFilter) {
+	o.NetworkFilter = &v
 }
 
 // GetSet returns the Set field value if set, zero value otherwise.
@@ -218,6 +308,9 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Coredump != nil {
+		toSerialize["coredump"] = o.Coredump
+	}
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
@@ -230,8 +323,14 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 	if o.Kill != nil {
 		toSerialize["kill"] = o.Kill
 	}
+	if o.Log != nil {
+		toSerialize["log"] = o.Log
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.NetworkFilter != nil {
+		toSerialize["network_filter"] = o.NetworkFilter
 	}
 	if o.Set != nil {
 		toSerialize["set"] = o.Set
@@ -246,24 +345,31 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Disabled *bool                                         `json:"disabled,omitempty"`
-		Filter   *string                                       `json:"filter,omitempty"`
-		Hash     *CloudWorkloadSecurityAgentRuleActionHash     `json:"hash,omitempty"`
-		Kill     *CloudWorkloadSecurityAgentRuleKill           `json:"kill,omitempty"`
-		Metadata *CloudWorkloadSecurityAgentRuleActionMetadata `json:"metadata,omitempty"`
-		Set      *CloudWorkloadSecurityAgentRuleActionSet      `json:"set,omitempty"`
+		Coredump      *CloudWorkloadSecurityAgentRuleActionCoreDump      `json:"coredump,omitempty"`
+		Disabled      *bool                                              `json:"disabled,omitempty"`
+		Filter        *string                                            `json:"filter,omitempty"`
+		Hash          *CloudWorkloadSecurityAgentRuleActionHash          `json:"hash,omitempty"`
+		Kill          *CloudWorkloadSecurityAgentRuleKill                `json:"kill,omitempty"`
+		Log           *CloudWorkloadSecurityAgentRuleActionLog           `json:"log,omitempty"`
+		Metadata      *CloudWorkloadSecurityAgentRuleActionMetadata      `json:"metadata,omitempty"`
+		NetworkFilter *CloudWorkloadSecurityAgentRuleActionNetworkFilter `json:"network_filter,omitempty"`
+		Set           *CloudWorkloadSecurityAgentRuleActionSet           `json:"set,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"disabled", "filter", "hash", "kill", "metadata", "set"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"coredump", "disabled", "filter", "hash", "kill", "log", "metadata", "network_filter", "set"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.Coredump != nil && all.Coredump.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Coredump = all.Coredump
 	o.Disabled = all.Disabled
 	o.Filter = all.Filter
 	if all.Hash != nil && all.Hash.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -274,10 +380,18 @@ func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err 
 		hasInvalidField = true
 	}
 	o.Kill = all.Kill
+	if all.Log != nil && all.Log.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Log = all.Log
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
+	if all.NetworkFilter != nil && all.NetworkFilter.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.NetworkFilter = all.NetworkFilter
 	if all.Set != nil && all.Set.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

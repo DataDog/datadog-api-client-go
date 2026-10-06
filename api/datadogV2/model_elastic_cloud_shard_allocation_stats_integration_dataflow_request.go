@@ -8,13 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudShardAllocationStatsIntegrationDataflowRequest The Elastic Cloud shard allocation stats dataflow.
+// ElasticCloudShardAllocationStatsIntegrationDataflowRequest Metrics for how many shards are allocated to each data node, and the disk space they use.
 type ElasticCloudShardAllocationStatsIntegrationDataflowRequest struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether Datadog collects this data. Defaults to `false`; set to `true` to start collection.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewElasticCloudShardAllocationStatsIntegrationDataflowRequest instantiates a new ElasticCloudShardAllocationStatsIntegrationDataflowRequest object.
@@ -71,10 +70,6 @@ func (o ElasticCloudShardAllocationStatsIntegrationDataflowRequest) MarshalJSON(
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,17 +81,7 @@ func (o *ElasticCloudShardAllocationStatsIntegrationDataflowRequest) UnmarshalJS
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled"})
-	} else {
-		return err
-	}
 	o.Enabled = all.Enabled
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

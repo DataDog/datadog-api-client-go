@@ -17,6 +17,7 @@ func main() {
 		BucketKey: "api-upload-file/abc-def-123/2024-01-01T00:00:00_uuid.json",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSyntheticsApi(apiClient)

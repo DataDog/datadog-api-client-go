@@ -34,6 +34,8 @@ type BudgetAttributes struct {
 	OrgId *int64 `json:"org_id,omitempty"`
 	// The month when the budget starts.
 	StartMonth *int64 `json:"start_month,omitempty"`
+	// The tag keys used to group costs for the budget.
+	Tags []string `json:"tags,omitempty"`
 	// The sum of all budget entries' amounts.
 	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// The timestamp when the budget was last updated.
@@ -398,6 +400,34 @@ func (o *BudgetAttributes) SetStartMonth(v int64) {
 	o.StartMonth = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *BudgetAttributes) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BudgetAttributes) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *BudgetAttributes) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *BudgetAttributes) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetTotalAmount returns the TotalAmount field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetTotalAmount() float64 {
 	if o == nil || o.TotalAmount == nil {
@@ -524,6 +554,9 @@ func (o BudgetAttributes) MarshalJSON() ([]byte, error) {
 	if o.StartMonth != nil {
 		toSerialize["start_month"] = o.StartMonth
 	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 	if o.TotalAmount != nil {
 		toSerialize["total_amount"] = o.TotalAmount
 	}
@@ -555,6 +588,7 @@ func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name             *string                                       `json:"name,omitempty"`
 		OrgId            *int64                                        `json:"org_id,omitempty"`
 		StartMonth       *int64                                        `json:"start_month,omitempty"`
+		Tags             []string                                      `json:"tags,omitempty"`
 		TotalAmount      *float64                                      `json:"total_amount,omitempty"`
 		UpdatedAt        *int64                                        `json:"updated_at,omitempty"`
 		UpdatedBy        *string                                       `json:"updated_by,omitempty"`
@@ -564,7 +598,7 @@ func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"costs", "costs_period_end", "costs_period_start", "costs_unit", "created_at", "created_by", "end_month", "entries", "metrics_query", "name", "org_id", "start_month", "total_amount", "updated_at", "updated_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"costs", "costs_period_end", "costs_period_start", "costs_unit", "created_at", "created_by", "end_month", "entries", "metrics_query", "name", "org_id", "start_month", "tags", "total_amount", "updated_at", "updated_by"})
 	} else {
 		return err
 	}
@@ -588,6 +622,7 @@ func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.OrgId = all.OrgId
 	o.StartMonth = all.StartMonth
+	o.Tags = all.Tags
 	o.TotalAmount = all.TotalAmount
 	o.UpdatedAt = all.UpdatedAt
 	o.UpdatedBy = all.UpdatedBy

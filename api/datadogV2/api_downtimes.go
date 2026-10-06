@@ -167,7 +167,8 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body DowntimeCreateR
 
 // GetDowntimeOptionalParameters holds optional parameters for GetDowntime.
 type GetDowntimeOptionalParameters struct {
-	Include *string
+	Include   *string
+	WithRunAs *bool
 }
 
 // NewGetDowntimeOptionalParameters creates an empty struct for parameters.
@@ -179,6 +180,12 @@ func NewGetDowntimeOptionalParameters() *GetDowntimeOptionalParameters {
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetDowntimeOptionalParameters) WithInclude(include string) *GetDowntimeOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithWithRunAs sets the corresponding parameter name and returns the struct.
+func (r *GetDowntimeOptionalParameters) WithWithRunAs(withRunAs bool) *GetDowntimeOptionalParameters {
+	r.WithRunAs = &withRunAs
 	return r
 }
 
@@ -212,6 +219,9 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.WithRunAs != nil {
+		localVarQueryParams.Add("with_run_as", datadog.ParameterToString(*optionalParams.WithRunAs, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

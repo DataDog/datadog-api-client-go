@@ -25,6 +25,8 @@ type WorkflowDataAttributes struct {
 	RunAs *WorkflowRunAs `json:"runAs,omitempty"`
 	// The effective type of identity used to run the workflow.
 	RunAsUserMode *WorkflowRunAsUserMode `json:"runAsUserMode,omitempty"`
+	// Whether the workflow requires sensitive privileges to run. Only the workflow owner can update this field. This allows it to run actions that use [Execution Policies](https://docs.datadoghq.com/actions/private_actions/execution_policies/).
+	SensitivePrivileges *bool `json:"sensitivePrivileges,omitempty"`
 	// A complete Workflow Automation definition, including its triggers, steps, and connections.
 	Spec Spec `json:"spec"`
 	// Tags of the workflow.
@@ -220,6 +222,34 @@ func (o *WorkflowDataAttributes) SetRunAsUserMode(v WorkflowRunAsUserMode) {
 	o.RunAsUserMode = &v
 }
 
+// GetSensitivePrivileges returns the SensitivePrivileges field value if set, zero value otherwise.
+func (o *WorkflowDataAttributes) GetSensitivePrivileges() bool {
+	if o == nil || o.SensitivePrivileges == nil {
+		var ret bool
+		return ret
+	}
+	return *o.SensitivePrivileges
+}
+
+// GetSensitivePrivilegesOk returns a tuple with the SensitivePrivileges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkflowDataAttributes) GetSensitivePrivilegesOk() (*bool, bool) {
+	if o == nil || o.SensitivePrivileges == nil {
+		return nil, false
+	}
+	return o.SensitivePrivileges, true
+}
+
+// HasSensitivePrivileges returns a boolean if a field has been set.
+func (o *WorkflowDataAttributes) HasSensitivePrivileges() bool {
+	return o != nil && o.SensitivePrivileges != nil
+}
+
+// SetSensitivePrivileges gets a reference to the given bool and assigns it to the SensitivePrivileges field.
+func (o *WorkflowDataAttributes) SetSensitivePrivileges(v bool) {
+	o.SensitivePrivileges = &v
+}
+
 // GetSpec returns the Spec field value.
 func (o *WorkflowDataAttributes) GetSpec() Spec {
 	if o == nil {
@@ -353,6 +383,9 @@ func (o WorkflowDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.RunAsUserMode != nil {
 		toSerialize["runAsUserMode"] = o.RunAsUserMode
 	}
+	if o.SensitivePrivileges != nil {
+		toSerialize["sensitivePrivileges"] = o.SensitivePrivileges
+	}
 	toSerialize["spec"] = o.Spec
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
@@ -377,16 +410,17 @@ func (o WorkflowDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WorkflowDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt     *time.Time             `json:"createdAt,omitempty"`
-		Description   *string                `json:"description,omitempty"`
-		Name          *string                `json:"name"`
-		Published     *bool                  `json:"published,omitempty"`
-		RunAs         *WorkflowRunAs         `json:"runAs,omitempty"`
-		RunAsUserMode *WorkflowRunAsUserMode `json:"runAsUserMode,omitempty"`
-		Spec          *Spec                  `json:"spec"`
-		Tags          []string               `json:"tags,omitempty"`
-		UpdatedAt     *time.Time             `json:"updatedAt,omitempty"`
-		WebhookSecret *string                `json:"webhookSecret,omitempty"`
+		CreatedAt           *time.Time             `json:"createdAt,omitempty"`
+		Description         *string                `json:"description,omitempty"`
+		Name                *string                `json:"name"`
+		Published           *bool                  `json:"published,omitempty"`
+		RunAs               *WorkflowRunAs         `json:"runAs,omitempty"`
+		RunAsUserMode       *WorkflowRunAsUserMode `json:"runAsUserMode,omitempty"`
+		SensitivePrivileges *bool                  `json:"sensitivePrivileges,omitempty"`
+		Spec                *Spec                  `json:"spec"`
+		Tags                []string               `json:"tags,omitempty"`
+		UpdatedAt           *time.Time             `json:"updatedAt,omitempty"`
+		WebhookSecret       *string                `json:"webhookSecret,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -399,7 +433,7 @@ func (o *WorkflowDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "runAs", "runAsUserMode", "spec", "tags", "updatedAt", "webhookSecret"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "runAs", "runAsUserMode", "sensitivePrivileges", "spec", "tags", "updatedAt", "webhookSecret"})
 	} else {
 		return err
 	}
@@ -415,6 +449,7 @@ func (o *WorkflowDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.RunAsUserMode = all.RunAsUserMode
 	}
+	o.SensitivePrivileges = all.SensitivePrivileges
 	if all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

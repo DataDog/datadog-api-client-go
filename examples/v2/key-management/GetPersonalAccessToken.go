@@ -17,10 +17,11 @@ func main() {
 	PersonalAccessTokenDataID := os.Getenv("PERSONAL_ACCESS_TOKEN_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewKeyManagementApi(apiClient)
-	resp, r, err := api.GetPersonalAccessToken(ctx, PersonalAccessTokenDataID)
+	resp, r, err := api.GetPersonalAccessToken(ctx, PersonalAccessTokenDataID, *datadogV2.NewGetPersonalAccessTokenOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetPersonalAccessToken`: %v\n", err)

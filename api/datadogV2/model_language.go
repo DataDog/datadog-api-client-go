@@ -26,6 +26,18 @@ const (
 	LANGUAGE_PHP        Language = "PHP"
 	LANGUAGE_KOTLIN     Language = "KOTLIN"
 	LANGUAGE_SWIFT      Language = "SWIFT"
+	LANGUAGE_DART       Language = "DART"
+	LANGUAGE_DOCKERFILE Language = "DOCKERFILE"
+	LANGUAGE_ELIXIR     Language = "ELIXIR"
+	LANGUAGE_JSON       Language = "JSON"
+	LANGUAGE_RUST       Language = "RUST"
+	LANGUAGE_TERRAFORM  Language = "TERRAFORM"
+	LANGUAGE_STARLARK   Language = "STARLARK"
+	LANGUAGE_BASH       Language = "BASH"
+	LANGUAGE_MARKDOWN   Language = "MARKDOWN"
+	LANGUAGE_APEX       Language = "APEX"
+	LANGUAGE_R          Language = "R"
+	LANGUAGE_SQL        Language = "SQL"
 )
 
 var allowedLanguageEnumValues = []Language{
@@ -40,6 +52,18 @@ var allowedLanguageEnumValues = []Language{
 	LANGUAGE_PHP,
 	LANGUAGE_KOTLIN,
 	LANGUAGE_SWIFT,
+	LANGUAGE_DART,
+	LANGUAGE_DOCKERFILE,
+	LANGUAGE_ELIXIR,
+	LANGUAGE_JSON,
+	LANGUAGE_RUST,
+	LANGUAGE_TERRAFORM,
+	LANGUAGE_STARLARK,
+	LANGUAGE_BASH,
+	LANGUAGE_MARKDOWN,
+	LANGUAGE_APEX,
+	LANGUAGE_R,
+	LANGUAGE_SQL,
 }
 
 // GetAllowedValues reeturns the list of possible values.

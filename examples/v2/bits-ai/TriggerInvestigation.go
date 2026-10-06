@@ -17,18 +17,19 @@ func main() {
 		Data: datadogV2.TriggerInvestigationRequestData{
 			Attributes: datadogV2.TriggerInvestigationRequestDataAttributes{
 				Trigger: datadogV2.TriggerAttributes{
-					MonitorAlertTrigger: datadogV2.MonitorAlertTriggerAttributes{
+					MonitorAlertTrigger: &datadogV2.MonitorAlertTriggerAttributes{
 						EventId:   "1234567890123456789",
 						EventTs:   1700000000000,
 						MonitorId: 12345678,
 					},
-					Type: datadogV2.TRIGGERTYPE_MONITOR_ALERT_TRIGGER,
+					Type: datadogV2.TRIGGERTYPE_MONITOR_ALERT_TRIGGER.Ptr(),
 				},
 			},
 			Type: datadogV2.TRIGGERINVESTIGATIONREQUESTTYPE_TRIGGER_INVESTIGATION_REQUEST,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.TriggerInvestigation", true)
 	apiClient := datadog.NewAPIClient(configuration)

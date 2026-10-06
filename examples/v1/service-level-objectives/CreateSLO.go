@@ -44,6 +44,7 @@ func main() {
 		WarningThreshold: datadog.PtrFloat64(98),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewServiceLevelObjectivesApi(apiClient)

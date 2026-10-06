@@ -35,7 +35,8 @@ type testRunnerPlan struct {
 	API         string `json:"api"`
 	OperationID string `json:"operation_id"`
 	Request     struct {
-		Body *struct {
+		SelectedCompression string `json:"selected_compression"`
+		Body                *struct {
 			Value interface{} `json:"value"`
 		} `json:"body"`
 		Parameters []struct {
@@ -74,6 +75,14 @@ func generatedTestsEnabled() bool {
 }
 
 func testServerRequest(endpoint string, payload interface{}, result interface{}) error {
+	return testServerControlRequest(http.MethodPost, endpoint, payload, result)
+}
+
+func testServerGet(endpoint string, result interface{}) error {
+	return testServerControlRequest(http.MethodGet, endpoint, nil, result)
+}
+
+func testServerControlRequest(method string, endpoint string, payload interface{}, result interface{}) error {
 	var body io.Reader
 	if payload != nil {
 		encoded, err := json.Marshal(payload)
@@ -83,7 +92,7 @@ func testServerRequest(endpoint string, payload interface{}, result interface{})
 		body = bytes.NewReader(encoded)
 	}
 	request, err := http.NewRequest(
-		http.MethodPost,
+		method,
 		os.Getenv("DD_TEST_SERVER_URL")+"/__openapi_transformer__"+endpoint,
 		body,
 	)
@@ -104,7 +113,7 @@ func testServerRequest(endpoint string, payload interface{}, result interface{})
 		return err
 	}
 	if response.StatusCode >= http.StatusBadRequest {
-		return fmt.Errorf("test server POST %s failed (%d): %s", endpoint, response.StatusCode, responseBody)
+		return fmt.Errorf("test server %s %s failed (%d): %s", method, endpoint, response.StatusCode, responseBody)
 	}
 	if result == nil {
 		return nil
@@ -262,6 +271,13 @@ func applyTestRunnerPlan(t gobdd.StepTest, ctx gobdd.Context, pagination bool) {
 		GetRequestParameters(ctx)["body"] = string(body)
 		pathCount, _ := ctx.Get(pathParamCountKey{})
 		ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+	}
+	if plan.Request.SelectedCompression != "" {
+		encoded, err := json.Marshal(plan.Request.SelectedCompression)
+		if err != nil {
+			t.Fatal(err)
+		}
+		addParameterWithValueNative(t, ctx, "content_encoding", string(encoded))
 	}
 	for _, parameter := range plan.Request.Parameters {
 		if parameter.In != "path" && !parameter.Required {

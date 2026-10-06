@@ -29,6 +29,7 @@
               "query": "env:staging"
             }
           },
+          "id": "{{ valid_ticket_creation_rule.data.id }}",
           "type": "ticket_creation_rules"
         }
       }

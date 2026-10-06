@@ -26,10 +26,7 @@ func main() {
 				Name: datadog.PtrString("my-indexing-rule"),
 				Options: &datadogV2.TagIndexingRuleOptions{
 					Data: &datadogV2.TagIndexingRuleOptionsData{
-						DynamicTags: &datadogV2.TagIndexingRuleDynamicTags{
-							QueriedTagsWindowSeconds: datadog.PtrInt64(3600),
-							RelatedAssetTags:         datadog.PtrBool(false),
-						},
+						DynamicTags:              &datadogV2.TagIndexingRuleDynamicTags{},
 						ManagePreexistingMetrics: datadog.PtrBool(true),
 						MetricMatch: &datadogV2.TagIndexingRuleMetricMatch{
 							QueriedWindowSeconds: datadog.PtrInt64(3600),
@@ -48,6 +45,7 @@ func main() {
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateTagIndexingRule", true)
 	apiClient := datadog.NewAPIClient(configuration)

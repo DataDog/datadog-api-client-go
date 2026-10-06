@@ -10,41 +10,41 @@ import (
 
 // TwilioIntegrationAccountAuthenticationUpdate - Authentication for updating the Twilio integration account. Exactly one method is set.
 type TwilioIntegrationAccountAuthenticationUpdate struct {
-	IntegrationAccountBasicAuthUpdate *IntegrationAccountBasicAuthUpdate
+	TwilioIntegrationAccountBasicAuthUpdate *TwilioIntegrationAccountBasicAuthUpdate
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// IntegrationAccountBasicAuthUpdateAsTwilioIntegrationAccountAuthenticationUpdate is a convenience function that returns IntegrationAccountBasicAuthUpdate wrapped in TwilioIntegrationAccountAuthenticationUpdate.
-func IntegrationAccountBasicAuthUpdateAsTwilioIntegrationAccountAuthenticationUpdate(v *IntegrationAccountBasicAuthUpdate) TwilioIntegrationAccountAuthenticationUpdate {
-	return TwilioIntegrationAccountAuthenticationUpdate{IntegrationAccountBasicAuthUpdate: v}
+// TwilioIntegrationAccountBasicAuthUpdateAsTwilioIntegrationAccountAuthenticationUpdate is a convenience function that returns TwilioIntegrationAccountBasicAuthUpdate wrapped in TwilioIntegrationAccountAuthenticationUpdate.
+func TwilioIntegrationAccountBasicAuthUpdateAsTwilioIntegrationAccountAuthenticationUpdate(v *TwilioIntegrationAccountBasicAuthUpdate) TwilioIntegrationAccountAuthenticationUpdate {
+	return TwilioIntegrationAccountAuthenticationUpdate{TwilioIntegrationAccountBasicAuthUpdate: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *TwilioIntegrationAccountAuthenticationUpdate) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into IntegrationAccountBasicAuthUpdate
-	err = datadog.Unmarshal(data, &obj.IntegrationAccountBasicAuthUpdate)
+	// try to unmarshal data into TwilioIntegrationAccountBasicAuthUpdate
+	err = datadog.Unmarshal(data, &obj.TwilioIntegrationAccountBasicAuthUpdate)
 	if err == nil {
-		if obj.IntegrationAccountBasicAuthUpdate != nil && obj.IntegrationAccountBasicAuthUpdate.UnparsedObject == nil {
-			jsonIntegrationAccountBasicAuthUpdate, _ := datadog.Marshal(obj.IntegrationAccountBasicAuthUpdate)
-			if string(jsonIntegrationAccountBasicAuthUpdate) == "{}" { // empty struct
-				obj.IntegrationAccountBasicAuthUpdate = nil
+		if obj.TwilioIntegrationAccountBasicAuthUpdate != nil && obj.TwilioIntegrationAccountBasicAuthUpdate.UnparsedObject == nil {
+			jsonTwilioIntegrationAccountBasicAuthUpdate, _ := datadog.Marshal(obj.TwilioIntegrationAccountBasicAuthUpdate)
+			if string(jsonTwilioIntegrationAccountBasicAuthUpdate) == "{}" { // empty struct
+				obj.TwilioIntegrationAccountBasicAuthUpdate = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.IntegrationAccountBasicAuthUpdate = nil
+			obj.TwilioIntegrationAccountBasicAuthUpdate = nil
 		}
 	} else {
-		obj.IntegrationAccountBasicAuthUpdate = nil
+		obj.TwilioIntegrationAccountBasicAuthUpdate = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.IntegrationAccountBasicAuthUpdate = nil
+		obj.TwilioIntegrationAccountBasicAuthUpdate = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -52,8 +52,8 @@ func (obj *TwilioIntegrationAccountAuthenticationUpdate) UnmarshalJSON(data []by
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj TwilioIntegrationAccountAuthenticationUpdate) MarshalJSON() ([]byte, error) {
-	if obj.IntegrationAccountBasicAuthUpdate != nil {
-		return datadog.Marshal(&obj.IntegrationAccountBasicAuthUpdate)
+	if obj.TwilioIntegrationAccountBasicAuthUpdate != nil {
+		return datadog.Marshal(&obj.TwilioIntegrationAccountBasicAuthUpdate)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -64,8 +64,8 @@ func (obj TwilioIntegrationAccountAuthenticationUpdate) MarshalJSON() ([]byte, e
 
 // GetActualInstance returns the actual instance.
 func (obj *TwilioIntegrationAccountAuthenticationUpdate) GetActualInstance() interface{} {
-	if obj.IntegrationAccountBasicAuthUpdate != nil {
-		return obj.IntegrationAccountBasicAuthUpdate
+	if obj.TwilioIntegrationAccountBasicAuthUpdate != nil {
+		return obj.TwilioIntegrationAccountBasicAuthUpdate
 	}
 
 	// all schemas are nil

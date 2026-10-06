@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudShardAllocationStatsIntegrationDataflowResponse The Elastic Cloud shard allocation stats dataflow.
+// ElasticCloudShardAllocationStatsIntegrationDataflowResponse Metrics for how many shards are allocated to each data node, and the disk space they use.
 type ElasticCloudShardAllocationStatsIntegrationDataflowResponse struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

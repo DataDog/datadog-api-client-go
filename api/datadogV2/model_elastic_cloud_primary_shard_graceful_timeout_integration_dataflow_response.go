@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudPrimaryShardGracefulTimeoutIntegrationDataflowResponse The Elastic Cloud primary shard graceful timeout dataflow.
+// ElasticCloudPrimaryShardGracefulTimeoutIntegrationDataflowResponse Tolerance for slow primary shard requests, keeping the rest of the collection running when a primary shard request times out instead of failing the run. Only has an effect alongside `elastic-cloud-primary-shard-stats`.
 type ElasticCloudPrimaryShardGracefulTimeoutIntegrationDataflowResponse struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether this tolerance is applied.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

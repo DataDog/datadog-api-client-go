@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeverityModifierRuleDataCreate The data object for a severity modifier rule create or update request.
+// SeverityModifierRuleDataCreate The data object for a severity modifier rule create request.
 type SeverityModifierRuleDataCreate struct {
 	// Attributes for creating or updating a severity modifier rule.
 	Attributes SeverityModifierRuleAttributesCreate `json:"attributes"`

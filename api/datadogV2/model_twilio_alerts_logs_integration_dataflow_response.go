@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioAlertsLogsIntegrationDataflowResponse The Twilio alerts logs dataflow.
+// TwilioAlertsLogsIntegrationDataflowResponse Twilio Alert resource logs, which detail the errors and warnings raised when Twilio makes a webhook request to your server or when your application calls the Twilio REST API.
 type TwilioAlertsLogsIntegrationDataflowResponse struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

@@ -23,6 +23,18 @@ type CustomerOrgApi datadog.Service
 // the authenticated org or the request is rejected. Successful calls disable the org
 // and return the resulting state from the downstream service. Requires the
 // `org_management` permission.
+//
+// **Limitations**:
+//
+//   - **Organization age**: Only organizations created within the last 10 days can be disabled
+//     through this endpoint. This restriction is a safeguard against accidentally disabling
+//     long-running organizations. Attempting to disable an older organization returns a `403 Forbidden`.
+//   - **Feature flag**: The feature flag `org_disable_self_service_enabled` must be enabled for the
+//     target organization or one of its ancestor organizations. Contact
+//     [Datadog support](https://docs.datadoghq.com/help/) to enable this for your organization.
+//     Requests for organizations without this flag return a `403 Forbidden`.
+//   - **Already-disabled organizations**: If the target organization is already disabled, the request
+//     returns a `409 Conflict`.
 func (a *CustomerOrgApi) DisableCustomerOrg(ctx _context.Context, body CustomerOrgDisableRequest) (CustomerOrgDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -87,7 +99,7 @@ func (a *CustomerOrgApi) DisableCustomerOrg(ctx _context.Context, body CustomerO
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 500 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -12,8 +12,8 @@ import (
 
 // DueDateRuleUpdateRequest The body of a due date rule update request.
 type DueDateRuleUpdateRequest struct {
-	// The data object for a due date rule create or update request.
-	Data DueDateRuleDataCreate `json:"data"`
+	// The data object for a due date rule update request. The `id` must match the `rule_id` path parameter.
+	Data DueDateRuleDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type DueDateRuleUpdateRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDueDateRuleUpdateRequest(data DueDateRuleDataCreate) *DueDateRuleUpdateRequest {
+func NewDueDateRuleUpdateRequest(data DueDateRuleDataUpdate) *DueDateRuleUpdateRequest {
 	this := DueDateRuleUpdateRequest{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewDueDateRuleUpdateRequestWithDefaults() *DueDateRuleUpdateRequest {
 }
 
 // GetData returns the Data field value.
-func (o *DueDateRuleUpdateRequest) GetData() DueDateRuleDataCreate {
+func (o *DueDateRuleUpdateRequest) GetData() DueDateRuleDataUpdate {
 	if o == nil {
-		var ret DueDateRuleDataCreate
+		var ret DueDateRuleDataUpdate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DueDateRuleUpdateRequest) GetData() DueDateRuleDataCreate {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DueDateRuleUpdateRequest) GetDataOk() (*DueDateRuleDataCreate, bool) {
+func (o *DueDateRuleUpdateRequest) GetDataOk() (*DueDateRuleDataUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *DueDateRuleUpdateRequest) GetDataOk() (*DueDateRuleDataCreate, bool) {
 }
 
 // SetData sets field value.
-func (o *DueDateRuleUpdateRequest) SetData(v DueDateRuleDataCreate) {
+func (o *DueDateRuleUpdateRequest) SetData(v DueDateRuleDataUpdate) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o DueDateRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DueDateRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DueDateRuleDataCreate `json:"data"`
+		Data *DueDateRuleDataUpdate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

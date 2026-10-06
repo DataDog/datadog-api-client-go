@@ -12,7 +12,7 @@ import (
 type RumCrossProductSampling struct {
 	// Whether the cross-product retention filter for APM traces is enabled.
 	TraceEnabled *bool `json:"trace_enabled,omitempty"`
-	// The sample rate for the APM cross-product retention filter, between 0 and 100.
+	// The sample rate for the APM cross-product retention filter, between 0 and 100. Values returned by the API are rounded to two decimal places.
 	TraceSampleRate *float64 `json:"trace_sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

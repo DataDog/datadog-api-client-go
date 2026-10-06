@@ -12,6 +12,9 @@ import (
 type TeamRoutingRulesRequestRule struct {
 	// Specifies the list of actions to perform when the routing rule is matched.
 	Actions []RoutingRuleAction `json:"actions,omitempty"`
+	// Specifies the unique identifier of an existing routing rule to update.
+	// If omitted, a new routing rule is created.
+	Id *string `json:"id,omitempty"`
 	// Identifies the policy to be applied when this routing rule matches.
 	PolicyId *string `json:"policy_id,omitempty"`
 	// Defines the query or condition that triggers this routing rule.
@@ -68,6 +71,34 @@ func (o *TeamRoutingRulesRequestRule) HasActions() bool {
 // SetActions gets a reference to the given []RoutingRuleAction and assigns it to the Actions field.
 func (o *TeamRoutingRulesRequestRule) SetActions(v []RoutingRuleAction) {
 	o.Actions = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *TeamRoutingRulesRequestRule) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamRoutingRulesRequestRule) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *TeamRoutingRulesRequestRule) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *TeamRoutingRulesRequestRule) SetId(v string) {
+	o.Id = &v
 }
 
 // GetPolicyId returns the PolicyId field value if set, zero value otherwise.
@@ -191,6 +222,9 @@ func (o TeamRoutingRulesRequestRule) MarshalJSON() ([]byte, error) {
 	if o.Actions != nil {
 		toSerialize["actions"] = o.Actions
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.PolicyId != nil {
 		toSerialize["policy_id"] = o.PolicyId
 	}
@@ -214,6 +248,7 @@ func (o TeamRoutingRulesRequestRule) MarshalJSON() ([]byte, error) {
 func (o *TeamRoutingRulesRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Actions         []RoutingRuleAction `json:"actions,omitempty"`
+		Id              *string             `json:"id,omitempty"`
 		PolicyId        *string             `json:"policy_id,omitempty"`
 		Query           *string             `json:"query,omitempty"`
 		TimeRestriction *TimeRestrictions   `json:"time_restriction,omitempty"`
@@ -224,13 +259,14 @@ func (o *TeamRoutingRulesRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "policy_id", "query", "time_restriction", "urgency"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "id", "policy_id", "query", "time_restriction", "urgency"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Actions = all.Actions
+	o.Id = all.Id
 	o.PolicyId = all.PolicyId
 	o.Query = all.Query
 	if all.TimeRestriction != nil && all.TimeRestriction.UnparsedObject != nil && o.UnparsedObject == nil {

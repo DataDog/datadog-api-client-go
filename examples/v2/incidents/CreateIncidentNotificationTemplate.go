@@ -43,6 +43,7 @@ Please join the incident channel for updates.`,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateIncidentNotificationTemplate", true)
 	apiClient := datadog.NewAPIClient(configuration)

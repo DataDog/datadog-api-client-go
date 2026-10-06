@@ -16,6 +16,7 @@ func main() {
 	IncidentTypeDataID := os.Getenv("INCIDENT_TYPE_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentType", true)
 	apiClient := datadog.NewAPIClient(configuration)

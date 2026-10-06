@@ -18,7 +18,7 @@ func main() {
 	ValidMuteRuleDataID := uuid.MustParse(os.Getenv("VALID_MUTE_RULE_DATA_ID"))
 
 	body := datadogV2.MuteRuleUpdateRequest{
-		Data: datadogV2.MuteRuleDataCreate{
+		Data: datadogV2.MuteRuleDataUpdate{
 			Attributes: datadogV2.MuteRuleAttributesCreate{
 				Action: datadogV2.MuteRuleAction{
 					Reason: datadogV2.MUTEREASON_FALSE_POSITIVE,
@@ -32,10 +32,12 @@ func main() {
 					Query: datadog.PtrString("env:staging"),
 				},
 			},
+			Id:   ValidMuteRuleDataID,
 			Type: datadogV2.MUTERULETYPE_MUTE_RULES,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateSecurityFindingsAutomationMuteRule", true)
 	apiClient := datadog.NewAPIClient(configuration)

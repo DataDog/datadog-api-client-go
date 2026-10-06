@@ -10,8 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptDataAttributes Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
+// LLMObsCreatePromptDataAttributes Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional. If `config` is omitted, the first version stores an empty object. Configuration authoring must be enabled for your organization to supply `config`. Otherwise, supplying it, including an empty object, returns HTTP 403.
 type LLMObsCreatePromptDataAttributes struct {
+	// Versioned prompt configuration is in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager. Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config,omitempty"`
 	// Optional description of the prompt.
 	Description *string `json:"description,omitempty"`
 	// Optional feature-flag environment UUIDs the service attempts to enable and configure to use the first version as their default after creation.
@@ -21,7 +23,10 @@ type LLMObsCreatePromptDataAttributes struct {
 	Labels []LLMObsPromptVersionLabel `json:"labels,omitempty"`
 	// Customer-provided identifier for the new prompt.
 	PromptId string `json:"prompt_id"`
-	// A text template or a list of chat messages.
+	// A text template, a list of chat messages and named message placeholders, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`; other text, including `{{>...}}` sequences without a version, remains literal. Use an authored chat object when including prompts as chat messages.
+	// **Preview**: Prompt composition is available in Preview. To request access, contact [Datadog Support](https://docs.datadoghq.com/help/) or your Customer Success Manager.
+	// Without access, inline references remain literal text and structured includes are unsupported. Previously compiled prompt versions remain available for execution.
+	// **Preview:** Message placeholders are available in Preview. To request access, contact [Datadog Support](https://www.datadoghq.com/support/) or your Customer Success Manager.
 	Template LLMObsPromptTemplate `json:"template"`
 	// Optional title of the prompt.
 	Title *string `json:"title,omitempty"`
@@ -49,6 +54,34 @@ func NewLLMObsCreatePromptDataAttributes(promptId string, template LLMObsPromptT
 func NewLLMObsCreatePromptDataAttributesWithDefaults() *LLMObsCreatePromptDataAttributes {
 	this := LLMObsCreatePromptDataAttributes{}
 	return &this
+}
+
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *LLMObsCreatePromptDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil || o.Config == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsCreatePromptDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Config == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *LLMObsCreatePromptDataAttributes) HasConfig() bool {
+	return o != nil && o.Config != nil
+}
+
+// SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
+func (o *LLMObsCreatePromptDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -246,6 +279,9 @@ func (o LLMObsCreatePromptDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -273,6 +309,7 @@ func (o LLMObsCreatePromptDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsCreatePromptDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Config      map[string]interface{}     `json:"config,omitempty"`
 		Description *string                    `json:"description,omitempty"`
 		EnvIds      []string                   `json:"env_ids,omitempty"`
 		Labels      []LLMObsPromptVersionLabel `json:"labels,omitempty"`
@@ -292,10 +329,11 @@ func (o *LLMObsCreatePromptDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "env_ids", "labels", "prompt_id", "template", "title", "user_version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "description", "env_ids", "labels", "prompt_id", "template", "title", "user_version"})
 	} else {
 		return err
 	}
+	o.Config = all.Config
 	o.Description = all.Description
 	o.EnvIds = all.EnvIds
 	o.Labels = all.Labels

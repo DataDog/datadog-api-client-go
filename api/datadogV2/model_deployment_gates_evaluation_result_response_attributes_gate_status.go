@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentGatesEvaluationResultResponseAttributesGateStatus The overall status of the gate evaluation.
+// DeploymentGatesEvaluationResultResponseAttributesGateStatus The recorded result of a gate or rule evaluation.
 // - `in_progress`: The evaluation is still running.
-// - `pass`: All rules passed successfully and the deployment is allowed to proceed.
-// - `fail`: One or more rules did not pass; the deployment should not proceed.
+// - `pass`: All rules passed successfully.
+// - `fail`: One or more rules did not pass.
 type DeploymentGatesEvaluationResultResponseAttributesGateStatus string
 
 // List of DeploymentGatesEvaluationResultResponseAttributesGateStatus.

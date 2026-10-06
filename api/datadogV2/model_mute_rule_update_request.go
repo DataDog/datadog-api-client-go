@@ -12,8 +12,8 @@ import (
 
 // MuteRuleUpdateRequest The body of a mute rule update request.
 type MuteRuleUpdateRequest struct {
-	// The data object for a mute rule create or update request.
-	Data MuteRuleDataCreate `json:"data"`
+	// The data object for a mute rule update request. The `id` must match the `rule_id` path parameter.
+	Data MuteRuleDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type MuteRuleUpdateRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteRuleUpdateRequest(data MuteRuleDataCreate) *MuteRuleUpdateRequest {
+func NewMuteRuleUpdateRequest(data MuteRuleDataUpdate) *MuteRuleUpdateRequest {
 	this := MuteRuleUpdateRequest{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewMuteRuleUpdateRequestWithDefaults() *MuteRuleUpdateRequest {
 }
 
 // GetData returns the Data field value.
-func (o *MuteRuleUpdateRequest) GetData() MuteRuleDataCreate {
+func (o *MuteRuleUpdateRequest) GetData() MuteRuleDataUpdate {
 	if o == nil {
-		var ret MuteRuleDataCreate
+		var ret MuteRuleDataUpdate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *MuteRuleUpdateRequest) GetData() MuteRuleDataCreate {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *MuteRuleUpdateRequest) GetDataOk() (*MuteRuleDataCreate, bool) {
+func (o *MuteRuleUpdateRequest) GetDataOk() (*MuteRuleDataUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *MuteRuleUpdateRequest) GetDataOk() (*MuteRuleDataCreate, bool) {
 }
 
 // SetData sets field value.
-func (o *MuteRuleUpdateRequest) SetData(v MuteRuleDataCreate) {
+func (o *MuteRuleUpdateRequest) SetData(v MuteRuleDataUpdate) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o MuteRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MuteRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *MuteRuleDataCreate `json:"data"`
+		Data *MuteRuleDataUpdate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

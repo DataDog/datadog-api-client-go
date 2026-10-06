@@ -17,8 +17,7 @@ type TwilioIntegrationAccountSettingsRequest struct {
 	// When enabled, Twilio phone numbers in the `to` field and SMS message bodies are censored for privacy.
 	CensorLogs *bool `json:"censor_logs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTwilioIntegrationAccountSettingsRequest instantiates a new TwilioIntegrationAccountSettingsRequest object.
@@ -100,10 +99,6 @@ func (o TwilioIntegrationAccountSettingsRequest) MarshalJSON() ([]byte, error) {
 	if o.CensorLogs != nil {
 		toSerialize["censor_logs"] = o.CensorLogs
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -119,18 +114,8 @@ func (o *TwilioIntegrationAccountSettingsRequest) UnmarshalJSON(bytes []byte) (e
 	if all.AccountSid == nil {
 		return fmt.Errorf("required field account_sid missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_sid", "censor_logs"})
-	} else {
-		return err
-	}
 	o.AccountSid = *all.AccountSid
 	o.CensorLogs = all.CensorLogs
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

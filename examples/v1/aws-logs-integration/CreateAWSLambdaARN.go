@@ -18,6 +18,7 @@ func main() {
 		LambdaArn: "arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewAWSLogsIntegrationApi(apiClient)

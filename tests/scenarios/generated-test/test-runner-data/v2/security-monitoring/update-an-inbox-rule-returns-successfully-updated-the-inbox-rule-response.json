@@ -1,0 +1,61 @@
+{
+  "api": "SecurityMonitoring",
+  "expected_status": 200,
+  "feature": "Security Monitoring",
+  "id": "v2/Security Monitoring/Update an inbox rule returns \"Successfully updated the inbox rule\" response",
+  "operation_id": "UpdateSecurityFindingsAutomationInboxRule",
+  "request": {
+    "body": {
+      "schema": {
+        "format": null,
+        "ref": "InboxRuleUpdateRequest",
+        "type": "object"
+      },
+      "source": "inline",
+      "value": {
+        "data": {
+          "attributes": {
+            "action": {
+              "description": "Needs triage"
+            },
+            "enabled": false,
+            "name": "{{ unique }}",
+            "rule": {
+              "finding_types": [
+                "misconfiguration"
+              ],
+              "query": "env:staging"
+            }
+          },
+          "id": "{{ valid_inbox_rule.data.id }}",
+          "type": "inbox_rules"
+        }
+      }
+    },
+    "content_type": "application/json",
+    "method": "PUT",
+    "pagination": false,
+    "parameters": [
+      {
+        "explode": null,
+        "in": "path",
+        "name": "rule_id",
+        "required": true,
+        "schema": {
+          "format": "uuid",
+          "ref": null,
+          "type": "string"
+        },
+        "source": {
+          "path": "valid_inbox_rule.data.id",
+          "type": "fixture"
+        },
+        "style": null
+      }
+    ],
+    "path": "/api/v2/security/findings/automation/inbox_rules/{rule_id}"
+  },
+  "scenario": "Update an inbox rule returns \"Successfully updated the inbox rule\" response",
+  "schema_version": 1,
+  "version": "v2"
+}

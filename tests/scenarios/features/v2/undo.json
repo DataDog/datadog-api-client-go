@@ -3692,14 +3692,51 @@
       "type": "idempotent"
     }
   },
+  "ListDatabricksIntegrationAccounts": {
+    "tag": "Databricks Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateDatabricksIntegrationAccount": {
+    "tag": "Databricks Integration",
+    "undo": {
+      "operationId": "DeleteDatabricksIntegrationAccount",
+      "parameters": [
+        {
+          "name": "account_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteDatabricksIntegrationAccount": {
+    "tag": "Databricks Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetDatabricksIntegrationAccount": {
+    "tag": "Databricks Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateDatabricksIntegrationAccount": {
+    "tag": "Databricks Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListElasticCloudIntegrationAccounts": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "safe"
     }
   },
   "CreateElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "operationId": "DeleteElasticCloudIntegrationAccount",
       "parameters": [
@@ -3712,31 +3749,68 @@
     }
   },
   "DeleteElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "GetElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "safe"
     }
   },
   "UpdateElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListSnowflakeIntegrationAccounts": {
+    "tag": "Snowflake Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSnowflakeIntegrationAccount": {
+    "tag": "Snowflake Integration",
+    "undo": {
+      "operationId": "DeleteSnowflakeIntegrationAccount",
+      "parameters": [
+        {
+          "name": "account_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteSnowflakeIntegrationAccount": {
+    "tag": "Snowflake Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetSnowflakeIntegrationAccount": {
+    "tag": "Snowflake Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateSnowflakeIntegrationAccount": {
+    "tag": "Snowflake Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "ListTwilioIntegrationAccounts": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "safe"
     }
   },
   "CreateTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "operationId": "DeleteTwilioIntegrationAccount",
       "parameters": [
@@ -3749,19 +3823,19 @@
     }
   },
   "DeleteTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "GetTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "safe"
     }
   },
   "UpdateTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "idempotent"
     }
@@ -8702,7 +8776,19 @@
       "type": "safe"
     }
   },
+  "GetEntityContextRecentlyUpdated": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetSingleEntityContext": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetMatchingSignals": {
     "tag": "Security Monitoring",
     "undo": {
       "type": "safe"

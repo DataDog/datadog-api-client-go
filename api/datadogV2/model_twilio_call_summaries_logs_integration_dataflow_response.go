@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioCallSummariesLogsIntegrationDataflowResponse The Twilio call summaries logs dataflow.
+// TwilioCallSummariesLogsIntegrationDataflowResponse Twilio Call Summary resource logs, covering the metadata and performance of the calls made from your Twilio account. Requires Voice Insights Advanced Features to be enabled on the Twilio account; without it this dataflow collects no data.
 type TwilioCallSummariesLogsIntegrationDataflowResponse struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

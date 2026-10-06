@@ -18,7 +18,7 @@ func main() {
 	ValidSeverityModifierRuleDataID := uuid.MustParse(os.Getenv("VALID_SEVERITY_MODIFIER_RULE_DATA_ID"))
 
 	body := datadogV2.SeverityModifierRuleUpdateRequest{
-		Data: datadogV2.SeverityModifierRuleDataCreate{
+		Data: datadogV2.SeverityModifierRuleDataUpdate{
 			Attributes: datadogV2.SeverityModifierRuleAttributesCreate{
 				Action: datadogV2.SeverityModifierRuleAction{
 					SeverityModifierRuleSetAction: &datadogV2.SeverityModifierRuleSetAction{
@@ -35,10 +35,12 @@ func main() {
 					Query: datadog.PtrString("env:prod team:platform"),
 				},
 			},
+			Id:   ValidSeverityModifierRuleDataID,
 			Type: datadogV2.SEVERITYMODIFIERRULETYPE_SEVERITY_MODIFIER_RULES,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateSecurityFindingsAutomationSeverityModifierRule", true)
 	apiClient := datadog.NewAPIClient(configuration)

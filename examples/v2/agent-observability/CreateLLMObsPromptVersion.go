@@ -16,6 +16,11 @@ func main() {
 	body := datadogV2.LLMObsCreatePromptVersionRequest{
 		Data: datadogV2.LLMObsCreatePromptVersionData{
 			Attributes: datadogV2.LLMObsCreatePromptVersionDataAttributes{
+				Config: map[string]interface{}{
+					"model":           "provider-model",
+					"response_format": "{'type': 'json_object'}",
+					"temperature":     0.2,
+				},
 				EnvIds: []string{},
 				Labels: []datadogV2.LLMObsPromptVersionLabel{
 					datadogV2.LLMOBSPROMPTVERSIONLABEL_PRODUCTION,
@@ -27,6 +32,7 @@ func main() {
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateLLMObsPromptVersion", true)
 	apiClient := datadog.NewAPIClient(configuration)

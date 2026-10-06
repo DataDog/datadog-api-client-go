@@ -16,10 +16,12 @@ type TriggerType string
 // List of TriggerType.
 const (
 	TRIGGERTYPE_MONITOR_ALERT_TRIGGER TriggerType = "monitor_alert_trigger"
+	TRIGGERTYPE_GENERAL_INVESTIGATION TriggerType = "general_investigation"
 )
 
 var allowedTriggerTypeEnumValues = []TriggerType{
 	TRIGGERTYPE_MONITOR_ALERT_TRIGGER,
+	TRIGGERTYPE_GENERAL_INVESTIGATION,
 }
 
 // GetAllowedValues reeturns the list of possible values.

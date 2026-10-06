@@ -13,7 +13,7 @@ type BudgetAttributesCostsUnit struct {
 	// The unit family (for example, `currency`).
 	Family *string `json:"family,omitempty"`
 	// The unique identifier for the unit.
-	Id *string `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// The full name of the unit.
 	Name *string `json:"name,omitempty"`
 	// The plural form of the unit name.
@@ -73,9 +73,9 @@ func (o *BudgetAttributesCostsUnit) SetFamily(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *BudgetAttributesCostsUnit) GetId() string {
+func (o *BudgetAttributesCostsUnit) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -83,7 +83,7 @@ func (o *BudgetAttributesCostsUnit) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributesCostsUnit) GetIdOk() (*string, bool) {
+func (o *BudgetAttributesCostsUnit) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -95,8 +95,8 @@ func (o *BudgetAttributesCostsUnit) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *BudgetAttributesCostsUnit) SetId(v string) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *BudgetAttributesCostsUnit) SetId(v int64) {
 	o.Id = &v
 }
 
@@ -247,7 +247,7 @@ func (o BudgetAttributesCostsUnit) MarshalJSON() ([]byte, error) {
 func (o *BudgetAttributesCostsUnit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Family      *string  `json:"family,omitempty"`
-		Id          *string  `json:"id,omitempty"`
+		Id          *int64   `json:"id,omitempty"`
 		Name        *string  `json:"name,omitempty"`
 		Plural      *string  `json:"plural,omitempty"`
 		ScaleFactor *float64 `json:"scale_factor,omitempty"`

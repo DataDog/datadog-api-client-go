@@ -22,7 +22,9 @@ func main() {
 					Forecast:     *datadog.NewNullableFloat64(nil),
 					OotbForecast: *datadog.NewNullableFloat64(nil),
 				},
-				CostsUnit: &datadogV2.BudgetAttributesCostsUnit{},
+				CostsUnit: &datadogV2.BudgetAttributesCostsUnit{
+					Id: datadog.PtrInt64(42),
+				},
 				CreatedAt: datadog.PtrInt64(1738258683590),
 				CreatedBy: datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 				EndMonth:  datadog.PtrInt64(202502),
@@ -44,15 +46,22 @@ func main() {
 				Name:         datadog.PtrString("my budget"),
 				OrgId:        datadog.PtrInt64(123),
 				StartMonth:   datadog.PtrInt64(202501),
-				TotalAmount:  datadog.PtrFloat64(1000),
-				UpdatedAt:    datadog.PtrInt64(1738258683590),
-				UpdatedBy:    datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
+				Tags: []string{
+					"service",
+				},
+				TotalAmount: datadog.PtrFloat64(1000),
+				UpdatedAt:   datadog.PtrInt64(1738258683590),
+				UpdatedBy:   datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 			},
 			Id:   datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 			Type: datadog.PtrString(""),
 		},
+		Meta: &datadogV2.BudgetWithEntriesMeta{
+			Error: "",
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)

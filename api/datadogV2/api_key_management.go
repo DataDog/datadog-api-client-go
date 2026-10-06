@@ -753,14 +753,39 @@ func (a *KeyManagementApi) GetCurrentUserApplicationKey(ctx _context.Context, ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetPersonalAccessTokenOptionalParameters holds optional parameters for GetPersonalAccessToken.
+type GetPersonalAccessTokenOptionalParameters struct {
+	Include *[]PersonalAccessTokensIncludeQueryParameterItem
+}
+
+// NewGetPersonalAccessTokenOptionalParameters creates an empty struct for parameters.
+func NewGetPersonalAccessTokenOptionalParameters() *GetPersonalAccessTokenOptionalParameters {
+	this := GetPersonalAccessTokenOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *GetPersonalAccessTokenOptionalParameters) WithInclude(include []PersonalAccessTokensIncludeQueryParameterItem) *GetPersonalAccessTokenOptionalParameters {
+	r.Include = &include
+	return r
+}
+
 // GetPersonalAccessToken Get a personal access token.
 // Get a specific personal access token by its ID.
-func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, tokenId string) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, tokenId string, o ...GetPersonalAccessTokenOptionalParameters) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PersonalAccessTokenResponse
+		optionalParams      GetPersonalAccessTokenOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetPersonalAccessTokenOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.KeyManagementApi.GetPersonalAccessToken")
 	if err != nil {
@@ -773,6 +798,9 @@ func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, tokenId 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -1383,6 +1411,8 @@ type ListPersonalAccessTokensOptionalParameters struct {
 	Sort          *PersonalAccessTokensSort
 	Filter        *string
 	FilterOwnedBy *[]string
+	FilterLeaked  *bool
+	Include       *[]PersonalAccessTokensIncludeQueryParameterItem
 }
 
 // NewListPersonalAccessTokensOptionalParameters creates an empty struct for parameters.
@@ -1418,6 +1448,18 @@ func (r *ListPersonalAccessTokensOptionalParameters) WithFilter(filter string) *
 // WithFilterOwnedBy sets the corresponding parameter name and returns the struct.
 func (r *ListPersonalAccessTokensOptionalParameters) WithFilterOwnedBy(filterOwnedBy []string) *ListPersonalAccessTokensOptionalParameters {
 	r.FilterOwnedBy = &filterOwnedBy
+	return r
+}
+
+// WithFilterLeaked sets the corresponding parameter name and returns the struct.
+func (r *ListPersonalAccessTokensOptionalParameters) WithFilterLeaked(filterLeaked bool) *ListPersonalAccessTokensOptionalParameters {
+	r.FilterLeaked = &filterLeaked
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListPersonalAccessTokensOptionalParameters) WithInclude(include []PersonalAccessTokensIncludeQueryParameterItem) *ListPersonalAccessTokensOptionalParameters {
+	r.Include = &include
 	return r
 }
 
@@ -1470,6 +1512,12 @@ func (a *KeyManagementApi) ListPersonalAccessTokens(ctx _context.Context, o ...L
 		} else {
 			localVarQueryParams.Add("filter[owned_by]", datadog.ParameterToString(t, "multi"))
 		}
+	}
+	if optionalParams.FilterLeaked != nil {
+		localVarQueryParams.Add("filter[leaked]", datadog.ParameterToString(*optionalParams.FilterLeaked, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1843,11 +1891,11 @@ func (a *KeyManagementApi) UpdateCurrentUserApplicationKey(ctx _context.Context,
 
 // UpdatePersonalAccessToken Update a personal access token.
 // Update a specific personal access token.
-func (a *KeyManagementApi) UpdatePersonalAccessToken(ctx _context.Context, tokenId string, body PersonalAccessTokenUpdateRequest) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApi) UpdatePersonalAccessToken(ctx _context.Context, tokenId string, body PersonalAccessTokenUpdateRequest) (UpdatedPersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue PersonalAccessTokenResponse
+		localVarReturnValue UpdatedPersonalAccessTokenResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.KeyManagementApi.UpdatePersonalAccessToken")

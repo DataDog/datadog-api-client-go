@@ -10,33 +10,34 @@ import (
 
 // ObservabilityPipelineConfigProcessorItem - A processor for the pipeline.
 type ObservabilityPipelineConfigProcessorItem struct {
-	ObservabilityPipelineFilterProcessor               *ObservabilityPipelineFilterProcessor
-	ObservabilityPipelineAddEnvVarsProcessor           *ObservabilityPipelineAddEnvVarsProcessor
-	ObservabilityPipelineAddFieldsProcessor            *ObservabilityPipelineAddFieldsProcessor
-	ObservabilityPipelineAddHostnameProcessor          *ObservabilityPipelineAddHostnameProcessor
-	ObservabilityPipelineCustomProcessor               *ObservabilityPipelineCustomProcessor
-	ObservabilityPipelineDatadogTagsProcessor          *ObservabilityPipelineDatadogTagsProcessor
-	ObservabilityPipelineDedupeProcessor               *ObservabilityPipelineDedupeProcessor
-	ObservabilityPipelineEnrichmentTableProcessor      *ObservabilityPipelineEnrichmentTableProcessor
-	ObservabilityPipelineGenerateMetricsProcessor      *ObservabilityPipelineGenerateMetricsProcessor
-	ObservabilityPipelineGenerateMetricsV2Processor    *ObservabilityPipelineGenerateMetricsV2Processor
-	ObservabilityPipelineOcsfMapperProcessor           *ObservabilityPipelineOcsfMapperProcessor
-	ObservabilityPipelineParseGrokProcessor            *ObservabilityPipelineParseGrokProcessor
-	ObservabilityPipelineParseJSONProcessor            *ObservabilityPipelineParseJSONProcessor
-	ObservabilityPipelineParseXMLProcessor             *ObservabilityPipelineParseXMLProcessor
-	ObservabilityPipelineQuotaProcessor                *ObservabilityPipelineQuotaProcessor
-	ObservabilityPipelineReduceProcessor               *ObservabilityPipelineReduceProcessor
-	ObservabilityPipelineRemoveFieldsProcessor         *ObservabilityPipelineRemoveFieldsProcessor
-	ObservabilityPipelineRenameFieldsProcessor         *ObservabilityPipelineRenameFieldsProcessor
-	ObservabilityPipelineSampleProcessor               *ObservabilityPipelineSampleProcessor
-	ObservabilityPipelineSensitiveDataScannerProcessor *ObservabilityPipelineSensitiveDataScannerProcessor
-	ObservabilityPipelineSplitArrayProcessor           *ObservabilityPipelineSplitArrayProcessor
-	ObservabilityPipelineThrottleProcessor             *ObservabilityPipelineThrottleProcessor
-	ObservabilityPipelineAddMetricTagsProcessor        *ObservabilityPipelineAddMetricTagsProcessor
-	ObservabilityPipelineAggregateProcessor            *ObservabilityPipelineAggregateProcessor
-	ObservabilityPipelineMetricTagsProcessor           *ObservabilityPipelineMetricTagsProcessor
-	ObservabilityPipelineRenameMetricTagsProcessor     *ObservabilityPipelineRenameMetricTagsProcessor
-	ObservabilityPipelineTagCardinalityLimitProcessor  *ObservabilityPipelineTagCardinalityLimitProcessor
+	ObservabilityPipelineFilterProcessor                *ObservabilityPipelineFilterProcessor
+	ObservabilityPipelineAddEnvVarsProcessor            *ObservabilityPipelineAddEnvVarsProcessor
+	ObservabilityPipelineAddFieldsProcessor             *ObservabilityPipelineAddFieldsProcessor
+	ObservabilityPipelineAddHostnameProcessor           *ObservabilityPipelineAddHostnameProcessor
+	ObservabilityPipelineCustomProcessor                *ObservabilityPipelineCustomProcessor
+	ObservabilityPipelineDatadogTagsProcessor           *ObservabilityPipelineDatadogTagsProcessor
+	ObservabilityPipelineDedupeProcessor                *ObservabilityPipelineDedupeProcessor
+	ObservabilityPipelineEnrichmentTableProcessor       *ObservabilityPipelineEnrichmentTableProcessor
+	ObservabilityPipelineGenerateMetricsProcessor       *ObservabilityPipelineGenerateMetricsProcessor
+	ObservabilityPipelineGenerateMetricsV2Processor     *ObservabilityPipelineGenerateMetricsV2Processor
+	ObservabilityPipelineOcsfMapperProcessor            *ObservabilityPipelineOcsfMapperProcessor
+	ObservabilityPipelineParseGrokProcessor             *ObservabilityPipelineParseGrokProcessor
+	ObservabilityPipelineParseJSONProcessor             *ObservabilityPipelineParseJSONProcessor
+	ObservabilityPipelineParseXMLProcessor              *ObservabilityPipelineParseXMLProcessor
+	ObservabilityPipelineQuotaProcessor                 *ObservabilityPipelineQuotaProcessor
+	ObservabilityPipelineReduceProcessor                *ObservabilityPipelineReduceProcessor
+	ObservabilityPipelineRemoveFieldsProcessor          *ObservabilityPipelineRemoveFieldsProcessor
+	ObservabilityPipelineRenameFieldsProcessor          *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineSampleProcessor                *ObservabilityPipelineSampleProcessor
+	ObservabilityPipelineSensitiveDataScannerProcessor  *ObservabilityPipelineSensitiveDataScannerProcessor
+	ObservabilityPipelineSplitArrayProcessor            *ObservabilityPipelineSplitArrayProcessor
+	ObservabilityPipelineThrottleProcessor              *ObservabilityPipelineThrottleProcessor
+	ObservabilityPipelineAddMetricTagsProcessor         *ObservabilityPipelineAddMetricTagsProcessor
+	ObservabilityPipelineAggregateProcessor             *ObservabilityPipelineAggregateProcessor
+	ObservabilityPipelineMetricEnrichmentTableProcessor *ObservabilityPipelineMetricEnrichmentTableProcessor
+	ObservabilityPipelineMetricTagsProcessor            *ObservabilityPipelineMetricTagsProcessor
+	ObservabilityPipelineRenameMetricTagsProcessor      *ObservabilityPipelineRenameMetricTagsProcessor
+	ObservabilityPipelineTagCardinalityLimitProcessor   *ObservabilityPipelineTagCardinalityLimitProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -160,6 +161,11 @@ func ObservabilityPipelineAddMetricTagsProcessorAsObservabilityPipelineConfigPro
 // ObservabilityPipelineAggregateProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineAggregateProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineAggregateProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineAggregateProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineAggregateProcessor: v}
+}
+
+// ObservabilityPipelineMetricEnrichmentTableProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineMetricEnrichmentTableProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineMetricEnrichmentTableProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineMetricEnrichmentTableProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineMetricEnrichmentTableProcessor: v}
 }
 
 // ObservabilityPipelineMetricTagsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineMetricTagsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
@@ -589,6 +595,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineAggregateProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineMetricEnrichmentTableProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineMetricEnrichmentTableProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineMetricEnrichmentTableProcessor != nil && obj.ObservabilityPipelineMetricEnrichmentTableProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineMetricEnrichmentTableProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineMetricEnrichmentTableProcessor)
+			if string(jsonObservabilityPipelineMetricEnrichmentTableProcessor) == "{}" && string(data) != "{}" { // empty struct
+				obj.ObservabilityPipelineMetricEnrichmentTableProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineMetricEnrichmentTableProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineMetricEnrichmentTableProcessor = nil
+	}
+
 	// try to unmarshal data into ObservabilityPipelineMetricTagsProcessor
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineMetricTagsProcessor)
 	if err == nil {
@@ -666,6 +689,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineThrottleProcessor = nil
 		obj.ObservabilityPipelineAddMetricTagsProcessor = nil
 		obj.ObservabilityPipelineAggregateProcessor = nil
+		obj.ObservabilityPipelineMetricEnrichmentTableProcessor = nil
 		obj.ObservabilityPipelineMetricTagsProcessor = nil
 		obj.ObservabilityPipelineRenameMetricTagsProcessor = nil
 		obj.ObservabilityPipelineTagCardinalityLimitProcessor = nil
@@ -770,6 +794,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineAggregateProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAggregateProcessor)
+	}
+
+	if obj.ObservabilityPipelineMetricEnrichmentTableProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineMetricEnrichmentTableProcessor)
 	}
 
 	if obj.ObservabilityPipelineMetricTagsProcessor != nil {
@@ -886,6 +914,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineAggregateProcessor != nil {
 		return obj.ObservabilityPipelineAggregateProcessor
+	}
+
+	if obj.ObservabilityPipelineMetricEnrichmentTableProcessor != nil {
+		return obj.ObservabilityPipelineMetricEnrichmentTableProcessor
 	}
 
 	if obj.ObservabilityPipelineMetricTagsProcessor != nil {

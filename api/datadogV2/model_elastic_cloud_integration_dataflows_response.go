@@ -8,23 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudIntegrationDataflowsResponse Dataflows configured on the Elastic Cloud integration account, keyed by dataflow id.
+// ElasticCloudIntegrationDataflowsResponse Data Datadog collects from Elastic Cloud, keyed by dataflow id.
 type ElasticCloudIntegrationDataflowsResponse struct {
-	// The Elastic Cloud detailed index stats dataflow.
+	// Primary shard metrics broken down per index, rather than aggregated across the cluster.
 	ElasticCloudDetailedIndexStats *ElasticCloudDetailedIndexStatsIntegrationDataflowResponse `json:"elastic-cloud-detailed-index-stats,omitempty"`
-	// The Elastic Cloud index stats dataflow.
+	// Metrics for individual indices. Only the indices granted to the role of the user in `authentication` are collected.
 	ElasticCloudIndexStats *ElasticCloudIndexStatsIntegrationDataflowResponse `json:"elastic-cloud-index-stats,omitempty"`
-	// The Elastic Cloud metrics dataflow.
+	// Node-level statistics for the clusters in your deployment, such as the number of nodes and the number of documents on each node. This is the integration's baseline collection: it is always on and cannot be turned off, which is why it appears in responses only.
 	ElasticCloudMetrics *ElasticCloudMetricsIntegrationDataflowResponse `json:"elastic-cloud-metrics,omitempty"`
-	// The Elastic Cloud pending task stats dataflow.
+	// Metrics for cluster-level changes that have been submitted but not yet executed.
 	ElasticCloudPendingTaskStats *ElasticCloudPendingTaskStatsIntegrationDataflowResponse `json:"elastic-cloud-pending-task-stats,omitempty"`
-	// The Elastic Cloud primary shard graceful timeout dataflow.
+	// Tolerance for slow primary shard requests, keeping the rest of the collection running when a primary shard request times out instead of failing the run. Only has an effect alongside `elastic-cloud-primary-shard-stats`.
 	ElasticCloudPrimaryShardGracefulTimeout *ElasticCloudPrimaryShardGracefulTimeoutIntegrationDataflowResponse `json:"elastic-cloud-primary-shard-graceful-timeout,omitempty"`
-	// The Elastic Cloud primary shard stats dataflow.
+	// Metrics covering only the cluster's primary shards.
 	ElasticCloudPrimaryShardStats *ElasticCloudPrimaryShardStatsIntegrationDataflowResponse `json:"elastic-cloud-primary-shard-stats,omitempty"`
-	// The Elastic Cloud shard allocation stats dataflow.
+	// Metrics for how many shards are allocated to each data node, and the disk space they use.
 	ElasticCloudShardAllocationStats *ElasticCloudShardAllocationStatsIntegrationDataflowResponse `json:"elastic-cloud-shard-allocation-stats,omitempty"`
-	// The Elastic Cloud snapshot lifecycle management stats dataflow.
+	// Metrics about the actions taken by snapshot lifecycle management. Requires the `read_slm` Elasticsearch cluster privilege on the role of the user in `authentication`; without it this dataflow collects no data.
 	ElasticCloudSlmStats *ElasticCloudSlmStatsIntegrationDataflowResponse `json:"elastic-cloud-slm-stats,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

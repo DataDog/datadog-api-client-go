@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioCloudCostMetricsIntegrationDataflowResponse The Twilio cloud cost metrics dataflow.
+// TwilioCloudCostMetricsIntegrationDataflowResponse Your Twilio cost data, so that Twilio spend can be broken down and attributed in [Cloud Cost Management](https://docs.datadoghq.com/cloud_cost_management/).
 type TwilioCloudCostMetricsIntegrationDataflowResponse struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

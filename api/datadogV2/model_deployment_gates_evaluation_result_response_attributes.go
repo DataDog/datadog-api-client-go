@@ -22,10 +22,10 @@ type DeploymentGatesEvaluationResultResponseAttributes struct {
 	EvaluationUrl string `json:"evaluation_url"`
 	// The unique identifier of the deployment gate.
 	GateId uuid.UUID `json:"gate_id"`
-	// The overall status of the gate evaluation.
+	// The recorded result of a gate or rule evaluation.
 	// - `in_progress`: The evaluation is still running.
-	// - `pass`: All rules passed successfully and the deployment is allowed to proceed.
-	// - `fail`: One or more rules did not pass; the deployment should not proceed.
+	// - `pass`: All rules passed successfully.
+	// - `fail`: One or more rules did not pass.
 	GateStatus DeploymentGatesEvaluationResultResponseAttributesGateStatus `json:"gate_status"`
 	// The results of individual rule evaluations.
 	Rules []DeploymentGatesRuleResponse `json:"rules"`

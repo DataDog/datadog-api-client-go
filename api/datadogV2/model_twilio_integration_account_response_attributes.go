@@ -14,7 +14,7 @@ import (
 type TwilioIntegrationAccountResponseAttributes struct {
 	// Authentication configured on the Twilio integration account.
 	Authentication *TwilioIntegrationAccountAuthenticationResponse `json:"authentication,omitempty"`
-	// Dataflows configured on the Twilio integration account, keyed by dataflow id.
+	// Data Datadog collects from Twilio, keyed by dataflow id.
 	Dataflows *TwilioIntegrationDataflowsResponse `json:"dataflows,omitempty"`
 	// Human-readable name of the Twilio integration account.
 	Name string `json:"name"`

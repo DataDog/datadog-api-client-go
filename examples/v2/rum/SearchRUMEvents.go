@@ -29,6 +29,7 @@ func main() {
 		Sort: datadogV2.RUMSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMApi(apiClient)

@@ -6013,12 +6013,13 @@ func (a *SecurityMonitoringApi) GetCustomFramework(ctx _context.Context, handle 
 
 // GetEntityContextOptionalParameters holds optional parameters for GetEntityContext.
 type GetEntityContextOptionalParameters struct {
-	Query     *string
-	From      *string
-	To        *string
-	AsOf      *string
-	Limit     *int64
-	PageToken *string
+	Query      *string
+	EntityType *EntityContextEntityType
+	From       *string
+	To         *string
+	AsOf       *string
+	Limit      *int64
+	PageToken  *string
 }
 
 // NewGetEntityContextOptionalParameters creates an empty struct for parameters.
@@ -6030,6 +6031,12 @@ func NewGetEntityContextOptionalParameters() *GetEntityContextOptionalParameters
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *GetEntityContextOptionalParameters) WithQuery(query string) *GetEntityContextOptionalParameters {
 	r.Query = &query
+	return r
+}
+
+// WithEntityType sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextOptionalParameters) WithEntityType(entityType EntityContextEntityType) *GetEntityContextOptionalParameters {
+	r.EntityType = &entityType
 	return r
 }
 
@@ -6105,6 +6112,9 @@ func (a *SecurityMonitoringApi) GetEntityContext(ctx _context.Context, o ...GetE
 	if optionalParams.Query != nil {
 		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
 	}
+	if optionalParams.EntityType != nil {
+		localVarQueryParams.Add("entity_type", datadog.ParameterToString(*optionalParams.EntityType, ""))
+	}
 	if optionalParams.From != nil {
 		localVarQueryParams.Add("from", datadog.ParameterToString(*optionalParams.From, ""))
 	}
@@ -6119,6 +6129,172 @@ func (a *SecurityMonitoringApi) GetEntityContext(ctx _context.Context, o ...GetE
 	}
 	if optionalParams.PageToken != nil {
 		localVarQueryParams.Add("page_token", datadog.ParameterToString(*optionalParams.PageToken, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetEntityContextRecentlyUpdatedOptionalParameters holds optional parameters for GetEntityContextRecentlyUpdated.
+type GetEntityContextRecentlyUpdatedOptionalParameters struct {
+	Query      *string
+	EntityType *EntityContextEntityType
+	From       *string
+	To         *string
+	Limit      *int64
+	Revisions  *EntityContextRevisionsMode
+}
+
+// NewGetEntityContextRecentlyUpdatedOptionalParameters creates an empty struct for parameters.
+func NewGetEntityContextRecentlyUpdatedOptionalParameters() *GetEntityContextRecentlyUpdatedOptionalParameters {
+	this := GetEntityContextRecentlyUpdatedOptionalParameters{}
+	return &this
+}
+
+// WithQuery sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithQuery(query string) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.Query = &query
+	return r
+}
+
+// WithEntityType sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithEntityType(entityType EntityContextEntityType) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.EntityType = &entityType
+	return r
+}
+
+// WithFrom sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithFrom(from string) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.From = &from
+	return r
+}
+
+// WithTo sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithTo(to string) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.To = &to
+	return r
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithLimit(limit int64) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithRevisions sets the corresponding parameter name and returns the struct.
+func (r *GetEntityContextRecentlyUpdatedOptionalParameters) WithRevisions(revisions EntityContextRevisionsMode) *GetEntityContextRecentlyUpdatedOptionalParameters {
+	r.Revisions = &revisions
+	return r
+}
+
+// GetEntityContextRecentlyUpdated Get recently updated entity context.
+// Get the entities with the most recent updates in the Cloud SIEM entity context store. Entities are ranked
+// by the time of their most recent revision in the requested time range, and the top `limit` entities are
+// returned in that order. This endpoint is not paginated.
+func (a *SecurityMonitoringApi) GetEntityContextRecentlyUpdated(ctx _context.Context, o ...GetEntityContextRecentlyUpdatedOptionalParameters) (RecentlyUpdatedEntitiesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue RecentlyUpdatedEntitiesResponse
+		optionalParams      GetEntityContextRecentlyUpdatedOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetEntityContextRecentlyUpdatedOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetEntityContextRecentlyUpdated"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetEntityContextRecentlyUpdated")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/entity_context/recently_updated"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Query != nil {
+		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
+	}
+	if optionalParams.EntityType != nil {
+		localVarQueryParams.Add("entity_type", datadog.ParameterToString(*optionalParams.EntityType, ""))
+	}
+	if optionalParams.From != nil {
+		localVarQueryParams.Add("from", datadog.ParameterToString(*optionalParams.From, ""))
+	}
+	if optionalParams.To != nil {
+		localVarQueryParams.Add("to", datadog.ParameterToString(*optionalParams.To, ""))
+	}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.Revisions != nil {
+		localVarQueryParams.Add("revisions", datadog.ParameterToString(*optionalParams.Revisions, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -6668,6 +6844,94 @@ func (a *SecurityMonitoringApi) GetInvestigationLogQueriesMatchingSignal(ctx _co
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetMatchingSignals Get signals matching an event.
+// Returns the list of security signals that match a given event on the given track.
+func (a *SecurityMonitoringApi) GetMatchingSignals(ctx _context.Context, eventId string, track string) (MatchingSignalsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MatchingSignalsResponse
+	)
+
+	operationId := "v2.GetMatchingSignals"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetMatchingSignals")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/events/{event_id}/matching_signals"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{event_id}", _neturl.PathEscape(datadog.ParameterToString(eventId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("track", datadog.ParameterToString(track, ""))
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -9016,15 +9280,22 @@ func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context)
 
 // GetSingleEntityContextOptionalParameters holds optional parameters for GetSingleEntityContext.
 type GetSingleEntityContextOptionalParameters struct {
-	From *string
-	To   *string
-	AsOf *string
+	EntityType *EntityContextEntityType
+	From       *string
+	To         *string
+	AsOf       *string
 }
 
 // NewGetSingleEntityContextOptionalParameters creates an empty struct for parameters.
 func NewGetSingleEntityContextOptionalParameters() *GetSingleEntityContextOptionalParameters {
 	this := GetSingleEntityContextOptionalParameters{}
 	return &this
+}
+
+// WithEntityType sets the corresponding parameter name and returns the struct.
+func (r *GetSingleEntityContextOptionalParameters) WithEntityType(entityType EntityContextEntityType) *GetSingleEntityContextOptionalParameters {
+	r.EntityType = &entityType
+	return r
 }
 
 // WithFrom sets the corresponding parameter name and returns the struct.
@@ -9085,6 +9356,9 @@ func (a *SecurityMonitoringApi) GetSingleEntityContext(ctx _context.Context, id 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.EntityType != nil {
+		localVarQueryParams.Add("entity_type", datadog.ParameterToString(*optionalParams.EntityType, ""))
+	}
 	if optionalParams.From != nil {
 		localVarQueryParams.Add("from", datadog.ParameterToString(*optionalParams.From, ""))
 	}
@@ -14863,11 +15137,11 @@ func (a *SecurityMonitoringApi) PatchVulnerabilityNotificationRule(ctx _context.
 
 // ReorderSecurityFindingsAutomationDueDateRules Reorder due date rules.
 // Reorder the list of due date rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationDueDateRules(ctx _context.Context, body DueDateRuleReorderRequest) (DueDateRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationDueDateRules(ctx _context.Context, body DueDateRuleReorderRequest) (DueDateRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue DueDateRuleReorderRequest
+		localVarReturnValue DueDateRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationDueDateRules"
@@ -15059,11 +15333,11 @@ func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationInboxRules(ctx 
 
 // ReorderSecurityFindingsAutomationMuteRules Reorder mute rules.
 // Reorder the list of mute rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationMuteRules(ctx _context.Context, body MuteRuleReorderRequest) (MuteRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationMuteRules(ctx _context.Context, body MuteRuleReorderRequest) (MuteRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue MuteRuleReorderRequest
+		localVarReturnValue MuteRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationMuteRules"
@@ -15255,11 +15529,11 @@ func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationSeverityModifie
 
 // ReorderSecurityFindingsAutomationTicketCreationRules Reorder ticket creation rules.
 // Reorder the list of ticket creation rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationTicketCreationRules(ctx _context.Context, body TicketCreationRuleReorderRequest) (TicketCreationRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationTicketCreationRules(ctx _context.Context, body TicketCreationRuleReorderRequest) (TicketCreationRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue TicketCreationRuleReorderRequest
+		localVarReturnValue TicketCreationRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationTicketCreationRules"

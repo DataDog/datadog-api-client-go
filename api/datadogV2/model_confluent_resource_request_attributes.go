@@ -14,7 +14,7 @@ import (
 type ConfluentResourceRequestAttributes struct {
 	// Enable the `custom.consumer_lag_offset` metric, which contains extra metric tags.
 	EnableCustomMetrics *bool `json:"enable_custom_metrics,omitempty"`
-	// The resource type of the Resource. Can be `kafka`, `connector`, `ksql`, or `schema_registry`.
+	// The resource type of the Resource. Can be `kafka`, `connector`, `ksql`, `schema_registry`, or `flink`.
 	ResourceType string `json:"resource_type"`
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`

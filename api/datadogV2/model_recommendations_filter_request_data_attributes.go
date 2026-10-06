@@ -1,0 +1,182 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// RecommendationsFilterRequestDataAttributes Attributes used to filter and sort cost recommendations.
+type RecommendationsFilterRequestDataAttributes struct {
+	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations or `*` for both.
+	Scope *RecommendationsFilterRequestScope `json:"scope,omitempty"`
+	// Ordered list of sort clauses applied to the result set.
+	Sort []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
+	// Active view name (for example, `active`, `dismissed`, `open`, `in-progress`, or `completed`).
+	View *string `json:"view,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NewRecommendationsFilterRequestDataAttributes instantiates a new RecommendationsFilterRequestDataAttributes object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewRecommendationsFilterRequestDataAttributes() *RecommendationsFilterRequestDataAttributes {
+	this := RecommendationsFilterRequestDataAttributes{}
+	return &this
+}
+
+// NewRecommendationsFilterRequestDataAttributesWithDefaults instantiates a new RecommendationsFilterRequestDataAttributes object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewRecommendationsFilterRequestDataAttributesWithDefaults() *RecommendationsFilterRequestDataAttributes {
+	this := RecommendationsFilterRequestDataAttributes{}
+	return &this
+}
+
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequestDataAttributes) GetScope() RecommendationsFilterRequestScope {
+	if o == nil || o.Scope == nil {
+		var ret RecommendationsFilterRequestScope
+		return ret
+	}
+	return *o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequestDataAttributes) GetScopeOk() (*RecommendationsFilterRequestScope, bool) {
+	if o == nil || o.Scope == nil {
+		return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequestDataAttributes) HasScope() bool {
+	return o != nil && o.Scope != nil
+}
+
+// SetScope gets a reference to the given RecommendationsFilterRequestScope and assigns it to the Scope field.
+func (o *RecommendationsFilterRequestDataAttributes) SetScope(v RecommendationsFilterRequestScope) {
+	o.Scope = &v
+}
+
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequestDataAttributes) GetSort() []RecommendationsFilterRequestSortItems {
+	if o == nil || o.Sort == nil {
+		var ret []RecommendationsFilterRequestSortItems
+		return ret
+	}
+	return o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequestDataAttributes) GetSortOk() (*[]RecommendationsFilterRequestSortItems, bool) {
+	if o == nil || o.Sort == nil {
+		return nil, false
+	}
+	return &o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequestDataAttributes) HasSort() bool {
+	return o != nil && o.Sort != nil
+}
+
+// SetSort gets a reference to the given []RecommendationsFilterRequestSortItems and assigns it to the Sort field.
+func (o *RecommendationsFilterRequestDataAttributes) SetSort(v []RecommendationsFilterRequestSortItems) {
+	o.Sort = v
+}
+
+// GetView returns the View field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequestDataAttributes) GetView() string {
+	if o == nil || o.View == nil {
+		var ret string
+		return ret
+	}
+	return *o.View
+}
+
+// GetViewOk returns a tuple with the View field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequestDataAttributes) GetViewOk() (*string, bool) {
+	if o == nil || o.View == nil {
+		return nil, false
+	}
+	return o.View, true
+}
+
+// HasView returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequestDataAttributes) HasView() bool {
+	return o != nil && o.View != nil
+}
+
+// SetView gets a reference to the given string and assigns it to the View field.
+func (o *RecommendationsFilterRequestDataAttributes) SetView(v string) {
+	o.View = &v
+}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o RecommendationsFilterRequestDataAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
+	}
+	if o.View != nil {
+		toSerialize["view"] = o.View
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *RecommendationsFilterRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+		Scope *RecommendationsFilterRequestScope      `json:"scope,omitempty"`
+		Sort  []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
+		View  *string                                 `json:"view,omitempty"`
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"scope", "sort", "view"})
+	} else {
+		return err
+	}
+
+	hasInvalidField := false
+	if all.Scope != nil && !all.Scope.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Scope = all.Scope
+	}
+	o.Sort = all.Sort
+	o.View = all.View
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+
+	return nil
+}

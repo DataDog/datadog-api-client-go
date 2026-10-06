@@ -10,41 +10,41 @@ import (
 
 // TwilioIntegrationAccountAuthenticationResponse - Authentication configured on the Twilio integration account.
 type TwilioIntegrationAccountAuthenticationResponse struct {
-	IntegrationAccountBasicAuthResponse *IntegrationAccountBasicAuthResponse
+	TwilioIntegrationAccountBasicAuthResponse *TwilioIntegrationAccountBasicAuthResponse
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// IntegrationAccountBasicAuthResponseAsTwilioIntegrationAccountAuthenticationResponse is a convenience function that returns IntegrationAccountBasicAuthResponse wrapped in TwilioIntegrationAccountAuthenticationResponse.
-func IntegrationAccountBasicAuthResponseAsTwilioIntegrationAccountAuthenticationResponse(v *IntegrationAccountBasicAuthResponse) TwilioIntegrationAccountAuthenticationResponse {
-	return TwilioIntegrationAccountAuthenticationResponse{IntegrationAccountBasicAuthResponse: v}
+// TwilioIntegrationAccountBasicAuthResponseAsTwilioIntegrationAccountAuthenticationResponse is a convenience function that returns TwilioIntegrationAccountBasicAuthResponse wrapped in TwilioIntegrationAccountAuthenticationResponse.
+func TwilioIntegrationAccountBasicAuthResponseAsTwilioIntegrationAccountAuthenticationResponse(v *TwilioIntegrationAccountBasicAuthResponse) TwilioIntegrationAccountAuthenticationResponse {
+	return TwilioIntegrationAccountAuthenticationResponse{TwilioIntegrationAccountBasicAuthResponse: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *TwilioIntegrationAccountAuthenticationResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into IntegrationAccountBasicAuthResponse
-	err = datadog.Unmarshal(data, &obj.IntegrationAccountBasicAuthResponse)
+	// try to unmarshal data into TwilioIntegrationAccountBasicAuthResponse
+	err = datadog.Unmarshal(data, &obj.TwilioIntegrationAccountBasicAuthResponse)
 	if err == nil {
-		if obj.IntegrationAccountBasicAuthResponse != nil && obj.IntegrationAccountBasicAuthResponse.UnparsedObject == nil {
-			jsonIntegrationAccountBasicAuthResponse, _ := datadog.Marshal(obj.IntegrationAccountBasicAuthResponse)
-			if string(jsonIntegrationAccountBasicAuthResponse) == "{}" { // empty struct
-				obj.IntegrationAccountBasicAuthResponse = nil
+		if obj.TwilioIntegrationAccountBasicAuthResponse != nil && obj.TwilioIntegrationAccountBasicAuthResponse.UnparsedObject == nil {
+			jsonTwilioIntegrationAccountBasicAuthResponse, _ := datadog.Marshal(obj.TwilioIntegrationAccountBasicAuthResponse)
+			if string(jsonTwilioIntegrationAccountBasicAuthResponse) == "{}" { // empty struct
+				obj.TwilioIntegrationAccountBasicAuthResponse = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.IntegrationAccountBasicAuthResponse = nil
+			obj.TwilioIntegrationAccountBasicAuthResponse = nil
 		}
 	} else {
-		obj.IntegrationAccountBasicAuthResponse = nil
+		obj.TwilioIntegrationAccountBasicAuthResponse = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.IntegrationAccountBasicAuthResponse = nil
+		obj.TwilioIntegrationAccountBasicAuthResponse = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -52,8 +52,8 @@ func (obj *TwilioIntegrationAccountAuthenticationResponse) UnmarshalJSON(data []
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj TwilioIntegrationAccountAuthenticationResponse) MarshalJSON() ([]byte, error) {
-	if obj.IntegrationAccountBasicAuthResponse != nil {
-		return datadog.Marshal(&obj.IntegrationAccountBasicAuthResponse)
+	if obj.TwilioIntegrationAccountBasicAuthResponse != nil {
+		return datadog.Marshal(&obj.TwilioIntegrationAccountBasicAuthResponse)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -64,8 +64,8 @@ func (obj TwilioIntegrationAccountAuthenticationResponse) MarshalJSON() ([]byte,
 
 // GetActualInstance returns the actual instance.
 func (obj *TwilioIntegrationAccountAuthenticationResponse) GetActualInstance() interface{} {
-	if obj.IntegrationAccountBasicAuthResponse != nil {
-		return obj.IntegrationAccountBasicAuthResponse
+	if obj.TwilioIntegrationAccountBasicAuthResponse != nil {
+		return obj.TwilioIntegrationAccountBasicAuthResponse
 	}
 
 	// all schemas are nil

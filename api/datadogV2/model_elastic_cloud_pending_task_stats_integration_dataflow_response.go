@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudPendingTaskStatsIntegrationDataflowResponse The Elastic Cloud pending task stats dataflow.
+// ElasticCloudPendingTaskStatsIntegrationDataflowResponse Metrics for cluster-level changes that have been submitted but not yet executed.
 type ElasticCloudPendingTaskStatsIntegrationDataflowResponse struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

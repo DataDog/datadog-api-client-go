@@ -16,6 +16,7 @@ func main() {
 	ExecutionPolicyDataID := os.Getenv("EXECUTION_POLICY_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteExecutionPolicy", true)
 	apiClient := datadog.NewAPIClient(configuration)

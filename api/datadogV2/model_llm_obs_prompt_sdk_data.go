@@ -12,7 +12,7 @@ import (
 
 // LLMObsPromptSDKData Data object for a flattened Agent Observability prompt version returned for SDK consumption.
 type LLMObsPromptSDKData struct {
-	// Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned.
+	// Attributes of a flattened prompt version returned for SDK consumption. Exactly one of `template` and `chat_template` is returned. Empty `config` is omitted when configuration authoring is disabled for the organization. Non-empty saved configuration is always returned.
 	Attributes LLMObsPromptSDKDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt.
 	Id string `json:"id"`
