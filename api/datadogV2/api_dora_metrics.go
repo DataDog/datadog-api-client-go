@@ -780,7 +780,7 @@ func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFai
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// PatchDORADeployment Patch a deployment event.
+// PatchDORADeployment Mark a deployment as failed by ID.
 // Update a deployment's change failure status. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation.
 func (a *DORAMetricsApi) PatchDORADeployment(ctx _context.Context, deploymentId string, body DORADeploymentPatchRequest) (*_nethttp.Response, error) {
 	var (
