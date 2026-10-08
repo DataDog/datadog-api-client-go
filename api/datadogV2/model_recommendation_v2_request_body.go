@@ -11,7 +11,7 @@ import (
 )
 
 // RecommendationV2RequestBody Request body for retrieving SPA recommendations by forwarding a Spark job's raw arguments
-// instead of a precomputed shard.
+// instead of a pre-computed shard.
 type RecommendationV2RequestBody struct {
 	// JSON:API resource object for the SPA v2 recommendation request.
 	Data RecommendationV2RequestData `json:"data"`
