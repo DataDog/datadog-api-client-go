@@ -11,7 +11,7 @@ import (
 )
 
 // RecommendationV2RequestAttributes Attributes for requesting SPA recommendations by forwarding a Spark job's raw arguments
-// instead of a precomputed shard.
+// instead of a pre-computed shard.
 type RecommendationV2RequestAttributes struct {
 	// Raw, unfiltered Spark job arguments as submitted (for example, `--org_id=2`).
 	// SPA determines which arguments are relevant for the given service.

@@ -18,6 +18,9 @@ type RecommendationAttributes struct {
 	Driver ComponentRecommendation `json:"driver"`
 	// Resource recommendation for a single Spark component (driver or executor). Contains estimation data used to patch Spark job specs.
 	Executor ComponentRecommendation `json:"executor"`
+	// Only returned by the v2 endpoint. The job parameters whose values the recommendation was matched on, as `parameter=value` pairs joined by `|`.
+	// An empty string means the service-wide (coarse) recommendation was used.
+	MatchedParams *string `json:"matched_params,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -116,6 +119,34 @@ func (o *RecommendationAttributes) SetExecutor(v ComponentRecommendation) {
 	o.Executor = v
 }
 
+// GetMatchedParams returns the MatchedParams field value if set, zero value otherwise.
+func (o *RecommendationAttributes) GetMatchedParams() string {
+	if o == nil || o.MatchedParams == nil {
+		var ret string
+		return ret
+	}
+	return *o.MatchedParams
+}
+
+// GetMatchedParamsOk returns a tuple with the MatchedParams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationAttributes) GetMatchedParamsOk() (*string, bool) {
+	if o == nil || o.MatchedParams == nil {
+		return nil, false
+	}
+	return o.MatchedParams, true
+}
+
+// HasMatchedParams returns a boolean if a field has been set.
+func (o *RecommendationAttributes) HasMatchedParams() bool {
+	return o != nil && o.MatchedParams != nil
+}
+
+// SetMatchedParams gets a reference to the given string and assigns it to the MatchedParams field.
+func (o *RecommendationAttributes) SetMatchedParams(v string) {
+	o.MatchedParams = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RecommendationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -127,6 +158,9 @@ func (o RecommendationAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["driver"] = o.Driver
 	toSerialize["executor"] = o.Executor
+	if o.MatchedParams != nil {
+		toSerialize["matched_params"] = o.MatchedParams
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -140,6 +174,7 @@ func (o *RecommendationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ConfidenceLevel *float64                 `json:"confidence_level,omitempty"`
 		Driver          *ComponentRecommendation `json:"driver"`
 		Executor        *ComponentRecommendation `json:"executor"`
+		MatchedParams   *string                  `json:"matched_params,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +187,7 @@ func (o *RecommendationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"confidence_level", "driver", "executor"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"confidence_level", "driver", "executor", "matched_params"})
 	} else {
 		return err
 	}
@@ -167,6 +202,7 @@ func (o *RecommendationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Executor = *all.Executor
+	o.MatchedParams = all.MatchedParams
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
