@@ -14,6 +14,7 @@ type RoutingRuleAction struct {
 	SendTeamsMessageAction            *SendTeamsMessageAction
 	TriggerWorkflowAutomationAction   *TriggerWorkflowAutomationAction
 	RoutingRuleEscalationPolicyAction *RoutingRuleEscalationPolicyAction
+	RoutingRuleRerouteToTeamAction    *RoutingRuleRerouteToTeamAction
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -37,6 +38,11 @@ func TriggerWorkflowAutomationActionAsRoutingRuleAction(v *TriggerWorkflowAutoma
 // RoutingRuleEscalationPolicyActionAsRoutingRuleAction is a convenience function that returns RoutingRuleEscalationPolicyAction wrapped in RoutingRuleAction.
 func RoutingRuleEscalationPolicyActionAsRoutingRuleAction(v *RoutingRuleEscalationPolicyAction) RoutingRuleAction {
 	return RoutingRuleAction{RoutingRuleEscalationPolicyAction: v}
+}
+
+// RoutingRuleRerouteToTeamActionAsRoutingRuleAction is a convenience function that returns RoutingRuleRerouteToTeamAction wrapped in RoutingRuleAction.
+func RoutingRuleRerouteToTeamActionAsRoutingRuleAction(v *RoutingRuleRerouteToTeamAction) RoutingRuleAction {
+	return RoutingRuleAction{RoutingRuleRerouteToTeamAction: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -111,12 +117,30 @@ func (obj *RoutingRuleAction) UnmarshalJSON(data []byte) error {
 		obj.RoutingRuleEscalationPolicyAction = nil
 	}
 
+	// try to unmarshal data into RoutingRuleRerouteToTeamAction
+	err = datadog.Unmarshal(data, &obj.RoutingRuleRerouteToTeamAction)
+	if err == nil {
+		if obj.RoutingRuleRerouteToTeamAction != nil && obj.RoutingRuleRerouteToTeamAction.UnparsedObject == nil {
+			jsonRoutingRuleRerouteToTeamAction, _ := datadog.Marshal(obj.RoutingRuleRerouteToTeamAction)
+			if string(jsonRoutingRuleRerouteToTeamAction) == "{}" { // empty struct
+				obj.RoutingRuleRerouteToTeamAction = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.RoutingRuleRerouteToTeamAction = nil
+		}
+	} else {
+		obj.RoutingRuleRerouteToTeamAction = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SendSlackMessageAction = nil
 		obj.SendTeamsMessageAction = nil
 		obj.TriggerWorkflowAutomationAction = nil
 		obj.RoutingRuleEscalationPolicyAction = nil
+		obj.RoutingRuleRerouteToTeamAction = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -138,6 +162,10 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 
 	if obj.RoutingRuleEscalationPolicyAction != nil {
 		return datadog.Marshal(&obj.RoutingRuleEscalationPolicyAction)
+	}
+
+	if obj.RoutingRuleRerouteToTeamAction != nil {
+		return datadog.Marshal(&obj.RoutingRuleRerouteToTeamAction)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -162,6 +190,10 @@ func (obj *RoutingRuleAction) GetActualInstance() interface{} {
 
 	if obj.RoutingRuleEscalationPolicyAction != nil {
 		return obj.RoutingRuleEscalationPolicyAction
+	}
+
+	if obj.RoutingRuleRerouteToTeamAction != nil {
+		return obj.RoutingRuleRerouteToTeamAction
 	}
 
 	// all schemas are nil
