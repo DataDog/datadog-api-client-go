@@ -74,7 +74,7 @@ func (o *AstNode) SetAstType(v string) {
 // GetChildren returns the Children field value.
 // If the value is explicit nil, the zero value for []AstNode will be returned.
 func (o *AstNode) GetChildren() []AstNode {
-	if o == nil {
+	if o == nil || o.Children.Get() == nil {
 		var ret []AstNode
 		return ret
 	}

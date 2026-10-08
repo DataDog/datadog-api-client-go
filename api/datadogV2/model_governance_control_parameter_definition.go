@@ -12,8 +12,8 @@ import (
 
 // GovernanceControlParameterDefinition The definition of a configurable parameter on a control or mitigation.
 type GovernanceControlParameterDefinition struct {
-	// The default value of the parameter. The JSON type depends on the parameter's `type`.
-	DefaultValue interface{} `json:"default_value"`
+	// The default value of the parameter. The JSON type depends on the parameter's `type`. `null` when the parameter has no default.
+	DefaultValue datadog.NullableInterface `json:"default_value"`
 	// A human-readable description of the parameter.
 	Description string `json:"description"`
 	// The human-readable name of the parameter.
@@ -35,7 +35,7 @@ type GovernanceControlParameterDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlParameterDefinition(defaultValue interface{}, description string, displayName string, name string, required bool, supportedValues datadog.NullableList[GovernanceControlSupportedValue], typeVar string) *GovernanceControlParameterDefinition {
+func NewGovernanceControlParameterDefinition(defaultValue datadog.NullableInterface, description string, displayName string, name string, required bool, supportedValues datadog.NullableList[GovernanceControlSupportedValue], typeVar string) *GovernanceControlParameterDefinition {
 	this := GovernanceControlParameterDefinition{}
 	this.DefaultValue = defaultValue
 	this.Description = description
@@ -56,26 +56,28 @@ func NewGovernanceControlParameterDefinitionWithDefaults() *GovernanceControlPar
 }
 
 // GetDefaultValue returns the DefaultValue field value.
+// If the value is explicit nil, the zero value for interface{} will be returned.
 func (o *GovernanceControlParameterDefinition) GetDefaultValue() interface{} {
-	if o == nil {
+	if o == nil || o.DefaultValue.Get() == nil {
 		var ret interface{}
 		return ret
 	}
-	return o.DefaultValue
+	return *o.DefaultValue.Get()
 }
 
 // GetDefaultValueOk returns a tuple with the DefaultValue field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *GovernanceControlParameterDefinition) GetDefaultValueOk() (*interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DefaultValue, true
+	return o.DefaultValue.Get(), o.DefaultValue.IsSet()
 }
 
 // SetDefaultValue sets field value.
 func (o *GovernanceControlParameterDefinition) SetDefaultValue(v interface{}) {
-	o.DefaultValue = v
+	o.DefaultValue.Set(&v)
 }
 
 // GetDescription returns the Description field value.
@@ -173,7 +175,7 @@ func (o *GovernanceControlParameterDefinition) SetRequired(v bool) {
 // GetSupportedValues returns the SupportedValues field value.
 // If the value is explicit nil, the zero value for []GovernanceControlSupportedValue will be returned.
 func (o *GovernanceControlParameterDefinition) GetSupportedValues() []GovernanceControlSupportedValue {
-	if o == nil {
+	if o == nil || o.SupportedValues.Get() == nil {
 		var ret []GovernanceControlSupportedValue
 		return ret
 	}
@@ -224,7 +226,7 @@ func (o GovernanceControlParameterDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["default_value"] = o.DefaultValue
+	toSerialize["default_value"] = o.DefaultValue.Get()
 	toSerialize["description"] = o.Description
 	toSerialize["display_name"] = o.DisplayName
 	toSerialize["name"] = o.Name
@@ -241,7 +243,7 @@ func (o GovernanceControlParameterDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultValue    *interface{}                                          `json:"default_value"`
+		DefaultValue    datadog.NullableInterface                             `json:"default_value"`
 		Description     *string                                               `json:"description"`
 		DisplayName     *string                                               `json:"display_name"`
 		Name            *string                                               `json:"name"`
@@ -252,7 +254,7 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.DefaultValue == nil {
+	if !all.DefaultValue.IsSet() {
 		return fmt.Errorf("required field default_value missing")
 	}
 	if all.Description == nil {
@@ -279,7 +281,7 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		return err
 	}
-	o.DefaultValue = *all.DefaultValue
+	o.DefaultValue = all.DefaultValue
 	o.Description = *all.Description
 	o.DisplayName = *all.DisplayName
 	o.Name = *all.Name

@@ -469,7 +469,7 @@ func (o *ModelLabRunAttributes) UnsetOwnerId() {
 // GetParams returns the Params field value.
 // If the value is explicit nil, the zero value for []ModelLabRunParam will be returned.
 func (o *ModelLabRunAttributes) GetParams() []ModelLabRunParam {
-	if o == nil {
+	if o == nil || o.Params.Get() == nil {
 		var ret []ModelLabRunParam
 		return ret
 	}
