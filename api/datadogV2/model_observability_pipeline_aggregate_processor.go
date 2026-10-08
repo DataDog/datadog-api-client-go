@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** metrics
 type ObservabilityPipelineAggregateProcessor struct {
+	// Configures how metrics are assigned to aggregation windows. When omitted, metrics are grouped using system time.
+	AggregationTiming *ObservabilityPipelineAggregateProcessorAggregationTiming `json:"aggregation_timing,omitempty"`
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
 	// Indicates whether the processor is enabled.
@@ -56,6 +58,34 @@ func NewObservabilityPipelineAggregateProcessorWithDefaults() *ObservabilityPipe
 	var typeVar ObservabilityPipelineAggregateProcessorType = OBSERVABILITYPIPELINEAGGREGATEPROCESSORTYPE_AGGREGATE
 	this.Type = typeVar
 	return &this
+}
+
+// GetAggregationTiming returns the AggregationTiming field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAggregateProcessor) GetAggregationTiming() ObservabilityPipelineAggregateProcessorAggregationTiming {
+	if o == nil || o.AggregationTiming == nil {
+		var ret ObservabilityPipelineAggregateProcessorAggregationTiming
+		return ret
+	}
+	return *o.AggregationTiming
+}
+
+// GetAggregationTimingOk returns a tuple with the AggregationTiming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAggregateProcessor) GetAggregationTimingOk() (*ObservabilityPipelineAggregateProcessorAggregationTiming, bool) {
+	if o == nil || o.AggregationTiming == nil {
+		return nil, false
+	}
+	return o.AggregationTiming, true
+}
+
+// HasAggregationTiming returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAggregateProcessor) HasAggregationTiming() bool {
+	return o != nil && o.AggregationTiming != nil
+}
+
+// SetAggregationTiming gets a reference to the given ObservabilityPipelineAggregateProcessorAggregationTiming and assigns it to the AggregationTiming field.
+func (o *ObservabilityPipelineAggregateProcessor) SetAggregationTiming(v ObservabilityPipelineAggregateProcessorAggregationTiming) {
+	o.AggregationTiming = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -230,6 +260,9 @@ func (o ObservabilityPipelineAggregateProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AggregationTiming != nil {
+		toSerialize["aggregation_timing"] = o.AggregationTiming
+	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
@@ -249,13 +282,14 @@ func (o ObservabilityPipelineAggregateProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAggregateProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisplayName  *string                                      `json:"display_name,omitempty"`
-		Enabled      *bool                                        `json:"enabled"`
-		Id           *string                                      `json:"id"`
-		Include      *string                                      `json:"include"`
-		IntervalSecs *int64                                       `json:"interval_secs"`
-		Mode         *ObservabilityPipelineAggregateProcessorMode `json:"mode"`
-		Type         *ObservabilityPipelineAggregateProcessorType `json:"type"`
+		AggregationTiming *ObservabilityPipelineAggregateProcessorAggregationTiming `json:"aggregation_timing,omitempty"`
+		DisplayName       *string                                                   `json:"display_name,omitempty"`
+		Enabled           *bool                                                     `json:"enabled"`
+		Id                *string                                                   `json:"id"`
+		Include           *string                                                   `json:"include"`
+		IntervalSecs      *int64                                                    `json:"interval_secs"`
+		Mode              *ObservabilityPipelineAggregateProcessorMode              `json:"mode"`
+		Type              *ObservabilityPipelineAggregateProcessorType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -280,12 +314,16 @@ func (o *ObservabilityPipelineAggregateProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "interval_secs", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_timing", "display_name", "enabled", "id", "include", "interval_secs", "mode", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.AggregationTiming != nil && all.AggregationTiming.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.AggregationTiming = all.AggregationTiming
 	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
 	o.Id = *all.Id
