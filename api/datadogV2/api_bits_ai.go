@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -25,15 +23,6 @@ func (a *BitsAIApi) GetInvestigation(ctx _context.Context, id string) (GetInvest
 		localVarPostBody    interface{}
 		localVarReturnValue GetInvestigationResponse
 	)
-
-	operationId := "v2.GetInvestigation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.GetInvestigation")
 	if err != nil {
@@ -159,15 +148,6 @@ func (a *BitsAIApi) ListInvestigations(ctx _context.Context, o ...ListInvestigat
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListInvestigations"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.ListInvestigations")
@@ -308,22 +288,14 @@ func (a *BitsAIApi) ListInvestigationsWithPagination(ctx _context.Context, o ...
 
 // TriggerInvestigation Trigger a Bits AI investigation.
 // Trigger a Bits AI investigation from a monitor alert or a general investigation.
-// The `monitors_read` permission is required when the trigger type is `monitor_alert_trigger`.
+// This endpoint requires the `bits_investigations_write` permission. When the trigger type is
+// `monitor_alert_trigger`, the `monitors_read` permission is also required.
 func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInvestigationRequest) (TriggerInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue TriggerInvestigationResponse
 	)
-
-	operationId := "v2.TriggerInvestigation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.TriggerInvestigation")
 	if err != nil {
