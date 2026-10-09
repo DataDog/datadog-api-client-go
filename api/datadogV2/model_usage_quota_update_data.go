@@ -12,7 +12,7 @@ import (
 
 // UsageQuotaUpdateData A usage quota resource to update.
 type UsageQuotaUpdateData struct {
-	// Attributes to update on a usage quota. Omitting a property leaves its current value unchanged.
+	// Attributes to update on a usage quota. At least one of `usage_limit`, `enforced`, or `pending_usage_limit` must be provided. Omitting a property leaves its current value unchanged.
 	Attributes UsageQuotaUpdateAttributes `json:"attributes"`
 	// The opaque usage quota identifier, which must match the identifier in the request path.
 	Id string `json:"id"`
