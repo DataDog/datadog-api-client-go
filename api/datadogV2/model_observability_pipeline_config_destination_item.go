@@ -17,6 +17,7 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineAmazonS3GenericDestination        *ObservabilityPipelineAmazonS3GenericDestination
 	ObservabilityPipelineAmazonSecurityLakeDestination     *ObservabilityPipelineAmazonSecurityLakeDestination
 	AzureStorageDestination                                *AzureStorageDestination
+	ObservabilityPipelineAzureDataExplorerDestination      *ObservabilityPipelineAzureDataExplorerDestination
 	ObservabilityPipelineClickhouseDestination             *ObservabilityPipelineClickhouseDestination
 	ObservabilityPipelineCloudPremDestination              *ObservabilityPipelineCloudPremDestination
 	ObservabilityPipelineCrowdStrikeNextGenSiemDestination *ObservabilityPipelineCrowdStrikeNextGenSiemDestination
@@ -77,6 +78,11 @@ func ObservabilityPipelineAmazonSecurityLakeDestinationAsObservabilityPipelineCo
 // AzureStorageDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns AzureStorageDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func AzureStorageDestinationAsObservabilityPipelineConfigDestinationItem(v *AzureStorageDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{AzureStorageDestination: v}
+}
+
+// ObservabilityPipelineAzureDataExplorerDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineAzureDataExplorerDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineAzureDataExplorerDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineAzureDataExplorerDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineAzureDataExplorerDestination: v}
 }
 
 // ObservabilityPipelineClickhouseDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineClickhouseDestination wrapped in ObservabilityPipelineConfigDestinationItem.
@@ -310,6 +316,23 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		}
 	} else {
 		obj.AzureStorageDestination = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineAzureDataExplorerDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineAzureDataExplorerDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineAzureDataExplorerDestination != nil && obj.ObservabilityPipelineAzureDataExplorerDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineAzureDataExplorerDestination, _ := datadog.Marshal(obj.ObservabilityPipelineAzureDataExplorerDestination)
+			if string(jsonObservabilityPipelineAzureDataExplorerDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineAzureDataExplorerDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineAzureDataExplorerDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineAzureDataExplorerDestination = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineClickhouseDestination
@@ -695,6 +718,7 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineAmazonS3GenericDestination = nil
 		obj.ObservabilityPipelineAmazonSecurityLakeDestination = nil
 		obj.AzureStorageDestination = nil
+		obj.ObservabilityPipelineAzureDataExplorerDestination = nil
 		obj.ObservabilityPipelineClickhouseDestination = nil
 		obj.ObservabilityPipelineCloudPremDestination = nil
 		obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination = nil
@@ -750,6 +774,10 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 	if obj.AzureStorageDestination != nil {
 		return datadog.Marshal(&obj.AzureStorageDestination)
+	}
+
+	if obj.ObservabilityPipelineAzureDataExplorerDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineAzureDataExplorerDestination)
 	}
 
 	if obj.ObservabilityPipelineClickhouseDestination != nil {
@@ -874,6 +902,10 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 
 	if obj.AzureStorageDestination != nil {
 		return obj.AzureStorageDestination
+	}
+
+	if obj.ObservabilityPipelineAzureDataExplorerDestination != nil {
+		return obj.ObservabilityPipelineAzureDataExplorerDestination
 	}
 
 	if obj.ObservabilityPipelineClickhouseDestination != nil {
