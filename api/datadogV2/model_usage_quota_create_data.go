@@ -12,7 +12,7 @@ import (
 
 // UsageQuotaCreateData A usage quota resource to create or update by scope.
 type UsageQuotaCreateData struct {
-	// Attributes for creating or updating a usage quota by scope.
+	// Attributes for creating or updating a usage quota by scope. Each item must provide `usage_limit`, `pending_usage_limit`, or both. Providing only `pending_usage_limit` updates an existing organization-wide quota, never creates one, requires `enforced` to be omitted, and fails if the quota does not exist.
 	Attributes UsageQuotaCreateAttributes `json:"attributes"`
 	// The JSON:API resource type for a usage quota.
 	Type UsageQuotaType `json:"type"`

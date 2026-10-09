@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageQuotaBulkResultAttributes Attributes of a usage quota bulk write result. On success, all fields except `error` are present. On failure, only `error` is present and the other fields are omitted.
+// UsageQuotaBulkResultAttributes Attributes of a usage quota bulk write result. On success, quota fields are present as applicable, and pending fields are present only when a change is scheduled. On failure, only `error` is present and the other fields are omitted.
 type UsageQuotaBulkResultAttributes struct {
 	// Whether usage above the limit is actively blocked instead of only tracked or alerted on. Omitted if this item failed to write.
 	Enforced *bool `json:"enforced,omitempty"`
@@ -16,6 +16,10 @@ type UsageQuotaBulkResultAttributes struct {
 	Error *string `json:"error,omitempty"`
 	// The public ID of the organization that owns the quota. Omitted if this item failed to write.
 	OrgPublicId *string `json:"org_public_id,omitempty"`
+	// The future UTC month when the scheduled limit takes effect, formatted as `YYYY-MM`, starting at 00:00 UTC on its first day. Present only together with `pending_usage_limit` and omitted when no change is scheduled or this item failed to write.
+	PendingEffectiveFrom *string `json:"pending_effective_from,omitempty"`
+	// The usage limit scheduled for the organization-wide quota in the usage units defined by the quota namespace. A value of `0` is valid. At the start of the effective month, this value becomes `usage_limit` and both pending fields are omitted. Omitted when no change is scheduled or this item failed to write.
+	PendingUsageLimit *float64 `json:"pending_usage_limit,omitempty"`
 	// A namespace-specific key and value identifying what the quota applies to within an organization. The object contains exactly one entry. A value of `"*"` identifies the default quota applied to entities without a specific quota. This field is omitted for an organization-wide quota.
 	Scope map[string]string `json:"scope,omitempty"`
 	// The quota limit in the usage units defined by the quota namespace. May be fractional for quotas configured before public writes required whole units. Omitted if this item failed to write.
@@ -126,6 +130,62 @@ func (o *UsageQuotaBulkResultAttributes) SetOrgPublicId(v string) {
 	o.OrgPublicId = &v
 }
 
+// GetPendingEffectiveFrom returns the PendingEffectiveFrom field value if set, zero value otherwise.
+func (o *UsageQuotaBulkResultAttributes) GetPendingEffectiveFrom() string {
+	if o == nil || o.PendingEffectiveFrom == nil {
+		var ret string
+		return ret
+	}
+	return *o.PendingEffectiveFrom
+}
+
+// GetPendingEffectiveFromOk returns a tuple with the PendingEffectiveFrom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageQuotaBulkResultAttributes) GetPendingEffectiveFromOk() (*string, bool) {
+	if o == nil || o.PendingEffectiveFrom == nil {
+		return nil, false
+	}
+	return o.PendingEffectiveFrom, true
+}
+
+// HasPendingEffectiveFrom returns a boolean if a field has been set.
+func (o *UsageQuotaBulkResultAttributes) HasPendingEffectiveFrom() bool {
+	return o != nil && o.PendingEffectiveFrom != nil
+}
+
+// SetPendingEffectiveFrom gets a reference to the given string and assigns it to the PendingEffectiveFrom field.
+func (o *UsageQuotaBulkResultAttributes) SetPendingEffectiveFrom(v string) {
+	o.PendingEffectiveFrom = &v
+}
+
+// GetPendingUsageLimit returns the PendingUsageLimit field value if set, zero value otherwise.
+func (o *UsageQuotaBulkResultAttributes) GetPendingUsageLimit() float64 {
+	if o == nil || o.PendingUsageLimit == nil {
+		var ret float64
+		return ret
+	}
+	return *o.PendingUsageLimit
+}
+
+// GetPendingUsageLimitOk returns a tuple with the PendingUsageLimit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageQuotaBulkResultAttributes) GetPendingUsageLimitOk() (*float64, bool) {
+	if o == nil || o.PendingUsageLimit == nil {
+		return nil, false
+	}
+	return o.PendingUsageLimit, true
+}
+
+// HasPendingUsageLimit returns a boolean if a field has been set.
+func (o *UsageQuotaBulkResultAttributes) HasPendingUsageLimit() bool {
+	return o != nil && o.PendingUsageLimit != nil
+}
+
+// SetPendingUsageLimit gets a reference to the given float64 and assigns it to the PendingUsageLimit field.
+func (o *UsageQuotaBulkResultAttributes) SetPendingUsageLimit(v float64) {
+	o.PendingUsageLimit = &v
+}
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *UsageQuotaBulkResultAttributes) GetScope() map[string]string {
 	if o == nil || o.Scope == nil {
@@ -197,6 +257,12 @@ func (o UsageQuotaBulkResultAttributes) MarshalJSON() ([]byte, error) {
 	if o.OrgPublicId != nil {
 		toSerialize["org_public_id"] = o.OrgPublicId
 	}
+	if o.PendingEffectiveFrom != nil {
+		toSerialize["pending_effective_from"] = o.PendingEffectiveFrom
+	}
+	if o.PendingUsageLimit != nil {
+		toSerialize["pending_usage_limit"] = o.PendingUsageLimit
+	}
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
@@ -213,24 +279,28 @@ func (o UsageQuotaBulkResultAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageQuotaBulkResultAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enforced    *bool             `json:"enforced,omitempty"`
-		Error       *string           `json:"error,omitempty"`
-		OrgPublicId *string           `json:"org_public_id,omitempty"`
-		Scope       map[string]string `json:"scope,omitempty"`
-		UsageLimit  *float64          `json:"usage_limit,omitempty"`
+		Enforced             *bool             `json:"enforced,omitempty"`
+		Error                *string           `json:"error,omitempty"`
+		OrgPublicId          *string           `json:"org_public_id,omitempty"`
+		PendingEffectiveFrom *string           `json:"pending_effective_from,omitempty"`
+		PendingUsageLimit    *float64          `json:"pending_usage_limit,omitempty"`
+		Scope                map[string]string `json:"scope,omitempty"`
+		UsageLimit           *float64          `json:"usage_limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enforced", "error", "org_public_id", "scope", "usage_limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enforced", "error", "org_public_id", "pending_effective_from", "pending_usage_limit", "scope", "usage_limit"})
 	} else {
 		return err
 	}
 	o.Enforced = all.Enforced
 	o.Error = all.Error
 	o.OrgPublicId = all.OrgPublicId
+	o.PendingEffectiveFrom = all.PendingEffectiveFrom
+	o.PendingUsageLimit = all.PendingUsageLimit
 	o.Scope = all.Scope
 	o.UsageLimit = all.UsageLimit
 
