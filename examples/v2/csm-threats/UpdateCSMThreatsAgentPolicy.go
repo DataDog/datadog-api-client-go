@@ -20,7 +20,7 @@ func main() {
 		Data: datadogV2.CloudWorkloadSecurityAgentPolicyUpdateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentPolicyUpdateAttributes{
 				Description: datadog.PtrString("Updated agent policy"),
-				Enabled:     datadog.PtrBool(true),
+				Enabled:     datadog.PtrBool(false),
 				HostTagsLists: [][]string{
 					{
 						"env:test",
