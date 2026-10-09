@@ -148,7 +148,7 @@ func (o *CustomRulesetAttributes) SetName(v string) {
 // GetRules returns the Rules field value.
 // If the value is explicit nil, the zero value for []CustomRulesetRuleEmbedded will be returned.
 func (o *CustomRulesetAttributes) GetRules() []CustomRulesetRuleEmbedded {
-	if o == nil {
+	if o == nil || o.Rules.Get() == nil {
 		var ret []CustomRulesetRuleEmbedded
 		return ret
 	}

@@ -445,6 +445,50 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return Unmarshal(src, &v.value)
 }
 
+// NullableInterface is a struct to hold a nullable value of any JSON type.
+type NullableInterface struct {
+	value *interface{}
+	isSet bool
+}
+
+// Get returns the value associated with the nullable interface.
+func (v NullableInterface) Get() *interface{} {
+	return v.value
+}
+
+// Set sets the value associated with the nullable interface.
+func (v *NullableInterface) Set(val *interface{}) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns true if the value has been set.
+func (v NullableInterface) IsSet() bool {
+	return v.isSet
+}
+
+// Unset resets fields of the nullable interface.
+func (v *NullableInterface) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableInterface instantiates a new nullable interface.
+func NewNullableInterface(val *interface{}) *NullableInterface {
+	return &NullableInterface{value: val, isSet: true}
+}
+
+// MarshalJSON serializes the associated value.
+func (v NullableInterface) MarshalJSON() ([]byte, error) {
+	return Marshal(v.value)
+}
+
+// UnmarshalJSON deserializes to the associated value.
+func (v *NullableInterface) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return Unmarshal(src, &v.value)
+}
+
 // NullableList struct to hold nullable list value.
 type NullableList[T any] struct {
 	value *[]T

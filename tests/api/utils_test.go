@@ -95,3 +95,74 @@ func TestContainsUnparsedObject(t *testing.T) {
 		})
 	}
 }
+
+func TestNullableInterface(t *testing.T) {
+	assert := tests.Assert(context.Background(), t)
+
+	var unset datadog.NullableInterface
+	assert.False(unset.IsSet())
+	assert.Nil(unset.Get())
+
+	testCases := []struct {
+		name     string
+		json     string
+		expected interface{}
+	}{
+		{"null", "null", nil},
+		{"false", "false", false},
+		{"zero", "0", float64(0)},
+		{"empty string", `""`, ""},
+		{"string", `"abc"`, "abc"},
+		{"object", `{"key":"value"}`, map[string]interface{}{"key": "value"}},
+		{"list", `["a",1]`, []interface{}{"a", float64(1)}},
+	}
+
+	for _, tc := range testCases {
+		c := tc
+		t.Run(c.name, func(t *testing.T) {
+			var holder struct {
+				Value datadog.NullableInterface `json:"value"`
+			}
+			assert.NoError(datadog.Unmarshal([]byte(`{"value":`+c.json+`}`), &holder))
+			assert.True(holder.Value.IsSet())
+			if c.expected == nil {
+				assert.Nil(holder.Value.Get())
+			} else {
+				assert.Equal(c.expected, *holder.Value.Get())
+			}
+
+			serialized, err := datadog.Marshal(holder.Value)
+			assert.NoError(err)
+			var roundTrip interface{}
+			assert.NoError(datadog.Unmarshal(serialized, &roundTrip))
+			assert.Equal(c.expected, roundTrip)
+		})
+	}
+
+	t.Run("absent", func(t *testing.T) {
+		var holder struct {
+			Value datadog.NullableInterface `json:"value"`
+		}
+		assert.NoError(datadog.Unmarshal([]byte(`{}`), &holder))
+		assert.False(holder.Value.IsSet())
+		assert.Nil(holder.Value.Get())
+	})
+
+	t.Run("set and unset", func(t *testing.T) {
+		var value interface{} = "abc"
+		nullable := datadog.NewNullableInterface(&value)
+		assert.True(nullable.IsSet())
+		assert.Equal("abc", *nullable.Get())
+
+		nullable.Set(nil)
+		assert.True(nullable.IsSet())
+		assert.Nil(nullable.Get())
+		serialized, err := datadog.Marshal(nullable)
+		assert.NoError(err)
+		assert.Equal("null", string(serialized))
+
+		nullable.Unset()
+		assert.False(nullable.IsSet())
+		assert.Nil(nullable.Get())
+	})
+}

@@ -423,7 +423,7 @@ func (o *IncidentUserDefinedFieldAttributesResponse) SetType(v int32) {
 // GetValidValues returns the ValidValues field value.
 // If the value is explicit nil, the zero value for []IncidentUserDefinedFieldValidValue will be returned.
 func (o *IncidentUserDefinedFieldAttributesResponse) GetValidValues() []IncidentUserDefinedFieldValidValue {
-	if o == nil {
+	if o == nil || o.ValidValues.Get() == nil {
 		var ret []IncidentUserDefinedFieldValidValue
 		return ret
 	}
