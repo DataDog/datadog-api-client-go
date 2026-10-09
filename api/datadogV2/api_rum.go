@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/google/uuid"
 )
 
 // RUMApi service type
@@ -1220,7 +1221,9 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 
 // ListSourcemapsOptionalParameters holds optional parameters for ListSourcemaps.
 type ListSourcemapsOptionalParameters struct {
+	SearchBy            *SourcemapSearchBy
 	Mapkind             *SourcemapMapKind
+	PageAfter           *string
 	PageSize            *int64
 	PageNumber          *int64
 	FilterService       *[]string
@@ -1237,7 +1240,7 @@ type ListSourcemapsOptionalParameters struct {
 	FilterOrigin        *[]string
 	FilterOriginVersion *[]string
 	FilterFilename      *string
-	FilterDebugId       *string
+	FilterDebugId       *uuid.UUID
 	FilterGnuBuildId    *string
 	FilterGoBuildId     *string
 	FilterFileHash      *string
@@ -1249,9 +1252,21 @@ func NewListSourcemapsOptionalParameters() *ListSourcemapsOptionalParameters {
 	return &this
 }
 
+// WithSearchBy sets the corresponding parameter name and returns the struct.
+func (r *ListSourcemapsOptionalParameters) WithSearchBy(searchBy SourcemapSearchBy) *ListSourcemapsOptionalParameters {
+	r.SearchBy = &searchBy
+	return r
+}
+
 // WithMapkind sets the corresponding parameter name and returns the struct.
 func (r *ListSourcemapsOptionalParameters) WithMapkind(mapkind SourcemapMapKind) *ListSourcemapsOptionalParameters {
 	r.Mapkind = &mapkind
+	return r
+}
+
+// WithPageAfter sets the corresponding parameter name and returns the struct.
+func (r *ListSourcemapsOptionalParameters) WithPageAfter(pageAfter string) *ListSourcemapsOptionalParameters {
+	r.PageAfter = &pageAfter
 	return r
 }
 
@@ -1352,7 +1367,7 @@ func (r *ListSourcemapsOptionalParameters) WithFilterFilename(filterFilename str
 }
 
 // WithFilterDebugId sets the corresponding parameter name and returns the struct.
-func (r *ListSourcemapsOptionalParameters) WithFilterDebugId(filterDebugId string) *ListSourcemapsOptionalParameters {
+func (r *ListSourcemapsOptionalParameters) WithFilterDebugId(filterDebugId uuid.UUID) *ListSourcemapsOptionalParameters {
 	r.FilterDebugId = &filterDebugId
 	return r
 }
@@ -1376,7 +1391,85 @@ func (r *ListSourcemapsOptionalParameters) WithFilterFileHash(filterFileHash str
 }
 
 // ListSourcemaps List source maps.
-// Retrieves a paginated list of source maps matching the specified filter criteria.
+// Retrieves a paginated list of source maps. Send filters as query parameters,
+// not in a JSON request body. `mapkind` defaults to `js`.
+//
+// For JavaScript source maps, choose one of these searches:
+//
+//   - **Service and version:** provide both `filter[service]` and `filter[version]`.
+//     This searches source maps indexed by service and version.
+//   - **One debug ID:** provide `filter[debug_id]` with a UUID to look up the single
+//     source map with that debug ID. Service and version are not required for this
+//     JavaScript search.
+//   - **Browse debug IDs:** set `search_by=debug_id` to list source maps indexed by
+//     debug ID without specifying an ID. Do not send service, version, or filename
+//     filters in this mode.
+//
+// **Pagination:** for JavaScript listings, omit `page[after]` and `page[number]`
+// to start at the first page. Copy `meta.page.next_cursor` into `page[after]` on
+// the next request, keeping the same search mode and filters. Continue until
+// `meta.page.has_more_results` is `false`. Do not decode or modify the cursor.
+// Debug-ID browsing requires cursor pagination; `page[number]` is not supported.
+// A specific `filter[debug_id]` lookup without `search_by=debug_id` does not support
+// `page[after]`. Other map kinds use `page[number]`, starting at 1.
+//
+// **Examples:** the following commands use the US1 API host. Replace the host with
+// the API host for your site, and the service, version, debug ID, and cursor with
+// values from your organization. Use `--get` so curl sends the filters in the query
+// string; `-X GET` with `--data-urlencode` sends them in the request body instead.
+//
+// **List by service and version**
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps/list" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "mapkind=js" \
+//	  --data-urlencode "filter[service]=my-web-service" \
+//	  --data-urlencode "filter[version]=1.0.0" \
+//	  --data-urlencode "page[size]=10"
+//
+// ```
+//
+// **Find a specific JavaScript debug ID**
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps/list" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "mapkind=js" \
+//	  --data-urlencode "filter[debug_id]=00000000-0000-4000-8000-000000000001"
+//
+// ```
+//
+// **Browse debug-ID source maps from the first page**
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps/list" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "mapkind=js" \
+//	  --data-urlencode "search_by=debug_id" \
+//	  --data-urlencode "page[size]=10"
+//
+// ```
+//
+// **Get the next page of debug-ID source maps**
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps/list" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "mapkind=js" \
+//	  --data-urlencode "search_by=debug_id" \
+//	  --data-urlencode "page[size]=10" \
+//	  --data-urlencode "page[after]=<meta.page.next_cursor>"
+//
+// ```
 func (a *RUMApi) ListSourcemaps(ctx _context.Context, o ...ListSourcemapsOptionalParameters) (ListSourcemapsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1411,8 +1504,14 @@ func (a *RUMApi) ListSourcemaps(ctx _context.Context, o ...ListSourcemapsOptiona
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.SearchBy != nil {
+		localVarQueryParams.Add("search_by", datadog.ParameterToString(*optionalParams.SearchBy, ""))
+	}
 	if optionalParams.Mapkind != nil {
 		localVarQueryParams.Add("mapkind", datadog.ParameterToString(*optionalParams.Mapkind, ""))
+	}
+	if optionalParams.PageAfter != nil {
+		localVarQueryParams.Add("page[after]", datadog.ParameterToString(*optionalParams.PageAfter, ""))
 	}
 	if optionalParams.PageSize != nil {
 		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))

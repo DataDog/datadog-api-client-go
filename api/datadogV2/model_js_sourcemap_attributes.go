@@ -21,6 +21,9 @@ type JSSourcemapAttributes struct {
 	BuildId *string `json:"build_id,omitempty"`
 	// The timestamp when the source map was created.
 	CreatedAt time.Time `json:"created_at"`
+	// The debug identifier (UUID format) that uniquely identifies this
+	// JavaScript source map. Returned for source maps indexed by debug ID.
+	DebugId *string `json:"debug_id,omitempty"`
 	// The domain associated with the source map.
 	Domain *string `json:"domain,omitempty"`
 	// The file name of the minified JavaScript file.
@@ -167,6 +170,34 @@ func (o *JSSourcemapAttributes) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value.
 func (o *JSSourcemapAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetDebugId returns the DebugId field value if set, zero value otherwise.
+func (o *JSSourcemapAttributes) GetDebugId() string {
+	if o == nil || o.DebugId == nil {
+		var ret string
+		return ret
+	}
+	return *o.DebugId
+}
+
+// GetDebugIdOk returns a tuple with the DebugId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JSSourcemapAttributes) GetDebugIdOk() (*string, bool) {
+	if o == nil || o.DebugId == nil {
+		return nil, false
+	}
+	return o.DebugId, true
+}
+
+// HasDebugId returns a boolean if a field has been set.
+func (o *JSSourcemapAttributes) HasDebugId() bool {
+	return o != nil && o.DebugId != nil
+}
+
+// SetDebugId gets a reference to the given string and assigns it to the DebugId field.
+func (o *JSSourcemapAttributes) SetDebugId(v string) {
+	o.DebugId = &v
 }
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
@@ -403,6 +434,9 @@ func (o JSSourcemapAttributes) MarshalJSON() ([]byte, error) {
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
+	if o.DebugId != nil {
+		toSerialize["debug_id"] = o.DebugId
+	}
 	if o.Domain != nil {
 		toSerialize["domain"] = o.Domain
 	}
@@ -437,6 +471,7 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		BlobStorageSourcemapPath *string    `json:"blob_storage_sourcemap_path,omitempty"`
 		BuildId                  *string    `json:"build_id,omitempty"`
 		CreatedAt                *time.Time `json:"created_at"`
+		DebugId                  *string    `json:"debug_id,omitempty"`
 		Domain                   *string    `json:"domain,omitempty"`
 		FileName                 *string    `json:"file_name,omitempty"`
 		Mapkind                  *string    `json:"mapkind"`
@@ -460,7 +495,7 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"absolute_path", "blob_storage_sourcemap_path", "build_id", "created_at", "domain", "file_name", "mapkind", "service", "size", "variant", "version", "version_code"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"absolute_path", "blob_storage_sourcemap_path", "build_id", "created_at", "debug_id", "domain", "file_name", "mapkind", "service", "size", "variant", "version", "version_code"})
 	} else {
 		return err
 	}
@@ -468,6 +503,7 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.BlobStorageSourcemapPath = all.BlobStorageSourcemapPath
 	o.BuildId = all.BuildId
 	o.CreatedAt = *all.CreatedAt
+	o.DebugId = all.DebugId
 	o.Domain = all.Domain
 	o.FileName = all.FileName
 	o.Mapkind = *all.Mapkind
