@@ -25,6 +25,7 @@ type WidgetDefinition struct {
 	ProductAnalyticsFunnelWidgetDefinition *ProductAnalyticsFunnelWidgetDefinition
 	GeomapWidgetDefinition                 *GeomapWidgetDefinition
 	GroupWidgetDefinition                  *GroupWidgetDefinition
+	HeatgridWidgetDefinition               *HeatgridWidgetDefinition
 	HeatMapWidgetDefinition                *HeatMapWidgetDefinition
 	HostMapWidgetDefinition                *HostMapWidgetDefinition
 	IFrameWidgetDefinition                 *IFrameWidgetDefinition
@@ -130,6 +131,11 @@ func GeomapWidgetDefinitionAsWidgetDefinition(v *GeomapWidgetDefinition) WidgetD
 // GroupWidgetDefinitionAsWidgetDefinition is a convenience function that returns GroupWidgetDefinition wrapped in WidgetDefinition.
 func GroupWidgetDefinitionAsWidgetDefinition(v *GroupWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{GroupWidgetDefinition: v}
+}
+
+// HeatgridWidgetDefinitionAsWidgetDefinition is a convenience function that returns HeatgridWidgetDefinition wrapped in WidgetDefinition.
+func HeatgridWidgetDefinitionAsWidgetDefinition(v *HeatgridWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{HeatgridWidgetDefinition: v}
 }
 
 // HeatMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns HeatMapWidgetDefinition wrapped in WidgetDefinition.
@@ -524,6 +530,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.GroupWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into HeatgridWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.HeatgridWidgetDefinition)
+	if err == nil {
+		if obj.HeatgridWidgetDefinition != nil && obj.HeatgridWidgetDefinition.UnparsedObject == nil {
+			jsonHeatgridWidgetDefinition, _ := datadog.Marshal(obj.HeatgridWidgetDefinition)
+			if string(jsonHeatgridWidgetDefinition) == "{}" { // empty struct
+				obj.HeatgridWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.HeatgridWidgetDefinition = nil
+		}
+	} else {
+		obj.HeatgridWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into HeatMapWidgetDefinition
@@ -1032,6 +1055,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.ProductAnalyticsFunnelWidgetDefinition = nil
 		obj.GeomapWidgetDefinition = nil
 		obj.GroupWidgetDefinition = nil
+		obj.HeatgridWidgetDefinition = nil
 		obj.HeatMapWidgetDefinition = nil
 		obj.HostMapWidgetDefinition = nil
 		obj.IFrameWidgetDefinition = nil
@@ -1124,6 +1148,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.GroupWidgetDefinition != nil {
 		return datadog.Marshal(&obj.GroupWidgetDefinition)
+	}
+
+	if obj.HeatgridWidgetDefinition != nil {
+		return datadog.Marshal(&obj.HeatgridWidgetDefinition)
 	}
 
 	if obj.HeatMapWidgetDefinition != nil {
@@ -1300,6 +1328,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.GroupWidgetDefinition != nil {
 		return obj.GroupWidgetDefinition
+	}
+
+	if obj.HeatgridWidgetDefinition != nil {
+		return obj.HeatgridWidgetDefinition
 	}
 
 	if obj.HeatMapWidgetDefinition != nil {
