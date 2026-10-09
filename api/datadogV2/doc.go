@@ -1355,6 +1355,7 @@
 //   - [SecurityMonitoringApi.TestSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateCustomFramework]
 //   - [SecurityMonitoringApi.UpdateFindingsAssignee]
+//   - [SecurityMonitoringApi.UpdateFindingsSeverity]
 //   - [SecurityMonitoringApi.UpdateResourceEvaluationFilters]
 //   - [SecurityMonitoringApi.UpdateSecurityFilter]
 //   - [SecurityMonitoringApi.UpdateSecurityFindingsAutomationDueDateRule]
