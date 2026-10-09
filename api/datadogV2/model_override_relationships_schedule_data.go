@@ -10,70 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleUser Represents a user object in the context of a schedule, including their `id`, type, and basic attributes.
-type ScheduleUser struct {
-	// Provides basic user information for a schedule, including a name and email address.
-	Attributes *ScheduleUserAttributes `json:"attributes,omitempty"`
-	// The unique user identifier.
+// OverrideRelationshipsScheduleData A reference to the schedule the override belongs to, containing the schedule's ID and resource type.
+type OverrideRelationshipsScheduleData struct {
+	// The unique identifier of the schedule.
 	Id string `json:"id"`
-	// Users resource type.
-	Type ScheduleUserType `json:"type"`
+	// Indicates that the related resource is of type 'schedules'.
+	Type OverrideRelationshipsScheduleDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleUser instantiates a new ScheduleUser object.
+// NewOverrideRelationshipsScheduleData instantiates a new OverrideRelationshipsScheduleData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUser(id string, typeVar ScheduleUserType) *ScheduleUser {
-	this := ScheduleUser{}
+func NewOverrideRelationshipsScheduleData(id string, typeVar OverrideRelationshipsScheduleDataType) *OverrideRelationshipsScheduleData {
+	this := OverrideRelationshipsScheduleData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewScheduleUserWithDefaults instantiates a new ScheduleUser object.
+// NewOverrideRelationshipsScheduleDataWithDefaults instantiates a new OverrideRelationshipsScheduleData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleUserWithDefaults() *ScheduleUser {
-	this := ScheduleUser{}
-	var typeVar ScheduleUserType = SCHEDULEUSERTYPE_USERS
+func NewOverrideRelationshipsScheduleDataWithDefaults() *OverrideRelationshipsScheduleData {
+	this := OverrideRelationshipsScheduleData{}
+	var typeVar OverrideRelationshipsScheduleDataType = OVERRIDERELATIONSHIPSSCHEDULEDATATYPE_SCHEDULES
 	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *ScheduleUser) GetAttributes() ScheduleUserAttributes {
-	if o == nil || o.Attributes == nil {
-		var ret ScheduleUserAttributes
-		return ret
-	}
-	return *o.Attributes
-}
-
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScheduleUser) GetAttributesOk() (*ScheduleUserAttributes, bool) {
-	if o == nil || o.Attributes == nil {
-		return nil, false
-	}
-	return o.Attributes, true
-}
-
-// HasAttributes returns a boolean if a field has been set.
-func (o *ScheduleUser) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given ScheduleUserAttributes and assigns it to the Attributes field.
-func (o *ScheduleUser) SetAttributes(v ScheduleUserAttributes) {
-	o.Attributes = &v
-}
-
 // GetId returns the Id field value.
-func (o *ScheduleUser) GetId() string {
+func (o *OverrideRelationshipsScheduleData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,7 +53,7 @@ func (o *ScheduleUser) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleUser) GetIdOk() (*string, bool) {
+func (o *OverrideRelationshipsScheduleData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,14 +61,14 @@ func (o *ScheduleUser) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *ScheduleUser) SetId(v string) {
+func (o *OverrideRelationshipsScheduleData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *ScheduleUser) GetType() ScheduleUserType {
+func (o *OverrideRelationshipsScheduleData) GetType() OverrideRelationshipsScheduleDataType {
 	if o == nil {
-		var ret ScheduleUserType
+		var ret OverrideRelationshipsScheduleDataType
 		return ret
 	}
 	return o.Type
@@ -106,7 +76,7 @@ func (o *ScheduleUser) GetType() ScheduleUserType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleUser) GetTypeOk() (*ScheduleUserType, bool) {
+func (o *OverrideRelationshipsScheduleData) GetTypeOk() (*OverrideRelationshipsScheduleDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,18 +84,15 @@ func (o *ScheduleUser) GetTypeOk() (*ScheduleUserType, bool) {
 }
 
 // SetType sets field value.
-func (o *ScheduleUser) SetType(v ScheduleUserType) {
+func (o *OverrideRelationshipsScheduleData) SetType(v OverrideRelationshipsScheduleDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleUser) MarshalJSON() ([]byte, error) {
+func (o OverrideRelationshipsScheduleData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
-	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
@@ -137,11 +104,10 @@ func (o ScheduleUser) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleUser) UnmarshalJSON(bytes []byte) (err error) {
+func (o *OverrideRelationshipsScheduleData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ScheduleUserAttributes `json:"attributes,omitempty"`
-		Id         *string                 `json:"id"`
-		Type       *ScheduleUserType       `json:"type"`
+		Id   *string                                `json:"id"`
+		Type *OverrideRelationshipsScheduleDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,16 +120,12 @@ func (o *ScheduleUser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Attributes = all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
