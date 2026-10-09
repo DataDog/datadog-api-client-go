@@ -540,6 +540,7 @@ func (a *NetworkDeviceMonitoringApi) ListInterfaceUserTags(ctx _context.Context,
 
 // UpdateDeviceUserTags Update the tags for a device.
 // Update the tags for a device.
+// A device supports up to 20 user tags by default. To request a higher limit for your organization, [contact Support](https://docs.datadoghq.com/help/).
 func (a *NetworkDeviceMonitoringApi) UpdateDeviceUserTags(ctx _context.Context, deviceId string, body ListTagsResponse) (ListTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
