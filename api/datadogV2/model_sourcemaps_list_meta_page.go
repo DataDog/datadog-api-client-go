@@ -14,7 +14,13 @@ import (
 type SourcemapsListMetaPage struct {
 	// Whether there are more results available beyond the current page.
 	HasMoreResults bool `json:"has_more_results"`
-	// Total number of source maps matching the filter criteria.
+	// Cursor for the next page of a JavaScript cursor-based listing. Pass
+	// this value as `page[after]` with the same search mode and filters.
+	// Only returned when another page is available.
+	NextCursor *string `json:"next_cursor,omitempty"`
+	// Total number of matching source maps for legacy page-number pagination.
+	// Cursor-based listings do not compute a total; this field may be zero
+	// even when records are returned. Use `has_more_results` to continue.
 	TotalFilteredCount int64 `json:"total_filtered_count"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -63,6 +69,34 @@ func (o *SourcemapsListMetaPage) SetHasMoreResults(v bool) {
 	o.HasMoreResults = v
 }
 
+// GetNextCursor returns the NextCursor field value if set, zero value otherwise.
+func (o *SourcemapsListMetaPage) GetNextCursor() string {
+	if o == nil || o.NextCursor == nil {
+		var ret string
+		return ret
+	}
+	return *o.NextCursor
+}
+
+// GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SourcemapsListMetaPage) GetNextCursorOk() (*string, bool) {
+	if o == nil || o.NextCursor == nil {
+		return nil, false
+	}
+	return o.NextCursor, true
+}
+
+// HasNextCursor returns a boolean if a field has been set.
+func (o *SourcemapsListMetaPage) HasNextCursor() bool {
+	return o != nil && o.NextCursor != nil
+}
+
+// SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
+func (o *SourcemapsListMetaPage) SetNextCursor(v string) {
+	o.NextCursor = &v
+}
+
 // GetTotalFilteredCount returns the TotalFilteredCount field value.
 func (o *SourcemapsListMetaPage) GetTotalFilteredCount() int64 {
 	if o == nil {
@@ -93,6 +127,9 @@ func (o SourcemapsListMetaPage) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["has_more_results"] = o.HasMoreResults
+	if o.NextCursor != nil {
+		toSerialize["next_cursor"] = o.NextCursor
+	}
 	toSerialize["total_filtered_count"] = o.TotalFilteredCount
 
 	for key, value := range o.AdditionalProperties {
@@ -104,8 +141,9 @@ func (o SourcemapsListMetaPage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SourcemapsListMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HasMoreResults     *bool  `json:"has_more_results"`
-		TotalFilteredCount *int64 `json:"total_filtered_count"`
+		HasMoreResults     *bool   `json:"has_more_results"`
+		NextCursor         *string `json:"next_cursor,omitempty"`
+		TotalFilteredCount *int64  `json:"total_filtered_count"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,11 +156,12 @@ func (o *SourcemapsListMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"has_more_results", "total_filtered_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"has_more_results", "next_cursor", "total_filtered_count"})
 	} else {
 		return err
 	}
 	o.HasMoreResults = *all.HasMoreResults
+	o.NextCursor = all.NextCursor
 	o.TotalFilteredCount = *all.TotalFilteredCount
 
 	if len(additionalProperties) > 0 {
