@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAutomationRuleResourceType JSON:API resource type for case automation rules.
+// CaseAutomationRuleResourceType JSON:API resource type for work item automation rules.
 type CaseAutomationRuleResourceType string
 
 // List of CaseAutomationRuleResourceType.

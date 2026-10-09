@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseSortableField Case field that can be sorted on
+// CaseSortableField Work item field that can be sorted on
 type CaseSortableField string
 
 // List of CaseSortableField.

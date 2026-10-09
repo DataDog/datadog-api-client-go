@@ -8,12 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateStatusAttributes Case update status attributes
+// CaseUpdateStatusAttributes Work item update status attributes
 type CaseUpdateStatusAttributes struct {
-	// Deprecated way of representing the case status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
+	// Deprecated way of representing the work item status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
 	// Deprecated
 	Status *CaseStatus `json:"status,omitempty"`
-	// Status of the case. Must be one of the existing statuses for the case's type.
+	// Status of the work item. Must be one of the existing statuses for the work item's type.
 	StatusName *string `json:"status_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

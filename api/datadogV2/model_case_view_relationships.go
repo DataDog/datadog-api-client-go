@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewRelationships Related resources for the case view, including the creator, last modifier, and associated project.
+// CaseViewRelationships Related resources for the work item view, including the creator, last modifier, and associated project.
 type CaseViewRelationships struct {
 	// Relationship to user.
 	CreatedBy NullableNullableUserRelationship `json:"created_by,omitempty"`

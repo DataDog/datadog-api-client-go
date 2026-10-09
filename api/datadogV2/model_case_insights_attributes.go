@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseInsightsAttributes Attributes for adding or removing insights from a case.
+// CaseInsightsAttributes Attributes for adding or removing insights from a work item.
 type CaseInsightsAttributes struct {
-	// Array of insights to add to or remove from a case.
+	// Array of insights to add to or remove from a work item.
 	Insights []CaseInsight `json:"insights"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

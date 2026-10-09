@@ -14,7 +14,7 @@ import (
 type CustomAttributeConfigAttributesCreate struct {
 	// A description explaining the purpose and expected values for this custom attribute.
 	Description *string `json:"description,omitempty"`
-	// The human-readable label shown in the Case Management UI for this custom attribute.
+	// The human-readable label shown in the Work Management UI for this custom attribute.
 	DisplayName string `json:"display_name"`
 	// If `true`, this attribute accepts an array of values. If `false`, only a single value is allowed.
 	IsMulti bool `json:"is_multi"`

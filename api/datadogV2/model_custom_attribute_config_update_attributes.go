@@ -12,7 +12,7 @@ import (
 type CustomAttributeConfigUpdateAttributes struct {
 	// A description explaining the purpose and expected values for this custom attribute.
 	Description *string `json:"description,omitempty"`
-	// The human-readable label shown in the Case Management UI for this custom attribute.
+	// The human-readable label shown in the Work Management UI for this custom attribute.
 	DisplayName *string `json:"display_name,omitempty"`
 	// An external field identifier to auto-populate this attribute from (used for integrations with external systems).
 	MapFrom *string `json:"map_from,omitempty"`

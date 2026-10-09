@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCommentAttributes Case comment attributes
+// CaseCommentAttributes Work item comment attributes
 type CaseCommentAttributes struct {
 	// The `CaseCommentAttributes` `message`.
 	Comment string `json:"comment"`

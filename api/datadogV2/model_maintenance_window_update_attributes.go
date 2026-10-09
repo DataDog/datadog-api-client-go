@@ -16,7 +16,7 @@ type MaintenanceWindowUpdateAttributes struct {
 	EndAt *time.Time `json:"end_at,omitempty"`
 	// The name of the maintenance window.
 	Name *string `json:"name,omitempty"`
-	// The query to filter event management cases for this maintenance window.
+	// The query to filter event management work items for this maintenance window.
 	Query *string `json:"query,omitempty"`
 	// The start time of the maintenance window.
 	StartAt *time.Time `json:"start_at,omitempty"`

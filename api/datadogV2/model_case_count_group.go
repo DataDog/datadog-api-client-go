@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCountGroup A facet group containing counts broken down by the distinct values of a case field (for example, status or priority).
+// CaseCountGroup A facet group containing counts broken down by the distinct values of a work item field (for example, status or priority).
 type CaseCountGroup struct {
 	// The name of the field being grouped on (for example, `status` or `priority`).
 	Group string `json:"group"`

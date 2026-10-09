@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAssignRequest Case assign request
+// CaseAssignRequest Work item assign request
 type CaseAssignRequest struct {
-	// Case assign
+	// Work item assign
 	Data CaseAssign `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

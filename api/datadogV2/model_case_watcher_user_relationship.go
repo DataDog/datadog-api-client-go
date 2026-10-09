@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseWatcherUserRelationship The user relationship for a case watcher.
+// CaseWatcherUserRelationship The user relationship for a work item watcher.
 type CaseWatcherUserRelationship struct {
 	// Relationship to user object.
 	Data UserRelationshipData `json:"data"`

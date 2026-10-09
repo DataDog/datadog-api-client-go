@@ -18,7 +18,7 @@ type CreateLinearIssueRequestDataAttributes struct {
 	LabelIds []string `json:"label_ids,omitempty"`
 	// Unique identifier of the Linear project to pin the issue to. If not provided, the issue is not associated with a Linear project.
 	LinearProjectId *string `json:"linear_project_id,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
 	// Title of the Linear issue. If not provided, the title will be automatically generated.
 	Title *string `json:"title,omitempty"`

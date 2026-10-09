@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CasesResponse Response with cases
+// CasesResponse Response with work items
 type CasesResponse struct {
-	// Cases response data
+	// Work items response data
 	Data []Case `json:"data,omitempty"`
-	// Cases response metadata
+	// Work items response metadata
 	Meta *CasesResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

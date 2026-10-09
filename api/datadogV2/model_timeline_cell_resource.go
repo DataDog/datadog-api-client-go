@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellResource A timeline cell resource representing a single entry in a case's activity timeline.
+// TimelineCellResource A timeline cell resource representing a single entry in a work item's activity timeline.
 type TimelineCellResource struct {
-	// Attributes of a timeline cell, representing a single event in a case's chronological activity log (for example, a comment, status change, or assignment update).
+	// Attributes of a timeline cell, representing a single event in a work item's chronological activity log (for example, a comment, status change, or assignment update).
 	Attributes TimelineCell `json:"attributes"`
 	// Timeline cell's identifier
 	Id string `json:"id"`

@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateDueDate Data object for updating a case's due date.
+// CaseUpdateDueDate Data object for updating a work item's due date.
 type CaseUpdateDueDate struct {
-	// Attributes for setting or clearing a case's due date.
+	// Attributes for setting or clearing a work item's due date.
 	Attributes CaseUpdateDueDateAttributes `json:"attributes"`
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
