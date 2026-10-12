@@ -1,4 +1,4 @@
-// Create a Workload Protection policy returns "OK" response
+// Create a Workload Protection policy returns "Created" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.CloudWorkloadSecurityAgentPolicyCreateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentPolicyCreateAttributes{
 				Description: datadog.PtrString("My agent policy"),
-				Enabled:     datadog.PtrBool(true),
+				Enabled:     datadog.PtrBool(false),
 				HostTagsLists: [][]string{
 					{
 						"env:test",
