@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -35,8 +36,6 @@ func governanceParameter(defaultValue string) string {
 }
 
 func TestGovernanceControlParameterDefinitionDefaultValue(t *testing.T) {
-	assert := tests.Assert(context.Background(), t)
-
 	testCases := []struct {
 		name     string
 		json     string
@@ -44,15 +43,19 @@ func TestGovernanceControlParameterDefinitionDefaultValue(t *testing.T) {
 	}{
 		{"null", "null", nil},
 		{"false", "false", false},
-		{"zero", "0", float64(0)},
+		{"zero", "0", json.Number("0")},
+		{"large integer", "9007199254740993", json.Number("9007199254740993")},
 		{"empty string", `""`, ""},
 		{"string", `"abc"`, "abc"},
 		{"object", `{"key": "value"}`, map[string]interface{}{"key": "value"}},
-		{"list", `["a", 1]`, []interface{}{"a", float64(1)}},
+		{"nested large integer", `{"limit": 9007199254740993}`, map[string]interface{}{"limit": json.Number("9007199254740993")}},
+		{"list", `["a", 1]`, []interface{}{"a", json.Number("1")}},
+		{"list with large integer", `[9007199254740993]`, []interface{}{json.Number("9007199254740993")}},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			assert := tests.Assert(context.Background(), t)
 			var parameter datadogV2.GovernanceControlParameterDefinition
 			assert.NoError(datadog.Unmarshal([]byte(governanceParameter(tc.json)), &parameter))
 			assert.Nil(parameter.UnparsedObject)
@@ -69,7 +72,7 @@ func TestGovernanceControlParameterDefinitionDefaultValue(t *testing.T) {
 			serialized, err := datadog.Marshal(parameter)
 			assert.NoError(err)
 			var roundTrip map[string]interface{}
-			assert.NoError(datadog.Unmarshal(serialized, &roundTrip))
+			assert.NoError(datadog.UnmarshalUseNumber(serialized, &roundTrip))
 			assert.Contains(roundTrip, "default_value")
 			assert.Equal(tc.expected, roundTrip["default_value"])
 		})

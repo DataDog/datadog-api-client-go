@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -110,16 +111,20 @@ func TestNullableInterface(t *testing.T) {
 	}{
 		{"null", "null", nil},
 		{"false", "false", false},
-		{"zero", "0", float64(0)},
+		{"zero", "0", json.Number("0")},
+		{"large integer", "9007199254740993", json.Number("9007199254740993")},
 		{"empty string", `""`, ""},
 		{"string", `"abc"`, "abc"},
 		{"object", `{"key":"value"}`, map[string]interface{}{"key": "value"}},
-		{"list", `["a",1]`, []interface{}{"a", float64(1)}},
+		{"nested large integer", `{"limit":9007199254740993}`, map[string]interface{}{"limit": json.Number("9007199254740993")}},
+		{"list", `["a",1]`, []interface{}{"a", json.Number("1")}},
+		{"list with large integer", `[9007199254740993]`, []interface{}{json.Number("9007199254740993")}},
 	}
 
 	for _, tc := range testCases {
 		c := tc
 		t.Run(c.name, func(t *testing.T) {
+			assert := tests.Assert(context.Background(), t)
 			var holder struct {
 				Value datadog.NullableInterface `json:"value"`
 			}
@@ -133,13 +138,12 @@ func TestNullableInterface(t *testing.T) {
 
 			serialized, err := datadog.Marshal(holder.Value)
 			assert.NoError(err)
-			var roundTrip interface{}
-			assert.NoError(datadog.Unmarshal(serialized, &roundTrip))
-			assert.Equal(c.expected, roundTrip)
+			assert.Equal(c.json, string(serialized))
 		})
 	}
 
 	t.Run("absent", func(t *testing.T) {
+		assert := tests.Assert(context.Background(), t)
 		var holder struct {
 			Value datadog.NullableInterface `json:"value"`
 		}
@@ -149,6 +153,7 @@ func TestNullableInterface(t *testing.T) {
 	})
 
 	t.Run("set and unset", func(t *testing.T) {
+		assert := tests.Assert(context.Background(), t)
 		var value interface{} = "abc"
 		nullable := datadog.NewNullableInterface(&value)
 		assert.True(nullable.IsSet())
