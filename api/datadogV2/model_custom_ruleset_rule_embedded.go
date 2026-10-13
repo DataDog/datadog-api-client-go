@@ -171,7 +171,7 @@ func (o *CustomRulesetRuleEmbedded) SetName(v string) {
 // GetRevisions returns the Revisions field value.
 // If the value is explicit nil, the zero value for []CustomRuleRevisionEmbedded will be returned.
 func (o *CustomRulesetRuleEmbedded) GetRevisions() []CustomRuleRevisionEmbedded {
-	if o == nil {
+	if o == nil || o.Revisions.Get() == nil {
 		var ret []CustomRuleRevisionEmbedded
 		return ret
 	}

@@ -148,7 +148,7 @@ func (o *AiCustomRulesetResponseAttributes) SetName(v string) {
 // GetRules returns the Rules field value.
 // If the value is explicit nil, the zero value for []AiCustomRuleItem will be returned.
 func (o *AiCustomRulesetResponseAttributes) GetRules() []AiCustomRuleItem {
-	if o == nil {
+	if o == nil || o.Rules.Get() == nil {
 		var ret []AiCustomRuleItem
 		return ret
 	}

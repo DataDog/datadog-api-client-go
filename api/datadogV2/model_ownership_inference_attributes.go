@@ -136,7 +136,7 @@ func (o *OwnershipInferenceAttributes) SetCreatedAt(v time.Time) {
 // GetEvidenceVersions returns the EvidenceVersions field value.
 // If the value is explicit nil, the zero value for []map[string]interface{} will be returned.
 func (o *OwnershipInferenceAttributes) GetEvidenceVersions() []map[string]interface{} {
-	if o == nil {
+	if o == nil || o.EvidenceVersions.Get() == nil {
 		var ret []map[string]interface{}
 		return ret
 	}
