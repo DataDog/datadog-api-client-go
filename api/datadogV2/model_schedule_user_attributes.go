@@ -10,6 +10,8 @@ import (
 
 // ScheduleUserAttributes Provides basic user information for a schedule, including a name and email address.
 type ScheduleUserAttributes struct {
+	// The user's on-call color, as a hex code (for example, `#FF0000`). Included only when `user.color` is requested in the `include` parameter.
+	Color *string `json:"color,omitempty"`
 	// The user's email address.
 	Email *string `json:"email,omitempty"`
 	// The user's name.
@@ -36,6 +38,34 @@ func NewScheduleUserAttributes() *ScheduleUserAttributes {
 func NewScheduleUserAttributesWithDefaults() *ScheduleUserAttributes {
 	this := ScheduleUserAttributes{}
 	return &this
+}
+
+// GetColor returns the Color field value if set, zero value otherwise.
+func (o *ScheduleUserAttributes) GetColor() string {
+	if o == nil || o.Color == nil {
+		var ret string
+		return ret
+	}
+	return *o.Color
+}
+
+// GetColorOk returns a tuple with the Color field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduleUserAttributes) GetColorOk() (*string, bool) {
+	if o == nil || o.Color == nil {
+		return nil, false
+	}
+	return o.Color, true
+}
+
+// HasColor returns a boolean if a field has been set.
+func (o *ScheduleUserAttributes) HasColor() bool {
+	return o != nil && o.Color != nil
+}
+
+// SetColor gets a reference to the given string and assigns it to the Color field.
+func (o *ScheduleUserAttributes) SetColor(v string) {
+	o.Color = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
@@ -128,6 +158,9 @@ func (o ScheduleUserAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Color != nil {
+		toSerialize["color"] = o.Color
+	}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email
 	}
@@ -147,6 +180,7 @@ func (o ScheduleUserAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Color  *string               `json:"color,omitempty"`
 		Email  *string               `json:"email,omitempty"`
 		Name   *string               `json:"name,omitempty"`
 		Status *UserAttributesStatus `json:"status,omitempty"`
@@ -156,12 +190,13 @@ func (o *ScheduleUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"color", "email", "name", "status"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Color = all.Color
 	o.Email = all.Email
 	o.Name = all.Name
 	if all.Status != nil && !all.Status.IsValid() {
