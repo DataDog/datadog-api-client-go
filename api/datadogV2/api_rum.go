@@ -902,15 +902,96 @@ func (a *RUMApi) GetServiceRepositoryInfo(ctx _context.Context, body ServiceRepo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetSourcemapsOptionalParameters holds optional parameters for GetSourcemaps.
+type GetSourcemapsOptionalParameters struct {
+	DebugId  *uuid.UUID
+	Filename *string
+	Service  *string
+	Version  *string
+}
+
+// NewGetSourcemapsOptionalParameters creates an empty struct for parameters.
+func NewGetSourcemapsOptionalParameters() *GetSourcemapsOptionalParameters {
+	this := GetSourcemapsOptionalParameters{}
+	return &this
+}
+
+// WithDebugId sets the corresponding parameter name and returns the struct.
+func (r *GetSourcemapsOptionalParameters) WithDebugId(debugId uuid.UUID) *GetSourcemapsOptionalParameters {
+	r.DebugId = &debugId
+	return r
+}
+
+// WithFilename sets the corresponding parameter name and returns the struct.
+func (r *GetSourcemapsOptionalParameters) WithFilename(filename string) *GetSourcemapsOptionalParameters {
+	r.Filename = &filename
+	return r
+}
+
+// WithService sets the corresponding parameter name and returns the struct.
+func (r *GetSourcemapsOptionalParameters) WithService(service string) *GetSourcemapsOptionalParameters {
+	r.Service = &service
+	return r
+}
+
+// WithVersion sets the corresponding parameter name and returns the struct.
+func (r *GetSourcemapsOptionalParameters) WithVersion(version string) *GetSourcemapsOptionalParameters {
+	r.Version = &version
+	return r
+}
+
 // GetSourcemaps Get a JavaScript source map.
-// Retrieves the content of a specific JavaScript source map file by its
-// filename, service name, and version.
-func (a *RUMApi) GetSourcemaps(ctx _context.Context, filename string, service string, version string) (SourcemapFileResponse, *_nethttp.Response, error) {
+// Retrieves the content of a specific JavaScript source map file. Provide either
+// `debug_id` with a UUID, or all three of `filename`, `service`, and `version`.
+// When `debug_id` is provided, filename, service, and version are not required
+// and are ignored.
+//
+// **Examples:** the following commands use the US1 API host. Replace the host
+// with the API host for your site, and the filename, service, version, and
+// debug ID with values from your organization. Use `--get` so curl sends the
+// parameters in the query string.
+//
+// **1. Retrieve a source map by debug ID**
+//
+// Provide `debug_id` with a UUID. No filename, service, or version is required.
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "debug_id=00000000-0000-4000-8000-000000000001"
+//
+// ```
+//
+// **2. Retrieve a source map by service and version**
+//
+// Provide `filename` together with `service` and `version`.
+//
+// ```bash
+//
+//	curl -sS --get "https://api.datadoghq.com/api/v2/sourcemaps" \
+//	  -H "Accept: application/json" \
+//	  -H "Authorization: Bearer ${DD_BEARER_TOKEN}" \
+//	  --data-urlencode "filename=js/bundle.min.js.map" \
+//	  --data-urlencode "service=my-web-service" \
+//	  --data-urlencode "version=1.0.0"
+//
+// ```
+func (a *RUMApi) GetSourcemaps(ctx _context.Context, o ...GetSourcemapsOptionalParameters) (SourcemapFileResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SourcemapFileResponse
+		optionalParams      GetSourcemapsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetSourcemapsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.GetSourcemaps"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -931,9 +1012,18 @@ func (a *RUMApi) GetSourcemaps(ctx _context.Context, filename string, service st
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarQueryParams.Add("filename", datadog.ParameterToString(filename, ""))
-	localVarQueryParams.Add("service", datadog.ParameterToString(service, ""))
-	localVarQueryParams.Add("version", datadog.ParameterToString(version, ""))
+	if optionalParams.DebugId != nil {
+		localVarQueryParams.Add("debug_id", datadog.ParameterToString(*optionalParams.DebugId, ""))
+	}
+	if optionalParams.Filename != nil {
+		localVarQueryParams.Add("filename", datadog.ParameterToString(*optionalParams.Filename, ""))
+	}
+	if optionalParams.Service != nil {
+		localVarQueryParams.Add("service", datadog.ParameterToString(*optionalParams.Service, ""))
+	}
+	if optionalParams.Version != nil {
+		localVarQueryParams.Add("version", datadog.ParameterToString(*optionalParams.Version, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
