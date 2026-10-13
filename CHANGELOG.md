@@ -1,5 +1,64 @@
 # CHANGELOG
 
+## 2.67.0/2026-10-13
+
+### Added
+* Clarify JavaScript source map listing and pagination [#4733](https://github.com/DataDog/datadog-api-client-go/pull/4733)
+* Document public Deployment Gate and rule evaluation endpoints [#4732](https://github.com/DataDog/datadog-api-client-go/pull/4732)
+* Add Heatgrid dashboard widget support [#4729](https://github.com/DataDog/datadog-api-client-go/pull/4729)
+* Mark Bits Investigation endpoints as stable [#4728](https://github.com/DataDog/datadog-api-client-go/pull/4728)
+* Add endpoint to override the severity of security findings [#4725](https://github.com/DataDog/datadog-api-client-go/pull/4725)
+* Include the matched shard in the SPA v2 response [#4724](https://github.com/DataDog/datadog-api-client-go/pull/4724)
+* Add reroute_to_team action to On-Call team routing rules [#4723](https://github.com/DataDog/datadog-api-client-go/pull/4723)
+* Add aggregate event-time configuration to Observability Pipelines [#4715](https://github.com/DataDog/datadog-api-client-go/pull/4715)
+* Publish Cloud Cost Management cloud account listing [#4714](https://github.com/DataDog/datadog-api-client-go/pull/4714)
+* Add AI Impact user activity endpoint [#4703](https://github.com/DataDog/datadog-api-client-go/pull/4703)
+* Promote Mark a deployment as failed by version endpoint to GA [#4702](https://github.com/DataDog/datadog-api-client-go/pull/4702)
+* Rename Patch a deployment event to Mark a deployment as failed by ID [#4701](https://github.com/DataDog/datadog-api-client-go/pull/4701)
+* Document Supply Chain Firewall reports API [#4700](https://github.com/DataDog/datadog-api-client-go/pull/4700)
+* Add compatibleVersion to security monitoring rule responses [#4697](https://github.com/DataDog/datadog-api-client-go/pull/4697)
+* Add CI job logs intake API [#4695](https://github.com/DataDog/datadog-api-client-go/pull/4695)
+* Add Archive Search endpoints to the public API [#4692](https://github.com/DataDog/datadog-api-client-go/pull/4692)
+* Add SPA recommendations v2 endpoint [#4691](https://github.com/DataDog/datadog-api-client-go/pull/4691)
+* Add dashboard experience type to API responses [#4690](https://github.com/DataDog/datadog-api-client-go/pull/4690)
+* Extend Cloud Auth Config endpoints to support new GitHub provider [#4689](https://github.com/DataDog/datadog-api-client-go/pull/4689)
+* Add case_stream to dashboard list stream sources [#4683](https://github.com/DataDog/datadog-api-client-go/pull/4683)
+* Add metrics enrichment table processor to Observability Pipelines [#4682](https://github.com/DataDog/datadog-api-client-go/pull/4682)
+* Add bits_ai_auto_investigate to synthetics test options [#4679](https://github.com/DataDog/datadog-api-client-go/pull/4679)
+* Document `source` field in DataDeletionResponseItemAttributes [#4677](https://github.com/DataDog/datadog-api-client-go/pull/4677)
+* Document Flink as a Confluent Cloud resource type [#4672](https://github.com/DataDog/datadog-api-client-go/pull/4672)
+* Document recently updated entities endpoint and entity_type parameter [#4671](https://github.com/DataDog/datadog-api-client-go/pull/4671)
+* Publish stable Experiments v2 APIs [#4668](https://github.com/DataDog/datadog-api-client-go/pull/4668)
+* Document leak information on personal and service access tokens [#4665](https://github.com/DataDog/datadog-api-client-go/pull/4665)
+* Increase Reference Tables Upsert/DeleteRows payload limit to 1 MiB [#4655](https://github.com/DataDog/datadog-api-client-go/pull/4655)
+* add recipient_email and servicenow to team notification rule [#4652](https://github.com/DataDog/datadog-api-client-go/pull/4652)
+* Document the meta object returned by Reference Tables Get rows by id [#4634](https://github.com/DataDog/datadog-api-client-go/pull/4634)
+* Add support for general investigations to Bits Investigations trigger API [#4624](https://github.com/DataDog/datadog-api-client-go/pull/4624)
+* Document managed prompt message placeholders [#4598](https://github.com/DataDog/datadog-api-client-go/pull/4598)
+
+### Changed
+* Document AI Impact user activity endpoint under DORA Metrics [#4727](https://github.com/DataDog/datadog-api-client-go/pull/4727)
+* Document dashboard quality scores in usage APIs [#4712](https://github.com/DataDog/datadog-api-client-go/pull/4712)
+* Update signalsDetected description to reflect risk-contributing signals [#4618](https://github.com/DataDog/datadog-api-client-go/pull/4618)
+
+### Fixed
+* Allow null default_value in governance control parameter definitions [#4726](https://github.com/DataDog/datadog-api-client-go/pull/4726)
+* Remove bearer token auth from the CreateEvent intake endpoint [#4722](https://github.com/DataDog/datadog-api-client-go/pull/4722)
+* Clarify the Archive Search tag description [#4704](https://github.com/DataDog/datadog-api-client-go/pull/4704)
+* Fix Workload Protection policy creation success response to 201 Created [#4696](https://github.com/DataDog/datadog-api-client-go/pull/4696)
+* Document DDSQL query permissions and OAuth scope [#4670](https://github.com/DataDog/datadog-api-client-go/pull/4670)
+* Specify UUID format for Databricks Private Action Runner connection fields [#4657](https://github.com/DataDog/datadog-api-client-go/pull/4657)
+* CCM Recommendations API - Re-add filter request attribute and fix sort examples [#4640](https://github.com/DataDog/datadog-api-client-go/pull/4640)
+* Automation pipelines require ID in updates and use different request/response schemas [#4566](https://github.com/DataDog/datadog-api-client-go/pull/4566)
+* RUM Rename feature to journey strong link to link in comments and desc [#4531](https://github.com/DataDog/datadog-api-client-go/pull/4531)
+* Document missing limitations and 409 response for org disable endpoint [#4365](https://github.com/DataDog/datadog-api-client-go/pull/4365)
+
+### Deprecated
+* Deprecate Salesforce Incidents API endpoints [#4718](https://github.com/DataDog/datadog-api-client-go/pull/4718)
+
+### Removed
+* Retire the RUM aggregated signals and problems endpoint [#4673](https://github.com/DataDog/datadog-api-client-go/pull/4673)
+
 ## 2.66.0/2026-09-24
 
 ### Added
