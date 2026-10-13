@@ -35,11 +35,11 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewAIImpactApi(apiClient)
+	api := datadogV2.NewDORAMetricsApi(apiClient)
 	r, err := api.CreateAIImpactUserActivity(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIImpactApi.CreateAIImpactUserActivity`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.CreateAIImpactUserActivity`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
