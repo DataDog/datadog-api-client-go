@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -94,4 +95,79 @@ func TestContainsUnparsedObject(t *testing.T) {
 			assert.Equal(c.expectedBool, n)
 		})
 	}
+}
+
+func TestNullableInterface(t *testing.T) {
+	assert := tests.Assert(context.Background(), t)
+
+	var unset datadog.NullableInterface
+	assert.False(unset.IsSet())
+	assert.Nil(unset.Get())
+
+	testCases := []struct {
+		name     string
+		json     string
+		expected interface{}
+	}{
+		{"null", "null", nil},
+		{"false", "false", false},
+		{"zero", "0", json.Number("0")},
+		{"large integer", "9007199254740993", json.Number("9007199254740993")},
+		{"empty string", `""`, ""},
+		{"string", `"abc"`, "abc"},
+		{"object", `{"key":"value"}`, map[string]interface{}{"key": "value"}},
+		{"nested large integer", `{"limit":9007199254740993}`, map[string]interface{}{"limit": json.Number("9007199254740993")}},
+		{"list", `["a",1]`, []interface{}{"a", json.Number("1")}},
+		{"list with large integer", `[9007199254740993]`, []interface{}{json.Number("9007199254740993")}},
+	}
+
+	for _, tc := range testCases {
+		c := tc
+		t.Run(c.name, func(t *testing.T) {
+			assert := tests.Assert(context.Background(), t)
+			var holder struct {
+				Value datadog.NullableInterface `json:"value"`
+			}
+			assert.NoError(datadog.Unmarshal([]byte(`{"value":`+c.json+`}`), &holder))
+			assert.True(holder.Value.IsSet())
+			if c.expected == nil {
+				assert.Nil(holder.Value.Get())
+			} else {
+				assert.Equal(c.expected, *holder.Value.Get())
+			}
+
+			serialized, err := datadog.Marshal(holder.Value)
+			assert.NoError(err)
+			assert.Equal(c.json, string(serialized))
+		})
+	}
+
+	t.Run("absent", func(t *testing.T) {
+		assert := tests.Assert(context.Background(), t)
+		var holder struct {
+			Value datadog.NullableInterface `json:"value"`
+		}
+		assert.NoError(datadog.Unmarshal([]byte(`{}`), &holder))
+		assert.False(holder.Value.IsSet())
+		assert.Nil(holder.Value.Get())
+	})
+
+	t.Run("set and unset", func(t *testing.T) {
+		assert := tests.Assert(context.Background(), t)
+		var value interface{} = "abc"
+		nullable := datadog.NewNullableInterface(&value)
+		assert.True(nullable.IsSet())
+		assert.Equal("abc", *nullable.Get())
+
+		nullable.Set(nil)
+		assert.True(nullable.IsSet())
+		assert.Nil(nullable.Get())
+		serialized, err := datadog.Marshal(nullable)
+		assert.NoError(err)
+		assert.Equal("null", string(serialized))
+
+		nullable.Unset()
+		assert.False(nullable.IsSet())
+		assert.Nil(nullable.Get())
+	})
 }

@@ -101,7 +101,7 @@ func NewCustomRuleRevisionEmbeddedWithDefaults() *CustomRuleRevisionEmbedded {
 // GetArguments returns the Arguments field value.
 // If the value is explicit nil, the zero value for []Argument will be returned.
 func (o *CustomRuleRevisionEmbedded) GetArguments() []Argument {
-	if o == nil {
+	if o == nil || o.Arguments.Get() == nil {
 		var ret []Argument
 		return ret
 	}
@@ -557,7 +557,7 @@ func (o *CustomRuleRevisionEmbedded) SetTags(v []string) {
 // GetTests returns the Tests field value.
 // If the value is explicit nil, the zero value for []CustomRuleRevisionTest will be returned.
 func (o *CustomRuleRevisionEmbedded) GetTests() []CustomRuleRevisionTest {
-	if o == nil {
+	if o == nil || o.Tests.Get() == nil {
 		var ret []CustomRuleRevisionTest
 		return ret
 	}
