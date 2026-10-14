@@ -18,7 +18,9 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewFeatureFlagsApi(apiClient)
-	resp, r, err := api.ListFeatureFlags(ctx, *datadogV2.NewListFeatureFlagsOptionalParameters().WithLimit(10))
+	resp, r, err := api.ListFeatureFlags(ctx, *datadogV2.NewListFeatureFlagsOptionalParameters().WithTags([]string{
+		"list-test:example-feature-flag",
+	}).WithPageLimit(1).WithPageOffset(0).WithSort("name"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeatureFlagsApi.ListFeatureFlags`: %v\n", err)
