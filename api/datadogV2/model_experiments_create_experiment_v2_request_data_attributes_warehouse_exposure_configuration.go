@@ -13,7 +13,7 @@ import (
 // ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration Warehouse model and experiment key used to read assignment data.
 type ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration struct {
 	// Optional Warehouse measure that scopes analyzed subjects.
-	EntryPoint NullableExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint `json:"entry_point"`
+	EntryPoint NullableExperimentsWarehouseEntryPoint `json:"entry_point"`
 	// Warehouse experiment key. Must not be blank.
 	ExperimentKey string `json:"experiment_key"`
 	// ID of the exposure SQL model that provides assignment data.
@@ -27,7 +27,7 @@ type ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfigur
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration(entryPoint NullableExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint, experimentKey string, exposureSqlModelId string) *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration {
+func NewExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration(entryPoint NullableExperimentsWarehouseEntryPoint, experimentKey string, exposureSqlModelId string) *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration {
 	this := ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration{}
 	this.EntryPoint = entryPoint
 	this.ExperimentKey = experimentKey
@@ -44,10 +44,10 @@ func NewExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfi
 }
 
 // GetEntryPoint returns the EntryPoint field value.
-// If the value is explicit nil, the zero value for ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint will be returned.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) GetEntryPoint() ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint {
+// If the value is explicit nil, the zero value for ExperimentsWarehouseEntryPoint will be returned.
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) GetEntryPoint() ExperimentsWarehouseEntryPoint {
 	if o == nil || o.EntryPoint.Get() == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint
+		var ret ExperimentsWarehouseEntryPoint
 		return ret
 	}
 	return *o.EntryPoint.Get()
@@ -56,7 +56,7 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConf
 // GetEntryPointOk returns a tuple with the EntryPoint field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) GetEntryPointOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint, bool) {
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) GetEntryPointOk() (*ExperimentsWarehouseEntryPoint, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConf
 }
 
 // SetEntryPoint sets field value.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) SetEntryPoint(v ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint) {
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) SetEntryPoint(v ExperimentsWarehouseEntryPoint) {
 	o.EntryPoint.Set(&v)
 }
 
@@ -133,9 +133,9 @@ func (o ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfi
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsCreateExperimentV2RequestDataAttributesWarehouseExposureConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EntryPoint         NullableExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPoint `json:"entry_point"`
-		ExperimentKey      *string                                                                                            `json:"experiment_key"`
-		ExposureSqlModelId *string                                                                                            `json:"exposure_sql_model_id"`
+		EntryPoint         NullableExperimentsWarehouseEntryPoint `json:"entry_point"`
+		ExperimentKey      *string                                `json:"experiment_key"`
+		ExposureSqlModelId *string                                `json:"exposure_sql_model_id"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

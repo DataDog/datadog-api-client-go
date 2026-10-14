@@ -19,7 +19,7 @@ type ExperimentsWarehousePercentileAggregationInput struct {
 	// Property filters that select data for the percentile calculation.
 	PropertyFilters [][]ExperimentsPropertyFilterInput `json:"property_filters,omitempty"`
 	// Reference to a measure defined in a warehouse metric SQL model.
-	WarehouseMetricMeasure ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure `json:"warehouse_metric_measure"`
+	WarehouseMetricMeasure ExperimentsWarehouseMetricMeasure `json:"warehouse_metric_measure"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,7 +29,7 @@ type ExperimentsWarehousePercentileAggregationInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsWarehousePercentileAggregationInput(percentile float64, warehouseMetricMeasure ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) *ExperimentsWarehousePercentileAggregationInput {
+func NewExperimentsWarehousePercentileAggregationInput(percentile float64, warehouseMetricMeasure ExperimentsWarehouseMetricMeasure) *ExperimentsWarehousePercentileAggregationInput {
 	this := ExperimentsWarehousePercentileAggregationInput{}
 	this.Percentile = percentile
 	this.WarehouseMetricMeasure = warehouseMetricMeasure
@@ -136,9 +136,9 @@ func (o *ExperimentsWarehousePercentileAggregationInput) SetPropertyFilters(v []
 }
 
 // GetWarehouseMetricMeasure returns the WarehouseMetricMeasure field value.
-func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasure() ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure {
+func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasure() ExperimentsWarehouseMetricMeasure {
 	if o == nil {
-		var ret ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure
+		var ret ExperimentsWarehouseMetricMeasure
 		return ret
 	}
 	return o.WarehouseMetricMeasure
@@ -146,7 +146,7 @@ func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasu
 
 // GetWarehouseMetricMeasureOk returns a tuple with the WarehouseMetricMeasure field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasureOk() (*ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure, bool) {
+func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasureOk() (*ExperimentsWarehouseMetricMeasure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,7 +154,7 @@ func (o *ExperimentsWarehousePercentileAggregationInput) GetWarehouseMetricMeasu
 }
 
 // SetWarehouseMetricMeasure sets field value.
-func (o *ExperimentsWarehousePercentileAggregationInput) SetWarehouseMetricMeasure(v ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) {
+func (o *ExperimentsWarehousePercentileAggregationInput) SetWarehouseMetricMeasure(v ExperimentsWarehouseMetricMeasure) {
 	o.WarehouseMetricMeasure = v
 }
 
@@ -182,10 +182,10 @@ func (o ExperimentsWarehousePercentileAggregationInput) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsWarehousePercentileAggregationInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DatadogMetricMeasure   NullableExperimentsNullableDatadogPercentileMeasureInput                                   `json:"datadog_metric_measure,omitempty"`
-		Percentile             *float64                                                                                   `json:"percentile"`
-		PropertyFilters        [][]ExperimentsPropertyFilterInput                                                         `json:"property_filters,omitempty"`
-		WarehouseMetricMeasure *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure `json:"warehouse_metric_measure"`
+		DatadogMetricMeasure   NullableExperimentsNullableDatadogPercentileMeasureInput `json:"datadog_metric_measure,omitempty"`
+		Percentile             *float64                                                 `json:"percentile"`
+		PropertyFilters        [][]ExperimentsPropertyFilterInput                       `json:"property_filters,omitempty"`
+		WarehouseMetricMeasure *ExperimentsWarehouseMetricMeasure                       `json:"warehouse_metric_measure"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -11,7 +11,7 @@ import (
 // ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems One statistical comparison for a metric and variant.
 type ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems struct {
 	// Lower and upper bounds of the reported statistical interval.
-	ConfidenceInterval *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval `json:"confidence_interval,omitempty"`
+	ConfidenceInterval *ExperimentsConfidenceInterval `json:"confidence_interval,omitempty"`
 	// Configured nominal confidence level. Interval bounds can use an adjusted level for multiple testing or hybrid methods.
 	ConfidenceLevel *float64 `json:"confidence_level,omitempty"`
 	// Expected reduction in minimum expected regret from collecting more sample data.
@@ -75,9 +75,9 @@ func NewExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsWit
 }
 
 // GetConfidenceInterval returns the ConfidenceInterval field value if set, zero value otherwise.
-func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetConfidenceInterval() ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval {
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetConfidenceInterval() ExperimentsConfidenceInterval {
 	if o == nil || o.ConfidenceInterval == nil {
-		var ret ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval
+		var ret ExperimentsConfidenceInterval
 		return ret
 	}
 	return *o.ConfidenceInterval
@@ -85,7 +85,7 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 
 // GetConfidenceIntervalOk returns a tuple with the ConfidenceInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetConfidenceIntervalOk() (*ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval, bool) {
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetConfidenceIntervalOk() (*ExperimentsConfidenceInterval, bool) {
 	if o == nil || o.ConfidenceInterval == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 	return o != nil && o.ConfidenceInterval != nil
 }
 
-// SetConfidenceInterval gets a reference to the given ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval and assigns it to the ConfidenceInterval field.
-func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) SetConfidenceInterval(v ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval) {
+// SetConfidenceInterval gets a reference to the given ExperimentsConfidenceInterval and assigns it to the ConfidenceInterval field.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) SetConfidenceInterval(v ExperimentsConfidenceInterval) {
 	o.ConfidenceInterval = &v
 }
 
@@ -752,27 +752,27 @@ func (o ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) M
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ConfidenceInterval    *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsConfidenceInterval `json:"confidence_interval,omitempty"`
-		ConfidenceLevel       *float64                                                                                 `json:"confidence_level,omitempty"`
-		Evsi                  *float64                                                                                 `json:"evsi,omitempty"`
-		ExpectationAboveZero  *float64                                                                                 `json:"expectation_above_zero,omitempty"`
-		ExpectationBelowZero  *float64                                                                                 `json:"expectation_below_zero,omitempty"`
-		GlobalLift            *float64                                                                                 `json:"global_lift,omitempty"`
-		GlobalLiftLowerBound  *float64                                                                                 `json:"global_lift_lower_bound,omitempty"`
-		GlobalLiftUpperBound  *float64                                                                                 `json:"global_lift_upper_bound,omitempty"`
-		IsCupedAdjusted       *bool                                                                                    `json:"is_cuped_adjusted,omitempty"`
-		IsUnreliable          *bool                                                                                    `json:"is_unreliable,omitempty"`
-		LiftType              *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsLiftType           `json:"lift_type,omitempty"`
-		Method                *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsMethod             `json:"method,omitempty"`
-		MinimumExpectedRegret *float64                                                                                 `json:"minimum_expected_regret,omitempty"`
-		PValue                *float64                                                                                 `json:"p_value,omitempty"`
-		PointEstimate         *float64                                                                                 `json:"point_estimate,omitempty"`
-		ProbabilityAboveZero  *float64                                                                                 `json:"probability_above_zero,omitempty"`
-		ProbabilityBelowZero  *float64                                                                                 `json:"probability_below_zero,omitempty"`
-		StandardError         *float64                                                                                 `json:"standard_error,omitempty"`
-		UnreliableReason      *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsUnreliableReason   `json:"unreliable_reason,omitempty"`
-		VariantMetricValue    datadog.NullableFloat64                                                                  `json:"variant_metric_value,omitempty"`
-		ZScore                *float64                                                                                 `json:"z_score,omitempty"`
+		ConfidenceInterval    *ExperimentsConfidenceInterval                                                         `json:"confidence_interval,omitempty"`
+		ConfidenceLevel       *float64                                                                               `json:"confidence_level,omitempty"`
+		Evsi                  *float64                                                                               `json:"evsi,omitempty"`
+		ExpectationAboveZero  *float64                                                                               `json:"expectation_above_zero,omitempty"`
+		ExpectationBelowZero  *float64                                                                               `json:"expectation_below_zero,omitempty"`
+		GlobalLift            *float64                                                                               `json:"global_lift,omitempty"`
+		GlobalLiftLowerBound  *float64                                                                               `json:"global_lift_lower_bound,omitempty"`
+		GlobalLiftUpperBound  *float64                                                                               `json:"global_lift_upper_bound,omitempty"`
+		IsCupedAdjusted       *bool                                                                                  `json:"is_cuped_adjusted,omitempty"`
+		IsUnreliable          *bool                                                                                  `json:"is_unreliable,omitempty"`
+		LiftType              *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsLiftType         `json:"lift_type,omitempty"`
+		Method                *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsMethod           `json:"method,omitempty"`
+		MinimumExpectedRegret *float64                                                                               `json:"minimum_expected_regret,omitempty"`
+		PValue                *float64                                                                               `json:"p_value,omitempty"`
+		PointEstimate         *float64                                                                               `json:"point_estimate,omitempty"`
+		ProbabilityAboveZero  *float64                                                                               `json:"probability_above_zero,omitempty"`
+		ProbabilityBelowZero  *float64                                                                               `json:"probability_below_zero,omitempty"`
+		StandardError         *float64                                                                               `json:"standard_error,omitempty"`
+		UnreliableReason      *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItemsUnreliableReason `json:"unreliable_reason,omitempty"`
+		VariantMetricValue    datadog.NullableFloat64                                                                `json:"variant_metric_value,omitempty"`
+		ZScore                *float64                                                                               `json:"z_score,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
