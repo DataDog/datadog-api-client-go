@@ -121,7 +121,6 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "MicrosoftTeamsIntegrationApi": reflect.ValueOf(datadogV2.NewMicrosoftTeamsIntegrationApi),
 	    "OCIIntegrationApi": reflect.ValueOf(datadogV2.NewOCIIntegrationApi),
 	    "OpsgenieIntegrationApi": reflect.ValueOf(datadogV2.NewOpsgenieIntegrationApi),
-	    "SalesforceIntegrationApi": reflect.ValueOf(datadogV2.NewSalesforceIntegrationApi),
 	    "ServiceNowIntegrationApi": reflect.ValueOf(datadogV2.NewServiceNowIntegrationApi),
 	    "SlackIntegrationApi": reflect.ValueOf(datadogV2.NewSlackIntegrationApi),
 	    "StatuspageIntegrationApi": reflect.ValueOf(datadogV2.NewStatuspageIntegrationApi),
