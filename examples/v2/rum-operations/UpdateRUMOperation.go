@@ -55,7 +55,6 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateRUMOperation", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
 	resp, r, err := api.UpdateRUMOperation(ctx, "rum_operation_id", body)
