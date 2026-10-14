@@ -19,7 +19,7 @@ type ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration s
 	// Set true to replace an existing draft allocation when feature_flag_id changes. The replacement resets all flag-bound randomization state.
 	ResetOnFeatureFlagChange *bool `json:"reset_on_feature_flag_change,omitempty"`
 	// Omit to keep the stored rules. Use an empty array to remove targeting rules.
-	TargetingRules []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems `json:"targeting_rules,omitempty"`
+	TargetingRules []ExperimentsTargetingRule `json:"targeting_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -166,9 +166,9 @@ func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfigurati
 }
 
 // GetTargetingRules returns the TargetingRules field value if set, zero value otherwise.
-func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) GetTargetingRules() []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems {
+func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) GetTargetingRules() []ExperimentsTargetingRule {
 	if o == nil || o.TargetingRules == nil {
-		var ret []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems
+		var ret []ExperimentsTargetingRule
 		return ret
 	}
 	return o.TargetingRules
@@ -176,7 +176,7 @@ func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfigurati
 
 // GetTargetingRulesOk returns a tuple with the TargetingRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) GetTargetingRulesOk() (*[]ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems, bool) {
+func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) GetTargetingRulesOk() (*[]ExperimentsTargetingRule, bool) {
 	if o == nil || o.TargetingRules == nil {
 		return nil, false
 	}
@@ -188,8 +188,8 @@ func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfigurati
 	return o != nil && o.TargetingRules != nil
 }
 
-// SetTargetingRules gets a reference to the given []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems and assigns it to the TargetingRules field.
-func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) SetTargetingRules(v []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) {
+// SetTargetingRules gets a reference to the given []ExperimentsTargetingRule and assigns it to the TargetingRules field.
+func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) SetTargetingRules(v []ExperimentsTargetingRule) {
 	o.TargetingRules = v
 }
 
@@ -224,11 +224,11 @@ func (o ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguratio
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsPatchExperimentV2RequestDataAttributesDatadogFlagConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EntryPoint               NullableExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPoint    `json:"entry_point,omitempty"`
-		EnvironmentId            *string                                                                                         `json:"environment_id,omitempty"`
-		FeatureFlagId            *string                                                                                         `json:"feature_flag_id,omitempty"`
-		ResetOnFeatureFlagChange *bool                                                                                           `json:"reset_on_feature_flag_change,omitempty"`
-		TargetingRules           []ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems `json:"targeting_rules,omitempty"`
+		EntryPoint               NullableExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPoint `json:"entry_point,omitempty"`
+		EnvironmentId            *string                                                                                      `json:"environment_id,omitempty"`
+		FeatureFlagId            *string                                                                                      `json:"feature_flag_id,omitempty"`
+		ResetOnFeatureFlagChange *bool                                                                                        `json:"reset_on_feature_flag_change,omitempty"`
+		TargetingRules           []ExperimentsTargetingRule                                                                   `json:"targeting_rules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

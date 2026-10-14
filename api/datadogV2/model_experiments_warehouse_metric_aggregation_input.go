@@ -41,7 +41,7 @@ type ExperimentsWarehouseMetricAggregationInput struct {
 	// Other units are measured from the assignment time.
 	TimeframeUnit *string `json:"timeframe_unit,omitempty"`
 	// Reference to a measure defined in a warehouse metric SQL model.
-	WarehouseMetricMeasure ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure `json:"warehouse_metric_measure"`
+	WarehouseMetricMeasure ExperimentsWarehouseMetricMeasure `json:"warehouse_metric_measure"`
 	// Fixed lower bound used to cap extreme measure values.
 	WinsorLowerFixedValue *float64 `json:"winsor_lower_fixed_value,omitempty"`
 	// Percentile used to determine the lower bound for extreme measure values.
@@ -61,7 +61,7 @@ type ExperimentsWarehouseMetricAggregationInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsWarehouseMetricAggregationInput(operation string, warehouseMetricMeasure ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) *ExperimentsWarehouseMetricAggregationInput {
+func NewExperimentsWarehouseMetricAggregationInput(operation string, warehouseMetricMeasure ExperimentsWarehouseMetricMeasure) *ExperimentsWarehouseMetricAggregationInput {
 	this := ExperimentsWarehouseMetricAggregationInput{}
 	this.Operation = operation
 	this.WarehouseMetricMeasure = warehouseMetricMeasure
@@ -448,9 +448,9 @@ func (o *ExperimentsWarehouseMetricAggregationInput) SetTimeframeUnit(v string) 
 }
 
 // GetWarehouseMetricMeasure returns the WarehouseMetricMeasure field value.
-func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasure() ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure {
+func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasure() ExperimentsWarehouseMetricMeasure {
 	if o == nil {
-		var ret ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure
+		var ret ExperimentsWarehouseMetricMeasure
 		return ret
 	}
 	return o.WarehouseMetricMeasure
@@ -458,7 +458,7 @@ func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasure()
 
 // GetWarehouseMetricMeasureOk returns a tuple with the WarehouseMetricMeasure field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasureOk() (*ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure, bool) {
+func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasureOk() (*ExperimentsWarehouseMetricMeasure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -466,7 +466,7 @@ func (o *ExperimentsWarehouseMetricAggregationInput) GetWarehouseMetricMeasureOk
 }
 
 // SetWarehouseMetricMeasure sets field value.
-func (o *ExperimentsWarehouseMetricAggregationInput) SetWarehouseMetricMeasure(v ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) {
+func (o *ExperimentsWarehouseMetricAggregationInput) SetWarehouseMetricMeasure(v ExperimentsWarehouseMetricMeasure) {
 	o.WarehouseMetricMeasure = v
 }
 
@@ -679,25 +679,25 @@ func (o ExperimentsWarehouseMetricAggregationInput) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsWarehouseMetricAggregationInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AgingThresholdDays          *int64                                                                                     `json:"aging_threshold_days,omitempty"`
-		DatadogMetricMeasure        NullableExperimentsNullableDatadogMetricMeasureInput                                       `json:"datadog_metric_measure,omitempty"`
-		EnableAgingSubjectFilter    *bool                                                                                      `json:"enable_aging_subject_filter,omitempty"`
-		Operation                   *string                                                                                    `json:"operation"`
-		PropertyFilters             [][]ExperimentsWarehouseFilterInput                                                        `json:"property_filters,omitempty"`
-		ThresholdAggregationType    *string                                                                                    `json:"threshold_aggregation_type,omitempty"`
-		ThresholdBreachValue        *float64                                                                                   `json:"threshold_breach_value,omitempty"`
-		ThresholdComparisonOperator *string                                                                                    `json:"threshold_comparison_operator,omitempty"`
-		ThresholdTimeframeDimension *string                                                                                    `json:"threshold_timeframe_dimension,omitempty"`
-		ThresholdTimeframeValue     *float64                                                                                   `json:"threshold_timeframe_value,omitempty"`
-		TimeframeEndValue           *float64                                                                                   `json:"timeframe_end_value,omitempty"`
-		TimeframeStartValue         *float64                                                                                   `json:"timeframe_start_value,omitempty"`
-		TimeframeUnit               *string                                                                                    `json:"timeframe_unit,omitempty"`
-		WarehouseMetricMeasure      *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure `json:"warehouse_metric_measure"`
-		WinsorLowerFixedValue       *float64                                                                                   `json:"winsor_lower_fixed_value,omitempty"`
-		WinsorLowerPercentile       *float64                                                                                   `json:"winsor_lower_percentile,omitempty"`
-		WinsorUpperFixedValue       *float64                                                                                   `json:"winsor_upper_fixed_value,omitempty"`
-		WinsorUpperPercentile       *float64                                                                                   `json:"winsor_upper_percentile,omitempty"`
-		WinsorizationStrategy       *string                                                                                    `json:"winsorization_strategy,omitempty"`
+		AgingThresholdDays          *int64                                               `json:"aging_threshold_days,omitempty"`
+		DatadogMetricMeasure        NullableExperimentsNullableDatadogMetricMeasureInput `json:"datadog_metric_measure,omitempty"`
+		EnableAgingSubjectFilter    *bool                                                `json:"enable_aging_subject_filter,omitempty"`
+		Operation                   *string                                              `json:"operation"`
+		PropertyFilters             [][]ExperimentsWarehouseFilterInput                  `json:"property_filters,omitempty"`
+		ThresholdAggregationType    *string                                              `json:"threshold_aggregation_type,omitempty"`
+		ThresholdBreachValue        *float64                                             `json:"threshold_breach_value,omitempty"`
+		ThresholdComparisonOperator *string                                              `json:"threshold_comparison_operator,omitempty"`
+		ThresholdTimeframeDimension *string                                              `json:"threshold_timeframe_dimension,omitempty"`
+		ThresholdTimeframeValue     *float64                                             `json:"threshold_timeframe_value,omitempty"`
+		TimeframeEndValue           *float64                                             `json:"timeframe_end_value,omitempty"`
+		TimeframeStartValue         *float64                                             `json:"timeframe_start_value,omitempty"`
+		TimeframeUnit               *string                                              `json:"timeframe_unit,omitempty"`
+		WarehouseMetricMeasure      *ExperimentsWarehouseMetricMeasure                   `json:"warehouse_metric_measure"`
+		WinsorLowerFixedValue       *float64                                             `json:"winsor_lower_fixed_value,omitempty"`
+		WinsorLowerPercentile       *float64                                             `json:"winsor_lower_percentile,omitempty"`
+		WinsorUpperFixedValue       *float64                                             `json:"winsor_upper_fixed_value,omitempty"`
+		WinsorUpperPercentile       *float64                                             `json:"winsor_upper_percentile,omitempty"`
+		WinsorizationStrategy       *string                                              `json:"winsorization_strategy,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

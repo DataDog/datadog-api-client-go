@@ -21,6 +21,8 @@ type ObservabilityPipelineGenerateMetricsV2Processor struct {
 	DisplayName *string `json:"display_name,omitempty"`
 	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
+	// [Recommended] Indicates whether generated metrics are automatically aggregated and enriched with the `worker_uuid` tag before being sent to the metric destination.
+	EnabledMetricAggregation *bool `json:"enabled_metric_aggregation,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline.
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
@@ -41,6 +43,8 @@ type ObservabilityPipelineGenerateMetricsV2Processor struct {
 func NewObservabilityPipelineGenerateMetricsV2Processor(enabled bool, id string, typeVar ObservabilityPipelineGenerateMetricsV2ProcessorType) *ObservabilityPipelineGenerateMetricsV2Processor {
 	this := ObservabilityPipelineGenerateMetricsV2Processor{}
 	this.Enabled = enabled
+	var enabledMetricAggregation bool = true
+	this.EnabledMetricAggregation = &enabledMetricAggregation
 	this.Id = id
 	this.Type = typeVar
 	return &this
@@ -51,6 +55,8 @@ func NewObservabilityPipelineGenerateMetricsV2Processor(enabled bool, id string,
 // but it doesn't guarantee that properties required by API are set.
 func NewObservabilityPipelineGenerateMetricsV2ProcessorWithDefaults() *ObservabilityPipelineGenerateMetricsV2Processor {
 	this := ObservabilityPipelineGenerateMetricsV2Processor{}
+	var enabledMetricAggregation bool = true
+	this.EnabledMetricAggregation = &enabledMetricAggregation
 	var typeVar ObservabilityPipelineGenerateMetricsV2ProcessorType = OBSERVABILITYPIPELINEGENERATEMETRICSV2PROCESSORTYPE_GENERATE_METRICS
 	this.Type = typeVar
 	return &this
@@ -105,6 +111,34 @@ func (o *ObservabilityPipelineGenerateMetricsV2Processor) GetEnabledOk() (*bool,
 // SetEnabled sets field value.
 func (o *ObservabilityPipelineGenerateMetricsV2Processor) SetEnabled(v bool) {
 	o.Enabled = v
+}
+
+// GetEnabledMetricAggregation returns the EnabledMetricAggregation field value if set, zero value otherwise.
+func (o *ObservabilityPipelineGenerateMetricsV2Processor) GetEnabledMetricAggregation() bool {
+	if o == nil || o.EnabledMetricAggregation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnabledMetricAggregation
+}
+
+// GetEnabledMetricAggregationOk returns a tuple with the EnabledMetricAggregation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineGenerateMetricsV2Processor) GetEnabledMetricAggregationOk() (*bool, bool) {
+	if o == nil || o.EnabledMetricAggregation == nil {
+		return nil, false
+	}
+	return o.EnabledMetricAggregation, true
+}
+
+// HasEnabledMetricAggregation returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGenerateMetricsV2Processor) HasEnabledMetricAggregation() bool {
+	return o != nil && o.EnabledMetricAggregation != nil
+}
+
+// SetEnabledMetricAggregation gets a reference to the given bool and assigns it to the EnabledMetricAggregation field.
+func (o *ObservabilityPipelineGenerateMetricsV2Processor) SetEnabledMetricAggregation(v bool) {
+	o.EnabledMetricAggregation = &v
 }
 
 // GetId returns the Id field value.
@@ -219,6 +253,9 @@ func (o ObservabilityPipelineGenerateMetricsV2Processor) MarshalJSON() ([]byte, 
 		toSerialize["display_name"] = o.DisplayName
 	}
 	toSerialize["enabled"] = o.Enabled
+	if o.EnabledMetricAggregation != nil {
+		toSerialize["enabled_metric_aggregation"] = o.EnabledMetricAggregation
+	}
 	toSerialize["id"] = o.Id
 	if o.Include != nil {
 		toSerialize["include"] = o.Include
@@ -237,12 +274,13 @@ func (o ObservabilityPipelineGenerateMetricsV2Processor) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGenerateMetricsV2Processor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisplayName *string                                              `json:"display_name,omitempty"`
-		Enabled     *bool                                                `json:"enabled"`
-		Id          *string                                              `json:"id"`
-		Include     *string                                              `json:"include,omitempty"`
-		Metrics     []ObservabilityPipelineGeneratedMetric               `json:"metrics,omitempty"`
-		Type        *ObservabilityPipelineGenerateMetricsV2ProcessorType `json:"type"`
+		DisplayName              *string                                              `json:"display_name,omitempty"`
+		Enabled                  *bool                                                `json:"enabled"`
+		EnabledMetricAggregation *bool                                                `json:"enabled_metric_aggregation,omitempty"`
+		Id                       *string                                              `json:"id"`
+		Include                  *string                                              `json:"include,omitempty"`
+		Metrics                  []ObservabilityPipelineGeneratedMetric               `json:"metrics,omitempty"`
+		Type                     *ObservabilityPipelineGenerateMetricsV2ProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -258,7 +296,7 @@ func (o *ObservabilityPipelineGenerateMetricsV2Processor) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "metrics", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "enabled_metric_aggregation", "id", "include", "metrics", "type"})
 	} else {
 		return err
 	}
@@ -266,6 +304,7 @@ func (o *ObservabilityPipelineGenerateMetricsV2Processor) UnmarshalJSON(bytes []
 	hasInvalidField := false
 	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
+	o.EnabledMetricAggregation = all.EnabledMetricAggregation
 	o.Id = *all.Id
 	o.Include = all.Include
 	o.Metrics = all.Metrics

@@ -15,7 +15,7 @@ type ExperimentsInlineCondition struct {
 	// Attribute to evaluate.
 	Attribute string `json:"attribute"`
 	// Required with attribute and value for an inline condition; omit when saved_filter_id is set.
-	Operator ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator `json:"operator"`
+	Operator ExperimentsTargetingRuleOperator `json:"operator"`
 	// Values used by the operator. Every operator requires at least one value.
 	Value []string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,7 +27,7 @@ type ExperimentsInlineCondition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsInlineCondition(attribute string, operator ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator, value []string) *ExperimentsInlineCondition {
+func NewExperimentsInlineCondition(attribute string, operator ExperimentsTargetingRuleOperator, value []string) *ExperimentsInlineCondition {
 	this := ExperimentsInlineCondition{}
 	this.Attribute = attribute
 	this.Operator = operator
@@ -67,9 +67,9 @@ func (o *ExperimentsInlineCondition) SetAttribute(v string) {
 }
 
 // GetOperator returns the Operator field value.
-func (o *ExperimentsInlineCondition) GetOperator() ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator {
+func (o *ExperimentsInlineCondition) GetOperator() ExperimentsTargetingRuleOperator {
 	if o == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator
+		var ret ExperimentsTargetingRuleOperator
 		return ret
 	}
 	return o.Operator
@@ -77,7 +77,7 @@ func (o *ExperimentsInlineCondition) GetOperator() ExperimentsPatchExperimentV2R
 
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsInlineCondition) GetOperatorOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator, bool) {
+func (o *ExperimentsInlineCondition) GetOperatorOk() (*ExperimentsTargetingRuleOperator, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *ExperimentsInlineCondition) GetOperatorOk() (*ExperimentsPatchExperimen
 }
 
 // SetOperator sets field value.
-func (o *ExperimentsInlineCondition) SetOperator(v ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator) {
+func (o *ExperimentsInlineCondition) SetOperator(v ExperimentsTargetingRuleOperator) {
 	o.Operator = v
 }
 
@@ -131,9 +131,9 @@ func (o ExperimentsInlineCondition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsInlineCondition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attribute *string                                                                                                               `json:"attribute"`
-		Operator  *ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationTargetingRulesItemsConditionsItemsOperator `json:"operator"`
-		Value     *[]string                                                                                                             `json:"value"`
+		Attribute *string                           `json:"attribute"`
+		Operator  *ExperimentsTargetingRuleOperator `json:"operator"`
+		Value     *[]string                         `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
