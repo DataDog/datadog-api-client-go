@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion Authenticate using a managed identity as a client assertion for a Microsoft Entra application.
-type ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion struct {
+// ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion Authenticate using a managed identity as a client assertion for a Microsoft Entra application.
+type ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion struct {
 	// The Azure credential kind. The value should always be `managed_identity_client_assertion`.
-	AzureCredentialKind ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind `json:"azure_credential_kind"`
+	AzureCredentialKind ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind `json:"azure_credential_kind"`
 	// The client ID of the Microsoft Entra application that trusts the managed identity.
 	ClientAssertionClientId string `json:"client_assertion_client_id"`
 	// The tenant ID of the Microsoft Entra application that trusts the managed identity.
@@ -27,32 +27,32 @@ type ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientA
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion instantiates a new ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion object.
+// NewObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion instantiates a new ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion(azureCredentialKind ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind, clientAssertionClientId string, clientAssertionTenantId string) *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion {
-	this := ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion{}
+func NewObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion(azureCredentialKind ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind, clientAssertionClientId string, clientAssertionTenantId string) *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion {
+	this := ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion{}
 	this.AzureCredentialKind = azureCredentialKind
 	this.ClientAssertionClientId = clientAssertionClientId
 	this.ClientAssertionTenantId = clientAssertionTenantId
 	return &this
 }
 
-// NewObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionWithDefaults instantiates a new ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion object.
+// NewObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionWithDefaults instantiates a new ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionWithDefaults() *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion {
-	this := ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion{}
-	var azureCredentialKind ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind = OBSERVABILITYPIPELINEAZUREDATAEXPLORERDESTINATIONAUTHMANAGEDIDENTITYCLIENTASSERTIONKIND_MANAGED_IDENTITY_CLIENT_ASSERTION
+func NewObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionWithDefaults() *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion {
+	this := ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion{}
+	var azureCredentialKind ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind = OBSERVABILITYPIPELINEAZUREDATAEXPLORERMANAGEDIDENTITYCLIENTASSERTIONKIND_MANAGED_IDENTITY_CLIENT_ASSERTION
 	this.AzureCredentialKind = azureCredentialKind
 	return &this
 }
 
 // GetAzureCredentialKind returns the AzureCredentialKind field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetAzureCredentialKind() ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetAzureCredentialKind() ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind {
 	if o == nil {
-		var ret ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind
+		var ret ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind
 		return ret
 	}
 	return o.AzureCredentialKind
@@ -60,7 +60,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 
 // GetAzureCredentialKindOk returns a tuple with the AzureCredentialKind field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetAzureCredentialKindOk() (*ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind, bool) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetAzureCredentialKindOk() (*ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 }
 
 // SetAzureCredentialKind sets field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetAzureCredentialKind(v ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetAzureCredentialKind(v ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind) {
 	o.AzureCredentialKind = v
 }
 
 // GetClientAssertionClientId returns the ClientAssertionClientId field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetClientAssertionClientId() string {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetClientAssertionClientId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 
 // GetClientAssertionClientIdOk returns a tuple with the ClientAssertionClientId field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetClientAssertionClientIdOk() (*string, bool) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetClientAssertionClientIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,12 +91,12 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 }
 
 // SetClientAssertionClientId sets field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetClientAssertionClientId(v string) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetClientAssertionClientId(v string) {
 	o.ClientAssertionClientId = v
 }
 
 // GetClientAssertionTenantId returns the ClientAssertionTenantId field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetClientAssertionTenantId() string {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetClientAssertionTenantId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -106,7 +106,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 
 // GetClientAssertionTenantIdOk returns a tuple with the ClientAssertionTenantId field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetClientAssertionTenantIdOk() (*string, bool) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetClientAssertionTenantIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +114,12 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 }
 
 // SetClientAssertionTenantId sets field value.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetClientAssertionTenantId(v string) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetClientAssertionTenantId(v string) {
 	o.ClientAssertionTenantId = v
 }
 
 // GetUserAssignedManagedIdentityId returns the UserAssignedManagedIdentityId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetUserAssignedManagedIdentityId() string {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetUserAssignedManagedIdentityId() string {
 	if o == nil || o.UserAssignedManagedIdentityId.Get() == nil {
 		var ret string
 		return ret
@@ -130,7 +130,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 // GetUserAssignedManagedIdentityIdOk returns a tuple with the UserAssignedManagedIdentityId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdOk() (*string, bool) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,27 +138,27 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 }
 
 // HasUserAssignedManagedIdentityId returns a boolean if a field has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) HasUserAssignedManagedIdentityId() bool {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) HasUserAssignedManagedIdentityId() bool {
 	return o != nil && o.UserAssignedManagedIdentityId.IsSet()
 }
 
 // SetUserAssignedManagedIdentityId gets a reference to the given datadog.NullableString and assigns it to the UserAssignedManagedIdentityId field.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetUserAssignedManagedIdentityId(v string) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetUserAssignedManagedIdentityId(v string) {
 	o.UserAssignedManagedIdentityId.Set(&v)
 }
 
 // SetUserAssignedManagedIdentityIdNil sets the value for UserAssignedManagedIdentityId to be an explicit nil.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetUserAssignedManagedIdentityIdNil() {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetUserAssignedManagedIdentityIdNil() {
 	o.UserAssignedManagedIdentityId.Set(nil)
 }
 
 // UnsetUserAssignedManagedIdentityId ensures that no value is present for UserAssignedManagedIdentityId, not even an explicit nil.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) UnsetUserAssignedManagedIdentityId() {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) UnsetUserAssignedManagedIdentityId() {
 	o.UserAssignedManagedIdentityId.Unset()
 }
 
 // GetUserAssignedManagedIdentityIdType returns the UserAssignedManagedIdentityIdType field value if set, zero value otherwise.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdType() ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdType() ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType {
 	if o == nil || o.UserAssignedManagedIdentityIdType == nil {
 		var ret ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType
 		return ret
@@ -168,7 +168,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 
 // GetUserAssignedManagedIdentityIdTypeOk returns a tuple with the UserAssignedManagedIdentityIdType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdTypeOk() (*ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType, bool) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) GetUserAssignedManagedIdentityIdTypeOk() (*ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType, bool) {
 	if o == nil || o.UserAssignedManagedIdentityIdType == nil {
 		return nil, false
 	}
@@ -176,17 +176,17 @@ func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityCli
 }
 
 // HasUserAssignedManagedIdentityIdType returns a boolean if a field has been set.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) HasUserAssignedManagedIdentityIdType() bool {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) HasUserAssignedManagedIdentityIdType() bool {
 	return o != nil && o.UserAssignedManagedIdentityIdType != nil
 }
 
 // SetUserAssignedManagedIdentityIdType gets a reference to the given ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType and assigns it to the UserAssignedManagedIdentityIdType field.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) SetUserAssignedManagedIdentityIdType(v ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) SetUserAssignedManagedIdentityIdType(v ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType) {
 	o.UserAssignedManagedIdentityIdType = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -208,13 +208,13 @@ func (o ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClie
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AzureCredentialKind               *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionKind `json:"azure_credential_kind"`
-		ClientAssertionClientId           *string                                                                                  `json:"client_assertion_client_id"`
-		ClientAssertionTenantId           *string                                                                                  `json:"client_assertion_tenant_id"`
-		UserAssignedManagedIdentityId     datadog.NullableString                                                                   `json:"user_assigned_managed_identity_id,omitempty"`
-		UserAssignedManagedIdentityIdType *ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType                  `json:"user_assigned_managed_identity_id_type,omitempty"`
+		AzureCredentialKind               *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionKind `json:"azure_credential_kind"`
+		ClientAssertionClientId           *string                                                                   `json:"client_assertion_client_id"`
+		ClientAssertionTenantId           *string                                                                   `json:"client_assertion_tenant_id"`
+		UserAssignedManagedIdentityId     datadog.NullableString                                                    `json:"user_assigned_managed_identity_id,omitempty"`
+		UserAssignedManagedIdentityIdType *ObservabilityPipelineAzureDataExplorerDestinationManagedIdentityIdType   `json:"user_assigned_managed_identity_id_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
