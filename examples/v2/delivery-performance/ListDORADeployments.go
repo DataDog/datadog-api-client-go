@@ -1,4 +1,4 @@
-// Get a list of deployment events returns deployments with date-time timestamps
+// Get a list of deployment events returns "OK" response
 
 package main
 
@@ -17,8 +17,9 @@ func main() {
 	body := datadogV2.DORAListDeploymentsRequest{
 		Data: datadogV2.DORAListDeploymentsRequestData{
 			Attributes: datadogV2.DORAListDeploymentsRequestAttributes{
-				From: datadog.PtrTime(time.Date(2023, 8, 31, 0, 0, 0, 0, time.UTC)),
-				To:   datadog.PtrTime(time.Date(2023, 9, 1, 0, 0, 0, 0, time.UTC)),
+				From:  datadog.PtrTime(time.Date(2025, 3, 23, 0, 0, 0, 0, time.UTC)),
+				Limit: datadog.PtrInt32(1),
+				To:    datadog.PtrTime(time.Date(2025, 3, 24, 0, 0, 0, 0, time.UTC)),
 			},
 			Type: datadogV2.DORALISTDEPLOYMENTSREQUESTDATATYPE_DORA_DEPLOYMENTS_LIST_REQUEST.Ptr(),
 		},
@@ -27,14 +28,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDORAMetricsApi(apiClient)
+	api := datadogV2.NewDeliveryPerformanceApi(apiClient)
 	resp, r, err := api.ListDORADeployments(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.ListDORADeployments`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DeliveryPerformanceApi.ListDORADeployments`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DORAMetricsApi.ListDORADeployments`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DeliveryPerformanceApi.ListDORADeployments`:\n%s\n", responseContent)
 }

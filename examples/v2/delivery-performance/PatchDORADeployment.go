@@ -29,11 +29,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDORAMetricsApi(apiClient)
+	api := datadogV2.NewDeliveryPerformanceApi(apiClient)
 	r, err := api.PatchDORADeployment(ctx, "deployment_id", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.PatchDORADeployment`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DeliveryPerformanceApi.PatchDORADeployment`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

@@ -1,9 +1,10 @@
-// Delete a deployment event returns "Accepted" response
+// Get a deployment event returns "OK" response
 
 package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,11 +17,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDORAMetricsApi(apiClient)
-	r, err := api.DeleteDORADeployment(ctx, "NO_VALUE")
+	api := datadogV2.NewDeliveryPerformanceApi(apiClient)
+	resp, r, err := api.GetDORADeployment(ctx, "deployment_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.DeleteDORADeployment`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DeliveryPerformanceApi.GetDORADeployment`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `DeliveryPerformanceApi.GetDORADeployment`:\n%s\n", responseContent)
 }

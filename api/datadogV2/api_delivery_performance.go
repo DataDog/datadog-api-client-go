@@ -12,21 +12,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAMetricsApi service type
-type DORAMetricsApi datadog.Service
+// DeliveryPerformanceApi service type
+type DeliveryPerformanceApi datadog.Service
 
 // CreateAIImpactUserActivity Send AI tool user activity.
 // Send daily AI coding tool activity for one or more users. Each entry records whether a
 // user was active on a given day, along with the AI tools and models they used. An entry
 // is stored once per tool, and sending the same user, day, and tool again overwrites the
 // previous value.
-func (a *DORAMetricsApi) CreateAIImpactUserActivity(ctx _context.Context, body AIImpactUserActivityRequest) (*_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) CreateAIImpactUserActivity(ctx _context.Context, body AIImpactUserActivityRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.CreateAIImpactUserActivity")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.CreateAIImpactUserActivity")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -98,14 +98,14 @@ func (a *DORAMetricsApi) CreateAIImpactUserActivity(ctx _context.Context, body A
 // - Change Lead Time
 // - Change Failure Rate
 // - Failed Deployment Recovery Time
-func (a *DORAMetricsApi) CreateDORADeployment(ctx _context.Context, body DORADeploymentRequest) (DORADeploymentResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) CreateDORADeployment(ctx _context.Context, body DORADeploymentRequest) (DORADeploymentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DORADeploymentResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.CreateDORADeployment")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.CreateDORADeployment")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -182,14 +182,14 @@ func (a *DORAMetricsApi) CreateDORADeployment(ctx _context.Context, body DORADep
 // Use this API endpoint to provide incident data for DORA Metrics.
 // Note that change failure rate and failed deployment recovery time are computed from change failures detected on deployments, not from incident events sent through this endpoint.
 // Tracking incidents gives a side-by-side view of how failed deployments translate into real-world incidents, including their severity and frequency.
-func (a *DORAMetricsApi) CreateDORAFailure(ctx _context.Context, body DORAFailureRequest) (DORAFailureResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) CreateDORAFailure(ctx _context.Context, body DORAFailureRequest) (DORAFailureResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DORAFailureResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.CreateDORAFailure")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.CreateDORAFailure")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -269,14 +269,14 @@ func (a *DORAMetricsApi) CreateDORAFailure(ctx _context.Context, body DORAFailur
 // Tracking incidents gives a side-by-side view of how failed deployments translate into real-world incidents.
 //
 // Deprecated: This API is deprecated.
-func (a *DORAMetricsApi) CreateDORAIncident(ctx _context.Context, body DORAFailureRequest) (DORAFailureResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) CreateDORAIncident(ctx _context.Context, body DORAFailureRequest) (DORAFailureResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DORAFailureResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.CreateDORAIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.CreateDORAIncident")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -351,13 +351,13 @@ func (a *DORAMetricsApi) CreateDORAIncident(ctx _context.Context, body DORAFailu
 
 // DeleteDORADeployment Delete a deployment event.
 // Use this API endpoint to delete a deployment event.
-func (a *DORAMetricsApi) DeleteDORADeployment(ctx _context.Context, deploymentId string) (*_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) DeleteDORADeployment(ctx _context.Context, deploymentId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.DeleteDORADeployment")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.DeleteDORADeployment")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -428,13 +428,13 @@ func (a *DORAMetricsApi) DeleteDORADeployment(ctx _context.Context, deploymentId
 
 // DeleteDORAFailure Delete an incident event.
 // Use this API endpoint to delete an incident event.
-func (a *DORAMetricsApi) DeleteDORAFailure(ctx _context.Context, failureId string) (*_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) DeleteDORAFailure(ctx _context.Context, failureId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.DeleteDORAFailure")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.DeleteDORAFailure")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -505,14 +505,14 @@ func (a *DORAMetricsApi) DeleteDORAFailure(ctx _context.Context, failureId strin
 
 // GetDORADeployment Get a deployment event.
 // Use this API endpoint to get a deployment event.
-func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORADeploymentFetchResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORADeploymentFetchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue DORADeploymentFetchResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.GetDORADeployment")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.GetDORADeployment")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -592,14 +592,14 @@ func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId st
 
 // GetDORAFailure Get an incident event.
 // Use this API endpoint to get an incident event.
-func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFailureFetchResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFailureFetchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue DORAFailureFetchResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.GetDORAFailure")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.GetDORAFailure")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -679,14 +679,14 @@ func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) 
 
 // ListDORADeployments Get a list of deployment events.
 // Use this API endpoint to get a list of deployment events.
-func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORADeploymentsListResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORADeploymentsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DORADeploymentsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.ListDORADeployments")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.ListDORADeployments")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -768,14 +768,14 @@ func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAList
 
 // ListDORAFailures Get a list of incident events.
 // Use this API endpoint to get a list of incident events.
-func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAFailuresListResponse, *_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAFailuresListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DORAFailuresListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.ListDORAFailures")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.ListDORAFailures")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -857,13 +857,13 @@ func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFai
 
 // PatchDORADeployment Mark a deployment as failed by ID.
 // Update a deployment's change failure status. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation.
-func (a *DORAMetricsApi) PatchDORADeployment(ctx _context.Context, deploymentId string, body DORADeploymentPatchRequest) (*_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) PatchDORADeployment(ctx _context.Context, deploymentId string, body DORADeploymentPatchRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPatch
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.PatchDORADeployment")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.PatchDORADeployment")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -937,13 +937,13 @@ func (a *DORAMetricsApi) PatchDORADeployment(ctx _context.Context, deploymentId 
 
 // PatchDORADeploymentByVersion Mark a deployment as failed by version.
 // Update a deployment's change failure status, identifying the deployment by its service, environment, and version instead of its ID. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation. If multiple deployments match the given service, environment, and version, the most recently finished one is updated.
-func (a *DORAMetricsApi) PatchDORADeploymentByVersion(ctx _context.Context, body DORADeploymentPatchByVersionRequest) (*_nethttp.Response, error) {
+func (a *DeliveryPerformanceApi) PatchDORADeploymentByVersion(ctx _context.Context, body DORADeploymentPatchByVersionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPatch
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.PatchDORADeploymentByVersion")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeliveryPerformanceApi.PatchDORADeploymentByVersion")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1014,9 +1014,9 @@ func (a *DORAMetricsApi) PatchDORADeploymentByVersion(ctx _context.Context, body
 	return localVarHTTPResponse, nil
 }
 
-// NewDORAMetricsApi Returns NewDORAMetricsApi.
-func NewDORAMetricsApi(client *datadog.APIClient) *DORAMetricsApi {
-	return &DORAMetricsApi{
+// NewDeliveryPerformanceApi Returns NewDeliveryPerformanceApi.
+func NewDeliveryPerformanceApi(client *datadog.APIClient) *DeliveryPerformanceApi {
+	return &DeliveryPerformanceApi{
 		Client: client,
 	}
 }

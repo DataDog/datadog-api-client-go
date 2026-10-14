@@ -30,14 +30,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDORAMetricsApi(apiClient)
+	api := datadogV2.NewDeliveryPerformanceApi(apiClient)
 	resp, r, err := api.CreateDORADeployment(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.CreateDORADeployment`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DeliveryPerformanceApi.CreateDORADeployment`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DORAMetricsApi.CreateDORADeployment`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DeliveryPerformanceApi.CreateDORADeployment`:\n%s\n", responseContent)
 }

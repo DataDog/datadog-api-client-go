@@ -1,4 +1,4 @@
-// Send an incident event (legacy) returns "OK" response
+// Send an incident event returns "OK" response
 
 package main
 
@@ -40,14 +40,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDORAMetricsApi(apiClient)
-	resp, r, err := api.CreateDORAIncident(ctx, body)
+	api := datadogV2.NewDeliveryPerformanceApi(apiClient)
+	resp, r, err := api.CreateDORAFailure(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.CreateDORAIncident`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DeliveryPerformanceApi.CreateDORAFailure`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DORAMetricsApi.CreateDORAIncident`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DeliveryPerformanceApi.CreateDORAFailure`:\n%s\n", responseContent)
 }
