@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypesResponse Response containing a list of case types.
+// CaseTypesResponse Response containing a list of work item types.
 type CaseTypesResponse struct {
-	// List of case types
+	// List of work item types
 	Data []CaseTypeResource `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

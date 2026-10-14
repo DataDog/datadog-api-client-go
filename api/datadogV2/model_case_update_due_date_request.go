@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateDueDateRequest Request payload for updating a case's due date.
+// CaseUpdateDueDateRequest Request payload for updating a work item's due date.
 type CaseUpdateDueDateRequest struct {
-	// Data object for updating a case's due date.
+	// Data object for updating a work item's due date.
 	Data CaseUpdateDueDate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

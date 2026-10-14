@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewCreateAttributes Attributes required to create a case view.
+// CaseViewCreateAttributes Attributes required to create a work item view.
 type CaseViewCreateAttributes struct {
 	// The name of the view.
 	Name string `json:"name"`
-	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching cases.
+	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching work items.
 	NpRuleId *string `json:"np_rule_id,omitempty"`
 	// The UUID of the project this view belongs to. Views are scoped to a single project.
 	ProjectId string `json:"project_id"`
-	// The query used to filter cases in this view.
+	// The query used to filter work items in this view.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

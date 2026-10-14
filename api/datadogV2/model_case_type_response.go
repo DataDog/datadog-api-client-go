@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypeResponse Response containing a single case type.
+// CaseTypeResponse Response containing a single work item type.
 type CaseTypeResponse struct {
-	// A case type that defines a classification category for cases. Each case type can have its own custom attributes, statuses, and automation rules.
+	// A work item type that defines a classification category for work items. Each work item type can have its own custom attributes, statuses, and automation rules.
 	Data *CaseTypeResource `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

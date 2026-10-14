@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateResolvedReason Data object for updating a case's resolved reason.
+// CaseUpdateResolvedReason Data object for updating a work item's resolved reason.
 type CaseUpdateResolvedReason struct {
-	// Attributes for setting the resolution reason on a security case.
+	// Attributes for setting the resolution reason on a security work item.
 	Attributes CaseUpdateResolvedReasonAttributes `json:"attributes"`
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

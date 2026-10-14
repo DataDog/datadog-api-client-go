@@ -34,9 +34,9 @@ type IssueCaseAttributes struct {
 	LinearIssue *IssueCaseLinearIssue `json:"linear_issue,omitempty"`
 	// Timestamp of when the case was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
-	// Deprecated way of representing the case status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
+	// Deprecated way of representing the work item status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
 	// Deprecated
 	Status *CaseStatus `json:"status,omitempty"`
 	// Title of the case.

@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypeCreate Data object for creating a case type.
+// CaseTypeCreate Data object for creating a work item type.
 type CaseTypeCreate struct {
-	// Attributes of a case type, which define a classification category for cases. Organizations use case types to model different workflows (for example, Security Incident, Bug Report, Change Request).
+	// Attributes of a work item type, which define a classification category for work items. Organizations use work item types to model different workflows (for example, Security Incident, Bug Report, Change Request).
 	Attributes CaseTypeResourceAttributes `json:"attributes"`
-	// JSON:API resource type for case types.
+	// JSON:API resource type for work item types.
 	Type CaseTypeResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

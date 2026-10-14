@@ -12,7 +12,7 @@ import (
 
 // AutomationRuleResponse Response containing a single automation rule.
 type AutomationRuleResponse struct {
-	// An automation rule that executes an action (such as running a Datadog workflow or assigning an AI agent) when a specified case event occurs within a project.
+	// An automation rule that executes an action (such as running a Datadog workflow or assigning an AI agent) when a specified work item event occurs within a project.
 	Data AutomationRule `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

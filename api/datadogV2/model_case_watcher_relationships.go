@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseWatcherRelationships Relationships for a case watcher, linking to the underlying user resource.
+// CaseWatcherRelationships Relationships for a work item watcher, linking to the underlying user resource.
 type CaseWatcherRelationships struct {
-	// The user relationship for a case watcher.
+	// The user relationship for a work item watcher.
 	User CaseWatcherUserRelationship `json:"user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

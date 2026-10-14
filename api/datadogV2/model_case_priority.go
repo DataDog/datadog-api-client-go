@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CasePriority Case priority
+// CasePriority Work item priority
 type CasePriority string
 
 // List of CasePriority.

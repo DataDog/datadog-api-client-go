@@ -12,7 +12,7 @@ import (
 type IntegrationServiceNow struct {
 	// Assignment group.
 	AssignmentGroup *string `json:"assignment_group,omitempty"`
-	// Auto-creation settings for ServiceNow incidents from cases.
+	// Auto-creation settings for ServiceNow incidents from work items.
 	AutoCreation *IntegrationServiceNowAutoCreation `json:"auto_creation,omitempty"`
 	// Whether ServiceNow integration is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

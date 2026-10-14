@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAutomationRuleState Whether the automation rule is active. Enabled rules trigger on matching case events; disabled rules are inactive but preserve their configuration.
+// CaseAutomationRuleState Whether the automation rule is active. Enabled rules trigger on matching work item events; disabled rules are inactive but preserve their configuration.
 type CaseAutomationRuleState string
 
 // List of CaseAutomationRuleState.

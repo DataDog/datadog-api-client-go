@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateTitle Case update title
+// CaseUpdateTitle Work item update title
 type CaseUpdateTitle struct {
-	// Case update title attributes
+	// Work item update title attributes
 	Attributes CaseUpdateTitleAttributes `json:"attributes"`
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

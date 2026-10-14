@@ -14,7 +14,7 @@ import (
 type CaseAggregateResponseAttributes struct {
 	// Aggregated groups.
 	Groups []CaseAggregateGroup `json:"groups"`
-	// Total count of aggregated cases.
+	// Total count of aggregated work items.
 	Total float64 `json:"total"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

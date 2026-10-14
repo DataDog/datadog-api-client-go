@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseLinkResponse Response containing a single case link.
+// CaseLinkResponse Response containing a single work item link.
 type CaseLinkResponse struct {
-	// A directional link representing a relationship between two entities. At least one entity must be a case.
+	// A directional link representing a relationship between two entities. At least one entity must be a work item.
 	Data CaseLink `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

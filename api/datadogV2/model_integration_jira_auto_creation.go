@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraAutoCreation Auto-creation settings for Jira issues from cases.
+// IntegrationJiraAutoCreation Auto-creation settings for Jira issues from work items.
 type IntegrationJiraAutoCreation struct {
 	// Whether automatic Jira issue creation is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

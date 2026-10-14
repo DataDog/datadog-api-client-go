@@ -16,7 +16,7 @@ type CreateJiraIssueRequestDataAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// Custom fields of the Jira issue to create. For the list of available fields, see [Jira documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-createmeta-projectidorkey-issuetypes-issuetypeid-get).
 	Fields map[string]interface{} `json:"fields,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
 	// Title of the Jira issue. If not provided, the title will be automatically generated.
 	Title *string `json:"title,omitempty"`

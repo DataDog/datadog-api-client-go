@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeValue A typed value for a custom attribute on a specific case.
+// CustomAttributeValue A typed value for a custom attribute on a specific work item.
 type CustomAttributeValue struct {
 	// If true, value must be an array
 	IsMulti bool `json:"is_multi"`

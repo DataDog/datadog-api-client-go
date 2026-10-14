@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAggregateResponse Response containing aggregated case counts grouped by the requested fields.
+// CaseAggregateResponse Response containing aggregated work item counts grouped by the requested fields.
 type CaseAggregateResponse struct {
 	// Data object containing the aggregation results, including total count and per-group breakdowns.
 	Data CaseAggregateResponseData `json:"data"`

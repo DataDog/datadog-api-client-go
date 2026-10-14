@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CasesResponseMeta Cases response metadata
+// CasesResponseMeta Work items response metadata
 type CasesResponseMeta struct {
 	// Pagination metadata
 	Page *CasesResponseMetaPagination `json:"page,omitempty"`

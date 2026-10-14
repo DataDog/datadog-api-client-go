@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCountResponse Response containing the total number of cases matching a query, optionally grouped by specified fields.
+// CaseCountResponse Response containing the total number of work items matching a query, optionally grouped by specified fields.
 type CaseCountResponse struct {
 	// Data object containing the count results, including per-field group breakdowns.
 	Data CaseCountResponseData `json:"data"`

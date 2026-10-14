@@ -10,11 +10,11 @@ import (
 
 // IntegrationJira Jira integration settings.
 type IntegrationJira struct {
-	// Auto-creation settings for Jira issues from cases.
+	// Auto-creation settings for Jira issues from work items.
 	AutoCreation *IntegrationJiraAutoCreation `json:"auto_creation,omitempty"`
 	// Whether Jira integration is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Metadata for connecting a case management project to a Jira project.
+	// Metadata for connecting a Work Management project to a Jira project.
 	Metadata *IntegrationJiraMetadata `json:"metadata,omitempty"`
 	// Synchronization configuration for Jira integration.
 	Sync *IntegrationJiraSync `json:"sync,omitempty"`

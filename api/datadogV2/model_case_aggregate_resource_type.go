@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAggregateResourceType JSON:API resource type for case aggregation requests.
+// CaseAggregateResourceType JSON:API resource type for work item aggregation requests.
 type CaseAggregateResourceType string
 
 // List of CaseAggregateResourceType.

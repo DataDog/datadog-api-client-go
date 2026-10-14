@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseInsightsRequest Request payload for adding or removing case insights.
+// CaseInsightsRequest Request payload for adding or removing work item insights.
 type CaseInsightsRequest struct {
 	// Data object containing the insights to add or remove.
 	Data CaseInsightsData `json:"data"`

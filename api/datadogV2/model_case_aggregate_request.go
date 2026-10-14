@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAggregateRequest Request payload for aggregating case counts with grouping. Use this to get faceted breakdowns of cases (for example, count of cases grouped by priority and status).
+// CaseAggregateRequest Request payload for aggregating work item counts with grouping. Use this to get faceted breakdowns of work items (for example, count of work items grouped by priority and status).
 type CaseAggregateRequest struct {
 	// Data object wrapping the aggregation query type and attributes.
 	Data CaseAggregateRequestData `json:"data"`

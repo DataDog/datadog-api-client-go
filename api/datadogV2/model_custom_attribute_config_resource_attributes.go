@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigResourceAttributes Attributes of a custom attribute configuration, defining an organization-specific metadata field that can be added to cases of a given type.
+// CustomAttributeConfigResourceAttributes Attributes of a custom attribute configuration, defining an organization-specific metadata field that can be added to work items of a given type.
 type CustomAttributeConfigResourceAttributes struct {
-	// The UUID of the case type this custom attribute belongs to.
+	// The UUID of the work item type this custom attribute belongs to.
 	CaseTypeId string `json:"case_type_id"`
 	// A description explaining the purpose and expected values for this custom attribute.
 	Description *string `json:"description,omitempty"`
-	// The human-readable label shown in the Case Management UI for this custom attribute.
+	// The human-readable label shown in the Work Management UI for this custom attribute.
 	DisplayName string `json:"display_name"`
 	// If `true`, this attribute accepts an array of values. If `false`, only a single value is allowed.
 	IsMulti bool `json:"is_multi"`

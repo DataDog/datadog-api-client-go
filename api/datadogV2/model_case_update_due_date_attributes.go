@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateDueDateAttributes Attributes for setting or clearing a case's due date.
+// CaseUpdateDueDateAttributes Attributes for setting or clearing a work item's due date.
 type CaseUpdateDueDateAttributes struct {
-	// The target resolution date for the case, in `YYYY-MM-DD` format. Set to `null` to clear the due date.
+	// The target resolution date for the work item, in `YYYY-MM-DD` format. Set to `null` to clear the due date.
 	DueDate string `json:"due_date"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
