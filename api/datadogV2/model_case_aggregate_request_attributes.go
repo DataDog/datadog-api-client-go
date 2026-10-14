@@ -12,9 +12,9 @@ import (
 
 // CaseAggregateRequestAttributes Attributes for the aggregation request, including the search query and grouping configuration.
 type CaseAggregateRequestAttributes struct {
-	// Configuration for grouping aggregated results by one or more case fields.
+	// Configuration for grouping aggregated results by one or more work item fields.
 	GroupBy CaseAggregateGroupBy `json:"group_by"`
-	// A search query to filter which cases are included in the aggregation. Uses the same syntax as the Case Management search bar.
+	// A search query to filter which work items are included in the aggregation. Uses the same syntax as the Work Management search bar.
 	QueryFilter string `json:"query_filter"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

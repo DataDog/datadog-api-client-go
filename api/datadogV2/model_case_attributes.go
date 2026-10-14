@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAttributes Case resource attributes
+// CaseAttributes Work item resource attributes
 type CaseAttributes struct {
-	// Timestamp of when the case was archived
+	// Timestamp of when the work item was archived
 	ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
-	// Key-value pairs of case attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
+	// Key-value pairs of work item attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
 	Attributes map[string][]string `json:"attributes,omitempty"`
-	// Timestamp of when the case was closed
+	// Timestamp of when the work item was closed
 	ClosedAt datadog.NullableTime `json:"closed_at,omitempty"`
-	// Timestamp of when the case was created
+	// Timestamp of when the work item was created
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// Case custom attributes
+	// Work item custom attributes
 	CustomAttributes map[string]CustomAttributeValue `json:"custom_attributes,omitempty"`
 	// Description
 	Description *string `json:"description,omitempty"`
-	// Jira issue attached to case
+	// Jira issue attached to work item
 	JiraIssue NullableJiraIssue `json:"jira_issue,omitempty"`
 	// Key
 	Key *string `json:"key,omitempty"`
-	// Timestamp of when the case was last modified
+	// Timestamp of when the work item was last modified
 	ModifiedAt datadog.NullableTime `json:"modified_at,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
-	// ServiceNow ticket attached to case
+	// ServiceNow ticket attached to work item
 	ServiceNowTicket NullableServiceNowTicket `json:"service_now_ticket,omitempty"`
-	// Deprecated way of representing the case status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
+	// Deprecated way of representing the work item status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
 	// Deprecated
 	Status *CaseStatus `json:"status,omitempty"`
-	// Status group of the case.
+	// Status group of the work item.
 	StatusGroup *CaseStatusGroup `json:"status_group,omitempty"`
-	// Status of the case. Must be one of the existing statuses for the case's type.
+	// Status of the work item. Must be one of the existing statuses for the work item's type.
 	StatusName *string `json:"status_name,omitempty"`
 	// Title
 	Title *string `json:"title,omitempty"`
-	// Case type
+	// Work item type
 	// Deprecated
 	Type *CaseType `json:"type,omitempty"`
-	// Case type UUID
+	// Work item type UUID
 	TypeId *string `json:"type_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

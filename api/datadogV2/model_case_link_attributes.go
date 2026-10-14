@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseLinkAttributes Attributes describing a directional relationship between two entities (cases, incidents, or pages).
+// CaseLinkAttributes Attributes describing a directional relationship between two entities (work items, incidents, or pages).
 type CaseLinkAttributes struct {
 	// The UUID of the child (target) entity in the relationship.
 	ChildEntityId string `json:"child_entity_id"`

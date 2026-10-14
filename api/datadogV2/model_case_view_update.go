@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewUpdate Data object for updating a case view.
+// CaseViewUpdate Data object for updating a work item view.
 type CaseViewUpdate struct {
-	// Attributes that can be updated on a case view. All fields are optional; only provided fields are changed.
+	// Attributes that can be updated on a work item view. All fields are optional; only provided fields are changed.
 	Attributes *CaseViewUpdateAttributes `json:"attributes,omitempty"`
-	// JSON:API resource type for case views.
+	// JSON:API resource type for work item views.
 	Type CaseViewResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

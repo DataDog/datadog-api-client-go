@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Case3rdPartyTicketStatus Case status
+// Case3rdPartyTicketStatus Work item status
 type Case3rdPartyTicketStatus string
 
 // List of Case3rdPartyTicketStatus.

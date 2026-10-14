@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateCustomAttributeRequest Case update custom attribute request
+// CaseUpdateCustomAttributeRequest Work item update custom attribute request
 type CaseUpdateCustomAttributeRequest struct {
-	// Case update custom attribute
+	// Work item update custom attribute
 	Data CaseUpdateCustomAttribute `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

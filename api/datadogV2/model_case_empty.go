@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseEmpty Case empty request data
+// CaseEmpty Work item empty request data
 type CaseEmpty struct {
-	// JSON:API resource type for cases.
+	// JSON:API resource type for work items.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

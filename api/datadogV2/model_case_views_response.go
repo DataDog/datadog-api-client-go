@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewsResponse Response containing a list of case views.
+// CaseViewsResponse Response containing a list of work item views.
 type CaseViewsResponse struct {
-	// A list of case views.
+	// A list of work item views.
 	Data []CaseView `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

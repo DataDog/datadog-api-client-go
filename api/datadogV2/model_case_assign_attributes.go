@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAssignAttributes Case assign attributes
+// CaseAssignAttributes Work item assign attributes
 type CaseAssignAttributes struct {
 	// Assignee's UUID
 	AssigneeId string `json:"assignee_id"`

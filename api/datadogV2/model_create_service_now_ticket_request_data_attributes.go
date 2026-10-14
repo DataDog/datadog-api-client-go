@@ -14,7 +14,7 @@ type CreateServiceNowTicketRequestDataAttributes struct {
 	AssigneeId *string `json:"assignee_id,omitempty"`
 	// Description of the ServiceNow ticket. If not provided, the description will be automatically generated.
 	Description *string `json:"description,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
 	// Title of the ServiceNow ticket. If not provided, the title will be automatically generated.
 	Title *string `json:"title,omitempty"`

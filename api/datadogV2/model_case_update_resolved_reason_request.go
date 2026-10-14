@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateResolvedReasonRequest Request payload for updating the resolution reason on a closed security case.
+// CaseUpdateResolvedReasonRequest Request payload for updating the resolution reason on a closed security work item.
 type CaseUpdateResolvedReasonRequest struct {
-	// Data object for updating a case's resolved reason.
+	// Data object for updating a work item's resolved reason.
 	Data CaseUpdateResolvedReason `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseStatusGroup Status group of the case.
+// CaseStatusGroup Status group of the work item.
 type CaseStatusGroup string
 
 // List of CaseStatusGroup.

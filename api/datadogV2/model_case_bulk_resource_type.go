@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseBulkResourceType JSON:API resource type for bulk case operations.
+// CaseBulkResourceType JSON:API resource type for bulk work item operations.
 type CaseBulkResourceType string
 
 // List of CaseBulkResourceType.

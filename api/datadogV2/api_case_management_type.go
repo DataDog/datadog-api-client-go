@@ -16,7 +16,7 @@ import (
 type CaseManagementTypeApi datadog.Service
 
 // CreateCaseType Create a case type.
-// Create a Case Type
+// Create a work item type.
 func (a *CaseManagementTypeApi) CreateCaseType(ctx _context.Context, body CaseTypeCreateRequest) (CaseTypeResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -96,7 +96,7 @@ func (a *CaseManagementTypeApi) CreateCaseType(ctx _context.Context, body CaseTy
 }
 
 // DeleteCaseType Delete a case type.
-// Delete a case type
+// Delete a work item type
 func (a *CaseManagementTypeApi) DeleteCaseType(ctx _context.Context, caseTypeId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -164,7 +164,7 @@ func (a *CaseManagementTypeApi) DeleteCaseType(ctx _context.Context, caseTypeId 
 }
 
 // GetAllCaseTypes Get all case types.
-// Get all case types
+// Get all work item types
 func (a *CaseManagementTypeApi) GetAllCaseTypes(ctx _context.Context) (CaseTypesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -241,7 +241,7 @@ func (a *CaseManagementTypeApi) GetAllCaseTypes(ctx _context.Context) (CaseTypes
 }
 
 // UpdateCaseType Update a case type.
-// Updates the name, emoji, or description of an existing case type.
+// Updates the name, emoji, or description of an existing work item type.
 func (a *CaseManagementTypeApi) UpdateCaseType(ctx _context.Context, caseTypeId string, body CaseTypeUpdateRequest) (CaseTypeResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

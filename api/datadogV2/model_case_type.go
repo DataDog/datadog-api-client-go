@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseType Case type
+// CaseType Work item type
 type CaseType string
 
 // List of CaseType.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutomationRuleTriggerType The case event that activates the automation rule.
+// AutomationRuleTriggerType The work item event that activates the automation rule.
 type AutomationRuleTriggerType string
 
 // List of AutomationRuleTriggerType.

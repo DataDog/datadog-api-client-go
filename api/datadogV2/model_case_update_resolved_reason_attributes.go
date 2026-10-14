@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseUpdateResolvedReasonAttributes Attributes for setting the resolution reason on a security case.
+// CaseUpdateResolvedReasonAttributes Attributes for setting the resolution reason on a security work item.
 type CaseUpdateResolvedReasonAttributes struct {
-	// The reason the security case was resolved (for example, `FALSE_POSITIVE`, `TRUE_POSITIVE`, `BENIGN_POSITIVE`).
+	// The reason the security work item was resolved (for example, `FALSE_POSITIVE`, `TRUE_POSITIVE`, `BENIGN_POSITIVE`).
 	SecurityResolvedReason string `json:"security_resolved_reason"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

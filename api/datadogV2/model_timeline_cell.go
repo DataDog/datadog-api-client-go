@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCell Attributes of a timeline cell, representing a single event in a case's chronological activity log (for example, a comment, status change, or assignment update).
+// TimelineCell Attributes of a timeline cell, representing a single event in a work item's chronological activity log (for example, a comment, status change, or assignment update).
 type TimelineCell struct {
 	// The author of the timeline cell. Currently only user authors are supported.
 	Author *TimelineCellAuthor `json:"author,omitempty"`

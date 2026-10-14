@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseView A saved case view that provides a filtered, reusable list of cases matching a specific query. Views act as persistent dashboards for monitoring case subsets.
+// CaseView A saved work item view that provides a filtered, reusable list of work items matching a specific query. Views act as persistent dashboards for monitoring work item subsets.
 type CaseView struct {
-	// Attributes of a case view, including the filter query and optional notification rule.
+	// Attributes of a work item view, including the filter query and optional notification rule.
 	Attributes CaseViewAttributes `json:"attributes"`
 	// The view's identifier.
 	Id string `json:"id"`
-	// Related resources for the case view, including the creator, last modifier, and associated project.
+	// Related resources for the work item view, including the creator, last modifier, and associated project.
 	Relationships *CaseViewRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for case views.
+	// JSON:API resource type for work item views.
 	Type CaseViewResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

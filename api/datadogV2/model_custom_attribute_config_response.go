@@ -10,7 +10,7 @@ import (
 
 // CustomAttributeConfigResponse Response containing a single custom attribute configuration.
 type CustomAttributeConfigResponse struct {
-	// A custom attribute configuration that defines an organization-specific metadata field on cases. Custom attributes are scoped to a case type and can hold text, URLs, numbers, or predefined select options.
+	// A custom attribute configuration that defines an organization-specific metadata field on work items. Custom attributes are scoped to a work item type and can hold text, URLs, numbers, or predefined select options.
 	Data *CustomAttributeConfig `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

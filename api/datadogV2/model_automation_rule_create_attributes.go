@@ -16,9 +16,9 @@ type AutomationRuleCreateAttributes struct {
 	Action AutomationRuleAction `json:"action"`
 	// Name of the automation rule.
 	Name string `json:"name"`
-	// Whether the automation rule is active. Enabled rules trigger on matching case events; disabled rules are inactive but preserve their configuration.
+	// Whether the automation rule is active. Enabled rules trigger on matching work item events; disabled rules are inactive but preserve their configuration.
 	State *CaseAutomationRuleState `json:"state,omitempty"`
-	// Defines when the rule activates. Combines a trigger type (the case event to listen for) with optional trigger data (conditions that narrow when the trigger fires).
+	// Defines when the rule activates. Combines a trigger type (the work item event to listen for) with optional trigger data (conditions that narrow when the trigger fires).
 	Trigger AutomationRuleTrigger `json:"trigger"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

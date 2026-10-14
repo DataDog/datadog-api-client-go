@@ -16,7 +16,7 @@ import (
 type CaseManagementApi datadog.Service
 
 // AddCaseInsights Add insights to a case.
-// Adds one or more insights to a case. Insights are references to related Datadog resources (such as monitors, security signals, incidents, or error tracking issues) that provide investigative context. Up to 100 insights can be added per request. Each insight requires a type (see `CaseInsightType` for allowed values), a ref (URL path to the resource), and a resource_id.
+// Adds one or more insights to a work item. Insights are references to related Datadog resources (such as monitors, security signals, incidents, or error tracking issues) that provide investigative context. Up to 100 insights can be added per request. Each insight requires a type (see `CaseInsightType` for allowed values), a ref (URL path to the resource), and a resource_id.
 func (a *CaseManagementApi) AddCaseInsights(ctx _context.Context, caseId string, body CaseInsightsRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -106,7 +106,7 @@ func (a *CaseManagementApi) AddCaseInsights(ctx _context.Context, caseId string,
 }
 
 // AggregateCases Aggregate cases.
-// Performs an aggregation query over cases, grouping results by specified fields and returning counts per group along with a total. Useful for dashboards and analytics.
+// Performs an aggregation query over work items, grouping results by specified fields and returning counts per group along with a total. Useful for dashboards and analytics.
 func (a *CaseManagementApi) AggregateCases(ctx _context.Context, body CaseAggregateRequest) (CaseAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -186,7 +186,7 @@ func (a *CaseManagementApi) AggregateCases(ctx _context.Context, body CaseAggreg
 }
 
 // ArchiveCase Archive case.
-// Archive case
+// Archive work item
 func (a *CaseManagementApi) ArchiveCase(ctx _context.Context, caseId string, body CaseEmptyRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -267,7 +267,7 @@ func (a *CaseManagementApi) ArchiveCase(ctx _context.Context, caseId string, bod
 }
 
 // AssignCase Assign case.
-// Assign case to a user
+// Assign work item to a user
 func (a *CaseManagementApi) AssignCase(ctx _context.Context, caseId string, body CaseAssignRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -348,7 +348,7 @@ func (a *CaseManagementApi) AssignCase(ctx _context.Context, caseId string, body
 }
 
 // BulkUpdateCases Bulk update cases.
-// Applies a single action (such as changing priority, status, assignment, or archiving) to multiple cases at once. The list of case IDs and the action type with its payload are specified in the request body.
+// Applies a single action (such as changing priority, status, assignment, or archiving) to multiple work items at once. The list of work item IDs and the action type with its payload are specified in the request body.
 func (a *CaseManagementApi) BulkUpdateCases(ctx _context.Context, body CaseBulkUpdateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -418,7 +418,7 @@ func (a *CaseManagementApi) BulkUpdateCases(ctx _context.Context, body CaseBulkU
 }
 
 // CommentCase Comment case.
-// Comment case
+// Add a comment to a work item.
 func (a *CaseManagementApi) CommentCase(ctx _context.Context, caseId string, body CaseCommentRequest) (TimelineResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -530,7 +530,7 @@ func (r *CountCasesOptionalParameters) WithLimit(limit int64) *CountCasesOptiona
 }
 
 // CountCases Count cases.
-// Returns case counts, optionally grouped by one or more fields (for example, status, priority). Supports a query filter to narrow the scope.
+// Returns work item counts, optionally grouped by one or more fields (for example, status, priority). Supports a query filter to narrow the scope.
 func (a *CaseManagementApi) CountCases(ctx _context.Context, o ...CountCasesOptionalParameters) (CaseCountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -624,7 +624,7 @@ func (a *CaseManagementApi) CountCases(ctx _context.Context, o ...CountCasesOpti
 }
 
 // CreateCase Create a case.
-// Create a Case
+// Create a work item
 func (a *CaseManagementApi) CreateCase(ctx _context.Context, body CaseCreateRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -704,7 +704,7 @@ func (a *CaseManagementApi) CreateCase(ctx _context.Context, body CaseCreateRequ
 }
 
 // CreateCaseAutomationRule Create an automation rule.
-// Creates an automation rule for a project. The rule defines a trigger event (for example, case created, status transitioned) and an action to execute.
+// Creates an automation rule for a project. The rule defines a trigger event (for example, work item created, status transitioned) and an action to execute.
 func (a *CaseManagementApi) CreateCaseAutomationRule(ctx _context.Context, projectId string, body AutomationRuleCreateRequest) (AutomationRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -785,7 +785,7 @@ func (a *CaseManagementApi) CreateCaseAutomationRule(ctx _context.Context, proje
 }
 
 // CreateCaseJiraIssue Create Jira issue for case.
-// Create a new Jira issue and link it to a case
+// Create a new Jira issue and link it to a work item
 func (a *CaseManagementApi) CreateCaseJiraIssue(ctx _context.Context, caseId string, body JiraIssueCreateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -865,7 +865,7 @@ func (a *CaseManagementApi) CreateCaseJiraIssue(ctx _context.Context, caseId str
 }
 
 // CreateCaseLink Create a case link.
-// Creates a directional link between two cases (for example, case A blocks case B). The parent and child cases and their relationship type must be specified.
+// Creates a directional link between two work items (for example, work item A blocks work item B). The parent and child work items and their relationship type must be specified.
 func (a *CaseManagementApi) CreateCaseLink(ctx _context.Context, body CaseLinkCreateRequest) (CaseLinkResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -945,7 +945,7 @@ func (a *CaseManagementApi) CreateCaseLink(ctx _context.Context, body CaseLinkCr
 }
 
 // CreateCaseNotebook Create investigation notebook for case.
-// Create a new investigation notebook and link it to a case
+// Create a new investigation notebook and link it to a work item
 func (a *CaseManagementApi) CreateCaseNotebook(ctx _context.Context, caseId string, body NotebookCreateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -1025,7 +1025,7 @@ func (a *CaseManagementApi) CreateCaseNotebook(ctx _context.Context, caseId stri
 }
 
 // CreateCaseServiceNowTicket Create ServiceNow ticket for case.
-// Create a new ServiceNow incident ticket and link it to a case
+// Create a new ServiceNow incident ticket and link it to a work item
 func (a *CaseManagementApi) CreateCaseServiceNowTicket(ctx _context.Context, caseId string, body ServiceNowTicketCreateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -1105,7 +1105,7 @@ func (a *CaseManagementApi) CreateCaseServiceNowTicket(ctx _context.Context, cas
 }
 
 // CreateCaseView Create a case view.
-// Creates a new saved case view with a name, filter query, and associated project. Optionally, a notification rule can be linked to the view.
+// Creates a new saved work item view with a name, filter query, and associated project. Optionally, a notification rule can be linked to the view.
 func (a *CaseManagementApi) CreateCaseView(ctx _context.Context, body CaseViewCreateRequest) (CaseViewResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1185,7 +1185,7 @@ func (a *CaseManagementApi) CreateCaseView(ctx _context.Context, body CaseViewCr
 }
 
 // CreateMaintenanceWindow Create a maintenance window.
-// Creates a maintenance window for event management cases with a name, case filter query, and time range (start and end).
+// Creates a maintenance window for event management work items with a name, work item filter query, and time range (start and end).
 func (a *CaseManagementApi) CreateMaintenanceWindow(ctx _context.Context, body MaintenanceWindowCreateRequest) (MaintenanceWindowResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1495,7 +1495,7 @@ func (a *CaseManagementApi) DeleteCaseAutomationRule(ctx _context.Context, proje
 }
 
 // DeleteCaseComment Delete case comment.
-// Delete case comment
+// Delete work item comment
 func (a *CaseManagementApi) DeleteCaseComment(ctx _context.Context, caseId string, cellId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -1564,7 +1564,7 @@ func (a *CaseManagementApi) DeleteCaseComment(ctx _context.Context, caseId strin
 }
 
 // DeleteCaseCustomAttribute Delete custom attribute from case.
-// Delete custom attribute from case
+// Delete custom attribute from work item
 func (a *CaseManagementApi) DeleteCaseCustomAttribute(ctx _context.Context, caseId string, customAttributeKey string) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -1643,7 +1643,7 @@ func (a *CaseManagementApi) DeleteCaseCustomAttribute(ctx _context.Context, case
 }
 
 // DeleteCaseLink Delete a case link.
-// Deletes an existing link between cases by link ID.
+// Deletes an existing link between work items by link ID.
 func (a *CaseManagementApi) DeleteCaseLink(ctx _context.Context, linkId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -1711,7 +1711,7 @@ func (a *CaseManagementApi) DeleteCaseLink(ctx _context.Context, linkId string) 
 }
 
 // DeleteCaseView Delete a case view.
-// Permanently deletes a saved case view.
+// Permanently deletes a saved work item view.
 func (a *CaseManagementApi) DeleteCaseView(ctx _context.Context, viewId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -1984,7 +1984,7 @@ func (a *CaseManagementApi) DeleteProjectNotificationRule(ctx _context.Context, 
 }
 
 // DisableCaseAutomationRule Disable an automation rule.
-// Disables an automation rule so it no longer triggers on case events. The rule configuration is preserved.
+// Disables an automation rule so it no longer triggers on work item events. The rule configuration is preserved.
 func (a *CaseManagementApi) DisableCaseAutomationRule(ctx _context.Context, projectId string, ruleId string) (AutomationRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2063,7 +2063,7 @@ func (a *CaseManagementApi) DisableCaseAutomationRule(ctx _context.Context, proj
 }
 
 // EnableCaseAutomationRule Enable an automation rule.
-// Enables a previously disabled automation rule so it triggers on matching case events.
+// Enables a previously disabled automation rule so it triggers on matching work item events.
 func (a *CaseManagementApi) EnableCaseAutomationRule(ctx _context.Context, projectId string, ruleId string) (AutomationRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2142,7 +2142,7 @@ func (a *CaseManagementApi) EnableCaseAutomationRule(ctx _context.Context, proje
 }
 
 // FavoriteCaseProject Favorite a project.
-// Marks a case project as a favorite for the current authenticated user.
+// Marks a Work Management project as a favorite for the current authenticated user.
 func (a *CaseManagementApi) FavoriteCaseProject(ctx _context.Context, projectId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -2210,7 +2210,7 @@ func (a *CaseManagementApi) FavoriteCaseProject(ctx _context.Context, projectId 
 }
 
 // GetCase Get the details of a case.
-// Get the details of case by `case_id`
+// Get the details of a work item by `case_id`.
 func (a *CaseManagementApi) GetCase(ctx _context.Context, caseId string) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2367,7 +2367,7 @@ func (a *CaseManagementApi) GetCaseAutomationRule(ctx _context.Context, projectI
 }
 
 // GetCaseView Get a case view.
-// Returns a single saved case view identified by its UUID, including its query, associated project, and timestamps.
+// Returns a single saved work item view identified by its UUID, including its query, associated project, and timestamps.
 func (a *CaseManagementApi) GetCaseView(ctx _context.Context, viewId string) (CaseViewResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2678,7 +2678,7 @@ func (a *CaseManagementApi) GetProjects(ctx _context.Context) (ProjectsResponse,
 }
 
 // LinkIncident Link incident to case.
-// Link an incident to a case
+// Link an incident to a work item
 func (a *CaseManagementApi) LinkIncident(ctx _context.Context, caseId string, body RelationshipToIncidentRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2768,7 +2768,7 @@ func (a *CaseManagementApi) LinkIncident(ctx _context.Context, caseId string, bo
 }
 
 // LinkJiraIssueToCase Link existing Jira issue to case.
-// Link an existing Jira issue to a case
+// Link an existing Jira issue to a work item
 func (a *CaseManagementApi) LinkJiraIssueToCase(ctx _context.Context, caseId string, body JiraIssueLinkRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPatch
@@ -2848,7 +2848,7 @@ func (a *CaseManagementApi) LinkJiraIssueToCase(ctx _context.Context, caseId str
 }
 
 // ListCaseAutomationRules List automation rules.
-// Returns all automation rules configured for a project. Automation rules allow automatic actions to be triggered by case events like creation, status transitions, or attribute changes.
+// Returns all automation rules configured for a project. Automation rules allow automatic actions to be triggered by work item events like creation, status transitions, or attribute changes.
 func (a *CaseManagementApi) ListCaseAutomationRules(ctx _context.Context, projectId string) (AutomationRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2943,7 +2943,7 @@ func (r *ListCaseLinksOptionalParameters) WithRelationship(relationship string) 
 }
 
 // ListCaseLinks List case links.
-// Returns all links associated with a case. Links define relationships (for example, BLOCKS) between cases. Requires entity_type and entity_id query parameters.
+// Returns all links associated with a work item. Links define relationships (for example, BLOCKS) between work items. Requires entity_type and entity_id query parameters.
 func (a *CaseManagementApi) ListCaseLinks(ctx _context.Context, entityType string, entityId string, o ...ListCaseLinksOptionalParameters) (CaseLinksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3064,7 +3064,7 @@ func (r *ListCaseTimelineOptionalParameters) WithSortAscending(sortAscending boo
 }
 
 // ListCaseTimeline Get case timeline.
-// Returns the timeline of events for a case, including comments, status changes, and other activity. Supports pagination and sort order.
+// Returns the timeline of events for a work item, including comments, status changes, and other activity. Supports pagination and sort order.
 func (a *CaseManagementApi) ListCaseTimeline(ctx _context.Context, caseId string, o ...ListCaseTimelineOptionalParameters) (TimelineResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3159,7 +3159,7 @@ func (a *CaseManagementApi) ListCaseTimeline(ctx _context.Context, caseId string
 }
 
 // ListCaseViews List case views.
-// Returns all saved case views for a given project. Views are saved search queries that allow quick access to filtered lists of cases.
+// Returns all saved work item views for a given project. Views are saved search queries that allow quick access to filtered lists of work items.
 func (a *CaseManagementApi) ListCaseViews(ctx _context.Context, projectId string) (CaseViewsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3237,7 +3237,7 @@ func (a *CaseManagementApi) ListCaseViews(ctx _context.Context, projectId string
 }
 
 // ListCaseWatchers List case watchers.
-// Returns the list of users who are watching a case. Watchers receive notifications about updates to the case.
+// Returns the list of users who are watching a work item. Watchers receive notifications about updates to the work item.
 func (a *CaseManagementApi) ListCaseWatchers(ctx _context.Context, caseId string) (CaseWatchersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3315,7 +3315,7 @@ func (a *CaseManagementApi) ListCaseWatchers(ctx _context.Context, caseId string
 }
 
 // ListMaintenanceWindows List maintenance windows.
-// Returns all configured maintenance windows for event management cases. Maintenance windows define time periods during which case notifications and automation rules are suppressed for cases matching a given query.
+// Returns all configured maintenance windows for event management work items. Maintenance windows define time periods during which work item notifications and automation rules are suppressed for work items matching a given query.
 func (a *CaseManagementApi) ListMaintenanceWindows(ctx _context.Context) (MaintenanceWindowsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3392,7 +3392,7 @@ func (a *CaseManagementApi) ListMaintenanceWindows(ctx _context.Context) (Mainte
 }
 
 // ListUserCaseProjectFavorites List project favorites.
-// Returns the list of case projects that the current authenticated user has marked as favorites.
+// Returns the list of Work Management projects that the current authenticated user has marked as favorites.
 func (a *CaseManagementApi) ListUserCaseProjectFavorites(ctx _context.Context) (ProjectFavoritesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3469,7 +3469,7 @@ func (a *CaseManagementApi) ListUserCaseProjectFavorites(ctx _context.Context) (
 }
 
 // MoveCaseToProject Update case project.
-// Update the project associated with a case
+// Update the project associated with a work item
 func (a *CaseManagementApi) MoveCaseToProject(ctx _context.Context, caseId string, body ProjectRelationship) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -3559,7 +3559,7 @@ func (a *CaseManagementApi) MoveCaseToProject(ctx _context.Context, caseId strin
 }
 
 // RemoveCaseInsights Remove insights from a case.
-// Removes one or more previously added insights from a case by specifying their type and resource identifier in the request body.
+// Removes one or more previously added insights from a work item by specifying their type and resource identifier in the request body.
 func (a *CaseManagementApi) RemoveCaseInsights(ctx _context.Context, caseId string, body CaseInsightsRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -3694,7 +3694,7 @@ func (r *SearchCasesOptionalParameters) WithSortAsc(sortAsc bool) *SearchCasesOp
 }
 
 // SearchCases Search cases.
-// Search cases.
+// Search work items.
 func (a *CaseManagementApi) SearchCases(ctx _context.Context, o ...SearchCasesOptionalParameters) (CasesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3842,7 +3842,7 @@ func (a *CaseManagementApi) SearchCasesWithPagination(ctx _context.Context, o ..
 }
 
 // UnarchiveCase Unarchive case.
-// Unarchive case
+// Unarchive work item
 func (a *CaseManagementApi) UnarchiveCase(ctx _context.Context, caseId string, body CaseEmptyRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -3923,7 +3923,7 @@ func (a *CaseManagementApi) UnarchiveCase(ctx _context.Context, caseId string, b
 }
 
 // UnassignCase Unassign case.
-// Unassign case
+// Unassign work item
 func (a *CaseManagementApi) UnassignCase(ctx _context.Context, caseId string, body CaseEmptyRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4004,7 +4004,7 @@ func (a *CaseManagementApi) UnassignCase(ctx _context.Context, caseId string, bo
 }
 
 // UnfavoriteCaseProject Unfavorite a project.
-// Removes a case project from the current user's favorites list.
+// Removes a Work Management project from the current user's favorites list.
 func (a *CaseManagementApi) UnfavoriteCaseProject(ctx _context.Context, projectId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -4072,7 +4072,7 @@ func (a *CaseManagementApi) UnfavoriteCaseProject(ctx _context.Context, projectI
 }
 
 // UnlinkJiraIssue Remove Jira issue link from case.
-// Remove the link between a Jira issue and a case
+// Remove the link between a Jira issue and a work item
 func (a *CaseManagementApi) UnlinkJiraIssue(ctx _context.Context, caseId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -4149,7 +4149,7 @@ func (a *CaseManagementApi) UnlinkJiraIssue(ctx _context.Context, caseId string)
 }
 
 // UnwatchCase Unwatch a case.
-// Removes a user from the watchers list of a case. The user no longer receives notifications about updates to the case.
+// Removes a user from the watchers list of a work item. The user no longer receives notifications about updates to the work item.
 func (a *CaseManagementApi) UnwatchCase(ctx _context.Context, caseId string, userUuid string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -4218,7 +4218,7 @@ func (a *CaseManagementApi) UnwatchCase(ctx _context.Context, caseId string, use
 }
 
 // UpdateAttributes Update case attributes.
-// Update case attributes
+// Update work item attributes
 func (a *CaseManagementApi) UpdateAttributes(ctx _context.Context, caseId string, body CaseUpdateAttributesRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4381,7 +4381,7 @@ func (a *CaseManagementApi) UpdateCaseAutomationRule(ctx _context.Context, proje
 }
 
 // UpdateCaseComment Update case comment.
-// Updates the text content of an existing comment on a case timeline. The comment is identified by its cell ID.
+// Updates the text content of an existing comment on a work item timeline. The comment is identified by its cell ID.
 func (a *CaseManagementApi) UpdateCaseComment(ctx _context.Context, caseId string, cellId string, body CaseUpdateCommentRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
@@ -4453,7 +4453,7 @@ func (a *CaseManagementApi) UpdateCaseComment(ctx _context.Context, caseId strin
 }
 
 // UpdateCaseCustomAttribute Update case custom attribute.
-// Update case custom attribute
+// Update work item custom attribute
 func (a *CaseManagementApi) UpdateCaseCustomAttribute(ctx _context.Context, caseId string, customAttributeKey string, body CaseUpdateCustomAttributeRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4535,7 +4535,7 @@ func (a *CaseManagementApi) UpdateCaseCustomAttribute(ctx _context.Context, case
 }
 
 // UpdateCaseDescription Update case description.
-// Update case description
+// Update work item description
 func (a *CaseManagementApi) UpdateCaseDescription(ctx _context.Context, caseId string, body CaseUpdateDescriptionRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4616,7 +4616,7 @@ func (a *CaseManagementApi) UpdateCaseDescription(ctx _context.Context, caseId s
 }
 
 // UpdateCaseDueDate Update case due date.
-// Sets or updates the due date for a case. The due date is a calendar date (without a time component) indicating when the case should be resolved.
+// Sets or updates the due date for a work item. The due date is a calendar date (without a time component) indicating when the work item should be resolved.
 func (a *CaseManagementApi) UpdateCaseDueDate(ctx _context.Context, caseId string, body CaseUpdateDueDateRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4697,7 +4697,7 @@ func (a *CaseManagementApi) UpdateCaseDueDate(ctx _context.Context, caseId strin
 }
 
 // UpdateCaseResolvedReason Update case resolved reason.
-// Sets the resolved reason for a security case (for example, FALSE_POSITIVE, TRUE_POSITIVE). Applicable to security-type cases.
+// Sets the resolved reason for a security work item (for example, FALSE_POSITIVE, TRUE_POSITIVE). Applicable to security-type work items.
 func (a *CaseManagementApi) UpdateCaseResolvedReason(ctx _context.Context, caseId string, body CaseUpdateResolvedReasonRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4778,7 +4778,7 @@ func (a *CaseManagementApi) UpdateCaseResolvedReason(ctx _context.Context, caseI
 }
 
 // UpdateCaseTitle Update case title.
-// Update case title
+// Update work item title
 func (a *CaseManagementApi) UpdateCaseTitle(ctx _context.Context, caseId string, body CaseUpdateTitleRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4859,7 +4859,7 @@ func (a *CaseManagementApi) UpdateCaseTitle(ctx _context.Context, caseId string,
 }
 
 // UpdateCaseView Update a case view.
-// Updates the name, query, or notification rule of an existing case view.
+// Updates the name, query, or notification rule of an existing work item view.
 func (a *CaseManagementApi) UpdateCaseView(ctx _context.Context, viewId string, body CaseViewUpdateRequest) (CaseViewResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -5021,7 +5021,7 @@ func (a *CaseManagementApi) UpdateMaintenanceWindow(ctx _context.Context, mainte
 }
 
 // UpdatePriority Update case priority.
-// Update case priority
+// Update work item priority
 func (a *CaseManagementApi) UpdatePriority(ctx _context.Context, caseId string, body CaseUpdatePriorityRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -5255,7 +5255,7 @@ func (a *CaseManagementApi) UpdateProjectNotificationRule(ctx _context.Context, 
 }
 
 // UpdateStatus Update case status.
-// Update case status
+// Update work item status
 func (a *CaseManagementApi) UpdateStatus(ctx _context.Context, caseId string, body CaseUpdateStatusRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -5336,7 +5336,7 @@ func (a *CaseManagementApi) UpdateStatus(ctx _context.Context, caseId string, bo
 }
 
 // WatchCase Watch a case.
-// Adds a user (identified by their UUID) as a watcher of a case. The user receives notifications about subsequent updates to the case.
+// Adds a user (identified by their UUID) as a watcher of a work item. The user receives notifications about subsequent updates to the work item.
 func (a *CaseManagementApi) WatchCase(ctx _context.Context, caseId string, userUuid string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost

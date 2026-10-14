@@ -10,19 +10,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseCreateAttributes Case creation attributes
+// CaseCreateAttributes Work item creation attributes
 type CaseCreateAttributes struct {
-	// Case custom attributes
+	// Work item custom attributes
 	CustomAttributes map[string]CustomAttributeValue `json:"custom_attributes,omitempty"`
 	// Description
 	Description *string `json:"description,omitempty"`
-	// Case priority
+	// Work item priority
 	Priority *CasePriority `json:"priority,omitempty"`
-	// Status of the case. Must be one of the existing statuses for the case's type.
+	// Status of the work item. Must be one of the existing statuses for the work item's type.
 	StatusName *string `json:"status_name,omitempty"`
 	// Title
 	Title string `json:"title"`
-	// Case type UUID
+	// Work item type UUID
 	TypeId string `json:"type_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

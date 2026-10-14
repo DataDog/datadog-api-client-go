@@ -12,7 +12,7 @@ import (
 
 // MaintenanceWindowResponse Response containing a single maintenance window.
 type MaintenanceWindowResponse struct {
-	// A maintenance window that defines a scheduled time period during which case-related notifications and automation rules are suppressed. Each maintenance window applies to cases matching a specified query.
+	// A maintenance window that defines a scheduled time period during which notifications and automation rules related to work items are suppressed. Each maintenance window applies to work items matching a specified query.
 	Data MaintenanceWindow `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
