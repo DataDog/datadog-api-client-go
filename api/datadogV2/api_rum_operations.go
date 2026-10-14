@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -26,15 +24,6 @@ func (a *RUMOperationsApi) CreateRUMOperation(ctx _context.Context, body RUMOper
 		localVarPostBody    interface{}
 		localVarReturnValue RUMOperationResponse
 	)
-
-	operationId := "v2.CreateRUMOperation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.CreateRUMOperation")
 	if err != nil {
@@ -127,15 +116,6 @@ func (a *RUMOperationsApi) CreateRUMOperationStrongLink(ctx _context.Context, bo
 		localVarReturnValue RUMOperationStrongLinkResponse
 	)
 
-	operationId := "v2.CreateRUMOperationStrongLink"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.CreateRUMOperationStrongLink")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -224,15 +204,6 @@ func (a *RUMOperationsApi) DeleteRUMOperation(ctx _context.Context, rumOperation
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteRUMOperation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.DeleteRUMOperation")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -309,15 +280,6 @@ func (a *RUMOperationsApi) DeleteRUMOperationStrongLink(ctx _context.Context, ru
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteRUMOperationStrongLink"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.DeleteRUMOperationStrongLink")
 	if err != nil {
@@ -397,15 +359,6 @@ func (a *RUMOperationsApi) GetRUMOperation(ctx _context.Context, rumOperationId 
 		localVarPostBody    interface{}
 		localVarReturnValue RUMOperationResponse
 	)
-
-	operationId := "v2.GetRUMOperation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.GetRUMOperation")
 	if err != nil {
@@ -493,15 +446,6 @@ func (a *RUMOperationsApi) GetRUMOperationByName(ctx _context.Context, name stri
 		localVarPostBody    interface{}
 		localVarReturnValue RUMOperationResponse
 	)
-
-	operationId := "v2.GetRUMOperationByName"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.GetRUMOperationByName")
 	if err != nil {
@@ -804,15 +748,6 @@ func (a *RUMOperationsApi) ListRUMOperations(ctx _context.Context, o ...ListRUMO
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListRUMOperations"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.ListRUMOperations")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -921,15 +856,6 @@ func (a *RUMOperationsApi) UpdateRUMOperation(ctx _context.Context, rumOperation
 		localVarReturnValue RUMOperationResponse
 	)
 
-	operationId := "v2.UpdateRUMOperation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.UpdateRUMOperation")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1019,15 +945,6 @@ func (a *RUMOperationsApi) UpdateRUMOperationStrongLink(ctx _context.Context, ru
 		localVarPostBody    interface{}
 		localVarReturnValue RUMOperationStrongLinkResponse
 	)
-
-	operationId := "v2.UpdateRUMOperationStrongLink"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMOperationsApi.UpdateRUMOperationStrongLink")
 	if err != nil {
