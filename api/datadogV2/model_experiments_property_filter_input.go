@@ -17,7 +17,7 @@ type ExperimentsPropertyFilterInput struct {
 	// Omit this target or use null or a blank string.
 	MeasureId datadog.NullableString `json:"measure_id,omitempty"`
 	// Comparison applied by the warehouse entry-point filter.
-	Operation ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation `json:"operation"`
+	Operation ExperimentsWarehouseEntryPointFilterOperation `json:"operation"`
 	// ID of the property on the aggregation source.
 	PropertyId uuid.UUID `json:"property_id"`
 	// Values used by the comparison.
@@ -31,7 +31,7 @@ type ExperimentsPropertyFilterInput struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsPropertyFilterInput(operation ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation, propertyId uuid.UUID, values []string) *ExperimentsPropertyFilterInput {
+func NewExperimentsPropertyFilterInput(operation ExperimentsWarehouseEntryPointFilterOperation, propertyId uuid.UUID, values []string) *ExperimentsPropertyFilterInput {
 	this := ExperimentsPropertyFilterInput{}
 	this.Operation = operation
 	this.PropertyId = propertyId
@@ -87,9 +87,9 @@ func (o *ExperimentsPropertyFilterInput) UnsetMeasureId() {
 }
 
 // GetOperation returns the Operation field value.
-func (o *ExperimentsPropertyFilterInput) GetOperation() ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation {
+func (o *ExperimentsPropertyFilterInput) GetOperation() ExperimentsWarehouseEntryPointFilterOperation {
 	if o == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation
+		var ret ExperimentsWarehouseEntryPointFilterOperation
 		return ret
 	}
 	return o.Operation
@@ -97,7 +97,7 @@ func (o *ExperimentsPropertyFilterInput) GetOperation() ExperimentsPatchExperime
 
 // GetOperationOk returns a tuple with the Operation field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsPropertyFilterInput) GetOperationOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation, bool) {
+func (o *ExperimentsPropertyFilterInput) GetOperationOk() (*ExperimentsWarehouseEntryPointFilterOperation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *ExperimentsPropertyFilterInput) GetOperationOk() (*ExperimentsPatchExpe
 }
 
 // SetOperation sets field value.
-func (o *ExperimentsPropertyFilterInput) SetOperation(v ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) {
+func (o *ExperimentsPropertyFilterInput) SetOperation(v ExperimentsWarehouseEntryPointFilterOperation) {
 	o.Operation = v
 }
 
@@ -177,10 +177,10 @@ func (o ExperimentsPropertyFilterInput) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsPropertyFilterInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MeasureId  datadog.NullableString                                                                                           `json:"measure_id,omitempty"`
-		Operation  *ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation `json:"operation"`
-		PropertyId *uuid.UUID                                                                                                       `json:"property_id"`
-		Values     *[]string                                                                                                        `json:"values"`
+		MeasureId  datadog.NullableString                         `json:"measure_id,omitempty"`
+		Operation  *ExperimentsWarehouseEntryPointFilterOperation `json:"operation"`
+		PropertyId *uuid.UUID                                     `json:"property_id"`
+		Values     *[]string                                      `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
