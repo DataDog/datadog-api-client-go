@@ -14,6 +14,8 @@ import (
 type ListFeatureFlagsResponse struct {
 	// List of feature flags.
 	Data []FeatureFlagListItem `json:"data"`
+	// Pagination links. Follow `next` with the same authentication to retrieve the next page. Links use `page[limit]` and `page[offset]` and preserve the filters. Navigation links are omitted when not applicable.
+	Links *FeatureFlagsPaginationLinks `json:"links,omitempty"`
 	// Pagination metadata for feature flags.
 	Meta *FeatureFlagsPaginationMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -62,6 +64,34 @@ func (o *ListFeatureFlagsResponse) SetData(v []FeatureFlagListItem) {
 	o.Data = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *ListFeatureFlagsResponse) GetLinks() FeatureFlagsPaginationLinks {
+	if o == nil || o.Links == nil {
+		var ret FeatureFlagsPaginationLinks
+		return ret
+	}
+	return *o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListFeatureFlagsResponse) GetLinksOk() (*FeatureFlagsPaginationLinks, bool) {
+	if o == nil || o.Links == nil {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *ListFeatureFlagsResponse) HasLinks() bool {
+	return o != nil && o.Links != nil
+}
+
+// SetLinks gets a reference to the given FeatureFlagsPaginationLinks and assigns it to the Links field.
+func (o *ListFeatureFlagsResponse) SetLinks(v FeatureFlagsPaginationLinks) {
+	o.Links = &v
+}
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListFeatureFlagsResponse) GetMeta() FeatureFlagsPaginationMeta {
 	if o == nil || o.Meta == nil {
@@ -97,6 +127,9 @@ func (o ListFeatureFlagsResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	if o.Links != nil {
+		toSerialize["links"] = o.Links
+	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
 	}
@@ -110,8 +143,9 @@ func (o ListFeatureFlagsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListFeatureFlagsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]FeatureFlagListItem      `json:"data"`
-		Meta *FeatureFlagsPaginationMeta `json:"meta,omitempty"`
+		Data  *[]FeatureFlagListItem       `json:"data"`
+		Links *FeatureFlagsPaginationLinks `json:"links,omitempty"`
+		Meta  *FeatureFlagsPaginationMeta  `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,13 +155,17 @@ func (o *ListFeatureFlagsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
+	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Links = all.Links
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

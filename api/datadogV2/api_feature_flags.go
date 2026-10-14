@@ -8,6 +8,7 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/google/uuid"
@@ -860,10 +861,23 @@ func (a *FeatureFlagsApi) GetFeatureFlagsEnvironment(ctx _context.Context, envir
 
 // ListFeatureFlagsOptionalParameters holds optional parameters for ListFeatureFlags.
 type ListFeatureFlagsOptionalParameters struct {
-	Key        *string
-	IsArchived *bool
-	Limit      *int64
-	Offset     *int64
+	Key                 *string
+	IsArchived          *bool
+	Limit               *int64
+	Offset              *int64
+	Tags                *[]string
+	Teams               *[]string
+	ProductionStatus    *[]FeatureFlagProductionStatus
+	DistributionChannel *FeatureFlagDistributionChannel
+	Search              *string
+	ValueType           *[]ValueType
+	CreatedBy           *[]uuid.UUID
+	FlagIds             *[]uuid.UUID
+	StalenessStatus     *FeatureFlagStalenessStatus
+	SavedFilterId       *uuid.UUID
+	Sort                *string
+	PageLimit           *int64
+	PageOffset          *int64
 }
 
 // NewListFeatureFlagsOptionalParameters creates an empty struct for parameters.
@@ -896,9 +910,88 @@ func (r *ListFeatureFlagsOptionalParameters) WithOffset(offset int64) *ListFeatu
 	return r
 }
 
+// WithTags sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithTags(tags []string) *ListFeatureFlagsOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+
+// WithTeams sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithTeams(teams []string) *ListFeatureFlagsOptionalParameters {
+	r.Teams = &teams
+	return r
+}
+
+// WithProductionStatus sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithProductionStatus(productionStatus []FeatureFlagProductionStatus) *ListFeatureFlagsOptionalParameters {
+	r.ProductionStatus = &productionStatus
+	return r
+}
+
+// WithDistributionChannel sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithDistributionChannel(distributionChannel FeatureFlagDistributionChannel) *ListFeatureFlagsOptionalParameters {
+	r.DistributionChannel = &distributionChannel
+	return r
+}
+
+// WithSearch sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithSearch(search string) *ListFeatureFlagsOptionalParameters {
+	r.Search = &search
+	return r
+}
+
+// WithValueType sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithValueType(valueType []ValueType) *ListFeatureFlagsOptionalParameters {
+	r.ValueType = &valueType
+	return r
+}
+
+// WithCreatedBy sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithCreatedBy(createdBy []uuid.UUID) *ListFeatureFlagsOptionalParameters {
+	r.CreatedBy = &createdBy
+	return r
+}
+
+// WithFlagIds sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithFlagIds(flagIds []uuid.UUID) *ListFeatureFlagsOptionalParameters {
+	r.FlagIds = &flagIds
+	return r
+}
+
+// WithStalenessStatus sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithStalenessStatus(stalenessStatus FeatureFlagStalenessStatus) *ListFeatureFlagsOptionalParameters {
+	r.StalenessStatus = &stalenessStatus
+	return r
+}
+
+// WithSavedFilterId sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithSavedFilterId(savedFilterId uuid.UUID) *ListFeatureFlagsOptionalParameters {
+	r.SavedFilterId = &savedFilterId
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithSort(sort string) *ListFeatureFlagsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithPageLimit(pageLimit int64) *ListFeatureFlagsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithPageOffset(pageOffset int64) *ListFeatureFlagsOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
 // ListFeatureFlags List feature flags.
-// Returns a list of feature flags for the organization.
-// Supports filtering by key and archived status.
+// Returns a paginated list of feature flags for the organization.
+// Supports filtering by key, tags, teams, SDK availability, production status, and other flag properties.
+// Use `page[limit]` and `page[offset]` to paginate, or follow the `next` link in the response.
 func (a *FeatureFlagsApi) ListFeatureFlags(ctx _context.Context, o ...ListFeatureFlagsOptionalParameters) (ListFeatureFlagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -936,6 +1029,93 @@ func (a *FeatureFlagsApi) ListFeatureFlags(ctx _context.Context, o ...ListFeatur
 	if optionalParams.Offset != nil {
 		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
 	}
+	if optionalParams.Tags != nil {
+		t := *optionalParams.Tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.Teams != nil {
+		t := *optionalParams.Teams
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("teams", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("teams", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.ProductionStatus != nil {
+		t := *optionalParams.ProductionStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("production_status", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("production_status", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.DistributionChannel != nil {
+		localVarQueryParams.Add("distribution_channel", datadog.ParameterToString(*optionalParams.DistributionChannel, ""))
+	}
+	if optionalParams.Search != nil {
+		localVarQueryParams.Add("search", datadog.ParameterToString(*optionalParams.Search, ""))
+	}
+	if optionalParams.ValueType != nil {
+		t := *optionalParams.ValueType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("value_type", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("value_type", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.CreatedBy != nil {
+		t := *optionalParams.CreatedBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("created_by", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("created_by", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.FlagIds != nil {
+		t := *optionalParams.FlagIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("flag_ids", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("flag_ids", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.StalenessStatus != nil {
+		localVarQueryParams.Add("staleness_status", datadog.ParameterToString(*optionalParams.StalenessStatus, ""))
+	}
+	if optionalParams.SavedFilterId != nil {
+		localVarQueryParams.Add("saved_filter_id", datadog.ParameterToString(*optionalParams.SavedFilterId, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -970,6 +1150,15 @@ func (a *FeatureFlagsApi) ListFeatureFlags(ctx _context.Context, o ...ListFeatur
 		newErr := datadog.GenericOpenAPIError{
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
