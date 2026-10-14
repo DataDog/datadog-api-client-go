@@ -14,6 +14,8 @@ import (
 type ExperimentsPublicProtocolListResponseDataAttributes struct {
 	// Text that explains the protocol.
 	Description *string `json:"description,omitempty"`
+	// Number of experiments in the organization that use this protocol, excluding deleted experiments.
+	ExperimentCount int64 `json:"experiment_count"`
 	// Display name of the protocol.
 	Name string `json:"name"`
 	// Subject type selected by the protocol.
@@ -26,7 +28,8 @@ type ExperimentsPublicProtocolListResponseDataAttributes struct {
 	SubjectType *ExperimentsPublicProtocolResponseDataAttributesSubjectType `json:"subject_type,omitempty"`
 	// ID of the subject type used by this configuration.
 	SubjectTypeId *string `json:"subject_type_id,omitempty"`
-	// RFC3339 update time. Preserve all fractional seconds when passing this value as expected_updated_at.
+	// RFC3339 update time. Preserve all fractional seconds when passing this value as
+	// `expected_updated_at`.
 	UpdatedAt string `json:"updated_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -37,8 +40,9 @@ type ExperimentsPublicProtocolListResponseDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsPublicProtocolListResponseDataAttributes(name string, status ExperimentsPublicProtocolResponseDataAttributesStatus, updatedAt string) *ExperimentsPublicProtocolListResponseDataAttributes {
+func NewExperimentsPublicProtocolListResponseDataAttributes(experimentCount int64, name string, status ExperimentsPublicProtocolResponseDataAttributesStatus, updatedAt string) *ExperimentsPublicProtocolListResponseDataAttributes {
 	this := ExperimentsPublicProtocolListResponseDataAttributes{}
+	this.ExperimentCount = experimentCount
 	this.Name = name
 	this.Status = status
 	this.UpdatedAt = updatedAt
@@ -79,6 +83,29 @@ func (o *ExperimentsPublicProtocolListResponseDataAttributes) HasDescription() b
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ExperimentsPublicProtocolListResponseDataAttributes) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetExperimentCount returns the ExperimentCount field value.
+func (o *ExperimentsPublicProtocolListResponseDataAttributes) GetExperimentCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+	return o.ExperimentCount
+}
+
+// GetExperimentCountOk returns a tuple with the ExperimentCount field value
+// and a boolean to check if the value has been set.
+func (o *ExperimentsPublicProtocolListResponseDataAttributes) GetExperimentCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExperimentCount, true
+}
+
+// SetExperimentCount sets field value.
+func (o *ExperimentsPublicProtocolListResponseDataAttributes) SetExperimentCount(v int64) {
+	o.ExperimentCount = v
 }
 
 // GetName returns the Name field value.
@@ -271,6 +298,7 @@ func (o ExperimentsPublicProtocolListResponseDataAttributes) MarshalJSON() ([]by
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	toSerialize["experiment_count"] = o.ExperimentCount
 	toSerialize["name"] = o.Name
 	if o.PrimaryMetric != nil {
 		toSerialize["primary_metric"] = o.PrimaryMetric
@@ -297,6 +325,7 @@ func (o ExperimentsPublicProtocolListResponseDataAttributes) MarshalJSON() ([]by
 func (o *ExperimentsPublicProtocolListResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description     *string                                                     `json:"description,omitempty"`
+		ExperimentCount *int64                                                      `json:"experiment_count"`
 		Name            *string                                                     `json:"name"`
 		PrimaryMetric   *ExperimentsPublicProtocolResponseDataAttributesSubjectType `json:"primary_metric,omitempty"`
 		PrimaryMetricId *string                                                     `json:"primary_metric_id,omitempty"`
@@ -307,6 +336,9 @@ func (o *ExperimentsPublicProtocolListResponseDataAttributes) UnmarshalJSON(byte
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.ExperimentCount == nil {
+		return fmt.Errorf("required field experiment_count missing")
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -319,13 +351,14 @@ func (o *ExperimentsPublicProtocolListResponseDataAttributes) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "primary_metric", "primary_metric_id", "status", "subject_type", "subject_type_id", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "experiment_count", "name", "primary_metric", "primary_metric_id", "status", "subject_type", "subject_type_id", "updated_at"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Description = all.Description
+	o.ExperimentCount = *all.ExperimentCount
 	o.Name = *all.Name
 	if all.PrimaryMetric != nil && all.PrimaryMetric.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
