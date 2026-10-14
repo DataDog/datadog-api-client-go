@@ -15,7 +15,7 @@ type ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems st
 	// Exposure field that identifies the property.
 	ColumnName string `json:"column_name"`
 	// Data type of the column evaluated by the entry-point filter.
-	ColumnType *ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType `json:"column_type,omitempty"`
+	ColumnType *ExperimentsDatadogEntryPointFilterColumnType `json:"column_type,omitempty"`
 	// Optional display name. Defaults to column_name for a new property.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -65,9 +65,9 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItem
 }
 
 // GetColumnType returns the ColumnType field value if set, zero value otherwise.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) GetColumnType() ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType {
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) GetColumnType() ExperimentsDatadogEntryPointFilterColumnType {
 	if o == nil || o.ColumnType == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType
+		var ret ExperimentsDatadogEntryPointFilterColumnType
 		return ret
 	}
 	return *o.ColumnType
@@ -75,7 +75,7 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItem
 
 // GetColumnTypeOk returns a tuple with the ColumnType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) GetColumnTypeOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType, bool) {
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) GetColumnTypeOk() (*ExperimentsDatadogEntryPointFilterColumnType, bool) {
 	if o == nil || o.ColumnType == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItem
 	return o != nil && o.ColumnType != nil
 }
 
-// SetColumnType gets a reference to the given ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType and assigns it to the ColumnType field.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) SetColumnType(v ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType) {
+// SetColumnType gets a reference to the given ExperimentsDatadogEntryPointFilterColumnType and assigns it to the ColumnType field.
+func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) SetColumnType(v ExperimentsDatadogEntryPointFilterColumnType) {
 	o.ColumnType = &v
 }
 
@@ -143,9 +143,9 @@ func (o ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsCreateExperimentV2RequestDataAttributesSplitByPropertiesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ColumnName *string                                                                                                          `json:"column_name"`
-		ColumnType *ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType `json:"column_type,omitempty"`
-		Name       *string                                                                                                          `json:"name,omitempty"`
+		ColumnName *string                                       `json:"column_name"`
+		ColumnType *ExperimentsDatadogEntryPointFilterColumnType `json:"column_type,omitempty"`
+		Name       *string                                       `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

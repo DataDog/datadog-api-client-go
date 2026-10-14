@@ -13,7 +13,7 @@ import (
 // ExperimentsWarehouseExposureFilter A comparison that selects warehouse exposure data by a property.
 type ExperimentsWarehouseExposureFilter struct {
 	// Comparison applied by the warehouse entry-point filter.
-	Operation ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation `json:"operation"`
+	Operation ExperimentsWarehouseEntryPointFilterOperation `json:"operation"`
 	// Warehouse property UUID.
 	PropertyId string `json:"property_id"`
 	// Ordered values used by the filter.
@@ -27,7 +27,7 @@ type ExperimentsWarehouseExposureFilter struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsWarehouseExposureFilter(operation ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation, propertyId string, values []string) *ExperimentsWarehouseExposureFilter {
+func NewExperimentsWarehouseExposureFilter(operation ExperimentsWarehouseEntryPointFilterOperation, propertyId string, values []string) *ExperimentsWarehouseExposureFilter {
 	this := ExperimentsWarehouseExposureFilter{}
 	this.Operation = operation
 	this.PropertyId = propertyId
@@ -44,9 +44,9 @@ func NewExperimentsWarehouseExposureFilterWithDefaults() *ExperimentsWarehouseEx
 }
 
 // GetOperation returns the Operation field value.
-func (o *ExperimentsWarehouseExposureFilter) GetOperation() ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation {
+func (o *ExperimentsWarehouseExposureFilter) GetOperation() ExperimentsWarehouseEntryPointFilterOperation {
 	if o == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation
+		var ret ExperimentsWarehouseEntryPointFilterOperation
 		return ret
 	}
 	return o.Operation
@@ -54,7 +54,7 @@ func (o *ExperimentsWarehouseExposureFilter) GetOperation() ExperimentsPatchExpe
 
 // GetOperationOk returns a tuple with the Operation field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsWarehouseExposureFilter) GetOperationOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation, bool) {
+func (o *ExperimentsWarehouseExposureFilter) GetOperationOk() (*ExperimentsWarehouseEntryPointFilterOperation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *ExperimentsWarehouseExposureFilter) GetOperationOk() (*ExperimentsPatch
 }
 
 // SetOperation sets field value.
-func (o *ExperimentsWarehouseExposureFilter) SetOperation(v ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation) {
+func (o *ExperimentsWarehouseExposureFilter) SetOperation(v ExperimentsWarehouseEntryPointFilterOperation) {
 	o.Operation = v
 }
 
@@ -131,9 +131,9 @@ func (o ExperimentsWarehouseExposureFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsWarehouseExposureFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operation  *ExperimentsPatchExperimentV2ResponseDataAttributesWarehouseExposureConfigurationEntryPointFiltersItemsOperation `json:"operation"`
-		PropertyId *string                                                                                                          `json:"property_id"`
-		Values     *[]string                                                                                                        `json:"values"`
+		Operation  *ExperimentsWarehouseEntryPointFilterOperation `json:"operation"`
+		PropertyId *string                                        `json:"property_id"`
+		Values     *[]string                                      `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

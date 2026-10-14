@@ -12,8 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure Reference to a measure defined in a warehouse metric SQL model.
-type ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure struct {
+// ExperimentsWarehouseMetricMeasure Reference to a measure defined in a warehouse metric SQL model.
+type ExperimentsWarehouseMetricMeasure struct {
 	// Identifier of the warehouse metric measure.
 	Id uuid.UUID `json:"id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,26 +21,26 @@ type ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehous
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure instantiates a new ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure object.
+// NewExperimentsWarehouseMetricMeasure instantiates a new ExperimentsWarehouseMetricMeasure object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure(id uuid.UUID) *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure {
-	this := ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure{}
+func NewExperimentsWarehouseMetricMeasure(id uuid.UUID) *ExperimentsWarehouseMetricMeasure {
+	this := ExperimentsWarehouseMetricMeasure{}
 	this.Id = id
 	return &this
 }
 
-// NewExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasureWithDefaults instantiates a new ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure object.
+// NewExperimentsWarehouseMetricMeasureWithDefaults instantiates a new ExperimentsWarehouseMetricMeasure object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasureWithDefaults() *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure {
-	this := ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure{}
+func NewExperimentsWarehouseMetricMeasureWithDefaults() *ExperimentsWarehouseMetricMeasure {
+	this := ExperimentsWarehouseMetricMeasure{}
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) GetId() uuid.UUID {
+func (o *ExperimentsWarehouseMetricMeasure) GetId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -50,7 +50,7 @@ func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWare
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) GetIdOk() (*uuid.UUID, bool) {
+func (o *ExperimentsWarehouseMetricMeasure) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,12 +58,12 @@ func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWare
 }
 
 // SetId sets field value.
-func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) SetId(v uuid.UUID) {
+func (o *ExperimentsWarehouseMetricMeasure) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) MarshalJSON() ([]byte, error) {
+func (o ExperimentsWarehouseMetricMeasure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -77,7 +77,7 @@ func (o ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWareh
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ExperimentsCreateMetricV2RequestDataAttributesPercentileAggregationWarehouseMetricMeasure) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ExperimentsWarehouseMetricMeasure) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Id *uuid.UUID `json:"id"`
 	}{}

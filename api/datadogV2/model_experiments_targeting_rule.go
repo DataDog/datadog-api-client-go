@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems Use an empty array when no targeting rules apply.
-type ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems struct {
+// ExperimentsTargetingRule Use an empty array when no targeting rules apply.
+type ExperimentsTargetingRule struct {
 	// Conditions that must all match for this rule. Each condition must use exactly one shape: saved_filter_id alone or operator plus attribute plus value.
 	Conditions []ExperimentsTargetingRuleCondition `json:"conditions"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,26 +19,26 @@ type ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationT
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems instantiates a new ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems object.
+// NewExperimentsTargetingRule instantiates a new ExperimentsTargetingRule object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems(conditions []ExperimentsTargetingRuleCondition) *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems {
-	this := ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems{}
+func NewExperimentsTargetingRule(conditions []ExperimentsTargetingRuleCondition) *ExperimentsTargetingRule {
+	this := ExperimentsTargetingRule{}
 	this.Conditions = conditions
 	return &this
 }
 
-// NewExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItemsWithDefaults instantiates a new ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems object.
+// NewExperimentsTargetingRuleWithDefaults instantiates a new ExperimentsTargetingRule object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItemsWithDefaults() *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems {
-	this := ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems{}
+func NewExperimentsTargetingRuleWithDefaults() *ExperimentsTargetingRule {
+	this := ExperimentsTargetingRule{}
 	return &this
 }
 
 // GetConditions returns the Conditions field value.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) GetConditions() []ExperimentsTargetingRuleCondition {
+func (o *ExperimentsTargetingRule) GetConditions() []ExperimentsTargetingRuleCondition {
 	if o == nil {
 		var ret []ExperimentsTargetingRuleCondition
 		return ret
@@ -48,7 +48,7 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurat
 
 // GetConditionsOk returns a tuple with the Conditions field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) GetConditionsOk() (*[]ExperimentsTargetingRuleCondition, bool) {
+func (o *ExperimentsTargetingRule) GetConditionsOk() (*[]ExperimentsTargetingRuleCondition, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurat
 }
 
 // SetConditions sets field value.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) SetConditions(v []ExperimentsTargetingRuleCondition) {
+func (o *ExperimentsTargetingRule) SetConditions(v []ExperimentsTargetingRuleCondition) {
 	o.Conditions = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) MarshalJSON() ([]byte, error) {
+func (o ExperimentsTargetingRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,7 +75,7 @@ func (o ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurati
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ExperimentsCreateExperimentV2RequestDataAttributesDatadogFlagConfigurationTargetingRulesItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ExperimentsTargetingRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Conditions *[]ExperimentsTargetingRuleCondition `json:"conditions"`
 	}{}

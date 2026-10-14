@@ -15,9 +15,9 @@ type ExperimentsDatadogEntryPointFilter struct {
 	// Exposure field evaluated by the entry-point filter.
 	Column string `json:"column"`
 	// Data type of the column evaluated by the entry-point filter.
-	ColumnType ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType `json:"column_type"`
+	ColumnType ExperimentsDatadogEntryPointFilterColumnType `json:"column_type"`
 	// Comparison applied by the Datadog entry-point filter.
-	Operation ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation `json:"operation"`
+	Operation ExperimentsDatadogEntryPointFilterOperation `json:"operation"`
 	// Comparison values used by the filter operation.
 	Values []string `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -29,7 +29,7 @@ type ExperimentsDatadogEntryPointFilter struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsDatadogEntryPointFilter(column string, columnType ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType, operation ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation, values []string) *ExperimentsDatadogEntryPointFilter {
+func NewExperimentsDatadogEntryPointFilter(column string, columnType ExperimentsDatadogEntryPointFilterColumnType, operation ExperimentsDatadogEntryPointFilterOperation, values []string) *ExperimentsDatadogEntryPointFilter {
 	this := ExperimentsDatadogEntryPointFilter{}
 	this.Column = column
 	this.ColumnType = columnType
@@ -70,9 +70,9 @@ func (o *ExperimentsDatadogEntryPointFilter) SetColumn(v string) {
 }
 
 // GetColumnType returns the ColumnType field value.
-func (o *ExperimentsDatadogEntryPointFilter) GetColumnType() ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType {
+func (o *ExperimentsDatadogEntryPointFilter) GetColumnType() ExperimentsDatadogEntryPointFilterColumnType {
 	if o == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType
+		var ret ExperimentsDatadogEntryPointFilterColumnType
 		return ret
 	}
 	return o.ColumnType
@@ -80,7 +80,7 @@ func (o *ExperimentsDatadogEntryPointFilter) GetColumnType() ExperimentsPatchExp
 
 // GetColumnTypeOk returns a tuple with the ColumnType field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsDatadogEntryPointFilter) GetColumnTypeOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType, bool) {
+func (o *ExperimentsDatadogEntryPointFilter) GetColumnTypeOk() (*ExperimentsDatadogEntryPointFilterColumnType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,14 +88,14 @@ func (o *ExperimentsDatadogEntryPointFilter) GetColumnTypeOk() (*ExperimentsPatc
 }
 
 // SetColumnType sets field value.
-func (o *ExperimentsDatadogEntryPointFilter) SetColumnType(v ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType) {
+func (o *ExperimentsDatadogEntryPointFilter) SetColumnType(v ExperimentsDatadogEntryPointFilterColumnType) {
 	o.ColumnType = v
 }
 
 // GetOperation returns the Operation field value.
-func (o *ExperimentsDatadogEntryPointFilter) GetOperation() ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation {
+func (o *ExperimentsDatadogEntryPointFilter) GetOperation() ExperimentsDatadogEntryPointFilterOperation {
 	if o == nil {
-		var ret ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation
+		var ret ExperimentsDatadogEntryPointFilterOperation
 		return ret
 	}
 	return o.Operation
@@ -103,7 +103,7 @@ func (o *ExperimentsDatadogEntryPointFilter) GetOperation() ExperimentsPatchExpe
 
 // GetOperationOk returns a tuple with the Operation field value
 // and a boolean to check if the value has been set.
-func (o *ExperimentsDatadogEntryPointFilter) GetOperationOk() (*ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation, bool) {
+func (o *ExperimentsDatadogEntryPointFilter) GetOperationOk() (*ExperimentsDatadogEntryPointFilterOperation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,7 +111,7 @@ func (o *ExperimentsDatadogEntryPointFilter) GetOperationOk() (*ExperimentsPatch
 }
 
 // SetOperation sets field value.
-func (o *ExperimentsDatadogEntryPointFilter) SetOperation(v ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation) {
+func (o *ExperimentsDatadogEntryPointFilter) SetOperation(v ExperimentsDatadogEntryPointFilterOperation) {
 	o.Operation = v
 }
 
@@ -158,10 +158,10 @@ func (o ExperimentsDatadogEntryPointFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsDatadogEntryPointFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Column     *string                                                                                                          `json:"column"`
-		ColumnType *ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsColumnType `json:"column_type"`
-		Operation  *ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPointFiltersItemsItemsOperation  `json:"operation"`
-		Values     *[]string                                                                                                        `json:"values"`
+		Column     *string                                       `json:"column"`
+		ColumnType *ExperimentsDatadogEntryPointFilterColumnType `json:"column_type"`
+		Operation  *ExperimentsDatadogEntryPointFilterOperation  `json:"operation"`
+		Values     *[]string                                     `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
