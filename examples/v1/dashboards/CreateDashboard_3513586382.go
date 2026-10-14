@@ -53,10 +53,6 @@ func main() {
 										Field: "classic",
 										Width: datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
 									},
-									{
-										Field: "",
-										Width: datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
-									},
 								},
 							},
 						},
