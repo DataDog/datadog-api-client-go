@@ -610,6 +610,7 @@
 //   - [FeatureFlagsApi.EnableFeatureFlagEnvironment]
 //   - [FeatureFlagsApi.GetFeatureFlag]
 //   - [FeatureFlagsApi.GetFeatureFlagsEnvironment]
+//   - [FeatureFlagsApi.GetSavedFilter]
 //   - [FeatureFlagsApi.ListFeatureFlags]
 //   - [FeatureFlagsApi.ListFeatureFlagsEnvironments]
 //   - [FeatureFlagsApi.PauseExposureSchedule]
