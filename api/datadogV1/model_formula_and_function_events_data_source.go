@@ -15,27 +15,29 @@ type FormulaAndFunctionEventsDataSource string
 
 // List of FormulaAndFunctionEventsDataSource.
 const (
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS               FormulaAndFunctionEventsDataSource = "logs"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS              FormulaAndFunctionEventsDataSource = "spans"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK            FormulaAndFunctionEventsDataSource = "network"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM                FormulaAndFunctionEventsDataSource = "rum"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_SECURITY_SIGNALS   FormulaAndFunctionEventsDataSource = "security_signals"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES           FormulaAndFunctionEventsDataSource = "profiles"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT              FormulaAndFunctionEventsDataSource = "audit"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS             FormulaAndFunctionEventsDataSource = "events"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS           FormulaAndFunctionEventsDataSource = "ci_tests"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES       FormulaAndFunctionEventsDataSource = "ci_pipelines"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_INCIDENT_ANALYTICS FormulaAndFunctionEventsDataSource = "incident_analytics"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_PRODUCT_ANALYTICS  FormulaAndFunctionEventsDataSource = "product_analytics"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_ON_CALL_EVENTS     FormulaAndFunctionEventsDataSource = "on_call_events"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_ERRORS             FormulaAndFunctionEventsDataSource = "errors"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_LLM_OBSERVABILITY  FormulaAndFunctionEventsDataSource = "llm_observability"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS                 FormulaAndFunctionEventsDataSource = "logs"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS                FormulaAndFunctionEventsDataSource = "spans"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK              FormulaAndFunctionEventsDataSource = "network"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK_DEVICE_FLOWS FormulaAndFunctionEventsDataSource = "network_device_flows"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM                  FormulaAndFunctionEventsDataSource = "rum"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_SECURITY_SIGNALS     FormulaAndFunctionEventsDataSource = "security_signals"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES             FormulaAndFunctionEventsDataSource = "profiles"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT                FormulaAndFunctionEventsDataSource = "audit"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS               FormulaAndFunctionEventsDataSource = "events"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS             FormulaAndFunctionEventsDataSource = "ci_tests"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES         FormulaAndFunctionEventsDataSource = "ci_pipelines"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_INCIDENT_ANALYTICS   FormulaAndFunctionEventsDataSource = "incident_analytics"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_PRODUCT_ANALYTICS    FormulaAndFunctionEventsDataSource = "product_analytics"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_ON_CALL_EVENTS       FormulaAndFunctionEventsDataSource = "on_call_events"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_ERRORS               FormulaAndFunctionEventsDataSource = "errors"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_LLM_OBSERVABILITY    FormulaAndFunctionEventsDataSource = "llm_observability"
 )
 
 var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEventsDataSource{
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK,
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK_DEVICE_FLOWS,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_SECURITY_SIGNALS,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES,
