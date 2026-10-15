@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamHierarchyMemberUserRelationship Linkage to the user.
-type TeamHierarchyMemberUserRelationship struct {
-	// User resource identifier.
-	Data TeamHierarchyMemberUserData `json:"data"`
+// LLMObsPatternsTemplatesResponse Response containing a list of Agent Observability patterns templates.
+type LLMObsPatternsTemplatesResponse struct {
+	// Data object of a list of Agent Observability patterns templates.
+	Data LLMObsPatternsTemplatesResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamHierarchyMemberUserRelationship instantiates a new TeamHierarchyMemberUserRelationship object.
+// NewLLMObsPatternsTemplatesResponse instantiates a new LLMObsPatternsTemplatesResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamHierarchyMemberUserRelationship(data TeamHierarchyMemberUserData) *TeamHierarchyMemberUserRelationship {
-	this := TeamHierarchyMemberUserRelationship{}
+func NewLLMObsPatternsTemplatesResponse(data LLMObsPatternsTemplatesResponseData) *LLMObsPatternsTemplatesResponse {
+	this := LLMObsPatternsTemplatesResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewTeamHierarchyMemberUserRelationshipWithDefaults instantiates a new TeamHierarchyMemberUserRelationship object.
+// NewLLMObsPatternsTemplatesResponseWithDefaults instantiates a new LLMObsPatternsTemplatesResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamHierarchyMemberUserRelationshipWithDefaults() *TeamHierarchyMemberUserRelationship {
-	this := TeamHierarchyMemberUserRelationship{}
+func NewLLMObsPatternsTemplatesResponseWithDefaults() *LLMObsPatternsTemplatesResponse {
+	this := LLMObsPatternsTemplatesResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *TeamHierarchyMemberUserRelationship) GetData() TeamHierarchyMemberUserData {
+func (o *LLMObsPatternsTemplatesResponse) GetData() LLMObsPatternsTemplatesResponseData {
 	if o == nil {
-		var ret TeamHierarchyMemberUserData
+		var ret LLMObsPatternsTemplatesResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *TeamHierarchyMemberUserRelationship) GetData() TeamHierarchyMemberUserD
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TeamHierarchyMemberUserRelationship) GetDataOk() (*TeamHierarchyMemberUserData, bool) {
+func (o *LLMObsPatternsTemplatesResponse) GetDataOk() (*LLMObsPatternsTemplatesResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *TeamHierarchyMemberUserRelationship) GetDataOk() (*TeamHierarchyMemberU
 }
 
 // SetData sets field value.
-func (o *TeamHierarchyMemberUserRelationship) SetData(v TeamHierarchyMemberUserData) {
+func (o *LLMObsPatternsTemplatesResponse) SetData(v LLMObsPatternsTemplatesResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamHierarchyMemberUserRelationship) MarshalJSON() ([]byte, error) {
+func (o LLMObsPatternsTemplatesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o TeamHierarchyMemberUserRelationship) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamHierarchyMemberUserRelationship) UnmarshalJSON(bytes []byte) (err error) {
+func (o *LLMObsPatternsTemplatesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TeamHierarchyMemberUserData `json:"data"`
+		Data *LLMObsPatternsTemplatesResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
