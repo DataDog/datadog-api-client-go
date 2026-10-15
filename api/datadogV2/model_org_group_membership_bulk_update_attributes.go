@@ -12,7 +12,7 @@ import (
 
 // OrgGroupMembershipBulkUpdateAttributes Attributes for bulk updating org group memberships.
 type OrgGroupMembershipBulkUpdateAttributes struct {
-	// List of organizations to move. Maximum 100 per request.
+	// List of organizations to move. Each request must include between 1 and 100 organizations. Each `org_uuid` and `org_site` pair must be unique.
 	Orgs []GlobalOrgIdentifier `json:"orgs"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
