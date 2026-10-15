@@ -14,8 +14,10 @@ type OutcomesResponse struct {
 	Data []OutcomesResponseDataItem `json:"data,omitempty"`
 	// Array of rule details.
 	Included []OutcomesResponseIncludedItem `json:"included,omitempty"`
-	// Links attributes.
+	// Pagination links for rule outcomes.
 	Links *OutcomesResponseLinks `json:"links,omitempty"`
+	// Pagination metadata.
+	Meta *PaginatedResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -122,6 +124,34 @@ func (o *OutcomesResponse) SetLinks(v OutcomesResponseLinks) {
 	o.Links = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *OutcomesResponse) GetMeta() PaginatedResponseMeta {
+	if o == nil || o.Meta == nil {
+		var ret PaginatedResponseMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutcomesResponse) GetMetaOk() (*PaginatedResponseMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *OutcomesResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given PaginatedResponseMeta and assigns it to the Meta field.
+func (o *OutcomesResponse) SetMeta(v PaginatedResponseMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,6 +167,9 @@ func (o OutcomesResponse) MarshalJSON() ([]byte, error) {
 	if o.Links != nil {
 		toSerialize["links"] = o.Links
 	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -150,13 +183,14 @@ func (o *OutcomesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data     []OutcomesResponseDataItem     `json:"data,omitempty"`
 		Included []OutcomesResponseIncludedItem `json:"included,omitempty"`
 		Links    *OutcomesResponseLinks         `json:"links,omitempty"`
+		Meta     *PaginatedResponseMeta         `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
 	} else {
 		return err
 	}
@@ -168,6 +202,10 @@ func (o *OutcomesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

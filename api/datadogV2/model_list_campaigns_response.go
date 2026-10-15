@@ -14,7 +14,7 @@ import (
 type ListCampaignsResponse struct {
 	// Array of campaigns.
 	Data []CampaignResponseData `json:"data"`
-	// Metadata for scores response.
+	// Pagination metadata.
 	Meta PaginatedResponseMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewScorecardsApi(apiClient)
-	resp, r, err := api.ListScorecardOutcomes(ctx, *datadogV2.NewListScorecardOutcomesOptionalParameters())
+	resp, r, err := api.ListScorecardOutcomes(ctx, *datadogV2.NewListScorecardOutcomesOptionalParameters().WithFilterRuleId("00000000-0000-0000-0000-000000000000"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.ListScorecardOutcomes`: %v\n", err)

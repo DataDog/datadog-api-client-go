@@ -1577,7 +1577,6 @@
 //   - [TeamsApi.DeleteTeamNotificationRule]
 //   - [TeamsApi.GetTeam]
 //   - [TeamsApi.GetTeamHierarchyLink]
-//   - [TeamsApi.GetTeamHierarchyMembers]
 //   - [TeamsApi.GetTeamLink]
 //   - [TeamsApi.GetTeamLinks]
 //   - [TeamsApi.GetTeamMemberships]
