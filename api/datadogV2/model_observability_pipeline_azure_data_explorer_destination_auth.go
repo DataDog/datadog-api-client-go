@@ -10,12 +10,12 @@ import (
 
 // ObservabilityPipelineAzureDataExplorerDestinationAuth - Authentication configuration for Azure Data Explorer. The `azure_credential_kind` field selects the credential type.
 type ObservabilityPipelineAzureDataExplorerDestinationAuth struct {
-	ObservabilityPipelineAzureDataExplorerDestinationAuthAzureCli                       *ObservabilityPipelineAzureDataExplorerDestinationAuthAzureCli
-	ObservabilityPipelineAzureDataExplorerDestinationAuthClientSecret                   *ObservabilityPipelineAzureDataExplorerDestinationAuthClientSecret
-	ObservabilityPipelineAzureDataExplorerDestinationAuthClientCertificate              *ObservabilityPipelineAzureDataExplorerDestinationAuthClientCertificate
-	ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity                *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity
-	ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion
-	ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity               *ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity
+	ObservabilityPipelineAzureDataExplorerDestinationAuthAzureCli          *ObservabilityPipelineAzureDataExplorerDestinationAuthAzureCli
+	ObservabilityPipelineAzureDataExplorerDestinationAuthClientSecret      *ObservabilityPipelineAzureDataExplorerDestinationAuthClientSecret
+	ObservabilityPipelineAzureDataExplorerDestinationAuthClientCertificate *ObservabilityPipelineAzureDataExplorerDestinationAuthClientCertificate
+	ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity   *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity
+	ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion   *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion
+	ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity  *ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -41,9 +41,9 @@ func ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityAsObser
 	return ObservabilityPipelineAzureDataExplorerDestinationAuth{ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity: v}
 }
 
-// ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionAsObservabilityPipelineAzureDataExplorerDestinationAuth is a convenience function that returns ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion wrapped in ObservabilityPipelineAzureDataExplorerDestinationAuth.
-func ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertionAsObservabilityPipelineAzureDataExplorerDestinationAuth(v *ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) ObservabilityPipelineAzureDataExplorerDestinationAuth {
-	return ObservabilityPipelineAzureDataExplorerDestinationAuth{ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion: v}
+// ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionAsObservabilityPipelineAzureDataExplorerDestinationAuth is a convenience function that returns ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion wrapped in ObservabilityPipelineAzureDataExplorerDestinationAuth.
+func ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertionAsObservabilityPipelineAzureDataExplorerDestinationAuth(v *ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) ObservabilityPipelineAzureDataExplorerDestinationAuth {
+	return ObservabilityPipelineAzureDataExplorerDestinationAuth{ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion: v}
 }
 
 // ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentityAsObservabilityPipelineAzureDataExplorerDestinationAuth is a convenience function that returns ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity wrapped in ObservabilityPipelineAzureDataExplorerDestinationAuth.
@@ -123,21 +123,21 @@ func (obj *ObservabilityPipelineAzureDataExplorerDestinationAuth) UnmarshalJSON(
 		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity = nil
 	}
 
-	// try to unmarshal data into ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion
-	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion)
+	// try to unmarshal data into ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion)
 	if err == nil {
-		if obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion != nil && obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion.UnparsedObject == nil {
-			jsonObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion, _ := datadog.Marshal(obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion)
-			if string(jsonObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion) == "{}" { // empty struct
-				obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion = nil
+		if obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion != nil && obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion.UnparsedObject == nil {
+			jsonObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion, _ := datadog.Marshal(obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion)
+			if string(jsonObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion) == "{}" { // empty struct
+				obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion = nil
+			obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion = nil
 		}
 	} else {
-		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion = nil
+		obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity
@@ -163,7 +163,7 @@ func (obj *ObservabilityPipelineAzureDataExplorerDestinationAuth) UnmarshalJSON(
 		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthClientSecret = nil
 		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthClientCertificate = nil
 		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity = nil
-		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion = nil
+		obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion = nil
 		obj.ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -188,8 +188,8 @@ func (obj ObservabilityPipelineAzureDataExplorerDestinationAuth) MarshalJSON() (
 		return datadog.Marshal(&obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity)
 	}
 
-	if obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion != nil {
-		return datadog.Marshal(&obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion)
+	if obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion)
 	}
 
 	if obj.ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity != nil {
@@ -220,8 +220,8 @@ func (obj *ObservabilityPipelineAzureDataExplorerDestinationAuth) GetActualInsta
 		return obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentity
 	}
 
-	if obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion != nil {
-		return obj.ObservabilityPipelineAzureDataExplorerDestinationAuthManagedIdentityClientAssertion
+	if obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion != nil {
+		return obj.ObservabilityPipelineAzureDataExplorerManagedIdentityClientAssertion
 	}
 
 	if obj.ObservabilityPipelineAzureDataExplorerDestinationAuthWorkloadIdentity != nil {
