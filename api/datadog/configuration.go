@@ -1481,6 +1481,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateAiCustomRuleset":                                  false,
 			"v2.UpdateCustomRuleset":                                    false,
 			"v2.AddMemberTeam":                                          false,
+			"v2.GetTeamHierarchyMembers":                                false,
 			"v2.ListMemberTeams":                                        false,
 			"v2.RemoveMemberTeam":                                       false,
 			"v2.CreateTimeseriesAnomalyInvestigation":                   false,
