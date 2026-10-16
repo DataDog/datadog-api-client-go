@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PaginatedResponseMeta Metadata for scores response.
+// PaginatedResponseMeta Pagination metadata.
 type PaginatedResponseMeta struct {
-	// Number of entities in this response.
+	// Number of results in this response.
 	Count int64 `json:"count"`
 	// Pagination limit.
 	Limit int64 `json:"limit"`
 	// Pagination offset.
 	Offset int64 `json:"offset"`
-	// Total number of entities available.
+	// Total number of results matching the filters.
 	Total int64 `json:"total"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
