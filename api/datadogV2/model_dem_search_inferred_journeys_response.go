@@ -13,7 +13,7 @@ import (
 // DemSearchInferredJourneysResponse Response body for searching inferred journeys. Contains either candidate or ignored items depending on the `status` query parameter.
 type DemSearchInferredJourneysResponse struct {
 	// List of inferred journey items matching the search criteria.
-	Data []DemSearchInferredJourneysResponseDataItem `json:"data"`
+	Data []DemInferredJourneyItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type DemSearchInferredJourneysResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDemSearchInferredJourneysResponse(data []DemSearchInferredJourneysResponseDataItem) *DemSearchInferredJourneysResponse {
+func NewDemSearchInferredJourneysResponse(data []DemInferredJourneyItem) *DemSearchInferredJourneysResponse {
 	this := DemSearchInferredJourneysResponse{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewDemSearchInferredJourneysResponseWithDefaults() *DemSearchInferredJourne
 }
 
 // GetData returns the Data field value.
-func (o *DemSearchInferredJourneysResponse) GetData() []DemSearchInferredJourneysResponseDataItem {
+func (o *DemSearchInferredJourneysResponse) GetData() []DemInferredJourneyItem {
 	if o == nil {
-		var ret []DemSearchInferredJourneysResponseDataItem
+		var ret []DemInferredJourneyItem
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DemSearchInferredJourneysResponse) GetData() []DemSearchInferredJourney
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DemSearchInferredJourneysResponse) GetDataOk() (*[]DemSearchInferredJourneysResponseDataItem, bool) {
+func (o *DemSearchInferredJourneysResponse) GetDataOk() (*[]DemInferredJourneyItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *DemSearchInferredJourneysResponse) GetDataOk() (*[]DemSearchInferredJou
 }
 
 // SetData sets field value.
-func (o *DemSearchInferredJourneysResponse) SetData(v []DemSearchInferredJourneysResponseDataItem) {
+func (o *DemSearchInferredJourneysResponse) SetData(v []DemInferredJourneyItem) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o DemSearchInferredJourneysResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DemSearchInferredJourneysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]DemSearchInferredJourneysResponseDataItem `json:"data"`
+		Data *[]DemInferredJourneyItem `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

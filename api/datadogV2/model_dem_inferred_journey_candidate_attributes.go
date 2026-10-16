@@ -32,8 +32,7 @@ type DemInferredJourneyCandidateAttributes struct {
 	// List of variants associated with a DEM journey.
 	Variants []DemVariant `json:"variants"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewDemInferredJourneyCandidateAttributes instantiates a new DemInferredJourneyCandidateAttributes object.
@@ -328,10 +327,6 @@ func (o DemInferredJourneyCandidateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["test_suite"] = o.TestSuite
 	}
 	toSerialize["variants"] = o.Variants
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -369,12 +364,6 @@ func (o *DemInferredJourneyCandidateAttributes) UnmarshalJSON(bytes []byte) (err
 	if all.Variants == nil {
 		return fmt.Errorf("required field variants missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "description", "journey_rum", "name", "org_id", "rank", "tags", "test_suite", "variants"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.CreatedAt = *all.CreatedAt
@@ -392,10 +381,6 @@ func (o *DemInferredJourneyCandidateAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	o.TestSuite = all.TestSuite
 	o.Variants = *all.Variants
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
