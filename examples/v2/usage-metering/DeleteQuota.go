@@ -18,7 +18,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.DeleteQuota", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	r, err := api.DeleteQuota(ctx, "ai_credits", "MjAfYWlfY3JlZGl0c1911c2VyX2hhbmRsZTpfX0FMTF9f")
+	r, err := api.DeleteQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.DeleteQuota`: %v\n", err)

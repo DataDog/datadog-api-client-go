@@ -12,7 +12,7 @@ import (
 
 // UsageQuotaBulkResultData The result of writing one usage quota in a bulk create-or-update request.
 type UsageQuotaBulkResultData struct {
-	// Attributes of a usage quota bulk write result. On success, all fields except `error` are present. On failure, only `error` is present and the other fields are omitted.
+	// Attributes of a usage quota bulk write result. On success, quota fields are present as applicable, and pending fields are present only when a change is scheduled. On failure, only `error` is present and the other fields are omitted.
 	Attributes UsageQuotaBulkResultAttributes `json:"attributes"`
 	// An opaque usage quota identifier. Clients must pass this value back verbatim in update and delete requests and must not infer any structure from it.
 	Id string `json:"id"`
