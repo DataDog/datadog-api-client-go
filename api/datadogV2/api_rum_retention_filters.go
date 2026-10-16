@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -26,15 +24,6 @@ func (a *RumRetentionFiltersApi) CreateExclusionFilter(ctx _context.Context, app
 		localVarPostBody    interface{}
 		localVarReturnValue RumExclusionFilterResponse
 	)
-
-	operationId := "v2.CreateExclusionFilter"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.CreateExclusionFilter")
 	if err != nil {
@@ -200,15 +189,6 @@ func (a *RumRetentionFiltersApi) DeleteExclusionFilter(ctx _context.Context, app
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteExclusionFilter"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.DeleteExclusionFilter")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -347,15 +327,6 @@ func (a *RumRetentionFiltersApi) GetExclusionFilter(ctx _context.Context, appId 
 		localVarPostBody    interface{}
 		localVarReturnValue RumExclusionFilterResponse
 	)
-
-	operationId := "v2.GetExclusionFilter"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.GetExclusionFilter")
 	if err != nil {
@@ -594,15 +565,6 @@ func (a *RumRetentionFiltersApi) ListExclusionFilters(ctx _context.Context, appI
 		localVarPostBody    interface{}
 		localVarReturnValue RumExclusionFiltersResponse
 	)
-
-	operationId := "v2.ListExclusionFilters"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.ListExclusionFilters")
 	if err != nil {
@@ -924,15 +886,6 @@ func (a *RumRetentionFiltersApi) UpdateExclusionFilter(ctx _context.Context, app
 		localVarPostBody    interface{}
 		localVarReturnValue RumExclusionFilterResponse
 	)
-
-	operationId := "v2.UpdateExclusionFilter"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.UpdateExclusionFilter")
 	if err != nil {
