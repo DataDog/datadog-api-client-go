@@ -18,11 +18,9 @@ func main() {
 		Data: []datadogV2.UsageQuotaCreateData{
 			{
 				Attributes: datadogV2.UsageQuotaCreateAttributes{
-					Enforced: true,
-					Scope: map[string]string{
-						"user_handle": "jane@example.com",
-					},
-					UsageLimit: 100000,
+					Enforced:          datadog.PtrBool(true),
+					PendingUsageLimit: datadog.PtrInt64(100000),
+					UsageLimit:        datadog.PtrInt64(600000),
 				},
 				Type: datadogV2.USAGEQUOTATYPE_QUOTAS,
 			},
