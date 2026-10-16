@@ -1,4 +1,4 @@
-// Get all teams returns "OK" response
+// List all teams returns "OK" response
 
 package main
 
