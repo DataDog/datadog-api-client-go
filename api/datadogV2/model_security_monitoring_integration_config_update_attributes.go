@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -50,68 +48,102 @@ func SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributesAsSecurityMon
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *SecurityMonitoringIntegrationConfigUpdateAttributes) UnmarshalJSON(data []byte) error {
 	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = datadog.Unmarshal(data, &jsonDict)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup.")
-	}
-	// check if the discriminator value is 'CROWDSTRIKE'
-	if jsonDict["integration_type"] == "CROWDSTRIKE" {
-		// try to unmarshal JSON data into SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigUpdateAttributes as SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'ENTRA_ID'
-	if jsonDict["integration_type"] == "ENTRA_ID" {
-		// try to unmarshal JSON data into SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigUpdateAttributes as SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'GOOGLE_WORKSPACE'
-	if jsonDict["integration_type"] == "GOOGLE_WORKSPACE" {
-		// try to unmarshal JSON data into SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes, return on the first match
+	match := 0
+	// try to unmarshal data into SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
 		} else {
 			obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigUpdateAttributes as SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes: %s", err.Error())
 		}
+	} else {
+		obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes = nil
 	}
-	// check if the discriminator value is 'OKTA'
-	if jsonDict["integration_type"] == "OKTA" {
-		// try to unmarshal JSON data into SecurityMonitoringOktaIntegrationConfigUpdateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes, return on the first match
+
+	// try to unmarshal data into SecurityMonitoringOktaIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringOktaIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringOktaIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
 		} else {
 			obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigUpdateAttributes as SecurityMonitoringOktaIntegrationConfigUpdateAttributes: %s", err.Error())
 		}
+	} else {
+		obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes = nil
 	}
-	// check if the discriminator value is 'SENTINELONE'
-	if jsonDict["integration_type"] == "SENTINELONE" {
-		// try to unmarshal JSON data into SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes, return on the first match
+
+	// try to unmarshal data into SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringEntraIdIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringEntraIdIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
+		}
+	} else {
+		obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
+	}
+
+	// try to unmarshal data into SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
+		}
+	} else {
+		obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
+	}
+
+	// try to unmarshal data into SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
 		} else {
 			obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigUpdateAttributes as SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes: %s", err.Error())
 		}
+	} else {
+		obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes = nil
 	}
-	return nil
+
+	if match != 1 { // more than 1 match
+		// reset to nil
+		obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes = nil
+		obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes = nil
+		obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
+		obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
+		obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes = nil
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
+	}
+	return nil // exactly one match
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.

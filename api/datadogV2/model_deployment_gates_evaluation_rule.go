@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -32,35 +30,48 @@ func DeploymentGatesFDDRuleAsDeploymentGatesEvaluationRule(v *DeploymentGatesFDD
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *DeploymentGatesEvaluationRule) UnmarshalJSON(data []byte) error {
 	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = datadog.Unmarshal(data, &jsonDict)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup.")
-	}
-	// check if the discriminator value is 'faulty_deployment_detection'
-	if jsonDict["type"] == "faulty_deployment_detection" {
-		// try to unmarshal JSON data into DeploymentGatesFDDRule
-		err = datadog.Unmarshal(data, &obj.DeploymentGatesFDDRule)
-		if err == nil {
-			return nil // data stored in obj.DeploymentGatesFDDRule, return on the first match
-		} else {
-			obj.DeploymentGatesFDDRule = nil
-			return fmt.Errorf("failed to unmarshal DeploymentGatesEvaluationRule as DeploymentGatesFDDRule: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'monitor'
-	if jsonDict["type"] == "monitor" {
-		// try to unmarshal JSON data into DeploymentGatesMonitorRule
-		err = datadog.Unmarshal(data, &obj.DeploymentGatesMonitorRule)
-		if err == nil {
-			return nil // data stored in obj.DeploymentGatesMonitorRule, return on the first match
+	match := 0
+	// try to unmarshal data into DeploymentGatesMonitorRule
+	err = datadog.Unmarshal(data, &obj.DeploymentGatesMonitorRule)
+	if err == nil {
+		if obj.DeploymentGatesMonitorRule != nil && obj.DeploymentGatesMonitorRule.UnparsedObject == nil {
+			jsonDeploymentGatesMonitorRule, _ := datadog.Marshal(obj.DeploymentGatesMonitorRule)
+			if string(jsonDeploymentGatesMonitorRule) == "{}" { // empty struct
+				obj.DeploymentGatesMonitorRule = nil
+			} else {
+				match++
+			}
 		} else {
 			obj.DeploymentGatesMonitorRule = nil
-			return fmt.Errorf("failed to unmarshal DeploymentGatesEvaluationRule as DeploymentGatesMonitorRule: %s", err.Error())
 		}
+	} else {
+		obj.DeploymentGatesMonitorRule = nil
 	}
-	return nil
+
+	// try to unmarshal data into DeploymentGatesFDDRule
+	err = datadog.Unmarshal(data, &obj.DeploymentGatesFDDRule)
+	if err == nil {
+		if obj.DeploymentGatesFDDRule != nil && obj.DeploymentGatesFDDRule.UnparsedObject == nil {
+			jsonDeploymentGatesFDDRule, _ := datadog.Marshal(obj.DeploymentGatesFDDRule)
+			if string(jsonDeploymentGatesFDDRule) == "{}" { // empty struct
+				obj.DeploymentGatesFDDRule = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DeploymentGatesFDDRule = nil
+		}
+	} else {
+		obj.DeploymentGatesFDDRule = nil
+	}
+
+	if match != 1 { // more than 1 match
+		// reset to nil
+		obj.DeploymentGatesMonitorRule = nil
+		obj.DeploymentGatesFDDRule = nil
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
+	}
+	return nil // exactly one match
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
