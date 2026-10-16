@@ -7,77 +7,69 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamHierarchyMemberTeam The requested team, included at most once. Descendant teams are not included.
-type TeamHierarchyMemberTeam struct {
-	// Available attributes of the requested team.
-	Attributes *TeamHierarchyMemberTeamAttributes `json:"attributes,omitempty"`
-	// UUID of the requested team.
-	Id uuid.UUID `json:"id"`
-	// Requested team resource type.
-	Type TeamHierarchyMemberTeamType `json:"type"`
+// LLMObsPatternsTemplatesResponseData Data object of a list of Agent Observability patterns templates.
+type LLMObsPatternsTemplatesResponseData struct {
+	// Attributes of a list of Agent Observability patterns templates.
+	Attributes LLMObsPatternsTemplatesResponseAttributes `json:"attributes"`
+	// Identifier of the list response.
+	Id string `json:"id"`
+	// Resource type of a list of Agent Observability patterns templates.
+	Type LLMObsPatternsTemplatesListType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamHierarchyMemberTeam instantiates a new TeamHierarchyMemberTeam object.
+// NewLLMObsPatternsTemplatesResponseData instantiates a new LLMObsPatternsTemplatesResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamHierarchyMemberTeam(id uuid.UUID, typeVar TeamHierarchyMemberTeamType) *TeamHierarchyMemberTeam {
-	this := TeamHierarchyMemberTeam{}
+func NewLLMObsPatternsTemplatesResponseData(attributes LLMObsPatternsTemplatesResponseAttributes, id string, typeVar LLMObsPatternsTemplatesListType) *LLMObsPatternsTemplatesResponseData {
+	this := LLMObsPatternsTemplatesResponseData{}
+	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewTeamHierarchyMemberTeamWithDefaults instantiates a new TeamHierarchyMemberTeam object.
+// NewLLMObsPatternsTemplatesResponseDataWithDefaults instantiates a new LLMObsPatternsTemplatesResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamHierarchyMemberTeamWithDefaults() *TeamHierarchyMemberTeam {
-	this := TeamHierarchyMemberTeam{}
-	var typeVar TeamHierarchyMemberTeamType = TEAMHIERARCHYMEMBERTEAMTYPE_TEAMS
-	this.Type = typeVar
+func NewLLMObsPatternsTemplatesResponseDataWithDefaults() *LLMObsPatternsTemplatesResponseData {
+	this := LLMObsPatternsTemplatesResponseData{}
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *TeamHierarchyMemberTeam) GetAttributes() TeamHierarchyMemberTeamAttributes {
-	if o == nil || o.Attributes == nil {
-		var ret TeamHierarchyMemberTeamAttributes
+// GetAttributes returns the Attributes field value.
+func (o *LLMObsPatternsTemplatesResponseData) GetAttributes() LLMObsPatternsTemplatesResponseAttributes {
+	if o == nil {
+		var ret LLMObsPatternsTemplatesResponseAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *TeamHierarchyMemberTeam) GetAttributesOk() (*TeamHierarchyMemberTeamAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+func (o *LLMObsPatternsTemplatesResponseData) GetAttributesOk() (*LLMObsPatternsTemplatesResponseAttributes, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *TeamHierarchyMemberTeam) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given TeamHierarchyMemberTeamAttributes and assigns it to the Attributes field.
-func (o *TeamHierarchyMemberTeam) SetAttributes(v TeamHierarchyMemberTeamAttributes) {
-	o.Attributes = &v
+// SetAttributes sets field value.
+func (o *LLMObsPatternsTemplatesResponseData) SetAttributes(v LLMObsPatternsTemplatesResponseAttributes) {
+	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *TeamHierarchyMemberTeam) GetId() uuid.UUID {
+func (o *LLMObsPatternsTemplatesResponseData) GetId() string {
 	if o == nil {
-		var ret uuid.UUID
+		var ret string
 		return ret
 	}
 	return o.Id
@@ -85,7 +77,7 @@ func (o *TeamHierarchyMemberTeam) GetId() uuid.UUID {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TeamHierarchyMemberTeam) GetIdOk() (*uuid.UUID, bool) {
+func (o *LLMObsPatternsTemplatesResponseData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +85,14 @@ func (o *TeamHierarchyMemberTeam) GetIdOk() (*uuid.UUID, bool) {
 }
 
 // SetId sets field value.
-func (o *TeamHierarchyMemberTeam) SetId(v uuid.UUID) {
+func (o *LLMObsPatternsTemplatesResponseData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *TeamHierarchyMemberTeam) GetType() TeamHierarchyMemberTeamType {
+func (o *LLMObsPatternsTemplatesResponseData) GetType() LLMObsPatternsTemplatesListType {
 	if o == nil {
-		var ret TeamHierarchyMemberTeamType
+		var ret LLMObsPatternsTemplatesListType
 		return ret
 	}
 	return o.Type
@@ -108,7 +100,7 @@ func (o *TeamHierarchyMemberTeam) GetType() TeamHierarchyMemberTeamType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TeamHierarchyMemberTeam) GetTypeOk() (*TeamHierarchyMemberTeamType, bool) {
+func (o *LLMObsPatternsTemplatesResponseData) GetTypeOk() (*LLMObsPatternsTemplatesListType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,19 +108,17 @@ func (o *TeamHierarchyMemberTeam) GetTypeOk() (*TeamHierarchyMemberTeamType, boo
 }
 
 // SetType sets field value.
-func (o *TeamHierarchyMemberTeam) SetType(v TeamHierarchyMemberTeamType) {
+func (o *LLMObsPatternsTemplatesResponseData) SetType(v LLMObsPatternsTemplatesListType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamHierarchyMemberTeam) MarshalJSON() ([]byte, error) {
+func (o LLMObsPatternsTemplatesResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -139,14 +129,17 @@ func (o TeamHierarchyMemberTeam) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamHierarchyMemberTeam) UnmarshalJSON(bytes []byte) (err error) {
+func (o *LLMObsPatternsTemplatesResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *TeamHierarchyMemberTeamAttributes `json:"attributes,omitempty"`
-		Id         *uuid.UUID                         `json:"id"`
-		Type       *TeamHierarchyMemberTeamType       `json:"type"`
+		Attributes *LLMObsPatternsTemplatesResponseAttributes `json:"attributes"`
+		Id         *string                                    `json:"id"`
+		Type       *LLMObsPatternsTemplatesListType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -162,10 +155,10 @@ func (o *TeamHierarchyMemberTeam) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
