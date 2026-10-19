@@ -56,6 +56,7 @@
 //   - [ActionsDatastoresApi.ListDatastores]
 //   - [ActionsDatastoresApi.UpdateDatastore]
 //   - [ActionsDatastoresApi.UpdateDatastoreItem]
+//   - [AgentHealthApi.ListAgentHealthHostIssues]
 //   - [AgentObservabilityApi.AggregateLLMObsExperimentation]
 //   - [AgentObservabilityApi.BatchUpdateLLMObsDataset]
 //   - [AgentObservabilityApi.CloneLLMObsDataset]
