@@ -17,8 +17,8 @@ type IL2CPPSourcemapAttributes struct {
 	BuildId *string `json:"build_id,omitempty"`
 	// The timestamp when the mapping file was created.
 	CreatedAt time.Time `json:"created_at"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `il2cpp` for IL2CPP source maps.
+	Mapkind IL2CPPSourcemapMapKind `json:"mapkind"`
 	// The size of the mapping file in bytes.
 	Size int64 `json:"size"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -30,7 +30,7 @@ type IL2CPPSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIL2CPPSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *IL2CPPSourcemapAttributes {
+func NewIL2CPPSourcemapAttributes(createdAt time.Time, mapkind IL2CPPSourcemapMapKind, size int64) *IL2CPPSourcemapAttributes {
 	this := IL2CPPSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -98,9 +98,9 @@ func (o *IL2CPPSourcemapAttributes) SetCreatedAt(v time.Time) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *IL2CPPSourcemapAttributes) GetMapkind() string {
+func (o *IL2CPPSourcemapAttributes) GetMapkind() IL2CPPSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret IL2CPPSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -108,7 +108,7 @@ func (o *IL2CPPSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *IL2CPPSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *IL2CPPSourcemapAttributes) GetMapkindOk() (*IL2CPPSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +116,7 @@ func (o *IL2CPPSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *IL2CPPSourcemapAttributes) SetMapkind(v string) {
+func (o *IL2CPPSourcemapAttributes) SetMapkind(v IL2CPPSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -169,10 +169,10 @@ func (o IL2CPPSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IL2CPPSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BuildId   *string    `json:"build_id,omitempty"`
-		CreatedAt *time.Time `json:"created_at"`
-		Mapkind   *string    `json:"mapkind"`
-		Size      *int64     `json:"size"`
+		BuildId   *string                 `json:"build_id,omitempty"`
+		CreatedAt *time.Time              `json:"created_at"`
+		Mapkind   *IL2CPPSourcemapMapKind `json:"mapkind"`
+		Size      *int64                  `json:"size"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -192,13 +192,23 @@ func (o *IL2CPPSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.BuildId = all.BuildId
 	o.CreatedAt = *all.CreatedAt
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Size = *all.Size
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

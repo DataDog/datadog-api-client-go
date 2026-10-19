@@ -18,6 +18,8 @@ type SourcemapItem struct {
 	ELFSourcemapData         *ELFSourcemapData
 	NDKSourcemapData         *NDKSourcemapData
 	IL2CPPSourcemapData      *IL2CPPSourcemapData
+	WASMSourcemapData        *WASMSourcemapData
+	PortablePdbSourcemapData *PortablePdbSourcemapData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -61,6 +63,16 @@ func NDKSourcemapDataAsSourcemapItem(v *NDKSourcemapData) SourcemapItem {
 // IL2CPPSourcemapDataAsSourcemapItem is a convenience function that returns IL2CPPSourcemapData wrapped in SourcemapItem.
 func IL2CPPSourcemapDataAsSourcemapItem(v *IL2CPPSourcemapData) SourcemapItem {
 	return SourcemapItem{IL2CPPSourcemapData: v}
+}
+
+// WASMSourcemapDataAsSourcemapItem is a convenience function that returns WASMSourcemapData wrapped in SourcemapItem.
+func WASMSourcemapDataAsSourcemapItem(v *WASMSourcemapData) SourcemapItem {
+	return SourcemapItem{WASMSourcemapData: v}
+}
+
+// PortablePdbSourcemapDataAsSourcemapItem is a convenience function that returns PortablePdbSourcemapData wrapped in SourcemapItem.
+func PortablePdbSourcemapDataAsSourcemapItem(v *PortablePdbSourcemapData) SourcemapItem {
+	return SourcemapItem{PortablePdbSourcemapData: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -203,6 +215,40 @@ func (obj *SourcemapItem) UnmarshalJSON(data []byte) error {
 		obj.IL2CPPSourcemapData = nil
 	}
 
+	// try to unmarshal data into WASMSourcemapData
+	err = datadog.Unmarshal(data, &obj.WASMSourcemapData)
+	if err == nil {
+		if obj.WASMSourcemapData != nil && obj.WASMSourcemapData.UnparsedObject == nil {
+			jsonWASMSourcemapData, _ := datadog.Marshal(obj.WASMSourcemapData)
+			if string(jsonWASMSourcemapData) == "{}" { // empty struct
+				obj.WASMSourcemapData = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.WASMSourcemapData = nil
+		}
+	} else {
+		obj.WASMSourcemapData = nil
+	}
+
+	// try to unmarshal data into PortablePdbSourcemapData
+	err = datadog.Unmarshal(data, &obj.PortablePdbSourcemapData)
+	if err == nil {
+		if obj.PortablePdbSourcemapData != nil && obj.PortablePdbSourcemapData.UnparsedObject == nil {
+			jsonPortablePdbSourcemapData, _ := datadog.Marshal(obj.PortablePdbSourcemapData)
+			if string(jsonPortablePdbSourcemapData) == "{}" { // empty struct
+				obj.PortablePdbSourcemapData = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.PortablePdbSourcemapData = nil
+		}
+	} else {
+		obj.PortablePdbSourcemapData = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.JSSourcemapData = nil
@@ -213,6 +259,8 @@ func (obj *SourcemapItem) UnmarshalJSON(data []byte) error {
 		obj.ELFSourcemapData = nil
 		obj.NDKSourcemapData = nil
 		obj.IL2CPPSourcemapData = nil
+		obj.WASMSourcemapData = nil
+		obj.PortablePdbSourcemapData = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -250,6 +298,14 @@ func (obj SourcemapItem) MarshalJSON() ([]byte, error) {
 
 	if obj.IL2CPPSourcemapData != nil {
 		return datadog.Marshal(&obj.IL2CPPSourcemapData)
+	}
+
+	if obj.WASMSourcemapData != nil {
+		return datadog.Marshal(&obj.WASMSourcemapData)
+	}
+
+	if obj.PortablePdbSourcemapData != nil {
+		return datadog.Marshal(&obj.PortablePdbSourcemapData)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -290,6 +346,14 @@ func (obj *SourcemapItem) GetActualInstance() interface{} {
 
 	if obj.IL2CPPSourcemapData != nil {
 		return obj.IL2CPPSourcemapData
+	}
+
+	if obj.WASMSourcemapData != nil {
+		return obj.WASMSourcemapData
+	}
+
+	if obj.PortablePdbSourcemapData != nil {
+		return obj.PortablePdbSourcemapData
 	}
 
 	// all schemas are nil

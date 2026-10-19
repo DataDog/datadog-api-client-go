@@ -25,8 +25,8 @@ type ELFSourcemapAttributes struct {
 	GnuBuildId *string `json:"gnu_build_id,omitempty"`
 	// The Go build ID (UUID format).
 	GoBuildId *string `json:"go_build_id,omitempty"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `elf` for ELF source maps.
+	Mapkind ELFSourcemapMapKind `json:"mapkind"`
 	// The origin of the ELF file.
 	Origin *string `json:"origin,omitempty"`
 	// The version of the origin package.
@@ -44,7 +44,7 @@ type ELFSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewELFSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *ELFSourcemapAttributes {
+func NewELFSourcemapAttributes(createdAt time.Time, mapkind ELFSourcemapMapKind, size int64) *ELFSourcemapAttributes {
 	this := ELFSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -224,9 +224,9 @@ func (o *ELFSourcemapAttributes) SetGoBuildId(v string) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *ELFSourcemapAttributes) GetMapkind() string {
+func (o *ELFSourcemapAttributes) GetMapkind() ELFSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret ELFSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -234,7 +234,7 @@ func (o *ELFSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *ELFSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *ELFSourcemapAttributes) GetMapkindOk() (*ELFSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -242,7 +242,7 @@ func (o *ELFSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *ELFSourcemapAttributes) SetMapkind(v string) {
+func (o *ELFSourcemapAttributes) SetMapkind(v ELFSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -400,17 +400,17 @@ func (o ELFSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ELFSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arch          *string    `json:"arch,omitempty"`
-		CreatedAt     *time.Time `json:"created_at"`
-		FileHash      *string    `json:"file_hash,omitempty"`
-		FileName      *string    `json:"file_name,omitempty"`
-		GnuBuildId    *string    `json:"gnu_build_id,omitempty"`
-		GoBuildId     *string    `json:"go_build_id,omitempty"`
-		Mapkind       *string    `json:"mapkind"`
-		Origin        *string    `json:"origin,omitempty"`
-		OriginVersion *string    `json:"origin_version,omitempty"`
-		Size          *int64     `json:"size"`
-		SymbolSource  *string    `json:"symbol_source,omitempty"`
+		Arch          *string              `json:"arch,omitempty"`
+		CreatedAt     *time.Time           `json:"created_at"`
+		FileHash      *string              `json:"file_hash,omitempty"`
+		FileName      *string              `json:"file_name,omitempty"`
+		GnuBuildId    *string              `json:"gnu_build_id,omitempty"`
+		GoBuildId     *string              `json:"go_build_id,omitempty"`
+		Mapkind       *ELFSourcemapMapKind `json:"mapkind"`
+		Origin        *string              `json:"origin,omitempty"`
+		OriginVersion *string              `json:"origin_version,omitempty"`
+		Size          *int64               `json:"size"`
+		SymbolSource  *string              `json:"symbol_source,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -430,13 +430,19 @@ func (o *ELFSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Arch = all.Arch
 	o.CreatedAt = *all.CreatedAt
 	o.FileHash = all.FileHash
 	o.FileName = all.FileName
 	o.GnuBuildId = all.GnuBuildId
 	o.GoBuildId = all.GoBuildId
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Origin = all.Origin
 	o.OriginVersion = all.OriginVersion
 	o.Size = *all.Size
@@ -444,6 +450,10 @@ func (o *ELFSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -17,8 +17,8 @@ type JVMSourcemapAttributes struct {
 	BuildId *string `json:"build_id,omitempty"`
 	// The timestamp when the mapping file was created.
 	CreatedAt time.Time `json:"created_at"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `jvm` for JVM source maps.
+	Mapkind JVMSourcemapMapKind `json:"mapkind"`
 	// The service name associated with the mapping file.
 	Service *string `json:"service,omitempty"`
 	// The size of the mapping file in bytes.
@@ -38,7 +38,7 @@ type JVMSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewJVMSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *JVMSourcemapAttributes {
+func NewJVMSourcemapAttributes(createdAt time.Time, mapkind JVMSourcemapMapKind, size int64) *JVMSourcemapAttributes {
 	this := JVMSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -106,9 +106,9 @@ func (o *JVMSourcemapAttributes) SetCreatedAt(v time.Time) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *JVMSourcemapAttributes) GetMapkind() string {
+func (o *JVMSourcemapAttributes) GetMapkind() JVMSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret JVMSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -116,7 +116,7 @@ func (o *JVMSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *JVMSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *JVMSourcemapAttributes) GetMapkindOk() (*JVMSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *JVMSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *JVMSourcemapAttributes) SetMapkind(v string) {
+func (o *JVMSourcemapAttributes) SetMapkind(v JVMSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -301,14 +301,14 @@ func (o JVMSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JVMSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BuildId     *string    `json:"build_id,omitempty"`
-		CreatedAt   *time.Time `json:"created_at"`
-		Mapkind     *string    `json:"mapkind"`
-		Service     *string    `json:"service,omitempty"`
-		Size        *int64     `json:"size"`
-		Variant     *string    `json:"variant,omitempty"`
-		Version     *string    `json:"version,omitempty"`
-		VersionCode *string    `json:"version_code,omitempty"`
+		BuildId     *string              `json:"build_id,omitempty"`
+		CreatedAt   *time.Time           `json:"created_at"`
+		Mapkind     *JVMSourcemapMapKind `json:"mapkind"`
+		Service     *string              `json:"service,omitempty"`
+		Size        *int64               `json:"size"`
+		Variant     *string              `json:"variant,omitempty"`
+		Version     *string              `json:"version,omitempty"`
+		VersionCode *string              `json:"version_code,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -328,9 +328,15 @@ func (o *JVMSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.BuildId = all.BuildId
 	o.CreatedAt = *all.CreatedAt
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Service = all.Service
 	o.Size = *all.Size
 	o.Variant = all.Variant
@@ -339,6 +345,10 @@ func (o *JVMSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

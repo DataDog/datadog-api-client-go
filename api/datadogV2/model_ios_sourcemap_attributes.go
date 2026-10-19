@@ -15,8 +15,8 @@ import (
 type IOSSourcemapAttributes struct {
 	// The timestamp when the source map was created.
 	CreatedAt time.Time `json:"created_at"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `ios` for iOS dSYM source maps.
+	Mapkind IOSSourcemapMapKind `json:"mapkind"`
 	// The size of the dSYM file in bytes.
 	Size int64 `json:"size"`
 	// The UUID(s) associated with the dSYM file.
@@ -30,7 +30,7 @@ type IOSSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIOSSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *IOSSourcemapAttributes {
+func NewIOSSourcemapAttributes(createdAt time.Time, mapkind IOSSourcemapMapKind, size int64) *IOSSourcemapAttributes {
 	this := IOSSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -70,9 +70,9 @@ func (o *IOSSourcemapAttributes) SetCreatedAt(v time.Time) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *IOSSourcemapAttributes) GetMapkind() string {
+func (o *IOSSourcemapAttributes) GetMapkind() IOSSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret IOSSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -80,7 +80,7 @@ func (o *IOSSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *IOSSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *IOSSourcemapAttributes) GetMapkindOk() (*IOSSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *IOSSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *IOSSourcemapAttributes) SetMapkind(v string) {
+func (o *IOSSourcemapAttributes) SetMapkind(v IOSSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -169,10 +169,10 @@ func (o IOSSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IOSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time `json:"created_at"`
-		Mapkind   *string    `json:"mapkind"`
-		Size      *int64     `json:"size"`
-		Uuids     *string    `json:"uuids,omitempty"`
+		CreatedAt *time.Time           `json:"created_at"`
+		Mapkind   *IOSSourcemapMapKind `json:"mapkind"`
+		Size      *int64               `json:"size"`
+		Uuids     *string              `json:"uuids,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -192,13 +192,23 @@ func (o *IOSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.CreatedAt = *all.CreatedAt
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Size = *all.Size
 	o.Uuids = all.Uuids
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
