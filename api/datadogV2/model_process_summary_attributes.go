@@ -12,8 +12,13 @@ import (
 type ProcessSummaryAttributes struct {
 	// Process command line.
 	Cmdline *string `json:"cmdline,omitempty"`
+	// Path to the process executable.
+	Executable *string `json:"executable,omitempty"`
 	// Host running the process.
 	Host *string `json:"host,omitempty"`
+	// Tags that uniquely identify the process: a host identity tag (`host`, `task_arn`,
+	// or `eks_fargate_node`) and a `pid` tag. Omitted if either tag is unavailable.
+	IdentifyingTags []string `json:"identifying_tags,omitempty"`
 	// Process ID.
 	Pid *int64 `json:"pid,omitempty"`
 	// Parent process ID.
@@ -76,6 +81,34 @@ func (o *ProcessSummaryAttributes) SetCmdline(v string) {
 	o.Cmdline = &v
 }
 
+// GetExecutable returns the Executable field value if set, zero value otherwise.
+func (o *ProcessSummaryAttributes) GetExecutable() string {
+	if o == nil || o.Executable == nil {
+		var ret string
+		return ret
+	}
+	return *o.Executable
+}
+
+// GetExecutableOk returns a tuple with the Executable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessSummaryAttributes) GetExecutableOk() (*string, bool) {
+	if o == nil || o.Executable == nil {
+		return nil, false
+	}
+	return o.Executable, true
+}
+
+// HasExecutable returns a boolean if a field has been set.
+func (o *ProcessSummaryAttributes) HasExecutable() bool {
+	return o != nil && o.Executable != nil
+}
+
+// SetExecutable gets a reference to the given string and assigns it to the Executable field.
+func (o *ProcessSummaryAttributes) SetExecutable(v string) {
+	o.Executable = &v
+}
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -102,6 +135,34 @@ func (o *ProcessSummaryAttributes) HasHost() bool {
 // SetHost gets a reference to the given string and assigns it to the Host field.
 func (o *ProcessSummaryAttributes) SetHost(v string) {
 	o.Host = &v
+}
+
+// GetIdentifyingTags returns the IdentifyingTags field value if set, zero value otherwise.
+func (o *ProcessSummaryAttributes) GetIdentifyingTags() []string {
+	if o == nil || o.IdentifyingTags == nil {
+		var ret []string
+		return ret
+	}
+	return o.IdentifyingTags
+}
+
+// GetIdentifyingTagsOk returns a tuple with the IdentifyingTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessSummaryAttributes) GetIdentifyingTagsOk() (*[]string, bool) {
+	if o == nil || o.IdentifyingTags == nil {
+		return nil, false
+	}
+	return &o.IdentifyingTags, true
+}
+
+// HasIdentifyingTags returns a boolean if a field has been set.
+func (o *ProcessSummaryAttributes) HasIdentifyingTags() bool {
+	return o != nil && o.IdentifyingTags != nil
+}
+
+// SetIdentifyingTags gets a reference to the given []string and assigns it to the IdentifyingTags field.
+func (o *ProcessSummaryAttributes) SetIdentifyingTags(v []string) {
+	o.IdentifyingTags = v
 }
 
 // GetPid returns the Pid field value if set, zero value otherwise.
@@ -281,8 +342,14 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 	if o.Cmdline != nil {
 		toSerialize["cmdline"] = o.Cmdline
 	}
+	if o.Executable != nil {
+		toSerialize["executable"] = o.Executable
+	}
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
+	}
+	if o.IdentifyingTags != nil {
+		toSerialize["identifying_tags"] = o.IdentifyingTags
 	}
 	if o.Pid != nil {
 		toSerialize["pid"] = o.Pid
@@ -312,26 +379,30 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cmdline   *string  `json:"cmdline,omitempty"`
-		Host      *string  `json:"host,omitempty"`
-		Pid       *int64   `json:"pid,omitempty"`
-		Ppid      *int64   `json:"ppid,omitempty"`
-		Start     *string  `json:"start,omitempty"`
-		Tags      []string `json:"tags,omitempty"`
-		Timestamp *string  `json:"timestamp,omitempty"`
-		User      *string  `json:"user,omitempty"`
+		Cmdline         *string  `json:"cmdline,omitempty"`
+		Executable      *string  `json:"executable,omitempty"`
+		Host            *string  `json:"host,omitempty"`
+		IdentifyingTags []string `json:"identifying_tags,omitempty"`
+		Pid             *int64   `json:"pid,omitempty"`
+		Ppid            *int64   `json:"ppid,omitempty"`
+		Start           *string  `json:"start,omitempty"`
+		Tags            []string `json:"tags,omitempty"`
+		Timestamp       *string  `json:"timestamp,omitempty"`
+		User            *string  `json:"user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cmdline", "host", "pid", "ppid", "start", "tags", "timestamp", "user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cmdline", "executable", "host", "identifying_tags", "pid", "ppid", "start", "tags", "timestamp", "user"})
 	} else {
 		return err
 	}
 	o.Cmdline = all.Cmdline
+	o.Executable = all.Executable
 	o.Host = all.Host
+	o.IdentifyingTags = all.IdentifyingTags
 	o.Pid = all.Pid
 	o.Ppid = all.Ppid
 	o.Start = all.Start
