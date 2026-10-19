@@ -17,8 +17,8 @@ type FlutterSourcemapAttributes struct {
 	Arch *string `json:"arch,omitempty"`
 	// The timestamp when the symbol file was created.
 	CreatedAt time.Time `json:"created_at"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `flutter` for Flutter source maps.
+	Mapkind FlutterSourcemapMapKind `json:"mapkind"`
 	// The service name associated with the symbol file.
 	Service *string `json:"service,omitempty"`
 	// The size of the symbol file in bytes.
@@ -36,7 +36,7 @@ type FlutterSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFlutterSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *FlutterSourcemapAttributes {
+func NewFlutterSourcemapAttributes(createdAt time.Time, mapkind FlutterSourcemapMapKind, size int64) *FlutterSourcemapAttributes {
 	this := FlutterSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -104,9 +104,9 @@ func (o *FlutterSourcemapAttributes) SetCreatedAt(v time.Time) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *FlutterSourcemapAttributes) GetMapkind() string {
+func (o *FlutterSourcemapAttributes) GetMapkind() FlutterSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret FlutterSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -114,7 +114,7 @@ func (o *FlutterSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *FlutterSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *FlutterSourcemapAttributes) GetMapkindOk() (*FlutterSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *FlutterSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *FlutterSourcemapAttributes) SetMapkind(v string) {
+func (o *FlutterSourcemapAttributes) SetMapkind(v FlutterSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -268,13 +268,13 @@ func (o FlutterSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlutterSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arch      *string    `json:"arch,omitempty"`
-		CreatedAt *time.Time `json:"created_at"`
-		Mapkind   *string    `json:"mapkind"`
-		Service   *string    `json:"service,omitempty"`
-		Size      *int64     `json:"size"`
-		Variant   *string    `json:"variant,omitempty"`
-		Version   *string    `json:"version,omitempty"`
+		Arch      *string                  `json:"arch,omitempty"`
+		CreatedAt *time.Time               `json:"created_at"`
+		Mapkind   *FlutterSourcemapMapKind `json:"mapkind"`
+		Service   *string                  `json:"service,omitempty"`
+		Size      *int64                   `json:"size"`
+		Variant   *string                  `json:"variant,omitempty"`
+		Version   *string                  `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -294,9 +294,15 @@ func (o *FlutterSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Arch = all.Arch
 	o.CreatedAt = *all.CreatedAt
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Service = all.Service
 	o.Size = *all.Size
 	o.Variant = all.Variant
@@ -304,6 +310,10 @@ func (o *FlutterSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

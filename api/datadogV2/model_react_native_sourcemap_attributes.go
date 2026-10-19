@@ -23,8 +23,8 @@ type ReactNativeSourcemapAttributes struct {
 	CreatedAt time.Time `json:"created_at"`
 	// The debug identifier (UUID format).
 	DebugId *string `json:"debug_id,omitempty"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `react` for React Native source maps.
+	Mapkind ReactNativeSourcemapMapKind `json:"mapkind"`
 	// The platform the source map was built for (e.g., `ios`, `android`).
 	Platform *string `json:"platform,omitempty"`
 	// The service name associated with the source map.
@@ -42,7 +42,7 @@ type ReactNativeSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewReactNativeSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *ReactNativeSourcemapAttributes {
+func NewReactNativeSourcemapAttributes(createdAt time.Time, mapkind ReactNativeSourcemapMapKind, size int64) *ReactNativeSourcemapAttributes {
 	this := ReactNativeSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -194,9 +194,9 @@ func (o *ReactNativeSourcemapAttributes) SetDebugId(v string) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *ReactNativeSourcemapAttributes) GetMapkind() string {
+func (o *ReactNativeSourcemapAttributes) GetMapkind() ReactNativeSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret ReactNativeSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -204,7 +204,7 @@ func (o *ReactNativeSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *ReactNativeSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *ReactNativeSourcemapAttributes) GetMapkindOk() (*ReactNativeSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -212,7 +212,7 @@ func (o *ReactNativeSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *ReactNativeSourcemapAttributes) SetMapkind(v string) {
+func (o *ReactNativeSourcemapAttributes) SetMapkind(v ReactNativeSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -367,16 +367,16 @@ func (o ReactNativeSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ReactNativeSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BuildNumber   *string    `json:"build_number,omitempty"`
-		BundleName    *string    `json:"bundle_name,omitempty"`
-		BundleVersion *string    `json:"bundle_version,omitempty"`
-		CreatedAt     *time.Time `json:"created_at"`
-		DebugId       *string    `json:"debug_id,omitempty"`
-		Mapkind       *string    `json:"mapkind"`
-		Platform      *string    `json:"platform,omitempty"`
-		Service       *string    `json:"service,omitempty"`
-		Size          *int64     `json:"size"`
-		Version       *string    `json:"version,omitempty"`
+		BuildNumber   *string                      `json:"build_number,omitempty"`
+		BundleName    *string                      `json:"bundle_name,omitempty"`
+		BundleVersion *string                      `json:"bundle_version,omitempty"`
+		CreatedAt     *time.Time                   `json:"created_at"`
+		DebugId       *string                      `json:"debug_id,omitempty"`
+		Mapkind       *ReactNativeSourcemapMapKind `json:"mapkind"`
+		Platform      *string                      `json:"platform,omitempty"`
+		Service       *string                      `json:"service,omitempty"`
+		Size          *int64                       `json:"size"`
+		Version       *string                      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -396,12 +396,18 @@ func (o *ReactNativeSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.BuildNumber = all.BuildNumber
 	o.BundleName = all.BundleName
 	o.BundleVersion = all.BundleVersion
 	o.CreatedAt = *all.CreatedAt
 	o.DebugId = all.DebugId
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Platform = all.Platform
 	o.Service = all.Service
 	o.Size = *all.Size
@@ -409,6 +415,10 @@ func (o *ReactNativeSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error)
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

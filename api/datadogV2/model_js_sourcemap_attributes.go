@@ -28,8 +28,8 @@ type JSSourcemapAttributes struct {
 	Domain *string `json:"domain,omitempty"`
 	// The file name of the minified JavaScript file.
 	FileName *string `json:"file_name,omitempty"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `js` for JavaScript source maps.
+	Mapkind JSSourcemapMapKind `json:"mapkind"`
 	// The service name associated with the source map.
 	Service *string `json:"service,omitempty"`
 	// The size of the source map file in bytes.
@@ -49,7 +49,7 @@ type JSSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewJSSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *JSSourcemapAttributes {
+func NewJSSourcemapAttributes(createdAt time.Time, mapkind JSSourcemapMapKind, size int64) *JSSourcemapAttributes {
 	this := JSSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -257,9 +257,9 @@ func (o *JSSourcemapAttributes) SetFileName(v string) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *JSSourcemapAttributes) GetMapkind() string {
+func (o *JSSourcemapAttributes) GetMapkind() JSSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret JSSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -267,7 +267,7 @@ func (o *JSSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *JSSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *JSSourcemapAttributes) GetMapkindOk() (*JSSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,7 +275,7 @@ func (o *JSSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *JSSourcemapAttributes) SetMapkind(v string) {
+func (o *JSSourcemapAttributes) SetMapkind(v JSSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -467,19 +467,19 @@ func (o JSSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AbsolutePath             *string    `json:"absolute_path,omitempty"`
-		BlobStorageSourcemapPath *string    `json:"blob_storage_sourcemap_path,omitempty"`
-		BuildId                  *string    `json:"build_id,omitempty"`
-		CreatedAt                *time.Time `json:"created_at"`
-		DebugId                  *string    `json:"debug_id,omitempty"`
-		Domain                   *string    `json:"domain,omitempty"`
-		FileName                 *string    `json:"file_name,omitempty"`
-		Mapkind                  *string    `json:"mapkind"`
-		Service                  *string    `json:"service,omitempty"`
-		Size                     *int64     `json:"size"`
-		Variant                  *string    `json:"variant,omitempty"`
-		Version                  *string    `json:"version,omitempty"`
-		VersionCode              *string    `json:"version_code,omitempty"`
+		AbsolutePath             *string             `json:"absolute_path,omitempty"`
+		BlobStorageSourcemapPath *string             `json:"blob_storage_sourcemap_path,omitempty"`
+		BuildId                  *string             `json:"build_id,omitempty"`
+		CreatedAt                *time.Time          `json:"created_at"`
+		DebugId                  *string             `json:"debug_id,omitempty"`
+		Domain                   *string             `json:"domain,omitempty"`
+		FileName                 *string             `json:"file_name,omitempty"`
+		Mapkind                  *JSSourcemapMapKind `json:"mapkind"`
+		Service                  *string             `json:"service,omitempty"`
+		Size                     *int64              `json:"size"`
+		Variant                  *string             `json:"variant,omitempty"`
+		Version                  *string             `json:"version,omitempty"`
+		VersionCode              *string             `json:"version_code,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -499,6 +499,8 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AbsolutePath = all.AbsolutePath
 	o.BlobStorageSourcemapPath = all.BlobStorageSourcemapPath
 	o.BuildId = all.BuildId
@@ -506,7 +508,11 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.DebugId = all.DebugId
 	o.Domain = all.Domain
 	o.FileName = all.FileName
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Service = all.Service
 	o.Size = *all.Size
 	o.Variant = all.Variant
@@ -515,6 +521,10 @@ func (o *JSSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

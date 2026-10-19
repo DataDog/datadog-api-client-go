@@ -21,8 +21,8 @@ type NDKSourcemapAttributes struct {
 	CreatedAt time.Time `json:"created_at"`
 	// The NDK library file name.
 	FileName *string `json:"file_name,omitempty"`
-	// The type of source map.
-	Mapkind string `json:"mapkind"`
+	// The type of source map. Always `ndk` for Android NDK source maps.
+	Mapkind NDKSourcemapMapKind `json:"mapkind"`
 	// The size of the symbol file in bytes.
 	Size int64 `json:"size"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,7 +34,7 @@ type NDKSourcemapAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewNDKSourcemapAttributes(createdAt time.Time, mapkind string, size int64) *NDKSourcemapAttributes {
+func NewNDKSourcemapAttributes(createdAt time.Time, mapkind NDKSourcemapMapKind, size int64) *NDKSourcemapAttributes {
 	this := NDKSourcemapAttributes{}
 	this.CreatedAt = createdAt
 	this.Mapkind = mapkind
@@ -158,9 +158,9 @@ func (o *NDKSourcemapAttributes) SetFileName(v string) {
 }
 
 // GetMapkind returns the Mapkind field value.
-func (o *NDKSourcemapAttributes) GetMapkind() string {
+func (o *NDKSourcemapAttributes) GetMapkind() NDKSourcemapMapKind {
 	if o == nil {
-		var ret string
+		var ret NDKSourcemapMapKind
 		return ret
 	}
 	return o.Mapkind
@@ -168,7 +168,7 @@ func (o *NDKSourcemapAttributes) GetMapkind() string {
 
 // GetMapkindOk returns a tuple with the Mapkind field value
 // and a boolean to check if the value has been set.
-func (o *NDKSourcemapAttributes) GetMapkindOk() (*string, bool) {
+func (o *NDKSourcemapAttributes) GetMapkindOk() (*NDKSourcemapMapKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *NDKSourcemapAttributes) GetMapkindOk() (*string, bool) {
 }
 
 // SetMapkind sets field value.
-func (o *NDKSourcemapAttributes) SetMapkind(v string) {
+func (o *NDKSourcemapAttributes) SetMapkind(v NDKSourcemapMapKind) {
 	o.Mapkind = v
 }
 
@@ -235,12 +235,12 @@ func (o NDKSourcemapAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NDKSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arch      *string    `json:"arch,omitempty"`
-		BuildId   *string    `json:"build_id,omitempty"`
-		CreatedAt *time.Time `json:"created_at"`
-		FileName  *string    `json:"file_name,omitempty"`
-		Mapkind   *string    `json:"mapkind"`
-		Size      *int64     `json:"size"`
+		Arch      *string              `json:"arch,omitempty"`
+		BuildId   *string              `json:"build_id,omitempty"`
+		CreatedAt *time.Time           `json:"created_at"`
+		FileName  *string              `json:"file_name,omitempty"`
+		Mapkind   *NDKSourcemapMapKind `json:"mapkind"`
+		Size      *int64               `json:"size"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -260,15 +260,25 @@ func (o *NDKSourcemapAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Arch = all.Arch
 	o.BuildId = all.BuildId
 	o.CreatedAt = *all.CreatedAt
 	o.FileName = all.FileName
-	o.Mapkind = *all.Mapkind
+	if !all.Mapkind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Mapkind = *all.Mapkind
+	}
 	o.Size = *all.Size
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
