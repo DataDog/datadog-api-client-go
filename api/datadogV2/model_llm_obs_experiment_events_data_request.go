@@ -14,8 +14,8 @@ import (
 type LLMObsExperimentEventsDataRequest struct {
 	// Attributes for pushing experiment events including spans and metrics.
 	Attributes LLMObsExperimentEventsDataAttributesRequest `json:"attributes"`
-	// Resource type for Agent Observability experiment events.
-	Type LLMObsEventType `json:"type"`
+	// Resource type of an Agent Observability experiment.
+	Type LLMObsExperimentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,7 +25,7 @@ type LLMObsExperimentEventsDataRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsExperimentEventsDataRequest(attributes LLMObsExperimentEventsDataAttributesRequest, typeVar LLMObsEventType) *LLMObsExperimentEventsDataRequest {
+func NewLLMObsExperimentEventsDataRequest(attributes LLMObsExperimentEventsDataAttributesRequest, typeVar LLMObsExperimentType) *LLMObsExperimentEventsDataRequest {
 	this := LLMObsExperimentEventsDataRequest{}
 	this.Attributes = attributes
 	this.Type = typeVar
@@ -64,9 +64,9 @@ func (o *LLMObsExperimentEventsDataRequest) SetAttributes(v LLMObsExperimentEven
 }
 
 // GetType returns the Type field value.
-func (o *LLMObsExperimentEventsDataRequest) GetType() LLMObsEventType {
+func (o *LLMObsExperimentEventsDataRequest) GetType() LLMObsExperimentType {
 	if o == nil {
-		var ret LLMObsEventType
+		var ret LLMObsExperimentType
 		return ret
 	}
 	return o.Type
@@ -74,7 +74,7 @@ func (o *LLMObsExperimentEventsDataRequest) GetType() LLMObsEventType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsExperimentEventsDataRequest) GetTypeOk() (*LLMObsEventType, bool) {
+func (o *LLMObsExperimentEventsDataRequest) GetTypeOk() (*LLMObsExperimentType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *LLMObsExperimentEventsDataRequest) GetTypeOk() (*LLMObsEventType, bool)
 }
 
 // SetType sets field value.
-func (o *LLMObsExperimentEventsDataRequest) SetType(v LLMObsEventType) {
+func (o *LLMObsExperimentEventsDataRequest) SetType(v LLMObsExperimentType) {
 	o.Type = v
 }
 
@@ -105,7 +105,7 @@ func (o LLMObsExperimentEventsDataRequest) MarshalJSON() ([]byte, error) {
 func (o *LLMObsExperimentEventsDataRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *LLMObsExperimentEventsDataAttributesRequest `json:"attributes"`
-		Type       *LLMObsEventType                             `json:"type"`
+		Type       *LLMObsExperimentType                        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

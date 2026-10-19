@@ -24,7 +24,7 @@ func main() {
 					},
 				},
 			},
-			Type: datadogV2.LLMOBSRECORDTYPE_RECORDS,
+			Type: datadogV2.LLMOBSDATASETTYPE_DATASETS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
