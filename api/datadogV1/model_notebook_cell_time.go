@@ -12,6 +12,7 @@ import (
 type NotebookCellTime struct {
 	NotebookRelativeTime *NotebookRelativeTime
 	NotebookAbsoluteTime *NotebookAbsoluteTime
+	isNull               bool
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -19,7 +20,7 @@ type NotebookCellTime struct {
 
 // NotebookRelativeTimeAsNotebookCellTime is a convenience function that returns NotebookRelativeTime wrapped in NotebookCellTime.
 func NotebookRelativeTimeAsNotebookCellTime(v *NotebookRelativeTime) NotebookCellTime {
-	return NotebookCellTime{NotebookRelativeTime: v}
+	return NotebookCellTime{NotebookRelativeTime: v, isNull: v == nil}
 }
 
 // NotebookAbsoluteTimeAsNotebookCellTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookCellTime.
@@ -30,6 +31,11 @@ func NotebookAbsoluteTimeAsNotebookCellTime(v *NotebookAbsoluteTime) NotebookCel
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *NotebookCellTime) UnmarshalJSON(data []byte) error {
 	var err error
+	if string(data) == "null" {
+		obj.isNull = true
+		return nil
+	}
+	obj.isNull = false
 	match := 0
 	// try to unmarshal data into NotebookRelativeTime
 	err = datadog.Unmarshal(data, &obj.NotebookRelativeTime)
@@ -76,6 +82,9 @@ func (obj *NotebookCellTime) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj NotebookCellTime) MarshalJSON() ([]byte, error) {
+	if obj.isNull {
+		return []byte("null"), nil
+	}
 	if obj.NotebookRelativeTime != nil {
 		return datadog.Marshal(&obj.NotebookRelativeTime)
 	}

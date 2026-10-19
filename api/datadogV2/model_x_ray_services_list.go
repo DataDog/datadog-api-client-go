@@ -12,6 +12,7 @@ import (
 type XRayServicesList struct {
 	XRayServicesIncludeAll  *XRayServicesIncludeAll
 	XRayServicesIncludeOnly *XRayServicesIncludeOnly
+	isNull                  bool
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,12 +25,17 @@ func XRayServicesIncludeAllAsXRayServicesList(v *XRayServicesIncludeAll) XRaySer
 
 // XRayServicesIncludeOnlyAsXRayServicesList is a convenience function that returns XRayServicesIncludeOnly wrapped in XRayServicesList.
 func XRayServicesIncludeOnlyAsXRayServicesList(v *XRayServicesIncludeOnly) XRayServicesList {
-	return XRayServicesList{XRayServicesIncludeOnly: v}
+	return XRayServicesList{XRayServicesIncludeOnly: v, isNull: v == nil}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *XRayServicesList) UnmarshalJSON(data []byte) error {
 	var err error
+	if string(data) == "null" {
+		obj.isNull = true
+		return nil
+	}
+	obj.isNull = false
 	match := 0
 	// try to unmarshal data into XRayServicesIncludeAll
 	err = datadog.Unmarshal(data, &obj.XRayServicesIncludeAll)
@@ -76,6 +82,9 @@ func (obj *XRayServicesList) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj XRayServicesList) MarshalJSON() ([]byte, error) {
+	if obj.isNull {
+		return []byte("null"), nil
+	}
 	if obj.XRayServicesIncludeAll != nil {
 		return datadog.Marshal(&obj.XRayServicesIncludeAll)
 	}
