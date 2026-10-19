@@ -14,8 +14,8 @@ import (
 type LLMObsDeleteDatasetRecordsDataRequest struct {
 	// Attributes for deleting records from an Agent Observability dataset.
 	Attributes LLMObsDeleteDatasetRecordsDataAttributesRequest `json:"attributes"`
-	// Resource type of Agent Observability dataset records.
-	Type LLMObsRecordType `json:"type"`
+	// Resource type of an Agent Observability dataset.
+	Type LLMObsDatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,7 +25,7 @@ type LLMObsDeleteDatasetRecordsDataRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsDeleteDatasetRecordsDataRequest(attributes LLMObsDeleteDatasetRecordsDataAttributesRequest, typeVar LLMObsRecordType) *LLMObsDeleteDatasetRecordsDataRequest {
+func NewLLMObsDeleteDatasetRecordsDataRequest(attributes LLMObsDeleteDatasetRecordsDataAttributesRequest, typeVar LLMObsDatasetType) *LLMObsDeleteDatasetRecordsDataRequest {
 	this := LLMObsDeleteDatasetRecordsDataRequest{}
 	this.Attributes = attributes
 	this.Type = typeVar
@@ -64,9 +64,9 @@ func (o *LLMObsDeleteDatasetRecordsDataRequest) SetAttributes(v LLMObsDeleteData
 }
 
 // GetType returns the Type field value.
-func (o *LLMObsDeleteDatasetRecordsDataRequest) GetType() LLMObsRecordType {
+func (o *LLMObsDeleteDatasetRecordsDataRequest) GetType() LLMObsDatasetType {
 	if o == nil {
-		var ret LLMObsRecordType
+		var ret LLMObsDatasetType
 		return ret
 	}
 	return o.Type
@@ -74,7 +74,7 @@ func (o *LLMObsDeleteDatasetRecordsDataRequest) GetType() LLMObsRecordType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDeleteDatasetRecordsDataRequest) GetTypeOk() (*LLMObsRecordType, bool) {
+func (o *LLMObsDeleteDatasetRecordsDataRequest) GetTypeOk() (*LLMObsDatasetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *LLMObsDeleteDatasetRecordsDataRequest) GetTypeOk() (*LLMObsRecordType, 
 }
 
 // SetType sets field value.
-func (o *LLMObsDeleteDatasetRecordsDataRequest) SetType(v LLMObsRecordType) {
+func (o *LLMObsDeleteDatasetRecordsDataRequest) SetType(v LLMObsDatasetType) {
 	o.Type = v
 }
 
@@ -105,7 +105,7 @@ func (o LLMObsDeleteDatasetRecordsDataRequest) MarshalJSON() ([]byte, error) {
 func (o *LLMObsDeleteDatasetRecordsDataRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *LLMObsDeleteDatasetRecordsDataAttributesRequest `json:"attributes"`
-		Type       *LLMObsRecordType                                `json:"type"`
+		Type       *LLMObsDatasetType                               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

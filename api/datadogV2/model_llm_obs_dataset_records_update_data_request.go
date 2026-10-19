@@ -14,8 +14,8 @@ import (
 type LLMObsDatasetRecordsUpdateDataRequest struct {
 	// Attributes for updating records in an Agent Observability dataset.
 	Attributes LLMObsDatasetRecordsUpdateDataAttributesRequest `json:"attributes"`
-	// Resource type of Agent Observability dataset records.
-	Type LLMObsRecordType `json:"type"`
+	// Resource type of an Agent Observability dataset.
+	Type LLMObsDatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,7 +25,7 @@ type LLMObsDatasetRecordsUpdateDataRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsDatasetRecordsUpdateDataRequest(attributes LLMObsDatasetRecordsUpdateDataAttributesRequest, typeVar LLMObsRecordType) *LLMObsDatasetRecordsUpdateDataRequest {
+func NewLLMObsDatasetRecordsUpdateDataRequest(attributes LLMObsDatasetRecordsUpdateDataAttributesRequest, typeVar LLMObsDatasetType) *LLMObsDatasetRecordsUpdateDataRequest {
 	this := LLMObsDatasetRecordsUpdateDataRequest{}
 	this.Attributes = attributes
 	this.Type = typeVar
@@ -64,9 +64,9 @@ func (o *LLMObsDatasetRecordsUpdateDataRequest) SetAttributes(v LLMObsDatasetRec
 }
 
 // GetType returns the Type field value.
-func (o *LLMObsDatasetRecordsUpdateDataRequest) GetType() LLMObsRecordType {
+func (o *LLMObsDatasetRecordsUpdateDataRequest) GetType() LLMObsDatasetType {
 	if o == nil {
-		var ret LLMObsRecordType
+		var ret LLMObsDatasetType
 		return ret
 	}
 	return o.Type
@@ -74,7 +74,7 @@ func (o *LLMObsDatasetRecordsUpdateDataRequest) GetType() LLMObsRecordType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDatasetRecordsUpdateDataRequest) GetTypeOk() (*LLMObsRecordType, bool) {
+func (o *LLMObsDatasetRecordsUpdateDataRequest) GetTypeOk() (*LLMObsDatasetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *LLMObsDatasetRecordsUpdateDataRequest) GetTypeOk() (*LLMObsRecordType, 
 }
 
 // SetType sets field value.
-func (o *LLMObsDatasetRecordsUpdateDataRequest) SetType(v LLMObsRecordType) {
+func (o *LLMObsDatasetRecordsUpdateDataRequest) SetType(v LLMObsDatasetType) {
 	o.Type = v
 }
 
@@ -105,7 +105,7 @@ func (o LLMObsDatasetRecordsUpdateDataRequest) MarshalJSON() ([]byte, error) {
 func (o *LLMObsDatasetRecordsUpdateDataRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *LLMObsDatasetRecordsUpdateDataAttributesRequest `json:"attributes"`
-		Type       *LLMObsRecordType                                `json:"type"`
+		Type       *LLMObsDatasetType                               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

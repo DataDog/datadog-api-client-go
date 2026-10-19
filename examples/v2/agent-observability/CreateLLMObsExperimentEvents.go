@@ -54,7 +54,7 @@ TimeoutError: Model response timed out`),
 					},
 				},
 			},
-			Type: datadogV2.LLMOBSEVENTTYPE_EVENTS,
+			Type: datadogV2.LLMOBSEXPERIMENTTYPE_EXPERIMENTS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
