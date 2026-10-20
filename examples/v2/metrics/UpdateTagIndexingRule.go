@@ -35,7 +35,6 @@ func main() {
 					},
 					Version: datadog.PtrInt64(1),
 				},
-				RuleOrder: datadog.PtrInt64(2),
 				Tags: []string{
 					"env",
 					"service",
