@@ -22,7 +22,7 @@ func main() {
 							Type: datadogV2.LLMOBSDISPLAYBLOCKINTERACTIONTYPE_DISPLAY_BLOCK,
 							DisplayBlock: []datadogV2.LLMObsContentBlock{
 								{
-									Type:    datadogV2.LLMOBSCONTENTBLOCKTYPE_MARKDOWN,
+									Type:    datadogV2.LLMOBSCONTENTBLOCKTYPE_MARKDOWN.Ptr(),
 									Content: "## Triage Instructions",
 								},
 							},
