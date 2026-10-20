@@ -91,19 +91,10 @@ func (o *TriggerInvestigationRequestDataAttributes) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Trigger.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Trigger = *all.Trigger
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

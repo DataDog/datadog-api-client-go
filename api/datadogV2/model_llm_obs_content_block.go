@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -17,7 +15,7 @@ import (
 // - `header`: `content` must be a string; `level`, when set, must be one of `sm`, `md`, `lg`, `xl`.
 // - `json`: `content` must be a well-formed JSON value (object, array, or scalar).
 // - `image`: `url` is required.
-// - `widget`: `tileDef` is required (any well-formed JSON; the frontend owns the renderable schema).
+// - `univiz`: `tileDef` is required (any well-formed JSON; the frontend owns the renderable schema).
 // - `llmobs_trace`: `traceId` is required; `interactionType`, when set, must be `trace` or `experiment_trace`.
 // - `frontend`: `code` is required and must be a non-empty string; `label` is optional.
 //
@@ -29,7 +27,7 @@ type LLMObsContentBlock struct {
 	Code *string `json:"code,omitempty"`
 	// Block payload. A string for `markdown`, `header`, and `text`; an
 	// arbitrary JSON value (object, array, or scalar) for `json`. Omitted
-	// for `image`, `widget`, `llmobs_trace`, and `frontend`.
+	// for `image`, `univiz`, `llmobs_trace`, and `frontend`.
 	Content interface{} `json:"content,omitempty"`
 	// Optional rendered height. Must be positive when set.
 	Height *int64 `json:"height,omitempty"`
@@ -40,7 +38,7 @@ type LLMObsContentBlock struct {
 	Label *string `json:"label,omitempty"`
 	// Visual size for a `header` block.
 	Level *LLMObsContentBlockHeaderLevel `json:"level,omitempty"`
-	// Tile definition for a `widget` block. Required for `widget`. The
+	// Tile definition for a `univiz` block. Required for `univiz`. The
 	// schema is owned by the frontend renderer.
 	TileDef interface{} `json:"tileDef,omitempty"`
 	// Unix-millis time range used by chart blocks.
@@ -49,7 +47,7 @@ type LLMObsContentBlock struct {
 	TraceId *string `json:"traceId,omitempty"`
 	// Discriminator for a single `display_block` content block. Adding a
 	// variant requires coordinated changes in the frontend renderer.
-	Type LLMObsContentBlockType `json:"type"`
+	Type *LLMObsContentBlockType `json:"type,omitempty"`
 	// URL of the image. Required for `image` blocks.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -61,9 +59,8 @@ type LLMObsContentBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsContentBlock(typeVar LLMObsContentBlockType) *LLMObsContentBlock {
+func NewLLMObsContentBlock() *LLMObsContentBlock {
 	this := LLMObsContentBlock{}
-	this.Type = typeVar
 	return &this
 }
 
@@ -355,27 +352,32 @@ func (o *LLMObsContentBlock) SetTraceId(v string) {
 	o.TraceId = &v
 }
 
-// GetType returns the Type field value.
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *LLMObsContentBlock) GetType() LLMObsContentBlockType {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret LLMObsContentBlockType
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LLMObsContentBlock) GetTypeOk() (*LLMObsContentBlockType, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value.
+// HasType returns a boolean if a field has been set.
+func (o *LLMObsContentBlock) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given LLMObsContentBlockType and assigns it to the Type field.
 func (o *LLMObsContentBlock) SetType(v LLMObsContentBlockType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
@@ -442,7 +444,9 @@ func (o LLMObsContentBlock) MarshalJSON() ([]byte, error) {
 	if o.TraceId != nil {
 		toSerialize["traceId"] = o.TraceId
 	}
-	toSerialize["type"] = o.Type
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
 	}
@@ -466,14 +470,11 @@ func (o *LLMObsContentBlock) UnmarshalJSON(bytes []byte) (err error) {
 		TileDef         interface{}                                   `json:"tileDef,omitempty"`
 		TimeFrame       *LLMObsContentBlockTimeFrame                  `json:"timeFrame,omitempty"`
 		TraceId         *string                                       `json:"traceId,omitempty"`
-		Type            *LLMObsContentBlockType                       `json:"type"`
+		Type            *LLMObsContentBlockType                       `json:"type,omitempty"`
 		Url             *string                                       `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -504,10 +505,10 @@ func (o *LLMObsContentBlock) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.TimeFrame = all.TimeFrame
 	o.TraceId = all.TraceId
-	if !all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = *all.Type
+		o.Type = all.Type
 	}
 	o.Url = all.Url
 
