@@ -623,6 +623,7 @@
 //   - [FeatureFlagsApi.UpdateAllocationsForFeatureFlagInEnvironment]
 //   - [FeatureFlagsApi.UpdateFeatureFlag]
 //   - [FeatureFlagsApi.UpdateFeatureFlagsEnvironment]
+//   - [FeatureFlagsApi.UpdateSavedFilterAttributes]
 //   - [FeatureFlagsApi.UpdateVariantForFeatureFlag]
 //   - [FleetAutomationApi.CancelFleetDeploymentV2]
 //   - [FleetAutomationApi.CreateFleetDeploymentConfigureV2]
