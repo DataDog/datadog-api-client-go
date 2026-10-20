@@ -12,6 +12,7 @@ import (
 
 // ObservabilityPipelineAmazonOpenSearchDestinationAuth Authentication settings for the Amazon OpenSearch destination.
 // The `strategy` field determines whether basic or AWS-based authentication is used.
+// When `strategy` is `basic`, use `username_key` and `password_key` to reference credentials stored in environment variables or secrets.
 type ObservabilityPipelineAmazonOpenSearchDestinationAuth struct {
 	// The ARN of the role to assume (used with `aws` strategy).
 	AssumeRole *string `json:"assume_role,omitempty"`
@@ -19,10 +20,14 @@ type ObservabilityPipelineAmazonOpenSearchDestinationAuth struct {
 	AwsRegion *string `json:"aws_region,omitempty"`
 	// External ID for the assumed role (used with `aws` strategy).
 	ExternalId *string `json:"external_id,omitempty"`
+	// Name of the environment variable or secret that holds the Amazon OpenSearch password (used when `strategy` is `basic`).
+	PasswordKey *string `json:"password_key,omitempty"`
 	// Session name for the assumed role (used with `aws` strategy).
 	SessionName *string `json:"session_name,omitempty"`
 	// The authentication strategy to use.
 	Strategy ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy `json:"strategy"`
+	// Name of the environment variable or secret that holds the Amazon OpenSearch username (used when `strategy` is `basic`).
+	UsernameKey *string `json:"username_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -130,6 +135,34 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetExternalId(v s
 	o.ExternalId = &v
 }
 
+// GetPasswordKey returns the PasswordKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetPasswordKey() string {
+	if o == nil || o.PasswordKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.PasswordKey
+}
+
+// GetPasswordKeyOk returns a tuple with the PasswordKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetPasswordKeyOk() (*string, bool) {
+	if o == nil || o.PasswordKey == nil {
+		return nil, false
+	}
+	return o.PasswordKey, true
+}
+
+// HasPasswordKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) HasPasswordKey() bool {
+	return o != nil && o.PasswordKey != nil
+}
+
+// SetPasswordKey gets a reference to the given string and assigns it to the PasswordKey field.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetPasswordKey(v string) {
+	o.PasswordKey = &v
+}
+
 // GetSessionName returns the SessionName field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetSessionName() string {
 	if o == nil || o.SessionName == nil {
@@ -181,6 +214,34 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetStrategy(v Obs
 	o.Strategy = v
 }
 
+// GetUsernameKey returns the UsernameKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetUsernameKey() string {
+	if o == nil || o.UsernameKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.UsernameKey
+}
+
+// GetUsernameKeyOk returns a tuple with the UsernameKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetUsernameKeyOk() (*string, bool) {
+	if o == nil || o.UsernameKey == nil {
+		return nil, false
+	}
+	return o.UsernameKey, true
+}
+
+// HasUsernameKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) HasUsernameKey() bool {
+	return o != nil && o.UsernameKey != nil
+}
+
+// SetUsernameKey gets a reference to the given string and assigns it to the UsernameKey field.
+func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetUsernameKey(v string) {
+	o.UsernameKey = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonOpenSearchDestinationAuth) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -196,10 +257,16 @@ func (o ObservabilityPipelineAmazonOpenSearchDestinationAuth) MarshalJSON() ([]b
 	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
 	}
+	if o.PasswordKey != nil {
+		toSerialize["password_key"] = o.PasswordKey
+	}
 	if o.SessionName != nil {
 		toSerialize["session_name"] = o.SessionName
 	}
 	toSerialize["strategy"] = o.Strategy
+	if o.UsernameKey != nil {
+		toSerialize["username_key"] = o.UsernameKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -213,8 +280,10 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) UnmarshalJSON(byt
 		AssumeRole  *string                                                       `json:"assume_role,omitempty"`
 		AwsRegion   *string                                                       `json:"aws_region,omitempty"`
 		ExternalId  *string                                                       `json:"external_id,omitempty"`
+		PasswordKey *string                                                       `json:"password_key,omitempty"`
 		SessionName *string                                                       `json:"session_name,omitempty"`
 		Strategy    *ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy `json:"strategy"`
+		UsernameKey *string                                                       `json:"username_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -224,7 +293,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assume_role", "aws_region", "external_id", "session_name", "strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assume_role", "aws_region", "external_id", "password_key", "session_name", "strategy", "username_key"})
 	} else {
 		return err
 	}
@@ -233,12 +302,14 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) UnmarshalJSON(byt
 	o.AssumeRole = all.AssumeRole
 	o.AwsRegion = all.AwsRegion
 	o.ExternalId = all.ExternalId
+	o.PasswordKey = all.PasswordKey
 	o.SessionName = all.SessionName
 	if !all.Strategy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Strategy = *all.Strategy
 	}
+	o.UsernameKey = all.UsernameKey
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -16,11 +16,16 @@ import (
 type ObservabilityPipelineAmazonOpenSearchDestination struct {
 	// Authentication settings for the Amazon OpenSearch destination.
 	// The `strategy` field determines whether basic or AWS-based authentication is used.
-	Auth ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth"`
+	// When `strategy` is `basic`, use `username_key` and `password_key` to reference credentials stored in environment variables or secrets.
+	Auth *ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth,omitempty"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The index to write logs to.
 	BulkIndex *string `json:"bulk_index,omitempty"`
+	// Configuration options for writing to OpenSearch Data Streams instead of a fixed index.
+	DataStream *ObservabilityPipelineOpenSearchDestinationDataStream `json:"data_stream,omitempty"`
+	// Name of the environment variable or secret that holds the Amazon OpenSearch endpoint URL.
+	EndpointUrlKey *string `json:"endpoint_url_key,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -36,9 +41,8 @@ type ObservabilityPipelineAmazonOpenSearchDestination struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineAmazonOpenSearchDestination(auth ObservabilityPipelineAmazonOpenSearchDestinationAuth, id string, inputs []string, typeVar ObservabilityPipelineAmazonOpenSearchDestinationType) *ObservabilityPipelineAmazonOpenSearchDestination {
+func NewObservabilityPipelineAmazonOpenSearchDestination(id string, inputs []string, typeVar ObservabilityPipelineAmazonOpenSearchDestinationType) *ObservabilityPipelineAmazonOpenSearchDestination {
 	this := ObservabilityPipelineAmazonOpenSearchDestination{}
-	this.Auth = auth
 	this.Id = id
 	this.Inputs = inputs
 	this.Type = typeVar
@@ -55,27 +59,32 @@ func NewObservabilityPipelineAmazonOpenSearchDestinationWithDefaults() *Observab
 	return &this
 }
 
-// GetAuth returns the Auth field value.
+// GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetAuth() ObservabilityPipelineAmazonOpenSearchDestinationAuth {
-	if o == nil {
+	if o == nil || o.Auth == nil {
 		var ret ObservabilityPipelineAmazonOpenSearchDestinationAuth
 		return ret
 	}
-	return o.Auth
+	return *o.Auth
 }
 
-// GetAuthOk returns a tuple with the Auth field value
+// GetAuthOk returns a tuple with the Auth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetAuthOk() (*ObservabilityPipelineAmazonOpenSearchDestinationAuth, bool) {
-	if o == nil {
+	if o == nil || o.Auth == nil {
 		return nil, false
 	}
-	return &o.Auth, true
+	return o.Auth, true
 }
 
-// SetAuth sets field value.
+// HasAuth returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) HasAuth() bool {
+	return o != nil && o.Auth != nil
+}
+
+// SetAuth gets a reference to the given ObservabilityPipelineAmazonOpenSearchDestinationAuth and assigns it to the Auth field.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetAuth(v ObservabilityPipelineAmazonOpenSearchDestinationAuth) {
-	o.Auth = v
+	o.Auth = &v
 }
 
 // GetBuffer returns the Buffer field value if set, zero value otherwise.
@@ -132,6 +141,62 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) HasBulkIndex() bool {
 // SetBulkIndex gets a reference to the given string and assigns it to the BulkIndex field.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetBulkIndex(v string) {
 	o.BulkIndex = &v
+}
+
+// GetDataStream returns the DataStream field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetDataStream() ObservabilityPipelineOpenSearchDestinationDataStream {
+	if o == nil || o.DataStream == nil {
+		var ret ObservabilityPipelineOpenSearchDestinationDataStream
+		return ret
+	}
+	return *o.DataStream
+}
+
+// GetDataStreamOk returns a tuple with the DataStream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetDataStreamOk() (*ObservabilityPipelineOpenSearchDestinationDataStream, bool) {
+	if o == nil || o.DataStream == nil {
+		return nil, false
+	}
+	return o.DataStream, true
+}
+
+// HasDataStream returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) HasDataStream() bool {
+	return o != nil && o.DataStream != nil
+}
+
+// SetDataStream gets a reference to the given ObservabilityPipelineOpenSearchDestinationDataStream and assigns it to the DataStream field.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetDataStream(v ObservabilityPipelineOpenSearchDestinationDataStream) {
+	o.DataStream = &v
+}
+
+// GetEndpointUrlKey returns the EndpointUrlKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetEndpointUrlKey() string {
+	if o == nil || o.EndpointUrlKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndpointUrlKey
+}
+
+// GetEndpointUrlKeyOk returns a tuple with the EndpointUrlKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetEndpointUrlKeyOk() (*string, bool) {
+	if o == nil || o.EndpointUrlKey == nil {
+		return nil, false
+	}
+	return o.EndpointUrlKey, true
+}
+
+// HasEndpointUrlKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) HasEndpointUrlKey() bool {
+	return o != nil && o.EndpointUrlKey != nil
+}
+
+// SetEndpointUrlKey gets a reference to the given string and assigns it to the EndpointUrlKey field.
+func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetEndpointUrlKey(v string) {
+	o.EndpointUrlKey = &v
 }
 
 // GetId returns the Id field value.
@@ -209,12 +274,20 @@ func (o ObservabilityPipelineAmazonOpenSearchDestination) MarshalJSON() ([]byte,
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["auth"] = o.Auth
+	if o.Auth != nil {
+		toSerialize["auth"] = o.Auth
+	}
 	if o.Buffer != nil {
 		toSerialize["buffer"] = o.Buffer
 	}
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
+	}
+	if o.DataStream != nil {
+		toSerialize["data_stream"] = o.DataStream
+	}
+	if o.EndpointUrlKey != nil {
+		toSerialize["endpoint_url_key"] = o.EndpointUrlKey
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
@@ -229,18 +302,17 @@ func (o ObservabilityPipelineAmazonOpenSearchDestination) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth      *ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth"`
-		Buffer    *ObservabilityPipelineBufferOptions                   `json:"buffer,omitempty"`
-		BulkIndex *string                                               `json:"bulk_index,omitempty"`
-		Id        *string                                               `json:"id"`
-		Inputs    *[]string                                             `json:"inputs"`
-		Type      *ObservabilityPipelineAmazonOpenSearchDestinationType `json:"type"`
+		Auth           *ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth,omitempty"`
+		Buffer         *ObservabilityPipelineBufferOptions                   `json:"buffer,omitempty"`
+		BulkIndex      *string                                               `json:"bulk_index,omitempty"`
+		DataStream     *ObservabilityPipelineOpenSearchDestinationDataStream `json:"data_stream,omitempty"`
+		EndpointUrlKey *string                                               `json:"endpoint_url_key,omitempty"`
+		Id             *string                                               `json:"id"`
+		Inputs         *[]string                                             `json:"inputs"`
+		Type           *ObservabilityPipelineAmazonOpenSearchDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Auth == nil {
-		return fmt.Errorf("required field auth missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -253,18 +325,23 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "bulk_index", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "bulk_index", "data_stream", "endpoint_url_key", "id", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Auth = *all.Auth
+	o.Auth = all.Auth
 	o.Buffer = all.Buffer
 	o.BulkIndex = all.BulkIndex
+	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.DataStream = all.DataStream
+	o.EndpointUrlKey = all.EndpointUrlKey
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	if !all.Type.IsValid() {
