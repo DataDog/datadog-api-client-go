@@ -126,13 +126,17 @@ type MonthlyUsageAttributionValues struct {
 	ErrorTrackingPercentage *float64 `json:"error_tracking_percentage,omitempty"`
 	// The error tracking events usage by tag(s).
 	ErrorTrackingUsage *float64 `json:"error_tracking_usage,omitempty"`
-	// The percentage of estimated indexed spans usage by tag(s).
+	// The percentage of estimated indexed spans usage by tag(s) (To be deprecated on February 1st, 2027).
+	// Deprecated
 	EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
-	// The estimated indexed spans usage by tag(s).
+	// The estimated indexed spans usage by tag(s) (To be deprecated on February 1st, 2027).
+	// Deprecated
 	EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
-	// The percentage of estimated ingested spans usage by tag(s).
+	// The percentage of estimated ingested spans usage by tag(s) (To be deprecated on February 1st, 2027).
+	// Deprecated
 	EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
-	// The estimated ingested spans usage by tag(s).
+	// The estimated ingested spans usage by tag(s) (To be deprecated on February 1st, 2027).
+	// Deprecated
 	EstimatedIngestedSpansUsage *float64 `json:"estimated_ingested_spans_usage,omitempty"`
 	// The percentage of Fargate usage by tags.
 	FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
@@ -1997,6 +2001,7 @@ func (o *MonthlyUsageAttributionValues) SetErrorTrackingUsage(v float64) {
 }
 
 // GetEstimatedIndexedSpansPercentage returns the EstimatedIndexedSpansPercentage field value if set, zero value otherwise.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentage() float64 {
 	if o == nil || o.EstimatedIndexedSpansPercentage == nil {
 		var ret float64
@@ -2007,6 +2012,7 @@ func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentage() flo
 
 // GetEstimatedIndexedSpansPercentageOk returns a tuple with the EstimatedIndexedSpansPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentageOk() (*float64, bool) {
 	if o == nil || o.EstimatedIndexedSpansPercentage == nil {
 		return nil, false
@@ -2020,11 +2026,13 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedSpansPercentage() boo
 }
 
 // SetEstimatedIndexedSpansPercentage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansPercentage field.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansPercentage(v float64) {
 	o.EstimatedIndexedSpansPercentage = &v
 }
 
 // GetEstimatedIndexedSpansUsage returns the EstimatedIndexedSpansUsage field value if set, zero value otherwise.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsage() float64 {
 	if o == nil || o.EstimatedIndexedSpansUsage == nil {
 		var ret float64
@@ -2035,6 +2043,7 @@ func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsage() float64 
 
 // GetEstimatedIndexedSpansUsageOk returns a tuple with the EstimatedIndexedSpansUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsageOk() (*float64, bool) {
 	if o == nil || o.EstimatedIndexedSpansUsage == nil {
 		return nil, false
@@ -2048,11 +2057,13 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedSpansUsage() bool {
 }
 
 // SetEstimatedIndexedSpansUsage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansUsage field.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansUsage(v float64) {
 	o.EstimatedIndexedSpansUsage = &v
 }
 
 // GetEstimatedIngestedSpansPercentage returns the EstimatedIngestedSpansPercentage field value if set, zero value otherwise.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansPercentage() float64 {
 	if o == nil || o.EstimatedIngestedSpansPercentage == nil {
 		var ret float64
@@ -2063,6 +2074,7 @@ func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansPercentage() fl
 
 // GetEstimatedIngestedSpansPercentageOk returns a tuple with the EstimatedIngestedSpansPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansPercentageOk() (*float64, bool) {
 	if o == nil || o.EstimatedIngestedSpansPercentage == nil {
 		return nil, false
@@ -2076,11 +2088,13 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIngestedSpansPercentage() bo
 }
 
 // SetEstimatedIngestedSpansPercentage gets a reference to the given float64 and assigns it to the EstimatedIngestedSpansPercentage field.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) SetEstimatedIngestedSpansPercentage(v float64) {
 	o.EstimatedIngestedSpansPercentage = &v
 }
 
 // GetEstimatedIngestedSpansUsage returns the EstimatedIngestedSpansUsage field value if set, zero value otherwise.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansUsage() float64 {
 	if o == nil || o.EstimatedIngestedSpansUsage == nil {
 		var ret float64
@@ -2091,6 +2105,7 @@ func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansUsage() float64
 
 // GetEstimatedIngestedSpansUsageOk returns a tuple with the EstimatedIngestedSpansUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansUsageOk() (*float64, bool) {
 	if o == nil || o.EstimatedIngestedSpansUsage == nil {
 		return nil, false
@@ -2104,6 +2119,7 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIngestedSpansUsage() bool {
 }
 
 // SetEstimatedIngestedSpansUsage gets a reference to the given float64 and assigns it to the EstimatedIngestedSpansUsage field.
+// Deprecated
 func (o *MonthlyUsageAttributionValues) SetEstimatedIngestedSpansUsage(v float64) {
 	o.EstimatedIngestedSpansUsage = &v
 }
