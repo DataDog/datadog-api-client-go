@@ -16,6 +16,8 @@ type AWSMetricsConfig struct {
 	CollectCloudwatchAlarms *bool `json:"collect_cloudwatch_alarms,omitempty"`
 	// Enable custom metrics collection. Defaults to `false`.
 	CollectCustomMetrics *bool `json:"collect_custom_metrics,omitempty"`
+	// Enable Service Quotas collection. Defaults to `false`.
+	CollectServiceQuotas *bool `json:"collect_service_quotas,omitempty"`
 	// Enable AWS metrics collection. Defaults to `true`.
 	Enabled *bool `json:"enabled,omitempty"`
 	// AWS CloudWatch metric name filters. Each filter applies to a single namespace.
@@ -129,6 +131,34 @@ func (o *AWSMetricsConfig) HasCollectCustomMetrics() bool {
 // SetCollectCustomMetrics gets a reference to the given bool and assigns it to the CollectCustomMetrics field.
 func (o *AWSMetricsConfig) SetCollectCustomMetrics(v bool) {
 	o.CollectCustomMetrics = &v
+}
+
+// GetCollectServiceQuotas returns the CollectServiceQuotas field value if set, zero value otherwise.
+func (o *AWSMetricsConfig) GetCollectServiceQuotas() bool {
+	if o == nil || o.CollectServiceQuotas == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CollectServiceQuotas
+}
+
+// GetCollectServiceQuotasOk returns a tuple with the CollectServiceQuotas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSMetricsConfig) GetCollectServiceQuotasOk() (*bool, bool) {
+	if o == nil || o.CollectServiceQuotas == nil {
+		return nil, false
+	}
+	return o.CollectServiceQuotas, true
+}
+
+// HasCollectServiceQuotas returns a boolean if a field has been set.
+func (o *AWSMetricsConfig) HasCollectServiceQuotas() bool {
+	return o != nil && o.CollectServiceQuotas != nil
+}
+
+// SetCollectServiceQuotas gets a reference to the given bool and assigns it to the CollectServiceQuotas field.
+func (o *AWSMetricsConfig) SetCollectServiceQuotas(v bool) {
+	o.CollectServiceQuotas = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -258,6 +288,9 @@ func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
 	if o.CollectCustomMetrics != nil {
 		toSerialize["collect_custom_metrics"] = o.CollectCustomMetrics
 	}
+	if o.CollectServiceQuotas != nil {
+		toSerialize["collect_service_quotas"] = o.CollectServiceQuotas
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -283,6 +316,7 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 		AutomuteEnabled         *bool                   `json:"automute_enabled,omitempty"`
 		CollectCloudwatchAlarms *bool                   `json:"collect_cloudwatch_alarms,omitempty"`
 		CollectCustomMetrics    *bool                   `json:"collect_custom_metrics,omitempty"`
+		CollectServiceQuotas    *bool                   `json:"collect_service_quotas,omitempty"`
 		Enabled                 *bool                   `json:"enabled,omitempty"`
 		MetricNameFilters       []AWSMetricNameFilters  `json:"metric_name_filters,omitempty"`
 		NamespaceFilters        *AWSNamespaceFilters    `json:"namespace_filters,omitempty"`
@@ -293,13 +327,14 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "enabled", "metric_name_filters", "namespace_filters", "tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "collect_service_quotas", "enabled", "metric_name_filters", "namespace_filters", "tag_filters"})
 	} else {
 		return err
 	}
 	o.AutomuteEnabled = all.AutomuteEnabled
 	o.CollectCloudwatchAlarms = all.CollectCloudwatchAlarms
 	o.CollectCustomMetrics = all.CollectCustomMetrics
+	o.CollectServiceQuotas = all.CollectServiceQuotas
 	o.Enabled = all.Enabled
 	o.MetricNameFilters = all.MetricNameFilters
 	o.NamespaceFilters = all.NamespaceFilters
