@@ -15,7 +15,7 @@ type UserTeamAttributes struct {
 	ProvisionedBy datadog.NullableString `json:"provisioned_by,omitempty"`
 	// UUID of the User or Service Account who provisioned this team membership, or null if provisioned via SAML mapping.
 	ProvisionedById datadog.NullableString `json:"provisioned_by_id,omitempty"`
-	// The user's role within the team
+	// The user's role within the team. A value of `null` represents a regular member.
 	Role NullableUserTeamRole `json:"role,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UserTeamRole The user's role within the team
+// UserTeamRole The user's role within the team. A value of `null` represents a regular member.
 type UserTeamRole string
 
 // List of UserTeamRole.
