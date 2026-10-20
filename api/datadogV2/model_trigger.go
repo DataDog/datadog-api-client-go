@@ -30,6 +30,7 @@ type Trigger struct {
 	IncidentTriggerWrapper                  *IncidentTriggerWrapper
 	MonitorTriggerWrapper                   *MonitorTriggerWrapper
 	NotebookTriggerWrapper                  *NotebookTriggerWrapper
+	OnCallShiftChangeTriggerWrapper         *OnCallShiftChangeTriggerWrapper
 	OnCallTriggerWrapper                    *OnCallTriggerWrapper
 	ScheduleTriggerWrapper                  *ScheduleTriggerWrapper
 	SecurityTriggerWrapper                  *SecurityTriggerWrapper
@@ -140,6 +141,11 @@ func MonitorTriggerWrapperAsTrigger(v *MonitorTriggerWrapper) Trigger {
 // NotebookTriggerWrapperAsTrigger is a convenience function that returns NotebookTriggerWrapper wrapped in Trigger.
 func NotebookTriggerWrapperAsTrigger(v *NotebookTriggerWrapper) Trigger {
 	return Trigger{NotebookTriggerWrapper: v}
+}
+
+// OnCallShiftChangeTriggerWrapperAsTrigger is a convenience function that returns OnCallShiftChangeTriggerWrapper wrapped in Trigger.
+func OnCallShiftChangeTriggerWrapperAsTrigger(v *OnCallShiftChangeTriggerWrapper) Trigger {
+	return Trigger{OnCallShiftChangeTriggerWrapper: v}
 }
 
 // OnCallTriggerWrapperAsTrigger is a convenience function that returns OnCallTriggerWrapper wrapped in Trigger.
@@ -521,6 +527,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.NotebookTriggerWrapper = nil
 	}
 
+	// try to unmarshal data into OnCallShiftChangeTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.OnCallShiftChangeTriggerWrapper)
+	if err == nil {
+		if obj.OnCallShiftChangeTriggerWrapper != nil && obj.OnCallShiftChangeTriggerWrapper.UnparsedObject == nil {
+			jsonOnCallShiftChangeTriggerWrapper, _ := datadog.Marshal(obj.OnCallShiftChangeTriggerWrapper)
+			if string(jsonOnCallShiftChangeTriggerWrapper) == "{}" { // empty struct
+				obj.OnCallShiftChangeTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.OnCallShiftChangeTriggerWrapper = nil
+		}
+	} else {
+		obj.OnCallShiftChangeTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into OnCallTriggerWrapper
 	err = datadog.Unmarshal(data, &obj.OnCallTriggerWrapper)
 	if err == nil {
@@ -662,6 +685,7 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.IncidentTriggerWrapper = nil
 		obj.MonitorTriggerWrapper = nil
 		obj.NotebookTriggerWrapper = nil
+		obj.OnCallShiftChangeTriggerWrapper = nil
 		obj.OnCallTriggerWrapper = nil
 		obj.ScheduleTriggerWrapper = nil
 		obj.SecurityTriggerWrapper = nil
@@ -754,6 +778,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 
 	if obj.NotebookTriggerWrapper != nil {
 		return datadog.Marshal(&obj.NotebookTriggerWrapper)
+	}
+
+	if obj.OnCallShiftChangeTriggerWrapper != nil {
+		return datadog.Marshal(&obj.OnCallShiftChangeTriggerWrapper)
 	}
 
 	if obj.OnCallTriggerWrapper != nil {
@@ -870,6 +898,10 @@ func (obj *Trigger) GetActualInstance() interface{} {
 
 	if obj.NotebookTriggerWrapper != nil {
 		return obj.NotebookTriggerWrapper
+	}
+
+	if obj.OnCallShiftChangeTriggerWrapper != nil {
+		return obj.OnCallShiftChangeTriggerWrapper
 	}
 
 	if obj.OnCallTriggerWrapper != nil {
