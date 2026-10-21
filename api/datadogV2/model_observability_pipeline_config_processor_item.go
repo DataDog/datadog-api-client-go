@@ -30,6 +30,7 @@ type ObservabilityPipelineConfigProcessorItem struct {
 	ObservabilityPipelineRenameFieldsProcessor          *ObservabilityPipelineRenameFieldsProcessor
 	ObservabilityPipelineSampleProcessor                *ObservabilityPipelineSampleProcessor
 	ObservabilityPipelineSensitiveDataScannerProcessor  *ObservabilityPipelineSensitiveDataScannerProcessor
+	ObservabilityPipelineSpikeProtectionProcessor       *ObservabilityPipelineSpikeProtectionProcessor
 	ObservabilityPipelineSplitArrayProcessor            *ObservabilityPipelineSplitArrayProcessor
 	ObservabilityPipelineThrottleProcessor              *ObservabilityPipelineThrottleProcessor
 	ObservabilityPipelineAddMetricTagsProcessor         *ObservabilityPipelineAddMetricTagsProcessor
@@ -141,6 +142,11 @@ func ObservabilityPipelineSampleProcessorAsObservabilityPipelineConfigProcessorI
 // ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSensitiveDataScannerProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineSensitiveDataScannerProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineSensitiveDataScannerProcessor: v}
+}
+
+// ObservabilityPipelineSpikeProtectionProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSpikeProtectionProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineSpikeProtectionProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineSpikeProtectionProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineSpikeProtectionProcessor: v}
 }
 
 // ObservabilityPipelineSplitArrayProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSplitArrayProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
@@ -527,6 +533,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineSpikeProtectionProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSpikeProtectionProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineSpikeProtectionProcessor != nil && obj.ObservabilityPipelineSpikeProtectionProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineSpikeProtectionProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineSpikeProtectionProcessor)
+			if string(jsonObservabilityPipelineSpikeProtectionProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineSpikeProtectionProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineSpikeProtectionProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineSpikeProtectionProcessor = nil
+	}
+
 	// try to unmarshal data into ObservabilityPipelineSplitArrayProcessor
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSplitArrayProcessor)
 	if err == nil {
@@ -685,6 +708,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
 		obj.ObservabilityPipelineSampleProcessor = nil
 		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+		obj.ObservabilityPipelineSpikeProtectionProcessor = nil
 		obj.ObservabilityPipelineSplitArrayProcessor = nil
 		obj.ObservabilityPipelineThrottleProcessor = nil
 		obj.ObservabilityPipelineAddMetricTagsProcessor = nil
@@ -778,6 +802,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+	}
+
+	if obj.ObservabilityPipelineSpikeProtectionProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineSpikeProtectionProcessor)
 	}
 
 	if obj.ObservabilityPipelineSplitArrayProcessor != nil {
@@ -898,6 +926,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessor
+	}
+
+	if obj.ObservabilityPipelineSpikeProtectionProcessor != nil {
+		return obj.ObservabilityPipelineSpikeProtectionProcessor
 	}
 
 	if obj.ObservabilityPipelineSplitArrayProcessor != nil {
