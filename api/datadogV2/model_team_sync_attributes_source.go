@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamSyncAttributesSource The external source platform for team synchronization. Only "github" is supported.
+// TeamSyncAttributesSource The external source platform for team synchronization.
 type TeamSyncAttributesSource string
 
 // List of TeamSyncAttributesSource.
 const (
-	TEAMSYNCATTRIBUTESSOURCE_GITHUB TeamSyncAttributesSource = "github"
+	TEAMSYNCATTRIBUTESSOURCE_GITHUB     TeamSyncAttributesSource = "github"
+	TEAMSYNCATTRIBUTESSOURCE_SERVICENOW TeamSyncAttributesSource = "servicenow"
 )
 
 var allowedTeamSyncAttributesSourceEnumValues = []TeamSyncAttributesSource{
 	TEAMSYNCATTRIBUTESSOURCE_GITHUB,
+	TEAMSYNCATTRIBUTESSOURCE_SERVICENOW,
 }
 
 // GetAllowedValues reeturns the list of possible values.

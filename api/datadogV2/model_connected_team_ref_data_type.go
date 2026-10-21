@@ -15,11 +15,13 @@ type ConnectedTeamRefDataType string
 
 // List of ConnectedTeamRefDataType.
 const (
-	CONNECTEDTEAMREFDATATYPE_GITHUB_TEAM ConnectedTeamRefDataType = "github_team"
+	CONNECTEDTEAMREFDATATYPE_GITHUB_TEAM     ConnectedTeamRefDataType = "github_team"
+	CONNECTEDTEAMREFDATATYPE_SERVICENOW_TEAM ConnectedTeamRefDataType = "servicenow_team"
 )
 
 var allowedConnectedTeamRefDataTypeEnumValues = []ConnectedTeamRefDataType{
 	CONNECTEDTEAMREFDATATYPE_GITHUB_TEAM,
+	CONNECTEDTEAMREFDATATYPE_SERVICENOW_TEAM,
 }
 
 // GetAllowedValues reeturns the list of possible values.

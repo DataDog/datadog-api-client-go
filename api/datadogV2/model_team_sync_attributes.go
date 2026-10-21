@@ -18,7 +18,7 @@ type TeamSyncAttributes struct {
 	// provided, synchronization is limited to the specified
 	// items and their subtrees.
 	SelectionState []TeamSyncSelectionStateItem `json:"selection_state,omitempty"`
-	// The external source platform for team synchronization. Only "github" is supported.
+	// The external source platform for team synchronization.
 	Source TeamSyncAttributesSource `json:"source"`
 	// Whether to sync members from the external team to the Datadog team. Defaults to `false` when not provided.
 	SyncMembership *bool `json:"sync_membership,omitempty"`
