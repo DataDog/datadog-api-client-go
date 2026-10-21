@@ -14,6 +14,9 @@ import (
 type ScheduleUpdateRequestDataAttributes struct {
 	// The updated list of layers (rotations) for this schedule.
 	Layers []ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
+	// Maximum number of users who can be on call at the same time.
+	// The value must be between 1 and the number of layers, and no greater than 10.
+	MaxResponders *int64 `json:"max_responders,omitempty"`
 	// A short name for the schedule.
 	Name string `json:"name"`
 	// The time zone used when interpreting rotation times.
@@ -64,6 +67,34 @@ func (o *ScheduleUpdateRequestDataAttributes) GetLayersOk() (*[]ScheduleUpdateRe
 // SetLayers sets field value.
 func (o *ScheduleUpdateRequestDataAttributes) SetLayers(v []ScheduleUpdateRequestDataAttributesLayersItems) {
 	o.Layers = v
+}
+
+// GetMaxResponders returns the MaxResponders field value if set, zero value otherwise.
+func (o *ScheduleUpdateRequestDataAttributes) GetMaxResponders() int64 {
+	if o == nil || o.MaxResponders == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MaxResponders
+}
+
+// GetMaxRespondersOk returns a tuple with the MaxResponders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduleUpdateRequestDataAttributes) GetMaxRespondersOk() (*int64, bool) {
+	if o == nil || o.MaxResponders == nil {
+		return nil, false
+	}
+	return o.MaxResponders, true
+}
+
+// HasMaxResponders returns a boolean if a field has been set.
+func (o *ScheduleUpdateRequestDataAttributes) HasMaxResponders() bool {
+	return o != nil && o.MaxResponders != nil
+}
+
+// SetMaxResponders gets a reference to the given int64 and assigns it to the MaxResponders field.
+func (o *ScheduleUpdateRequestDataAttributes) SetMaxResponders(v int64) {
+	o.MaxResponders = &v
 }
 
 // GetName returns the Name field value.
@@ -119,6 +150,9 @@ func (o ScheduleUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["layers"] = o.Layers
+	if o.MaxResponders != nil {
+		toSerialize["max_responders"] = o.MaxResponders
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["time_zone"] = o.TimeZone
 
@@ -131,9 +165,10 @@ func (o ScheduleUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Layers   *[]ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
-		Name     *string                                           `json:"name"`
-		TimeZone *string                                           `json:"time_zone"`
+		Layers        *[]ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
+		MaxResponders *int64                                            `json:"max_responders,omitempty"`
+		Name          *string                                           `json:"name"`
+		TimeZone      *string                                           `json:"time_zone"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,11 +184,12 @@ func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "name", "time_zone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "max_responders", "name", "time_zone"})
 	} else {
 		return err
 	}
 	o.Layers = *all.Layers
+	o.MaxResponders = all.MaxResponders
 	o.Name = *all.Name
 	o.TimeZone = *all.TimeZone
 
