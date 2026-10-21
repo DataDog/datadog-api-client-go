@@ -19,6 +19,8 @@ const (
 	LISTTEAMSSORT__NAME       ListTeamsSort = "-name"
 	LISTTEAMSSORT_USER_COUNT  ListTeamsSort = "user_count"
 	LISTTEAMSSORT__USER_COUNT ListTeamsSort = "-user_count"
+	LISTTEAMSSORT_LINK_COUNT  ListTeamsSort = "link_count"
+	LISTTEAMSSORT__LINK_COUNT ListTeamsSort = "-link_count"
 )
 
 var allowedListTeamsSortEnumValues = []ListTeamsSort{
@@ -26,6 +28,8 @@ var allowedListTeamsSortEnumValues = []ListTeamsSort{
 	LISTTEAMSSORT__NAME,
 	LISTTEAMSSORT_USER_COUNT,
 	LISTTEAMSSORT__USER_COUNT,
+	LISTTEAMSSORT_LINK_COUNT,
+	LISTTEAMSSORT__LINK_COUNT,
 }
 
 // GetAllowedValues reeturns the list of possible values.

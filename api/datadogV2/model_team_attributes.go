@@ -23,16 +23,23 @@ type TeamAttributes struct {
 	Description datadog.NullableString `json:"description,omitempty"`
 	// The team's identifier
 	Handle string `json:"handle"`
+	// Collection of handles associated with the team.
+	Handles datadog.NullableList[string] `json:"handles,omitempty"`
 	// Collection of hidden modules for the team
 	HiddenModules datadog.NullableList[string] `json:"hidden_modules,omitempty"`
 	// Whether the team is managed from an external source
 	IsManaged *bool `json:"is_managed,omitempty"`
+	// Whether any user can join the team without an invitation.
+	IsOpenMembership *bool `json:"is_open_membership,omitempty"`
 	// The number of links belonging to the team
 	LinkCount *int32 `json:"link_count,omitempty"`
 	// Modification date of the team
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The name of the team
 	Name string `json:"name"`
+	// The mechanism that created the team, such as `teams_api`, `teams_terraform`, or `teams_ui`.
+	// Omitted when unknown.
+	ProvisionedBy *string `json:"provisioned_by,omitempty"`
 	// A brief summary of the team, derived from the `description`
 	Summary datadog.NullableString `json:"summary,omitempty"`
 	// The number of users belonging to the team
@@ -231,6 +238,45 @@ func (o *TeamAttributes) SetHandle(v string) {
 	o.Handle = v
 }
 
+// GetHandles returns the Handles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamAttributes) GetHandles() []string {
+	if o == nil || o.Handles.Get() == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Handles.Get()
+}
+
+// GetHandlesOk returns a tuple with the Handles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *TeamAttributes) GetHandlesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Handles.Get(), o.Handles.IsSet()
+}
+
+// HasHandles returns a boolean if a field has been set.
+func (o *TeamAttributes) HasHandles() bool {
+	return o != nil && o.Handles.IsSet()
+}
+
+// SetHandles gets a reference to the given datadog.NullableList[string] and assigns it to the Handles field.
+func (o *TeamAttributes) SetHandles(v []string) {
+	o.Handles.Set(&v)
+}
+
+// SetHandlesNil sets the value for Handles to be an explicit nil.
+func (o *TeamAttributes) SetHandlesNil() {
+	o.Handles.Set(nil)
+}
+
+// UnsetHandles ensures that no value is present for Handles, not even an explicit nil.
+func (o *TeamAttributes) UnsetHandles() {
+	o.Handles.Unset()
+}
+
 // GetHiddenModules returns the HiddenModules field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TeamAttributes) GetHiddenModules() []string {
 	if o == nil || o.HiddenModules.Get() == nil {
@@ -296,6 +342,34 @@ func (o *TeamAttributes) HasIsManaged() bool {
 // SetIsManaged gets a reference to the given bool and assigns it to the IsManaged field.
 func (o *TeamAttributes) SetIsManaged(v bool) {
 	o.IsManaged = &v
+}
+
+// GetIsOpenMembership returns the IsOpenMembership field value if set, zero value otherwise.
+func (o *TeamAttributes) GetIsOpenMembership() bool {
+	if o == nil || o.IsOpenMembership == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsOpenMembership
+}
+
+// GetIsOpenMembershipOk returns a tuple with the IsOpenMembership field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamAttributes) GetIsOpenMembershipOk() (*bool, bool) {
+	if o == nil || o.IsOpenMembership == nil {
+		return nil, false
+	}
+	return o.IsOpenMembership, true
+}
+
+// HasIsOpenMembership returns a boolean if a field has been set.
+func (o *TeamAttributes) HasIsOpenMembership() bool {
+	return o != nil && o.IsOpenMembership != nil
+}
+
+// SetIsOpenMembership gets a reference to the given bool and assigns it to the IsOpenMembership field.
+func (o *TeamAttributes) SetIsOpenMembership(v bool) {
+	o.IsOpenMembership = &v
 }
 
 // GetLinkCount returns the LinkCount field value if set, zero value otherwise.
@@ -375,6 +449,34 @@ func (o *TeamAttributes) GetNameOk() (*string, bool) {
 // SetName sets field value.
 func (o *TeamAttributes) SetName(v string) {
 	o.Name = v
+}
+
+// GetProvisionedBy returns the ProvisionedBy field value if set, zero value otherwise.
+func (o *TeamAttributes) GetProvisionedBy() string {
+	if o == nil || o.ProvisionedBy == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProvisionedBy
+}
+
+// GetProvisionedByOk returns a tuple with the ProvisionedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamAttributes) GetProvisionedByOk() (*string, bool) {
+	if o == nil || o.ProvisionedBy == nil {
+		return nil, false
+	}
+	return o.ProvisionedBy, true
+}
+
+// HasProvisionedBy returns a boolean if a field has been set.
+func (o *TeamAttributes) HasProvisionedBy() bool {
+	return o != nil && o.ProvisionedBy != nil
+}
+
+// SetProvisionedBy gets a reference to the given string and assigns it to the ProvisionedBy field.
+func (o *TeamAttributes) SetProvisionedBy(v string) {
+	o.ProvisionedBy = &v
 }
 
 // GetSummary returns the Summary field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -506,11 +608,17 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["handle"] = o.Handle
+	if o.Handles.IsSet() {
+		toSerialize["handles"] = o.Handles.Get()
+	}
 	if o.HiddenModules.IsSet() {
 		toSerialize["hidden_modules"] = o.HiddenModules.Get()
 	}
 	if o.IsManaged != nil {
 		toSerialize["is_managed"] = o.IsManaged
+	}
+	if o.IsOpenMembership != nil {
+		toSerialize["is_open_membership"] = o.IsOpenMembership
 	}
 	if o.LinkCount != nil {
 		toSerialize["link_count"] = o.LinkCount
@@ -523,6 +631,9 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 		}
 	}
 	toSerialize["name"] = o.Name
+	if o.ProvisionedBy != nil {
+		toSerialize["provisioned_by"] = o.ProvisionedBy
+	}
 	if o.Summary.IsSet() {
 		toSerialize["summary"] = o.Summary.Get()
 	}
@@ -542,19 +653,22 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Avatar         datadog.NullableString       `json:"avatar,omitempty"`
-		Banner         datadog.NullableInt64        `json:"banner,omitempty"`
-		CreatedAt      *time.Time                   `json:"created_at,omitempty"`
-		Description    datadog.NullableString       `json:"description,omitempty"`
-		Handle         *string                      `json:"handle"`
-		HiddenModules  datadog.NullableList[string] `json:"hidden_modules,omitempty"`
-		IsManaged      *bool                        `json:"is_managed,omitempty"`
-		LinkCount      *int32                       `json:"link_count,omitempty"`
-		ModifiedAt     *time.Time                   `json:"modified_at,omitempty"`
-		Name           *string                      `json:"name"`
-		Summary        datadog.NullableString       `json:"summary,omitempty"`
-		UserCount      *int32                       `json:"user_count,omitempty"`
-		VisibleModules datadog.NullableList[string] `json:"visible_modules,omitempty"`
+		Avatar           datadog.NullableString       `json:"avatar,omitempty"`
+		Banner           datadog.NullableInt64        `json:"banner,omitempty"`
+		CreatedAt        *time.Time                   `json:"created_at,omitempty"`
+		Description      datadog.NullableString       `json:"description,omitempty"`
+		Handle           *string                      `json:"handle"`
+		Handles          datadog.NullableList[string] `json:"handles,omitempty"`
+		HiddenModules    datadog.NullableList[string] `json:"hidden_modules,omitempty"`
+		IsManaged        *bool                        `json:"is_managed,omitempty"`
+		IsOpenMembership *bool                        `json:"is_open_membership,omitempty"`
+		LinkCount        *int32                       `json:"link_count,omitempty"`
+		ModifiedAt       *time.Time                   `json:"modified_at,omitempty"`
+		Name             *string                      `json:"name"`
+		ProvisionedBy    *string                      `json:"provisioned_by,omitempty"`
+		Summary          datadog.NullableString       `json:"summary,omitempty"`
+		UserCount        *int32                       `json:"user_count,omitempty"`
+		VisibleModules   datadog.NullableList[string] `json:"visible_modules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -567,7 +681,7 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "created_at", "description", "handle", "hidden_modules", "is_managed", "link_count", "modified_at", "name", "summary", "user_count", "visible_modules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "created_at", "description", "handle", "handles", "hidden_modules", "is_managed", "is_open_membership", "link_count", "modified_at", "name", "provisioned_by", "summary", "user_count", "visible_modules"})
 	} else {
 		return err
 	}
@@ -576,11 +690,14 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Handle = *all.Handle
+	o.Handles = all.Handles
 	o.HiddenModules = all.HiddenModules
 	o.IsManaged = all.IsManaged
+	o.IsOpenMembership = all.IsOpenMembership
 	o.LinkCount = all.LinkCount
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = *all.Name
+	o.ProvisionedBy = all.ProvisionedBy
 	o.Summary = all.Summary
 	o.UserCount = all.UserCount
 	o.VisibleModules = all.VisibleModules

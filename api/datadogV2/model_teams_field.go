@@ -30,6 +30,8 @@ const (
 	TEAMSFIELD_LINK_COUNT            TeamsField = "link_count"
 	TEAMSFIELD_TEAM_LINKS            TeamsField = "team_links"
 	TEAMSFIELD_USER_TEAM_PERMISSIONS TeamsField = "user_team_permissions"
+	TEAMSFIELD_IS_MANAGED            TeamsField = "is_managed"
+	TEAMSFIELD_PROVISIONED_BY        TeamsField = "provisioned_by"
 )
 
 var allowedTeamsFieldEnumValues = []TeamsField{
@@ -48,6 +50,8 @@ var allowedTeamsFieldEnumValues = []TeamsField{
 	TEAMSFIELD_LINK_COUNT,
 	TEAMSFIELD_TEAM_LINKS,
 	TEAMSFIELD_USER_TEAM_PERMISSIONS,
+	TEAMSFIELD_IS_MANAGED,
+	TEAMSFIELD_PROVISIONED_BY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
