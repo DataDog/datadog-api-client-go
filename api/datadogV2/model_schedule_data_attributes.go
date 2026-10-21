@@ -10,6 +10,9 @@ import (
 
 // ScheduleDataAttributes Provides core properties of a schedule object such as its name and time zone.
 type ScheduleDataAttributes struct {
+	// Maximum number of users who can be on call at the same time.
+	// The value is between 1 and the number of layers, and no greater than 10.
+	MaxResponders *int64 `json:"max_responders,omitempty"`
 	// A short name for the schedule.
 	Name *string `json:"name,omitempty"`
 	// A list of tags associated with the schedule.
@@ -36,6 +39,34 @@ func NewScheduleDataAttributes() *ScheduleDataAttributes {
 func NewScheduleDataAttributesWithDefaults() *ScheduleDataAttributes {
 	this := ScheduleDataAttributes{}
 	return &this
+}
+
+// GetMaxResponders returns the MaxResponders field value if set, zero value otherwise.
+func (o *ScheduleDataAttributes) GetMaxResponders() int64 {
+	if o == nil || o.MaxResponders == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MaxResponders
+}
+
+// GetMaxRespondersOk returns a tuple with the MaxResponders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduleDataAttributes) GetMaxRespondersOk() (*int64, bool) {
+	if o == nil || o.MaxResponders == nil {
+		return nil, false
+	}
+	return o.MaxResponders, true
+}
+
+// HasMaxResponders returns a boolean if a field has been set.
+func (o *ScheduleDataAttributes) HasMaxResponders() bool {
+	return o != nil && o.MaxResponders != nil
+}
+
+// SetMaxResponders gets a reference to the given int64 and assigns it to the MaxResponders field.
+func (o *ScheduleDataAttributes) SetMaxResponders(v int64) {
+	o.MaxResponders = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -128,6 +159,9 @@ func (o ScheduleDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.MaxResponders != nil {
+		toSerialize["max_responders"] = o.MaxResponders
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -147,19 +181,21 @@ func (o ScheduleDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name     *string  `json:"name,omitempty"`
-		Tags     []string `json:"tags,omitempty"`
-		TimeZone *string  `json:"time_zone,omitempty"`
+		MaxResponders *int64   `json:"max_responders,omitempty"`
+		Name          *string  `json:"name,omitempty"`
+		Tags          []string `json:"tags,omitempty"`
+		TimeZone      *string  `json:"time_zone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "tags", "time_zone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"max_responders", "name", "tags", "time_zone"})
 	} else {
 		return err
 	}
+	o.MaxResponders = all.MaxResponders
 	o.Name = all.Name
 	o.Tags = all.Tags
 	o.TimeZone = all.TimeZone
