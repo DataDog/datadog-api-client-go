@@ -13,6 +13,7 @@ type CILogAttributeValue struct {
 	String  *string
 	Float64 *float64
 	Bool    *bool
+	isNull  bool
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -20,7 +21,7 @@ type CILogAttributeValue struct {
 
 // StringAsCILogAttributeValue is a convenience function that returns string wrapped in CILogAttributeValue.
 func StringAsCILogAttributeValue(v *string) CILogAttributeValue {
-	return CILogAttributeValue{String: v}
+	return CILogAttributeValue{String: v, isNull: v == nil}
 }
 
 // Float64AsCILogAttributeValue is a convenience function that returns float64 wrapped in CILogAttributeValue.
@@ -36,6 +37,11 @@ func BoolAsCILogAttributeValue(v *bool) CILogAttributeValue {
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *CILogAttributeValue) UnmarshalJSON(data []byte) error {
 	var err error
+	if string(data) == "null" {
+		*obj = CILogAttributeValue{isNull: true}
+		return nil
+	}
+	obj.isNull = false
 	match := 0
 	// try to unmarshal data into String
 	err = datadog.Unmarshal(data, &obj.String)
@@ -100,6 +106,9 @@ func (obj *CILogAttributeValue) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj CILogAttributeValue) MarshalJSON() ([]byte, error) {
+	if obj.isNull && obj.String == nil && obj.Float64 == nil && obj.Bool == nil && obj.UnparsedObject == nil {
+		return []byte("null"), nil
+	}
 	if obj.String != nil {
 		return datadog.Marshal(&obj.String)
 	}
