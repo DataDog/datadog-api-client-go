@@ -1,4 +1,4 @@
-// Link Teams with GitHub Teams returns "OK" response
+// Link teams with external teams returns "OK" response
 
 package main
 

@@ -12,7 +12,7 @@ import (
 type TeamConnectionAttributes struct {
 	// The entity that manages this team connection.
 	ManagedBy *string `json:"managed_by,omitempty"`
-	// The name of the external source.
+	// The name of the external source, such as `github` or `servicenow`.
 	Source *string `json:"source,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

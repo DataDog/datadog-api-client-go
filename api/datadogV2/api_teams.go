@@ -1670,7 +1670,7 @@ func (a *TeamsApi) GetTeamPermissionSettings(ctx _context.Context, teamId string
 
 // GetTeamSync Get team sync configurations.
 // Get all team synchronization configurations.
-// Returns a list of configurations used for linking or provisioning teams with external sources like GitHub.
+// Returns a list of configurations used for linking or provisioning teams with external sources like GitHub or ServiceNow.
 func (a *TeamsApi) GetTeamSync(ctx _context.Context, filterSource TeamSyncAttributesSource) (TeamSyncResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2771,22 +2771,27 @@ func (a *TeamsApi) RemoveTeamHierarchyLink(ctx _context.Context, linkId string) 
 	return localVarHTTPResponse, nil
 }
 
-// SyncTeams Link Teams with GitHub Teams.
-// This endpoint configures synchronization between your existing Datadog teams and GitHub teams by matching their names.
-// It evaluates all current Datadog teams and compares them against teams in the GitHub organization
-// connected to your Datadog account, based on Datadog Team handle and GitHub Team slug
-// (lowercased and kebab-cased).
+// SyncTeams Link teams with external teams.
+// This endpoint configures synchronization between your existing Datadog teams and teams from
+// GitHub or ServiceNow by matching team names.
+// It evaluates all current Datadog teams and compares them against teams in the external source
+// connected to your Datadog account.
 //
-// This operation is read-only on the GitHub side, no teams will be modified or created.
+// This operation is read-only on the external source side, no teams will be modified or created there.
+// This only creates new teams in Datadog when type is set to `provision`.
 //
 // Optionally, provide `selection_state` to limit synchronization
 // to specific teams or organizations and their subtrees, instead
 // of syncing all teams.
 //
-// [A GitHub organization must be connected to your Datadog account](https://docs.datadoghq.com/integrations/github/),
+// **GitHub**: [A GitHub organization must be connected to your Datadog account](https://docs.datadoghq.com/integrations/github/),
 // and the GitHub App integrated with Datadog must have the `Members Read` permission. Matching is performed by comparing the Datadog team handle to the GitHub team slug
-// using a normalized exact match; case is ignored and spaces are removed. No modifications are made
-// to teams in GitHub. This only creates new teams in Datadog when type is set to `provision`.
+// (lowercased and kebab-cased) using a normalized exact match; case is ignored and spaces are removed.
+//
+// **ServiceNow**: [The ServiceNow integration must be configured for your Datadog account](https://docs.datadoghq.com/integrations/servicenow/).
+// Active assignment groups from every configured ServiceNow instance are synchronized, and the ServiceNow
+// group hierarchy is preserved. When `sync_membership` is enabled, group members are matched to Datadog
+// users by email address.
 func (a *TeamsApi) SyncTeams(ctx _context.Context, body TeamSyncRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost

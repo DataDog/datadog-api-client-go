@@ -13,6 +13,8 @@ import (
 // ConnectedTeamRefData Reference to connected external team.
 type ConnectedTeamRefData struct {
 	// The connected team ID as it is referenced throughout the Datadog ecosystem.
+	// For GitHub teams, this is `@<organization>/<team-slug>`.
+	// For ServiceNow groups, this is `<instance_name>/<sys_id>`.
 	Id string `json:"id"`
 	// External team resource type.
 	Type ConnectedTeamRefDataType `json:"type"`
