@@ -15,13 +15,17 @@ type MetricTagConfigurationMetricTypeCategory string
 
 // List of MetricTagConfigurationMetricTypeCategory.
 const (
-	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_NON_DISTRIBUTION MetricTagConfigurationMetricTypeCategory = "non_distribution"
-	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_DISTRIBUTION     MetricTagConfigurationMetricTypeCategory = "distribution"
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_NON_DISTRIBUTION      MetricTagConfigurationMetricTypeCategory = "non_distribution"
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_DISTRIBUTION          MetricTagConfigurationMetricTypeCategory = "distribution"
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_EXPONENTIAL_HISTOGRAM MetricTagConfigurationMetricTypeCategory = "exponential_histogram"
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_EXPLICIT_HISTOGRAM    MetricTagConfigurationMetricTypeCategory = "explicit_histogram"
 )
 
 var allowedMetricTagConfigurationMetricTypeCategoryEnumValues = []MetricTagConfigurationMetricTypeCategory{
 	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_NON_DISTRIBUTION,
 	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_DISTRIBUTION,
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_EXPONENTIAL_HISTOGRAM,
+	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_EXPLICIT_HISTOGRAM,
 }
 
 // GetAllowedValues reeturns the list of possible values.
