@@ -14,6 +14,8 @@ type IssueRelationships struct {
 	Assignee *IssueAssigneeRelationship `json:"assignee,omitempty"`
 	// Relationship between the issue and case.
 	Case *IssueCaseRelationship `json:"case,omitempty"`
+	// Relationship between the issue and its curated error samples.
+	Samples *IssueSamplesRelationship `json:"samples,omitempty"`
 	// Relationship between the issue and teams.
 	TeamOwners *IssueTeamOwnersRelationship `json:"team_owners,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -94,6 +96,34 @@ func (o *IssueRelationships) SetCase(v IssueCaseRelationship) {
 	o.Case = &v
 }
 
+// GetSamples returns the Samples field value if set, zero value otherwise.
+func (o *IssueRelationships) GetSamples() IssueSamplesRelationship {
+	if o == nil || o.Samples == nil {
+		var ret IssueSamplesRelationship
+		return ret
+	}
+	return *o.Samples
+}
+
+// GetSamplesOk returns a tuple with the Samples field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IssueRelationships) GetSamplesOk() (*IssueSamplesRelationship, bool) {
+	if o == nil || o.Samples == nil {
+		return nil, false
+	}
+	return o.Samples, true
+}
+
+// HasSamples returns a boolean if a field has been set.
+func (o *IssueRelationships) HasSamples() bool {
+	return o != nil && o.Samples != nil
+}
+
+// SetSamples gets a reference to the given IssueSamplesRelationship and assigns it to the Samples field.
+func (o *IssueRelationships) SetSamples(v IssueSamplesRelationship) {
+	o.Samples = &v
+}
+
 // GetTeamOwners returns the TeamOwners field value if set, zero value otherwise.
 func (o *IssueRelationships) GetTeamOwners() IssueTeamOwnersRelationship {
 	if o == nil || o.TeamOwners == nil {
@@ -134,6 +164,9 @@ func (o IssueRelationships) MarshalJSON() ([]byte, error) {
 	if o.Case != nil {
 		toSerialize["case"] = o.Case
 	}
+	if o.Samples != nil {
+		toSerialize["samples"] = o.Samples
+	}
 	if o.TeamOwners != nil {
 		toSerialize["team_owners"] = o.TeamOwners
 	}
@@ -149,6 +182,7 @@ func (o *IssueRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Assignee   *IssueAssigneeRelationship   `json:"assignee,omitempty"`
 		Case       *IssueCaseRelationship       `json:"case,omitempty"`
+		Samples    *IssueSamplesRelationship    `json:"samples,omitempty"`
 		TeamOwners *IssueTeamOwnersRelationship `json:"team_owners,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +190,7 @@ func (o *IssueRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "case", "team_owners"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "case", "samples", "team_owners"})
 	} else {
 		return err
 	}
@@ -170,6 +204,10 @@ func (o *IssueRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Case = all.Case
+	if all.Samples != nil && all.Samples.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Samples = all.Samples
 	if all.TeamOwners != nil && all.TeamOwners.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

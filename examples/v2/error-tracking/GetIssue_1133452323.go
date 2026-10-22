@@ -1,0 +1,37 @@
+// Get the details of an error tracking issue with samples returns "OK" response
+
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+)
+
+func main() {
+	// there is a valid "issue" in the system
+	IssueID := os.Getenv("ISSUE_ID")
+
+	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewErrorTrackingApi(apiClient)
+	resp, r, err := api.GetIssue(ctx, IssueID, *datadogV2.NewGetIssueOptionalParameters().WithInclude([]datadogV2.GetIssueIncludeQueryParameterItem{
+		datadogV2.GETISSUEINCLUDEQUERYPARAMETERITEM_SAMPLES,
+	}).WithFilterSamplesBiases([]datadogV2.IssueSampleBias{
+		datadogV2.ISSUESAMPLEBIAS_LATEST,
+	}))
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ErrorTrackingApi.GetIssue`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `ErrorTrackingApi.GetIssue`:\n%s\n", responseContent)
+}
