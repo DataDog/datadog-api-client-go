@@ -17,7 +17,7 @@ type TagRuleUpdateData struct {
 	Attributes *TagRuleUpdateAttributes `json:"attributes,omitempty"`
 	// The unique identifier of the tag rule being updated.
 	Id string `json:"id"`
-	// JSON:API resource type for a tag rule.
+	// JSON:API resource type for a tag rule. Responses use the legacy `tag_policy` value.
 	Type TagRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

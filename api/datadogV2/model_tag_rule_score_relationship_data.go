@@ -14,7 +14,7 @@ import (
 type TagRuleScoreRelationshipData struct {
 	// The unique identifier of the related compliance score resource.
 	Id string `json:"id"`
-	// JSON:API resource type for a tag rule compliance score.
+	// JSON:API resource type for a tag rule compliance score. Responses use the legacy `tag_policy_score` value.
 	Type TagRuleScoreResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagRuleScoreResourceType JSON:API resource type for a tag rule compliance score.
+// TagRuleScoreResourceType JSON:API resource type for a tag rule compliance score. Responses use the legacy `tag_policy_score` value.
 type TagRuleScoreResourceType string
 
 // List of TagRuleScoreResourceType.
 const (
-	TAGRULESCORERESOURCETYPE_TAG_RULE_SCORE TagRuleScoreResourceType = "tag_rule_score"
+	TAGRULESCORERESOURCETYPE_TAG_RULE_SCORE   TagRuleScoreResourceType = "tag_rule_score"
+	TAGRULESCORERESOURCETYPE_TAG_POLICY_SCORE TagRuleScoreResourceType = "tag_policy_score"
 )
 
 var allowedTagRuleScoreResourceTypeEnumValues = []TagRuleScoreResourceType{
 	TAGRULESCORERESOURCETYPE_TAG_RULE_SCORE,
+	TAGRULESCORERESOURCETYPE_TAG_POLICY_SCORE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
