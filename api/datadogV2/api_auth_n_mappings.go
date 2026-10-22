@@ -287,7 +287,7 @@ func (r *ListAuthNMappingsOptionalParameters) WithResourceType(resourceType Auth
 }
 
 // ListAuthNMappings List all AuthN Mappings.
-// List all AuthN Mappings in the org.
+// List all AuthN Mappings in the organization.
 func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
