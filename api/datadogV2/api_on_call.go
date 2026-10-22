@@ -1700,6 +1700,239 @@ func (a *OnCallApi) GetUserNotificationRule(ctx _context.Context, userId string,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListOnCallEscalationPoliciesOptionalParameters holds optional parameters for ListOnCallEscalationPolicies.
+type ListOnCallEscalationPoliciesOptionalParameters struct {
+	PageSize         *int64
+	PageNumber       *int64
+	FilterQuery      *string
+	FilterTeamId     *string
+	FilterUserId     *string
+	FilterScheduleId *string
+	FilterTags       *string
+	FilterTagsAny    *string
+	Include          *string
+}
+
+// NewListOnCallEscalationPoliciesOptionalParameters creates an empty struct for parameters.
+func NewListOnCallEscalationPoliciesOptionalParameters() *ListOnCallEscalationPoliciesOptionalParameters {
+	this := ListOnCallEscalationPoliciesOptionalParameters{}
+	return &this
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithPageSize(pageSize int64) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithPageNumber(pageNumber int64) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterQuery(filterQuery string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+
+// WithFilterTeamId sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterTeamId(filterTeamId string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterTeamId = &filterTeamId
+	return r
+}
+
+// WithFilterUserId sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterUserId(filterUserId string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterUserId = &filterUserId
+	return r
+}
+
+// WithFilterScheduleId sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterScheduleId(filterScheduleId string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterScheduleId = &filterScheduleId
+	return r
+}
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterTags(filterTags string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+
+// WithFilterTagsAny sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithFilterTagsAny(filterTagsAny string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.FilterTagsAny = &filterTagsAny
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListOnCallEscalationPoliciesOptionalParameters) WithInclude(include string) *ListOnCallEscalationPoliciesOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// ListOnCallEscalationPolicies List On-Call escalation policies.
+// Retrieve a paginated list of On-Call escalation policies, sorted by name.
+func (a *OnCallApi) ListOnCallEscalationPolicies(ctx _context.Context, o ...ListOnCallEscalationPoliciesOptionalParameters) (EscalationPolicies, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue EscalationPolicies
+		optionalParams      ListOnCallEscalationPoliciesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListOnCallEscalationPoliciesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OnCallApi.ListOnCallEscalationPolicies")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/on-call/escalation-policies"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
+	}
+	if optionalParams.FilterTeamId != nil {
+		localVarQueryParams.Add("filter[team_id]", datadog.ParameterToString(*optionalParams.FilterTeamId, ""))
+	}
+	if optionalParams.FilterUserId != nil {
+		localVarQueryParams.Add("filter[user_id]", datadog.ParameterToString(*optionalParams.FilterUserId, ""))
+	}
+	if optionalParams.FilterScheduleId != nil {
+		localVarQueryParams.Add("filter[schedule_id]", datadog.ParameterToString(*optionalParams.FilterScheduleId, ""))
+	}
+	if optionalParams.FilterTags != nil {
+		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
+	}
+	if optionalParams.FilterTagsAny != nil {
+		localVarQueryParams.Add("filter[tags_any]", datadog.ParameterToString(*optionalParams.FilterTagsAny, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListOnCallEscalationPoliciesWithPagination provides a paginated version of ListOnCallEscalationPolicies returning a channel with all items.
+func (a *OnCallApi) ListOnCallEscalationPoliciesWithPagination(ctx _context.Context, o ...ListOnCallEscalationPoliciesOptionalParameters) (<-chan datadog.PaginationResult[EscalationPolicyListItem], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(20)
+	if len(o) == 0 {
+		o = append(o, ListOnCallEscalationPoliciesOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[EscalationPolicyListItem], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListOnCallEscalationPolicies(ctx, o...)
+			if err != nil {
+				var returnItem EscalationPolicyListItem
+				items <- datadog.PaginationResult[EscalationPolicyListItem]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[EscalationPolicyListItem]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListOnCallSchedulesOptionalParameters holds optional parameters for ListOnCallSchedules.
 type ListOnCallSchedulesOptionalParameters struct {
 	PageSize    *int64
