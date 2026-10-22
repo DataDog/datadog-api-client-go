@@ -10,21 +10,33 @@ import (
 
 // TeamsResponseMetaPagination Teams response metadata.
 type TeamsResponseMetaPagination struct {
+	// The first page number.
+	FirstNumber *int64 `json:"first_number,omitempty"`
 	// The first offset.
 	FirstOffset *int64 `json:"first_offset,omitempty"`
+	// The last page number.
+	LastNumber datadog.NullableInt64 `json:"last_number,omitempty"`
 	// The last offset.
 	LastOffset *int64 `json:"last_offset,omitempty"`
 	// Pagination limit.
 	Limit *int64 `json:"limit,omitempty"`
+	// The next page number.
+	NextNumber datadog.NullableInt64 `json:"next_number,omitempty"`
 	// The next offset.
 	NextOffset *int64 `json:"next_offset,omitempty"`
+	// The current page number, when page-number pagination is used.
+	Number *int64 `json:"number,omitempty"`
 	// The offset.
 	Offset *int64 `json:"offset,omitempty"`
+	// The previous page number.
+	PrevNumber datadog.NullableInt64 `json:"prev_number,omitempty"`
 	// The previous offset.
 	PrevOffset *int64 `json:"prev_offset,omitempty"`
+	// The page size, when page-number pagination is used.
+	Size *int64 `json:"size,omitempty"`
 	// Total results.
 	Total *int64 `json:"total,omitempty"`
-	// Offset type.
+	// Pagination type. One of `offset_limit` or `number_size`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -46,6 +58,34 @@ func NewTeamsResponseMetaPagination() *TeamsResponseMetaPagination {
 func NewTeamsResponseMetaPaginationWithDefaults() *TeamsResponseMetaPagination {
 	this := TeamsResponseMetaPagination{}
 	return &this
+}
+
+// GetFirstNumber returns the FirstNumber field value if set, zero value otherwise.
+func (o *TeamsResponseMetaPagination) GetFirstNumber() int64 {
+	if o == nil || o.FirstNumber == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FirstNumber
+}
+
+// GetFirstNumberOk returns a tuple with the FirstNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamsResponseMetaPagination) GetFirstNumberOk() (*int64, bool) {
+	if o == nil || o.FirstNumber == nil {
+		return nil, false
+	}
+	return o.FirstNumber, true
+}
+
+// HasFirstNumber returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasFirstNumber() bool {
+	return o != nil && o.FirstNumber != nil
+}
+
+// SetFirstNumber gets a reference to the given int64 and assigns it to the FirstNumber field.
+func (o *TeamsResponseMetaPagination) SetFirstNumber(v int64) {
+	o.FirstNumber = &v
 }
 
 // GetFirstOffset returns the FirstOffset field value if set, zero value otherwise.
@@ -74,6 +114,45 @@ func (o *TeamsResponseMetaPagination) HasFirstOffset() bool {
 // SetFirstOffset gets a reference to the given int64 and assigns it to the FirstOffset field.
 func (o *TeamsResponseMetaPagination) SetFirstOffset(v int64) {
 	o.FirstOffset = &v
+}
+
+// GetLastNumber returns the LastNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamsResponseMetaPagination) GetLastNumber() int64 {
+	if o == nil || o.LastNumber.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LastNumber.Get()
+}
+
+// GetLastNumberOk returns a tuple with the LastNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *TeamsResponseMetaPagination) GetLastNumberOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastNumber.Get(), o.LastNumber.IsSet()
+}
+
+// HasLastNumber returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasLastNumber() bool {
+	return o != nil && o.LastNumber.IsSet()
+}
+
+// SetLastNumber gets a reference to the given datadog.NullableInt64 and assigns it to the LastNumber field.
+func (o *TeamsResponseMetaPagination) SetLastNumber(v int64) {
+	o.LastNumber.Set(&v)
+}
+
+// SetLastNumberNil sets the value for LastNumber to be an explicit nil.
+func (o *TeamsResponseMetaPagination) SetLastNumberNil() {
+	o.LastNumber.Set(nil)
+}
+
+// UnsetLastNumber ensures that no value is present for LastNumber, not even an explicit nil.
+func (o *TeamsResponseMetaPagination) UnsetLastNumber() {
+	o.LastNumber.Unset()
 }
 
 // GetLastOffset returns the LastOffset field value if set, zero value otherwise.
@@ -132,6 +211,45 @@ func (o *TeamsResponseMetaPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+// GetNextNumber returns the NextNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamsResponseMetaPagination) GetNextNumber() int64 {
+	if o == nil || o.NextNumber.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NextNumber.Get()
+}
+
+// GetNextNumberOk returns a tuple with the NextNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *TeamsResponseMetaPagination) GetNextNumberOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NextNumber.Get(), o.NextNumber.IsSet()
+}
+
+// HasNextNumber returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasNextNumber() bool {
+	return o != nil && o.NextNumber.IsSet()
+}
+
+// SetNextNumber gets a reference to the given datadog.NullableInt64 and assigns it to the NextNumber field.
+func (o *TeamsResponseMetaPagination) SetNextNumber(v int64) {
+	o.NextNumber.Set(&v)
+}
+
+// SetNextNumberNil sets the value for NextNumber to be an explicit nil.
+func (o *TeamsResponseMetaPagination) SetNextNumberNil() {
+	o.NextNumber.Set(nil)
+}
+
+// UnsetNextNumber ensures that no value is present for NextNumber, not even an explicit nil.
+func (o *TeamsResponseMetaPagination) UnsetNextNumber() {
+	o.NextNumber.Unset()
+}
+
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetNextOffset() int64 {
 	if o == nil || o.NextOffset == nil {
@@ -158,6 +276,34 @@ func (o *TeamsResponseMetaPagination) HasNextOffset() bool {
 // SetNextOffset gets a reference to the given int64 and assigns it to the NextOffset field.
 func (o *TeamsResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
+}
+
+// GetNumber returns the Number field value if set, zero value otherwise.
+func (o *TeamsResponseMetaPagination) GetNumber() int64 {
+	if o == nil || o.Number == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Number
+}
+
+// GetNumberOk returns a tuple with the Number field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamsResponseMetaPagination) GetNumberOk() (*int64, bool) {
+	if o == nil || o.Number == nil {
+		return nil, false
+	}
+	return o.Number, true
+}
+
+// HasNumber returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasNumber() bool {
+	return o != nil && o.Number != nil
+}
+
+// SetNumber gets a reference to the given int64 and assigns it to the Number field.
+func (o *TeamsResponseMetaPagination) SetNumber(v int64) {
+	o.Number = &v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
@@ -188,6 +334,45 @@ func (o *TeamsResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+// GetPrevNumber returns the PrevNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamsResponseMetaPagination) GetPrevNumber() int64 {
+	if o == nil || o.PrevNumber.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.PrevNumber.Get()
+}
+
+// GetPrevNumberOk returns a tuple with the PrevNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *TeamsResponseMetaPagination) GetPrevNumberOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PrevNumber.Get(), o.PrevNumber.IsSet()
+}
+
+// HasPrevNumber returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasPrevNumber() bool {
+	return o != nil && o.PrevNumber.IsSet()
+}
+
+// SetPrevNumber gets a reference to the given datadog.NullableInt64 and assigns it to the PrevNumber field.
+func (o *TeamsResponseMetaPagination) SetPrevNumber(v int64) {
+	o.PrevNumber.Set(&v)
+}
+
+// SetPrevNumberNil sets the value for PrevNumber to be an explicit nil.
+func (o *TeamsResponseMetaPagination) SetPrevNumberNil() {
+	o.PrevNumber.Set(nil)
+}
+
+// UnsetPrevNumber ensures that no value is present for PrevNumber, not even an explicit nil.
+func (o *TeamsResponseMetaPagination) UnsetPrevNumber() {
+	o.PrevNumber.Unset()
+}
+
 // GetPrevOffset returns the PrevOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetPrevOffset() int64 {
 	if o == nil || o.PrevOffset == nil {
@@ -214,6 +399,34 @@ func (o *TeamsResponseMetaPagination) HasPrevOffset() bool {
 // SetPrevOffset gets a reference to the given int64 and assigns it to the PrevOffset field.
 func (o *TeamsResponseMetaPagination) SetPrevOffset(v int64) {
 	o.PrevOffset = &v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *TeamsResponseMetaPagination) GetSize() int64 {
+	if o == nil || o.Size == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamsResponseMetaPagination) GetSizeOk() (*int64, bool) {
+	if o == nil || o.Size == nil {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *TeamsResponseMetaPagination) HasSize() bool {
+	return o != nil && o.Size != nil
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *TeamsResponseMetaPagination) SetSize(v int64) {
+	o.Size = &v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
@@ -278,8 +491,14 @@ func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.FirstNumber != nil {
+		toSerialize["first_number"] = o.FirstNumber
+	}
 	if o.FirstOffset != nil {
 		toSerialize["first_offset"] = o.FirstOffset
+	}
+	if o.LastNumber.IsSet() {
+		toSerialize["last_number"] = o.LastNumber.Get()
 	}
 	if o.LastOffset != nil {
 		toSerialize["last_offset"] = o.LastOffset
@@ -287,14 +506,26 @@ func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
+	if o.NextNumber.IsSet() {
+		toSerialize["next_number"] = o.NextNumber.Get()
+	}
 	if o.NextOffset != nil {
 		toSerialize["next_offset"] = o.NextOffset
+	}
+	if o.Number != nil {
+		toSerialize["number"] = o.Number
 	}
 	if o.Offset != nil {
 		toSerialize["offset"] = o.Offset
 	}
+	if o.PrevNumber.IsSet() {
+		toSerialize["prev_number"] = o.PrevNumber.Get()
+	}
 	if o.PrevOffset != nil {
 		toSerialize["prev_offset"] = o.PrevOffset
+	}
+	if o.Size != nil {
+		toSerialize["size"] = o.Size
 	}
 	if o.Total != nil {
 		toSerialize["total"] = o.Total
@@ -312,30 +543,42 @@ func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamsResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstOffset *int64  `json:"first_offset,omitempty"`
-		LastOffset  *int64  `json:"last_offset,omitempty"`
-		Limit       *int64  `json:"limit,omitempty"`
-		NextOffset  *int64  `json:"next_offset,omitempty"`
-		Offset      *int64  `json:"offset,omitempty"`
-		PrevOffset  *int64  `json:"prev_offset,omitempty"`
-		Total       *int64  `json:"total,omitempty"`
-		Type        *string `json:"type,omitempty"`
+		FirstNumber *int64                `json:"first_number,omitempty"`
+		FirstOffset *int64                `json:"first_offset,omitempty"`
+		LastNumber  datadog.NullableInt64 `json:"last_number,omitempty"`
+		LastOffset  *int64                `json:"last_offset,omitempty"`
+		Limit       *int64                `json:"limit,omitempty"`
+		NextNumber  datadog.NullableInt64 `json:"next_number,omitempty"`
+		NextOffset  *int64                `json:"next_offset,omitempty"`
+		Number      *int64                `json:"number,omitempty"`
+		Offset      *int64                `json:"offset,omitempty"`
+		PrevNumber  datadog.NullableInt64 `json:"prev_number,omitempty"`
+		PrevOffset  *int64                `json:"prev_offset,omitempty"`
+		Size        *int64                `json:"size,omitempty"`
+		Total       *int64                `json:"total,omitempty"`
+		Type        *string               `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first_offset", "last_offset", "limit", "next_offset", "offset", "prev_offset", "total", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"first_number", "first_offset", "last_number", "last_offset", "limit", "next_number", "next_offset", "number", "offset", "prev_number", "prev_offset", "size", "total", "type"})
 	} else {
 		return err
 	}
+	o.FirstNumber = all.FirstNumber
 	o.FirstOffset = all.FirstOffset
+	o.LastNumber = all.LastNumber
 	o.LastOffset = all.LastOffset
 	o.Limit = all.Limit
+	o.NextNumber = all.NextNumber
 	o.NextOffset = all.NextOffset
+	o.Number = all.Number
 	o.Offset = all.Offset
+	o.PrevNumber = all.PrevNumber
 	o.PrevOffset = all.PrevOffset
+	o.Size = all.Size
 	o.Total = all.Total
 	o.Type = all.Type
 
