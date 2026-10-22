@@ -14,7 +14,7 @@ import (
 type TagRuleCreateData struct {
 	// Attributes that can be supplied when creating a tag rule.
 	Attributes TagRuleCreateAttributes `json:"attributes"`
-	// JSON:API resource type for a tag rule.
+	// JSON:API resource type for a tag rule. Responses use the legacy `tag_policy` value.
 	Type TagRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
