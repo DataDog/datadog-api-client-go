@@ -12,6 +12,8 @@ import (
 type MetricsQueryMetadata struct {
 	// Aggregation type.
 	Aggr datadog.NullableString `json:"aggr,omitempty"`
+	// Additional read-only attributes returned for the series.
+	Attributes map[string]interface{} `json:"attributes,omitempty"`
 	// Display name of the metric.
 	DisplayName *string `json:"display_name,omitempty"`
 	// End of the time window, milliseconds since Unix epoch.
@@ -98,6 +100,34 @@ func (o *MetricsQueryMetadata) SetAggrNil() {
 // UnsetAggr ensures that no value is present for Aggr, not even an explicit nil.
 func (o *MetricsQueryMetadata) UnsetAggr() {
 	o.Aggr.Unset()
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *MetricsQueryMetadata) GetAttributes() map[string]interface{} {
+	if o == nil || o.Attributes == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryMetadata) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *MetricsQueryMetadata) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+func (o *MetricsQueryMetadata) SetAttributes(v map[string]interface{}) {
+	o.Attributes = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -445,6 +475,9 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 	if o.Aggr.IsSet() {
 		toSerialize["aggr"] = o.Aggr.Get()
 	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
@@ -492,6 +525,7 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggr        datadog.NullableString `json:"aggr,omitempty"`
+		Attributes  map[string]interface{} `json:"attributes,omitempty"`
 		DisplayName *string                `json:"display_name,omitempty"`
 		End         *int64                 `json:"end,omitempty"`
 		Expression  *string                `json:"expression,omitempty"`
@@ -510,11 +544,12 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggr", "display_name", "end", "expression", "interval", "length", "metric", "pointlist", "query_index", "scope", "start", "tag_set", "unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggr", "attributes", "display_name", "end", "expression", "interval", "length", "metric", "pointlist", "query_index", "scope", "start", "tag_set", "unit"})
 	} else {
 		return err
 	}
 	o.Aggr = all.Aggr
+	o.Attributes = all.Attributes
 	o.DisplayName = all.DisplayName
 	o.End = all.End
 	o.Expression = all.Expression

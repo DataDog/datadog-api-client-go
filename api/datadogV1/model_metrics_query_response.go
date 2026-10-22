@@ -22,12 +22,20 @@ type MetricsQueryResponse struct {
 	Query *string `json:"query,omitempty"`
 	// Type of response.
 	ResType *string `json:"res_type,omitempty"`
+	// Version of the response format.
+	RespVersion *int64 `json:"resp_version,omitempty"`
 	// List of timeseries queried.
 	Series []MetricsQueryMetadata `json:"series,omitempty"`
 	// Status of the query.
 	Status *string `json:"status,omitempty"`
+	// Legacy field, always returned as an empty list. Timestamps are returned
+	// in the `pointlist` of each entry of `series`.
+	Times []interface{} `json:"times,omitempty"`
 	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
+	// Legacy field, always returned as an empty list. Timeseries values are
+	// returned in the `pointlist` of each entry of `series`.
+	Values []interface{} `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -218,6 +226,34 @@ func (o *MetricsQueryResponse) SetResType(v string) {
 	o.ResType = &v
 }
 
+// GetRespVersion returns the RespVersion field value if set, zero value otherwise.
+func (o *MetricsQueryResponse) GetRespVersion() int64 {
+	if o == nil || o.RespVersion == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RespVersion
+}
+
+// GetRespVersionOk returns a tuple with the RespVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryResponse) GetRespVersionOk() (*int64, bool) {
+	if o == nil || o.RespVersion == nil {
+		return nil, false
+	}
+	return o.RespVersion, true
+}
+
+// HasRespVersion returns a boolean if a field has been set.
+func (o *MetricsQueryResponse) HasRespVersion() bool {
+	return o != nil && o.RespVersion != nil
+}
+
+// SetRespVersion gets a reference to the given int64 and assigns it to the RespVersion field.
+func (o *MetricsQueryResponse) SetRespVersion(v int64) {
+	o.RespVersion = &v
+}
+
 // GetSeries returns the Series field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetSeries() []MetricsQueryMetadata {
 	if o == nil || o.Series == nil {
@@ -274,6 +310,34 @@ func (o *MetricsQueryResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetTimes returns the Times field value if set, zero value otherwise.
+func (o *MetricsQueryResponse) GetTimes() []interface{} {
+	if o == nil || o.Times == nil {
+		var ret []interface{}
+		return ret
+	}
+	return o.Times
+}
+
+// GetTimesOk returns a tuple with the Times field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryResponse) GetTimesOk() (*[]interface{}, bool) {
+	if o == nil || o.Times == nil {
+		return nil, false
+	}
+	return &o.Times, true
+}
+
+// HasTimes returns a boolean if a field has been set.
+func (o *MetricsQueryResponse) HasTimes() bool {
+	return o != nil && o.Times != nil
+}
+
+// SetTimes gets a reference to the given []interface{} and assigns it to the Times field.
+func (o *MetricsQueryResponse) SetTimes(v []interface{}) {
+	o.Times = v
+}
+
 // GetToDate returns the ToDate field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetToDate() int64 {
 	if o == nil || o.ToDate == nil {
@@ -302,6 +366,34 @@ func (o *MetricsQueryResponse) SetToDate(v int64) {
 	o.ToDate = &v
 }
 
+// GetValues returns the Values field value if set, zero value otherwise.
+func (o *MetricsQueryResponse) GetValues() []interface{} {
+	if o == nil || o.Values == nil {
+		var ret []interface{}
+		return ret
+	}
+	return o.Values
+}
+
+// GetValuesOk returns a tuple with the Values field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryResponse) GetValuesOk() (*[]interface{}, bool) {
+	if o == nil || o.Values == nil {
+		return nil, false
+	}
+	return &o.Values, true
+}
+
+// HasValues returns a boolean if a field has been set.
+func (o *MetricsQueryResponse) HasValues() bool {
+	return o != nil && o.Values != nil
+}
+
+// SetValues gets a reference to the given []interface{} and assigns it to the Values field.
+func (o *MetricsQueryResponse) SetValues(v []interface{}) {
+	o.Values = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -326,14 +418,23 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 	if o.ResType != nil {
 		toSerialize["res_type"] = o.ResType
 	}
+	if o.RespVersion != nil {
+		toSerialize["resp_version"] = o.RespVersion
+	}
 	if o.Series != nil {
 		toSerialize["series"] = o.Series
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+	if o.Times != nil {
+		toSerialize["times"] = o.Times
+	}
 	if o.ToDate != nil {
 		toSerialize["to_date"] = o.ToDate
+	}
+	if o.Values != nil {
+		toSerialize["values"] = o.Values
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -345,22 +446,25 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Error    *string                `json:"error,omitempty"`
-		FromDate *int64                 `json:"from_date,omitempty"`
-		GroupBy  []string               `json:"group_by,omitempty"`
-		Message  *string                `json:"message,omitempty"`
-		Query    *string                `json:"query,omitempty"`
-		ResType  *string                `json:"res_type,omitempty"`
-		Series   []MetricsQueryMetadata `json:"series,omitempty"`
-		Status   *string                `json:"status,omitempty"`
-		ToDate   *int64                 `json:"to_date,omitempty"`
+		Error       *string                `json:"error,omitempty"`
+		FromDate    *int64                 `json:"from_date,omitempty"`
+		GroupBy     []string               `json:"group_by,omitempty"`
+		Message     *string                `json:"message,omitempty"`
+		Query       *string                `json:"query,omitempty"`
+		ResType     *string                `json:"res_type,omitempty"`
+		RespVersion *int64                 `json:"resp_version,omitempty"`
+		Series      []MetricsQueryMetadata `json:"series,omitempty"`
+		Status      *string                `json:"status,omitempty"`
+		Times       []interface{}          `json:"times,omitempty"`
+		ToDate      *int64                 `json:"to_date,omitempty"`
+		Values      []interface{}          `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error", "from_date", "group_by", "message", "query", "res_type", "series", "status", "to_date"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"error", "from_date", "group_by", "message", "query", "res_type", "resp_version", "series", "status", "times", "to_date", "values"})
 	} else {
 		return err
 	}
@@ -370,9 +474,12 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	o.Query = all.Query
 	o.ResType = all.ResType
+	o.RespVersion = all.RespVersion
 	o.Series = all.Series
 	o.Status = all.Status
+	o.Times = all.Times
 	o.ToDate = all.ToDate
+	o.Values = all.Values
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
