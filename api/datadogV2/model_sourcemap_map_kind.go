@@ -15,14 +15,16 @@ type SourcemapMapKind string
 
 // List of SourcemapMapKind.
 const (
-	SOURCEMAPMAPKIND_JS      SourcemapMapKind = "js"
-	SOURCEMAPMAPKIND_JVM     SourcemapMapKind = "jvm"
-	SOURCEMAPMAPKIND_IOS     SourcemapMapKind = "ios"
-	SOURCEMAPMAPKIND_REACT   SourcemapMapKind = "react"
-	SOURCEMAPMAPKIND_FLUTTER SourcemapMapKind = "flutter"
-	SOURCEMAPMAPKIND_ELF     SourcemapMapKind = "elf"
-	SOURCEMAPMAPKIND_NDK     SourcemapMapKind = "ndk"
-	SOURCEMAPMAPKIND_IL2CPP  SourcemapMapKind = "il2cpp"
+	SOURCEMAPMAPKIND_JS           SourcemapMapKind = "js"
+	SOURCEMAPMAPKIND_JVM          SourcemapMapKind = "jvm"
+	SOURCEMAPMAPKIND_IOS          SourcemapMapKind = "ios"
+	SOURCEMAPMAPKIND_REACT        SourcemapMapKind = "react"
+	SOURCEMAPMAPKIND_FLUTTER      SourcemapMapKind = "flutter"
+	SOURCEMAPMAPKIND_ELF          SourcemapMapKind = "elf"
+	SOURCEMAPMAPKIND_NDK          SourcemapMapKind = "ndk"
+	SOURCEMAPMAPKIND_IL2CPP       SourcemapMapKind = "il2cpp"
+	SOURCEMAPMAPKIND_WASM         SourcemapMapKind = "wasm"
+	SOURCEMAPMAPKIND_PORTABLE_PDB SourcemapMapKind = "portable_pdb"
 )
 
 var allowedSourcemapMapKindEnumValues = []SourcemapMapKind{
@@ -34,6 +36,8 @@ var allowedSourcemapMapKindEnumValues = []SourcemapMapKind{
 	SOURCEMAPMAPKIND_ELF,
 	SOURCEMAPMAPKIND_NDK,
 	SOURCEMAPMAPKIND_IL2CPP,
+	SOURCEMAPMAPKIND_WASM,
+	SOURCEMAPMAPKIND_PORTABLE_PDB,
 }
 
 // GetAllowedValues reeturns the list of possible values.
