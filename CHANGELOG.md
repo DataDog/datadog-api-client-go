@@ -1,5 +1,47 @@
 # CHANGELOG
 
+## 2.68.0/2026-10-22
+
+### Added
+* [WIF-62] Generate Go AWS WIF credential-chain package [#4805](https://github.com/DataDog/datadog-api-client-go/pull/4805)
+* Add collect_service_quotas to AWS metrics config [#4788](https://github.com/DataDog/datadog-api-client-go/pull/4788)
+* Add missing Teams response fields and pagination metadata [#4782](https://github.com/DataDog/datadog-api-client-go/pull/4782)
+* publish PATCH saved filter API [#4775](https://github.com/DataDog/datadog-api-client-go/pull/4775)
+* Add ServiceNow to Teams sync and team connections [#4774](https://github.com/DataDog/datadog-api-client-go/pull/4774)
+* Add missing Amazon OpenSearch destination fields [#4773](https://github.com/DataDog/datadog-api-client-go/pull/4773)
+* document agent health host issues endpoint [#4772](https://github.com/DataDog/datadog-api-client-go/pull/4772)
+* Add executable and identifying_tags to process summary attributes [#4771](https://github.com/DataDog/datadog-api-client-go/pull/4771)
+* Promote usage quota pending limits to public unstable [#4762](https://github.com/DataDog/datadog-api-client-go/pull/4762)
+* Publish derived metrics API documentation [#4761](https://github.com/DataDog/datadog-api-client-go/pull/4761)
+* Add Cloud SIEM batch migration endpoints as unstable [#4757](https://github.com/DataDog/datadog-api-client-go/pull/4757)
+* Document ListLLMObsPatternsTemplates endpoint [#4754](https://github.com/DataDog/datadog-api-client-go/pull/4754)
+* Add team hierarchy members endpoint [#4753](https://github.com/DataDog/datadog-api-client-go/pull/4753)
+* publish GetSavedFilter [#4751](https://github.com/DataDog/datadog-api-client-go/pull/4751)
+* Allow network device flows in dashboard formula queries [#4745](https://github.com/DataDog/datadog-api-client-go/pull/4745)
+* Add Feature Flag list filters and pagination details [#4744](https://github.com/DataDog/datadog-api-client-go/pull/4744)
+* Add generated metric aggregation option to Observability Pipelines [#4739](https://github.com/DataDog/datadog-api-client-go/pull/4739)
+* Document debug ID lookup for JavaScript source maps [#4736](https://github.com/DataDog/datadog-api-client-go/pull/4736)
+* Add azure_data_explorer destination to Observability Pipelines spec [#4730](https://github.com/DataDog/datadog-api-client-go/pull/4730)
+* Add on-call endpoints for overrides to the spec [#4713](https://github.com/DataDog/datadog-api-client-go/pull/4713)
+* Add Org Groups endpoints to add and remove org group memberships [#4711](https://github.com/DataDog/datadog-api-client-go/pull/4711)
+
+### Changed
+* Correct parameter limits and metric types for Get a list of metrics [#4798](https://github.com/DataDog/datadog-api-client-go/pull/4798)
+* Rename DORA Metrics API section to Delivery Performance [#4740](https://github.com/DataDog/datadog-api-client-go/pull/4740)
+
+### Fixed
+* Fix NDM listdevices response spec drift [#4792](https://github.com/DataDog/datadog-api-client-go/pull/4792)
+* Validate all source map response kinds with exclusive variants [#4769](https://github.com/DataDog/datadog-api-client-go/pull/4769)
+* Accept WASM and Portable PDB source map kinds [#4768](https://github.com/DataDog/datadog-api-client-go/pull/4768)
+* Remove discriminator and anyOf usage [#4759](https://github.com/DataDog/datadog-api-client-go/pull/4759)
+* Fix documented permissions for AWS CCM config mutations [#4756](https://github.com/DataDog/datadog-api-client-go/pull/4756)
+
+### Deprecated
+* Add deprecation notice for estimated usage types in Usage Metering API endpoints [#4786](https://github.com/DataDog/datadog-api-client-go/pull/4786)
+
+### Removed
+* Mark Network Health Insights API as private [#4716](https://github.com/DataDog/datadog-api-client-go/pull/4716)
+
 ## 2.67.0/2026-10-13
 
 ### Added
