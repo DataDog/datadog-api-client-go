@@ -15,6 +15,8 @@ type LogsListResponse struct {
 	// Hash identifier of the next log to return in the list.
 	// This parameter is used for the pagination feature.
 	NextLogId datadog.NullableString `json:"nextLogId,omitempty"`
+	// Unique identifier of the request.
+	RequestId *string `json:"requestId,omitempty"`
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -106,6 +108,34 @@ func (o *LogsListResponse) UnsetNextLogId() {
 	o.NextLogId.Unset()
 }
 
+// GetRequestId returns the RequestId field value if set, zero value otherwise.
+func (o *LogsListResponse) GetRequestId() string {
+	if o == nil || o.RequestId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RequestId
+}
+
+// GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsListResponse) GetRequestIdOk() (*string, bool) {
+	if o == nil || o.RequestId == nil {
+		return nil, false
+	}
+	return o.RequestId, true
+}
+
+// HasRequestId returns a boolean if a field has been set.
+func (o *LogsListResponse) HasRequestId() bool {
+	return o != nil && o.RequestId != nil
+}
+
+// SetRequestId gets a reference to the given string and assigns it to the RequestId field.
+func (o *LogsListResponse) SetRequestId(v string) {
+	o.RequestId = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LogsListResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -146,6 +176,9 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	if o.NextLogId.IsSet() {
 		toSerialize["nextLogId"] = o.NextLogId.Get()
 	}
+	if o.RequestId != nil {
+		toSerialize["requestId"] = o.RequestId
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
@@ -161,6 +194,7 @@ func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Logs      []Log                  `json:"logs,omitempty"`
 		NextLogId datadog.NullableString `json:"nextLogId,omitempty"`
+		RequestId *string                `json:"requestId,omitempty"`
 		Status    *string                `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -168,12 +202,13 @@ func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"logs", "nextLogId", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"logs", "nextLogId", "requestId", "status"})
 	} else {
 		return err
 	}
 	o.Logs = all.Logs
 	o.NextLogId = all.NextLogId
+	o.RequestId = all.RequestId
 	o.Status = all.Status
 
 	if len(additionalProperties) > 0 {
