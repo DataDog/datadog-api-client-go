@@ -16,7 +16,7 @@ import (
 func main() {
 	body := datadogV1.LogsListRequest{
 		Index: datadog.PtrString("retention-3,retention-15"),
-		Query: datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]"),
+		Query: datadog.PtrString("service:web-api AND @http.status_code:[200 TO 299]"),
 		Sort:  datadogV1.LOGSSORT_TIME_ASCENDING.Ptr(),
 		Time: datadogV1.LogsListRequestTime{
 			From: time.Date(2020, 2, 2, 2, 2, 2, 202000, time.UTC),

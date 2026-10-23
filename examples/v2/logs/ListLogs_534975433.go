@@ -20,7 +20,7 @@ func main() {
 				"main",
 				"web",
 			},
-			Query:       datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]"),
+			Query:       datadog.PtrString("service:web-api AND @http.status_code:[200 TO 299]"),
 			StorageTier: datadogV2.LOGSSTORAGETIER_INDEXES.Ptr(),
 			To:          datadog.PtrString("now"),
 		},

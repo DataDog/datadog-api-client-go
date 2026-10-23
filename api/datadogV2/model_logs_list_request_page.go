@@ -12,7 +12,7 @@ import (
 type LogsListRequestPage struct {
 	// List following results with a cursor provided in the previous query.
 	Cursor *string `json:"cursor,omitempty"`
-	// Maximum number of logs in the response.
+	// Requested maximum number of logs in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
