@@ -44,7 +44,7 @@ type LogsArchiveAttributes struct {
 // will change when the set of required properties is changed.
 func NewLogsArchiveAttributes(destination NullableLogsArchiveDestination, name string, query string) *LogsArchiveAttributes {
 	this := LogsArchiveAttributes{}
-	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_GZIP
+	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_ZSTD
 	this.CompressionMethod = &compressionMethod
 	this.Destination = destination
 	var includeTags bool = false
@@ -59,7 +59,7 @@ func NewLogsArchiveAttributes(destination NullableLogsArchiveDestination, name s
 // but it doesn't guarantee that properties required by API are set.
 func NewLogsArchiveAttributesWithDefaults() *LogsArchiveAttributes {
 	this := LogsArchiveAttributes{}
-	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_GZIP
+	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_ZSTD
 	this.CompressionMethod = &compressionMethod
 	var includeTags bool = false
 	this.IncludeTags = &includeTags
