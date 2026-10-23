@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs/metrics from the Datadog Agent.
+// ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs, metrics, or traces from the Datadog Agent.
 //
-// **Supported pipeline types:** logs, metrics
+// **Supported pipeline types:** logs, metrics, traces
 type ObservabilityPipelineDatadogAgentSource struct {
 	// Name of the environment variable or secret that holds the listen address for the Datadog Agent source.
 	AddressKey *string `json:"address_key,omitempty"`

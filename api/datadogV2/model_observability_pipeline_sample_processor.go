@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs at a fixed rate.
+// ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs or traces at a fixed rate.
 //
-// **Supported pipeline types:** logs
+// **Supported pipeline types:** logs, traces
 type ObservabilityPipelineSampleProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
@@ -22,9 +22,9 @@ type ObservabilityPipelineSampleProcessor struct {
 	GroupBy []string `json:"group_by,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
-	// A Datadog search query used to determine which logs this processor targets.
+	// A Datadog search query used to determine which events this processor targets.
 	Include string `json:"include"`
-	// The percentage of logs to sample.
+	// The percentage of events to sample.
 	Percentage float64 `json:"percentage"`
 	// The processor type. The value should always be `sample`.
 	Type ObservabilityPipelineSampleProcessorType `json:"type"`

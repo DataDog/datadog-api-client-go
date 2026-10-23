@@ -17,11 +17,13 @@ type ObservabilityPipelineConfigPipelineType string
 const (
 	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS    ObservabilityPipelineConfigPipelineType = "logs"
 	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_METRICS ObservabilityPipelineConfigPipelineType = "metrics"
+	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_TRACES  ObservabilityPipelineConfigPipelineType = "traces"
 )
 
 var allowedObservabilityPipelineConfigPipelineTypeEnumValues = []ObservabilityPipelineConfigPipelineType{
 	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS,
 	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_METRICS,
+	OBSERVABILITYPIPELINECONFIGPIPELINETYPE_TRACES,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineGenerateMetricsV2Processor The `generate_metrics` processor creates custom metrics from logs.
-// Metrics can be counters, gauges, or distributions and optionally grouped by log fields.
+// ObservabilityPipelineGenerateMetricsV2Processor The `generate_metrics` processor creates custom metrics from logs or traces.
+// Metrics can be counters, gauges, or distributions and optionally grouped by event fields.
 //
-// There must be a destination whose `inputs` reference this processor with the `<processor-id>.metrics` suffix to route the generated metrics. All destination types normally supported for `metrics` pipelines are also supported as metrics destinations in `logs` pipelines.
+// There must be a destination whose `inputs` reference this processor with the `<processor-id>.metrics` suffix to route the generated metrics. All destination types normally supported for `metrics` pipelines are also supported as metrics destinations in `logs` and `traces` pipelines.
 //
-// **Supported pipeline types:** logs
+// **Supported pipeline types:** logs, traces
 type ObservabilityPipelineGenerateMetricsV2Processor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
@@ -25,7 +25,7 @@ type ObservabilityPipelineGenerateMetricsV2Processor struct {
 	EnabledMetricAggregation *bool `json:"enabled_metric_aggregation,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline.
 	Id string `json:"id"`
-	// A Datadog search query used to determine which logs this processor targets.
+	// A Datadog search query used to determine which events this processor targets.
 	Include *string `json:"include,omitempty"`
 	// Configuration for generating individual metrics.
 	Metrics []ObservabilityPipelineGeneratedMetric `json:"metrics,omitempty"`

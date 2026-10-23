@@ -11,6 +11,7 @@ import (
 // ObservabilityPipelineConfigSourceItem - A data source for the pipeline.
 type ObservabilityPipelineConfigSourceItem struct {
 	ObservabilityPipelineDatadogAgentSource          *ObservabilityPipelineDatadogAgentSource
+	ObservabilityPipelineOpentelemetrySource         *ObservabilityPipelineOpentelemetrySource
 	ObservabilityPipelineAmazonDataFirehoseSource    *ObservabilityPipelineAmazonDataFirehoseSource
 	ObservabilityPipelineAmazonS3Source              *ObservabilityPipelineAmazonS3Source
 	ObservabilityPipelineFluentBitSource             *ObservabilityPipelineFluentBitSource
@@ -27,7 +28,6 @@ type ObservabilityPipelineConfigSourceItem struct {
 	ObservabilityPipelineSumoLogicSource             *ObservabilityPipelineSumoLogicSource
 	ObservabilityPipelineSyslogNgSource              *ObservabilityPipelineSyslogNgSource
 	ObservabilityPipelineWebsocketSource             *ObservabilityPipelineWebsocketSource
-	ObservabilityPipelineOpentelemetrySource         *ObservabilityPipelineOpentelemetrySource
 	ObservabilityPipelinePrometheusRemoteWriteSource *ObservabilityPipelinePrometheusRemoteWriteSource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,6 +37,11 @@ type ObservabilityPipelineConfigSourceItem struct {
 // ObservabilityPipelineDatadogAgentSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineDatadogAgentSource wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelineDatadogAgentSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineDatadogAgentSource) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineDatadogAgentSource: v}
+}
+
+// ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineOpentelemetrySource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineOpentelemetrySource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineOpentelemetrySource: v}
 }
 
 // ObservabilityPipelineAmazonDataFirehoseSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineAmazonDataFirehoseSource wrapped in ObservabilityPipelineConfigSourceItem.
@@ -119,11 +124,6 @@ func ObservabilityPipelineWebsocketSourceAsObservabilityPipelineConfigSourceItem
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineWebsocketSource: v}
 }
 
-// ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineOpentelemetrySource wrapped in ObservabilityPipelineConfigSourceItem.
-func ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineOpentelemetrySource) ObservabilityPipelineConfigSourceItem {
-	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineOpentelemetrySource: v}
-}
-
 // ObservabilityPipelinePrometheusRemoteWriteSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelinePrometheusRemoteWriteSource wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelinePrometheusRemoteWriteSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelinePrometheusRemoteWriteSource) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelinePrometheusRemoteWriteSource: v}
@@ -148,6 +148,23 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		}
 	} else {
 		obj.ObservabilityPipelineDatadogAgentSource = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineOpentelemetrySource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOpentelemetrySource)
+	if err == nil {
+		if obj.ObservabilityPipelineOpentelemetrySource != nil && obj.ObservabilityPipelineOpentelemetrySource.UnparsedObject == nil {
+			jsonObservabilityPipelineOpentelemetrySource, _ := datadog.Marshal(obj.ObservabilityPipelineOpentelemetrySource)
+			if string(jsonObservabilityPipelineOpentelemetrySource) == "{}" { // empty struct
+				obj.ObservabilityPipelineOpentelemetrySource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineOpentelemetrySource = nil
+		}
+	} else {
+		obj.ObservabilityPipelineOpentelemetrySource = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineAmazonDataFirehoseSource
@@ -422,23 +439,6 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineWebsocketSource = nil
 	}
 
-	// try to unmarshal data into ObservabilityPipelineOpentelemetrySource
-	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOpentelemetrySource)
-	if err == nil {
-		if obj.ObservabilityPipelineOpentelemetrySource != nil && obj.ObservabilityPipelineOpentelemetrySource.UnparsedObject == nil {
-			jsonObservabilityPipelineOpentelemetrySource, _ := datadog.Marshal(obj.ObservabilityPipelineOpentelemetrySource)
-			if string(jsonObservabilityPipelineOpentelemetrySource) == "{}" { // empty struct
-				obj.ObservabilityPipelineOpentelemetrySource = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.ObservabilityPipelineOpentelemetrySource = nil
-		}
-	} else {
-		obj.ObservabilityPipelineOpentelemetrySource = nil
-	}
-
 	// try to unmarshal data into ObservabilityPipelinePrometheusRemoteWriteSource
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelinePrometheusRemoteWriteSource)
 	if err == nil {
@@ -459,6 +459,7 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineDatadogAgentSource = nil
+		obj.ObservabilityPipelineOpentelemetrySource = nil
 		obj.ObservabilityPipelineAmazonDataFirehoseSource = nil
 		obj.ObservabilityPipelineAmazonS3Source = nil
 		obj.ObservabilityPipelineFluentBitSource = nil
@@ -475,7 +476,6 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineSumoLogicSource = nil
 		obj.ObservabilityPipelineSyslogNgSource = nil
 		obj.ObservabilityPipelineWebsocketSource = nil
-		obj.ObservabilityPipelineOpentelemetrySource = nil
 		obj.ObservabilityPipelinePrometheusRemoteWriteSource = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -486,6 +486,10 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogAgentSource)
+	}
+
+	if obj.ObservabilityPipelineOpentelemetrySource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetrySource)
 	}
 
 	if obj.ObservabilityPipelineAmazonDataFirehoseSource != nil {
@@ -552,10 +556,6 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ObservabilityPipelineWebsocketSource)
 	}
 
-	if obj.ObservabilityPipelineOpentelemetrySource != nil {
-		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetrySource)
-	}
-
 	if obj.ObservabilityPipelinePrometheusRemoteWriteSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelinePrometheusRemoteWriteSource)
 	}
@@ -570,6 +570,10 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{} {
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return obj.ObservabilityPipelineDatadogAgentSource
+	}
+
+	if obj.ObservabilityPipelineOpentelemetrySource != nil {
+		return obj.ObservabilityPipelineOpentelemetrySource
 	}
 
 	if obj.ObservabilityPipelineAmazonDataFirehoseSource != nil {
@@ -634,10 +638,6 @@ func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{
 
 	if obj.ObservabilityPipelineWebsocketSource != nil {
 		return obj.ObservabilityPipelineWebsocketSource
-	}
-
-	if obj.ObservabilityPipelineOpentelemetrySource != nil {
-		return obj.ObservabilityPipelineOpentelemetrySource
 	}
 
 	if obj.ObservabilityPipelinePrometheusRemoteWriteSource != nil {

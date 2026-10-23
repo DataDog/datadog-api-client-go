@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineGeneratedMetric Defines a log-based custom metric, including its name, type, filter, value computation strategy,
+// ObservabilityPipelineGeneratedMetric Defines a custom metric generated from logs or traces, including its name, type, filter, value computation strategy,
 // and optional grouping fields.
 type ObservabilityPipelineGeneratedMetric struct {
 	// Optional fields used to group the metric series.
 	GroupBy []string `json:"group_by,omitempty"`
-	// Datadog filter query to match logs for metric generation.
+	// Datadog filter query to match events for metric generation.
 	Include string `json:"include"`
 	// Type of metric to create.
 	MetricType ObservabilityPipelineGeneratedMetricMetricType `json:"metric_type"`

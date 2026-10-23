@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineGeneratedMetricIncrementByField Strategy that increments a generated metric based on the value of a log field.
+// ObservabilityPipelineGeneratedMetricIncrementByField Strategy that increments a generated metric based on the value of an event field.
 type ObservabilityPipelineGeneratedMetricIncrementByField struct {
-	// Name of the log field containing the numeric value to increment the metric by.
+	// Name of the field containing the numeric value to increment the metric by.
 	Field string `json:"field"`
 	// Uses a numeric field in the log event as the metric increment.
 	Strategy ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy `json:"strategy"`

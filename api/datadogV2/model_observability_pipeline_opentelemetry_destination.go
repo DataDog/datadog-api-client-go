@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineOpentelemetryMetricsDestination The `opentelemetry` destination forwards metrics using the OpenTelemetry Protocol (OTLP) over HTTP.
+// ObservabilityPipelineOpentelemetryDestination The `opentelemetry` destination forwards metrics or traces using the OpenTelemetry Protocol (OTLP) over HTTP.
 //
-// **Supported pipeline types:** metrics
-type ObservabilityPipelineOpentelemetryMetricsDestination struct {
+// **Supported pipeline types:** metrics, traces
+type ObservabilityPipelineOpentelemetryDestination struct {
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
-	// Environment variable name containing the URI of the OTLP HTTP endpoint to send metrics to.
+	// Environment variable name containing the URI of the OTLP HTTP endpoint to send metrics or traces to.
 	HttpClientUriKey *string `json:"http_client_uri_key,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
@@ -25,18 +25,18 @@ type ObservabilityPipelineOpentelemetryMetricsDestination struct {
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// The destination type. Always `opentelemetry`.
-	Type ObservabilityPipelineOpentelemetryMetricsDestinationType `json:"type"`
+	Type ObservabilityPipelineOpentelemetryDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineOpentelemetryMetricsDestination instantiates a new ObservabilityPipelineOpentelemetryMetricsDestination object.
+// NewObservabilityPipelineOpentelemetryDestination instantiates a new ObservabilityPipelineOpentelemetryDestination object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineOpentelemetryMetricsDestination(id string, inputs []string, typeVar ObservabilityPipelineOpentelemetryMetricsDestinationType) *ObservabilityPipelineOpentelemetryMetricsDestination {
-	this := ObservabilityPipelineOpentelemetryMetricsDestination{}
+func NewObservabilityPipelineOpentelemetryDestination(id string, inputs []string, typeVar ObservabilityPipelineOpentelemetryDestinationType) *ObservabilityPipelineOpentelemetryDestination {
+	this := ObservabilityPipelineOpentelemetryDestination{}
 	var httpClientUriKey string = "DESTINATION_OTEL_HTTP_CLIENT_URI"
 	this.HttpClientUriKey = &httpClientUriKey
 	this.Id = id
@@ -45,20 +45,20 @@ func NewObservabilityPipelineOpentelemetryMetricsDestination(id string, inputs [
 	return &this
 }
 
-// NewObservabilityPipelineOpentelemetryMetricsDestinationWithDefaults instantiates a new ObservabilityPipelineOpentelemetryMetricsDestination object.
+// NewObservabilityPipelineOpentelemetryDestinationWithDefaults instantiates a new ObservabilityPipelineOpentelemetryDestination object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineOpentelemetryMetricsDestinationWithDefaults() *ObservabilityPipelineOpentelemetryMetricsDestination {
-	this := ObservabilityPipelineOpentelemetryMetricsDestination{}
+func NewObservabilityPipelineOpentelemetryDestinationWithDefaults() *ObservabilityPipelineOpentelemetryDestination {
+	this := ObservabilityPipelineOpentelemetryDestination{}
 	var httpClientUriKey string = "DESTINATION_OTEL_HTTP_CLIENT_URI"
 	this.HttpClientUriKey = &httpClientUriKey
-	var typeVar ObservabilityPipelineOpentelemetryMetricsDestinationType = OBSERVABILITYPIPELINEOPENTELEMETRYMETRICSDESTINATIONTYPE_OPENTELEMETRY
+	var typeVar ObservabilityPipelineOpentelemetryDestinationType = OBSERVABILITYPIPELINEOPENTELEMETRYDESTINATIONTYPE_OPENTELEMETRY
 	this.Type = typeVar
 	return &this
 }
 
 // GetBuffer returns the Buffer field value if set, zero value otherwise.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetBuffer() ObservabilityPipelineBufferOptions {
 	if o == nil || o.Buffer == nil {
 		var ret ObservabilityPipelineBufferOptions
 		return ret
@@ -68,7 +68,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetBuffer() Obser
 
 // GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
 	if o == nil || o.Buffer == nil {
 		return nil, false
 	}
@@ -76,17 +76,17 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetBufferOk() (*O
 }
 
 // HasBuffer returns a boolean if a field has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) HasBuffer() bool {
+func (o *ObservabilityPipelineOpentelemetryDestination) HasBuffer() bool {
 	return o != nil && o.Buffer != nil
 }
 
 // SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
 	o.Buffer = &v
 }
 
 // GetHttpClientUriKey returns the HttpClientUriKey field value if set, zero value otherwise.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetHttpClientUriKey() string {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetHttpClientUriKey() string {
 	if o == nil || o.HttpClientUriKey == nil {
 		var ret string
 		return ret
@@ -96,7 +96,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetHttpClientUriK
 
 // GetHttpClientUriKeyOk returns a tuple with the HttpClientUriKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetHttpClientUriKeyOk() (*string, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetHttpClientUriKeyOk() (*string, bool) {
 	if o == nil || o.HttpClientUriKey == nil {
 		return nil, false
 	}
@@ -104,17 +104,17 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetHttpClientUriK
 }
 
 // HasHttpClientUriKey returns a boolean if a field has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) HasHttpClientUriKey() bool {
+func (o *ObservabilityPipelineOpentelemetryDestination) HasHttpClientUriKey() bool {
 	return o != nil && o.HttpClientUriKey != nil
 }
 
 // SetHttpClientUriKey gets a reference to the given string and assigns it to the HttpClientUriKey field.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetHttpClientUriKey(v string) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetHttpClientUriKey(v string) {
 	o.HttpClientUriKey = &v
 }
 
 // GetId returns the Id field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetId() string {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -124,7 +124,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetIdOk() (*string, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -132,12 +132,12 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetIdOk() (*strin
 }
 
 // SetId sets field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetId(v string) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetId(v string) {
 	o.Id = v
 }
 
 // GetInputs returns the Inputs field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetInputs() []string {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetInputs() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -147,7 +147,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetInputs() []str
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetInputsOk() (*[]string, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetInputsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,12 +155,12 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetInputsOk() (*[
 }
 
 // SetInputs sets field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetInputs(v []string) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetTls() ObservabilityPipelineTls {
 	if o == nil || o.Tls == nil {
 		var ret ObservabilityPipelineTls
 		return ret
@@ -170,7 +170,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTls() Observab
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -178,19 +178,19 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTlsOk() (*Obse
 }
 
 // HasTls returns a boolean if a field has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) HasTls() bool {
+func (o *ObservabilityPipelineOpentelemetryDestination) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
 // SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetTls(v ObservabilityPipelineTls) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetTls(v ObservabilityPipelineTls) {
 	o.Tls = &v
 }
 
 // GetType returns the Type field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetType() ObservabilityPipelineOpentelemetryMetricsDestinationType {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetType() ObservabilityPipelineOpentelemetryDestinationType {
 	if o == nil {
-		var ret ObservabilityPipelineOpentelemetryMetricsDestinationType
+		var ret ObservabilityPipelineOpentelemetryDestinationType
 		return ret
 	}
 	return o.Type
@@ -198,7 +198,7 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetType() Observa
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTypeOk() (*ObservabilityPipelineOpentelemetryMetricsDestinationType, bool) {
+func (o *ObservabilityPipelineOpentelemetryDestination) GetTypeOk() (*ObservabilityPipelineOpentelemetryDestinationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,12 +206,12 @@ func (o *ObservabilityPipelineOpentelemetryMetricsDestination) GetTypeOk() (*Obs
 }
 
 // SetType sets field value.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) SetType(v ObservabilityPipelineOpentelemetryMetricsDestinationType) {
+func (o *ObservabilityPipelineOpentelemetryDestination) SetType(v ObservabilityPipelineOpentelemetryDestinationType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineOpentelemetryMetricsDestination) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineOpentelemetryDestination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -236,14 +236,14 @@ func (o ObservabilityPipelineOpentelemetryMetricsDestination) MarshalJSON() ([]b
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineOpentelemetryMetricsDestination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineOpentelemetryDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Buffer           *ObservabilityPipelineBufferOptions                       `json:"buffer,omitempty"`
-		HttpClientUriKey *string                                                   `json:"http_client_uri_key,omitempty"`
-		Id               *string                                                   `json:"id"`
-		Inputs           *[]string                                                 `json:"inputs"`
-		Tls              *ObservabilityPipelineTls                                 `json:"tls,omitempty"`
-		Type             *ObservabilityPipelineOpentelemetryMetricsDestinationType `json:"type"`
+		Buffer           *ObservabilityPipelineBufferOptions                `json:"buffer,omitempty"`
+		HttpClientUriKey *string                                            `json:"http_client_uri_key,omitempty"`
+		Id               *string                                            `json:"id"`
+		Inputs           *[]string                                          `json:"inputs"`
+		Tls              *ObservabilityPipelineTls                          `json:"tls,omitempty"`
+		Type             *ObservabilityPipelineOpentelemetryDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

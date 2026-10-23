@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineSensitiveDataScannerProcessor The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log events.
+// ObservabilityPipelineSensitiveDataScannerProcessor The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log or trace events.
 //
-// **Supported pipeline types:** logs
+// **Supported pipeline types:** logs, traces
 type ObservabilityPipelineSensitiveDataScannerProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
@@ -20,7 +20,7 @@ type ObservabilityPipelineSensitiveDataScannerProcessor struct {
 	Enabled bool `json:"enabled"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
-	// A Datadog search query used to determine which logs this processor targets.
+	// A Datadog search query used to determine which events this processor targets.
 	Include string `json:"include"`
 	// A list of rules for identifying and acting on sensitive data patterns.
 	Rules []ObservabilityPipelineSensitiveDataScannerProcessorRule `json:"rules"`

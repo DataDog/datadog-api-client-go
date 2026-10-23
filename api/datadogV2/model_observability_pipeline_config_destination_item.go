@@ -37,9 +37,10 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineSyslogNgDestination               *ObservabilityPipelineSyslogNgDestination
 	ObservabilityPipelineDatabricksZerobusDestination      *ObservabilityPipelineDatabricksZerobusDestination
 	ObservabilityPipelineDatadogMetricsDestination         *ObservabilityPipelineDatadogMetricsDestination
-	ObservabilityPipelineOpentelemetryMetricsDestination   *ObservabilityPipelineOpentelemetryMetricsDestination
 	ObservabilityPipelinePrometheusRemoteWriteDestination  *ObservabilityPipelinePrometheusRemoteWriteDestination
 	ObservabilityPipelineSplunkHecMetricsDestination       *ObservabilityPipelineSplunkHecMetricsDestination
+	ObservabilityPipelineOpentelemetryDestination          *ObservabilityPipelineOpentelemetryDestination
+	ObservabilityPipelineDatadogTracesDestination          *ObservabilityPipelineDatadogTracesDestination
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -180,11 +181,6 @@ func ObservabilityPipelineDatadogMetricsDestinationAsObservabilityPipelineConfig
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineDatadogMetricsDestination: v}
 }
 
-// ObservabilityPipelineOpentelemetryMetricsDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineOpentelemetryMetricsDestination wrapped in ObservabilityPipelineConfigDestinationItem.
-func ObservabilityPipelineOpentelemetryMetricsDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineOpentelemetryMetricsDestination) ObservabilityPipelineConfigDestinationItem {
-	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineOpentelemetryMetricsDestination: v}
-}
-
 // ObservabilityPipelinePrometheusRemoteWriteDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelinePrometheusRemoteWriteDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelinePrometheusRemoteWriteDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelinePrometheusRemoteWriteDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelinePrometheusRemoteWriteDestination: v}
@@ -193,6 +189,16 @@ func ObservabilityPipelinePrometheusRemoteWriteDestinationAsObservabilityPipelin
 // ObservabilityPipelineSplunkHecMetricsDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineSplunkHecMetricsDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelineSplunkHecMetricsDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineSplunkHecMetricsDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineSplunkHecMetricsDestination: v}
+}
+
+// ObservabilityPipelineOpentelemetryDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineOpentelemetryDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineOpentelemetryDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineOpentelemetryDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineOpentelemetryDestination: v}
+}
+
+// ObservabilityPipelineDatadogTracesDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineDatadogTracesDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineDatadogTracesDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineDatadogTracesDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineDatadogTracesDestination: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -658,23 +664,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineDatadogMetricsDestination = nil
 	}
 
-	// try to unmarshal data into ObservabilityPipelineOpentelemetryMetricsDestination
-	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOpentelemetryMetricsDestination)
-	if err == nil {
-		if obj.ObservabilityPipelineOpentelemetryMetricsDestination != nil && obj.ObservabilityPipelineOpentelemetryMetricsDestination.UnparsedObject == nil {
-			jsonObservabilityPipelineOpentelemetryMetricsDestination, _ := datadog.Marshal(obj.ObservabilityPipelineOpentelemetryMetricsDestination)
-			if string(jsonObservabilityPipelineOpentelemetryMetricsDestination) == "{}" { // empty struct
-				obj.ObservabilityPipelineOpentelemetryMetricsDestination = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.ObservabilityPipelineOpentelemetryMetricsDestination = nil
-		}
-	} else {
-		obj.ObservabilityPipelineOpentelemetryMetricsDestination = nil
-	}
-
 	// try to unmarshal data into ObservabilityPipelinePrometheusRemoteWriteDestination
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelinePrometheusRemoteWriteDestination)
 	if err == nil {
@@ -709,6 +698,40 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineOpentelemetryDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOpentelemetryDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineOpentelemetryDestination != nil && obj.ObservabilityPipelineOpentelemetryDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineOpentelemetryDestination, _ := datadog.Marshal(obj.ObservabilityPipelineOpentelemetryDestination)
+			if string(jsonObservabilityPipelineOpentelemetryDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineOpentelemetryDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineOpentelemetryDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineOpentelemetryDestination = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineDatadogTracesDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineDatadogTracesDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineDatadogTracesDestination != nil && obj.ObservabilityPipelineDatadogTracesDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineDatadogTracesDestination, _ := datadog.Marshal(obj.ObservabilityPipelineDatadogTracesDestination)
+			if string(jsonObservabilityPipelineDatadogTracesDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineDatadogTracesDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineDatadogTracesDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineDatadogTracesDestination = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineElasticsearchDestination = nil
@@ -738,9 +761,10 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineSyslogNgDestination = nil
 		obj.ObservabilityPipelineDatabricksZerobusDestination = nil
 		obj.ObservabilityPipelineDatadogMetricsDestination = nil
-		obj.ObservabilityPipelineOpentelemetryMetricsDestination = nil
 		obj.ObservabilityPipelinePrometheusRemoteWriteDestination = nil
 		obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
+		obj.ObservabilityPipelineOpentelemetryDestination = nil
+		obj.ObservabilityPipelineDatadogTracesDestination = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -856,16 +880,20 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogMetricsDestination)
 	}
 
-	if obj.ObservabilityPipelineOpentelemetryMetricsDestination != nil {
-		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetryMetricsDestination)
-	}
-
 	if obj.ObservabilityPipelinePrometheusRemoteWriteDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelinePrometheusRemoteWriteDestination)
 	}
 
 	if obj.ObservabilityPipelineSplunkHecMetricsDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSplunkHecMetricsDestination)
+	}
+
+	if obj.ObservabilityPipelineOpentelemetryDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetryDestination)
+	}
+
+	if obj.ObservabilityPipelineDatadogTracesDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineDatadogTracesDestination)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -984,16 +1012,20 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 		return obj.ObservabilityPipelineDatadogMetricsDestination
 	}
 
-	if obj.ObservabilityPipelineOpentelemetryMetricsDestination != nil {
-		return obj.ObservabilityPipelineOpentelemetryMetricsDestination
-	}
-
 	if obj.ObservabilityPipelinePrometheusRemoteWriteDestination != nil {
 		return obj.ObservabilityPipelinePrometheusRemoteWriteDestination
 	}
 
 	if obj.ObservabilityPipelineSplunkHecMetricsDestination != nil {
 		return obj.ObservabilityPipelineSplunkHecMetricsDestination
+	}
+
+	if obj.ObservabilityPipelineOpentelemetryDestination != nil {
+		return obj.ObservabilityPipelineOpentelemetryDestination
+	}
+
+	if obj.ObservabilityPipelineDatadogTracesDestination != nil {
+		return obj.ObservabilityPipelineDatadogTracesDestination
 	}
 
 	// all schemas are nil
