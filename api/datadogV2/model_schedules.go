@@ -14,7 +14,7 @@ type Schedules struct {
 	Data []ScheduleListItem `json:"data,omitempty"`
 	// Any additional resources related to the schedules, such as teams.
 	Included []TeamReference `json:"included,omitempty"`
-	// Metadata that is included in the response when listing schedules.
+	// Metadata that is included in the response when listing On-Call resources.
 	Meta *SchedulesResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -12,7 +12,7 @@ import (
 type OnCallNotificationRuleChannelRelationshipData struct {
 	// ID of the notification channel
 	Id *string `json:"id,omitempty"`
-	// Indicates that the resource is of type 'notification_channels'.
+	// Indicates that the resource is of type `notification_channels`.
 	Type *NotificationChannelType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -16,7 +16,7 @@ type CreateOverrideRequestData struct {
 	Attributes CreateOverrideRequestAttributes `json:"attributes"`
 	// Relationships to set when creating an on-call schedule override.
 	Relationships *CreateOverrideRequestRelationships `json:"relationships,omitempty"`
-	// Indicates that the resource is of type 'overrides'.
+	// Indicates that the resource is of type `overrides`.
 	Type OverrideDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

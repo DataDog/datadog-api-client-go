@@ -14,7 +14,7 @@ import (
 type TeamRoutingRulesDataRelationshipsRulesDataItems struct {
 	// Specifies the unique identifier for the related routing rule.
 	Id string `json:"id"`
-	// Indicates that the resource is of type 'team_routing_rules'.
+	// Indicates that the resource is of type `team_routing_rules`.
 	Type TeamRoutingRulesDataRelationshipsRulesDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

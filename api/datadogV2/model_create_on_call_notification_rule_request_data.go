@@ -16,7 +16,7 @@ type CreateOnCallNotificationRuleRequestData struct {
 	Attributes *OnCallNotificationRuleRequestAttributes `json:"attributes,omitempty"`
 	// Relationship object for creating a notification rule
 	Relationships *OnCallNotificationRuleRelationships `json:"relationships,omitempty"`
-	// Indicates that the resource is of type 'notification_rules'.
+	// Indicates that the resource is of type `notification_rules`.
 	Type OnCallNotificationRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
