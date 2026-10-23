@@ -16,6 +16,8 @@ type RoleTemplateData struct {
 	Attributes *RoleTemplateDataAttributes `json:"attributes,omitempty"`
 	// The `RoleTemplateData` `id`.
 	Id *string `json:"id,omitempty"`
+	// Relationships of the role object returned by the API.
+	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
 	// Roles resource type.
 	Type RoleTemplateDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -99,6 +101,34 @@ func (o *RoleTemplateData) SetId(v string) {
 	o.Id = &v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *RoleTemplateData) GetRelationships() RoleResponseRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret RoleResponseRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleTemplateData) GetRelationshipsOk() (*RoleResponseRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *RoleTemplateData) HasRelationships() bool {
+	return o != nil && o.Relationships != nil
+}
+
+// SetRelationships gets a reference to the given RoleResponseRelationships and assigns it to the Relationships field.
+func (o *RoleTemplateData) SetRelationships(v RoleResponseRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value.
 func (o *RoleTemplateData) GetType() RoleTemplateDataType {
 	if o == nil {
@@ -134,6 +164,9 @@ func (o RoleTemplateData) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -145,9 +178,10 @@ func (o RoleTemplateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoleTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RoleTemplateDataAttributes `json:"attributes,omitempty"`
-		Id         *string                     `json:"id,omitempty"`
-		Type       *RoleTemplateDataType       `json:"type"`
+		Attributes    *RoleTemplateDataAttributes `json:"attributes,omitempty"`
+		Id            *string                     `json:"id,omitempty"`
+		Relationships *RoleResponseRelationships  `json:"relationships,omitempty"`
+		Type          *RoleTemplateDataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,7 +191,7 @@ func (o *RoleTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -168,6 +202,10 @@ func (o *RoleTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Relationships = all.Relationships
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
