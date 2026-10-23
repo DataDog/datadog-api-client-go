@@ -1606,6 +1606,7 @@
 //   - [TeamsApi.ListMemberTeams]
 //   - [TeamsApi.ListTeamConnections]
 //   - [TeamsApi.ListTeamHierarchyLinks]
+//   - [TeamsApi.ListTeamHierarchyMembers]
 //   - [TeamsApi.ListTeams]
 //   - [TeamsApi.RemoveMemberTeam]
 //   - [TeamsApi.RemoveTeamHierarchyLink]
