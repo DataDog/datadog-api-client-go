@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RoutingRuleRelationshipsPolicyDataType Indicates that the resource is of type 'policies'.
+// RoutingRuleRelationshipsPolicyDataType Indicates that the resource is of type `policies`.
 type RoutingRuleRelationshipsPolicyDataType string
 
 // List of RoutingRuleRelationshipsPolicyDataType.

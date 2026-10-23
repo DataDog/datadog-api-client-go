@@ -14,7 +14,7 @@ import (
 type CreateNotificationChannelData struct {
 	// Attributes for creating an on-call notification channel.
 	Attributes *CreateNotificationChannelAttributes `json:"attributes,omitempty"`
-	// Indicates that the resource is of type 'notification_channels'.
+	// Indicates that the resource is of type `notification_channels`.
 	Type NotificationChannelType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

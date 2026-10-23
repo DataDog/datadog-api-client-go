@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OnCallNotificationRuleType Indicates that the resource is of type 'notification_rules'.
+// OnCallNotificationRuleType Indicates that the resource is of type `notification_rules`.
 type OnCallNotificationRuleType string
 
 // List of OnCallNotificationRuleType.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OverrideRelationshipsScheduleDataType Indicates that the related resource is of type 'schedules'.
+// OverrideRelationshipsScheduleDataType Indicates that the related resource is of type `schedules`.
 type OverrideRelationshipsScheduleDataType string
 
 // List of OverrideRelationshipsScheduleDataType.

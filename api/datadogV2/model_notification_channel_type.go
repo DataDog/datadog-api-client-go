@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// NotificationChannelType Indicates that the resource is of type 'notification_channels'.
+// NotificationChannelType Indicates that the resource is of type `notification_channels`.
 type NotificationChannelType string
 
 // List of NotificationChannelType.

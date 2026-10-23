@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ShiftDataType Indicates that the resource is of type 'shifts'.
+// ShiftDataType Indicates that the resource is of type `shifts`.
 type ShiftDataType string
 
 // List of ShiftDataType.

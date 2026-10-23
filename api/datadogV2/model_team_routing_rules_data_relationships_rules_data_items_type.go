@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamRoutingRulesDataRelationshipsRulesDataItemsType Indicates that the resource is of type 'team_routing_rules'.
+// TeamRoutingRulesDataRelationshipsRulesDataItemsType Indicates that the resource is of type `team_routing_rules`.
 type TeamRoutingRulesDataRelationshipsRulesDataItemsType string
 
 // List of TeamRoutingRulesDataRelationshipsRulesDataItemsType.
