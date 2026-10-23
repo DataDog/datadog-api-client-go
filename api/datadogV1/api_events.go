@@ -16,8 +16,12 @@ import (
 type EventsApi datadog.Service
 
 // CreateEvent Post an event.
+// This endpoint is deprecated and is available only to organizations that have previously used it. Use the V2 endpoint instead.
+//
 // This endpoint allows you to post events to the stream.
 // Tag them, set priority and event aggregate them with other events.
+//
+// Deprecated: This API is deprecated.
 func (a *EventsApi) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
