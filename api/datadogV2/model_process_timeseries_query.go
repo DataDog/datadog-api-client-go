@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProcessTimeseriesQuery A query for host-level process metrics such as CPU and memory usage.
+// ProcessTimeseriesQuery Per-process metrics from Live Processes over time, such as CPU and memory usage. To scope to one
+// process, set `tag_filters` to its `identifying_tags` from `GET /api/v2/processes`.
 type ProcessTimeseriesQuery struct {
 	// Organization UUIDs to query when using [cross-organization visibility](/account_management/org_settings/cross_org_visibility/). Limited to one organization UUID.
 	CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
@@ -18,15 +19,18 @@ type ProcessTimeseriesQuery struct {
 	DataSource ProcessDataSource `json:"data_source"`
 	// Whether CPU metrics should be normalized by core count.
 	IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
-	// Maximum number of results to return.
+	// Maximum number of processes or groups to return. Large values can fail with an `Unprocessable
+	// Content` error. If so, retry with a smaller limit.
 	Limit *int64 `json:"limit,omitempty"`
-	// The process metric to query.
+	// The process metric to query, such as `process.stat.cpu.total_pct`, `process.stat.memory.rss`, or
+	// `process.stat.memory.vms`.
 	Metric string `json:"metric"`
 	// The variable name for use in formulas.
 	Name string `json:"name"`
 	// Direction of sort.
 	Sort *QuerySortOrder `json:"sort,omitempty"`
-	// Tag filters to narrow down processes.
+	// Tags to narrow down processes. To scope to one process, use its `identifying_tags` from
+	// `GET /api/v2/processes`, for example `host:web-01` and `pid:1234`.
 	TagFilters []string `json:"tag_filters,omitempty"`
 	// A full-text search filter to match process names or commands.
 	TextFilter *string `json:"text_filter,omitempty"`

@@ -68,7 +68,13 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 }
 
 // ListProcesses Get all processes.
-// Get all processes for your organization.
+// Get processes collected by Live Processes for your organization. One request covers a window of
+// at most 1 hour that starts within the past 36 hours. To cover a longer period, make one request
+// per hour. Older data is not available from this endpoint.
+//
+// When a process includes `identifying_tags`, pass them as `tag_filters` in a `process` data source
+// query to `/api/v2/query/scalar` or `/api/v2/query/timeseries` to get CPU or memory metrics for that
+// one process. If absent, don't substitute an empty filter, which would query all processes.
 func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
