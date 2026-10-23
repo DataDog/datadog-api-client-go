@@ -10,9 +10,10 @@ import (
 
 // IssueIncluded - An array of related resources, returned when the `include` query parameter is used.
 type IssueIncluded struct {
-	IssueCase *IssueCase
-	IssueUser *IssueUser
-	IssueTeam *IssueTeam
+	IssueCase   *IssueCase
+	IssueUser   *IssueUser
+	IssueTeam   *IssueTeam
+	IssueSample *IssueSample
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func IssueUserAsIssueIncluded(v *IssueUser) IssueIncluded {
 // IssueTeamAsIssueIncluded is a convenience function that returns IssueTeam wrapped in IssueIncluded.
 func IssueTeamAsIssueIncluded(v *IssueTeam) IssueIncluded {
 	return IssueIncluded{IssueTeam: v}
+}
+
+// IssueSampleAsIssueIncluded is a convenience function that returns IssueSample wrapped in IssueIncluded.
+func IssueSampleAsIssueIncluded(v *IssueSample) IssueIncluded {
+	return IssueIncluded{IssueSample: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *IssueIncluded) UnmarshalJSON(data []byte) error {
 		obj.IssueTeam = nil
 	}
 
+	// try to unmarshal data into IssueSample
+	err = datadog.Unmarshal(data, &obj.IssueSample)
+	if err == nil {
+		if obj.IssueSample != nil && obj.IssueSample.UnparsedObject == nil {
+			jsonIssueSample, _ := datadog.Marshal(obj.IssueSample)
+			if string(jsonIssueSample) == "{}" { // empty struct
+				obj.IssueSample = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IssueSample = nil
+		}
+	} else {
+		obj.IssueSample = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.IssueCase = nil
 		obj.IssueUser = nil
 		obj.IssueTeam = nil
+		obj.IssueSample = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj IssueIncluded) MarshalJSON() ([]byte, error) {
 
 	if obj.IssueTeam != nil {
 		return datadog.Marshal(&obj.IssueTeam)
+	}
+
+	if obj.IssueSample != nil {
+		return datadog.Marshal(&obj.IssueSample)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *IssueIncluded) GetActualInstance() interface{} {
 
 	if obj.IssueTeam != nil {
 		return obj.IssueTeam
+	}
+
+	if obj.IssueSample != nil {
+		return obj.IssueSample
 	}
 
 	// all schemas are nil

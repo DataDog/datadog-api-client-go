@@ -85,7 +85,8 @@ func (a *ErrorTrackingApi) DeleteIssueAssignee(ctx _context.Context, issueId str
 
 // GetIssueOptionalParameters holds optional parameters for GetIssue.
 type GetIssueOptionalParameters struct {
-	Include *[]GetIssueIncludeQueryParameterItem
+	Include             *[]GetIssueIncludeQueryParameterItem
+	FilterSamplesBiases *[]IssueSampleBias
 }
 
 // NewGetIssueOptionalParameters creates an empty struct for parameters.
@@ -97,6 +98,12 @@ func NewGetIssueOptionalParameters() *GetIssueOptionalParameters {
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetIssueOptionalParameters) WithInclude(include []GetIssueIncludeQueryParameterItem) *GetIssueOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithFilterSamplesBiases sets the corresponding parameter name and returns the struct.
+func (r *GetIssueOptionalParameters) WithFilterSamplesBiases(filterSamplesBiases []IssueSampleBias) *GetIssueOptionalParameters {
+	r.FilterSamplesBiases = &filterSamplesBiases
 	return r
 }
 
@@ -130,6 +137,9 @@ func (a *ErrorTrackingApi) GetIssue(ctx _context.Context, issueId string, o ...G
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
+	}
+	if optionalParams.FilterSamplesBiases != nil {
+		localVarQueryParams.Add("filter[samples.biases]", datadog.ParameterToString(*optionalParams.FilterSamplesBiases, "csv"))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

@@ -18,12 +18,14 @@ const (
 	GETISSUEINCLUDEQUERYPARAMETERITEM_ASSIGNEE    GetIssueIncludeQueryParameterItem = "assignee"
 	GETISSUEINCLUDEQUERYPARAMETERITEM_CASE        GetIssueIncludeQueryParameterItem = "case"
 	GETISSUEINCLUDEQUERYPARAMETERITEM_TEAM_OWNERS GetIssueIncludeQueryParameterItem = "team_owners"
+	GETISSUEINCLUDEQUERYPARAMETERITEM_SAMPLES     GetIssueIncludeQueryParameterItem = "samples"
 )
 
 var allowedGetIssueIncludeQueryParameterItemEnumValues = []GetIssueIncludeQueryParameterItem{
 	GETISSUEINCLUDEQUERYPARAMETERITEM_ASSIGNEE,
 	GETISSUEINCLUDEQUERYPARAMETERITEM_CASE,
 	GETISSUEINCLUDEQUERYPARAMETERITEM_TEAM_OWNERS,
+	GETISSUEINCLUDEQUERYPARAMETERITEM_SAMPLES,
 }
 
 // GetAllowedValues reeturns the list of possible values.
