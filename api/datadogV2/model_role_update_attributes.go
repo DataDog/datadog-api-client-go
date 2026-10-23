@@ -26,6 +26,8 @@ type RoleUpdateAttributes struct {
 	// Specify one of the following: "Datadog Admin Role", "Datadog Standard Role", or "Datadog Read Only Role".
 	// If empty or not specified, the role does not automatically inherit permissions from any managed role.
 	ReceivesPermissionsFrom []string `json:"receives_permissions_from,omitempty"`
+	// Number of teams with that role.
+	TeamCount *int64 `json:"team_count,omitempty"`
 	// The user count.
 	UserCount *int32 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -190,6 +192,34 @@ func (o *RoleUpdateAttributes) SetReceivesPermissionsFrom(v []string) {
 	o.ReceivesPermissionsFrom = v
 }
 
+// GetTeamCount returns the TeamCount field value if set, zero value otherwise.
+func (o *RoleUpdateAttributes) GetTeamCount() int64 {
+	if o == nil || o.TeamCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TeamCount
+}
+
+// GetTeamCountOk returns a tuple with the TeamCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleUpdateAttributes) GetTeamCountOk() (*int64, bool) {
+	if o == nil || o.TeamCount == nil {
+		return nil, false
+	}
+	return o.TeamCount, true
+}
+
+// HasTeamCount returns a boolean if a field has been set.
+func (o *RoleUpdateAttributes) HasTeamCount() bool {
+	return o != nil && o.TeamCount != nil
+}
+
+// SetTeamCount gets a reference to the given int64 and assigns it to the TeamCount field.
+func (o *RoleUpdateAttributes) SetTeamCount(v int64) {
+	o.TeamCount = &v
+}
+
 // GetUserCount returns the UserCount field value if set, zero value otherwise.
 func (o *RoleUpdateAttributes) GetUserCount() int32 {
 	if o == nil || o.UserCount == nil {
@@ -247,6 +277,9 @@ func (o RoleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.ReceivesPermissionsFrom != nil {
 		toSerialize["receives_permissions_from"] = o.ReceivesPermissionsFrom
 	}
+	if o.TeamCount != nil {
+		toSerialize["team_count"] = o.TeamCount
+	}
 	if o.UserCount != nil {
 		toSerialize["user_count"] = o.UserCount
 	}
@@ -265,6 +298,7 @@ func (o *RoleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
 		Name                     *string    `json:"name,omitempty"`
 		ReceivesPermissionsFrom  []string   `json:"receives_permissions_from,omitempty"`
+		TeamCount                *int64     `json:"team_count,omitempty"`
 		UserCount                *int32     `json:"user_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -272,7 +306,7 @@ func (o *RoleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "default_permissions_opt_out", "modified_at", "name", "receives_permissions_from", "user_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "default_permissions_opt_out", "modified_at", "name", "receives_permissions_from", "team_count", "user_count"})
 	} else {
 		return err
 	}
@@ -281,6 +315,7 @@ func (o *RoleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
 	o.ReceivesPermissionsFrom = all.ReceivesPermissionsFrom
+	o.TeamCount = all.TeamCount
 	o.UserCount = all.UserCount
 
 	if len(additionalProperties) > 0 {
