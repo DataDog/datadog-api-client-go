@@ -14,12 +14,15 @@ import (
 )
 
 func main() {
+	// there is a valid "experiment_protocol" in the system
+	ExperimentProtocolDataID := uuid.MustParse(os.Getenv("EXPERIMENT_PROTOCOL_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewExperimentsApi(apiClient)
-	resp, r, err := api.GetExperimentProtocol(ctx, uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"))
+	resp, r, err := api.GetExperimentProtocol(ctx, ExperimentProtocolDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExperimentsApi.GetExperimentProtocol`: %v\n", err)

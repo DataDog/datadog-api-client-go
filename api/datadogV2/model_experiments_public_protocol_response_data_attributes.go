@@ -15,10 +15,14 @@ import (
 type ExperimentsPublicProtocolResponseDataAttributes struct {
 	// Default statistical settings supplied by the protocol.
 	AnalysisPlan *ExperimentsPublicProtocolResponseDataAttributesAnalysisPlan `json:"analysis_plan,omitempty"`
+	// Time when the protocol was archived. Omitted if it has not been archived.
+	ArchivedAt *time.Time `json:"archived_at,omitempty"`
 	// Default properties supplied by the protocol's assignment source.
 	AssignmentSourceDefaultProperties []ExperimentsPublicProtocolResponseDataAttributesAssignmentSourceDefaultPropertiesItems `json:"assignment_source_default_properties,omitempty"`
 	// ID of the assignment source selected by the protocol.
 	AssignmentSourceId *string `json:"assignment_source_id,omitempty"`
+	// Time when the protocol was created.
+	CreatedAt time.Time `json:"created_at"`
 	// Default experiment duration supplied by the protocol, in days.
 	DefaultDurationDays *int64 `json:"default_duration_days,omitempty"`
 	// Text that explains the protocol.
@@ -27,6 +31,8 @@ type ExperimentsPublicProtocolResponseDataAttributes struct {
 	Enforcement *ExperimentsPublicProtocolResponseDataAttributesEnforcement `json:"enforcement,omitempty"`
 	// ID of the feature flag environment used by the experiment.
 	EnvironmentId *string `json:"environment_id,omitempty"`
+	// Number of experiments in the organization that use this protocol, excluding deleted experiments. Omitted if the count cannot be retrieved. An omitted count does not mean zero.
+	ExperimentCount *int64 `json:"experiment_count,omitempty"`
 	// Schedule that controls traffic exposure for experiments created from the protocol.
 	ExposureSchedule *ExperimentsPublicProtocolResponseDataAttributesExposureSchedule `json:"exposure_schedule,omitempty"`
 	// Whether the protocol requires a duration before an experiment can start.
@@ -63,7 +69,8 @@ type ExperimentsPublicProtocolResponseDataAttributes struct {
 	SubjectTypeId *string `json:"subject_type_id,omitempty"`
 	// Rules that select subjects for the experiment.
 	TargetingRules []ExperimentsPublicProtocolResponseDataAttributesTargetingRulesItems `json:"targeting_rules,omitempty"`
-	// RFC3339 update time. Preserve all fractional seconds when passing this value as expected_updated_at.
+	// RFC3339 update time. Preserve all fractional seconds when passing this value as
+	// `expected_updated_at`.
 	UpdatedAt string `json:"updated_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -74,8 +81,9 @@ type ExperimentsPublicProtocolResponseDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsPublicProtocolResponseDataAttributes(isDurationRequiredToStart bool, isEqualSplitEnforced bool, isMetricLimitEnabled bool, isMinimumDurationEnabled bool, metricGroups []ExperimentsPublicProtocolResponseDataAttributesMetricGroupsItems, name string, status ExperimentsPublicProtocolResponseDataAttributesStatus, updatedAt string) *ExperimentsPublicProtocolResponseDataAttributes {
+func NewExperimentsPublicProtocolResponseDataAttributes(createdAt time.Time, isDurationRequiredToStart bool, isEqualSplitEnforced bool, isMetricLimitEnabled bool, isMinimumDurationEnabled bool, metricGroups []ExperimentsPublicProtocolResponseDataAttributesMetricGroupsItems, name string, status ExperimentsPublicProtocolResponseDataAttributesStatus, updatedAt string) *ExperimentsPublicProtocolResponseDataAttributes {
 	this := ExperimentsPublicProtocolResponseDataAttributes{}
+	this.CreatedAt = createdAt
 	this.IsDurationRequiredToStart = isDurationRequiredToStart
 	this.IsEqualSplitEnforced = isEqualSplitEnforced
 	this.IsMetricLimitEnabled = isMetricLimitEnabled
@@ -121,6 +129,34 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) HasAnalysisPlan() bool
 // SetAnalysisPlan gets a reference to the given ExperimentsPublicProtocolResponseDataAttributesAnalysisPlan and assigns it to the AnalysisPlan field.
 func (o *ExperimentsPublicProtocolResponseDataAttributes) SetAnalysisPlan(v ExperimentsPublicProtocolResponseDataAttributesAnalysisPlan) {
 	o.AnalysisPlan = &v
+}
+
+// GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetArchivedAt() time.Time {
+	if o == nil || o.ArchivedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ArchivedAt
+}
+
+// GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetArchivedAtOk() (*time.Time, bool) {
+	if o == nil || o.ArchivedAt == nil {
+		return nil, false
+	}
+	return o.ArchivedAt, true
+}
+
+// HasArchivedAt returns a boolean if a field has been set.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) HasArchivedAt() bool {
+	return o != nil && o.ArchivedAt != nil
+}
+
+// SetArchivedAt gets a reference to the given time.Time and assigns it to the ArchivedAt field.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) SetArchivedAt(v time.Time) {
+	o.ArchivedAt = &v
 }
 
 // GetAssignmentSourceDefaultProperties returns the AssignmentSourceDefaultProperties field value if set, zero value otherwise.
@@ -177,6 +213,29 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) HasAssignmentSourceId(
 // SetAssignmentSourceId gets a reference to the given string and assigns it to the AssignmentSourceId field.
 func (o *ExperimentsPublicProtocolResponseDataAttributes) SetAssignmentSourceId(v string) {
 	o.AssignmentSourceId = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetDefaultDurationDays returns the DefaultDurationDays field value if set, zero value otherwise.
@@ -289,6 +348,34 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) HasEnvironmentId() boo
 // SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
 func (o *ExperimentsPublicProtocolResponseDataAttributes) SetEnvironmentId(v string) {
 	o.EnvironmentId = &v
+}
+
+// GetExperimentCount returns the ExperimentCount field value if set, zero value otherwise.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetExperimentCount() int64 {
+	if o == nil || o.ExperimentCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ExperimentCount
+}
+
+// GetExperimentCountOk returns a tuple with the ExperimentCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) GetExperimentCountOk() (*int64, bool) {
+	if o == nil || o.ExperimentCount == nil {
+		return nil, false
+	}
+	return o.ExperimentCount, true
+}
+
+// HasExperimentCount returns a boolean if a field has been set.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) HasExperimentCount() bool {
+	return o != nil && o.ExperimentCount != nil
+}
+
+// SetExperimentCount gets a reference to the given int64 and assigns it to the ExperimentCount field.
+func (o *ExperimentsPublicProtocolResponseDataAttributes) SetExperimentCount(v int64) {
+	o.ExperimentCount = &v
 }
 
 // GetExposureSchedule returns the ExposureSchedule field value if set, zero value otherwise.
@@ -792,11 +879,23 @@ func (o ExperimentsPublicProtocolResponseDataAttributes) MarshalJSON() ([]byte, 
 	if o.AnalysisPlan != nil {
 		toSerialize["analysis_plan"] = o.AnalysisPlan
 	}
+	if o.ArchivedAt != nil {
+		if o.ArchivedAt.Nanosecond() == 0 {
+			toSerialize["archived_at"] = o.ArchivedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["archived_at"] = o.ArchivedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
+	}
 	if o.AssignmentSourceDefaultProperties != nil {
 		toSerialize["assignment_source_default_properties"] = o.AssignmentSourceDefaultProperties
 	}
 	if o.AssignmentSourceId != nil {
 		toSerialize["assignment_source_id"] = o.AssignmentSourceId
+	}
+	if o.CreatedAt.Nanosecond() == 0 {
+		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	if o.DefaultDurationDays != nil {
 		toSerialize["default_duration_days"] = o.DefaultDurationDays
@@ -809,6 +908,9 @@ func (o ExperimentsPublicProtocolResponseDataAttributes) MarshalJSON() ([]byte, 
 	}
 	if o.EnvironmentId != nil {
 		toSerialize["environment_id"] = o.EnvironmentId
+	}
+	if o.ExperimentCount != nil {
+		toSerialize["experiment_count"] = o.ExperimentCount
 	}
 	if o.ExposureSchedule != nil {
 		toSerialize["exposure_schedule"] = o.ExposureSchedule
@@ -866,12 +968,15 @@ func (o ExperimentsPublicProtocolResponseDataAttributes) MarshalJSON() ([]byte, 
 func (o *ExperimentsPublicProtocolResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AnalysisPlan                      *ExperimentsPublicProtocolResponseDataAttributesAnalysisPlan                            `json:"analysis_plan,omitempty"`
+		ArchivedAt                        *time.Time                                                                              `json:"archived_at,omitempty"`
 		AssignmentSourceDefaultProperties []ExperimentsPublicProtocolResponseDataAttributesAssignmentSourceDefaultPropertiesItems `json:"assignment_source_default_properties,omitempty"`
 		AssignmentSourceId                *string                                                                                 `json:"assignment_source_id,omitempty"`
+		CreatedAt                         *time.Time                                                                              `json:"created_at"`
 		DefaultDurationDays               *int64                                                                                  `json:"default_duration_days,omitempty"`
 		Description                       *string                                                                                 `json:"description,omitempty"`
 		Enforcement                       *ExperimentsPublicProtocolResponseDataAttributesEnforcement                             `json:"enforcement,omitempty"`
 		EnvironmentId                     *string                                                                                 `json:"environment_id,omitempty"`
+		ExperimentCount                   *int64                                                                                  `json:"experiment_count,omitempty"`
 		ExposureSchedule                  *ExperimentsPublicProtocolResponseDataAttributesExposureSchedule                        `json:"exposure_schedule,omitempty"`
 		IsDurationRequiredToStart         *bool                                                                                   `json:"is_duration_required_to_start"`
 		IsEqualSplitEnforced              *bool                                                                                   `json:"is_equal_split_enforced"`
@@ -894,6 +999,9 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) UnmarshalJSON(bytes []
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.CreatedAt == nil {
+		return fmt.Errorf("required field created_at missing")
 	}
 	if all.IsDurationRequiredToStart == nil {
 		return fmt.Errorf("required field is_duration_required_to_start missing")
@@ -921,7 +1029,7 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"analysis_plan", "assignment_source_default_properties", "assignment_source_id", "default_duration_days", "description", "enforcement", "environment_id", "exposure_schedule", "is_duration_required_to_start", "is_equal_split_enforced", "is_metric_limit_enabled", "is_minimum_duration_enabled", "metric_groups", "metric_limit", "migration_metadata", "minimum_duration_unit", "minimum_duration_value", "name", "primary_metric", "primary_metric_id", "published_at", "status", "subject_type", "subject_type_id", "targeting_rules", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"analysis_plan", "archived_at", "assignment_source_default_properties", "assignment_source_id", "created_at", "default_duration_days", "description", "enforcement", "environment_id", "experiment_count", "exposure_schedule", "is_duration_required_to_start", "is_equal_split_enforced", "is_metric_limit_enabled", "is_minimum_duration_enabled", "metric_groups", "metric_limit", "migration_metadata", "minimum_duration_unit", "minimum_duration_value", "name", "primary_metric", "primary_metric_id", "published_at", "status", "subject_type", "subject_type_id", "targeting_rules", "updated_at"})
 	} else {
 		return err
 	}
@@ -931,8 +1039,10 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) UnmarshalJSON(bytes []
 		hasInvalidField = true
 	}
 	o.AnalysisPlan = all.AnalysisPlan
+	o.ArchivedAt = all.ArchivedAt
 	o.AssignmentSourceDefaultProperties = all.AssignmentSourceDefaultProperties
 	o.AssignmentSourceId = all.AssignmentSourceId
+	o.CreatedAt = *all.CreatedAt
 	o.DefaultDurationDays = all.DefaultDurationDays
 	o.Description = all.Description
 	if all.Enforcement != nil && all.Enforcement.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -940,6 +1050,7 @@ func (o *ExperimentsPublicProtocolResponseDataAttributes) UnmarshalJSON(bytes []
 	}
 	o.Enforcement = all.Enforcement
 	o.EnvironmentId = all.EnvironmentId
+	o.ExperimentCount = all.ExperimentCount
 	if all.ExposureSchedule != nil && all.ExposureSchedule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
