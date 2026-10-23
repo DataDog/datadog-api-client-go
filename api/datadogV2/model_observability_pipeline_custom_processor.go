@@ -12,7 +12,7 @@ import (
 
 // ObservabilityPipelineCustomProcessor The `custom_processor` processor transforms events using [Vector Remap Language (VRL)](https://vector.dev/docs/reference/vrl/) scripts with advanced filtering capabilities.
 //
-// **Supported pipeline types:** logs
+// **Supported pipeline types:** logs, traces
 type ObservabilityPipelineCustomProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
@@ -20,7 +20,7 @@ type ObservabilityPipelineCustomProcessor struct {
 	Enabled bool `json:"enabled"`
 	// The unique identifier for this processor.
 	Id string `json:"id"`
-	// A Datadog search query used to determine which logs this processor targets. This field should always be set to `*` for the custom_processor processor.
+	// A Datadog search query used to determine which events this processor targets. This field should always be set to `*` for the custom_processor processor.
 	Include string `json:"include"`
 	// Array of VRL remap rules.
 	Remaps []ObservabilityPipelineCustomProcessorRemap `json:"remaps"`
