@@ -113,6 +113,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "DatabricksIntegrationApi": reflect.ValueOf(datadogV2.NewDatabricksIntegrationApi),
 	    "ElasticCloudIntegrationApi": reflect.ValueOf(datadogV2.NewElasticCloudIntegrationApi),
 	    "SnowflakeIntegrationApi": reflect.ValueOf(datadogV2.NewSnowflakeIntegrationApi),
+	    "TemporalCloudOpenMetricsIntegrationApi": reflect.ValueOf(datadogV2.NewTemporalCloudOpenMetricsIntegrationApi),
 	    "TwilioIntegrationApi": reflect.ValueOf(datadogV2.NewTwilioIntegrationApi),
 	    "AWSIntegrationApi": reflect.ValueOf(datadogV2.NewAWSIntegrationApi),
 	    "AWSLogsIntegrationApi": reflect.ValueOf(datadogV2.NewAWSLogsIntegrationApi),
