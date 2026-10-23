@@ -8,7 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SensitiveDataScannerSuppressions Object describing the suppressions for a rule. There are three types of suppressions, `starts_with`, `ends_with`, and `exact_match`.
+// SensitiveDataScannerSuppressions Object describing suppressions for a rule, or the recommended suppression lists published by a standard pattern.
+// There are three types of suppressions, `starts_with`, `ends_with`, and `exact_match`.
+// Rules based on the Datadog library can use recommended or custom suppressions. Custom rules can only use custom suppressions.
 // Suppressed matches are not obfuscated, counted in metrics, or displayed in the Findings page.
 type SensitiveDataScannerSuppressions struct {
 	// List of strings to use for suppression of matches ending with these strings.
@@ -17,6 +19,9 @@ type SensitiveDataScannerSuppressions struct {
 	ExactMatch []string `json:"exact_match,omitempty"`
 	// List of strings to use for suppression of matches starting with these strings.
 	StartsWith []string `json:"starts_with,omitempty"`
+	// Should the rule use the underlying standard pattern suppression configuration. If set to `true`, the rule must be tied
+	// to a standard pattern. If set to `false`, the specified suppressions are applied.
+	UseRecommendedSuppressions *bool `json:"use_recommended_suppressions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -123,6 +128,34 @@ func (o *SensitiveDataScannerSuppressions) SetStartsWith(v []string) {
 	o.StartsWith = v
 }
 
+// GetUseRecommendedSuppressions returns the UseRecommendedSuppressions field value if set, zero value otherwise.
+func (o *SensitiveDataScannerSuppressions) GetUseRecommendedSuppressions() bool {
+	if o == nil || o.UseRecommendedSuppressions == nil {
+		var ret bool
+		return ret
+	}
+	return *o.UseRecommendedSuppressions
+}
+
+// GetUseRecommendedSuppressionsOk returns a tuple with the UseRecommendedSuppressions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerSuppressions) GetUseRecommendedSuppressionsOk() (*bool, bool) {
+	if o == nil || o.UseRecommendedSuppressions == nil {
+		return nil, false
+	}
+	return o.UseRecommendedSuppressions, true
+}
+
+// HasUseRecommendedSuppressions returns a boolean if a field has been set.
+func (o *SensitiveDataScannerSuppressions) HasUseRecommendedSuppressions() bool {
+	return o != nil && o.UseRecommendedSuppressions != nil
+}
+
+// SetUseRecommendedSuppressions gets a reference to the given bool and assigns it to the UseRecommendedSuppressions field.
+func (o *SensitiveDataScannerSuppressions) SetUseRecommendedSuppressions(v bool) {
+	o.UseRecommendedSuppressions = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerSuppressions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -138,6 +171,9 @@ func (o SensitiveDataScannerSuppressions) MarshalJSON() ([]byte, error) {
 	if o.StartsWith != nil {
 		toSerialize["starts_with"] = o.StartsWith
 	}
+	if o.UseRecommendedSuppressions != nil {
+		toSerialize["use_recommended_suppressions"] = o.UseRecommendedSuppressions
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -148,22 +184,24 @@ func (o SensitiveDataScannerSuppressions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerSuppressions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EndsWith   []string `json:"ends_with,omitempty"`
-		ExactMatch []string `json:"exact_match,omitempty"`
-		StartsWith []string `json:"starts_with,omitempty"`
+		EndsWith                   []string `json:"ends_with,omitempty"`
+		ExactMatch                 []string `json:"exact_match,omitempty"`
+		StartsWith                 []string `json:"starts_with,omitempty"`
+		UseRecommendedSuppressions *bool    `json:"use_recommended_suppressions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ends_with", "exact_match", "starts_with"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"ends_with", "exact_match", "starts_with", "use_recommended_suppressions"})
 	} else {
 		return err
 	}
 	o.EndsWith = all.EndsWith
 	o.ExactMatch = all.ExactMatch
 	o.StartsWith = all.StartsWith
+	o.UseRecommendedSuppressions = all.UseRecommendedSuppressions
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
