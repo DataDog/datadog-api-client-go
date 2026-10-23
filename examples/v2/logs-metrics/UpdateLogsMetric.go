@@ -21,7 +21,7 @@ func main() {
 			Type: datadogV2.LOGSMETRICTYPE_LOGS_METRICS,
 			Attributes: datadogV2.LogsMetricUpdateAttributes{
 				Filter: &datadogV2.LogsMetricFilter{
-					Query: datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]-updated"),
+					Query: datadog.PtrString("service:web-api AND @http.status_code:[200 TO 299]-updated"),
 				},
 			},
 		},
