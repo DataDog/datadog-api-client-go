@@ -1489,6 +1489,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateCustomRuleset":                                    false,
 			"v2.AddMemberTeam":                                          false,
 			"v2.ListMemberTeams":                                        false,
+			"v2.ListTeamHierarchyMembers":                               false,
 			"v2.RemoveMemberTeam":                                       false,
 			"v2.CreateTimeseriesAnomalyInvestigation":                   false,
 			"v2.CreateWebIntegrationAccount":                            false,
