@@ -10,7 +10,7 @@ import (
 
 // ExperimentsPublicProtocolResponseDataAttributesEnforcement Controls that determine which protocol settings can be changed in an experiment.
 type ExperimentsPublicProtocolResponseDataAttributesEnforcement struct {
-	// LOCKED prevents changes to confidence interval method. EDITABLE permits changes.
+	// Always LOCKED. The server keeps this setting locked regardless of the supplied value.
 	ConfidenceIntervalMethod *string `json:"confidence_interval_method,omitempty"`
 	// LOCKED prevents changes to confidence level. EDITABLE permits changes.
 	ConfidenceLevel *string `json:"confidence_level,omitempty"`
@@ -20,7 +20,7 @@ type ExperimentsPublicProtocolResponseDataAttributesEnforcement struct {
 	DefaultDuration *string `json:"default_duration,omitempty"`
 	// LOCKED prevents changes to environment. EDITABLE permits changes.
 	Environment *string `json:"environment,omitempty"`
-	// LOCKED prevents changes to feature flag source. EDITABLE permits changes.
+	// Always LOCKED. The server keeps this setting locked regardless of the supplied value.
 	FlagSource *string `json:"flag_source,omitempty"`
 	// LOCKED prevents changes to multiple testing correction. EDITABLE permits changes.
 	MultipleTestingCorrection *string `json:"multiple_testing_correction,omitempty"`
@@ -32,7 +32,7 @@ type ExperimentsPublicProtocolResponseDataAttributesEnforcement struct {
 	SecondaryMetrics *string `json:"secondary_metrics,omitempty"`
 	// LOCKED prevents changes to result exploration dimensions. EDITABLE permits changes.
 	SplitByExplorationDimensions *string `json:"split_by_exploration_dimensions,omitempty"`
-	// LOCKED prevents changes to subject type. EDITABLE permits changes.
+	// Always LOCKED. The server keeps this setting locked regardless of the supplied value.
 	SubjectType *string `json:"subject_type,omitempty"`
 	// LOCKED prevents changes to targeting rules. EDITABLE permits changes.
 	TargetingRules *string `json:"targeting_rules,omitempty"`
