@@ -20,6 +20,10 @@ func main() {
 				FileEncoding: "utf-8",
 				Filename:     "test.py",
 				Language:     "python",
+				Options: &datadogV2.AnalysisRequestOptions{
+					LogOutput:     datadog.PtrBool(true),
+					UseTreeSitter: datadog.PtrBool(true),
+				},
 				Rules: []datadogV2.AnalysisRequestRule{
 					{
 						Arguments: []datadogV2.AnalysisRequestRuleArgument{
