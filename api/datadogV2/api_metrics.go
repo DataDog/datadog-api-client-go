@@ -12,6 +12,7 @@ import (
 	_neturl "net/url"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/google/uuid"
 )
 
 // MetricsApi service type
@@ -2149,6 +2150,230 @@ func (a *MetricsApi) ListTagConfigurationsWithPagination(ctx _context.Context, o
 			for _, item := range results {
 				select {
 				case items <- datadog.PaginationResult[MetricsAndMetricTagConfigurations]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) == 0 {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPagination, ok := cursorMeta.GetPaginationOk()
+			if !ok {
+				break
+			}
+			cursorMetaPaginationNextCursor, ok := cursorMetaPagination.GetNextCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPaginationNextCursor
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
+// ListTagIndexingRuleExemptionsOptionalParameters holds optional parameters for ListTagIndexingRuleExemptions.
+type ListTagIndexingRuleExemptionsOptionalParameters struct {
+	FilterMetricPrefix      *string
+	FilterSafe              *bool
+	FilterTagIndexingRuleId *uuid.UUID
+	Sort                    *TagIndexingRuleExemptionSort
+	PageSize                *int32
+	PageCursor              *string
+}
+
+// NewListTagIndexingRuleExemptionsOptionalParameters creates an empty struct for parameters.
+func NewListTagIndexingRuleExemptionsOptionalParameters() *ListTagIndexingRuleExemptionsOptionalParameters {
+	this := ListTagIndexingRuleExemptionsOptionalParameters{}
+	return &this
+}
+
+// WithFilterMetricPrefix sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithFilterMetricPrefix(filterMetricPrefix string) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.FilterMetricPrefix = &filterMetricPrefix
+	return r
+}
+
+// WithFilterSafe sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithFilterSafe(filterSafe bool) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.FilterSafe = &filterSafe
+	return r
+}
+
+// WithFilterTagIndexingRuleId sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithFilterTagIndexingRuleId(filterTagIndexingRuleId uuid.UUID) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.FilterTagIndexingRuleId = &filterTagIndexingRuleId
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithSort(sort TagIndexingRuleExemptionSort) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithPageSize(pageSize int32) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListTagIndexingRuleExemptionsOptionalParameters) WithPageCursor(pageCursor string) *ListTagIndexingRuleExemptionsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// ListTagIndexingRuleExemptions List tag indexing rule exemptions.
+// Returns explicit exemptions and legacy tag configurations that exclude metrics from tag indexing rules.
+// You can filter results by metric name prefix, whether an exemption is safe to remove, or the UUID of a matching
+// tag indexing rule. You can sort results by metric name or by estimated change in indexed volume.
+func (a *MetricsApi) ListTagIndexingRuleExemptions(ctx _context.Context, o ...ListTagIndexingRuleExemptionsOptionalParameters) (TagIndexingRuleExemptionsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TagIndexingRuleExemptionsResponse
+		optionalParams      ListTagIndexingRuleExemptionsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListTagIndexingRuleExemptionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListTagIndexingRuleExemptions"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ListTagIndexingRuleExemptions")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/metrics/list-tag-indexing-rule-exemptions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterMetricPrefix != nil {
+		localVarQueryParams.Add("filter[metric_prefix]", datadog.ParameterToString(*optionalParams.FilterMetricPrefix, ""))
+	}
+	if optionalParams.FilterSafe != nil {
+		localVarQueryParams.Add("filter[safe]", datadog.ParameterToString(*optionalParams.FilterSafe, ""))
+	}
+	if optionalParams.FilterTagIndexingRuleId != nil {
+		localVarQueryParams.Add("filter[tag_indexing_rule_id]", datadog.ParameterToString(*optionalParams.FilterTagIndexingRuleId, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListTagIndexingRuleExemptionsWithPagination provides a paginated version of ListTagIndexingRuleExemptions returning a channel with all items.
+func (a *MetricsApi) ListTagIndexingRuleExemptionsWithPagination(ctx _context.Context, o ...ListTagIndexingRuleExemptionsOptionalParameters) (<-chan datadog.PaginationResult[TagIndexingRuleExemptionData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10000)
+	if len(o) == 0 {
+		o = append(o, ListTagIndexingRuleExemptionsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+
+	items := make(chan datadog.PaginationResult[TagIndexingRuleExemptionData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListTagIndexingRuleExemptions(ctx, o...)
+			if err != nil {
+				var returnItem TagIndexingRuleExemptionData
+				items <- datadog.PaginationResult[TagIndexingRuleExemptionData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[TagIndexingRuleExemptionData]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
