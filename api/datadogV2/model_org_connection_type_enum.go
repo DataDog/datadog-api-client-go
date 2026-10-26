@@ -15,15 +15,19 @@ type OrgConnectionTypeEnum string
 
 // List of OrgConnectionTypeEnum.
 const (
-	ORGCONNECTIONTYPEENUM_LOGS    OrgConnectionTypeEnum = "logs"
-	ORGCONNECTIONTYPEENUM_METRICS OrgConnectionTypeEnum = "metrics"
-	ORGCONNECTIONTYPEENUM_AUDIT   OrgConnectionTypeEnum = "audit"
+	ORGCONNECTIONTYPEENUM_LOGS         OrgConnectionTypeEnum = "logs"
+	ORGCONNECTIONTYPEENUM_METRICS      OrgConnectionTypeEnum = "metrics"
+	ORGCONNECTIONTYPEENUM_AUDIT        OrgConnectionTypeEnum = "audit"
+	ORGCONNECTIONTYPEENUM_CI_PIPELINES OrgConnectionTypeEnum = "ci_pipelines"
+	ORGCONNECTIONTYPEENUM_CI_TESTS     OrgConnectionTypeEnum = "ci_tests"
 )
 
 var allowedOrgConnectionTypeEnumEnumValues = []OrgConnectionTypeEnum{
 	ORGCONNECTIONTYPEENUM_LOGS,
 	ORGCONNECTIONTYPEENUM_METRICS,
 	ORGCONNECTIONTYPEENUM_AUDIT,
+	ORGCONNECTIONTYPEENUM_CI_PIPELINES,
+	ORGCONNECTIONTYPEENUM_CI_TESTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
