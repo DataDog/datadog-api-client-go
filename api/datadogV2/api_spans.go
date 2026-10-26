@@ -18,6 +18,11 @@ type SpansApi datadog.Service
 // AggregateSpans Aggregate spans.
 // The API endpoint to aggregate spans into buckets and compute metrics and timeseries.
 // This endpoint is rate limited to `300` requests per hour.
+//
+// A request can generate at most 10,000 groups across all `group_by` entries, or 400,000 groups
+// including time buckets when a `timeseries` compute is used. Set `limit` on each `group_by` entry
+// to stay within these bounds. Requests over long time ranges or with many groups are more resource-intensive
+// and can fail. To reduce load, narrow the time range or lower the `limit` on each `group_by` entry.
 func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateRequest) (SpansAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
