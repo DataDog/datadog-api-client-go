@@ -16,6 +16,10 @@ type SecurityMonitoringStandardRuleQuery struct {
 	CustomQueryExtension *string `json:"customQueryExtension,omitempty"`
 	// Source of events, either logs, audit trail, security signals, or Datadog events. `app_sec_spans` is deprecated in favor of `spans`.
 	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
+	// IDs of the datasets queried by the rule. Only used when `queryLanguage` is `sql`.
+	DatasetIds []string `json:"datasetIds,omitempty"`
+	// Version of each dataset used by the rule, keyed by dataset ID. Only used when `queryLanguage` is `sql`.
+	DatasetVersions map[string]int64 `json:"datasetVersions,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
@@ -37,6 +41,8 @@ type SecurityMonitoringStandardRuleQuery struct {
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
 	Query *string `json:"query,omitempty"`
+	// Language of the query. Use `sql` for SQL-based rules over datasets. Defaults to `event_query`.
+	QueryLanguage *string `json:"queryLanguage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -149,6 +155,62 @@ func (o *SecurityMonitoringStandardRuleQuery) HasDataSource() bool {
 // SetDataSource gets a reference to the given SecurityMonitoringStandardDataSource and assigns it to the DataSource field.
 func (o *SecurityMonitoringStandardRuleQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
 	o.DataSource = &v
+}
+
+// GetDatasetIds returns the DatasetIds field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleQuery) GetDatasetIds() []string {
+	if o == nil || o.DatasetIds == nil {
+		var ret []string
+		return ret
+	}
+	return o.DatasetIds
+}
+
+// GetDatasetIdsOk returns a tuple with the DatasetIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleQuery) GetDatasetIdsOk() (*[]string, bool) {
+	if o == nil || o.DatasetIds == nil {
+		return nil, false
+	}
+	return &o.DatasetIds, true
+}
+
+// HasDatasetIds returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleQuery) HasDatasetIds() bool {
+	return o != nil && o.DatasetIds != nil
+}
+
+// SetDatasetIds gets a reference to the given []string and assigns it to the DatasetIds field.
+func (o *SecurityMonitoringStandardRuleQuery) SetDatasetIds(v []string) {
+	o.DatasetIds = v
+}
+
+// GetDatasetVersions returns the DatasetVersions field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleQuery) GetDatasetVersions() map[string]int64 {
+	if o == nil || o.DatasetVersions == nil {
+		var ret map[string]int64
+		return ret
+	}
+	return o.DatasetVersions
+}
+
+// GetDatasetVersionsOk returns a tuple with the DatasetVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleQuery) GetDatasetVersionsOk() (*map[string]int64, bool) {
+	if o == nil || o.DatasetVersions == nil {
+		return nil, false
+	}
+	return &o.DatasetVersions, true
+}
+
+// HasDatasetVersions returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleQuery) HasDatasetVersions() bool {
+	return o != nil && o.DatasetVersions != nil
+}
+
+// SetDatasetVersions gets a reference to the given map[string]int64 and assigns it to the DatasetVersions field.
+func (o *SecurityMonitoringStandardRuleQuery) SetDatasetVersions(v map[string]int64) {
+	o.DatasetVersions = v
 }
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
@@ -406,6 +468,34 @@ func (o *SecurityMonitoringStandardRuleQuery) SetQuery(v string) {
 	o.Query = &v
 }
 
+// GetQueryLanguage returns the QueryLanguage field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleQuery) GetQueryLanguage() string {
+	if o == nil || o.QueryLanguage == nil {
+		var ret string
+		return ret
+	}
+	return *o.QueryLanguage
+}
+
+// GetQueryLanguageOk returns a tuple with the QueryLanguage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleQuery) GetQueryLanguageOk() (*string, bool) {
+	if o == nil || o.QueryLanguage == nil {
+		return nil, false
+	}
+	return o.QueryLanguage, true
+}
+
+// HasQueryLanguage returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleQuery) HasQueryLanguage() bool {
+	return o != nil && o.QueryLanguage != nil
+}
+
+// SetQueryLanguage gets a reference to the given string and assigns it to the QueryLanguage field.
+func (o *SecurityMonitoringStandardRuleQuery) SetQueryLanguage(v string) {
+	o.QueryLanguage = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -420,6 +510,12 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 	}
 	if o.DataSource != nil {
 		toSerialize["dataSource"] = o.DataSource
+	}
+	if o.DatasetIds != nil {
+		toSerialize["datasetIds"] = o.DatasetIds
+	}
+	if o.DatasetVersions != nil {
+		toSerialize["datasetVersions"] = o.DatasetVersions
 	}
 	if o.DistinctFields != nil {
 		toSerialize["distinctFields"] = o.DistinctFields
@@ -448,6 +544,9 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
+	if o.QueryLanguage != nil {
+		toSerialize["queryLanguage"] = o.QueryLanguage
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -461,6 +560,8 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		CustomQueryExtension     *string                                 `json:"customQueryExtension,omitempty"`
 		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
+		DatasetIds               []string                                `json:"datasetIds,omitempty"`
+		DatasetVersions          map[string]int64                        `json:"datasetVersions,omitempty"`
 		DistinctFields           []string                                `json:"distinctFields,omitempty"`
 		GroupByFields            []string                                `json:"groupByFields,omitempty"`
 		HasOptionalGroupByFields *bool                                   `json:"hasOptionalGroupByFields,omitempty"`
@@ -470,13 +571,14 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		Metrics                  []string                                `json:"metrics,omitempty"`
 		Name                     *string                                 `json:"name,omitempty"`
 		Query                    *string                                 `json:"query,omitempty"`
+		QueryLanguage            *string                                 `json:"queryLanguage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "customQueryExtension", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metric", "metrics", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "customQueryExtension", "dataSource", "datasetIds", "datasetVersions", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metric", "metrics", "name", "query", "queryLanguage"})
 	} else {
 		return err
 	}
@@ -493,6 +595,8 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		o.DataSource = all.DataSource
 	}
+	o.DatasetIds = all.DatasetIds
+	o.DatasetVersions = all.DatasetVersions
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields
 	o.HasOptionalGroupByFields = all.HasOptionalGroupByFields
@@ -502,6 +606,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.Query = all.Query
+	o.QueryLanguage = all.QueryLanguage
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
