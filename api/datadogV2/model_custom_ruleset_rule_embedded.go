@@ -19,8 +19,8 @@ type CustomRulesetRuleEmbedded struct {
 	CreatedBy string `json:"created_by"`
 	// Rule identifier, which is the same as the rule name.
 	Id string `json:"id"`
-	// A revision of a custom static analysis rule as embedded in a rule or ruleset response.
-	LastRevision CustomRuleRevisionEmbedded `json:"last_revision"`
+	// The most recent revision of the rule, or null when the rule has no revisions.
+	LastRevision NullableCustomRuleNullableRevisionEmbedded `json:"last_revision"`
 	// Rule name
 	Name string `json:"name"`
 	// Revision history of the rule.
@@ -34,7 +34,7 @@ type CustomRulesetRuleEmbedded struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRulesetRuleEmbedded(createdAt time.Time, createdBy string, id string, lastRevision CustomRuleRevisionEmbedded, name string, revisions datadog.NullableList[CustomRuleRevisionEmbedded]) *CustomRulesetRuleEmbedded {
+func NewCustomRulesetRuleEmbedded(createdAt time.Time, createdBy string, id string, lastRevision NullableCustomRuleNullableRevisionEmbedded, name string, revisions datadog.NullableList[CustomRuleRevisionEmbedded]) *CustomRulesetRuleEmbedded {
 	this := CustomRulesetRuleEmbedded{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
@@ -123,26 +123,28 @@ func (o *CustomRulesetRuleEmbedded) SetId(v string) {
 }
 
 // GetLastRevision returns the LastRevision field value.
-func (o *CustomRulesetRuleEmbedded) GetLastRevision() CustomRuleRevisionEmbedded {
-	if o == nil {
-		var ret CustomRuleRevisionEmbedded
+// If the value is explicit nil, the zero value for CustomRuleNullableRevisionEmbedded will be returned.
+func (o *CustomRulesetRuleEmbedded) GetLastRevision() CustomRuleNullableRevisionEmbedded {
+	if o == nil || o.LastRevision.Get() == nil {
+		var ret CustomRuleNullableRevisionEmbedded
 		return ret
 	}
-	return o.LastRevision
+	return *o.LastRevision.Get()
 }
 
 // GetLastRevisionOk returns a tuple with the LastRevision field value
 // and a boolean to check if the value has been set.
-func (o *CustomRulesetRuleEmbedded) GetLastRevisionOk() (*CustomRuleRevisionEmbedded, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CustomRulesetRuleEmbedded) GetLastRevisionOk() (*CustomRuleNullableRevisionEmbedded, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastRevision, true
+	return o.LastRevision.Get(), o.LastRevision.IsSet()
 }
 
 // SetLastRevision sets field value.
-func (o *CustomRulesetRuleEmbedded) SetLastRevision(v CustomRuleRevisionEmbedded) {
-	o.LastRevision = v
+func (o *CustomRulesetRuleEmbedded) SetLastRevision(v CustomRuleNullableRevisionEmbedded) {
+	o.LastRevision.Set(&v)
 }
 
 // GetName returns the Name field value.
@@ -206,7 +208,7 @@ func (o CustomRulesetRuleEmbedded) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["created_by"] = o.CreatedBy
 	toSerialize["id"] = o.Id
-	toSerialize["last_revision"] = o.LastRevision
+	toSerialize["last_revision"] = o.LastRevision.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["revisions"] = o.Revisions.Get()
 
@@ -222,7 +224,7 @@ func (o *CustomRulesetRuleEmbedded) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt    *time.Time                                       `json:"created_at"`
 		CreatedBy    *string                                          `json:"created_by"`
 		Id           *string                                          `json:"id"`
-		LastRevision *CustomRuleRevisionEmbedded                      `json:"last_revision"`
+		LastRevision NullableCustomRuleNullableRevisionEmbedded       `json:"last_revision"`
 		Name         *string                                          `json:"name"`
 		Revisions    datadog.NullableList[CustomRuleRevisionEmbedded] `json:"revisions"`
 	}{}
@@ -238,7 +240,7 @@ func (o *CustomRulesetRuleEmbedded) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
-	if all.LastRevision == nil {
+	if !all.LastRevision.IsSet() {
 		return fmt.Errorf("required field last_revision missing")
 	}
 	if all.Name == nil {
@@ -253,24 +255,15 @@ func (o *CustomRulesetRuleEmbedded) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
 	o.Id = *all.Id
-	if all.LastRevision.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.LastRevision = *all.LastRevision
+	o.LastRevision = all.LastRevision
 	o.Name = *all.Name
 	o.Revisions = all.Revisions
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

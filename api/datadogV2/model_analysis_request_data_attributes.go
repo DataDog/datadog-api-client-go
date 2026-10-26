@@ -20,6 +20,9 @@ type AnalysisRequestDataAttributes struct {
 	Filename string `json:"filename"`
 	// The programming language of the source code.
 	Language string `json:"language"`
+	// Analyzer options sent by browser-based clients. Accepted but ignored: the API always runs
+	// the analysis with tree-sitter enabled and rule output logged.
+	Options *AnalysisRequestOptions `json:"options,omitempty"`
 	// The list of static analysis rules to apply during analysis.
 	Rules []AnalysisRequestRule `json:"rules"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -141,6 +144,34 @@ func (o *AnalysisRequestDataAttributes) SetLanguage(v string) {
 	o.Language = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *AnalysisRequestDataAttributes) GetOptions() AnalysisRequestOptions {
+	if o == nil || o.Options == nil {
+		var ret AnalysisRequestOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalysisRequestDataAttributes) GetOptionsOk() (*AnalysisRequestOptions, bool) {
+	if o == nil || o.Options == nil {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *AnalysisRequestDataAttributes) HasOptions() bool {
+	return o != nil && o.Options != nil
+}
+
+// SetOptions gets a reference to the given AnalysisRequestOptions and assigns it to the Options field.
+func (o *AnalysisRequestDataAttributes) SetOptions(v AnalysisRequestOptions) {
+	o.Options = &v
+}
+
 // GetRules returns the Rules field value.
 func (o *AnalysisRequestDataAttributes) GetRules() []AnalysisRequestRule {
 	if o == nil {
@@ -174,6 +205,9 @@ func (o AnalysisRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["file_encoding"] = o.FileEncoding
 	toSerialize["filename"] = o.Filename
 	toSerialize["language"] = o.Language
+	if o.Options != nil {
+		toSerialize["options"] = o.Options
+	}
 	toSerialize["rules"] = o.Rules
 
 	for key, value := range o.AdditionalProperties {
@@ -185,11 +219,12 @@ func (o AnalysisRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AnalysisRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code         *string                `json:"code"`
-		FileEncoding *string                `json:"file_encoding"`
-		Filename     *string                `json:"filename"`
-		Language     *string                `json:"language"`
-		Rules        *[]AnalysisRequestRule `json:"rules"`
+		Code         *string                 `json:"code"`
+		FileEncoding *string                 `json:"file_encoding"`
+		Filename     *string                 `json:"filename"`
+		Language     *string                 `json:"language"`
+		Options      *AnalysisRequestOptions `json:"options,omitempty"`
+		Rules        *[]AnalysisRequestRule  `json:"rules"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,18 +246,28 @@ func (o *AnalysisRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "file_encoding", "filename", "language", "rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"code", "file_encoding", "filename", "language", "options", "rules"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Code = *all.Code
 	o.FileEncoding = *all.FileEncoding
 	o.Filename = *all.Filename
 	o.Language = *all.Language
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Options = all.Options
 	o.Rules = *all.Rules
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
