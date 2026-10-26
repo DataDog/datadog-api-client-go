@@ -873,6 +873,7 @@
 //   - [MetricsApi.ListMetricAssets]
 //   - [MetricsApi.ListTagConfigurationByName]
 //   - [MetricsApi.ListTagConfigurations]
+//   - [MetricsApi.ListTagIndexingRuleExemptions]
 //   - [MetricsApi.ListTagIndexingRules]
 //   - [MetricsApi.ListTagIndexingRulesForMetric]
 //   - [MetricsApi.ListTagsByMetricName]

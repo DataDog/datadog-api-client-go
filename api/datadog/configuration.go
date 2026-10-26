@@ -1340,6 +1340,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetHistoricalMetricsConfiguration":                      false,
 			"v2.GetTagIndexingRule":                                     false,
 			"v2.GetTagIndexingRuleExemption":                            false,
+			"v2.ListTagIndexingRuleExemptions":                          false,
 			"v2.ListTagIndexingRules":                                   false,
 			"v2.ListTagIndexingRulesForMetric":                          false,
 			"v2.ReorderTagIndexingRules":                                false,
