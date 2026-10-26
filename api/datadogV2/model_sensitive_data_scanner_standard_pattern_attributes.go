@@ -21,6 +21,11 @@ type SensitiveDataScannerStandardPatternAttributes struct {
 	Pattern *string `json:"pattern,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating standard pattern issue severity.
 	Priority *int64 `json:"priority,omitempty"`
+	// Object describing suppressions for a rule, or the recommended suppression lists published by a standard pattern.
+	// There are three types of suppressions, `starts_with`, `ends_with`, and `exact_match`.
+	// Rules based on the Datadog library can use recommended or custom suppressions. Custom rules can only use custom suppressions.
+	// Suppressed matches are not obfuscated, counted in metrics, or displayed in the Findings page.
+	Suppressions *SensitiveDataScannerSuppressions `json:"suppressions,omitempty"`
 	// List of tags.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -188,6 +193,34 @@ func (o *SensitiveDataScannerStandardPatternAttributes) SetPriority(v int64) {
 	o.Priority = &v
 }
 
+// GetSuppressions returns the Suppressions field value if set, zero value otherwise.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetSuppressions() SensitiveDataScannerSuppressions {
+	if o == nil || o.Suppressions == nil {
+		var ret SensitiveDataScannerSuppressions
+		return ret
+	}
+	return *o.Suppressions
+}
+
+// GetSuppressionsOk returns a tuple with the Suppressions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetSuppressionsOk() (*SensitiveDataScannerSuppressions, bool) {
+	if o == nil || o.Suppressions == nil {
+		return nil, false
+	}
+	return o.Suppressions, true
+}
+
+// HasSuppressions returns a boolean if a field has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) HasSuppressions() bool {
+	return o != nil && o.Suppressions != nil
+}
+
+// SetSuppressions gets a reference to the given SensitiveDataScannerSuppressions and assigns it to the Suppressions field.
+func (o *SensitiveDataScannerStandardPatternAttributes) SetSuppressions(v SensitiveDataScannerSuppressions) {
+	o.Suppressions = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SensitiveDataScannerStandardPatternAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -237,6 +270,9 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 	if o.Priority != nil {
 		toSerialize["priority"] = o.Priority
 	}
+	if o.Suppressions != nil {
+		toSerialize["suppressions"] = o.Suppressions
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -250,31 +286,42 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description      *string  `json:"description,omitempty"`
-		IncludedKeywords []string `json:"included_keywords,omitempty"`
-		Name             *string  `json:"name,omitempty"`
-		Pattern          *string  `json:"pattern,omitempty"`
-		Priority         *int64   `json:"priority,omitempty"`
-		Tags             []string `json:"tags,omitempty"`
+		Description      *string                           `json:"description,omitempty"`
+		IncludedKeywords []string                          `json:"included_keywords,omitempty"`
+		Name             *string                           `json:"name,omitempty"`
+		Pattern          *string                           `json:"pattern,omitempty"`
+		Priority         *int64                            `json:"priority,omitempty"`
+		Suppressions     *SensitiveDataScannerSuppressions `json:"suppressions,omitempty"`
+		Tags             []string                          `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "included_keywords", "name", "pattern", "priority", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "included_keywords", "name", "pattern", "priority", "suppressions", "tags"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Description = all.Description
 	o.IncludedKeywords = all.IncludedKeywords
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Priority = all.Priority
+	if all.Suppressions != nil && all.Suppressions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Suppressions = all.Suppressions
 	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
