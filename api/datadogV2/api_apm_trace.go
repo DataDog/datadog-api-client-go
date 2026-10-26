@@ -81,6 +81,8 @@ func (r *GetPrunedTraceByIDOptionalParameters) WithOnlyServiceEntrySpans(onlySer
 // Retrieve a pruned, hierarchical view of an APM trace by its trace ID.
 // The trace is summarized as a tree of spans rooted at the trace root and reduced in size
 // to keep rendering large traces in the UI practical.
+// A `400 Bad Request` response means the trace ID is malformed. A `404 Not Found` response means
+// no trace with this ID is available, such as when the trace is outside the retention period.
 // This endpoint is rate limited to `60` requests per minute per organization.
 func (a *APMTraceApi) GetPrunedTraceByID(ctx _context.Context, traceId string, o ...GetPrunedTraceByIDOptionalParameters) (PrunedTraceResponse, *_nethttp.Response, error) {
 	var (
@@ -197,7 +199,7 @@ func (a *APMTraceApi) GetPrunedTraceByID(ctx _context.Context, traceId string, o
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 504 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 504 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -249,6 +251,8 @@ func (r *GetTraceByIDOptionalParameters) WithIncludeFields(includeFields []strin
 // GetTraceByID Get a trace by ID.
 // Retrieve a full APM trace by its trace ID, including every span in the trace.
 // Traces are returned from live storage when available and fall back to longer-term storage.
+// A `400 Bad Request` response means the trace ID is malformed. A `404 Not Found` response means
+// no trace with this ID is available, such as when the trace is outside the retention period.
 // This endpoint is rate limited to `60` requests per minute per organization.
 func (a *APMTraceApi) GetTraceByID(ctx _context.Context, traceId string, o ...GetTraceByIDOptionalParameters) (TraceResponse, *_nethttp.Response, error) {
 	var (
@@ -331,7 +335,7 @@ func (a *APMTraceApi) GetTraceByID(ctx _context.Context, traceId string, o ...Ge
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 413 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 413 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
