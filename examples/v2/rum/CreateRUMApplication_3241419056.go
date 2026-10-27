@@ -1,4 +1,4 @@
-// Create a new RUM application with Product Scales returns "OK" response
+// Create a new RUM application without default retention filters returns "Created" response
 
 package main
 
@@ -16,10 +16,9 @@ func main() {
 	body := datadogV2.RUMApplicationCreateRequest{
 		Data: datadogV2.RUMApplicationCreate{
 			Attributes: datadogV2.RUMApplicationCreateAttributes{
-				Name:                           "test-rum-with-product-scales-5c67ebb32077e1d9",
-				Type:                           datadog.PtrString("browser"),
-				RumEventProcessingState:        datadogV2.RUMEVENTPROCESSINGSTATE_ERROR_FOCUSED_MODE.Ptr(),
-				ProductAnalyticsRetentionState: datadogV2.RUMPRODUCTANALYTICSRETENTIONSTATE_NONE.Ptr(),
+				Name:                          "test-rum-no-default-rf-5c67ebb32077e1d9",
+				Type:                          datadog.PtrString("browser"),
+				CreateDefaultRetentionFilters: datadog.PtrBool(false),
 			},
 			Type: datadogV2.RUMAPPLICATIONCREATETYPE_RUM_APPLICATION_CREATE,
 		},

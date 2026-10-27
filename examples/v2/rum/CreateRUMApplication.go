@@ -1,4 +1,4 @@
-// Create a new RUM application returns "OK" response
+// Create a new RUM application returns "Created" response
 
 package main
 

@@ -12,6 +12,10 @@ import (
 
 // RUMApplicationCreateAttributes RUM application creation attributes.
 type RUMApplicationCreateAttributes struct {
+	// Whether to create the default retention filters when the application is created: `Sessions with errors` and `Sessions`, each with a 100% retention rate.
+	// Set to `false` to create the application without them, for example when you add your own retention filters right after creating it. Until you add retention filters, the application only retains sessions matched by its [permanent retention filters](https://docs.datadoghq.com/real_user_monitoring/rum_without_limits/retention_filters/#permanent-retention-filters).
+	// This setting doesn't affect permanent retention filters (sessions with forced replays, Synthetics sessions and RUM-APM flat sampling).
+	CreateDefaultRetentionFilters *bool `json:"create_default_retention_filters,omitempty"`
 	// Name of the RUM application.
 	Name string `json:"name"`
 	// Controls the retention policy for Product Analytics data derived from RUM events.
@@ -31,6 +35,8 @@ type RUMApplicationCreateAttributes struct {
 // will change when the set of required properties is changed.
 func NewRUMApplicationCreateAttributes(name string) *RUMApplicationCreateAttributes {
 	this := RUMApplicationCreateAttributes{}
+	var createDefaultRetentionFilters bool = true
+	this.CreateDefaultRetentionFilters = &createDefaultRetentionFilters
 	this.Name = name
 	return &this
 }
@@ -40,7 +46,37 @@ func NewRUMApplicationCreateAttributes(name string) *RUMApplicationCreateAttribu
 // but it doesn't guarantee that properties required by API are set.
 func NewRUMApplicationCreateAttributesWithDefaults() *RUMApplicationCreateAttributes {
 	this := RUMApplicationCreateAttributes{}
+	var createDefaultRetentionFilters bool = true
+	this.CreateDefaultRetentionFilters = &createDefaultRetentionFilters
 	return &this
+}
+
+// GetCreateDefaultRetentionFilters returns the CreateDefaultRetentionFilters field value if set, zero value otherwise.
+func (o *RUMApplicationCreateAttributes) GetCreateDefaultRetentionFilters() bool {
+	if o == nil || o.CreateDefaultRetentionFilters == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CreateDefaultRetentionFilters
+}
+
+// GetCreateDefaultRetentionFiltersOk returns a tuple with the CreateDefaultRetentionFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RUMApplicationCreateAttributes) GetCreateDefaultRetentionFiltersOk() (*bool, bool) {
+	if o == nil || o.CreateDefaultRetentionFilters == nil {
+		return nil, false
+	}
+	return o.CreateDefaultRetentionFilters, true
+}
+
+// HasCreateDefaultRetentionFilters returns a boolean if a field has been set.
+func (o *RUMApplicationCreateAttributes) HasCreateDefaultRetentionFilters() bool {
+	return o != nil && o.CreateDefaultRetentionFilters != nil
+}
+
+// SetCreateDefaultRetentionFilters gets a reference to the given bool and assigns it to the CreateDefaultRetentionFilters field.
+func (o *RUMApplicationCreateAttributes) SetCreateDefaultRetentionFilters(v bool) {
+	o.CreateDefaultRetentionFilters = &v
 }
 
 // GetName returns the Name field value.
@@ -156,6 +192,9 @@ func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CreateDefaultRetentionFilters != nil {
+		toSerialize["create_default_retention_filters"] = o.CreateDefaultRetentionFilters
+	}
 	toSerialize["name"] = o.Name
 	if o.ProductAnalyticsRetentionState != nil {
 		toSerialize["product_analytics_retention_state"] = o.ProductAnalyticsRetentionState
@@ -176,6 +215,7 @@ func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		CreateDefaultRetentionFilters  *bool                              `json:"create_default_retention_filters,omitempty"`
 		Name                           *string                            `json:"name"`
 		ProductAnalyticsRetentionState *RUMProductAnalyticsRetentionState `json:"product_analytics_retention_state,omitempty"`
 		RumEventProcessingState        *RUMEventProcessingState           `json:"rum_event_processing_state,omitempty"`
@@ -189,12 +229,13 @@ func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "product_analytics_retention_state", "rum_event_processing_state", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"create_default_retention_filters", "name", "product_analytics_retention_state", "rum_event_processing_state", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.CreateDefaultRetentionFilters = all.CreateDefaultRetentionFilters
 	o.Name = *all.Name
 	if all.ProductAnalyticsRetentionState != nil && !all.ProductAnalyticsRetentionState.IsValid() {
 		hasInvalidField = true
