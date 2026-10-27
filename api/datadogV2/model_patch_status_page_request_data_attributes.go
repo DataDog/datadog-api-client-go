@@ -20,6 +20,8 @@ type PatchStatusPageRequestDataAttributes struct {
 	Favicon *string `json:"favicon,omitempty"`
 	// The name of the status page.
 	Name *string `json:"name,omitempty"`
+	// Whether the RSS feed is enabled for the status page.
+	RssFeedEnabled *bool `json:"rss_feed_enabled,omitempty"`
 	// The Slack app icon URL for the status page.
 	SlackAppIcon *string `json:"slack_app_icon,omitempty"`
 	// Whether Slack subscriptions are enabled for the status page.
@@ -192,6 +194,34 @@ func (o *PatchStatusPageRequestDataAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetRssFeedEnabled returns the RssFeedEnabled field value if set, zero value otherwise.
+func (o *PatchStatusPageRequestDataAttributes) GetRssFeedEnabled() bool {
+	if o == nil || o.RssFeedEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RssFeedEnabled
+}
+
+// GetRssFeedEnabledOk returns a tuple with the RssFeedEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchStatusPageRequestDataAttributes) GetRssFeedEnabledOk() (*bool, bool) {
+	if o == nil || o.RssFeedEnabled == nil {
+		return nil, false
+	}
+	return o.RssFeedEnabled, true
+}
+
+// HasRssFeedEnabled returns a boolean if a field has been set.
+func (o *PatchStatusPageRequestDataAttributes) HasRssFeedEnabled() bool {
+	return o != nil && o.RssFeedEnabled != nil
+}
+
+// SetRssFeedEnabled gets a reference to the given bool and assigns it to the RssFeedEnabled field.
+func (o *PatchStatusPageRequestDataAttributes) SetRssFeedEnabled(v bool) {
+	o.RssFeedEnabled = &v
+}
+
 // GetSlackAppIcon returns the SlackAppIcon field value if set, zero value otherwise.
 func (o *PatchStatusPageRequestDataAttributes) GetSlackAppIcon() string {
 	if o == nil || o.SlackAppIcon == nil {
@@ -353,6 +383,9 @@ func (o PatchStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.RssFeedEnabled != nil {
+		toSerialize["rss_feed_enabled"] = o.RssFeedEnabled
+	}
 	if o.SlackAppIcon != nil {
 		toSerialize["slack_app_icon"] = o.SlackAppIcon
 	}
@@ -383,6 +416,7 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 		EmailHeaderImage          *string                                                 `json:"email_header_image,omitempty"`
 		Favicon                   *string                                                 `json:"favicon,omitempty"`
 		Name                      *string                                                 `json:"name,omitempty"`
+		RssFeedEnabled            *bool                                                   `json:"rss_feed_enabled,omitempty"`
 		SlackAppIcon              *string                                                 `json:"slack_app_icon,omitempty"`
 		SlackSubscriptionsEnabled *bool                                                   `json:"slack_subscriptions_enabled,omitempty"`
 		SubscriptionsEnabled      *bool                                                   `json:"subscriptions_enabled,omitempty"`
@@ -394,7 +428,7 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "favicon", "name", "rss_feed_enabled", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
 	} else {
 		return err
 	}
@@ -405,6 +439,7 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.EmailHeaderImage = all.EmailHeaderImage
 	o.Favicon = all.Favicon
 	o.Name = all.Name
+	o.RssFeedEnabled = all.RssFeedEnabled
 	o.SlackAppIcon = all.SlackAppIcon
 	o.SlackSubscriptionsEnabled = all.SlackSubscriptionsEnabled
 	o.SubscriptionsEnabled = all.SubscriptionsEnabled
