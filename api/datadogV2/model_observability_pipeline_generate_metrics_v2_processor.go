@@ -43,8 +43,6 @@ type ObservabilityPipelineGenerateMetricsV2Processor struct {
 func NewObservabilityPipelineGenerateMetricsV2Processor(enabled bool, id string, typeVar ObservabilityPipelineGenerateMetricsV2ProcessorType) *ObservabilityPipelineGenerateMetricsV2Processor {
 	this := ObservabilityPipelineGenerateMetricsV2Processor{}
 	this.Enabled = enabled
-	var enabledMetricAggregation bool = true
-	this.EnabledMetricAggregation = &enabledMetricAggregation
 	this.Id = id
 	this.Type = typeVar
 	return &this
@@ -55,8 +53,6 @@ func NewObservabilityPipelineGenerateMetricsV2Processor(enabled bool, id string,
 // but it doesn't guarantee that properties required by API are set.
 func NewObservabilityPipelineGenerateMetricsV2ProcessorWithDefaults() *ObservabilityPipelineGenerateMetricsV2Processor {
 	this := ObservabilityPipelineGenerateMetricsV2Processor{}
-	var enabledMetricAggregation bool = true
-	this.EnabledMetricAggregation = &enabledMetricAggregation
 	var typeVar ObservabilityPipelineGenerateMetricsV2ProcessorType = OBSERVABILITYPIPELINEGENERATEMETRICSV2PROCESSORTYPE_GENERATE_METRICS
 	this.Type = typeVar
 	return &this
