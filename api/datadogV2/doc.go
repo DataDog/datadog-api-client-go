@@ -894,6 +894,7 @@
 //   - [MetricsApi.UpdateDerivedMetric]
 //   - [MetricsApi.UpdateTagConfiguration]
 //   - [MetricsApi.UpdateTagIndexingRule]
+//   - [MetricsApi.UpdateTagIndexingRuleExemption]
 //   - [MicrosoftTeamsIntegrationApi.CreateTenantBasedHandle]
 //   - [MicrosoftTeamsIntegrationApi.CreateWorkflowsWebhookHandle]
 //   - [MicrosoftTeamsIntegrationApi.DeleteMSTeamsUserBinding]
