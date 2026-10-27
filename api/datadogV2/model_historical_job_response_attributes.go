@@ -18,6 +18,8 @@ type HistoricalJobResponseAttributes struct {
 	CreatedByName *string `json:"createdByName,omitempty"`
 	// ID of the rule used to create the job (if it is created from a rule).
 	CreatedFromRuleId *string `json:"createdFromRuleId,omitempty"`
+	// Details about why the job failed. Only present when the job has failed and won't be retried.
+	Failure *HistoricalJobFailure `json:"failure,omitempty"`
 	// Definition of a historical job.
 	JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 	// Job name.
@@ -162,6 +164,34 @@ func (o *HistoricalJobResponseAttributes) HasCreatedFromRuleId() bool {
 // SetCreatedFromRuleId gets a reference to the given string and assigns it to the CreatedFromRuleId field.
 func (o *HistoricalJobResponseAttributes) SetCreatedFromRuleId(v string) {
 	o.CreatedFromRuleId = &v
+}
+
+// GetFailure returns the Failure field value if set, zero value otherwise.
+func (o *HistoricalJobResponseAttributes) GetFailure() HistoricalJobFailure {
+	if o == nil || o.Failure == nil {
+		var ret HistoricalJobFailure
+		return ret
+	}
+	return *o.Failure
+}
+
+// GetFailureOk returns a tuple with the Failure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobResponseAttributes) GetFailureOk() (*HistoricalJobFailure, bool) {
+	if o == nil || o.Failure == nil {
+		return nil, false
+	}
+	return o.Failure, true
+}
+
+// HasFailure returns a boolean if a field has been set.
+func (o *HistoricalJobResponseAttributes) HasFailure() bool {
+	return o != nil && o.Failure != nil
+}
+
+// SetFailure gets a reference to the given HistoricalJobFailure and assigns it to the Failure field.
+func (o *HistoricalJobResponseAttributes) SetFailure(v HistoricalJobFailure) {
+	o.Failure = &v
 }
 
 // GetJobDefinition returns the JobDefinition field value if set, zero value otherwise.
@@ -350,6 +380,9 @@ func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.CreatedFromRuleId != nil {
 		toSerialize["createdFromRuleId"] = o.CreatedFromRuleId
 	}
+	if o.Failure != nil {
+		toSerialize["failure"] = o.Failure
+	}
 	if o.JobDefinition != nil {
 		toSerialize["jobDefinition"] = o.JobDefinition
 	}
@@ -378,23 +411,24 @@ func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt         *string        `json:"createdAt,omitempty"`
-		CreatedByHandle   *string        `json:"createdByHandle,omitempty"`
-		CreatedByName     *string        `json:"createdByName,omitempty"`
-		CreatedFromRuleId *string        `json:"createdFromRuleId,omitempty"`
-		JobDefinition     *JobDefinition `json:"jobDefinition,omitempty"`
-		JobName           *string        `json:"jobName,omitempty"`
-		JobStatus         *string        `json:"jobStatus,omitempty"`
-		ModifiedAt        *string        `json:"modifiedAt,omitempty"`
-		ProgressRate      *float64       `json:"progressRate,omitempty"`
-		SignalOutput      *bool          `json:"signalOutput,omitempty"`
+		CreatedAt         *string               `json:"createdAt,omitempty"`
+		CreatedByHandle   *string               `json:"createdByHandle,omitempty"`
+		CreatedByName     *string               `json:"createdByName,omitempty"`
+		CreatedFromRuleId *string               `json:"createdFromRuleId,omitempty"`
+		Failure           *HistoricalJobFailure `json:"failure,omitempty"`
+		JobDefinition     *JobDefinition        `json:"jobDefinition,omitempty"`
+		JobName           *string               `json:"jobName,omitempty"`
+		JobStatus         *string               `json:"jobStatus,omitempty"`
+		ModifiedAt        *string               `json:"modifiedAt,omitempty"`
+		ProgressRate      *float64              `json:"progressRate,omitempty"`
+		SignalOutput      *bool                 `json:"signalOutput,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdByHandle", "createdByName", "createdFromRuleId", "jobDefinition", "jobName", "jobStatus", "modifiedAt", "progressRate", "signalOutput"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdByHandle", "createdByName", "createdFromRuleId", "failure", "jobDefinition", "jobName", "jobStatus", "modifiedAt", "progressRate", "signalOutput"})
 	} else {
 		return err
 	}
@@ -404,6 +438,10 @@ func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.CreatedByHandle = all.CreatedByHandle
 	o.CreatedByName = all.CreatedByName
 	o.CreatedFromRuleId = all.CreatedFromRuleId
+	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Failure = all.Failure
 	if all.JobDefinition != nil && all.JobDefinition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
