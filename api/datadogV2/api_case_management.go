@@ -946,7 +946,7 @@ func (a *CaseManagementApi) CreateCaseLink(ctx _context.Context, body CaseLinkCr
 
 // CreateCaseNotebook Create investigation notebook for case.
 // Create a new investigation notebook and link it to a work item
-func (a *CaseManagementApi) CreateCaseNotebook(ctx _context.Context, caseId string, body NotebookCreateRequest) (*_nethttp.Response, error) {
+func (a *CaseManagementApi) CreateCaseNotebook(ctx _context.Context, caseId string, body CaseInvestigationNotebookCreateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}

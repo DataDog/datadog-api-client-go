@@ -12,9 +12,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.NotebookCreateRequest{
-		Data: datadogV2.NotebookCreateData{
-			Type: datadogV2.NOTEBOOKRESOURCETYPE_NOTEBOOK,
+	body := datadogV2.CaseInvestigationNotebookCreateRequest{
+		Data: datadogV2.CaseInvestigationNotebookCreateData{
+			Type: datadogV2.CASEINVESTIGATIONNOTEBOOKRESOURCETYPE_NOTEBOOK,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
