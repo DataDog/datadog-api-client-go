@@ -11,7 +11,7 @@ import (
 // RUMBucketResponse Bucket values.
 type RUMBucketResponse struct {
 	// The key-value pairs for each group-by.
-	By map[string]string `json:"by,omitempty"`
+	By map[string]RUMBucketGroupByValue `json:"by,omitempty"`
 	// A map of the metric name to value for regular compute, or a list of values for a timeseries.
 	Computes map[string]RUMAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,9 +37,9 @@ func NewRUMBucketResponseWithDefaults() *RUMBucketResponse {
 }
 
 // GetBy returns the By field value if set, zero value otherwise.
-func (o *RUMBucketResponse) GetBy() map[string]string {
+func (o *RUMBucketResponse) GetBy() map[string]RUMBucketGroupByValue {
 	if o == nil || o.By == nil {
-		var ret map[string]string
+		var ret map[string]RUMBucketGroupByValue
 		return ret
 	}
 	return o.By
@@ -47,7 +47,7 @@ func (o *RUMBucketResponse) GetBy() map[string]string {
 
 // GetByOk returns a tuple with the By field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RUMBucketResponse) GetByOk() (*map[string]string, bool) {
+func (o *RUMBucketResponse) GetByOk() (*map[string]RUMBucketGroupByValue, bool) {
 	if o == nil || o.By == nil {
 		return nil, false
 	}
@@ -59,8 +59,8 @@ func (o *RUMBucketResponse) HasBy() bool {
 	return o != nil && o.By != nil
 }
 
-// SetBy gets a reference to the given map[string]string and assigns it to the By field.
-func (o *RUMBucketResponse) SetBy(v map[string]string) {
+// SetBy gets a reference to the given map[string]RUMBucketGroupByValue and assigns it to the By field.
+func (o *RUMBucketResponse) SetBy(v map[string]RUMBucketGroupByValue) {
 	o.By = v
 }
 
@@ -114,7 +114,7 @@ func (o RUMBucketResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMBucketResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		By       map[string]string                  `json:"by,omitempty"`
+		By       map[string]RUMBucketGroupByValue   `json:"by,omitempty"`
 		Computes map[string]RUMAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
