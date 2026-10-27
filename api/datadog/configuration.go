@@ -1345,6 +1345,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListTagIndexingRulesForMetric":                          false,
 			"v2.ReorderTagIndexingRules":                                false,
 			"v2.UpdateTagIndexingRule":                                  false,
+			"v2.UpdateTagIndexingRuleExemption":                         false,
 			"v2.DeleteModelLabRun":                                      false,
 			"v2.GetModelLabArtifactContent":                             false,
 			"v2.GetModelLabProject":                                     false,
