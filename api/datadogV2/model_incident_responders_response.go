@@ -15,7 +15,11 @@ type IncidentRespondersResponse struct {
 	// List of incident responders.
 	Data []IncidentResponderDataResponse `json:"data"`
 	// Included related resources.
-	Included []IncidentUserData `json:"included,omitempty"`
+	Included []IncidentResponderIncludedItem `json:"included,omitempty"`
+	// Links to pages of incident responders.
+	Links map[string]string `json:"links,omitempty"`
+	// Pagination metadata for the responder list.
+	Meta *IncidentRespondersResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -63,9 +67,9 @@ func (o *IncidentRespondersResponse) SetData(v []IncidentResponderDataResponse) 
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *IncidentRespondersResponse) GetIncluded() []IncidentUserData {
+func (o *IncidentRespondersResponse) GetIncluded() []IncidentResponderIncludedItem {
 	if o == nil || o.Included == nil {
-		var ret []IncidentUserData
+		var ret []IncidentResponderIncludedItem
 		return ret
 	}
 	return o.Included
@@ -73,7 +77,7 @@ func (o *IncidentRespondersResponse) GetIncluded() []IncidentUserData {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentRespondersResponse) GetIncludedOk() (*[]IncidentUserData, bool) {
+func (o *IncidentRespondersResponse) GetIncludedOk() (*[]IncidentResponderIncludedItem, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -85,9 +89,65 @@ func (o *IncidentRespondersResponse) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
-// SetIncluded gets a reference to the given []IncidentUserData and assigns it to the Included field.
-func (o *IncidentRespondersResponse) SetIncluded(v []IncidentUserData) {
+// SetIncluded gets a reference to the given []IncidentResponderIncludedItem and assigns it to the Included field.
+func (o *IncidentRespondersResponse) SetIncluded(v []IncidentResponderIncludedItem) {
 	o.Included = v
+}
+
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *IncidentRespondersResponse) GetLinks() map[string]string {
+	if o == nil || o.Links == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentRespondersResponse) GetLinksOk() (*map[string]string, bool) {
+	if o == nil || o.Links == nil {
+		return nil, false
+	}
+	return &o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *IncidentRespondersResponse) HasLinks() bool {
+	return o != nil && o.Links != nil
+}
+
+// SetLinks gets a reference to the given map[string]string and assigns it to the Links field.
+func (o *IncidentRespondersResponse) SetLinks(v map[string]string) {
+	o.Links = v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *IncidentRespondersResponse) GetMeta() IncidentRespondersResponseMeta {
+	if o == nil || o.Meta == nil {
+		var ret IncidentRespondersResponseMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentRespondersResponse) GetMetaOk() (*IncidentRespondersResponseMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *IncidentRespondersResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given IncidentRespondersResponseMeta and assigns it to the Meta field.
+func (o *IncidentRespondersResponse) SetMeta(v IncidentRespondersResponseMeta) {
+	o.Meta = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -100,6 +160,12 @@ func (o IncidentRespondersResponse) MarshalJSON() ([]byte, error) {
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
 	}
+	if o.Links != nil {
+		toSerialize["links"] = o.Links
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -111,7 +177,9 @@ func (o IncidentRespondersResponse) MarshalJSON() ([]byte, error) {
 func (o *IncidentRespondersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     *[]IncidentResponderDataResponse `json:"data"`
-		Included []IncidentUserData               `json:"included,omitempty"`
+		Included []IncidentResponderIncludedItem  `json:"included,omitempty"`
+		Links    map[string]string                `json:"links,omitempty"`
+		Meta     *IncidentRespondersResponseMeta  `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,15 +189,26 @@ func (o *IncidentRespondersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Data = *all.Data
 	o.Included = all.Included
+	o.Links = all.Links
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

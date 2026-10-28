@@ -1,0 +1,28 @@
+// Delete an incident responder returns "No Content" response
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+)
+
+func main() {
+	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
+	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentResponder", true)
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentsApi(apiClient)
+	r, err := api.DeleteIncidentResponder(ctx, "incident_id", uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"))
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeleteIncidentResponder`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}

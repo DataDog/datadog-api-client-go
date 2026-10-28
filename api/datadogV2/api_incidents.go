@@ -6121,14 +6121,53 @@ func (a *IncidentsApi) ListIncidentPostmortemTemplates(ctx _context.Context, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListIncidentRespondersOptionalParameters holds optional parameters for ListIncidentResponders.
+type ListIncidentRespondersOptionalParameters struct {
+	Include    *[]IncidentResponderRelatedObject
+	PageLimit  *int64
+	PageOffset *int64
+}
+
+// NewListIncidentRespondersOptionalParameters creates an empty struct for parameters.
+func NewListIncidentRespondersOptionalParameters() *ListIncidentRespondersOptionalParameters {
+	this := ListIncidentRespondersOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentRespondersOptionalParameters) WithInclude(include []IncidentResponderRelatedObject) *ListIncidentRespondersOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentRespondersOptionalParameters) WithPageLimit(pageLimit int64) *ListIncidentRespondersOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentRespondersOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentRespondersOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
 // ListIncidentResponders List incident responders.
 // List all responders for an incident.
-func (a *IncidentsApi) ListIncidentResponders(ctx _context.Context, incidentId string) (IncidentRespondersResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) ListIncidentResponders(ctx _context.Context, incidentId string, o ...ListIncidentRespondersOptionalParameters) (IncidentRespondersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue IncidentRespondersResponse
+		optionalParams      ListIncidentRespondersOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentRespondersOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.ListIncidentResponders"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -6150,6 +6189,15 @@ func (a *IncidentsApi) ListIncidentResponders(ctx _context.Context, incidentId s
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, "csv"))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
