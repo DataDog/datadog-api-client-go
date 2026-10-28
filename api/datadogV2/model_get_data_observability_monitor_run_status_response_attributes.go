@@ -14,6 +14,10 @@ import (
 type GetDataObservabilityMonitorRunStatusResponseAttributes struct {
 	// Error message describing why the monitor run failed. Only present when status is error.
 	ErrorMessage *string `json:"error_message,omitempty"`
+	// The number of the monitor's groups in each state, once the run has finished.
+	GroupCounts map[string]int64 `json:"group_counts,omitempty"`
+	// The first 1,000 of the monitor's groups that are not ok, once the run has finished. List the monitor's groups for all of them.
+	Groups []DataObservabilityMonitorRunGroup `json:"groups,omitempty"`
 	// The status of a data observability monitor run.
 	Status DataObservabilityMonitorRunStatus `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -67,6 +71,62 @@ func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) SetErrorMessage
 	o.ErrorMessage = &v
 }
 
+// GetGroupCounts returns the GroupCounts field value if set, zero value otherwise.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) GetGroupCounts() map[string]int64 {
+	if o == nil || o.GroupCounts == nil {
+		var ret map[string]int64
+		return ret
+	}
+	return o.GroupCounts
+}
+
+// GetGroupCountsOk returns a tuple with the GroupCounts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) GetGroupCountsOk() (*map[string]int64, bool) {
+	if o == nil || o.GroupCounts == nil {
+		return nil, false
+	}
+	return &o.GroupCounts, true
+}
+
+// HasGroupCounts returns a boolean if a field has been set.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) HasGroupCounts() bool {
+	return o != nil && o.GroupCounts != nil
+}
+
+// SetGroupCounts gets a reference to the given map[string]int64 and assigns it to the GroupCounts field.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) SetGroupCounts(v map[string]int64) {
+	o.GroupCounts = v
+}
+
+// GetGroups returns the Groups field value if set, zero value otherwise.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) GetGroups() []DataObservabilityMonitorRunGroup {
+	if o == nil || o.Groups == nil {
+		var ret []DataObservabilityMonitorRunGroup
+		return ret
+	}
+	return o.Groups
+}
+
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) GetGroupsOk() (*[]DataObservabilityMonitorRunGroup, bool) {
+	if o == nil || o.Groups == nil {
+		return nil, false
+	}
+	return &o.Groups, true
+}
+
+// HasGroups returns a boolean if a field has been set.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) HasGroups() bool {
+	return o != nil && o.Groups != nil
+}
+
+// SetGroups gets a reference to the given []DataObservabilityMonitorRunGroup and assigns it to the Groups field.
+func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) SetGroups(v []DataObservabilityMonitorRunGroup) {
+	o.Groups = v
+}
+
 // GetStatus returns the Status field value.
 func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) GetStatus() DataObservabilityMonitorRunStatus {
 	if o == nil {
@@ -99,6 +159,12 @@ func (o GetDataObservabilityMonitorRunStatusResponseAttributes) MarshalJSON() ([
 	if o.ErrorMessage != nil {
 		toSerialize["error_message"] = o.ErrorMessage
 	}
+	if o.GroupCounts != nil {
+		toSerialize["group_counts"] = o.GroupCounts
+	}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
 	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
@@ -111,6 +177,8 @@ func (o GetDataObservabilityMonitorRunStatusResponseAttributes) MarshalJSON() ([
 func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ErrorMessage *string                            `json:"error_message,omitempty"`
+		GroupCounts  map[string]int64                   `json:"group_counts,omitempty"`
+		Groups       []DataObservabilityMonitorRunGroup `json:"groups,omitempty"`
 		Status       *DataObservabilityMonitorRunStatus `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,13 +189,15 @@ func (o *GetDataObservabilityMonitorRunStatusResponseAttributes) UnmarshalJSON(b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "group_counts", "groups", "status"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ErrorMessage = all.ErrorMessage
+	o.GroupCounts = all.GroupCounts
+	o.Groups = all.Groups
 	if !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
