@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMAggregateSortType The type of sorting algorithm.
+// RUMAggregateSortType The type of sorting algorithm. `alphabetical` sorts buckets by the facet value, `measure` sorts them by a computed aggregation.
 type RUMAggregateSortType string
 
 // List of RUMAggregateSortType.

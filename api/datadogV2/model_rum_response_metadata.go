@@ -16,7 +16,7 @@ type RUMResponseMetadata struct {
 	Page *RUMResponsePage `json:"page,omitempty"`
 	// The identifier of the request.
 	RequestId *string `json:"request_id,omitempty"`
-	// The status of the response.
+	// The status of the response. `timeout` means the query did not complete in time and the results are partial.
 	Status *RUMResponseStatus `json:"status,omitempty"`
 	// A list of warnings (non-fatal errors) encountered. Partial results may return if
 	// warnings are present in the response.

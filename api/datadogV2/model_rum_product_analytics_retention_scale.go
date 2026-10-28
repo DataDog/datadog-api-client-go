@@ -13,6 +13,7 @@ type RUMProductAnalyticsRetentionScale struct {
 	// Timestamp in milliseconds when this scale was last modified.
 	LastModifiedAt *int64 `json:"last_modified_at,omitempty"`
 	// Controls the retention policy for Product Analytics data derived from RUM events.
+	// Requests also accept `PREVIEW` (the initial state of a new application, reported as `NONE` in responses). Setting `MAX` requires the `product_analytics_apps_write` permission.
 	State *RUMProductAnalyticsRetentionState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

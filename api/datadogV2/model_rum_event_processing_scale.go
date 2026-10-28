@@ -12,7 +12,7 @@ import (
 type RUMEventProcessingScale struct {
 	// Timestamp in milliseconds when this scale was last modified.
 	LastModifiedAt *int64 `json:"last_modified_at,omitempty"`
-	// Configures which RUM events are processed and stored for the application.
+	// Configures which RUM events are processed and stored for the application. Defaults to `ALL` when creating an application.
 	State *RUMEventProcessingState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

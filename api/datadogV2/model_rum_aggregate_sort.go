@@ -10,13 +10,13 @@ import (
 
 // RUMAggregateSort A sort rule.
 type RUMAggregateSort struct {
-	// An aggregation function.
+	// An aggregation function. `count` counts events and needs no metric. `cardinality` counts the distinct values of the metric. `sum`, `min`, `max`, `avg`, `median` and the percentiles (`pc75` to `pc99`) apply to a numeric metric such as `@view.loading_time`.
 	Aggregation *RUMAggregationFunction `json:"aggregation,omitempty"`
 	// The metric to sort by (only used for `type=measure`).
 	Metric *string `json:"metric,omitempty"`
 	// The order to use, ascending or descending.
 	Order *RUMSortOrder `json:"order,omitempty"`
-	// The type of sorting algorithm.
+	// The type of sorting algorithm. `alphabetical` sorts buckets by the facet value, `measure` sorts them by a computed aggregation.
 	Type *RUMAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
