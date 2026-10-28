@@ -15,13 +15,15 @@ type RumRetentionFilterEventType string
 
 // List of RumRetentionFilterEventType.
 const (
-	RUMRETENTIONFILTEREVENTTYPE_SESSION   RumRetentionFilterEventType = "session"
-	RUMRETENTIONFILTEREVENTTYPE_VIEW      RumRetentionFilterEventType = "view"
-	RUMRETENTIONFILTEREVENTTYPE_ACTION    RumRetentionFilterEventType = "action"
-	RUMRETENTIONFILTEREVENTTYPE_ERROR     RumRetentionFilterEventType = "error"
-	RUMRETENTIONFILTEREVENTTYPE_RESOURCE  RumRetentionFilterEventType = "resource"
-	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK RumRetentionFilterEventType = "long_task"
-	RUMRETENTIONFILTEREVENTTYPE_VITAL     RumRetentionFilterEventType = "vital"
+	RUMRETENTIONFILTEREVENTTYPE_SESSION           RumRetentionFilterEventType = "session"
+	RUMRETENTIONFILTEREVENTTYPE_VIEW              RumRetentionFilterEventType = "view"
+	RUMRETENTIONFILTEREVENTTYPE_ACTION            RumRetentionFilterEventType = "action"
+	RUMRETENTIONFILTEREVENTTYPE_ERROR             RumRetentionFilterEventType = "error"
+	RUMRETENTIONFILTEREVENTTYPE_RESOURCE          RumRetentionFilterEventType = "resource"
+	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK         RumRetentionFilterEventType = "long_task"
+	RUMRETENTIONFILTEREVENTTYPE_VITAL             RumRetentionFilterEventType = "vital"
+	RUMRETENTIONFILTEREVENTTYPE_OPERATION         RumRetentionFilterEventType = "operation"
+	RUMRETENTIONFILTEREVENTTYPE_EXECUTION_CONTEXT RumRetentionFilterEventType = "execution_context"
 )
 
 var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType{
@@ -32,6 +34,8 @@ var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType
 	RUMRETENTIONFILTEREVENTTYPE_RESOURCE,
 	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK,
 	RUMRETENTIONFILTEREVENTTYPE_VITAL,
+	RUMRETENTIONFILTEREVENTTYPE_OPERATION,
+	RUMRETENTIONFILTEREVENTTYPE_EXECUTION_CONTEXT,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -14,6 +14,8 @@ import (
 type RUMOperationsListResponse struct {
 	//
 	Data []RUMOperationResponseData `json:"data"`
+	// Pagination links for a list of RUM operations.
+	Links *RUMOperationsListResponseLinks `json:"links,omitempty"`
 	// Metadata for a list of RUM operations.
 	Meta *RUMOperationsListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -62,6 +64,34 @@ func (o *RUMOperationsListResponse) SetData(v []RUMOperationResponseData) {
 	o.Data = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *RUMOperationsListResponse) GetLinks() RUMOperationsListResponseLinks {
+	if o == nil || o.Links == nil {
+		var ret RUMOperationsListResponseLinks
+		return ret
+	}
+	return *o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RUMOperationsListResponse) GetLinksOk() (*RUMOperationsListResponseLinks, bool) {
+	if o == nil || o.Links == nil {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *RUMOperationsListResponse) HasLinks() bool {
+	return o != nil && o.Links != nil
+}
+
+// SetLinks gets a reference to the given RUMOperationsListResponseLinks and assigns it to the Links field.
+func (o *RUMOperationsListResponse) SetLinks(v RUMOperationsListResponseLinks) {
+	o.Links = &v
+}
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RUMOperationsListResponse) GetMeta() RUMOperationsListResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -97,6 +127,9 @@ func (o RUMOperationsListResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	if o.Links != nil {
+		toSerialize["links"] = o.Links
+	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
 	}
@@ -110,8 +143,9 @@ func (o RUMOperationsListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMOperationsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]RUMOperationResponseData    `json:"data"`
-		Meta *RUMOperationsListResponseMeta `json:"meta,omitempty"`
+		Data  *[]RUMOperationResponseData     `json:"data"`
+		Links *RUMOperationsListResponseLinks `json:"links,omitempty"`
+		Meta  *RUMOperationsListResponseMeta  `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,13 +155,17 @@ func (o *RUMOperationsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
+	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Links = all.Links
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

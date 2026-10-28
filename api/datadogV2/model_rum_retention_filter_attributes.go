@@ -22,6 +22,8 @@ type RumRetentionFilterAttributes struct {
 	Query *string `json:"query,omitempty"`
 	// The sample rate for a RUM retention filter, between 0.1 and 100. Values are truncated to one decimal place.
 	SampleRate *float64 `json:"sample_rate,omitempty"`
+	// The product track a RUM retention filter applies to.
+	Track *RumRetentionFilterTrack `json:"track,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -212,6 +214,34 @@ func (o *RumRetentionFilterAttributes) SetSampleRate(v float64) {
 	o.SampleRate = &v
 }
 
+// GetTrack returns the Track field value if set, zero value otherwise.
+func (o *RumRetentionFilterAttributes) GetTrack() RumRetentionFilterTrack {
+	if o == nil || o.Track == nil {
+		var ret RumRetentionFilterTrack
+		return ret
+	}
+	return *o.Track
+}
+
+// GetTrackOk returns a tuple with the Track field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RumRetentionFilterAttributes) GetTrackOk() (*RumRetentionFilterTrack, bool) {
+	if o == nil || o.Track == nil {
+		return nil, false
+	}
+	return o.Track, true
+}
+
+// HasTrack returns a boolean if a field has been set.
+func (o *RumRetentionFilterAttributes) HasTrack() bool {
+	return o != nil && o.Track != nil
+}
+
+// SetTrack gets a reference to the given RumRetentionFilterTrack and assigns it to the Track field.
+func (o *RumRetentionFilterAttributes) SetTrack(v RumRetentionFilterTrack) {
+	o.Track = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -236,6 +266,9 @@ func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
 	if o.SampleRate != nil {
 		toSerialize["sample_rate"] = o.SampleRate
 	}
+	if o.Track != nil {
+		toSerialize["track"] = o.Track
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -252,13 +285,14 @@ func (o *RumRetentionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name                 *string                      `json:"name,omitempty"`
 		Query                *string                      `json:"query,omitempty"`
 		SampleRate           *float64                     `json:"sample_rate,omitempty"`
+		Track                *RumRetentionFilterTrack     `json:"track,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cross_product_sampling", "enabled", "event_type", "name", "query", "sample_rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cross_product_sampling", "enabled", "event_type", "name", "query", "sample_rate", "track"})
 	} else {
 		return err
 	}
@@ -277,6 +311,11 @@ func (o *RumRetentionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Query = all.Query
 	o.SampleRate = all.SampleRate
+	if all.Track != nil && !all.Track.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Track = all.Track
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

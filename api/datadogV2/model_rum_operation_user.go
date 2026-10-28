@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationUser A Datadog user referenced by a RUM operation.
+// RUMOperationUser A Datadog user referenced by a RUM operation. `null` when the user could not be resolved.
 type RUMOperationUser struct {
 	// The email of the user.
 	Email *string `json:"email,omitempty"`
@@ -204,4 +204,54 @@ func (o *RUMOperationUser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	return nil
+}
+
+// NullableRUMOperationUser handles when a null is used for RUMOperationUser.
+type NullableRUMOperationUser struct {
+	value *RUMOperationUser
+	isSet bool
+}
+
+// Get returns the associated value.
+func (v NullableRUMOperationUser) Get() *RUMOperationUser {
+	return v.value
+}
+
+// Set changes the value and indicates it's been called.
+func (v *NullableRUMOperationUser) Set(val *RUMOperationUser) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns whether Set has been called.
+func (v NullableRUMOperationUser) IsSet() bool {
+	return v.isSet
+}
+
+// Unset sets the value to nil and resets the set flag/
+func (v *NullableRUMOperationUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableRUMOperationUser initializes the struct as if Set has been called.
+func NewNullableRUMOperationUser(val *RUMOperationUser) *NullableRUMOperationUser {
+	return &NullableRUMOperationUser{value: val, isSet: true}
+}
+
+// MarshalJSON serializes the associated value.
+func (v NullableRUMOperationUser) MarshalJSON() ([]byte, error) {
+	return datadog.Marshal(v.value)
+}
+
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
+func (v *NullableRUMOperationUser) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
+	return datadog.Unmarshal(src, &v.value)
 }
