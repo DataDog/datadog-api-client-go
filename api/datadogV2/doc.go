@@ -1000,6 +1000,7 @@
 //   - [On-CallPagingApi.AcknowledgeOnCallPage]
 //   - [On-CallPagingApi.CreateOnCallPage]
 //   - [On-CallPagingApi.EscalateOnCallPage]
+//   - [On-CallPagingApi.RerouteOnCallPage]
 //   - [On-CallPagingApi.ResolveOnCallPage]
 //   - [OpsgenieIntegrationApi.CreateOpsgenieAccount]
 //   - [OpsgenieIntegrationApi.CreateOpsgenieService]

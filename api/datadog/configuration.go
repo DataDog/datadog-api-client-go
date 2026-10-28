@@ -742,6 +742,77 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			"v2.OnCallPagingApi.RerouteOnCallPage": {
+				{
+					URL:         "https://{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The globally available endpoint for On-Call.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "The full DNS name of the On-Call paging endpoint.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The Datadog site where the On-Call paging endpoint is deployed.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
+						},
+						"subdomain": {
+							Description:  "The On-Call paging subdomain.",
+							DefaultValue: "navy.oncall",
+							EnumValues: []string{
+								"lava.oncall",
+								"saffron.oncall",
+								"navy.oncall",
+								"coral.oncall",
+								"teal.oncall",
+								"beige.oncall",
+								"scarlet.oncall",
+							},
+						},
+					},
+				},
+			},
 			"v2.OnCallPagingApi.ResolveOnCallPage": {
 				{
 					URL:         "https://{site}",
