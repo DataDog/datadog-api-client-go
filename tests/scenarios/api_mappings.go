@@ -73,7 +73,6 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "TestOptimizationApi": reflect.ValueOf(datadogV2.NewTestOptimizationApi),
 	    "CIVisibilityTestsApi": reflect.ValueOf(datadogV2.NewCIVisibilityTestsApi),
 	    "CIVisibilityLogsApi": reflect.ValueOf(datadogV2.NewCIVisibilityLogsApi),
-	    "CloudAuthenticationApi": reflect.ValueOf(datadogV2.NewCloudAuthenticationApi),
 	    "SecurityMonitoringApi": reflect.ValueOf(datadogV2.NewSecurityMonitoringApi),
 	    "StorageManagementApi": reflect.ValueOf(datadogV2.NewStorageManagementApi),
 	    "CodeCoverageApi": reflect.ValueOf(datadogV2.NewCodeCoverageApi),
@@ -196,6 +195,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "UserAuthorizedClientsApi": reflect.ValueOf(datadogV2.NewUserAuthorizedClientsApi),
 	    "WebIntegrationsApi": reflect.ValueOf(datadogV2.NewWebIntegrationsApi),
 	    "WidgetsApi": reflect.ValueOf(datadogV2.NewWidgetsApi),
+	    "CloudAuthenticationApi": reflect.ValueOf(datadogV2.NewCloudAuthenticationApi),
 	    "WorkflowAutomationApi": reflect.ValueOf(datadogV2.NewWorkflowAutomationApi),
 	},
 }

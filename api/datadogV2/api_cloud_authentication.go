@@ -40,7 +40,7 @@ func (a *CloudAuthenticationApi) CreateAWSCloudAuthPersonaMapping(ctx _context.C
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/aws/persona_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/aws/persona_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -138,7 +138,7 @@ func (a *CloudAuthenticationApi) CreateGitHubCloudAuthIntakeMapping(ctx _context
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/intake_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/github/intake_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -236,7 +236,7 @@ func (a *CloudAuthenticationApi) CreateGitHubCloudAuthPersonaMapping(ctx _contex
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/persona_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/github/persona_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -333,7 +333,7 @@ func (a *CloudAuthenticationApi) DeleteAWSCloudAuthPersonaMapping(ctx _context.C
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/aws/persona_mapping/{persona_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/aws/persona_mapping/{persona_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{persona_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(personaMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -419,7 +419,7 @@ func (a *CloudAuthenticationApi) DeleteGitHubCloudAuthIntakeMapping(ctx _context
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/intake_mapping/{intake_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/github/intake_mapping/{intake_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{intake_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(intakeMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -505,7 +505,7 @@ func (a *CloudAuthenticationApi) DeleteGitHubCloudAuthPersonaMapping(ctx _contex
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/persona_mapping/{persona_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/github/persona_mapping/{persona_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{persona_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(personaMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -592,7 +592,7 @@ func (a *CloudAuthenticationApi) GetAWSCloudAuthPersonaMapping(ctx _context.Cont
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/aws/persona_mapping/{persona_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/aws/persona_mapping/{persona_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{persona_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(personaMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -688,7 +688,7 @@ func (a *CloudAuthenticationApi) GetGitHubCloudAuthIntakeMapping(ctx _context.Co
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/intake_mapping/{intake_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/github/intake_mapping/{intake_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{intake_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(intakeMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -784,7 +784,7 @@ func (a *CloudAuthenticationApi) GetGitHubCloudAuthPersonaMapping(ctx _context.C
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/persona_mapping/{persona_mapping_id}"
+	localVarPath := localBasePath + "/api/v2/wif/github/persona_mapping/{persona_mapping_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{persona_mapping_id}", _neturl.PathEscape(datadog.ParameterToString(personaMappingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -880,7 +880,7 @@ func (a *CloudAuthenticationApi) ListAWSCloudAuthPersonaMappings(ctx _context.Co
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/aws/persona_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/aws/persona_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -975,7 +975,7 @@ func (a *CloudAuthenticationApi) ListGitHubCloudAuthIntakeMappings(ctx _context.
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/intake_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/github/intake_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1070,7 +1070,7 @@ func (a *CloudAuthenticationApi) ListGitHubCloudAuthPersonaMappings(ctx _context
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cloud_auth/github/persona_mapping"
+	localVarPath := localBasePath + "/api/v2/wif/github/persona_mapping"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
