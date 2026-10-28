@@ -20,6 +20,8 @@ type IncidentResponseRelationships struct {
 	DeclaredByUser *RelationshipToUser `json:"declared_by_user,omitempty"`
 	// Relationship to impacts.
 	Impacts *RelationshipToIncidentImpacts `json:"impacts,omitempty"`
+	// Relationship to an incident type.
+	IncidentType *RelationshipToIncidentType `json:"incident_type,omitempty"`
 	// A relationship reference for multiple integration metadata objects.
 	Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 	// Relationship to user.
@@ -201,6 +203,34 @@ func (o *IncidentResponseRelationships) SetImpacts(v RelationshipToIncidentImpac
 	o.Impacts = &v
 }
 
+// GetIncidentType returns the IncidentType field value if set, zero value otherwise.
+func (o *IncidentResponseRelationships) GetIncidentType() RelationshipToIncidentType {
+	if o == nil || o.IncidentType == nil {
+		var ret RelationshipToIncidentType
+		return ret
+	}
+	return *o.IncidentType
+}
+
+// GetIncidentTypeOk returns a tuple with the IncidentType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentResponseRelationships) GetIncidentTypeOk() (*RelationshipToIncidentType, bool) {
+	if o == nil || o.IncidentType == nil {
+		return nil, false
+	}
+	return o.IncidentType, true
+}
+
+// HasIncidentType returns a boolean if a field has been set.
+func (o *IncidentResponseRelationships) HasIncidentType() bool {
+	return o != nil && o.IncidentType != nil
+}
+
+// SetIncidentType gets a reference to the given RelationshipToIncidentType and assigns it to the IncidentType field.
+func (o *IncidentResponseRelationships) SetIncidentType(v RelationshipToIncidentType) {
+	o.IncidentType = &v
+}
+
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
 	if o == nil || o.Integrations == nil {
@@ -334,6 +364,9 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	if o.Impacts != nil {
 		toSerialize["impacts"] = o.Impacts
 	}
+	if o.IncidentType != nil {
+		toSerialize["incident_type"] = o.IncidentType
+	}
 	if o.Integrations != nil {
 		toSerialize["integrations"] = o.Integrations
 	}
@@ -361,6 +394,7 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
 		DeclaredByUser     *RelationshipToUser                         `json:"declared_by_user,omitempty"`
 		Impacts            *RelationshipToIncidentImpacts              `json:"impacts,omitempty"`
+		IncidentType       *RelationshipToIncidentType                 `json:"incident_type,omitempty"`
 		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
 		Responders         *RelationshipToIncidentResponders           `json:"responders,omitempty"`
@@ -371,7 +405,7 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attachments", "commander_user", "created_by_user", "declared_by_user", "impacts", "integrations", "last_modified_by_user", "responders", "user_defined_fields"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attachments", "commander_user", "created_by_user", "declared_by_user", "impacts", "incident_type", "integrations", "last_modified_by_user", "responders", "user_defined_fields"})
 	} else {
 		return err
 	}
@@ -394,6 +428,10 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		hasInvalidField = true
 	}
 	o.Impacts = all.Impacts
+	if all.IncidentType != nil && all.IncidentType.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.IncidentType = all.IncidentType
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
