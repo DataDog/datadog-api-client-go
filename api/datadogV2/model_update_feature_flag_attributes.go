@@ -16,6 +16,11 @@ type UpdateFeatureFlagAttributes struct {
 	JsonSchema datadog.NullableString `json:"json_schema,omitempty"`
 	// The name of the feature flag.
 	Name *string `json:"name,omitempty"`
+	// Tags associated with the feature flag. This field replaces the full set of
+	// existing tags; omit it to leave tags unchanged, or pass an empty array to
+	// clear all tags. The owning team is set by including a tag of the form
+	// `team:<team-handle>` in this array.
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -133,6 +138,34 @@ func (o *UpdateFeatureFlagAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *UpdateFeatureFlagAttributes) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateFeatureFlagAttributes) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *UpdateFeatureFlagAttributes) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *UpdateFeatureFlagAttributes) SetTags(v []string) {
+	o.Tags = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,6 +181,9 @@ func (o UpdateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,19 +197,21 @@ func (o *UpdateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Description *string                `json:"description,omitempty"`
 		JsonSchema  datadog.NullableString `json:"json_schema,omitempty"`
 		Name        *string                `json:"name,omitempty"`
+		Tags        []string               `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "json_schema", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "json_schema", "name", "tags"})
 	} else {
 		return err
 	}
 	o.Description = all.Description
 	o.JsonSchema = all.JsonSchema
 	o.Name = all.Name
+	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
