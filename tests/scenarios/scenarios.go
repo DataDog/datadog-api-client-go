@@ -72,9 +72,11 @@ func relativeTime(iso bool) func(map[string]interface{}, string) string {
 }
 
 type versionKey struct{}
+type operationVersionKey struct{}
 type ctxKey struct{}
 type clientKey struct{}
 type apiKey struct{}
+type apiNameKey struct{}
 type requestKey struct{}
 type requestNameKey struct{}
 type requestArgsKey struct{}
@@ -315,6 +317,20 @@ func GetVersion(ctx gobdd.Context) string {
 		GetT(ctx).Fatalf("could not get version: %v", err)
 	}
 	return c.(string)
+}
+
+// SetOperationVersion selects the generated client namespace for an operation version.
+func SetOperationVersion(ctx gobdd.Context, version string) {
+	ctx.Set(operationVersionKey{}, fmt.Sprintf("%s_%s", GetVersion(ctx), strings.ReplaceAll(version, "-", "")))
+}
+
+// GetOperationVersion gets the selected operation namespace, falling back to the feature version.
+func GetOperationVersion(ctx gobdd.Context) string {
+	version, err := ctx.Get(operationVersionKey{})
+	if err != nil {
+		return GetVersion(ctx)
+	}
+	return version.(string)
 }
 
 // SetAPI sets client API.
