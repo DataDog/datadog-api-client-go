@@ -10,7 +10,7 @@ import (
 
 // ContainerGroupAttributes Attributes for a container group.
 type ContainerGroupAttributes struct {
-	// Number of containers in the group.
+	// Number of containers in the group. A container with multiple values for a grouping tag can appear in multiple groups. Summing group counts can overcount distinct containers.
 	Count *int64 `json:"count,omitempty"`
 	// Tags from the group name parsed in key/value format.
 	Tags interface{} `json:"tags,omitempty"`

@@ -61,7 +61,11 @@ func (r *ListContainersOptionalParameters) WithPageCursor(pageCursor string) *Li
 }
 
 // ListContainers Get All Containers.
-// Get all containers for your organization.
+// Get all containers for your organization. Use `group_by` to return container groups with counts.
+// Grouped results are limited by `page[size]` and do not support pagination.
+//
+// To get CPU or memory metrics, use a `container` data source query with `/api/v2/query/scalar`
+// or `/api/v2/query/timeseries`.
 func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainersOptionalParameters) (ContainersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
