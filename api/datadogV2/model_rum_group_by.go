@@ -12,14 +12,14 @@ import (
 
 // RUMGroupBy A group-by rule.
 type RUMGroupBy struct {
-	// The name of the facet to use (required).
+	// The attribute to group by, for example `@view.name` or `@session.type` (required).
 	Facet string `json:"facet"`
 	// Used to perform a histogram computation (only for measure facets).
 	// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 	Histogram *RUMGroupByHistogram `json:"histogram,omitempty"`
 	// The maximum buckets to return for this group-by.
 	Limit *int64 `json:"limit,omitempty"`
-	// The value to use for logs that don't have the facet used to group by.
+	// The value to use for events that don't have the facet used to group by.
 	Missing *RUMGroupByMissing `json:"missing,omitempty"`
 	// A sort rule.
 	Sort *RUMAggregateSort `json:"sort,omitempty"`

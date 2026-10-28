@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMResponseStatus The status of the response.
+// RUMResponseStatus The status of the response. `timeout` means the query did not complete in time and the results are partial.
 type RUMResponseStatus string
 
 // List of RUMResponseStatus.

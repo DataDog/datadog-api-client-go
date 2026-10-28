@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMApi(apiClient)
-	resp, r, err := api.GetRUMApplications(ctx)
+	resp, r, err := api.GetRUMApplications(ctx, *datadogV2.NewGetRUMApplicationsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMApi.GetRUMApplications`: %v\n", err)
