@@ -29,6 +29,13 @@ type ObservabilityPipelineAzureDataExplorerDestination struct {
 	// Name of the environment variable or secret that holds the Azure Data Explorer ingestion endpoint URL.
 	// Defaults to `DESTINATION_AZURE_DATA_EXPLORER_INGESTION_ENDPOINT` (prefixed with `DD_OP_` at runtime).
 	IngestionEndpointKey *string `json:"ingestion_endpoint_key,omitempty"`
+	// The ingestion method used to send data to Azure Data Explorer.
+	//
+	// - `streaming`: Sends events directly to the table using streaming ingestion.
+	// - `queue`: Sends events through queued (batched) ingestion.
+	//
+	// Defaults to `streaming`.
+	IngestionMode *ObservabilityPipelineAzureDataExplorerDestinationIngestionMode `json:"ingestion_mode,omitempty"`
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
 	// The name of a pre-created ingestion mapping on the table used to map incoming events to columns. Supports template syntax.
@@ -54,6 +61,8 @@ func NewObservabilityPipelineAzureDataExplorerDestination(auth ObservabilityPipe
 	this.Auth = auth
 	this.Database = database
 	this.Id = id
+	var ingestionMode ObservabilityPipelineAzureDataExplorerDestinationIngestionMode = OBSERVABILITYPIPELINEAZUREDATAEXPLORERDESTINATIONINGESTIONMODE_STREAMING
+	this.IngestionMode = &ingestionMode
 	this.Inputs = inputs
 	this.Table = table
 	this.Type = typeVar
@@ -65,6 +74,8 @@ func NewObservabilityPipelineAzureDataExplorerDestination(auth ObservabilityPipe
 // but it doesn't guarantee that properties required by API are set.
 func NewObservabilityPipelineAzureDataExplorerDestinationWithDefaults() *ObservabilityPipelineAzureDataExplorerDestination {
 	this := ObservabilityPipelineAzureDataExplorerDestination{}
+	var ingestionMode ObservabilityPipelineAzureDataExplorerDestinationIngestionMode = OBSERVABILITYPIPELINEAZUREDATAEXPLORERDESTINATIONINGESTIONMODE_STREAMING
+	this.IngestionMode = &ingestionMode
 	var typeVar ObservabilityPipelineAzureDataExplorerDestinationType = OBSERVABILITYPIPELINEAZUREDATAEXPLORERDESTINATIONTYPE_AZURE_DATA_EXPLORER
 	this.Type = typeVar
 	return &this
@@ -251,6 +262,34 @@ func (o *ObservabilityPipelineAzureDataExplorerDestination) SetIngestionEndpoint
 	o.IngestionEndpointKey = &v
 }
 
+// GetIngestionMode returns the IngestionMode field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAzureDataExplorerDestination) GetIngestionMode() ObservabilityPipelineAzureDataExplorerDestinationIngestionMode {
+	if o == nil || o.IngestionMode == nil {
+		var ret ObservabilityPipelineAzureDataExplorerDestinationIngestionMode
+		return ret
+	}
+	return *o.IngestionMode
+}
+
+// GetIngestionModeOk returns a tuple with the IngestionMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAzureDataExplorerDestination) GetIngestionModeOk() (*ObservabilityPipelineAzureDataExplorerDestinationIngestionMode, bool) {
+	if o == nil || o.IngestionMode == nil {
+		return nil, false
+	}
+	return o.IngestionMode, true
+}
+
+// HasIngestionMode returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAzureDataExplorerDestination) HasIngestionMode() bool {
+	return o != nil && o.IngestionMode != nil
+}
+
+// SetIngestionMode gets a reference to the given ObservabilityPipelineAzureDataExplorerDestinationIngestionMode and assigns it to the IngestionMode field.
+func (o *ObservabilityPipelineAzureDataExplorerDestination) SetIngestionMode(v ObservabilityPipelineAzureDataExplorerDestinationIngestionMode) {
+	o.IngestionMode = &v
+}
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineAzureDataExplorerDestination) GetInputs() []string {
 	if o == nil {
@@ -408,6 +447,9 @@ func (o ObservabilityPipelineAzureDataExplorerDestination) MarshalJSON() ([]byte
 	if o.IngestionEndpointKey != nil {
 		toSerialize["ingestion_endpoint_key"] = o.IngestionEndpointKey
 	}
+	if o.IngestionMode != nil {
+		toSerialize["ingestion_mode"] = o.IngestionMode
+	}
 	toSerialize["inputs"] = o.Inputs
 	if o.MappingReference.IsSet() {
 		toSerialize["mapping_reference"] = o.MappingReference.Get()
@@ -427,18 +469,19 @@ func (o ObservabilityPipelineAzureDataExplorerDestination) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAzureDataExplorerDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth                 *ObservabilityPipelineAzureDataExplorerDestinationAuth       `json:"auth"`
-		Batch                *ObservabilityPipelineAzureDataExplorerDestinationBatch      `json:"batch,omitempty"`
-		Buffer               *ObservabilityPipelineBufferOptions                          `json:"buffer,omitempty"`
-		Compression          *ObservabilityPipelineAzureStorageDestinationCompressionGzip `json:"compression,omitempty"`
-		Database             *string                                                      `json:"database"`
-		Id                   *string                                                      `json:"id"`
-		IngestionEndpointKey *string                                                      `json:"ingestion_endpoint_key,omitempty"`
-		Inputs               *[]string                                                    `json:"inputs"`
-		MappingReference     datadog.NullableString                                       `json:"mapping_reference,omitempty"`
-		Table                *string                                                      `json:"table"`
-		TokenScope           *string                                                      `json:"token_scope,omitempty"`
-		Type                 *ObservabilityPipelineAzureDataExplorerDestinationType       `json:"type"`
+		Auth                 *ObservabilityPipelineAzureDataExplorerDestinationAuth          `json:"auth"`
+		Batch                *ObservabilityPipelineAzureDataExplorerDestinationBatch         `json:"batch,omitempty"`
+		Buffer               *ObservabilityPipelineBufferOptions                             `json:"buffer,omitempty"`
+		Compression          *ObservabilityPipelineAzureStorageDestinationCompressionGzip    `json:"compression,omitempty"`
+		Database             *string                                                         `json:"database"`
+		Id                   *string                                                         `json:"id"`
+		IngestionEndpointKey *string                                                         `json:"ingestion_endpoint_key,omitempty"`
+		IngestionMode        *ObservabilityPipelineAzureDataExplorerDestinationIngestionMode `json:"ingestion_mode,omitempty"`
+		Inputs               *[]string                                                       `json:"inputs"`
+		MappingReference     datadog.NullableString                                          `json:"mapping_reference,omitempty"`
+		Table                *string                                                         `json:"table"`
+		TokenScope           *string                                                         `json:"token_scope,omitempty"`
+		Type                 *ObservabilityPipelineAzureDataExplorerDestinationType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -463,7 +506,7 @@ func (o *ObservabilityPipelineAzureDataExplorerDestination) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch", "buffer", "compression", "database", "id", "ingestion_endpoint_key", "inputs", "mapping_reference", "table", "token_scope", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch", "buffer", "compression", "database", "id", "ingestion_endpoint_key", "ingestion_mode", "inputs", "mapping_reference", "table", "token_scope", "type"})
 	} else {
 		return err
 	}
@@ -482,6 +525,11 @@ func (o *ObservabilityPipelineAzureDataExplorerDestination) UnmarshalJSON(bytes 
 	o.Database = *all.Database
 	o.Id = *all.Id
 	o.IngestionEndpointKey = all.IngestionEndpointKey
+	if all.IngestionMode != nil && !all.IngestionMode.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.IngestionMode = all.IngestionMode
+	}
 	o.Inputs = *all.Inputs
 	o.MappingReference = all.MappingReference
 	o.Table = *all.Table
