@@ -34,6 +34,8 @@ type DataDeletionResponseItemAttributes struct {
 	Product string `json:"product"`
 	// Query for creating a data deletion request.
 	Query string `json:"query"`
+	// Time when the recovery period for the deletion request ends. Before this time, you can cancel the request and recover the data. After this time, permanent deletion begins, and the status changes to `deleting` within a few minutes. This field is returned only for `in_progress` requests when listing deletion requests, and is omitted if the value cannot be determined.
+	RecoverableUntil *string `json:"recoverable_until,omitempty"`
 	// The source of the deletion request.
 	Source *string `json:"source,omitempty"`
 	// Starting time of the process to delete the requested data.
@@ -349,6 +351,34 @@ func (o *DataDeletionResponseItemAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetRecoverableUntil returns the RecoverableUntil field value if set, zero value otherwise.
+func (o *DataDeletionResponseItemAttributes) GetRecoverableUntil() string {
+	if o == nil || o.RecoverableUntil == nil {
+		var ret string
+		return ret
+	}
+	return *o.RecoverableUntil
+}
+
+// GetRecoverableUntilOk returns a tuple with the RecoverableUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetRecoverableUntilOk() (*string, bool) {
+	if o == nil || o.RecoverableUntil == nil {
+		return nil, false
+	}
+	return o.RecoverableUntil, true
+}
+
+// HasRecoverableUntil returns a boolean if a field has been set.
+func (o *DataDeletionResponseItemAttributes) HasRecoverableUntil() bool {
+	return o != nil && o.RecoverableUntil != nil
+}
+
+// SetRecoverableUntil gets a reference to the given string and assigns it to the RecoverableUntil field.
+func (o *DataDeletionResponseItemAttributes) SetRecoverableUntil(v string) {
+	o.RecoverableUntil = &v
+}
+
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *DataDeletionResponseItemAttributes) GetSource() string {
 	if o == nil || o.Source == nil {
@@ -515,6 +545,9 @@ func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["org_id"] = o.OrgId
 	toSerialize["product"] = o.Product
 	toSerialize["query"] = o.Query
+	if o.RecoverableUntil != nil {
+		toSerialize["recoverable_until"] = o.RecoverableUntil
+	}
 	if o.Source != nil {
 		toSerialize["source"] = o.Source
 	}
@@ -544,6 +577,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 		OrgId             *int64   `json:"org_id"`
 		Product           *string  `json:"product"`
 		Query             *string  `json:"query"`
+		RecoverableUntil  *string  `json:"recoverable_until,omitempty"`
 		Source            *string  `json:"source,omitempty"`
 		StartingAt        *string  `json:"starting_at"`
 		Status            *string  `json:"status"`
@@ -595,7 +629,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "customer_message", "displayed_total", "error_category", "from_time", "indexes", "is_created", "org_id", "product", "query", "source", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "customer_message", "displayed_total", "error_category", "from_time", "indexes", "is_created", "org_id", "product", "query", "recoverable_until", "source", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
 	} else {
 		return err
 	}
@@ -610,6 +644,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.OrgId = *all.OrgId
 	o.Product = *all.Product
 	o.Query = *all.Query
+	o.RecoverableUntil = all.RecoverableUntil
 	o.Source = all.Source
 	o.StartingAt = *all.StartingAt
 	o.Status = *all.Status
