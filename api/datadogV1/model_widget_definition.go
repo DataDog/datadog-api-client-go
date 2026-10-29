@@ -30,6 +30,7 @@ type WidgetDefinition struct {
 	HostMapWidgetDefinition                *HostMapWidgetDefinition
 	IFrameWidgetDefinition                 *IFrameWidgetDefinition
 	ImageWidgetDefinition                  *ImageWidgetDefinition
+	JourneyMapWidgetDefinition             *JourneyMapWidgetDefinition
 	ListStreamWidgetDefinition             *ListStreamWidgetDefinition
 	LogStreamWidgetDefinition              *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition         *MonitorSummaryWidgetDefinition
@@ -156,6 +157,11 @@ func IFrameWidgetDefinitionAsWidgetDefinition(v *IFrameWidgetDefinition) WidgetD
 // ImageWidgetDefinitionAsWidgetDefinition is a convenience function that returns ImageWidgetDefinition wrapped in WidgetDefinition.
 func ImageWidgetDefinitionAsWidgetDefinition(v *ImageWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ImageWidgetDefinition: v}
+}
+
+// JourneyMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns JourneyMapWidgetDefinition wrapped in WidgetDefinition.
+func JourneyMapWidgetDefinitionAsWidgetDefinition(v *JourneyMapWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{JourneyMapWidgetDefinition: v}
 }
 
 // ListStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns ListStreamWidgetDefinition wrapped in WidgetDefinition.
@@ -617,6 +623,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.ImageWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into JourneyMapWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.JourneyMapWidgetDefinition)
+	if err == nil {
+		if obj.JourneyMapWidgetDefinition != nil && obj.JourneyMapWidgetDefinition.UnparsedObject == nil {
+			jsonJourneyMapWidgetDefinition, _ := datadog.Marshal(obj.JourneyMapWidgetDefinition)
+			if string(jsonJourneyMapWidgetDefinition) == "{}" { // empty struct
+				obj.JourneyMapWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.JourneyMapWidgetDefinition = nil
+		}
+	} else {
+		obj.JourneyMapWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into ListStreamWidgetDefinition
 	err = datadog.Unmarshal(data, &obj.ListStreamWidgetDefinition)
 	if err == nil {
@@ -1060,6 +1083,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.HostMapWidgetDefinition = nil
 		obj.IFrameWidgetDefinition = nil
 		obj.ImageWidgetDefinition = nil
+		obj.JourneyMapWidgetDefinition = nil
 		obj.ListStreamWidgetDefinition = nil
 		obj.LogStreamWidgetDefinition = nil
 		obj.MonitorSummaryWidgetDefinition = nil
@@ -1168,6 +1192,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.ImageWidgetDefinition != nil {
 		return datadog.Marshal(&obj.ImageWidgetDefinition)
+	}
+
+	if obj.JourneyMapWidgetDefinition != nil {
+		return datadog.Marshal(&obj.JourneyMapWidgetDefinition)
 	}
 
 	if obj.ListStreamWidgetDefinition != nil {
@@ -1348,6 +1376,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.ImageWidgetDefinition != nil {
 		return obj.ImageWidgetDefinition
+	}
+
+	if obj.JourneyMapWidgetDefinition != nil {
+		return obj.JourneyMapWidgetDefinition
 	}
 
 	if obj.ListStreamWidgetDefinition != nil {
