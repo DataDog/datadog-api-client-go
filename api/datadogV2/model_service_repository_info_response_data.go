@@ -14,7 +14,7 @@ import (
 type ServiceRepositoryInfoResponseData struct {
 	// Attributes of the service repository information.
 	Attributes ServiceRepositoryInfoResponseAttributes `json:"attributes"`
-	// The identifier composed of the service name and version.
+	// The identifier composed of the service name and version, or the debug ID when the lookup was made by debug ID.
 	Id string `json:"id"`
 	// The resource type for service repository info objects.
 	Type ServiceRepositoryInfoDataType `json:"type"`
