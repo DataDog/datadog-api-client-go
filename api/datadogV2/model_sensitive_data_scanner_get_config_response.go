@@ -14,8 +14,8 @@ type SensitiveDataScannerGetConfigResponse struct {
 	Data *SensitiveDataScannerGetConfigResponseData `json:"data,omitempty"`
 	// Included objects from relationships.
 	Included []SensitiveDataScannerGetConfigIncludedItem `json:"included,omitempty"`
-	// Meta response containing information about the API.
-	Meta *SensitiveDataScannerMeta `json:"meta,omitempty"`
+	// Meta response. Always an empty object.
+	Meta map[string]interface{} `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -95,21 +95,21 @@ func (o *SensitiveDataScannerGetConfigResponse) SetIncluded(v []SensitiveDataSca
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *SensitiveDataScannerGetConfigResponse) GetMeta() SensitiveDataScannerMeta {
+func (o *SensitiveDataScannerGetConfigResponse) GetMeta() map[string]interface{} {
 	if o == nil || o.Meta == nil {
-		var ret SensitiveDataScannerMeta
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Meta
+	return o.Meta
 }
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SensitiveDataScannerGetConfigResponse) GetMetaOk() (*SensitiveDataScannerMeta, bool) {
+func (o *SensitiveDataScannerGetConfigResponse) GetMetaOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
-	return o.Meta, true
+	return &o.Meta, true
 }
 
 // HasMeta returns a boolean if a field has been set.
@@ -117,9 +117,9 @@ func (o *SensitiveDataScannerGetConfigResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given SensitiveDataScannerMeta and assigns it to the Meta field.
-func (o *SensitiveDataScannerGetConfigResponse) SetMeta(v SensitiveDataScannerMeta) {
-	o.Meta = &v
+// SetMeta gets a reference to the given map[string]interface{} and assigns it to the Meta field.
+func (o *SensitiveDataScannerGetConfigResponse) SetMeta(v map[string]interface{}) {
+	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -149,7 +149,7 @@ func (o *SensitiveDataScannerGetConfigResponse) UnmarshalJSON(bytes []byte) (err
 	all := struct {
 		Data     *SensitiveDataScannerGetConfigResponseData  `json:"data,omitempty"`
 		Included []SensitiveDataScannerGetConfigIncludedItem `json:"included,omitempty"`
-		Meta     *SensitiveDataScannerMeta                   `json:"meta,omitempty"`
+		Meta     map[string]interface{}                      `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -167,9 +167,6 @@ func (o *SensitiveDataScannerGetConfigResponse) UnmarshalJSON(bytes []byte) (err
 	}
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
