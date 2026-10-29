@@ -26,7 +26,7 @@ type GCPSTSServiceAccountAttributes struct {
 	// **Note:** This field is deprecated. Instead, use `monitored_resource_configs` with `type=gce_instance`
 	// Deprecated
 	HostFilters []string `json:"host_filters,omitempty"`
-	// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled to be set to true.
+	// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled or is_org_folder_resource_collection_enabled to be set to true.
 	IsCspmEnabled *bool `json:"is_cspm_enabled,omitempty"`
 	// When enabled, Datadog collects metrics where location is explicitly stated as "global" or where location information cannot be deduced from GCP labels.
 	IsGlobalLocationEnabled *bool `json:"is_global_location_enabled,omitempty"`
