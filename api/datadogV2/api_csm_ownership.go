@@ -44,7 +44,7 @@ func (a *CSMOwnershipApi) CreateOwnershipFeedback(ctx _context.Context, resource
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}/{owner_type}/feedback"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}/{owner_type}/feedback"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{owner_type}", _neturl.PathEscape(datadog.ParameterToString(ownerType, "")))
 
@@ -180,7 +180,7 @@ func (a *CSMOwnershipApi) GetOwnershipEvidence(ctx _context.Context, resourceId 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}/{owner_type}/evidence"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}/{owner_type}/evidence"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{owner_type}", _neturl.PathEscape(datadog.ParameterToString(ownerType, "")))
 
@@ -307,7 +307,7 @@ func (a *CSMOwnershipApi) GetOwnershipInference(ctx _context.Context, resourceId
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}/{owner_type}"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}/{owner_type}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{owner_type}", _neturl.PathEscape(datadog.ParameterToString(ownerType, "")))
 
@@ -629,7 +629,7 @@ func (a *CSMOwnershipApi) ListOwnershipHistory(ctx _context.Context, resourceId 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}/history"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}/history"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -763,7 +763,7 @@ func (a *CSMOwnershipApi) ListOwnershipHistoryByOwnerType(ctx _context.Context, 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}/{owner_type}/history"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}/{owner_type}/history"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{owner_type}", _neturl.PathEscape(datadog.ParameterToString(ownerType, "")))
 
@@ -866,7 +866,7 @@ func (a *CSMOwnershipApi) ListOwnershipInferences(ctx _context.Context, resource
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/csm/ownership/{resource_id}"
+	localVarPath := localBasePath + "/api/v2/security/ownership/{resource_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
