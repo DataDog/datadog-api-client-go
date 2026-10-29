@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ShiftDataRelationshipsUserDataType Indicates that the related resource is of type 'users'.
+// ShiftDataRelationshipsUserDataType Indicates that the related resource is of type `users`.
 type ShiftDataRelationshipsUserDataType string
 
 // List of ShiftDataRelationshipsUserDataType.

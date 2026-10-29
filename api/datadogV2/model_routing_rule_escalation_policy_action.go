@@ -12,7 +12,7 @@ import (
 
 // RoutingRuleEscalationPolicyAction Triggers an escalation policy.
 type RoutingRuleEscalationPolicyAction struct {
-	// The number of minutes before an acknowledged page is re-triggered.
+	// The number of minutes before an acknowledged Page is re-triggered.
 	AckTimeoutMinutes *int64 `json:"ack_timeout_minutes,omitempty"`
 	// The ID of the escalation policy to route to.
 	PolicyId string `json:"policy_id"`

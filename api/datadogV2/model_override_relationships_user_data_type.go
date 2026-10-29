@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OverrideRelationshipsUserDataType Indicates that the related resource is of type 'users'.
+// OverrideRelationshipsUserDataType Indicates that the related resource is of type `users`.
 type OverrideRelationshipsUserDataType string
 
 // List of OverrideRelationshipsUserDataType.

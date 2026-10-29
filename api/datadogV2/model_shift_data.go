@@ -18,7 +18,7 @@ type ShiftData struct {
 	Id *string `json:"id,omitempty"`
 	// Relationships for an on-call shift.
 	Relationships *ShiftDataRelationships `json:"relationships,omitempty"`
-	// Indicates that the resource is of type 'shifts'.
+	// Indicates that the resource is of type `shifts`.
 	Type ShiftDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

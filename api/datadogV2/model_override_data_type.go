@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OverrideDataType Indicates that the resource is of type 'overrides'.
+// OverrideDataType Indicates that the resource is of type `overrides`.
 type OverrideDataType string
 
 // List of OverrideDataType.

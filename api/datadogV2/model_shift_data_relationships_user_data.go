@@ -14,7 +14,7 @@ import (
 type ShiftDataRelationshipsUserData struct {
 	// Specifies the unique identifier of the user.
 	Id string `json:"id"`
-	// Indicates that the related resource is of type 'users'.
+	// Indicates that the related resource is of type `users`.
 	Type ShiftDataRelationshipsUserDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

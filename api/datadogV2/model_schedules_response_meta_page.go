@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SchedulesResponseMetaPage Metadata related to paging information that is included in the response when listing schedules.
+// SchedulesResponseMetaPage Metadata related to pagination information that is included in the response when listing On-Call resources.
 type SchedulesResponseMetaPage struct {
 	// First page number.
 	FirstNumber *int64 `json:"first_number,omitempty"`

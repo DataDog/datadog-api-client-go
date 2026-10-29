@@ -14,7 +14,7 @@ import (
 type OverrideRelationshipsScheduleData struct {
 	// The unique identifier of the schedule.
 	Id string `json:"id"`
-	// Indicates that the related resource is of type 'schedules'.
+	// Indicates that the related resource is of type `schedules`.
 	Type OverrideRelationshipsScheduleDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
