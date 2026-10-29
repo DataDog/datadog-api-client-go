@@ -9,6 +9,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/google/uuid"
@@ -702,6 +703,203 @@ func (a *FeatureFlagsApi) EnableFeatureFlagEnvironment(ctx _context.Context, fea
 	return localVarHTTPResponse, nil
 }
 
+// ExportFeatureFlagHistoryOptionalParameters holds optional parameters for ExportFeatureFlagHistory.
+type ExportFeatureFlagHistoryOptionalParameters struct {
+	StartDate               *time.Time
+	EndDate                 *time.Time
+	Teams                   *[]string
+	Tags                    *[]string
+	FeatureFlagId           *uuid.UUID
+	EnvironmentId           *uuid.UUID
+	IncludeSuggestionEvents *bool
+}
+
+// NewExportFeatureFlagHistoryOptionalParameters creates an empty struct for parameters.
+func NewExportFeatureFlagHistoryOptionalParameters() *ExportFeatureFlagHistoryOptionalParameters {
+	this := ExportFeatureFlagHistoryOptionalParameters{}
+	return &this
+}
+
+// WithStartDate sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithStartDate(startDate time.Time) *ExportFeatureFlagHistoryOptionalParameters {
+	r.StartDate = &startDate
+	return r
+}
+
+// WithEndDate sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithEndDate(endDate time.Time) *ExportFeatureFlagHistoryOptionalParameters {
+	r.EndDate = &endDate
+	return r
+}
+
+// WithTeams sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithTeams(teams []string) *ExportFeatureFlagHistoryOptionalParameters {
+	r.Teams = &teams
+	return r
+}
+
+// WithTags sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithTags(tags []string) *ExportFeatureFlagHistoryOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+
+// WithFeatureFlagId sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithFeatureFlagId(featureFlagId uuid.UUID) *ExportFeatureFlagHistoryOptionalParameters {
+	r.FeatureFlagId = &featureFlagId
+	return r
+}
+
+// WithEnvironmentId sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithEnvironmentId(environmentId uuid.UUID) *ExportFeatureFlagHistoryOptionalParameters {
+	r.EnvironmentId = &environmentId
+	return r
+}
+
+// WithIncludeSuggestionEvents sets the corresponding parameter name and returns the struct.
+func (r *ExportFeatureFlagHistoryOptionalParameters) WithIncludeSuggestionEvents(includeSuggestionEvents bool) *ExportFeatureFlagHistoryOptionalParameters {
+	r.IncludeSuggestionEvents = &includeSuggestionEvents
+	return r
+}
+
+// ExportFeatureFlagHistory Export feature flag change history.
+// Exports the organization's feature flag change events as a CSV file, newest first, without pagination.
+// It accepts the same filters as the List feature flag change history endpoint, and its columns match the CSV export on the flag history page:
+// Flag Version, Flag Name, Flag Key, Flag UUID, Action, User Name, User Email, User Type, Environment, and Timestamp.
+//
+// If an export fails before the file starts, the response is a JSON:API error. Large exports stream as they are read.
+// If an export fails after streaming starts, the connection closes before the file ends, so the download fails instead of
+// returning a file with missing rows. An export must finish within the 60-second request timeout. If an export times out,
+// narrow the date range.
+func (a *FeatureFlagsApi) ExportFeatureFlagHistory(ctx _context.Context, o ...ExportFeatureFlagHistoryOptionalParameters) (string, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue string
+		optionalParams      ExportFeatureFlagHistoryOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ExportFeatureFlagHistoryOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.ExportFeatureFlagHistory")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/history/export"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.StartDate != nil {
+		localVarQueryParams.Add("start_date", datadog.ParameterToString(*optionalParams.StartDate, ""))
+	}
+	if optionalParams.EndDate != nil {
+		localVarQueryParams.Add("end_date", datadog.ParameterToString(*optionalParams.EndDate, ""))
+	}
+	if optionalParams.Teams != nil {
+		t := *optionalParams.Teams
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("teams", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("teams", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.Tags != nil {
+		t := *optionalParams.Tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.FeatureFlagId != nil {
+		localVarQueryParams.Add("feature_flag_id", datadog.ParameterToString(*optionalParams.FeatureFlagId, ""))
+	}
+	if optionalParams.EnvironmentId != nil {
+		localVarQueryParams.Add("environment_id", datadog.ParameterToString(*optionalParams.EnvironmentId, ""))
+	}
+	if optionalParams.IncludeSuggestionEvents != nil {
+		localVarQueryParams.Add("include_suggestion_events", datadog.ParameterToString(*optionalParams.IncludeSuggestionEvents, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetFeatureFlag Get a feature flag.
 // Returns the details of a specific feature flag
 // including variants and environment status.
@@ -928,6 +1126,219 @@ func (a *FeatureFlagsApi) GetSavedFilter(ctx _context.Context, savedFilterId uui
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListFeatureFlagHistoryOptionalParameters holds optional parameters for ListFeatureFlagHistory.
+type ListFeatureFlagHistoryOptionalParameters struct {
+	StartDate               *time.Time
+	EndDate                 *time.Time
+	Teams                   *[]string
+	Tags                    *[]string
+	FeatureFlagId           *uuid.UUID
+	EnvironmentId           *uuid.UUID
+	IncludeSuggestionEvents *bool
+	PageLimit               *int64
+	PageOffset              *int64
+}
+
+// NewListFeatureFlagHistoryOptionalParameters creates an empty struct for parameters.
+func NewListFeatureFlagHistoryOptionalParameters() *ListFeatureFlagHistoryOptionalParameters {
+	this := ListFeatureFlagHistoryOptionalParameters{}
+	return &this
+}
+
+// WithStartDate sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithStartDate(startDate time.Time) *ListFeatureFlagHistoryOptionalParameters {
+	r.StartDate = &startDate
+	return r
+}
+
+// WithEndDate sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithEndDate(endDate time.Time) *ListFeatureFlagHistoryOptionalParameters {
+	r.EndDate = &endDate
+	return r
+}
+
+// WithTeams sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithTeams(teams []string) *ListFeatureFlagHistoryOptionalParameters {
+	r.Teams = &teams
+	return r
+}
+
+// WithTags sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithTags(tags []string) *ListFeatureFlagHistoryOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+
+// WithFeatureFlagId sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithFeatureFlagId(featureFlagId uuid.UUID) *ListFeatureFlagHistoryOptionalParameters {
+	r.FeatureFlagId = &featureFlagId
+	return r
+}
+
+// WithEnvironmentId sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithEnvironmentId(environmentId uuid.UUID) *ListFeatureFlagHistoryOptionalParameters {
+	r.EnvironmentId = &environmentId
+	return r
+}
+
+// WithIncludeSuggestionEvents sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithIncludeSuggestionEvents(includeSuggestionEvents bool) *ListFeatureFlagHistoryOptionalParameters {
+	r.IncludeSuggestionEvents = &includeSuggestionEvents
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithPageLimit(pageLimit int64) *ListFeatureFlagHistoryOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagHistoryOptionalParameters) WithPageOffset(pageOffset int64) *ListFeatureFlagHistoryOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
+// ListFeatureFlagHistory List feature flag change history.
+// Returns the organization's feature flag change events, newest first.
+// Each event includes a readable description of the change.
+// All filters are optional, and events must match every filter you set. Without a date range, the whole history is listed.
+// Results are paginated with `page[limit]` and `page[offset]`; follow `links.next` to read further back.
+func (a *FeatureFlagsApi) ListFeatureFlagHistory(ctx _context.Context, o ...ListFeatureFlagHistoryOptionalParameters) (ListFeatureFlagHistoryResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListFeatureFlagHistoryResponse
+		optionalParams      ListFeatureFlagHistoryOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListFeatureFlagHistoryOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.ListFeatureFlagHistory")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/history"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.StartDate != nil {
+		localVarQueryParams.Add("start_date", datadog.ParameterToString(*optionalParams.StartDate, ""))
+	}
+	if optionalParams.EndDate != nil {
+		localVarQueryParams.Add("end_date", datadog.ParameterToString(*optionalParams.EndDate, ""))
+	}
+	if optionalParams.Teams != nil {
+		t := *optionalParams.Teams
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("teams", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("teams", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.Tags != nil {
+		t := *optionalParams.Tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.FeatureFlagId != nil {
+		localVarQueryParams.Add("feature_flag_id", datadog.ParameterToString(*optionalParams.FeatureFlagId, ""))
+	}
+	if optionalParams.EnvironmentId != nil {
+		localVarQueryParams.Add("environment_id", datadog.ParameterToString(*optionalParams.EnvironmentId, ""))
+	}
+	if optionalParams.IncludeSuggestionEvents != nil {
+		localVarQueryParams.Add("include_suggestion_events", datadog.ParameterToString(*optionalParams.IncludeSuggestionEvents, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
