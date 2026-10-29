@@ -10,8 +10,10 @@ import (
 
 // SensitiveDataScannerGroupDeleteResponse Delete group response.
 type SensitiveDataScannerGroupDeleteResponse struct {
-	// Meta payload containing information about the API.
-	Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
+	// Always `null`.
+	Data map[string]interface{} `json:"data,omitempty"`
+	// Meta response. Always an empty object.
+	Meta map[string]interface{} `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -34,22 +36,51 @@ func NewSensitiveDataScannerGroupDeleteResponseWithDefaults() *SensitiveDataScan
 	return &this
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *SensitiveDataScannerGroupDeleteResponse) GetMeta() SensitiveDataScannerMetaVersionOnly {
-	if o == nil || o.Meta == nil {
-		var ret SensitiveDataScannerMetaVersionOnly
+// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SensitiveDataScannerGroupDeleteResponse) GetData() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Meta
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *SensitiveDataScannerGroupDeleteResponse) GetDataOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Data == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *SensitiveDataScannerGroupDeleteResponse) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
+func (o *SensitiveDataScannerGroupDeleteResponse) SetData(v map[string]interface{}) {
+	o.Data = v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *SensitiveDataScannerGroupDeleteResponse) GetMeta() map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Meta
 }
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SensitiveDataScannerGroupDeleteResponse) GetMetaOk() (*SensitiveDataScannerMetaVersionOnly, bool) {
+func (o *SensitiveDataScannerGroupDeleteResponse) GetMetaOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
-	return o.Meta, true
+	return &o.Meta, true
 }
 
 // HasMeta returns a boolean if a field has been set.
@@ -57,9 +88,9 @@ func (o *SensitiveDataScannerGroupDeleteResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given SensitiveDataScannerMetaVersionOnly and assigns it to the Meta field.
-func (o *SensitiveDataScannerGroupDeleteResponse) SetMeta(v SensitiveDataScannerMetaVersionOnly) {
-	o.Meta = &v
+// SetMeta gets a reference to the given map[string]interface{} and assigns it to the Meta field.
+func (o *SensitiveDataScannerGroupDeleteResponse) SetMeta(v map[string]interface{}) {
+	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -67,6 +98,9 @@ func (o SensitiveDataScannerGroupDeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
+	}
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
@@ -81,30 +115,23 @@ func (o SensitiveDataScannerGroupDeleteResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGroupDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
+		Data map[string]interface{} `json:"data,omitempty"`
+		Meta map[string]interface{} `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
+	o.Data = all.Data
 	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

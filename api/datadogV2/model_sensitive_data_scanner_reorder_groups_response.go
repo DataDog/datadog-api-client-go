@@ -10,8 +10,8 @@ import (
 
 // SensitiveDataScannerReorderGroupsResponse Group reorder response.
 type SensitiveDataScannerReorderGroupsResponse struct {
-	// Meta response containing information about the API.
-	Meta *SensitiveDataScannerMeta `json:"meta,omitempty"`
+	// Meta response. Always an empty object.
+	Meta map[string]interface{} `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,21 +35,21 @@ func NewSensitiveDataScannerReorderGroupsResponseWithDefaults() *SensitiveDataSc
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *SensitiveDataScannerReorderGroupsResponse) GetMeta() SensitiveDataScannerMeta {
+func (o *SensitiveDataScannerReorderGroupsResponse) GetMeta() map[string]interface{} {
 	if o == nil || o.Meta == nil {
-		var ret SensitiveDataScannerMeta
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Meta
+	return o.Meta
 }
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SensitiveDataScannerReorderGroupsResponse) GetMetaOk() (*SensitiveDataScannerMeta, bool) {
+func (o *SensitiveDataScannerReorderGroupsResponse) GetMetaOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
-	return o.Meta, true
+	return &o.Meta, true
 }
 
 // HasMeta returns a boolean if a field has been set.
@@ -57,9 +57,9 @@ func (o *SensitiveDataScannerReorderGroupsResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given SensitiveDataScannerMeta and assigns it to the Meta field.
-func (o *SensitiveDataScannerReorderGroupsResponse) SetMeta(v SensitiveDataScannerMeta) {
-	o.Meta = &v
+// SetMeta gets a reference to the given map[string]interface{} and assigns it to the Meta field.
+func (o *SensitiveDataScannerReorderGroupsResponse) SetMeta(v map[string]interface{}) {
+	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -81,7 +81,7 @@ func (o SensitiveDataScannerReorderGroupsResponse) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerReorderGroupsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Meta *SensitiveDataScannerMeta `json:"meta,omitempty"`
+		Meta map[string]interface{} `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -92,19 +92,10 @@ func (o *SensitiveDataScannerReorderGroupsResponse) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
