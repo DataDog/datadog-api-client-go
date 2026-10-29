@@ -8,10 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUpdateCompute The compute rule to compute the RUM-based metric.
+// RumMetricUpdateCompute The compute rule properties that can be updated. Only valid for metrics whose `aggregation_type` is `distribution`.
 type RumMetricUpdateCompute struct {
-	// Toggle to include or exclude percentile aggregations for distribution metrics.
-	// Only present when `aggregation_type` is `distribution`.
+	// Toggle to include or exclude percentile aggregations (p50, p75, p90, p95, p99) for distribution metrics.
+	// Required when `aggregation_type` is `distribution`, and must be omitted otherwise.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

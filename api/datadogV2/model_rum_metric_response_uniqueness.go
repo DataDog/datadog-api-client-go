@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponseUniqueness The rule to count updatable events. Is only set if `event_type` is `session` or `view`.
+// RumMetricResponseUniqueness The rule to count updatable events. Only present if `event_type` is `session` or `view`, and absent on older metrics created before this setting existed.
 type RumMetricResponseUniqueness struct {
-	// When to count updatable events. `match` when the event is first seen, or `end` when the event is complete.
+	// When to count updatable events. `match` when the event is first seen, or `end` when the event is complete. Sessions and views are updated over time, each one is counted once.
 	When *RumMetricUniquenessWhen `json:"when,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

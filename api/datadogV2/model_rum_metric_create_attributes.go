@@ -12,15 +12,16 @@ import (
 
 // RumMetricCreateAttributes The object describing the Datadog RUM-based metric to create.
 type RumMetricCreateAttributes struct {
-	// The compute rule to compute the RUM-based metric.
+	// The compute rule to compute the RUM-based metric. It is set at creation and only `include_percentiles` can be updated afterwards.
 	Compute RumMetricCompute `json:"compute"`
-	// The type of RUM events to filter on.
+	// The type of RUM events the metric is generated from. It is set at creation and cannot be changed.
 	EventType RumMetricEventType `json:"event_type"`
-	// The RUM-based metric filter. Events matching this filter will be aggregated in this metric.
+	// The RUM-based metric filter. Events matching this filter will be aggregated in this metric. The `event_type` filter is added automatically.
 	Filter *RumMetricFilter `json:"filter,omitempty"`
-	// The rules for the group by.
+	// The rules to group the metric by. Each rule creates a tag on the generated metric. If omitted, the metric is not grouped.
 	GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`
-	// The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.
+	// The rule to count updatable events.
+	// Required when `event_type` is `session` or `view`, and must be omitted for other event types. It cannot be changed after creation.
 	Uniqueness *RumMetricUniqueness `json:"uniqueness,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

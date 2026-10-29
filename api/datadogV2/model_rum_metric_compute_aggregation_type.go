@@ -11,6 +11,7 @@ import (
 )
 
 // RumMetricComputeAggregationType The type of aggregation to use.
+// `count` counts the matching events. `distribution` aggregates the values found at `path`.
 type RumMetricComputeAggregationType string
 
 // List of RumMetricComputeAggregationType.

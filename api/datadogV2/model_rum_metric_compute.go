@@ -10,15 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricCompute The compute rule to compute the RUM-based metric.
+// RumMetricCompute The compute rule to compute the RUM-based metric. It is set at creation and only `include_percentiles` can be updated afterwards.
 type RumMetricCompute struct {
 	// The type of aggregation to use.
+	// `count` counts the matching events. `distribution` aggregates the values found at `path`.
 	AggregationType RumMetricComputeAggregationType `json:"aggregation_type"`
-	// Toggle to include or exclude percentile aggregations for distribution metrics.
-	// Only present when `aggregation_type` is `distribution`.
+	// Toggle to include or exclude percentile aggregations (p50, p75, p90, p95, p99) for distribution metrics.
+	// Required when `aggregation_type` is `distribution`, and must be omitted otherwise.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
-	// The path to the value the RUM-based metric will aggregate on.
-	// Only present when `aggregation_type` is `distribution`.
+	// The path of the numeric RUM event attribute the metric aggregates on.
+	// Only valid when `aggregation_type` is `distribution`.
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
