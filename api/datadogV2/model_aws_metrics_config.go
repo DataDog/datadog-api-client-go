@@ -25,7 +25,11 @@ type AWSMetricsConfig struct {
 	MetricNameFilters []AWSMetricNameFilters `json:"metric_name_filters,omitempty"`
 	// AWS Metrics namespace filters. Defaults to `exclude_only`.
 	NamespaceFilters *AWSNamespaceFilters `json:"namespace_filters,omitempty"`
+	// AWS Metrics collection resource type tag filters list. Defaults to `[]`.
+	ResourceTypeTagFilters []AWSResourceTypeTagFilter `json:"resource_type_tag_filters,omitempty"`
 	// AWS Metrics collection tag filters list. Defaults to `[]`.
+	// Deprecated in favor of `resource_type_tag_filters`. The two fields are mutually exclusive on an account.
+	// Deprecated
 	TagFilters []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -245,7 +249,36 @@ func (o *AWSMetricsConfig) SetNamespaceFilters(v AWSNamespaceFilters) {
 	o.NamespaceFilters = &v
 }
 
+// GetResourceTypeTagFilters returns the ResourceTypeTagFilters field value if set, zero value otherwise.
+func (o *AWSMetricsConfig) GetResourceTypeTagFilters() []AWSResourceTypeTagFilter {
+	if o == nil || o.ResourceTypeTagFilters == nil {
+		var ret []AWSResourceTypeTagFilter
+		return ret
+	}
+	return o.ResourceTypeTagFilters
+}
+
+// GetResourceTypeTagFiltersOk returns a tuple with the ResourceTypeTagFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSMetricsConfig) GetResourceTypeTagFiltersOk() (*[]AWSResourceTypeTagFilter, bool) {
+	if o == nil || o.ResourceTypeTagFilters == nil {
+		return nil, false
+	}
+	return &o.ResourceTypeTagFilters, true
+}
+
+// HasResourceTypeTagFilters returns a boolean if a field has been set.
+func (o *AWSMetricsConfig) HasResourceTypeTagFilters() bool {
+	return o != nil && o.ResourceTypeTagFilters != nil
+}
+
+// SetResourceTypeTagFilters gets a reference to the given []AWSResourceTypeTagFilter and assigns it to the ResourceTypeTagFilters field.
+func (o *AWSMetricsConfig) SetResourceTypeTagFilters(v []AWSResourceTypeTagFilter) {
+	o.ResourceTypeTagFilters = v
+}
+
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
+// Deprecated
 func (o *AWSMetricsConfig) GetTagFilters() []AWSNamespaceTagFilter {
 	if o == nil || o.TagFilters == nil {
 		var ret []AWSNamespaceTagFilter
@@ -256,6 +289,7 @@ func (o *AWSMetricsConfig) GetTagFilters() []AWSNamespaceTagFilter {
 
 // GetTagFiltersOk returns a tuple with the TagFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *AWSMetricsConfig) GetTagFiltersOk() (*[]AWSNamespaceTagFilter, bool) {
 	if o == nil || o.TagFilters == nil {
 		return nil, false
@@ -269,6 +303,7 @@ func (o *AWSMetricsConfig) HasTagFilters() bool {
 }
 
 // SetTagFilters gets a reference to the given []AWSNamespaceTagFilter and assigns it to the TagFilters field.
+// Deprecated
 func (o *AWSMetricsConfig) SetTagFilters(v []AWSNamespaceTagFilter) {
 	o.TagFilters = v
 }
@@ -300,6 +335,9 @@ func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
 	if o.NamespaceFilters != nil {
 		toSerialize["namespace_filters"] = o.NamespaceFilters
 	}
+	if o.ResourceTypeTagFilters != nil {
+		toSerialize["resource_type_tag_filters"] = o.ResourceTypeTagFilters
+	}
 	if o.TagFilters != nil {
 		toSerialize["tag_filters"] = o.TagFilters
 	}
@@ -313,21 +351,22 @@ func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AutomuteEnabled         *bool                   `json:"automute_enabled,omitempty"`
-		CollectCloudwatchAlarms *bool                   `json:"collect_cloudwatch_alarms,omitempty"`
-		CollectCustomMetrics    *bool                   `json:"collect_custom_metrics,omitempty"`
-		CollectServiceQuotas    *bool                   `json:"collect_service_quotas,omitempty"`
-		Enabled                 *bool                   `json:"enabled,omitempty"`
-		MetricNameFilters       []AWSMetricNameFilters  `json:"metric_name_filters,omitempty"`
-		NamespaceFilters        *AWSNamespaceFilters    `json:"namespace_filters,omitempty"`
-		TagFilters              []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
+		AutomuteEnabled         *bool                      `json:"automute_enabled,omitempty"`
+		CollectCloudwatchAlarms *bool                      `json:"collect_cloudwatch_alarms,omitempty"`
+		CollectCustomMetrics    *bool                      `json:"collect_custom_metrics,omitempty"`
+		CollectServiceQuotas    *bool                      `json:"collect_service_quotas,omitempty"`
+		Enabled                 *bool                      `json:"enabled,omitempty"`
+		MetricNameFilters       []AWSMetricNameFilters     `json:"metric_name_filters,omitempty"`
+		NamespaceFilters        *AWSNamespaceFilters       `json:"namespace_filters,omitempty"`
+		ResourceTypeTagFilters  []AWSResourceTypeTagFilter `json:"resource_type_tag_filters,omitempty"`
+		TagFilters              []AWSNamespaceTagFilter    `json:"tag_filters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "collect_service_quotas", "enabled", "metric_name_filters", "namespace_filters", "tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "collect_service_quotas", "enabled", "metric_name_filters", "namespace_filters", "resource_type_tag_filters", "tag_filters"})
 	} else {
 		return err
 	}
@@ -338,6 +377,7 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.Enabled = all.Enabled
 	o.MetricNameFilters = all.MetricNameFilters
 	o.NamespaceFilters = all.NamespaceFilters
+	o.ResourceTypeTagFilters = all.ResourceTypeTagFilters
 	o.TagFilters = all.TagFilters
 
 	if len(additionalProperties) > 0 {
