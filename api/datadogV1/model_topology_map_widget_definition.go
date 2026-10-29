@@ -12,6 +12,7 @@ import (
 type TopologyMapWidgetDefinition struct {
 	TopologyMapWidgetDefinitionDataStreams *TopologyMapWidgetDefinitionDataStreams
 	TopologyMapWidgetDefinitionServiceMap  *TopologyMapWidgetDefinitionServiceMap
+	TopologyMapWidgetDefinitionCustom      *TopologyMapWidgetDefinitionCustom
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func TopologyMapWidgetDefinitionDataStreamsAsTopologyMapWidgetDefinition(v *Topo
 // TopologyMapWidgetDefinitionServiceMapAsTopologyMapWidgetDefinition is a convenience function that returns TopologyMapWidgetDefinitionServiceMap wrapped in TopologyMapWidgetDefinition.
 func TopologyMapWidgetDefinitionServiceMapAsTopologyMapWidgetDefinition(v *TopologyMapWidgetDefinitionServiceMap) TopologyMapWidgetDefinition {
 	return TopologyMapWidgetDefinition{TopologyMapWidgetDefinitionServiceMap: v}
+}
+
+// TopologyMapWidgetDefinitionCustomAsTopologyMapWidgetDefinition is a convenience function that returns TopologyMapWidgetDefinitionCustom wrapped in TopologyMapWidgetDefinition.
+func TopologyMapWidgetDefinitionCustomAsTopologyMapWidgetDefinition(v *TopologyMapWidgetDefinitionCustom) TopologyMapWidgetDefinition {
+	return TopologyMapWidgetDefinition{TopologyMapWidgetDefinitionCustom: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,6 +71,23 @@ func (obj *TopologyMapWidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.TopologyMapWidgetDefinitionServiceMap = nil
 	}
 
+	// try to unmarshal data into TopologyMapWidgetDefinitionCustom
+	err = datadog.Unmarshal(data, &obj.TopologyMapWidgetDefinitionCustom)
+	if err == nil {
+		if obj.TopologyMapWidgetDefinitionCustom != nil && obj.TopologyMapWidgetDefinitionCustom.UnparsedObject == nil {
+			jsonTopologyMapWidgetDefinitionCustom, _ := datadog.Marshal(obj.TopologyMapWidgetDefinitionCustom)
+			if string(jsonTopologyMapWidgetDefinitionCustom) == "{}" { // empty struct
+				obj.TopologyMapWidgetDefinitionCustom = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.TopologyMapWidgetDefinitionCustom = nil
+		}
+	} else {
+		obj.TopologyMapWidgetDefinitionCustom = nil
+	}
+
 	if match > 1 {
 		// more than one variant matched, so tell them apart by the items of the arrays they hold
 		if obj.TopologyMapWidgetDefinitionDataStreams != nil {
@@ -93,12 +116,26 @@ func (obj *TopologyMapWidgetDefinition) UnmarshalJSON(data []byte) error {
 				match--
 			}
 		}
+		if obj.TopologyMapWidgetDefinitionCustom != nil {
+			allRequestsUnparsed := len(obj.TopologyMapWidgetDefinitionCustom.Requests) > 0
+			for _, item := range obj.TopologyMapWidgetDefinitionCustom.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.TopologyMapWidgetDefinitionCustom = nil
+				match--
+			}
+		}
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.TopologyMapWidgetDefinitionDataStreams = nil
 		obj.TopologyMapWidgetDefinitionServiceMap = nil
+		obj.TopologyMapWidgetDefinitionCustom = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -112,6 +149,10 @@ func (obj TopologyMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.TopologyMapWidgetDefinitionServiceMap != nil {
 		return datadog.Marshal(&obj.TopologyMapWidgetDefinitionServiceMap)
+	}
+
+	if obj.TopologyMapWidgetDefinitionCustom != nil {
+		return datadog.Marshal(&obj.TopologyMapWidgetDefinitionCustom)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -128,6 +169,10 @@ func (obj *TopologyMapWidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.TopologyMapWidgetDefinitionServiceMap != nil {
 		return obj.TopologyMapWidgetDefinitionServiceMap
+	}
+
+	if obj.TopologyMapWidgetDefinitionCustom != nil {
+		return obj.TopologyMapWidgetDefinitionCustom
 	}
 
 	// all schemas are nil
