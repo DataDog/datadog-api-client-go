@@ -10,7 +10,9 @@ import (
 
 // ContainerGroupRelationshipsLink Relationships to Containers inside a Container Group.
 type ContainerGroupRelationshipsLink struct {
-	// Links data.
+	// This array is always empty, even when the group includes containers. To retrieve the containers
+	// in this group, make a new request to this endpoint with the `filter[tags]` value from
+	// `links.related`, using your site's API host.
 	Data []string `json:"data,omitempty"`
 	// Links attributes.
 	Links *ContainerGroupRelationshipsLinks `json:"links,omitempty"`

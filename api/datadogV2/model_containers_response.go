@@ -10,7 +10,7 @@ import (
 
 // ContainersResponse List of containers.
 type ContainersResponse struct {
-	// Array of Container objects.
+	// Array of containers or container group objects.
 	Data []ContainerItem `json:"data,omitempty"`
 	// Pagination links.
 	Links *ContainersResponseLinks `json:"links,omitempty"`

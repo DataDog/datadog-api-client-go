@@ -8,7 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ContainerAttributes Attributes for a container.
+// ContainerAttributes Attributes for a container. For CPU or memory metrics, use its full `container_id` as
+// `container_id:<container_id>` in `tag_filters` with the `container` data source.
 type ContainerAttributes struct {
 	// The ID of the container.
 	ContainerId *string `json:"container_id,omitempty"`
