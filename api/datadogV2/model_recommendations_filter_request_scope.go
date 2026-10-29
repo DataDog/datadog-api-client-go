@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RecommendationsFilterRequestScope Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations or `*` for both.
+// RecommendationsFilterRequestScope Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations
+// or `*` for both.
 type RecommendationsFilterRequestScope string
 
 // List of RecommendationsFilterRequestScope.
