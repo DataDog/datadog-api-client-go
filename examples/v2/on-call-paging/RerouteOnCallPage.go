@@ -1,0 +1,39 @@
+// Reroute On-Call Page returns "No Content." response
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+)
+
+func main() {
+	body := datadogV2.RerouteOnCallPageRequest{
+		Data: datadogV2.RerouteOnCallPageRequestData{
+			Attributes: datadogV2.RerouteOnCallPageRequestDataAttributes{
+				Comment: datadog.PtrString("Rerouting to the database team."),
+				Target: datadogV2.CreatePageRequestDataAttributesTarget{
+					Identifier: datadog.PtrString("my-team"),
+					Type:       datadogV2.ONCALLPAGETARGETTYPE_TEAM_HANDLE.Ptr(),
+				},
+			},
+			Type: datadogV2.REROUTEONCALLPAGEREQUESTDATATYPE_REROUTE,
+		},
+	}
+	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewOnCallPagingApi(apiClient)
+	r, err := api.RerouteOnCallPage(ctx, uuid.MustParse("15e74b8b-f865-48d0-bcc5-453323ed2c8f"), body)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OnCallPagingApi.RerouteOnCallPage`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
