@@ -13,15 +13,12 @@ import (
 )
 
 func main() {
-	// there is a valid "agent_rule" in the system
-	AgentRuleDataID := os.Getenv("AGENT_RULE_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.GetCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
+	resp, r, err := api.GetCloudWorkloadSecurityAgentRule(ctx, "agent_rule_id")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.GetCloudWorkloadSecurityAgentRule`: %v\n", err)
