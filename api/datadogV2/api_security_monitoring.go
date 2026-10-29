@@ -7595,15 +7595,6 @@ func (a *SecurityMonitoringApi) GetRuleVersionHistory(ctx _context.Context, rule
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.GetRuleVersionHistory"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetRuleVersionHistory")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -16616,15 +16607,6 @@ func (a *SecurityMonitoringApi) RestoreSecurityMonitoringRule(ctx _context.Conte
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
-
-	operationId := "v2.RestoreSecurityMonitoringRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.RestoreSecurityMonitoringRule")
 	if err != nil {
