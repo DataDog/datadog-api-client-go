@@ -259,6 +259,7 @@ func (a *RUMApi) DeleteRUMApplication(ctx _context.Context, id string) (*_nethtt
 
 // DeleteSourcemapsOptionalParameters holds optional parameters for DeleteSourcemaps.
 type DeleteSourcemapsOptionalParameters struct {
+	SymbolType          *SourcemapSymbolType
 	FilterService       *[]string
 	FilterVersion       *[]string
 	FilterVariant       *[]string
@@ -283,6 +284,12 @@ type DeleteSourcemapsOptionalParameters struct {
 func NewDeleteSourcemapsOptionalParameters() *DeleteSourcemapsOptionalParameters {
 	this := DeleteSourcemapsOptionalParameters{}
 	return &this
+}
+
+// WithSymbolType sets the corresponding parameter name and returns the struct.
+func (r *DeleteSourcemapsOptionalParameters) WithSymbolType(symbolType SourcemapSymbolType) *DeleteSourcemapsOptionalParameters {
+	r.SymbolType = &symbolType
+	return r
 }
 
 // WithFilterService sets the corresponding parameter name and returns the struct.
@@ -433,6 +440,9 @@ func (a *RUMApi) DeleteSourcemaps(ctx _context.Context, mapkind SourcemapMapKind
 	localVarFormParams := _neturl.Values{}
 	localVarQueryParams.Add("mapkind", datadog.ParameterToString(mapkind, ""))
 	localVarQueryParams.Add("dry_run", datadog.ParameterToString(dryRun, ""))
+	if optionalParams.SymbolType != nil {
+		localVarQueryParams.Add("symbol_type", datadog.ParameterToString(*optionalParams.SymbolType, ""))
+	}
 	if optionalParams.FilterService != nil {
 		t := *optionalParams.FilterService
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -823,7 +833,8 @@ func (a *RUMApi) GetRUMApplications(ctx _context.Context) (RUMApplicationsRespon
 }
 
 // GetServiceRepositoryInfo Get service repository information.
-// Returns the repository URL and commit SHA associated with a given service and version.
+// Returns the repository URL and commit SHA associated with a debug ID or a given service and version.
+// Provide either `debug_id`, or both `service` and `version`. When `debug_id` is set, it takes precedence.
 func (a *RUMApi) GetServiceRepositoryInfo(ctx _context.Context, body ServiceRepositoryInfoRequest) (ServiceRepositoryInfoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -888,7 +899,7 @@ func (a *RUMApi) GetServiceRepositoryInfo(ctx _context.Context, body ServiceRepo
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 500 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1331,6 +1342,7 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 type ListSourcemapsOptionalParameters struct {
 	SearchBy            *SourcemapSearchBy
 	Mapkind             *SourcemapMapKind
+	SymbolType          *SourcemapSymbolType
 	PageAfter           *string
 	PageSize            *int64
 	PageNumber          *int64
@@ -1369,6 +1381,12 @@ func (r *ListSourcemapsOptionalParameters) WithSearchBy(searchBy SourcemapSearch
 // WithMapkind sets the corresponding parameter name and returns the struct.
 func (r *ListSourcemapsOptionalParameters) WithMapkind(mapkind SourcemapMapKind) *ListSourcemapsOptionalParameters {
 	r.Mapkind = &mapkind
+	return r
+}
+
+// WithSymbolType sets the corresponding parameter name and returns the struct.
+func (r *ListSourcemapsOptionalParameters) WithSymbolType(symbolType SourcemapSymbolType) *ListSourcemapsOptionalParameters {
+	r.SymbolType = &symbolType
 	return r
 }
 
@@ -1629,6 +1647,9 @@ func (a *RUMApi) ListSourcemaps(ctx _context.Context, o ...ListSourcemapsOptiona
 	if optionalParams.Mapkind != nil {
 		localVarQueryParams.Add("mapkind", datadog.ParameterToString(*optionalParams.Mapkind, ""))
 	}
+	if optionalParams.SymbolType != nil {
+		localVarQueryParams.Add("symbol_type", datadog.ParameterToString(*optionalParams.SymbolType, ""))
+	}
 	if optionalParams.PageAfter != nil {
 		localVarQueryParams.Add("page[after]", datadog.ParameterToString(*optionalParams.PageAfter, ""))
 	}
@@ -1865,6 +1886,7 @@ func (a *RUMApi) ListSourcemaps(ctx _context.Context, o ...ListSourcemapsOptiona
 
 // RestoreSourcemapsOptionalParameters holds optional parameters for RestoreSourcemaps.
 type RestoreSourcemapsOptionalParameters struct {
+	SymbolType          *SourcemapSymbolType
 	FilterService       *[]string
 	FilterVersion       *[]string
 	FilterVariant       *[]string
@@ -1889,6 +1911,12 @@ type RestoreSourcemapsOptionalParameters struct {
 func NewRestoreSourcemapsOptionalParameters() *RestoreSourcemapsOptionalParameters {
 	this := RestoreSourcemapsOptionalParameters{}
 	return &this
+}
+
+// WithSymbolType sets the corresponding parameter name and returns the struct.
+func (r *RestoreSourcemapsOptionalParameters) WithSymbolType(symbolType SourcemapSymbolType) *RestoreSourcemapsOptionalParameters {
+	r.SymbolType = &symbolType
+	return r
 }
 
 // WithFilterService sets the corresponding parameter name and returns the struct.
@@ -2039,6 +2067,9 @@ func (a *RUMApi) RestoreSourcemaps(ctx _context.Context, mapkind SourcemapMapKin
 	localVarFormParams := _neturl.Values{}
 	localVarQueryParams.Add("mapkind", datadog.ParameterToString(mapkind, ""))
 	localVarQueryParams.Add("dry_run", datadog.ParameterToString(dryRun, ""))
+	if optionalParams.SymbolType != nil {
+		localVarQueryParams.Add("symbol_type", datadog.ParameterToString(*optionalParams.SymbolType, ""))
+	}
 	if optionalParams.FilterService != nil {
 		t := *optionalParams.FilterService
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
