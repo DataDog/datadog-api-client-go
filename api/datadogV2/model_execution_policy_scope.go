@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ExecutionPolicyScope Restricts where the policy applies. At most one of `kubernetes`, `scripts`,
-// or `remote_action_rshell` can be set. An empty object means the policy has
-// no scope restriction.
+// ExecutionPolicyScope Restricts where the policy applies. At most one scope type can be set,
+// and it must match the action pattern's integration. An empty object means
+// the policy has no scope restriction.
 type ExecutionPolicyScope struct {
 	// Restricts the policy to specific Kubernetes namespaces.
 	Kubernetes *ExecutionPolicyKubernetesScope `json:"kubernetes,omitempty"`
@@ -18,6 +18,8 @@ type ExecutionPolicyScope struct {
 	RemoteActionRshell *ExecutionPolicyRemoteActionRshellScope `json:"remote_action_rshell,omitempty"`
 	// Restricts the policy to specific scripts.
 	Scripts *ExecutionPolicyScriptScope `json:"scripts,omitempty"`
+	// Restricts the policy to specific Slack private channel names.
+	Slack *ExecutionPolicySlackScope `json:"slack,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -124,6 +126,34 @@ func (o *ExecutionPolicyScope) SetScripts(v ExecutionPolicyScriptScope) {
 	o.Scripts = &v
 }
 
+// GetSlack returns the Slack field value if set, zero value otherwise.
+func (o *ExecutionPolicyScope) GetSlack() ExecutionPolicySlackScope {
+	if o == nil || o.Slack == nil {
+		var ret ExecutionPolicySlackScope
+		return ret
+	}
+	return *o.Slack
+}
+
+// GetSlackOk returns a tuple with the Slack field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecutionPolicyScope) GetSlackOk() (*ExecutionPolicySlackScope, bool) {
+	if o == nil || o.Slack == nil {
+		return nil, false
+	}
+	return o.Slack, true
+}
+
+// HasSlack returns a boolean if a field has been set.
+func (o *ExecutionPolicyScope) HasSlack() bool {
+	return o != nil && o.Slack != nil
+}
+
+// SetSlack gets a reference to the given ExecutionPolicySlackScope and assigns it to the Slack field.
+func (o *ExecutionPolicyScope) SetSlack(v ExecutionPolicySlackScope) {
+	o.Slack = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ExecutionPolicyScope) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,6 +169,9 @@ func (o ExecutionPolicyScope) MarshalJSON() ([]byte, error) {
 	if o.Scripts != nil {
 		toSerialize["scripts"] = o.Scripts
 	}
+	if o.Slack != nil {
+		toSerialize["slack"] = o.Slack
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -152,13 +185,14 @@ func (o *ExecutionPolicyScope) UnmarshalJSON(bytes []byte) (err error) {
 		Kubernetes         *ExecutionPolicyKubernetesScope         `json:"kubernetes,omitempty"`
 		RemoteActionRshell *ExecutionPolicyRemoteActionRshellScope `json:"remote_action_rshell,omitempty"`
 		Scripts            *ExecutionPolicyScriptScope             `json:"scripts,omitempty"`
+		Slack              *ExecutionPolicySlackScope              `json:"slack,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"kubernetes", "remote_action_rshell", "scripts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"kubernetes", "remote_action_rshell", "scripts", "slack"})
 	} else {
 		return err
 	}
@@ -176,6 +210,10 @@ func (o *ExecutionPolicyScope) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Scripts = all.Scripts
+	if all.Slack != nil && all.Slack.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Slack = all.Slack
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

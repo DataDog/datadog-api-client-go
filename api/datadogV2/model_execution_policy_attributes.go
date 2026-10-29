@@ -23,9 +23,9 @@ type ExecutionPolicyAttributes struct {
 	Effect ExecutionPolicyEffect `json:"effect"`
 	// The name of the execution policy.
 	Name string `json:"name"`
-	// Restricts where the policy applies. At most one of `kubernetes`, `scripts`,
-	// or `remote_action_rshell` can be set. An empty object means the policy has
-	// no scope restriction.
+	// Restricts where the policy applies. At most one scope type can be set,
+	// and it must match the action pattern's integration. An empty object means
+	// the policy has no scope restriction.
 	Scope *ExecutionPolicyScope `json:"scope,omitempty"`
 	// The targets this policy applies to.
 	Targets []ExecutionPolicyTarget `json:"targets"`

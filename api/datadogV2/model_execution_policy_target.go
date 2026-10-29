@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ExecutionPolicyTarget A target this policy is scoped to, expressed as a set of Agent tags.
+// ExecutionPolicyTarget A target this policy is scoped to, expressed as a set of tags.
 type ExecutionPolicyTarget struct {
-	// The Agent tags identifying the target.
+	// The tags identifying the target.
 	AgentTags []string `json:"agent_tags"`
 	// A human-readable name for the target.
 	Name datadog.NullableString `json:"name,omitempty"`
