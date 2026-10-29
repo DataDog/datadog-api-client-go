@@ -10,10 +10,14 @@ import (
 
 // DataDeletionResponseMeta The metadata of the data deletion response.
 type DataDeletionResponseMeta struct {
+	// Number of additional deletion requests the current organization can create before reaching the concurrency limit. Requests with a `pending`, `in_progress`, or `deleting` status count toward the limit. This field is returned only when listing deletion requests, and is omitted if the value cannot be determined.
+	AvailableSlots *int64 `json:"available_slots,omitempty"`
 	// The total deletion requests created by product.
 	CountProduct map[string]int64 `json:"count_product,omitempty"`
 	// The total deletion requests created by status.
 	CountStatus map[string]int64 `json:"count_status,omitempty"`
+	// Maximum number of deletion requests with a `pending`, `in_progress`, or `deleting` status that the current organization can have at the same time. This field is returned only when listing deletion requests, and is omitted if the value cannot be determined.
+	MaxConcurrentRequests *int64 `json:"max_concurrent_requests,omitempty"`
 	// The next page when searching deletion requests created in the current organization.
 	NextPage *string `json:"next_page,omitempty"`
 	// The product of the deletion request.
@@ -40,6 +44,34 @@ func NewDataDeletionResponseMeta() *DataDeletionResponseMeta {
 func NewDataDeletionResponseMetaWithDefaults() *DataDeletionResponseMeta {
 	this := DataDeletionResponseMeta{}
 	return &this
+}
+
+// GetAvailableSlots returns the AvailableSlots field value if set, zero value otherwise.
+func (o *DataDeletionResponseMeta) GetAvailableSlots() int64 {
+	if o == nil || o.AvailableSlots == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AvailableSlots
+}
+
+// GetAvailableSlotsOk returns a tuple with the AvailableSlots field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseMeta) GetAvailableSlotsOk() (*int64, bool) {
+	if o == nil || o.AvailableSlots == nil {
+		return nil, false
+	}
+	return o.AvailableSlots, true
+}
+
+// HasAvailableSlots returns a boolean if a field has been set.
+func (o *DataDeletionResponseMeta) HasAvailableSlots() bool {
+	return o != nil && o.AvailableSlots != nil
+}
+
+// SetAvailableSlots gets a reference to the given int64 and assigns it to the AvailableSlots field.
+func (o *DataDeletionResponseMeta) SetAvailableSlots(v int64) {
+	o.AvailableSlots = &v
 }
 
 // GetCountProduct returns the CountProduct field value if set, zero value otherwise.
@@ -96,6 +128,34 @@ func (o *DataDeletionResponseMeta) HasCountStatus() bool {
 // SetCountStatus gets a reference to the given map[string]int64 and assigns it to the CountStatus field.
 func (o *DataDeletionResponseMeta) SetCountStatus(v map[string]int64) {
 	o.CountStatus = v
+}
+
+// GetMaxConcurrentRequests returns the MaxConcurrentRequests field value if set, zero value otherwise.
+func (o *DataDeletionResponseMeta) GetMaxConcurrentRequests() int64 {
+	if o == nil || o.MaxConcurrentRequests == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MaxConcurrentRequests
+}
+
+// GetMaxConcurrentRequestsOk returns a tuple with the MaxConcurrentRequests field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseMeta) GetMaxConcurrentRequestsOk() (*int64, bool) {
+	if o == nil || o.MaxConcurrentRequests == nil {
+		return nil, false
+	}
+	return o.MaxConcurrentRequests, true
+}
+
+// HasMaxConcurrentRequests returns a boolean if a field has been set.
+func (o *DataDeletionResponseMeta) HasMaxConcurrentRequests() bool {
+	return o != nil && o.MaxConcurrentRequests != nil
+}
+
+// SetMaxConcurrentRequests gets a reference to the given int64 and assigns it to the MaxConcurrentRequests field.
+func (o *DataDeletionResponseMeta) SetMaxConcurrentRequests(v int64) {
+	o.MaxConcurrentRequests = &v
 }
 
 // GetNextPage returns the NextPage field value if set, zero value otherwise.
@@ -188,11 +248,17 @@ func (o DataDeletionResponseMeta) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AvailableSlots != nil {
+		toSerialize["available_slots"] = o.AvailableSlots
+	}
 	if o.CountProduct != nil {
 		toSerialize["count_product"] = o.CountProduct
 	}
 	if o.CountStatus != nil {
 		toSerialize["count_status"] = o.CountStatus
+	}
+	if o.MaxConcurrentRequests != nil {
+		toSerialize["max_concurrent_requests"] = o.MaxConcurrentRequests
 	}
 	if o.NextPage != nil {
 		toSerialize["next_page"] = o.NextPage
@@ -213,23 +279,27 @@ func (o DataDeletionResponseMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DataDeletionResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CountProduct  map[string]int64 `json:"count_product,omitempty"`
-		CountStatus   map[string]int64 `json:"count_status,omitempty"`
-		NextPage      *string          `json:"next_page,omitempty"`
-		Product       *string          `json:"product,omitempty"`
-		RequestStatus *string          `json:"request_status,omitempty"`
+		AvailableSlots        *int64           `json:"available_slots,omitempty"`
+		CountProduct          map[string]int64 `json:"count_product,omitempty"`
+		CountStatus           map[string]int64 `json:"count_status,omitempty"`
+		MaxConcurrentRequests *int64           `json:"max_concurrent_requests,omitempty"`
+		NextPage              *string          `json:"next_page,omitempty"`
+		Product               *string          `json:"product,omitempty"`
+		RequestStatus         *string          `json:"request_status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count_product", "count_status", "next_page", "product", "request_status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"available_slots", "count_product", "count_status", "max_concurrent_requests", "next_page", "product", "request_status"})
 	} else {
 		return err
 	}
+	o.AvailableSlots = all.AvailableSlots
 	o.CountProduct = all.CountProduct
 	o.CountStatus = all.CountStatus
+	o.MaxConcurrentRequests = all.MaxConcurrentRequests
 	o.NextPage = all.NextPage
 	o.Product = all.Product
 	o.RequestStatus = all.RequestStatus
