@@ -16,11 +16,29 @@ func main() {
 	body := datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
+				Actions: []datadogV2.CloudWorkloadSecurityAgentRuleAction{
+					{
+						Coredump:      &datadogV2.CloudWorkloadSecurityAgentRuleActionCoreDump{},
+						Disabled:      datadog.PtrBool(false),
+						Hash:          &datadogV2.CloudWorkloadSecurityAgentRuleActionHash{},
+						Kill:          &datadogV2.CloudWorkloadSecurityAgentRuleKill{},
+						Log:           &datadogV2.CloudWorkloadSecurityAgentRuleActionLog{},
+						Metadata:      &datadogV2.CloudWorkloadSecurityAgentRuleActionMetadata{},
+						NetworkFilter: &datadogV2.CloudWorkloadSecurityAgentRuleActionNetworkFilter{},
+						Set:           &datadogV2.CloudWorkloadSecurityAgentRuleActionSet{},
+					},
+				},
+				Blocking:    []string{},
 				Description: datadog.PtrString("My Agent rule"),
+				Disabled:    []string{},
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
 				Filters:     []string{},
-				Name:        "examplecsmthreat",
+				Monitoring:  []string{},
+				Name:        "my_agent_rule",
+				PolicyId:    datadog.PtrString("a8c8e364-6556-434d-b798-a4c23de29c0b"),
+				ProductTags: []string{},
+				Silent:      datadog.PtrBool(false),
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
