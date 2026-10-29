@@ -6111,7 +6111,7 @@ func (a *CloudCostManagementApi) ReorderTagPipelinesRulesets(ctx _context.Contex
 
 // SearchCostRecommendationsOptionalParameters holds optional parameters for SearchCostRecommendations.
 type SearchCostRecommendationsOptionalParameters struct {
-	PageSize  *string
+	PageSize  *int32
 	PageToken *string
 }
 
@@ -6122,7 +6122,7 @@ func NewSearchCostRecommendationsOptionalParameters() *SearchCostRecommendations
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *SearchCostRecommendationsOptionalParameters) WithPageSize(pageSize string) *SearchCostRecommendationsOptionalParameters {
+func (r *SearchCostRecommendationsOptionalParameters) WithPageSize(pageSize int32) *SearchCostRecommendationsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
@@ -6212,6 +6212,15 @@ func (a *CloudCostManagementApi) SearchCostRecommendations(ctx _context.Context,
 		newErr := datadog.GenericOpenAPIError{
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse

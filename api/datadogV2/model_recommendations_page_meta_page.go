@@ -14,7 +14,7 @@ type RecommendationsPageMetaPage struct {
 	Filter *string `json:"filter,omitempty"`
 	// Opaque token used to fetch the next page; absent on the last page.
 	NextPageToken *string `json:"next_page_token,omitempty"`
-	// Number of items returned in this page (1–10000).
+	// Number of items returned in this page (1–5000).
 	PageSize *int32 `json:"page_size,omitempty"`
 	// Pagination token echoed back from the request.
 	PageToken *string `json:"page_token,omitempty"`

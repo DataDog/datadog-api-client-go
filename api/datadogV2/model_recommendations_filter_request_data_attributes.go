@@ -14,11 +14,13 @@ type RecommendationsFilterRequestDataAttributes struct {
 	// `data.id`, including when empty. When omitted, `data.id` is used. If the resulting filter
 	// is empty, it defaults to `*`. Scope, view, and pagination still apply.
 	Filter *string `json:"filter,omitempty"`
-	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations or `*` for both.
+	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations
+	// or `*` for both.
 	Scope *RecommendationsFilterRequestScope `json:"scope,omitempty"`
 	// Ordered list of sort clauses applied to the result set.
 	Sort []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
-	// Active view name (for example, `active`, `dismissed`, `open`, `in-progress`, or `completed`).
+	// Status view to return: `all`, `active` (not dismissed), `dismissed`, `open`, `in-progress`,
+	// or `completed`. Defaults to `all`, which returns recommendations in every status.
 	View *string `json:"view,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
