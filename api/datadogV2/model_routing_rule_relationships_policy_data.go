@@ -14,7 +14,7 @@ import (
 type RoutingRuleRelationshipsPolicyData struct {
 	// Specifies the unique identifier of the policy.
 	Id string `json:"id"`
-	// Indicates that the resource is of type 'policies'.
+	// Indicates that the resource is of type `policies`.
 	Type RoutingRuleRelationshipsPolicyDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

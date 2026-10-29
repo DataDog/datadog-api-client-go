@@ -14,7 +14,7 @@ import (
 type EscalationPolicyCreateRequestDataAttributes struct {
 	// Specifies the name for the new escalation policy.
 	Name string `json:"name"`
-	// Indicates whether the page is automatically resolved when the policy ends.
+	// Indicates whether the Page is automatically resolved when the policy ends.
 	ResolvePageOnPolicyEnd *bool `json:"resolve_page_on_policy_end,omitempty"`
 	// Specifies how many times the escalation sequence is retried if there is no response.
 	Retries *int64 `json:"retries,omitempty"`

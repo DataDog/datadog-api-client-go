@@ -12,11 +12,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RoutingRuleRerouteToTeamAction Reroutes the page to another team, which then evaluates it against its own routing rules. Each routing rule can include this action only once. It can be combined only with `send_slack_message` and `send_teams_message` actions. It can't be used with `escalation_policy` or `workflow` actions, or when the routing rule sets `policy_id`.
+// RoutingRuleRerouteToTeamAction Reroutes the Page to another team, which then evaluates it against its own routing rules. Each routing rule can include this action only once. It can be combined only with `send_slack_message` and `send_teams_message` actions. It can't be used with `escalation_policy` or `workflow` actions, or when the routing rule sets `policy_id`.
 type RoutingRuleRerouteToTeamAction struct {
-	// The ID of the team to reroute the page to.
+	// The ID of the team to reroute the Page to.
 	DestinationTeamId uuid.UUID `json:"destination_team_id"`
-	// Indicates that the action reroutes the page to another team's routing rules.
+	// Indicates that the action reroutes the Page to another team's routing rules.
 	Type RoutingRuleRerouteToTeamActionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

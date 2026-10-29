@@ -10,7 +10,7 @@ import (
 
 // TeamRoutingRulesRequestDataAttributes Represents the attributes of a request to update or create team routing rules.
 type TeamRoutingRulesRequestDataAttributes struct {
-	// A list of routing rule items that define how incoming pages should be handled.
+	// A list of routing rule items that define how incoming Pages should be handled.
 	Rules []TeamRoutingRulesRequestRule `json:"rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

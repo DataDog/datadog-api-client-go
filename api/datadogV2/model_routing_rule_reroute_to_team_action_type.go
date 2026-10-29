@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RoutingRuleRerouteToTeamActionType Indicates that the action reroutes the page to another team's routing rules.
+// RoutingRuleRerouteToTeamActionType Indicates that the action reroutes the Page to another team's routing rules.
 type RoutingRuleRerouteToTeamActionType string
 
 // List of RoutingRuleRerouteToTeamActionType.
