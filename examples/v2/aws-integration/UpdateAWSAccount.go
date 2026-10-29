@@ -53,12 +53,13 @@ func main() {
 					CollectCloudwatchAlarms: datadog.PtrBool(true),
 					CollectCustomMetrics:    datadog.PtrBool(true),
 					Enabled:                 datadog.PtrBool(true),
-					TagFilters: []datadogV2.AWSNamespaceTagFilter{
+					ResourceTypeTagFilters: []datadogV2.AWSResourceTypeTagFilter{
 						{
-							Namespace: datadog.PtrString("AWS/EC2"),
-							Tags: *datadog.NewNullableList(&[]string{
-								"key:value",
-							}),
+							Service: datadog.PtrString("ec2"),
+							ResourceTypes: []string{
+								"instance",
+							},
+							Expression: "env:staging",
 						},
 					},
 				},
