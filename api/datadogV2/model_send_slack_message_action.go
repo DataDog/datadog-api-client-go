@@ -14,6 +14,8 @@ import (
 type SendSlackMessageAction struct {
 	// The channel ID.
 	Channel string `json:"channel"`
+	// Options that customize the content of the Slack message sent for a Page.
+	CustomizableContent *SendSlackMessageActionCustomizableContent `json:"customizable_content,omitempty"`
 	// Indicates that the action is a send Slack message action.
 	Type SendSlackMessageActionType `json:"type"`
 	// The workspace ID.
@@ -66,6 +68,34 @@ func (o *SendSlackMessageAction) GetChannelOk() (*string, bool) {
 // SetChannel sets field value.
 func (o *SendSlackMessageAction) SetChannel(v string) {
 	o.Channel = v
+}
+
+// GetCustomizableContent returns the CustomizableContent field value if set, zero value otherwise.
+func (o *SendSlackMessageAction) GetCustomizableContent() SendSlackMessageActionCustomizableContent {
+	if o == nil || o.CustomizableContent == nil {
+		var ret SendSlackMessageActionCustomizableContent
+		return ret
+	}
+	return *o.CustomizableContent
+}
+
+// GetCustomizableContentOk returns a tuple with the CustomizableContent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendSlackMessageAction) GetCustomizableContentOk() (*SendSlackMessageActionCustomizableContent, bool) {
+	if o == nil || o.CustomizableContent == nil {
+		return nil, false
+	}
+	return o.CustomizableContent, true
+}
+
+// HasCustomizableContent returns a boolean if a field has been set.
+func (o *SendSlackMessageAction) HasCustomizableContent() bool {
+	return o != nil && o.CustomizableContent != nil
+}
+
+// SetCustomizableContent gets a reference to the given SendSlackMessageActionCustomizableContent and assigns it to the CustomizableContent field.
+func (o *SendSlackMessageAction) SetCustomizableContent(v SendSlackMessageActionCustomizableContent) {
+	o.CustomizableContent = &v
 }
 
 // GetType returns the Type field value.
@@ -121,6 +151,9 @@ func (o SendSlackMessageAction) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["channel"] = o.Channel
+	if o.CustomizableContent != nil {
+		toSerialize["customizable_content"] = o.CustomizableContent
+	}
 	toSerialize["type"] = o.Type
 	toSerialize["workspace"] = o.Workspace
 
@@ -133,9 +166,10 @@ func (o SendSlackMessageAction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SendSlackMessageAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Channel   *string                     `json:"channel"`
-		Type      *SendSlackMessageActionType `json:"type"`
-		Workspace *string                     `json:"workspace"`
+		Channel             *string                                    `json:"channel"`
+		CustomizableContent *SendSlackMessageActionCustomizableContent `json:"customizable_content,omitempty"`
+		Type                *SendSlackMessageActionType                `json:"type"`
+		Workspace           *string                                    `json:"workspace"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,13 +185,17 @@ func (o *SendSlackMessageAction) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"channel", "type", "workspace"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"channel", "customizable_content", "type", "workspace"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Channel = *all.Channel
+	if all.CustomizableContent != nil && all.CustomizableContent.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.CustomizableContent = all.CustomizableContent
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
