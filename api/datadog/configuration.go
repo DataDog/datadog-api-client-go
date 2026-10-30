@@ -12,6 +12,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	client "github.com/DataDog/datadog-api-client-go/v2"
@@ -76,12 +77,17 @@ type APIKey struct {
 	Prefix string
 }
 
-// DelegatedTokenCredentials delegated token authentication to a request passed via context using ContextDelegatedToken.
+// DelegatedTokenCredentials holds the credentials shared through ContextDelegatedToken.
+// Configure its fields before use. Once in use, it must not be copied or accessed
+// directly while requests are running; use APIClient.GetDelegatedToken for a snapshot.
 type DelegatedTokenCredentials struct {
 	OrgUUID        string
 	DelegatedToken string
 	DelegatedProof string
 	Expiration     time.Time
+
+	mu      sync.Mutex
+	refresh *delegatedTokenRefresh
 }
 
 // DelegatedTokenConfig provides cloud provider based authentication configuration.
