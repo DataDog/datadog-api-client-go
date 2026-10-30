@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateVariant Request to create a variant.
+// CreateVariant Attributes for creating a variant.
 type CreateVariant struct {
 	// The unique key of the variant.
 	Key string `json:"key"`

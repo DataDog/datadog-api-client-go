@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,21 +14,24 @@ import (
 
 func main() {
 	body := datadogV2.UpdateVariantRequest{
-		Name:  datadog.PtrString("Variant ABC123 Updated"),
-		Value: datadog.PtrString("new_value"),
+		Data: datadogV2.UpdateVariantData{
+			Attributes: datadogV2.UpdateVariantAttributes{
+				Name:  datadog.PtrString("Variant ABC123 Updated"),
+				Value: datadog.PtrString("new_value"),
+			},
+			Id:   datadog.PtrUUID(uuid.MustParse("550e8400-e29b-41d4-a716-446655440002")),
+			Type: datadogV2.VARIANTDATATYPE_VARIANTS,
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewFeatureFlagsApi(apiClient)
-	resp, r, err := api.UpdateVariantForFeatureFlag(ctx, uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"), uuid.MustParse("550e8400-e29b-41d4-a716-446655440002"), body)
+	r, err := api.UpdateVariantForFeatureFlag(ctx, uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"), uuid.MustParse("550e8400-e29b-41d4-a716-446655440002"), body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeatureFlagsApi.UpdateVariantForFeatureFlag`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-
-	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `FeatureFlagsApi.UpdateVariantForFeatureFlag`:\n%s\n", responseContent)
 }

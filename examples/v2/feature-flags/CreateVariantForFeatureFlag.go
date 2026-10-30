@@ -14,10 +14,15 @@ import (
 )
 
 func main() {
-	body := datadogV2.CreateVariant{
-		Key:   "variant-abc123",
-		Name:  "Variant ABC123",
-		Value: "true",
+	body := datadogV2.CreateVariantRequest{
+		Data: datadogV2.CreateVariantData{
+			Attributes: datadogV2.CreateVariant{
+				Key:   "variant-abc123",
+				Name:  "Variant ABC123",
+				Value: "true",
+			},
+			Type: datadogV2.VARIANTDATATYPE_VARIANTS,
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
