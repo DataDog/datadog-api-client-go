@@ -11,7 +11,7 @@ import (
 )
 
 // RecommendationsFilterRequestScope Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations
-// or `*` for both.
+// or `*` for both. An empty value is treated as `ccm`.
 type RecommendationsFilterRequestScope string
 
 // List of RecommendationsFilterRequestScope.
@@ -19,12 +19,14 @@ const (
 	RECOMMENDATIONSFILTERREQUESTSCOPE_CCM        RecommendationsFilterRequestScope = "ccm"
 	RECOMMENDATIONSFILTERREQUESTSCOPE_EXPERIMENT RecommendationsFilterRequestScope = "experiment"
 	RECOMMENDATIONSFILTERREQUESTSCOPE_ALL        RecommendationsFilterRequestScope = "*"
+	RECOMMENDATIONSFILTERREQUESTSCOPE_EMPTY      RecommendationsFilterRequestScope = ""
 )
 
 var allowedRecommendationsFilterRequestScopeEnumValues = []RecommendationsFilterRequestScope{
 	RECOMMENDATIONSFILTERREQUESTSCOPE_CCM,
 	RECOMMENDATIONSFILTERREQUESTSCOPE_EXPERIMENT,
 	RECOMMENDATIONSFILTERREQUESTSCOPE_ALL,
+	RECOMMENDATIONSFILTERREQUESTSCOPE_EMPTY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
