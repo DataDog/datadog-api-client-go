@@ -23,7 +23,7 @@ func main() {
 				DisplayName:   datadog.PtrString("Checkout completed"),
 				FeatureIds:    []string{},
 				JourneyRum: datadogV2.RUMOperationJourneyRum{
-					RumSteps: []datadogV2.RUMOperationJourneyStep{
+					RumSteps: *datadog.NewNullableList(&[]datadogV2.RUMOperationJourneyStep{
 						{
 							Composite: &datadogV2.RUMOperationJourneyCompositeRule{
 								Kind:        datadogV2.RUMOPERATIONJOURNEYCOMPOSITERULEKIND_ALL_OF,
@@ -41,7 +41,7 @@ func main() {
 							},
 							Type: datadogV2.RUMOPERATIONJOURNEYSTEPTYPE_START,
 						},
-					},
+					}),
 				},
 				Name: "checkout_completed",
 				Tags: []string{
