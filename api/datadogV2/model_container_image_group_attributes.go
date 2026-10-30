@@ -10,7 +10,9 @@ import (
 
 // ContainerImageGroupAttributes Attributes for a Container Image Group.
 type ContainerImageGroupAttributes struct {
-	// Number of Container Images in the group.
+	// Number of images in the group. An image with multiple values for a grouping tag can appear
+	// in multiple groups. Images missing a grouping key are excluded. Summing group counts does
+	// not give a reliable inventory total.
 	Count *int64 `json:"count,omitempty"`
 	// Name of the Container Image group.
 	Name *string `json:"name,omitempty"`

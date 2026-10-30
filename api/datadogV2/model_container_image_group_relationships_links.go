@@ -10,7 +10,9 @@ import (
 
 // ContainerImageGroupRelationshipsLinks Links attributes.
 type ContainerImageGroupRelationshipsLinks struct {
-	// Link to related Container Images.
+	// Link containing the original filters combined with the group tags, without `group_by`.
+	// Use its `filter[tags]` value in a new request to your site's API host. The tags must satisfy
+	// `filter[tags]` syntax restrictions.
 	Related *string `json:"related,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

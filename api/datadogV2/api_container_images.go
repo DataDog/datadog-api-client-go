@@ -61,7 +61,12 @@ func (r *ListContainerImagesOptionalParameters) WithPageCursor(pageCursor string
 }
 
 // ListContainerImages Get all Container Images.
-// Get all Container Images for your organization.
+// Get all container images for your organization. This endpoint queries current
+// inventory and does not support time-range parameters.
+//
+// Use `group_by` to return image groups with counts. Grouped results are limited
+// by `page[size]`, may be incomplete, and do not support pagination.
+//
 // **Note**: To enrich the data returned by this endpoint with security scans, see the new [api/v2/security/scanned-assets-metadata](https://docs.datadoghq.com/api/latest/security-monitoring/#list-scanned-assets-metadata) endpoint.
 func (a *ContainerImagesApi) ListContainerImages(ctx _context.Context, o ...ListContainerImagesOptionalParameters) (ContainerImagesResponse, *_nethttp.Response, error) {
 	var (

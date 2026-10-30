@@ -18,7 +18,7 @@ type ContainerImageFlavor struct {
 	OsName *string `json:"os_name,omitempty"`
 	// Operating System version supported by the Container Image.
 	OsVersion *string `json:"os_version,omitempty"`
-	// Size of the platform-specific Container Image.
+	// Size of the platform-specific Container Image in bytes.
 	Size *int64 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

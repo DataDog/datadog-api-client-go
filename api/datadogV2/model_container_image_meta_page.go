@@ -12,13 +12,15 @@ import (
 type ContainerImageMetaPage struct {
 	// The cursor used to get the current results, if any.
 	Cursor *string `json:"cursor,omitempty"`
-	// Number of results returned
+	// Maximum number of results requested.
 	Limit *int32 `json:"limit,omitempty"`
-	// The cursor used to get the next results, if any.
+	// The cursor used to get the next results, if any. To make the next request, use the same
+	// parameters with the addition of `page[cursor]`. Always empty for grouped results, even
+	// when additional groups exist.
 	NextCursor *string `json:"next_cursor,omitempty"`
 	// The cursor used to get the previous results, if any.
 	PrevCursor datadog.NullableString `json:"prev_cursor,omitempty"`
-	// Total number of records that match the query.
+	// Total number of images that match the query. Always `0` for grouped results.
 	Total *int64 `json:"total,omitempty"`
 	// Type of Container Image pagination.
 	Type *ContainerImageMetaPageType `json:"type,omitempty"`
