@@ -44,6 +44,8 @@ type StatusPageDataAttributes struct {
 	SubscriptionsEnabled *bool `json:"subscriptions_enabled,omitempty"`
 	// The type of the status page controlling how the status page is accessed.
 	Type *CreateStatusPageRequestDataAttributesType `json:"type,omitempty"`
+	// The layout of components on the status page. Defaults to `list`. `grid` requires `visualization_type` to be `component_name_only`; changing `visualization_type` to any other value resets the layout to `list`.
+	VisualizationLayout *CreateStatusPageRequestDataAttributesVisualizationLayout `json:"visualization_layout,omitempty"`
 	// The visualization type of the status page.
 	VisualizationType *CreateStatusPageRequestDataAttributesVisualizationType `json:"visualization_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -560,6 +562,34 @@ func (o *StatusPageDataAttributes) SetType(v CreateStatusPageRequestDataAttribut
 	o.Type = &v
 }
 
+// GetVisualizationLayout returns the VisualizationLayout field value if set, zero value otherwise.
+func (o *StatusPageDataAttributes) GetVisualizationLayout() CreateStatusPageRequestDataAttributesVisualizationLayout {
+	if o == nil || o.VisualizationLayout == nil {
+		var ret CreateStatusPageRequestDataAttributesVisualizationLayout
+		return ret
+	}
+	return *o.VisualizationLayout
+}
+
+// GetVisualizationLayoutOk returns a tuple with the VisualizationLayout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatusPageDataAttributes) GetVisualizationLayoutOk() (*CreateStatusPageRequestDataAttributesVisualizationLayout, bool) {
+	if o == nil || o.VisualizationLayout == nil {
+		return nil, false
+	}
+	return o.VisualizationLayout, true
+}
+
+// HasVisualizationLayout returns a boolean if a field has been set.
+func (o *StatusPageDataAttributes) HasVisualizationLayout() bool {
+	return o != nil && o.VisualizationLayout != nil
+}
+
+// SetVisualizationLayout gets a reference to the given CreateStatusPageRequestDataAttributesVisualizationLayout and assigns it to the VisualizationLayout field.
+func (o *StatusPageDataAttributes) SetVisualizationLayout(v CreateStatusPageRequestDataAttributesVisualizationLayout) {
+	o.VisualizationLayout = &v
+}
+
 // GetVisualizationType returns the VisualizationType field value if set, zero value otherwise.
 func (o *StatusPageDataAttributes) GetVisualizationType() CreateStatusPageRequestDataAttributesVisualizationType {
 	if o == nil || o.VisualizationType == nil {
@@ -650,6 +680,9 @@ func (o StatusPageDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
+	if o.VisualizationLayout != nil {
+		toSerialize["visualization_layout"] = o.VisualizationLayout
+	}
 	if o.VisualizationType != nil {
 		toSerialize["visualization_type"] = o.VisualizationType
 	}
@@ -663,30 +696,31 @@ func (o StatusPageDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *StatusPageDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CompanyLogo               datadog.NullableString                                  `json:"company_logo,omitempty"`
-		Components                []StatusPageDataAttributesComponentsItems               `json:"components,omitempty"`
-		CreatedAt                 *time.Time                                              `json:"created_at,omitempty"`
-		CustomDomain              datadog.NullableString                                  `json:"custom_domain,omitempty"`
-		CustomDomainEnabled       *bool                                                   `json:"custom_domain_enabled,omitempty"`
-		DomainPrefix              *string                                                 `json:"domain_prefix,omitempty"`
-		EmailHeaderImage          datadog.NullableString                                  `json:"email_header_image,omitempty"`
-		Enabled                   *bool                                                   `json:"enabled,omitempty"`
-		Favicon                   datadog.NullableString                                  `json:"favicon,omitempty"`
-		ModifiedAt                *time.Time                                              `json:"modified_at,omitempty"`
-		Name                      *string                                                 `json:"name,omitempty"`
-		PageUrl                   *string                                                 `json:"page_url,omitempty"`
-		SlackAppIcon              *string                                                 `json:"slack_app_icon,omitempty"`
-		SlackSubscriptionsEnabled *bool                                                   `json:"slack_subscriptions_enabled,omitempty"`
-		SubscriptionsEnabled      *bool                                                   `json:"subscriptions_enabled,omitempty"`
-		Type                      *CreateStatusPageRequestDataAttributesType              `json:"type,omitempty"`
-		VisualizationType         *CreateStatusPageRequestDataAttributesVisualizationType `json:"visualization_type,omitempty"`
+		CompanyLogo               datadog.NullableString                                    `json:"company_logo,omitempty"`
+		Components                []StatusPageDataAttributesComponentsItems                 `json:"components,omitempty"`
+		CreatedAt                 *time.Time                                                `json:"created_at,omitempty"`
+		CustomDomain              datadog.NullableString                                    `json:"custom_domain,omitempty"`
+		CustomDomainEnabled       *bool                                                     `json:"custom_domain_enabled,omitempty"`
+		DomainPrefix              *string                                                   `json:"domain_prefix,omitempty"`
+		EmailHeaderImage          datadog.NullableString                                    `json:"email_header_image,omitempty"`
+		Enabled                   *bool                                                     `json:"enabled,omitempty"`
+		Favicon                   datadog.NullableString                                    `json:"favicon,omitempty"`
+		ModifiedAt                *time.Time                                                `json:"modified_at,omitempty"`
+		Name                      *string                                                   `json:"name,omitempty"`
+		PageUrl                   *string                                                   `json:"page_url,omitempty"`
+		SlackAppIcon              *string                                                   `json:"slack_app_icon,omitempty"`
+		SlackSubscriptionsEnabled *bool                                                     `json:"slack_subscriptions_enabled,omitempty"`
+		SubscriptionsEnabled      *bool                                                     `json:"subscriptions_enabled,omitempty"`
+		Type                      *CreateStatusPageRequestDataAttributesType                `json:"type,omitempty"`
+		VisualizationLayout       *CreateStatusPageRequestDataAttributesVisualizationLayout `json:"visualization_layout,omitempty"`
+		VisualizationType         *CreateStatusPageRequestDataAttributesVisualizationType   `json:"visualization_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "created_at", "custom_domain", "custom_domain_enabled", "domain_prefix", "email_header_image", "enabled", "favicon", "modified_at", "name", "page_url", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "created_at", "custom_domain", "custom_domain_enabled", "domain_prefix", "email_header_image", "enabled", "favicon", "modified_at", "name", "page_url", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_layout", "visualization_type"})
 	} else {
 		return err
 	}
@@ -711,6 +745,11 @@ func (o *StatusPageDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
+	}
+	if all.VisualizationLayout != nil && !all.VisualizationLayout.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.VisualizationLayout = all.VisualizationLayout
 	}
 	if all.VisualizationType != nil && !all.VisualizationType.IsValid() {
 		hasInvalidField = true
