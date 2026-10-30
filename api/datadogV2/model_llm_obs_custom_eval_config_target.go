@@ -18,7 +18,7 @@ type LLMObsCustomEvalConfigTarget struct {
 	ApplicationName string `json:"application_name"`
 	// Whether the evaluator is active for the target application.
 	Enabled bool `json:"enabled"`
-	// Scope at which to evaluate spans.
+	// Scope at which to evaluate spans. `trace_fan_out` requires `llm_judge_config.target_query`.
 	EvalScope *LLMObsCustomEvalConfigEvalScope `json:"eval_scope,omitempty"`
 	// Experiment project IDs this evaluator is scoped to.
 	ExperimentProjectIds []uuid.UUID `json:"experiment_project_ids,omitempty"`

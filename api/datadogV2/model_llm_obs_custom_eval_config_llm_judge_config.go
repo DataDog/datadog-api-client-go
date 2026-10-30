@@ -22,15 +22,15 @@ type LLMObsCustomEvalConfigLLMJudgeConfig struct {
 	LastUsedLibraryPromptTemplateName datadog.NullableString `json:"last_used_library_prompt_template_name,omitempty"`
 	// Whether the library prompt template was modified.
 	ModifiedLibraryPromptTemplate datadog.NullableBool `json:"modified_library_prompt_template,omitempty"`
-	// JSON schema describing the expected output format of the LLM judge.
+	// JSON schema describing the expected output format of the LLM judge. Omit for a `deterministic` evaluator.
 	OutputSchema map[string]interface{} `json:"output_schema,omitempty"`
 	// Output parsing type for a custom LLM judge evaluator.
 	ParsingType *LLMObsCustomEvalConfigParsingType `json:"parsing_type,omitempty"`
-	// List of messages forming the LLM judge prompt template.
+	// List of messages forming the LLM judge prompt template. Omit for a `deterministic` evaluator.
 	PromptTemplate []LLMObsCustomEvalConfigPromptMessage `json:"prompt_template,omitempty"`
 	// Query used to extract the target value to evaluate.
 	TargetQuery datadog.NullableString `json:"target_query,omitempty"`
-	// User-provided function applied to post-process the JSON output of the LLM judge.
+	// User-provided JavaScript function applied to post-process the JSON output of the LLM judge. For a `deterministic` evaluator it is the evaluator itself: it receives the evaluated span (span scope), `{spans}` (trace scope), or `{session_id, traces}` (session scope), and its return value sets the result. A boolean, number, string or object becomes a boolean, score, categorical or JSON metric; `null` skips the evaluation; and `{value, assessment, reasoning, metadata}` also sets pass or fail, reasoning, and metadata.
 	UserSpecifiedJsonPostProcessingFunction datadog.NullableString `json:"user_specified_json_post_processing_function,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
