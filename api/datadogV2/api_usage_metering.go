@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/google/uuid"
 )
 
 // UsageMeteringApi service type
@@ -118,6 +119,104 @@ func (a *UsageMeteringApi) CreateQuotas(ctx _context.Context, quotaNamespace str
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// CreateTemporaryGrantRequest Create a temporary grant request.
+// Request a temporary increase to your monthly AI credit limit. Set `total` to the new monthly limit you need, in whole credits, not the number of credits to add. Include a justification and, optionally, an expiry. If you omit the expiry, the grant ends at the next UTC month boundary. A user with the Billing Edit permission approves or denies the request. Requires an authenticated human user. Service-account credentials are unsupported.
+func (a *UsageMeteringApi) CreateTemporaryGrantRequest(ctx _context.Context, body TemporaryGrantRequestCreateRequest) (TemporaryGrantRequestResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestResponse
+	)
+
+	operationId := "v2.CreateTemporaryGrantRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.CreateTemporaryGrantRequest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/temporary-grant-requests"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -301,6 +400,178 @@ func (a *UsageMeteringApi) DeleteQuota(ctx _context.Context, quotaNamespace stri
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+// DeleteRequestedTemporaryGrant Revoke a requested temporary grant.
+// Revoke only the grant that's still associated with this approved request. The request and audit history remain. A stale request can't revoke a replacement grant. Requires the Billing Edit permission. Requires an authenticated human user. Service-account credentials aren't supported. Request status remains approved after the grant's expiry, revocation, or replacement.
+func (a *UsageMeteringApi) DeleteRequestedTemporaryGrant(ctx _context.Context, requestId uuid.UUID) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.DeleteRequestedTemporaryGrant"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.DeleteRequestedTemporaryGrant")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/admin/temporary-grant-requests/{request_id}/grant"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{request_id}", _neturl.PathEscape(datadog.ParameterToString(requestId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+// DeleteTemporaryGrantRequest Cancel your temporary grant request.
+// Cancel a pending request that you own. The request history is kept, and no grant is created or revoked. Requires an authenticated human user. Service-account credentials are unsupported.
+func (a *UsageMeteringApi) DeleteTemporaryGrantRequest(ctx _context.Context, requestId uuid.UUID) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.DeleteTemporaryGrantRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.DeleteTemporaryGrantRequest")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/temporary-grant-requests/{request_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{request_id}", _neturl.PathEscape(datadog.ParameterToString(requestId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1272,6 +1543,102 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetMyTemporaryGrantRequest Get your temporary grant request.
+// Read an owned request, its decision, and its linked grant state. Requires an authenticated human user. Service-account credentials are unsupported. Request status remains approved after expiry, revocation, or replacement.
+func (a *UsageMeteringApi) GetMyTemporaryGrantRequest(ctx _context.Context, requestId uuid.UUID) (TemporaryGrantRequestResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestResponse
+	)
+
+	operationId := "v2.GetMyTemporaryGrantRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetMyTemporaryGrantRequest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/temporary-grant-requests/{request_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{request_id}", _neturl.PathEscape(datadog.ParameterToString(requestId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetProjectedCostOptionalParameters holds optional parameters for GetProjectedCost.
 type GetProjectedCostOptionalParameters struct {
 	View                     *string
@@ -1368,6 +1735,102 @@ func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjec
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetTemporaryGrantRequest Get an organization temporary grant request.
+// Read an organization request, justification, decision, and linked grant state. Requires Billing Edit. Requires an authenticated human user. Service-account credentials are unsupported. Request status remains approved after expiry, revocation, or replacement.
+func (a *UsageMeteringApi) GetTemporaryGrantRequest(ctx _context.Context, requestId uuid.UUID) (TemporaryGrantRequestResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestResponse
+	)
+
+	operationId := "v2.GetTemporaryGrantRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetTemporaryGrantRequest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/admin/temporary-grant-requests/{request_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{request_id}", _neturl.PathEscape(datadog.ParameterToString(requestId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1912,6 +2375,207 @@ func (a *UsageMeteringApi) GetUsageSummaryAvailableFields(ctx _context.Context) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListMyTemporaryGrantRequestsOptionalParameters holds optional parameters for ListMyTemporaryGrantRequests.
+type ListMyTemporaryGrantRequestsOptionalParameters struct {
+	FilterStatus *TemporaryGrantRequestStatus
+	PageLimit    *int64
+	PageCursor   *uuid.UUID
+}
+
+// NewListMyTemporaryGrantRequestsOptionalParameters creates an empty struct for parameters.
+func NewListMyTemporaryGrantRequestsOptionalParameters() *ListMyTemporaryGrantRequestsOptionalParameters {
+	this := ListMyTemporaryGrantRequestsOptionalParameters{}
+	return &this
+}
+
+// WithFilterStatus sets the corresponding parameter name and returns the struct.
+func (r *ListMyTemporaryGrantRequestsOptionalParameters) WithFilterStatus(filterStatus TemporaryGrantRequestStatus) *ListMyTemporaryGrantRequestsOptionalParameters {
+	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListMyTemporaryGrantRequestsOptionalParameters) WithPageLimit(pageLimit int64) *ListMyTemporaryGrantRequestsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListMyTemporaryGrantRequestsOptionalParameters) WithPageCursor(pageCursor uuid.UUID) *ListMyTemporaryGrantRequestsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// ListMyTemporaryGrantRequests List your temporary grant requests.
+// List the authenticated user's own requests, including decided requests. Other users' requests are never included. Requires an authenticated human user. Service-account credentials aren't supported. Request status remains approved after the grant's expiry, revocation, or replacement.
+func (a *UsageMeteringApi) ListMyTemporaryGrantRequests(ctx _context.Context, o ...ListMyTemporaryGrantRequestsOptionalParameters) (TemporaryGrantRequestListResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestListResponse
+		optionalParams      ListMyTemporaryGrantRequestsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMyTemporaryGrantRequestsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListMyTemporaryGrantRequests"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.ListMyTemporaryGrantRequests")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/temporary-grant-requests"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterStatus != nil {
+		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListMyTemporaryGrantRequestsWithPagination provides a paginated version of ListMyTemporaryGrantRequests returning a channel with all items.
+func (a *UsageMeteringApi) ListMyTemporaryGrantRequestsWithPagination(ctx _context.Context, o ...ListMyTemporaryGrantRequestsOptionalParameters) (<-chan datadog.PaginationResult[TemporaryGrantRequestData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(50)
+	if len(o) == 0 {
+		o = append(o, ListMyTemporaryGrantRequestsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[TemporaryGrantRequestData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListMyTemporaryGrantRequests(ctx, o...)
+			if err != nil {
+				var returnItem TemporaryGrantRequestData
+				items <- datadog.PaginationResult[TemporaryGrantRequestData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[TemporaryGrantRequestData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) == 0 {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageNextCursor, ok := cursorMetaPage.GetNextCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageNextCursor
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListQuotasOptionalParameters holds optional parameters for ListQuotas.
 type ListQuotasOptionalParameters struct {
 	IncludeDescendants *bool
@@ -2116,6 +2780,217 @@ func (a *UsageMeteringApi) ListQuotasWithPagination(ctx _context.Context, quotaN
 	return items, cancel
 }
 
+// ListTemporaryGrantRequestsOptionalParameters holds optional parameters for ListTemporaryGrantRequests.
+type ListTemporaryGrantRequestsOptionalParameters struct {
+	FilterStatus            *TemporaryGrantRequestStatus
+	PageLimit               *int64
+	PageCursor              *uuid.UUID
+	FilterRequestedByUserId *uuid.UUID
+}
+
+// NewListTemporaryGrantRequestsOptionalParameters creates an empty struct for parameters.
+func NewListTemporaryGrantRequestsOptionalParameters() *ListTemporaryGrantRequestsOptionalParameters {
+	this := ListTemporaryGrantRequestsOptionalParameters{}
+	return &this
+}
+
+// WithFilterStatus sets the corresponding parameter name and returns the struct.
+func (r *ListTemporaryGrantRequestsOptionalParameters) WithFilterStatus(filterStatus TemporaryGrantRequestStatus) *ListTemporaryGrantRequestsOptionalParameters {
+	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListTemporaryGrantRequestsOptionalParameters) WithPageLimit(pageLimit int64) *ListTemporaryGrantRequestsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListTemporaryGrantRequestsOptionalParameters) WithPageCursor(pageCursor uuid.UUID) *ListTemporaryGrantRequestsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// WithFilterRequestedByUserId sets the corresponding parameter name and returns the struct.
+func (r *ListTemporaryGrantRequestsOptionalParameters) WithFilterRequestedByUserId(filterRequestedByUserId uuid.UUID) *ListTemporaryGrantRequestsOptionalParameters {
+	r.FilterRequestedByUserId = &filterRequestedByUserId
+	return r
+}
+
+// ListTemporaryGrantRequests List organization temporary grant requests.
+// List all request statuses within the authenticated organization. Filter by pending status for the review queue. Requires Billing Edit, including for reads. Requires an authenticated human user. Service-account credentials are unsupported. Request status remains approved after expiry, revocation, or replacement.
+func (a *UsageMeteringApi) ListTemporaryGrantRequests(ctx _context.Context, o ...ListTemporaryGrantRequestsOptionalParameters) (TemporaryGrantRequestListResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestListResponse
+		optionalParams      ListTemporaryGrantRequestsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListTemporaryGrantRequestsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListTemporaryGrantRequests"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.ListTemporaryGrantRequests")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/admin/temporary-grant-requests"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterStatus != nil {
+		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	if optionalParams.FilterRequestedByUserId != nil {
+		localVarQueryParams.Add("filter[requested_by_user_id]", datadog.ParameterToString(*optionalParams.FilterRequestedByUserId, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListTemporaryGrantRequestsWithPagination provides a paginated version of ListTemporaryGrantRequests returning a channel with all items.
+func (a *UsageMeteringApi) ListTemporaryGrantRequestsWithPagination(ctx _context.Context, o ...ListTemporaryGrantRequestsOptionalParameters) (<-chan datadog.PaginationResult[TemporaryGrantRequestData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(50)
+	if len(o) == 0 {
+		o = append(o, ListTemporaryGrantRequestsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[TemporaryGrantRequestData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListTemporaryGrantRequests(ctx, o...)
+			if err != nil {
+				var returnItem TemporaryGrantRequestData
+				items <- datadog.PaginationResult[TemporaryGrantRequestData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[TemporaryGrantRequestData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) == 0 {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageNextCursor, ok := cursorMetaPage.GetNextCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageNextCursor
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // UpdateQuota Update a usage quota.
 // Updates the supplied fields on a usage quota and leaves omitted fields unchanged. For an organization-wide quota, `pending_usage_limit` schedules a limit for the next usage period. The quota must belong to the caller's organization or one of its descendants, and its opaque identifier must belong to the requested quota namespace. Requires the `billing_edit` permission.
 func (a *UsageMeteringApi) UpdateQuota(ctx _context.Context, quotaNamespace string, id string, body UsageQuotaUpdateRequest) (UsageQuotaResponse, *_nethttp.Response, error) {
@@ -2185,6 +3060,105 @@ func (a *UsageMeteringApi) UpdateQuota(ctx _context.Context, quotaNamespace stri
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UpdateTemporaryGrantRequest Decide a temporary grant request.
+// Approve or deny the submitted terms, which are immutable. Approval atomically writes the grant, audit record, and request decision. An expired request can't be approved. Requires the Billing Edit permission. Requires an authenticated human user. Service-account credentials aren't supported. Request status remains approved after the grant's expiry, revocation, or replacement.
+func (a *UsageMeteringApi) UpdateTemporaryGrantRequest(ctx _context.Context, requestId uuid.UUID, body TemporaryGrantRequestDecisionRequest) (TemporaryGrantRequestResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue TemporaryGrantRequestResponse
+	)
+
+	operationId := "v2.UpdateTemporaryGrantRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.UpdateTemporaryGrantRequest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/admin/temporary-grant-requests/{request_id}/decision"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{request_id}", _neturl.PathEscape(datadog.ParameterToString(requestId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
