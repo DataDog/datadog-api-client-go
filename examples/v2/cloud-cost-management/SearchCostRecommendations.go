@@ -20,7 +20,7 @@ func main() {
 				Sort: []datadogV2.RecommendationsFilterRequestSortItems{
 					{
 						Expression: datadog.PtrString("@potential_daily_savings"),
-						Order:      datadog.PtrString("DESC"),
+						Order:      "DESC",
 					},
 				},
 			},
