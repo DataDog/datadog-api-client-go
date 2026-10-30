@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ContainerImagesResponse List of Container Images.
+// ContainerImagesResponse List of Container Images or Container Image groups.
 type ContainerImagesResponse struct {
-	// Array of Container Image objects.
+	// Array of `container_image` objects, or `container_image_group` objects when `group_by` is specified.
 	Data []ContainerImageItem `json:"data,omitempty"`
 	// Pagination links.
 	Links *ContainerImagesResponseLinks `json:"links,omitempty"`
