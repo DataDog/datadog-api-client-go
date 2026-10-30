@@ -10,9 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricFilter The RUM-based metric filter. Events matching this filter will be aggregated in this metric.
+// RumMetricFilter The RUM-based metric filter. Events matching this filter will be aggregated in this metric. The `event_type` filter is added automatically.
 type RumMetricFilter struct {
-	// The search query - following the RUM search syntax.
+	// The search query, following the [RUM search syntax](https://docs.datadoghq.com/real_user_monitoring/explorer/search_syntax/).
+	// Do not include a `@type` filter, it is derived from `event_type`.
+	// It must not contain invisible or control characters such as non-breaking or zero-width spaces.
+	// When updating a metric, an empty query leaves the filter unchanged.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

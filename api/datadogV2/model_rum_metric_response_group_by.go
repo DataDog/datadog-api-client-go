@@ -10,9 +10,9 @@ import (
 
 // RumMetricResponseGroupBy A group by rule.
 type RumMetricResponseGroupBy struct {
-	// The path to the value the RUM-based metric will be aggregated over.
+	// The path of the RUM event attribute the metric is grouped by.
 	Path *string `json:"path,omitempty"`
-	// Eventual name of the tag that gets created. By default, `path` is used as the tag name.
+	// Name of the tag created on the metric. By default, `path` is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
