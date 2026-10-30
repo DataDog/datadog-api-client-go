@@ -725,6 +725,10 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(in
 //
 // **Note**: All `estimated_*` usage types will be deprecated on February 1, 2027.
 //
+// Each request returns usage for the month specified by `start_month`. If `end_month` is omitted
+// or differs from `start_month`, it is treated as equal to `start_month`.
+// To retrieve multiple months, make a separate request for each month.
+//
 // This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
 // set in the response. If it is, make another request and pass `next_record_id` as a parameter.
 // Pseudo code example:
