@@ -10,7 +10,7 @@ import (
 
 // CreatePageResponse The full response object after creating a new On-Call Page.
 type CreatePageResponse struct {
-	// The information returned after successfully creating a page.
+	// The information returned after successfully creating a Page.
 	Data *CreatePageResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -1,4 +1,4 @@
-// Create On-Call Page returns "OK." response
+// Create On-Call Page returns "Created." response
 
 package main
 
