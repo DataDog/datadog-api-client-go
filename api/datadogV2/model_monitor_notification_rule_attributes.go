@@ -23,6 +23,8 @@ type MonitorNotificationRuleAttributes struct {
 	Name string `json:"name"`
 	// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an '@'. Cannot be used with `conditional_recipients`.
 	Recipients []string `json:"recipients,omitempty"`
+	// Additional options for the monitor notification rule.
+	RuleOptions *MonitorNotificationRuleOptions `json:"rule_options,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
@@ -180,6 +182,34 @@ func (o *MonitorNotificationRuleAttributes) SetRecipients(v []string) {
 	o.Recipients = v
 }
 
+// GetRuleOptions returns the RuleOptions field value if set, zero value otherwise.
+func (o *MonitorNotificationRuleAttributes) GetRuleOptions() MonitorNotificationRuleOptions {
+	if o == nil || o.RuleOptions == nil {
+		var ret MonitorNotificationRuleOptions
+		return ret
+	}
+	return *o.RuleOptions
+}
+
+// GetRuleOptionsOk returns a tuple with the RuleOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorNotificationRuleAttributes) GetRuleOptionsOk() (*MonitorNotificationRuleOptions, bool) {
+	if o == nil || o.RuleOptions == nil {
+		return nil, false
+	}
+	return o.RuleOptions, true
+}
+
+// HasRuleOptions returns a boolean if a field has been set.
+func (o *MonitorNotificationRuleAttributes) HasRuleOptions() bool {
+	return o != nil && o.RuleOptions != nil
+}
+
+// SetRuleOptions gets a reference to the given MonitorNotificationRuleOptions and assigns it to the RuleOptions field.
+func (o *MonitorNotificationRuleAttributes) SetRuleOptions(v MonitorNotificationRuleOptions) {
+	o.RuleOptions = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -199,6 +229,9 @@ func (o MonitorNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.Recipients != nil {
 		toSerialize["recipients"] = o.Recipients
 	}
+	if o.RuleOptions != nil {
+		toSerialize["rule_options"] = o.RuleOptions
+	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -210,6 +243,7 @@ func (o *MonitorNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err err
 		Filter                *MonitorNotificationRuleFilter                `json:"filter,omitempty"`
 		Name                  *string                                       `json:"name"`
 		Recipients            []string                                      `json:"recipients,omitempty"`
+		RuleOptions           *MonitorNotificationRuleOptions               `json:"rule_options,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -230,6 +264,10 @@ func (o *MonitorNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err err
 	o.Filter = all.Filter
 	o.Name = *all.Name
 	o.Recipients = all.Recipients
+	if all.RuleOptions != nil && all.RuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.RuleOptions = all.RuleOptions
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
