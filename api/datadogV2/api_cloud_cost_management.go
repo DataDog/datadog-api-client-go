@@ -6843,14 +6843,39 @@ func (a *CloudCostManagementApi) UpdateUnitCost(ctx _context.Context, unitCostId
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// UploadCustomCostsFileOptionalParameters holds optional parameters for UploadCustomCostsFile.
+type UploadCustomCostsFileOptionalParameters struct {
+	AiProvider *bool
+}
+
+// NewUploadCustomCostsFileOptionalParameters creates an empty struct for parameters.
+func NewUploadCustomCostsFileOptionalParameters() *UploadCustomCostsFileOptionalParameters {
+	this := UploadCustomCostsFileOptionalParameters{}
+	return &this
+}
+
+// WithAiProvider sets the corresponding parameter name and returns the struct.
+func (r *UploadCustomCostsFileOptionalParameters) WithAiProvider(aiProvider bool) *UploadCustomCostsFileOptionalParameters {
+	r.AiProvider = &aiProvider
+	return r
+}
+
 // UploadCustomCostsFile Upload Custom Costs file.
 // Upload a Custom Costs file.
-func (a *CloudCostManagementApi) UploadCustomCostsFile(ctx _context.Context, body []CustomCostsFileLineItem) (CustomCostsFileUploadResponse, *_nethttp.Response, error) {
+func (a *CloudCostManagementApi) UploadCustomCostsFile(ctx _context.Context, body []CustomCostsFileLineItem, o ...UploadCustomCostsFileOptionalParameters) (CustomCostsFileUploadResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue CustomCostsFileUploadResponse
+		optionalParams      UploadCustomCostsFileOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UploadCustomCostsFileOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.UploadCustomCostsFile")
 	if err != nil {
@@ -6862,6 +6887,9 @@ func (a *CloudCostManagementApi) UploadCustomCostsFile(ctx _context.Context, bod
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.AiProvider != nil {
+		localVarQueryParams.Add("ai_provider", datadog.ParameterToString(*optionalParams.AiProvider, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
