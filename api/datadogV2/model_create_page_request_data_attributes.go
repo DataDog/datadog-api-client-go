@@ -14,11 +14,11 @@ import (
 type CreatePageRequestDataAttributes struct {
 	// A short summary of the issue or context.
 	Description *string `json:"description,omitempty"`
-	// Tags to help categorize or filter the page.
+	// Tags to help categorize or filter the Page.
 	Tags []string `json:"tags,omitempty"`
 	// Information about the target to notify (such as a team or user).
 	Target CreatePageRequestDataAttributesTarget `json:"target"`
-	// The title of the page.
+	// The title of the Page.
 	Title string `json:"title"`
 	// On-Call Page urgency level.
 	Urgency PageUrgency `json:"urgency"`
