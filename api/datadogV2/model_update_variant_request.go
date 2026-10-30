@@ -5,15 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UpdateVariantRequest Request to update an existing variant's name and value.
 type UpdateVariantRequest struct {
-	// The display name of the variant.
-	Name *string `json:"name,omitempty"`
-	// The value of the variant as a string.
-	Value *string `json:"value,omitempty"`
+	// Data for updating a variant.
+	Data UpdateVariantData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,8 +23,9 @@ type UpdateVariantRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewUpdateVariantRequest() *UpdateVariantRequest {
+func NewUpdateVariantRequest(data UpdateVariantData) *UpdateVariantRequest {
 	this := UpdateVariantRequest{}
+	this.Data = data
 	return &this
 }
 
@@ -36,60 +37,27 @@ func NewUpdateVariantRequestWithDefaults() *UpdateVariantRequest {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateVariantRequest) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetData returns the Data field value.
+func (o *UpdateVariantRequest) GetData() UpdateVariantData {
+	if o == nil {
+		var ret UpdateVariantData
 		return ret
 	}
-	return *o.Name
+	return o.Data
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVariantRequest) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *UpdateVariantRequest) GetDataOk() (*UpdateVariantData, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Data, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *UpdateVariantRequest) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateVariantRequest) SetName(v string) {
-	o.Name = &v
-}
-
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *UpdateVariantRequest) GetValue() string {
-	if o == nil || o.Value == nil {
-		var ret string
-		return ret
-	}
-	return *o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVariantRequest) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
-		return nil, false
-	}
-	return o.Value, true
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *UpdateVariantRequest) HasValue() bool {
-	return o != nil && o.Value != nil
-}
-
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *UpdateVariantRequest) SetValue(v string) {
-	o.Value = &v
+// SetData sets field value.
+func (o *UpdateVariantRequest) SetData(v UpdateVariantData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -98,12 +66,7 @@ func (o UpdateVariantRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -114,23 +77,33 @@ func (o UpdateVariantRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateVariantRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name,omitempty"`
-		Value *string `json:"value,omitempty"`
+		Data *UpdateVariantData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.Name = all.Name
-	o.Value = all.Value
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

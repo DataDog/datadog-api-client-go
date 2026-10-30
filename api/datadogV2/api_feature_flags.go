@@ -346,11 +346,11 @@ func (a *FeatureFlagsApi) CreateFeatureFlagsEnvironment(ctx _context.Context, bo
 // The server generates the variant UUID and returns it in the response body;
 // callers (for example, the flag-migration tool) need this UUID to reference
 // the new variant in subsequent allocation syncs.
-func (a *FeatureFlagsApi) CreateVariantForFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, body CreateVariant) (Variant, *_nethttp.Response, error) {
+func (a *FeatureFlagsApi) CreateVariantForFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, body CreateVariantRequest) (VariantResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue Variant
+		localVarReturnValue VariantResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.CreateVariantForFeatureFlag")
@@ -2184,16 +2184,15 @@ func (a *FeatureFlagsApi) UpdateSavedFilterAttributes(ctx _context.Context, save
 // Updates the name and value of an existing variant on a feature flag.
 //
 // When backend approvals are enabled and the flag requires approval, this endpoint creates and returns a `FlagSuggestion` with `201 Created` instead of applying the change immediately. Use the returned suggestion `id` to approve or reject the change. If a pending suggestion already exists for this flag's variant property, the endpoint returns `409 Conflict`.
-func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, variantId uuid.UUID, body UpdateVariantRequest) (Variant, *_nethttp.Response, error) {
+func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, variantId uuid.UUID, body UpdateVariantRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue Variant
+		localVarHTTPMethod = _nethttp.MethodPut
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.UpdateVariantForFeatureFlag")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/feature-flags/{feature_flag_id}/variants/{variant_id}"
@@ -2204,14 +2203,14 @@ func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, feat
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Content-Type"] = "application/json"
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
 
 	// body params
 	localVarPostBody = &body
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
 		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
 		if err != nil {
-			return localVarReturnValue, nil, err
+			return nil, err
 		}
 	} else {
 		datadog.SetAuthKeys(
@@ -2223,17 +2222,17 @@ func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, feat
 	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2245,23 +2244,14 @@ func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, feat
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 // NewFeatureFlagsApi Returns NewFeatureFlagsApi.
