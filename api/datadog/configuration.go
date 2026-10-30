@@ -1020,6 +1020,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetExecutionPolicy":                                     false,
 			"v2.ListExecutionPolicies":                                  false,
 			"v2.UpdateExecutionPolicy":                                  false,
+			"v2.EvaluateAIGuardRequest":                                 false,
 			"v2.CreateAnnotation":                                       false,
 			"v2.DeleteAnnotation":                                       false,
 			"v2.GetPageAnnotations":                                     false,
