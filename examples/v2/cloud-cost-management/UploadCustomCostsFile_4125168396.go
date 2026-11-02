@@ -31,7 +31,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.UploadCustomCostsFile(ctx, body)
+	resp, r, err := api.UploadCustomCostsFile(ctx, body, *datadogV2.NewUploadCustomCostsFileOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.UploadCustomCostsFile`: %v\n", err)
