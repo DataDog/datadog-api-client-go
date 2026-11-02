@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -12,8 +14,8 @@ import (
 type RecommendationsFilterRequestSortItems struct {
 	// Field to sort by (for example, `@potential_daily_savings`).
 	Expression *string `json:"expression,omitempty"`
-	// Sort direction, either `ASC` or `DESC`.
-	Order *string `json:"order,omitempty"`
+	// Sort direction, either `ASC` or `DESC` (case-insensitive).
+	Order string `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,8 +25,9 @@ type RecommendationsFilterRequestSortItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRecommendationsFilterRequestSortItems() *RecommendationsFilterRequestSortItems {
+func NewRecommendationsFilterRequestSortItems(order string) *RecommendationsFilterRequestSortItems {
 	this := RecommendationsFilterRequestSortItems{}
+	this.Order = order
 	return &this
 }
 
@@ -64,32 +67,27 @@ func (o *RecommendationsFilterRequestSortItems) SetExpression(v string) {
 	o.Expression = &v
 }
 
-// GetOrder returns the Order field value if set, zero value otherwise.
+// GetOrder returns the Order field value.
 func (o *RecommendationsFilterRequestSortItems) GetOrder() string {
-	if o == nil || o.Order == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Order
+	return o.Order
 }
 
-// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
+// GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
 func (o *RecommendationsFilterRequestSortItems) GetOrderOk() (*string, bool) {
-	if o == nil || o.Order == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Order, true
+	return &o.Order, true
 }
 
-// HasOrder returns a boolean if a field has been set.
-func (o *RecommendationsFilterRequestSortItems) HasOrder() bool {
-	return o != nil && o.Order != nil
-}
-
-// SetOrder gets a reference to the given string and assigns it to the Order field.
+// SetOrder sets field value.
 func (o *RecommendationsFilterRequestSortItems) SetOrder(v string) {
-	o.Order = &v
+	o.Order = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -101,9 +99,7 @@ func (o RecommendationsFilterRequestSortItems) MarshalJSON() ([]byte, error) {
 	if o.Expression != nil {
 		toSerialize["expression"] = o.Expression
 	}
-	if o.Order != nil {
-		toSerialize["order"] = o.Order
-	}
+	toSerialize["order"] = o.Order
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -115,10 +111,13 @@ func (o RecommendationsFilterRequestSortItems) MarshalJSON() ([]byte, error) {
 func (o *RecommendationsFilterRequestSortItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Expression *string `json:"expression,omitempty"`
-		Order      *string `json:"order,omitempty"`
+		Order      *string `json:"order"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Order == nil {
+		return fmt.Errorf("required field order missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -127,7 +126,7 @@ func (o *RecommendationsFilterRequestSortItems) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 	o.Expression = all.Expression
-	o.Order = all.Order
+	o.Order = *all.Order
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

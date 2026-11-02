@@ -15,7 +15,7 @@ type RecommendationsFilterRequestDataAttributes struct {
 	// is empty, it defaults to `*`. Scope, view, and pagination still apply.
 	Filter *string `json:"filter,omitempty"`
 	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations
-	// or `*` for both.
+	// or `*` for both. An empty value is treated as `ccm`.
 	Scope *RecommendationsFilterRequestScope `json:"scope,omitempty"`
 	// Ordered list of sort clauses applied to the result set.
 	Sort []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
