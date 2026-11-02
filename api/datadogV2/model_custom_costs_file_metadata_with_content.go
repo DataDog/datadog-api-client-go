@@ -10,6 +10,8 @@ import (
 
 // CustomCostsFileMetadataWithContent Schema of a cost file's metadata.
 type CustomCostsFileMetadataWithContent struct {
+	// Whether the Custom Costs file contains the costs of an AI provider.
+	AiProvider *bool `json:"ai_provider,omitempty"`
 	// Total cost in the cost file.
 	BilledCost *float64 `json:"billed_cost,omitempty"`
 	// Currency used in the Custom Costs file.
@@ -48,6 +50,34 @@ func NewCustomCostsFileMetadataWithContent() *CustomCostsFileMetadataWithContent
 func NewCustomCostsFileMetadataWithContentWithDefaults() *CustomCostsFileMetadataWithContent {
 	this := CustomCostsFileMetadataWithContent{}
 	return &this
+}
+
+// GetAiProvider returns the AiProvider field value if set, zero value otherwise.
+func (o *CustomCostsFileMetadataWithContent) GetAiProvider() bool {
+	if o == nil || o.AiProvider == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AiProvider
+}
+
+// GetAiProviderOk returns a tuple with the AiProvider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomCostsFileMetadataWithContent) GetAiProviderOk() (*bool, bool) {
+	if o == nil || o.AiProvider == nil {
+		return nil, false
+	}
+	return o.AiProvider, true
+}
+
+// HasAiProvider returns a boolean if a field has been set.
+func (o *CustomCostsFileMetadataWithContent) HasAiProvider() bool {
+	return o != nil && o.AiProvider != nil
+}
+
+// SetAiProvider gets a reference to the given bool and assigns it to the AiProvider field.
+func (o *CustomCostsFileMetadataWithContent) SetAiProvider(v bool) {
+	o.AiProvider = &v
 }
 
 // GetBilledCost returns the BilledCost field value if set, zero value otherwise.
@@ -308,6 +338,9 @@ func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AiProvider != nil {
+		toSerialize["ai_provider"] = o.AiProvider
+	}
 	if o.BilledCost != nil {
 		toSerialize["billed_cost"] = o.BilledCost
 	}
@@ -345,6 +378,7 @@ func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		AiProvider      *bool                             `json:"ai_provider,omitempty"`
 		BilledCost      *float64                          `json:"billed_cost,omitempty"`
 		BillingCurrency *string                           `json:"billing_currency,omitempty"`
 		ChargePeriod    *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
@@ -360,12 +394,13 @@ func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billed_cost", "billing_currency", "charge_period", "content", "name", "provider_names", "status", "uploaded_at", "uploaded_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"ai_provider", "billed_cost", "billing_currency", "charge_period", "content", "name", "provider_names", "status", "uploaded_at", "uploaded_by"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AiProvider = all.AiProvider
 	o.BilledCost = all.BilledCost
 	o.BillingCurrency = all.BillingCurrency
 	if all.ChargePeriod != nil && all.ChargePeriod.UnparsedObject != nil && o.UnparsedObject == nil {
