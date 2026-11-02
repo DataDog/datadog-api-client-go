@@ -12,7 +12,8 @@ import (
 type ContainerImage struct {
 	// Attributes for a Container Image.
 	Attributes *ContainerImageAttributes `json:"attributes,omitempty"`
-	// Container Image ID.
+	// Opaque Container Image ID. Often contains a registry, repository, and digest, but the format
+	// varies by collection source. Preserve the returned value rather than constructing an ID.
 	Id *string `json:"id,omitempty"`
 	// Type of Container Image.
 	Type *ContainerImageType `json:"type,omitempty"`

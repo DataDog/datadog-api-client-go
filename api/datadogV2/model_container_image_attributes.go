@@ -12,10 +12,11 @@ import (
 type ContainerImageAttributes struct {
 	// Number of containers running the image.
 	ContainerCount *int64 `json:"container_count,omitempty"`
-	// List of platform-specific images associated with the image record.
-	// The list contains more than 1 entry for multi-architecture images.
+	// Platform-specific image metadata, including size in bytes and available build and operating
+	// system details. Use these objects to associate sizes with platforms when platform information is available.
 	ImageFlavors []ContainerImageFlavor `json:"image_flavors,omitempty"`
-	// List of image tags associated with the Container Image.
+	// Image version tags, such as `latest` or `v1.2.3`. Tags can change; use the returned `id` to
+	// identify an image record. The corresponding filter and grouping key is `image_tag`.
 	ImageTags []string `json:"image_tags,omitempty"`
 	// List of build times associated with the Container Image.
 	// The list contains more than 1 entry for multi-architecture images.
@@ -30,22 +31,24 @@ type ContainerImageAttributes struct {
 	OsVersions []string `json:"os_versions,omitempty"`
 	// Time the image was pushed to the container registry.
 	PublishedAt *string `json:"published_at,omitempty"`
-	// Registry the Container Image was pushed to.
+	// Registry where the image is stored. Use the `image_registry` tag key for filtering and grouping.
 	Registry *string `json:"registry,omitempty"`
-	// Digest of the compressed image manifest.
+	// Digest of the compressed image manifest. Use the `repo_digest` tag key to filter by this value.
 	RepoDigest *string `json:"repo_digest,omitempty"`
-	// Repository where the Container Image is stored in.
+	// Repository where the image is stored. Use the `image_repository` tag key for filtering and grouping.
 	Repository *string `json:"repository,omitempty"`
 	// Short version of the Container Image name.
 	ShortImage *string `json:"short_image,omitempty"`
-	// List of size for each platform-specific image associated with the image record.
-	// The list contains more than 1 entry for multi-architecture images.
+	// Reported sizes in bytes of platform-specific images, with multiple values possible for multi-architecture images.
+	// Use `image_flavors` for available platform associations; use `size` as the sort key.
 	Sizes []int64 `json:"sizes,omitempty"`
-	// List of sources where the Container Image was collected from.
+	// Collection sources, such as `live_containers`, `image_check`, `aws_ecr`, or `agentless_scanner`.
 	Sources []string `json:"sources,omitempty"`
-	// List of tags associated with the Container Image.
+	// Image tags in `key:value` form, such as `image_registry:docker.io` or `status:running`.
+	// Use tag keys in `group_by`. Tags used in `filter[tags]` must satisfy its syntax restrictions.
 	Tags []string `json:"tags,omitempty"`
-	// Vulnerability counts associated with the Container Image.
+	// Vulnerability counts by severity, when available. An absent `vulnerability_count` does not mean
+	// the image has no vulnerabilities.
 	VulnerabilityCount *ContainerImageVulnerabilities `json:"vulnerability_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

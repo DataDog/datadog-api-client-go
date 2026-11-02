@@ -8,7 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ContainerImageVulnerabilities Vulnerability counts associated with the Container Image.
+// ContainerImageVulnerabilities Vulnerability counts by severity, when available. An absent `vulnerability_count` does not mean
+// the image has no vulnerabilities.
 type ContainerImageVulnerabilities struct {
 	// ID of the Container Image.
 	AssetId *string `json:"asset_id,omitempty"`
