@@ -14,9 +14,9 @@ type LLMObsCustomEvalConfigLLMProvider struct {
 	Bedrock *LLMObsCustomEvalConfigBedrockOptions `json:"bedrock,omitempty"`
 	// Integration account identifier.
 	IntegrationAccountId *string `json:"integration_account_id,omitempty"`
-	// Name of the LLM integration provider.
+	// Name of the LLM integration provider. Use `deterministic` for a code evaluator, which runs `llm_judge_config.user_specified_json_post_processing_function` instead of calling an LLM. `insights_sponsored` is returned for evaluators that Datadog manages and cannot be set.
 	IntegrationProvider *LLMObsCustomEvalConfigIntegrationProvider `json:"integration_provider,omitempty"`
-	// Name of the LLM model.
+	// Name of the LLM model. Use `javascript` for a `deterministic` evaluator.
 	ModelName *string `json:"model_name,omitempty"`
 	// Google Vertex AI-specific options for LLM provider configuration.
 	VertexAi *LLMObsCustomEvalConfigVertexAIOptions `json:"vertex_ai,omitempty"`

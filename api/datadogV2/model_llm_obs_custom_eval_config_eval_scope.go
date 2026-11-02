@@ -10,19 +10,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigEvalScope Scope at which to evaluate spans.
+// LLMObsCustomEvalConfigEvalScope Scope at which to evaluate spans. `trace_fan_out` requires `llm_judge_config.target_query`.
 type LLMObsCustomEvalConfigEvalScope string
 
 // List of LLMObsCustomEvalConfigEvalScope.
 const (
-	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SPAN    LLMObsCustomEvalConfigEvalScope = "span"
-	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_TRACE   LLMObsCustomEvalConfigEvalScope = "trace"
-	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SESSION LLMObsCustomEvalConfigEvalScope = "session"
+	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SPAN          LLMObsCustomEvalConfigEvalScope = "span"
+	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_TRACE         LLMObsCustomEvalConfigEvalScope = "trace"
+	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_TRACE_FAN_OUT LLMObsCustomEvalConfigEvalScope = "trace_fan_out"
+	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SESSION       LLMObsCustomEvalConfigEvalScope = "session"
 )
 
 var allowedLLMObsCustomEvalConfigEvalScopeEnumValues = []LLMObsCustomEvalConfigEvalScope{
 	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SPAN,
 	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_TRACE,
+	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_TRACE_FAN_OUT,
 	LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SESSION,
 }
 

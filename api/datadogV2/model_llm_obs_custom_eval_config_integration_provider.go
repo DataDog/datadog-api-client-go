@@ -10,17 +10,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigIntegrationProvider Name of the LLM integration provider.
+// LLMObsCustomEvalConfigIntegrationProvider Name of the LLM integration provider. Use `deterministic` for a code evaluator, which runs `llm_judge_config.user_specified_json_post_processing_function` instead of calling an LLM. `insights_sponsored` is returned for evaluators that Datadog manages and cannot be set.
 type LLMObsCustomEvalConfigIntegrationProvider string
 
 // List of LLMObsCustomEvalConfigIntegrationProvider.
 const (
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_OPENAI         LLMObsCustomEvalConfigIntegrationProvider = "openai"
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_AMAZON_BEDROCK LLMObsCustomEvalConfigIntegrationProvider = "amazon-bedrock"
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_ANTHROPIC      LLMObsCustomEvalConfigIntegrationProvider = "anthropic"
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_AZURE_OPENAI   LLMObsCustomEvalConfigIntegrationProvider = "azure-openai"
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_VERTEX_AI      LLMObsCustomEvalConfigIntegrationProvider = "vertex-ai"
-	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_LLM_PROXY      LLMObsCustomEvalConfigIntegrationProvider = "llm-proxy"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_OPENAI             LLMObsCustomEvalConfigIntegrationProvider = "openai"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_AMAZON_BEDROCK     LLMObsCustomEvalConfigIntegrationProvider = "amazon_bedrock"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_ANTHROPIC          LLMObsCustomEvalConfigIntegrationProvider = "anthropic"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_AZURE_OPENAI       LLMObsCustomEvalConfigIntegrationProvider = "azure_openai"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_VERTEX_AI          LLMObsCustomEvalConfigIntegrationProvider = "vertex_ai"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_LLM_PROXY          LLMObsCustomEvalConfigIntegrationProvider = "llmproxy"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DETERMINISTIC      LLMObsCustomEvalConfigIntegrationProvider = "deterministic"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_TYPESAFE           LLMObsCustomEvalConfigIntegrationProvider = "typesafe"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DATADOG            LLMObsCustomEvalConfigIntegrationProvider = "datadog"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DATADOG_AI_GATEWAY LLMObsCustomEvalConfigIntegrationProvider = "datadog_ai_gateway"
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_INSIGHTS_SPONSORED LLMObsCustomEvalConfigIntegrationProvider = "insights_sponsored"
 )
 
 var allowedLLMObsCustomEvalConfigIntegrationProviderEnumValues = []LLMObsCustomEvalConfigIntegrationProvider{
@@ -30,6 +35,11 @@ var allowedLLMObsCustomEvalConfigIntegrationProviderEnumValues = []LLMObsCustomE
 	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_AZURE_OPENAI,
 	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_VERTEX_AI,
 	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_LLM_PROXY,
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DETERMINISTIC,
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_TYPESAFE,
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DATADOG,
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_DATADOG_AI_GATEWAY,
+	LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_INSIGHTS_SPONSORED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
