@@ -18,7 +18,7 @@ type HeatgridWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Description of the widget.
 	Description *string `json:"description,omitempty"`
-	// Configuration of the group label column.
+	// Configuration of the group label column. Its width is sized automatically when omitted.
 	LabelColumn *HeatgridLabelColumn `json:"label_column,omitempty"`
 	// Legend configuration for the heatgrid widget.
 	Legend *HeatgridLegend `json:"legend,omitempty"`
