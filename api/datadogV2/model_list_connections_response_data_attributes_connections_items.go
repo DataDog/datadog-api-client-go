@@ -16,6 +16,8 @@ type ListConnectionsResponseDataAttributesConnectionsItems struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Identifier of the user who created the connection.
 	CreatedBy *string `json:"created_by,omitempty"`
+	// Type-specific configuration of the connection. Only the field matching the connection type is set.
+	Details *ListConnectionsResponseDataAttributesConnectionsItemsDetails `json:"details,omitempty"`
 	// List of custom attribute fields imported from the data source.
 	Fields []CreateConnectionRequestDataAttributesFieldsItems `json:"fields,omitempty"`
 	// Unique identifier of the connection.
@@ -24,6 +26,8 @@ type ListConnectionsResponseDataAttributesConnectionsItems struct {
 	Join *ListConnectionsResponseDataAttributesConnectionsItemsJoin `json:"join,omitempty"`
 	// Additional key-value metadata associated with the connection.
 	Metadata map[string]string `json:"metadata,omitempty"`
+	// Display name of the connection.
+	Name *string `json:"name,omitempty"`
 	// The type of data source connection (for example, ref_table).
 	Type *string `json:"type,omitempty"`
 	// Timestamp indicating when the connection was last updated.
@@ -106,6 +110,34 @@ func (o *ListConnectionsResponseDataAttributesConnectionsItems) HasCreatedBy() b
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *ListConnectionsResponseDataAttributesConnectionsItems) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) GetDetails() ListConnectionsResponseDataAttributesConnectionsItemsDetails {
+	if o == nil || o.Details == nil {
+		var ret ListConnectionsResponseDataAttributesConnectionsItemsDetails
+		return ret
+	}
+	return *o.Details
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) GetDetailsOk() (*ListConnectionsResponseDataAttributesConnectionsItemsDetails, bool) {
+	if o == nil || o.Details == nil {
+		return nil, false
+	}
+	return o.Details, true
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) HasDetails() bool {
+	return o != nil && o.Details != nil
+}
+
+// SetDetails gets a reference to the given ListConnectionsResponseDataAttributesConnectionsItemsDetails and assigns it to the Details field.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) SetDetails(v ListConnectionsResponseDataAttributesConnectionsItemsDetails) {
+	o.Details = &v
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
@@ -220,6 +252,34 @@ func (o *ListConnectionsResponseDataAttributesConnectionsItems) SetMetadata(v ma
 	o.Metadata = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ListConnectionsResponseDataAttributesConnectionsItems) SetName(v string) {
+	o.Name = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ListConnectionsResponseDataAttributesConnectionsItems) GetType() string {
 	if o == nil || o.Type == nil {
@@ -320,6 +380,9 @@ func (o ListConnectionsResponseDataAttributesConnectionsItems) MarshalJSON() ([]
 	if o.CreatedBy != nil {
 		toSerialize["created_by"] = o.CreatedBy
 	}
+	if o.Details != nil {
+		toSerialize["details"] = o.Details
+	}
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
 	}
@@ -331,6 +394,9 @@ func (o ListConnectionsResponseDataAttributesConnectionsItems) MarshalJSON() ([]
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
@@ -355,22 +421,24 @@ func (o ListConnectionsResponseDataAttributesConnectionsItems) MarshalJSON() ([]
 // UnmarshalJSON deserializes the given payload.
 func (o *ListConnectionsResponseDataAttributesConnectionsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time                                                 `json:"created_at,omitempty"`
-		CreatedBy *string                                                    `json:"created_by,omitempty"`
-		Fields    []CreateConnectionRequestDataAttributesFieldsItems         `json:"fields,omitempty"`
-		Id        *string                                                    `json:"id,omitempty"`
-		Join      *ListConnectionsResponseDataAttributesConnectionsItemsJoin `json:"join,omitempty"`
-		Metadata  map[string]string                                          `json:"metadata,omitempty"`
-		Type      *string                                                    `json:"type,omitempty"`
-		UpdatedAt *time.Time                                                 `json:"updated_at,omitempty"`
-		UpdatedBy *string                                                    `json:"updated_by,omitempty"`
+		CreatedAt *time.Time                                                    `json:"created_at,omitempty"`
+		CreatedBy *string                                                       `json:"created_by,omitempty"`
+		Details   *ListConnectionsResponseDataAttributesConnectionsItemsDetails `json:"details,omitempty"`
+		Fields    []CreateConnectionRequestDataAttributesFieldsItems            `json:"fields,omitempty"`
+		Id        *string                                                       `json:"id,omitempty"`
+		Join      *ListConnectionsResponseDataAttributesConnectionsItemsJoin    `json:"join,omitempty"`
+		Metadata  map[string]string                                             `json:"metadata,omitempty"`
+		Name      *string                                                       `json:"name,omitempty"`
+		Type      *string                                                       `json:"type,omitempty"`
+		UpdatedAt *time.Time                                                    `json:"updated_at,omitempty"`
+		UpdatedBy *string                                                       `json:"updated_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "fields", "id", "join", "metadata", "type", "updated_at", "updated_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "details", "fields", "id", "join", "metadata", "name", "type", "updated_at", "updated_by"})
 	} else {
 		return err
 	}
@@ -378,6 +446,10 @@ func (o *ListConnectionsResponseDataAttributesConnectionsItems) UnmarshalJSON(by
 	hasInvalidField := false
 	o.CreatedAt = all.CreatedAt
 	o.CreatedBy = all.CreatedBy
+	if all.Details != nil && all.Details.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Details = all.Details
 	o.Fields = all.Fields
 	o.Id = all.Id
 	if all.Join != nil && all.Join.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -385,6 +457,7 @@ func (o *ListConnectionsResponseDataAttributesConnectionsItems) UnmarshalJSON(by
 	}
 	o.Join = all.Join
 	o.Metadata = all.Metadata
+	o.Name = all.Name
 	o.Type = all.Type
 	o.UpdatedAt = all.UpdatedAt
 	o.UpdatedBy = all.UpdatedBy

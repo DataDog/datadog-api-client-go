@@ -10,10 +10,10 @@ import (
 
 // FacetInfoResponseDataAttributesResultRange The numeric range of a facet attribute, representing the minimum and maximum observed values.
 type FacetInfoResponseDataAttributesResultRange struct {
-	// The maximum observed value for the numeric facet attribute.
-	Max interface{} `json:"max,omitempty"`
-	// The minimum observed value for the numeric facet attribute.
-	Min interface{} `json:"min,omitempty"`
+	// The maximum observed value for the numeric facet attribute. Null when no records match.
+	Max datadog.NullableFloat64 `json:"max,omitempty"`
+	// The minimum observed value for the numeric facet attribute. Null when no records match.
+	Min datadog.NullableFloat64 `json:"min,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -36,60 +36,82 @@ func NewFacetInfoResponseDataAttributesResultRangeWithDefaults() *FacetInfoRespo
 	return &this
 }
 
-// GetMax returns the Max field value if set, zero value otherwise.
-func (o *FacetInfoResponseDataAttributesResultRange) GetMax() interface{} {
-	if o == nil || o.Max == nil {
-		var ret interface{}
+// GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FacetInfoResponseDataAttributesResultRange) GetMax() float64 {
+	if o == nil || o.Max.Get() == nil {
+		var ret float64
 		return ret
 	}
-	return o.Max
+	return *o.Max.Get()
 }
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FacetInfoResponseDataAttributesResultRange) GetMaxOk() (*interface{}, bool) {
-	if o == nil || o.Max == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *FacetInfoResponseDataAttributesResultRange) GetMaxOk() (*float64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Max, true
+	return o.Max.Get(), o.Max.IsSet()
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *FacetInfoResponseDataAttributesResultRange) HasMax() bool {
-	return o != nil && o.Max != nil
+	return o != nil && o.Max.IsSet()
 }
 
-// SetMax gets a reference to the given interface{} and assigns it to the Max field.
-func (o *FacetInfoResponseDataAttributesResultRange) SetMax(v interface{}) {
-	o.Max = v
+// SetMax gets a reference to the given datadog.NullableFloat64 and assigns it to the Max field.
+func (o *FacetInfoResponseDataAttributesResultRange) SetMax(v float64) {
+	o.Max.Set(&v)
 }
 
-// GetMin returns the Min field value if set, zero value otherwise.
-func (o *FacetInfoResponseDataAttributesResultRange) GetMin() interface{} {
-	if o == nil || o.Min == nil {
-		var ret interface{}
+// SetMaxNil sets the value for Max to be an explicit nil.
+func (o *FacetInfoResponseDataAttributesResultRange) SetMaxNil() {
+	o.Max.Set(nil)
+}
+
+// UnsetMax ensures that no value is present for Max, not even an explicit nil.
+func (o *FacetInfoResponseDataAttributesResultRange) UnsetMax() {
+	o.Max.Unset()
+}
+
+// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FacetInfoResponseDataAttributesResultRange) GetMin() float64 {
+	if o == nil || o.Min.Get() == nil {
+		var ret float64
 		return ret
 	}
-	return o.Min
+	return *o.Min.Get()
 }
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FacetInfoResponseDataAttributesResultRange) GetMinOk() (*interface{}, bool) {
-	if o == nil || o.Min == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *FacetInfoResponseDataAttributesResultRange) GetMinOk() (*float64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Min, true
+	return o.Min.Get(), o.Min.IsSet()
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *FacetInfoResponseDataAttributesResultRange) HasMin() bool {
-	return o != nil && o.Min != nil
+	return o != nil && o.Min.IsSet()
 }
 
-// SetMin gets a reference to the given interface{} and assigns it to the Min field.
-func (o *FacetInfoResponseDataAttributesResultRange) SetMin(v interface{}) {
-	o.Min = v
+// SetMin gets a reference to the given datadog.NullableFloat64 and assigns it to the Min field.
+func (o *FacetInfoResponseDataAttributesResultRange) SetMin(v float64) {
+	o.Min.Set(&v)
+}
+
+// SetMinNil sets the value for Min to be an explicit nil.
+func (o *FacetInfoResponseDataAttributesResultRange) SetMinNil() {
+	o.Min.Set(nil)
+}
+
+// UnsetMin ensures that no value is present for Min, not even an explicit nil.
+func (o *FacetInfoResponseDataAttributesResultRange) UnsetMin() {
+	o.Min.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -98,11 +120,11 @@ func (o FacetInfoResponseDataAttributesResultRange) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Max != nil {
-		toSerialize["max"] = o.Max
+	if o.Max.IsSet() {
+		toSerialize["max"] = o.Max.Get()
 	}
-	if o.Min != nil {
-		toSerialize["min"] = o.Min
+	if o.Min.IsSet() {
+		toSerialize["min"] = o.Min.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -114,8 +136,8 @@ func (o FacetInfoResponseDataAttributesResultRange) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *FacetInfoResponseDataAttributesResultRange) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Max interface{} `json:"max,omitempty"`
-		Min interface{} `json:"min,omitempty"`
+		Max datadog.NullableFloat64 `json:"max,omitempty"`
+		Min datadog.NullableFloat64 `json:"min,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

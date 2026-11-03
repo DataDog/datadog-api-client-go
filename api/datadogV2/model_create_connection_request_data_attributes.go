@@ -12,6 +12,8 @@ import (
 
 // CreateConnectionRequestDataAttributes Attributes defining the data source connection, including join configuration and custom fields.
 type CreateConnectionRequestDataAttributes struct {
+	// Type-specific configuration of the connection. Only the field matching the connection type is set.
+	Details *ListConnectionsResponseDataAttributesConnectionsItemsDetails `json:"details,omitempty"`
 	// List of custom attribute fields to import from the data source.
 	Fields []CreateConnectionRequestDataAttributesFieldsItems `json:"fields,omitempty"`
 	// The attribute in the data source used to join records with the entity.
@@ -20,6 +22,8 @@ type CreateConnectionRequestDataAttributes struct {
 	JoinType string `json:"join_type"`
 	// Additional key-value metadata associated with the connection.
 	Metadata map[string]string `json:"metadata,omitempty"`
+	// Display name of the connection.
+	Name *string `json:"name,omitempty"`
 	// The type of data source connection (for example, ref_table).
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -45,6 +49,34 @@ func NewCreateConnectionRequestDataAttributes(joinAttribute string, joinType str
 func NewCreateConnectionRequestDataAttributesWithDefaults() *CreateConnectionRequestDataAttributes {
 	this := CreateConnectionRequestDataAttributes{}
 	return &this
+}
+
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *CreateConnectionRequestDataAttributes) GetDetails() ListConnectionsResponseDataAttributesConnectionsItemsDetails {
+	if o == nil || o.Details == nil {
+		var ret ListConnectionsResponseDataAttributesConnectionsItemsDetails
+		return ret
+	}
+	return *o.Details
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionRequestDataAttributes) GetDetailsOk() (*ListConnectionsResponseDataAttributesConnectionsItemsDetails, bool) {
+	if o == nil || o.Details == nil {
+		return nil, false
+	}
+	return o.Details, true
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *CreateConnectionRequestDataAttributes) HasDetails() bool {
+	return o != nil && o.Details != nil
+}
+
+// SetDetails gets a reference to the given ListConnectionsResponseDataAttributesConnectionsItemsDetails and assigns it to the Details field.
+func (o *CreateConnectionRequestDataAttributes) SetDetails(v ListConnectionsResponseDataAttributesConnectionsItemsDetails) {
+	o.Details = &v
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
@@ -149,6 +181,34 @@ func (o *CreateConnectionRequestDataAttributes) SetMetadata(v map[string]string)
 	o.Metadata = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CreateConnectionRequestDataAttributes) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionRequestDataAttributes) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CreateConnectionRequestDataAttributes) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CreateConnectionRequestDataAttributes) SetName(v string) {
+	o.Name = &v
+}
+
 // GetType returns the Type field value.
 func (o *CreateConnectionRequestDataAttributes) GetType() string {
 	if o == nil {
@@ -178,6 +238,9 @@ func (o CreateConnectionRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Details != nil {
+		toSerialize["details"] = o.Details
+	}
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
 	}
@@ -185,6 +248,9 @@ func (o CreateConnectionRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["join_type"] = o.JoinType
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	toSerialize["type"] = o.Type
 
@@ -197,11 +263,13 @@ func (o CreateConnectionRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateConnectionRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields        []CreateConnectionRequestDataAttributesFieldsItems `json:"fields,omitempty"`
-		JoinAttribute *string                                            `json:"join_attribute"`
-		JoinType      *string                                            `json:"join_type"`
-		Metadata      map[string]string                                  `json:"metadata,omitempty"`
-		Type          *string                                            `json:"type"`
+		Details       *ListConnectionsResponseDataAttributesConnectionsItemsDetails `json:"details,omitempty"`
+		Fields        []CreateConnectionRequestDataAttributesFieldsItems            `json:"fields,omitempty"`
+		JoinAttribute *string                                                       `json:"join_attribute"`
+		JoinType      *string                                                       `json:"join_type"`
+		Metadata      map[string]string                                             `json:"metadata,omitempty"`
+		Name          *string                                                       `json:"name,omitempty"`
+		Type          *string                                                       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,18 +285,29 @@ func (o *CreateConnectionRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "join_attribute", "join_type", "metadata", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"details", "fields", "join_attribute", "join_type", "metadata", "name", "type"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Details != nil && all.Details.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Details = all.Details
 	o.Fields = all.Fields
 	o.JoinAttribute = *all.JoinAttribute
 	o.JoinType = *all.JoinType
 	o.Metadata = all.Metadata
+	o.Name = all.Name
 	o.Type = *all.Type
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

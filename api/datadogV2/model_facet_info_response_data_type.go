@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FacetInfoResponseDataType Users facet info resource type.
+// FacetInfoResponseDataType Facet info resource type.
 type FacetInfoResponseDataType string
 
 // List of FacetInfoResponseDataType.
 const (
-	FACETINFORESPONSEDATATYPE_USERS_FACET_INFO FacetInfoResponseDataType = "users_facet_info"
+	FACETINFORESPONSEDATATYPE_USERS_FACET_INFO    FacetInfoResponseDataType = "users_facet_info"
+	FACETINFORESPONSEDATATYPE_ACCOUNTS_FACET_INFO FacetInfoResponseDataType = "accounts_facet_info"
 )
 
 var allowedFacetInfoResponseDataTypeEnumValues = []FacetInfoResponseDataType{
 	FACETINFORESPONSEDATATYPE_USERS_FACET_INFO,
+	FACETINFORESPONSEDATATYPE_ACCOUNTS_FACET_INFO,
 }
 
 // GetAllowedValues reeturns the list of possible values.

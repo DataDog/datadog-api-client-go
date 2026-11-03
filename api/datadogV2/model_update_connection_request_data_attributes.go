@@ -16,6 +16,8 @@ type UpdateConnectionRequestDataAttributes struct {
 	FieldsToDelete []string `json:"fields_to_delete,omitempty"`
 	// Existing fields with updated metadata to apply to the connection.
 	FieldsToUpdate []UpdateConnectionRequestDataAttributesFieldsToUpdateItems `json:"fields_to_update,omitempty"`
+	// New display name for the connection.
+	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -122,6 +124,34 @@ func (o *UpdateConnectionRequestDataAttributes) SetFieldsToUpdate(v []UpdateConn
 	o.FieldsToUpdate = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *UpdateConnectionRequestDataAttributes) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateConnectionRequestDataAttributes) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *UpdateConnectionRequestDataAttributes) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *UpdateConnectionRequestDataAttributes) SetName(v string) {
+	o.Name = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateConnectionRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,6 +167,9 @@ func (o UpdateConnectionRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.FieldsToUpdate != nil {
 		toSerialize["fields_to_update"] = o.FieldsToUpdate
 	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -150,19 +183,21 @@ func (o *UpdateConnectionRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 		FieldsToAdd    []CreateConnectionRequestDataAttributesFieldsItems         `json:"fields_to_add,omitempty"`
 		FieldsToDelete []string                                                   `json:"fields_to_delete,omitempty"`
 		FieldsToUpdate []UpdateConnectionRequestDataAttributesFieldsToUpdateItems `json:"fields_to_update,omitempty"`
+		Name           *string                                                    `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields_to_add", "fields_to_delete", "fields_to_update"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"fields_to_add", "fields_to_delete", "fields_to_update", "name"})
 	} else {
 		return err
 	}
 	o.FieldsToAdd = all.FieldsToAdd
 	o.FieldsToDelete = all.FieldsToDelete
 	o.FieldsToUpdate = all.FieldsToUpdate
+	o.Name = all.Name
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
