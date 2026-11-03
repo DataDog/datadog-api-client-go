@@ -20,9 +20,9 @@ type UpsertAllocationRequest struct {
 	ExposureSchedule *ExposureScheduleRequest `json:"exposure_schedule,omitempty"`
 	// Guardrail metrics used to monitor and auto-pause or abort.
 	GuardrailMetrics []GuardrailMetricRequest `json:"guardrail_metrics,omitempty"`
-	// The unique identifier of the targeting rule allocation.
+	// The unique identifier of the targeting rule allocation. Use this ID with the allocation management endpoints, such as `/api/v2/allocations/{allocation_id}`. It is not included in SDK evaluation results or exposure events.
 	Id *uuid.UUID `json:"id,omitempty"`
-	// The unique key of the targeting rule allocation.
+	// The unique key of the targeting rule allocation. SDKs report this key in flag evaluation results and exposure events to indicate which targeting rule assigned the variant. Use it to match evaluation or experiment data to this rule.
 	Key string `json:"key"`
 	// The display name of the targeting rule.
 	Name string `json:"name"`

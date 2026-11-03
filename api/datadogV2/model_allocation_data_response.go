@@ -16,7 +16,7 @@ import (
 type AllocationDataResponse struct {
 	// Targeting rule (allocation) details for a feature flag environment.
 	Attributes Allocation `json:"attributes"`
-	// The unique identifier of the targeting rule allocation.
+	// The unique identifier of the targeting rule allocation. Use this ID with the allocation management endpoints, such as `/api/v2/allocations/{allocation_id}`. It is not included in SDK evaluation results or exposure events.
 	Id uuid.UUID `json:"id"`
 	// The resource type.
 	Type AllocationDataType `json:"type"`

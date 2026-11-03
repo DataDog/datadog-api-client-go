@@ -14,7 +14,7 @@ import (
 
 // FeatureFlagEnvironmentListItem Environment-specific settings for a feature flag in list responses.
 type FeatureFlagEnvironmentListItem struct {
-	// The allocation key used for the default variant.
+	// A system-generated allocation key, in the format `allocation-default-<hash>`, that SDKs report in flag evaluation results and exposure events when a subject receives the environment's default variant because no targeting rule matched. It has no corresponding allocation ID and cannot be used with the allocation endpoints.
 	DefaultAllocationKey *string `json:"default_allocation_key,omitempty"`
 	// The ID of the default variant for this environment.
 	DefaultVariantId datadog.NullableString `json:"default_variant_id,omitempty"`
@@ -28,7 +28,7 @@ type FeatureFlagEnvironmentListItem struct {
 	IsProduction *bool `json:"is_production,omitempty"`
 	// Indicates whether feature flag evaluation events include original targeting identifiers and full evaluation context.
 	ObserveFullEvaluationData *bool `json:"observe_full_evaluation_data,omitempty"`
-	// The allocation key used for the override variant.
+	// A system-generated allocation key, in the format `allocation-override-<hash>`, that SDKs report in flag evaluation results and exposure events when the environment's override variant is served. It has no corresponding allocation ID and cannot be used with the allocation endpoints.
 	OverrideAllocationKey *string `json:"override_allocation_key,omitempty"`
 	// The ID of the override variant for this environment.
 	OverrideVariantId datadog.NullableString `json:"override_variant_id,omitempty"`

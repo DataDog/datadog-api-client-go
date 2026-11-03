@@ -12,7 +12,7 @@ import (
 
 // ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfiguration Feature flag, environment, and targeting configuration for the experiment.
 type ExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfiguration struct {
-	// Key of the feature flag allocation linked to the experiment.
+	// Key of the feature flag allocation linked to the experiment. Matches the allocation key that SDKs report in flag evaluation results and exposure events.
 	AllocationKey *string `json:"allocation_key,omitempty"`
 	// Datadog measure and filters used to select analyzed subjects.
 	EntryPoint NullableExperimentsPatchExperimentV2ResponseDataAttributesDatadogFlagConfigurationEntryPoint `json:"entry_point"`
