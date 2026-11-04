@@ -12,9 +12,10 @@ import (
 
 // RumMetricGroupBy A group by rule.
 type RumMetricGroupBy struct {
-	// The path to the value the RUM-based metric will be aggregated over.
+	// The path of the RUM event attribute to group the metric by.
 	Path string `json:"path"`
-	// Eventual name of the tag that gets created. By default, `path` is used as the tag name.
+	// Name of the tag that gets created on the metric. By default, `path` is used as the tag name.
+	// It must be at most 200 characters long, start with a letter, and contain only lowercase letters, digits, underscores, hyphens, colons, periods, and slashes.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

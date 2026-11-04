@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUpdateRequest The new RUM-based metric body.
+// RumMetricUpdateRequest The RUM-based metric update body.
 type RumMetricUpdateRequest struct {
-	// The new RUM-based metric properties.
+	// The RUM-based metric properties to update. `id` is required by the API and must match the `metric_id` path parameter.
 	Data RumMetricUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
