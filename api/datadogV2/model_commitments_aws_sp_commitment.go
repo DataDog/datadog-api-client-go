@@ -18,15 +18,19 @@ type CommitmentsAwsSPCommitment struct {
 	CommittedSpendPerHour *float64 `json:"committed_spend_per_hour,omitempty"`
 	// The expiration date of the commitment.
 	ExpirationDate *string `json:"expiration_date,omitempty"`
+	// The EC2 instance family covered by the Savings Plan. Returned only for EC2 Instance Savings Plans.
+	InstanceTypeFamily *string `json:"instance_type_family,omitempty"`
 	// The payment option for the Savings Plan.
 	PurchaseOption string `json:"purchase_option"`
+	// The AWS region covered by the Savings Plan. Returned only for EC2 Instance Savings Plans.
+	Region *string `json:"region,omitempty"`
 	// The Savings Plan type.
 	SavingsPlanType string `json:"savings_plan_type"`
 	// The start date of the commitment.
 	StartDate *string `json:"start_date,omitempty"`
-	// The term length in years.
-	TermLength *float64 `json:"term_length,omitempty"`
-	// The utilization percentage of the commitment.
+	// The commitment term in whole months. Omitted when the term is unknown.
+	TermLengthMonths *int64 `json:"term_length_months,omitempty"`
+	// The utilization percentage of the commitment, from 0 to 100.
 	Utilization *float64 `json:"utilization,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -132,6 +136,34 @@ func (o *CommitmentsAwsSPCommitment) SetExpirationDate(v string) {
 	o.ExpirationDate = &v
 }
 
+// GetInstanceTypeFamily returns the InstanceTypeFamily field value if set, zero value otherwise.
+func (o *CommitmentsAwsSPCommitment) GetInstanceTypeFamily() string {
+	if o == nil || o.InstanceTypeFamily == nil {
+		var ret string
+		return ret
+	}
+	return *o.InstanceTypeFamily
+}
+
+// GetInstanceTypeFamilyOk returns a tuple with the InstanceTypeFamily field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommitmentsAwsSPCommitment) GetInstanceTypeFamilyOk() (*string, bool) {
+	if o == nil || o.InstanceTypeFamily == nil {
+		return nil, false
+	}
+	return o.InstanceTypeFamily, true
+}
+
+// HasInstanceTypeFamily returns a boolean if a field has been set.
+func (o *CommitmentsAwsSPCommitment) HasInstanceTypeFamily() bool {
+	return o != nil && o.InstanceTypeFamily != nil
+}
+
+// SetInstanceTypeFamily gets a reference to the given string and assigns it to the InstanceTypeFamily field.
+func (o *CommitmentsAwsSPCommitment) SetInstanceTypeFamily(v string) {
+	o.InstanceTypeFamily = &v
+}
+
 // GetPurchaseOption returns the PurchaseOption field value.
 func (o *CommitmentsAwsSPCommitment) GetPurchaseOption() string {
 	if o == nil {
@@ -153,6 +185,34 @@ func (o *CommitmentsAwsSPCommitment) GetPurchaseOptionOk() (*string, bool) {
 // SetPurchaseOption sets field value.
 func (o *CommitmentsAwsSPCommitment) SetPurchaseOption(v string) {
 	o.PurchaseOption = v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *CommitmentsAwsSPCommitment) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommitmentsAwsSPCommitment) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *CommitmentsAwsSPCommitment) HasRegion() bool {
+	return o != nil && o.Region != nil
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *CommitmentsAwsSPCommitment) SetRegion(v string) {
+	o.Region = &v
 }
 
 // GetSavingsPlanType returns the SavingsPlanType field value.
@@ -206,32 +266,32 @@ func (o *CommitmentsAwsSPCommitment) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
-// GetTermLength returns the TermLength field value if set, zero value otherwise.
-func (o *CommitmentsAwsSPCommitment) GetTermLength() float64 {
-	if o == nil || o.TermLength == nil {
-		var ret float64
+// GetTermLengthMonths returns the TermLengthMonths field value if set, zero value otherwise.
+func (o *CommitmentsAwsSPCommitment) GetTermLengthMonths() int64 {
+	if o == nil || o.TermLengthMonths == nil {
+		var ret int64
 		return ret
 	}
-	return *o.TermLength
+	return *o.TermLengthMonths
 }
 
-// GetTermLengthOk returns a tuple with the TermLength field value if set, nil otherwise
+// GetTermLengthMonthsOk returns a tuple with the TermLengthMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommitmentsAwsSPCommitment) GetTermLengthOk() (*float64, bool) {
-	if o == nil || o.TermLength == nil {
+func (o *CommitmentsAwsSPCommitment) GetTermLengthMonthsOk() (*int64, bool) {
+	if o == nil || o.TermLengthMonths == nil {
 		return nil, false
 	}
-	return o.TermLength, true
+	return o.TermLengthMonths, true
 }
 
-// HasTermLength returns a boolean if a field has been set.
-func (o *CommitmentsAwsSPCommitment) HasTermLength() bool {
-	return o != nil && o.TermLength != nil
+// HasTermLengthMonths returns a boolean if a field has been set.
+func (o *CommitmentsAwsSPCommitment) HasTermLengthMonths() bool {
+	return o != nil && o.TermLengthMonths != nil
 }
 
-// SetTermLength gets a reference to the given float64 and assigns it to the TermLength field.
-func (o *CommitmentsAwsSPCommitment) SetTermLength(v float64) {
-	o.TermLength = &v
+// SetTermLengthMonths gets a reference to the given int64 and assigns it to the TermLengthMonths field.
+func (o *CommitmentsAwsSPCommitment) SetTermLengthMonths(v int64) {
+	o.TermLengthMonths = &v
 }
 
 // GetUtilization returns the Utilization field value if set, zero value otherwise.
@@ -275,13 +335,19 @@ func (o CommitmentsAwsSPCommitment) MarshalJSON() ([]byte, error) {
 	if o.ExpirationDate != nil {
 		toSerialize["expiration_date"] = o.ExpirationDate
 	}
+	if o.InstanceTypeFamily != nil {
+		toSerialize["instance_type_family"] = o.InstanceTypeFamily
+	}
 	toSerialize["purchase_option"] = o.PurchaseOption
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
 	toSerialize["savings_plan_type"] = o.SavingsPlanType
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
 	}
-	if o.TermLength != nil {
-		toSerialize["term_length"] = o.TermLength
+	if o.TermLengthMonths != nil {
+		toSerialize["term_length_months"] = o.TermLengthMonths
 	}
 	if o.Utilization != nil {
 		toSerialize["utilization"] = o.Utilization
@@ -299,10 +365,12 @@ func (o *CommitmentsAwsSPCommitment) UnmarshalJSON(bytes []byte) (err error) {
 		CommitmentId          *string  `json:"commitment_id"`
 		CommittedSpendPerHour *float64 `json:"committed_spend_per_hour,omitempty"`
 		ExpirationDate        *string  `json:"expiration_date,omitempty"`
+		InstanceTypeFamily    *string  `json:"instance_type_family,omitempty"`
 		PurchaseOption        *string  `json:"purchase_option"`
+		Region                *string  `json:"region,omitempty"`
 		SavingsPlanType       *string  `json:"savings_plan_type"`
 		StartDate             *string  `json:"start_date,omitempty"`
-		TermLength            *float64 `json:"term_length,omitempty"`
+		TermLengthMonths      *int64   `json:"term_length_months,omitempty"`
 		Utilization           *float64 `json:"utilization,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -319,17 +387,19 @@ func (o *CommitmentsAwsSPCommitment) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commitment_id", "committed_spend_per_hour", "expiration_date", "purchase_option", "savings_plan_type", "start_date", "term_length", "utilization"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"commitment_id", "committed_spend_per_hour", "expiration_date", "instance_type_family", "purchase_option", "region", "savings_plan_type", "start_date", "term_length_months", "utilization"})
 	} else {
 		return err
 	}
 	o.CommitmentId = *all.CommitmentId
 	o.CommittedSpendPerHour = all.CommittedSpendPerHour
 	o.ExpirationDate = all.ExpirationDate
+	o.InstanceTypeFamily = all.InstanceTypeFamily
 	o.PurchaseOption = *all.PurchaseOption
+	o.Region = all.Region
 	o.SavingsPlanType = *all.SavingsPlanType
 	o.StartDate = all.StartDate
-	o.TermLength = all.TermLength
+	o.TermLengthMonths = all.TermLengthMonths
 	o.Utilization = all.Utilization
 
 	if len(additionalProperties) > 0 {

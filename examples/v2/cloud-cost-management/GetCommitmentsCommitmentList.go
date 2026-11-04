@@ -19,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetCommitmentsCommitmentList", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.GetCommitmentsCommitmentList(ctx, datadogV2.COMMITMENTSPROVIDER_AWS, "product", 9223372036854775807, 9223372036854775807, *datadogV2.NewGetCommitmentsCommitmentListOptionalParameters())
+	resp, r, err := api.GetCommitmentsCommitmentList(ctx, datadogV2.COMMITMENTSPROVIDER_AWS, "ec2", 1788220800000, 1790812799000, *datadogV2.NewGetCommitmentsCommitmentListOptionalParameters().WithCommitmentType(datadogV2.COMMITMENTSCOMMITMENTTYPE_RESERVED_INSTANCES))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.GetCommitmentsCommitmentList`: %v\n", err)

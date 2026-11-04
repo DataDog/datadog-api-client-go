@@ -12,6 +12,9 @@ import (
 type CommitmentsListMeta struct {
 	// Unit metadata for a numeric metric.
 	CommittedSpendUnit *CommitmentsUnit `json:"committed_spend_unit,omitempty"`
+	// Whether Azure cost data lacks the unused cost of some commitments, for example when an export is
+	// scoped below the billing profile. When `true`, utilization is overstated.
+	UnusedCostUnavailable *bool `json:"unused_cost_unavailable,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +65,34 @@ func (o *CommitmentsListMeta) SetCommittedSpendUnit(v CommitmentsUnit) {
 	o.CommittedSpendUnit = &v
 }
 
+// GetUnusedCostUnavailable returns the UnusedCostUnavailable field value if set, zero value otherwise.
+func (o *CommitmentsListMeta) GetUnusedCostUnavailable() bool {
+	if o == nil || o.UnusedCostUnavailable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.UnusedCostUnavailable
+}
+
+// GetUnusedCostUnavailableOk returns a tuple with the UnusedCostUnavailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommitmentsListMeta) GetUnusedCostUnavailableOk() (*bool, bool) {
+	if o == nil || o.UnusedCostUnavailable == nil {
+		return nil, false
+	}
+	return o.UnusedCostUnavailable, true
+}
+
+// HasUnusedCostUnavailable returns a boolean if a field has been set.
+func (o *CommitmentsListMeta) HasUnusedCostUnavailable() bool {
+	return o != nil && o.UnusedCostUnavailable != nil
+}
+
+// SetUnusedCostUnavailable gets a reference to the given bool and assigns it to the UnusedCostUnavailable field.
+func (o *CommitmentsListMeta) SetUnusedCostUnavailable(v bool) {
+	o.UnusedCostUnavailable = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CommitmentsListMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +101,9 @@ func (o CommitmentsListMeta) MarshalJSON() ([]byte, error) {
 	}
 	if o.CommittedSpendUnit != nil {
 		toSerialize["committed_spend_unit"] = o.CommittedSpendUnit
+	}
+	if o.UnusedCostUnavailable != nil {
+		toSerialize["unused_cost_unavailable"] = o.UnusedCostUnavailable
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +115,15 @@ func (o CommitmentsListMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsListMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommittedSpendUnit *CommitmentsUnit `json:"committed_spend_unit,omitempty"`
+		CommittedSpendUnit    *CommitmentsUnit `json:"committed_spend_unit,omitempty"`
+		UnusedCostUnavailable *bool            `json:"unused_cost_unavailable,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"committed_spend_unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"committed_spend_unit", "unused_cost_unavailable"})
 	} else {
 		return err
 	}
@@ -98,6 +133,7 @@ func (o *CommitmentsListMeta) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.CommittedSpendUnit = all.CommittedSpendUnit
+	o.UnusedCostUnavailable = all.UnusedCostUnavailable
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
