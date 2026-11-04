@@ -13,6 +13,8 @@ import (
 
 // NotificationChannelPhoneConfig Phone notification channel configuration
 type NotificationChannelPhoneConfig struct {
+	// Notification methods currently available for this phone number. Omitted when no methods are available.
+	AvailableNotificationTypes []OnCallPhoneNotificationRuleMethod `json:"available_notification_types,omitempty"`
 	// The formatted international version of Number (e.g. +33 7 1 23 45 67).
 	FormattedNumber string `json:"formatted_number"`
 	// The E-164 formatted phone number (e.g. +3371234567)
@@ -52,6 +54,34 @@ func NewNotificationChannelPhoneConfigWithDefaults() *NotificationChannelPhoneCo
 	var typeVar NotificationChannelPhoneConfigType = NOTIFICATIONCHANNELPHONECONFIGTYPE_PHONE
 	this.Type = typeVar
 	return &this
+}
+
+// GetAvailableNotificationTypes returns the AvailableNotificationTypes field value if set, zero value otherwise.
+func (o *NotificationChannelPhoneConfig) GetAvailableNotificationTypes() []OnCallPhoneNotificationRuleMethod {
+	if o == nil || o.AvailableNotificationTypes == nil {
+		var ret []OnCallPhoneNotificationRuleMethod
+		return ret
+	}
+	return o.AvailableNotificationTypes
+}
+
+// GetAvailableNotificationTypesOk returns a tuple with the AvailableNotificationTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationChannelPhoneConfig) GetAvailableNotificationTypesOk() (*[]OnCallPhoneNotificationRuleMethod, bool) {
+	if o == nil || o.AvailableNotificationTypes == nil {
+		return nil, false
+	}
+	return &o.AvailableNotificationTypes, true
+}
+
+// HasAvailableNotificationTypes returns a boolean if a field has been set.
+func (o *NotificationChannelPhoneConfig) HasAvailableNotificationTypes() bool {
+	return o != nil && o.AvailableNotificationTypes != nil
+}
+
+// SetAvailableNotificationTypes gets a reference to the given []OnCallPhoneNotificationRuleMethod and assigns it to the AvailableNotificationTypes field.
+func (o *NotificationChannelPhoneConfig) SetAvailableNotificationTypes(v []OnCallPhoneNotificationRuleMethod) {
+	o.AvailableNotificationTypes = v
 }
 
 // GetFormattedNumber returns the FormattedNumber field value.
@@ -214,6 +244,9 @@ func (o NotificationChannelPhoneConfig) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AvailableNotificationTypes != nil {
+		toSerialize["available_notification_types"] = o.AvailableNotificationTypes
+	}
 	toSerialize["formatted_number"] = o.FormattedNumber
 	toSerialize["number"] = o.Number
 	toSerialize["region"] = o.Region
@@ -232,12 +265,13 @@ func (o NotificationChannelPhoneConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotificationChannelPhoneConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FormattedNumber *string                             `json:"formatted_number"`
-		Number          *string                             `json:"number"`
-		Region          *string                             `json:"region"`
-		SmsSubscribedAt datadog.NullableTime                `json:"sms_subscribed_at,omitempty"`
-		Type            *NotificationChannelPhoneConfigType `json:"type"`
-		Verified        *bool                               `json:"verified"`
+		AvailableNotificationTypes []OnCallPhoneNotificationRuleMethod `json:"available_notification_types,omitempty"`
+		FormattedNumber            *string                             `json:"formatted_number"`
+		Number                     *string                             `json:"number"`
+		Region                     *string                             `json:"region"`
+		SmsSubscribedAt            datadog.NullableTime                `json:"sms_subscribed_at,omitempty"`
+		Type                       *NotificationChannelPhoneConfigType `json:"type"`
+		Verified                   *bool                               `json:"verified"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -259,12 +293,13 @@ func (o *NotificationChannelPhoneConfig) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"formatted_number", "number", "region", "sms_subscribed_at", "type", "verified"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"available_notification_types", "formatted_number", "number", "region", "sms_subscribed_at", "type", "verified"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AvailableNotificationTypes = all.AvailableNotificationTypes
 	o.FormattedNumber = *all.FormattedNumber
 	o.Number = *all.Number
 	o.Region = *all.Region
