@@ -15,8 +15,10 @@ type RumMetricCreateData struct {
 	// The object describing the Datadog RUM-based metric to create.
 	Attributes RumMetricCreateAttributes `json:"attributes"`
 	// The name of the RUM-based metric.
+	// On creation, it must be 1 to 200 characters long, contain only ASCII letters, digits, underscores, and periods, start with a letter, and not start with `rum.measure` or `rum.investigate`.
+	// It cannot be changed after creation.
 	Id string `json:"id"`
-	// The type of the resource. The value should always be rum_metrics.
+	// The type of the resource. The value must be `rum_metrics`.
 	Type RumMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

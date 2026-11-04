@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricEventType The type of RUM events to filter on.
+// RumMetricEventType The type of RUM events the metric is generated from. It is set at creation and cannot be changed.
 type RumMetricEventType string
 
 // List of RumMetricEventType.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricType The type of the resource. The value should always be rum_metrics.
+// RumMetricType The type of the resource. The value must be `rum_metrics`.
 type RumMetricType string
 
 // List of RumMetricType.
