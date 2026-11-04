@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FacetInfoRequestDataType Users facet info request resource type.
+// FacetInfoRequestDataType Facet info request resource type.
 type FacetInfoRequestDataType string
 
 // List of FacetInfoRequestDataType.
 const (
-	FACETINFOREQUESTDATATYPE_USERS_FACET_INFO_REQUEST FacetInfoRequestDataType = "users_facet_info_request"
+	FACETINFOREQUESTDATATYPE_USERS_FACET_INFO_REQUEST    FacetInfoRequestDataType = "users_facet_info_request"
+	FACETINFOREQUESTDATATYPE_ACCOUNTS_FACET_INFO_REQUEST FacetInfoRequestDataType = "accounts_facet_info_request"
 )
 
 var allowedFacetInfoRequestDataTypeEnumValues = []FacetInfoRequestDataType{
 	FACETINFOREQUESTDATATYPE_USERS_FACET_INFO_REQUEST,
+	FACETINFOREQUESTDATATYPE_ACCOUNTS_FACET_INFO_REQUEST,
 }
 
 // GetAllowedValues reeturns the list of possible values.

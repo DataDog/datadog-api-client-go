@@ -16,7 +16,7 @@ type FacetInfoRequestData struct {
 	Attributes *FacetInfoRequestDataAttributes `json:"attributes,omitempty"`
 	// Unique identifier for the facet info request resource.
 	Id *string `json:"id,omitempty"`
-	// Users facet info request resource type.
+	// Facet info request resource type.
 	Type FacetInfoRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
