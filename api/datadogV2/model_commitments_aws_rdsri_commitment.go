@@ -23,18 +23,18 @@ type CommitmentsAwsRDSRICommitment struct {
 	// Whether the Reserved Instance is Multi-AZ.
 	IsMultiAz *bool `json:"is_multi_az,omitempty"`
 	// The number of Normalized Capacity Units.
-	NumberOfNfus *float64 `json:"number_of_nfus,omitempty"`
+	NumberOfNfus datadog.NullableFloat64 `json:"number_of_nfus,omitempty"`
 	// The number of reserved instances.
-	NumberOfReservations *float64 `json:"number_of_reservations,omitempty"`
+	NumberOfReservations datadog.NullableFloat64 `json:"number_of_reservations,omitempty"`
 	// The payment option for the Reserved Instance.
 	PurchaseOption string `json:"purchase_option"`
 	// The AWS region of the Reserved Instance.
 	Region string `json:"region"`
 	// The start date of the commitment.
 	StartDate *string `json:"start_date,omitempty"`
-	// The term length in years.
-	TermLength *float64 `json:"term_length,omitempty"`
-	// The utilization percentage of the commitment.
+	// The commitment term in whole months. Omitted when the term is unknown.
+	TermLengthMonths *int64 `json:"term_length_months,omitempty"`
+	// The utilization percentage of the commitment, from 0 to 100.
 	Utilization *float64 `json:"utilization,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -188,60 +188,82 @@ func (o *CommitmentsAwsRDSRICommitment) SetIsMultiAz(v bool) {
 	o.IsMultiAz = &v
 }
 
-// GetNumberOfNfus returns the NumberOfNfus field value if set, zero value otherwise.
+// GetNumberOfNfus returns the NumberOfNfus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CommitmentsAwsRDSRICommitment) GetNumberOfNfus() float64 {
-	if o == nil || o.NumberOfNfus == nil {
+	if o == nil || o.NumberOfNfus.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.NumberOfNfus
+	return *o.NumberOfNfus.Get()
 }
 
 // GetNumberOfNfusOk returns a tuple with the NumberOfNfus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CommitmentsAwsRDSRICommitment) GetNumberOfNfusOk() (*float64, bool) {
-	if o == nil || o.NumberOfNfus == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumberOfNfus, true
+	return o.NumberOfNfus.Get(), o.NumberOfNfus.IsSet()
 }
 
 // HasNumberOfNfus returns a boolean if a field has been set.
 func (o *CommitmentsAwsRDSRICommitment) HasNumberOfNfus() bool {
-	return o != nil && o.NumberOfNfus != nil
+	return o != nil && o.NumberOfNfus.IsSet()
 }
 
-// SetNumberOfNfus gets a reference to the given float64 and assigns it to the NumberOfNfus field.
+// SetNumberOfNfus gets a reference to the given datadog.NullableFloat64 and assigns it to the NumberOfNfus field.
 func (o *CommitmentsAwsRDSRICommitment) SetNumberOfNfus(v float64) {
-	o.NumberOfNfus = &v
+	o.NumberOfNfus.Set(&v)
 }
 
-// GetNumberOfReservations returns the NumberOfReservations field value if set, zero value otherwise.
+// SetNumberOfNfusNil sets the value for NumberOfNfus to be an explicit nil.
+func (o *CommitmentsAwsRDSRICommitment) SetNumberOfNfusNil() {
+	o.NumberOfNfus.Set(nil)
+}
+
+// UnsetNumberOfNfus ensures that no value is present for NumberOfNfus, not even an explicit nil.
+func (o *CommitmentsAwsRDSRICommitment) UnsetNumberOfNfus() {
+	o.NumberOfNfus.Unset()
+}
+
+// GetNumberOfReservations returns the NumberOfReservations field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CommitmentsAwsRDSRICommitment) GetNumberOfReservations() float64 {
-	if o == nil || o.NumberOfReservations == nil {
+	if o == nil || o.NumberOfReservations.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.NumberOfReservations
+	return *o.NumberOfReservations.Get()
 }
 
 // GetNumberOfReservationsOk returns a tuple with the NumberOfReservations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CommitmentsAwsRDSRICommitment) GetNumberOfReservationsOk() (*float64, bool) {
-	if o == nil || o.NumberOfReservations == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumberOfReservations, true
+	return o.NumberOfReservations.Get(), o.NumberOfReservations.IsSet()
 }
 
 // HasNumberOfReservations returns a boolean if a field has been set.
 func (o *CommitmentsAwsRDSRICommitment) HasNumberOfReservations() bool {
-	return o != nil && o.NumberOfReservations != nil
+	return o != nil && o.NumberOfReservations.IsSet()
 }
 
-// SetNumberOfReservations gets a reference to the given float64 and assigns it to the NumberOfReservations field.
+// SetNumberOfReservations gets a reference to the given datadog.NullableFloat64 and assigns it to the NumberOfReservations field.
 func (o *CommitmentsAwsRDSRICommitment) SetNumberOfReservations(v float64) {
-	o.NumberOfReservations = &v
+	o.NumberOfReservations.Set(&v)
+}
+
+// SetNumberOfReservationsNil sets the value for NumberOfReservations to be an explicit nil.
+func (o *CommitmentsAwsRDSRICommitment) SetNumberOfReservationsNil() {
+	o.NumberOfReservations.Set(nil)
+}
+
+// UnsetNumberOfReservations ensures that no value is present for NumberOfReservations, not even an explicit nil.
+func (o *CommitmentsAwsRDSRICommitment) UnsetNumberOfReservations() {
+	o.NumberOfReservations.Unset()
 }
 
 // GetPurchaseOption returns the PurchaseOption field value.
@@ -318,32 +340,32 @@ func (o *CommitmentsAwsRDSRICommitment) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
-// GetTermLength returns the TermLength field value if set, zero value otherwise.
-func (o *CommitmentsAwsRDSRICommitment) GetTermLength() float64 {
-	if o == nil || o.TermLength == nil {
-		var ret float64
+// GetTermLengthMonths returns the TermLengthMonths field value if set, zero value otherwise.
+func (o *CommitmentsAwsRDSRICommitment) GetTermLengthMonths() int64 {
+	if o == nil || o.TermLengthMonths == nil {
+		var ret int64
 		return ret
 	}
-	return *o.TermLength
+	return *o.TermLengthMonths
 }
 
-// GetTermLengthOk returns a tuple with the TermLength field value if set, nil otherwise
+// GetTermLengthMonthsOk returns a tuple with the TermLengthMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommitmentsAwsRDSRICommitment) GetTermLengthOk() (*float64, bool) {
-	if o == nil || o.TermLength == nil {
+func (o *CommitmentsAwsRDSRICommitment) GetTermLengthMonthsOk() (*int64, bool) {
+	if o == nil || o.TermLengthMonths == nil {
 		return nil, false
 	}
-	return o.TermLength, true
+	return o.TermLengthMonths, true
 }
 
-// HasTermLength returns a boolean if a field has been set.
-func (o *CommitmentsAwsRDSRICommitment) HasTermLength() bool {
-	return o != nil && o.TermLength != nil
+// HasTermLengthMonths returns a boolean if a field has been set.
+func (o *CommitmentsAwsRDSRICommitment) HasTermLengthMonths() bool {
+	return o != nil && o.TermLengthMonths != nil
 }
 
-// SetTermLength gets a reference to the given float64 and assigns it to the TermLength field.
-func (o *CommitmentsAwsRDSRICommitment) SetTermLength(v float64) {
-	o.TermLength = &v
+// SetTermLengthMonths gets a reference to the given int64 and assigns it to the TermLengthMonths field.
+func (o *CommitmentsAwsRDSRICommitment) SetTermLengthMonths(v int64) {
+	o.TermLengthMonths = &v
 }
 
 // GetUtilization returns the Utilization field value if set, zero value otherwise.
@@ -389,19 +411,19 @@ func (o CommitmentsAwsRDSRICommitment) MarshalJSON() ([]byte, error) {
 	if o.IsMultiAz != nil {
 		toSerialize["is_multi_az"] = o.IsMultiAz
 	}
-	if o.NumberOfNfus != nil {
-		toSerialize["number_of_nfus"] = o.NumberOfNfus
+	if o.NumberOfNfus.IsSet() {
+		toSerialize["number_of_nfus"] = o.NumberOfNfus.Get()
 	}
-	if o.NumberOfReservations != nil {
-		toSerialize["number_of_reservations"] = o.NumberOfReservations
+	if o.NumberOfReservations.IsSet() {
+		toSerialize["number_of_reservations"] = o.NumberOfReservations.Get()
 	}
 	toSerialize["purchase_option"] = o.PurchaseOption
 	toSerialize["region"] = o.Region
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
 	}
-	if o.TermLength != nil {
-		toSerialize["term_length"] = o.TermLength
+	if o.TermLengthMonths != nil {
+		toSerialize["term_length_months"] = o.TermLengthMonths
 	}
 	if o.Utilization != nil {
 		toSerialize["utilization"] = o.Utilization
@@ -416,18 +438,18 @@ func (o CommitmentsAwsRDSRICommitment) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsAwsRDSRICommitment) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommitmentId         *string  `json:"commitment_id"`
-		DatabaseEngine       *string  `json:"database_engine"`
-		ExpirationDate       *string  `json:"expiration_date,omitempty"`
-		InstanceType         *string  `json:"instance_type"`
-		IsMultiAz            *bool    `json:"is_multi_az,omitempty"`
-		NumberOfNfus         *float64 `json:"number_of_nfus,omitempty"`
-		NumberOfReservations *float64 `json:"number_of_reservations,omitempty"`
-		PurchaseOption       *string  `json:"purchase_option"`
-		Region               *string  `json:"region"`
-		StartDate            *string  `json:"start_date,omitempty"`
-		TermLength           *float64 `json:"term_length,omitempty"`
-		Utilization          *float64 `json:"utilization,omitempty"`
+		CommitmentId         *string                 `json:"commitment_id"`
+		DatabaseEngine       *string                 `json:"database_engine"`
+		ExpirationDate       *string                 `json:"expiration_date,omitempty"`
+		InstanceType         *string                 `json:"instance_type"`
+		IsMultiAz            *bool                   `json:"is_multi_az,omitempty"`
+		NumberOfNfus         datadog.NullableFloat64 `json:"number_of_nfus,omitempty"`
+		NumberOfReservations datadog.NullableFloat64 `json:"number_of_reservations,omitempty"`
+		PurchaseOption       *string                 `json:"purchase_option"`
+		Region               *string                 `json:"region"`
+		StartDate            *string                 `json:"start_date,omitempty"`
+		TermLengthMonths     *int64                  `json:"term_length_months,omitempty"`
+		Utilization          *float64                `json:"utilization,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -449,7 +471,7 @@ func (o *CommitmentsAwsRDSRICommitment) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commitment_id", "database_engine", "expiration_date", "instance_type", "is_multi_az", "number_of_nfus", "number_of_reservations", "purchase_option", "region", "start_date", "term_length", "utilization"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"commitment_id", "database_engine", "expiration_date", "instance_type", "is_multi_az", "number_of_nfus", "number_of_reservations", "purchase_option", "region", "start_date", "term_length_months", "utilization"})
 	} else {
 		return err
 	}
@@ -463,7 +485,7 @@ func (o *CommitmentsAwsRDSRICommitment) UnmarshalJSON(bytes []byte) (err error) 
 	o.PurchaseOption = *all.PurchaseOption
 	o.Region = *all.Region
 	o.StartDate = all.StartDate
-	o.TermLength = all.TermLength
+	o.TermLengthMonths = all.TermLengthMonths
 	o.Utilization = all.Utilization
 
 	if len(additionalProperties) > 0 {

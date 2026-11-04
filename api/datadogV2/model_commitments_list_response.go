@@ -12,10 +12,8 @@ import (
 
 // CommitmentsListResponse Response containing a list of cloud commitment details.
 type CommitmentsListResponse struct {
-	// Array of commitment items.
-	Commitments []CommitmentsListItem `json:"commitments"`
-	// Metadata for a commitments list response.
-	Meta *CommitmentsListMeta `json:"meta,omitempty"`
+	// The commitments list resource.
+	Data CommitmentsListResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,9 +23,9 @@ type CommitmentsListResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCommitmentsListResponse(commitments []CommitmentsListItem) *CommitmentsListResponse {
+func NewCommitmentsListResponse(data CommitmentsListResponseData) *CommitmentsListResponse {
 	this := CommitmentsListResponse{}
-	this.Commitments = commitments
+	this.Data = data
 	return &this
 }
 
@@ -39,55 +37,27 @@ func NewCommitmentsListResponseWithDefaults() *CommitmentsListResponse {
 	return &this
 }
 
-// GetCommitments returns the Commitments field value.
-func (o *CommitmentsListResponse) GetCommitments() []CommitmentsListItem {
+// GetData returns the Data field value.
+func (o *CommitmentsListResponse) GetData() CommitmentsListResponseData {
 	if o == nil {
-		var ret []CommitmentsListItem
+		var ret CommitmentsListResponseData
 		return ret
 	}
-	return o.Commitments
+	return o.Data
 }
 
-// GetCommitmentsOk returns a tuple with the Commitments field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *CommitmentsListResponse) GetCommitmentsOk() (*[]CommitmentsListItem, bool) {
+func (o *CommitmentsListResponse) GetDataOk() (*CommitmentsListResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Commitments, true
+	return &o.Data, true
 }
 
-// SetCommitments sets field value.
-func (o *CommitmentsListResponse) SetCommitments(v []CommitmentsListItem) {
-	o.Commitments = v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *CommitmentsListResponse) GetMeta() CommitmentsListMeta {
-	if o == nil || o.Meta == nil {
-		var ret CommitmentsListMeta
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CommitmentsListResponse) GetMetaOk() (*CommitmentsListMeta, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *CommitmentsListResponse) HasMeta() bool {
-	return o != nil && o.Meta != nil
-}
-
-// SetMeta gets a reference to the given CommitmentsListMeta and assigns it to the Meta field.
-func (o *CommitmentsListResponse) SetMeta(v CommitmentsListMeta) {
-	o.Meta = &v
+// SetData sets field value.
+func (o *CommitmentsListResponse) SetData(v CommitmentsListResponseData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -96,10 +66,7 @@ func (o CommitmentsListResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["commitments"] = o.Commitments
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -110,28 +77,26 @@ func (o CommitmentsListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Commitments *[]CommitmentsListItem `json:"commitments"`
-		Meta        *CommitmentsListMeta   `json:"meta,omitempty"`
+		Data *CommitmentsListResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Commitments == nil {
-		return fmt.Errorf("required field commitments missing")
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commitments", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Commitments = *all.Commitments
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Meta = all.Meta
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

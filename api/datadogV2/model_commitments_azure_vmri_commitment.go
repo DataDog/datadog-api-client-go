@@ -22,15 +22,17 @@ type CommitmentsAzureVMRICommitment struct {
 	InstanceType string `json:"instance_type"`
 	// The Azure meter sub-category for the reservation.
 	MeterSubCategory string `json:"meter_sub_category"`
+	// The Azure product of the reservation. Omitted when it cannot be classified.
+	Product *string `json:"product,omitempty"`
 	// The Azure region of the Reserved Instance.
 	Region string `json:"region"`
 	// The start date of the commitment.
 	StartDate *string `json:"start_date,omitempty"`
 	// Status of an Azure VM Reserved Instance.
 	Status CommitmentsAzureVMRIStatus `json:"status"`
-	// The term length in years.
-	TermLength *float64 `json:"term_length,omitempty"`
-	// The utilization percentage of the commitment.
+	// The commitment term in whole months. Omitted when the term is unknown.
+	TermLengthMonths *int64 `json:"term_length_months,omitempty"`
+	// The utilization percentage of the commitment, from 0 to 100.
 	Utilization *float64 `json:"utilization,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -180,6 +182,34 @@ func (o *CommitmentsAzureVMRICommitment) SetMeterSubCategory(v string) {
 	o.MeterSubCategory = v
 }
 
+// GetProduct returns the Product field value if set, zero value otherwise.
+func (o *CommitmentsAzureVMRICommitment) GetProduct() string {
+	if o == nil || o.Product == nil {
+		var ret string
+		return ret
+	}
+	return *o.Product
+}
+
+// GetProductOk returns a tuple with the Product field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommitmentsAzureVMRICommitment) GetProductOk() (*string, bool) {
+	if o == nil || o.Product == nil {
+		return nil, false
+	}
+	return o.Product, true
+}
+
+// HasProduct returns a boolean if a field has been set.
+func (o *CommitmentsAzureVMRICommitment) HasProduct() bool {
+	return o != nil && o.Product != nil
+}
+
+// SetProduct gets a reference to the given string and assigns it to the Product field.
+func (o *CommitmentsAzureVMRICommitment) SetProduct(v string) {
+	o.Product = &v
+}
+
 // GetRegion returns the Region field value.
 func (o *CommitmentsAzureVMRICommitment) GetRegion() string {
 	if o == nil {
@@ -254,32 +284,32 @@ func (o *CommitmentsAzureVMRICommitment) SetStatus(v CommitmentsAzureVMRIStatus)
 	o.Status = v
 }
 
-// GetTermLength returns the TermLength field value if set, zero value otherwise.
-func (o *CommitmentsAzureVMRICommitment) GetTermLength() float64 {
-	if o == nil || o.TermLength == nil {
-		var ret float64
+// GetTermLengthMonths returns the TermLengthMonths field value if set, zero value otherwise.
+func (o *CommitmentsAzureVMRICommitment) GetTermLengthMonths() int64 {
+	if o == nil || o.TermLengthMonths == nil {
+		var ret int64
 		return ret
 	}
-	return *o.TermLength
+	return *o.TermLengthMonths
 }
 
-// GetTermLengthOk returns a tuple with the TermLength field value if set, nil otherwise
+// GetTermLengthMonthsOk returns a tuple with the TermLengthMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommitmentsAzureVMRICommitment) GetTermLengthOk() (*float64, bool) {
-	if o == nil || o.TermLength == nil {
+func (o *CommitmentsAzureVMRICommitment) GetTermLengthMonthsOk() (*int64, bool) {
+	if o == nil || o.TermLengthMonths == nil {
 		return nil, false
 	}
-	return o.TermLength, true
+	return o.TermLengthMonths, true
 }
 
-// HasTermLength returns a boolean if a field has been set.
-func (o *CommitmentsAzureVMRICommitment) HasTermLength() bool {
-	return o != nil && o.TermLength != nil
+// HasTermLengthMonths returns a boolean if a field has been set.
+func (o *CommitmentsAzureVMRICommitment) HasTermLengthMonths() bool {
+	return o != nil && o.TermLengthMonths != nil
 }
 
-// SetTermLength gets a reference to the given float64 and assigns it to the TermLength field.
-func (o *CommitmentsAzureVMRICommitment) SetTermLength(v float64) {
-	o.TermLength = &v
+// SetTermLengthMonths gets a reference to the given int64 and assigns it to the TermLengthMonths field.
+func (o *CommitmentsAzureVMRICommitment) SetTermLengthMonths(v int64) {
+	o.TermLengthMonths = &v
 }
 
 // GetUtilization returns the Utilization field value if set, zero value otherwise.
@@ -323,13 +353,16 @@ func (o CommitmentsAzureVMRICommitment) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["instance_type"] = o.InstanceType
 	toSerialize["meter_sub_category"] = o.MeterSubCategory
+	if o.Product != nil {
+		toSerialize["product"] = o.Product
+	}
 	toSerialize["region"] = o.Region
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
 	}
 	toSerialize["status"] = o.Status
-	if o.TermLength != nil {
-		toSerialize["term_length"] = o.TermLength
+	if o.TermLengthMonths != nil {
+		toSerialize["term_length_months"] = o.TermLengthMonths
 	}
 	if o.Utilization != nil {
 		toSerialize["utilization"] = o.Utilization
@@ -349,10 +382,11 @@ func (o *CommitmentsAzureVMRICommitment) UnmarshalJSON(bytes []byte) (err error)
 		ExpirationDate   *string                     `json:"expiration_date,omitempty"`
 		InstanceType     *string                     `json:"instance_type"`
 		MeterSubCategory *string                     `json:"meter_sub_category"`
+		Product          *string                     `json:"product,omitempty"`
 		Region           *string                     `json:"region"`
 		StartDate        *string                     `json:"start_date,omitempty"`
 		Status           *CommitmentsAzureVMRIStatus `json:"status"`
-		TermLength       *float64                    `json:"term_length,omitempty"`
+		TermLengthMonths *int64                      `json:"term_length_months,omitempty"`
 		Utilization      *float64                    `json:"utilization,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -378,7 +412,7 @@ func (o *CommitmentsAzureVMRICommitment) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"benefit_name", "commitment_id", "expiration_date", "instance_type", "meter_sub_category", "region", "start_date", "status", "term_length", "utilization"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"benefit_name", "commitment_id", "expiration_date", "instance_type", "meter_sub_category", "product", "region", "start_date", "status", "term_length_months", "utilization"})
 	} else {
 		return err
 	}
@@ -389,6 +423,7 @@ func (o *CommitmentsAzureVMRICommitment) UnmarshalJSON(bytes []byte) (err error)
 	o.ExpirationDate = all.ExpirationDate
 	o.InstanceType = *all.InstanceType
 	o.MeterSubCategory = *all.MeterSubCategory
+	o.Product = all.Product
 	o.Region = *all.Region
 	o.StartDate = all.StartDate
 	if !all.Status.IsValid() {
@@ -396,7 +431,7 @@ func (o *CommitmentsAzureVMRICommitment) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		o.Status = *all.Status
 	}
-	o.TermLength = all.TermLength
+	o.TermLengthMonths = all.TermLengthMonths
 	o.Utilization = all.Utilization
 
 	if len(additionalProperties) > 0 {

@@ -20,11 +20,14 @@ type CommitmentsAzureComputeSPCommitment struct {
 	CommittedSpendPerHour *float64 `json:"committed_spend_per_hour,omitempty"`
 	// The expiration date of the commitment.
 	ExpirationDate *string `json:"expiration_date,omitempty"`
+	// The Azure Savings Plan type, `Compute` or `Database`, based on the product order name. Omitted when
+	// the type can't be classified.
+	SavingsPlanType *string `json:"savings_plan_type,omitempty"`
 	// The start date of the commitment.
 	StartDate *string `json:"start_date,omitempty"`
-	// The term length in years.
-	TermLength *float64 `json:"term_length,omitempty"`
-	// The utilization percentage of the commitment.
+	// The commitment term in whole months. Omitted when the term is unknown.
+	TermLengthMonths *int64 `json:"term_length_months,omitempty"`
+	// The utilization percentage of the commitment, from 0 to 100.
 	Utilization *float64 `json:"utilization,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -152,6 +155,34 @@ func (o *CommitmentsAzureComputeSPCommitment) SetExpirationDate(v string) {
 	o.ExpirationDate = &v
 }
 
+// GetSavingsPlanType returns the SavingsPlanType field value if set, zero value otherwise.
+func (o *CommitmentsAzureComputeSPCommitment) GetSavingsPlanType() string {
+	if o == nil || o.SavingsPlanType == nil {
+		var ret string
+		return ret
+	}
+	return *o.SavingsPlanType
+}
+
+// GetSavingsPlanTypeOk returns a tuple with the SavingsPlanType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommitmentsAzureComputeSPCommitment) GetSavingsPlanTypeOk() (*string, bool) {
+	if o == nil || o.SavingsPlanType == nil {
+		return nil, false
+	}
+	return o.SavingsPlanType, true
+}
+
+// HasSavingsPlanType returns a boolean if a field has been set.
+func (o *CommitmentsAzureComputeSPCommitment) HasSavingsPlanType() bool {
+	return o != nil && o.SavingsPlanType != nil
+}
+
+// SetSavingsPlanType gets a reference to the given string and assigns it to the SavingsPlanType field.
+func (o *CommitmentsAzureComputeSPCommitment) SetSavingsPlanType(v string) {
+	o.SavingsPlanType = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *CommitmentsAzureComputeSPCommitment) GetStartDate() string {
 	if o == nil || o.StartDate == nil {
@@ -180,32 +211,32 @@ func (o *CommitmentsAzureComputeSPCommitment) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
-// GetTermLength returns the TermLength field value if set, zero value otherwise.
-func (o *CommitmentsAzureComputeSPCommitment) GetTermLength() float64 {
-	if o == nil || o.TermLength == nil {
-		var ret float64
+// GetTermLengthMonths returns the TermLengthMonths field value if set, zero value otherwise.
+func (o *CommitmentsAzureComputeSPCommitment) GetTermLengthMonths() int64 {
+	if o == nil || o.TermLengthMonths == nil {
+		var ret int64
 		return ret
 	}
-	return *o.TermLength
+	return *o.TermLengthMonths
 }
 
-// GetTermLengthOk returns a tuple with the TermLength field value if set, nil otherwise
+// GetTermLengthMonthsOk returns a tuple with the TermLengthMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommitmentsAzureComputeSPCommitment) GetTermLengthOk() (*float64, bool) {
-	if o == nil || o.TermLength == nil {
+func (o *CommitmentsAzureComputeSPCommitment) GetTermLengthMonthsOk() (*int64, bool) {
+	if o == nil || o.TermLengthMonths == nil {
 		return nil, false
 	}
-	return o.TermLength, true
+	return o.TermLengthMonths, true
 }
 
-// HasTermLength returns a boolean if a field has been set.
-func (o *CommitmentsAzureComputeSPCommitment) HasTermLength() bool {
-	return o != nil && o.TermLength != nil
+// HasTermLengthMonths returns a boolean if a field has been set.
+func (o *CommitmentsAzureComputeSPCommitment) HasTermLengthMonths() bool {
+	return o != nil && o.TermLengthMonths != nil
 }
 
-// SetTermLength gets a reference to the given float64 and assigns it to the TermLength field.
-func (o *CommitmentsAzureComputeSPCommitment) SetTermLength(v float64) {
-	o.TermLength = &v
+// SetTermLengthMonths gets a reference to the given int64 and assigns it to the TermLengthMonths field.
+func (o *CommitmentsAzureComputeSPCommitment) SetTermLengthMonths(v int64) {
+	o.TermLengthMonths = &v
 }
 
 // GetUtilization returns the Utilization field value if set, zero value otherwise.
@@ -250,11 +281,14 @@ func (o CommitmentsAzureComputeSPCommitment) MarshalJSON() ([]byte, error) {
 	if o.ExpirationDate != nil {
 		toSerialize["expiration_date"] = o.ExpirationDate
 	}
+	if o.SavingsPlanType != nil {
+		toSerialize["savings_plan_type"] = o.SavingsPlanType
+	}
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
 	}
-	if o.TermLength != nil {
-		toSerialize["term_length"] = o.TermLength
+	if o.TermLengthMonths != nil {
+		toSerialize["term_length_months"] = o.TermLengthMonths
 	}
 	if o.Utilization != nil {
 		toSerialize["utilization"] = o.Utilization
@@ -273,8 +307,9 @@ func (o *CommitmentsAzureComputeSPCommitment) UnmarshalJSON(bytes []byte) (err e
 		CommitmentId          *string  `json:"commitment_id"`
 		CommittedSpendPerHour *float64 `json:"committed_spend_per_hour,omitempty"`
 		ExpirationDate        *string  `json:"expiration_date,omitempty"`
+		SavingsPlanType       *string  `json:"savings_plan_type,omitempty"`
 		StartDate             *string  `json:"start_date,omitempty"`
-		TermLength            *float64 `json:"term_length,omitempty"`
+		TermLengthMonths      *int64   `json:"term_length_months,omitempty"`
 		Utilization           *float64 `json:"utilization,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -288,7 +323,7 @@ func (o *CommitmentsAzureComputeSPCommitment) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"benefit_name", "commitment_id", "committed_spend_per_hour", "expiration_date", "start_date", "term_length", "utilization"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"benefit_name", "commitment_id", "committed_spend_per_hour", "expiration_date", "savings_plan_type", "start_date", "term_length_months", "utilization"})
 	} else {
 		return err
 	}
@@ -296,8 +331,9 @@ func (o *CommitmentsAzureComputeSPCommitment) UnmarshalJSON(bytes []byte) (err e
 	o.CommitmentId = *all.CommitmentId
 	o.CommittedSpendPerHour = all.CommittedSpendPerHour
 	o.ExpirationDate = all.ExpirationDate
+	o.SavingsPlanType = all.SavingsPlanType
 	o.StartDate = all.StartDate
-	o.TermLength = all.TermLength
+	o.TermLengthMonths = all.TermLengthMonths
 	o.Utilization = all.Utilization
 
 	if len(additionalProperties) > 0 {
