@@ -54,7 +54,7 @@ type RUMApplicationListAttributes struct {
 	ShortName *string `json:"short_name,omitempty"`
 	// List of tags associated with the RUM application.
 	Tags []string `json:"tags,omitempty"`
-	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`.
+	// Type of the RUM application. Possible values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`, `react`, `nextjs`, `angular`, `vuejs`, `nuxt`, `tanstack`, `maui`, `salesforce-lwc`, `shopify`, `cpp`, `rum-cpp`, `unreal`.
 	Type string `json:"type"`
 	// Timestamp in ms of the last update date.
 	UpdatedAt int64 `json:"updated_at"`

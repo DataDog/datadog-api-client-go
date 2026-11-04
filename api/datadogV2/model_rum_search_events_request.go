@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMSearchEventsRequest The request for a RUM events list.
+// RUMSearchEventsRequest The request for a RUM events list. All attributes are optional: without any, the request returns the first 10 events of the last 15 minutes.
 type RUMSearchEventsRequest struct {
 	// The search and filter query settings.
 	Filter *RUMQueryFilter `json:"filter,omitempty"`
