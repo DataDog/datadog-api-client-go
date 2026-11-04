@@ -18,6 +18,8 @@ type NotificationChannelEmailConfig struct {
 	Formats []NotificationChannelEmailFormatType `json:"formats"`
 	// Indicates that the notification channel is an e-mail address
 	Type NotificationChannelEmailConfigType `json:"type"`
+	// Whether this email address has been verified.
+	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -114,6 +116,34 @@ func (o *NotificationChannelEmailConfig) SetType(v NotificationChannelEmailConfi
 	o.Type = v
 }
 
+// GetVerified returns the Verified field value if set, zero value otherwise.
+func (o *NotificationChannelEmailConfig) GetVerified() bool {
+	if o == nil || o.Verified == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Verified
+}
+
+// GetVerifiedOk returns a tuple with the Verified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationChannelEmailConfig) GetVerifiedOk() (*bool, bool) {
+	if o == nil || o.Verified == nil {
+		return nil, false
+	}
+	return o.Verified, true
+}
+
+// HasVerified returns a boolean if a field has been set.
+func (o *NotificationChannelEmailConfig) HasVerified() bool {
+	return o != nil && o.Verified != nil
+}
+
+// SetVerified gets a reference to the given bool and assigns it to the Verified field.
+func (o *NotificationChannelEmailConfig) SetVerified(v bool) {
+	o.Verified = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotificationChannelEmailConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,6 +153,9 @@ func (o NotificationChannelEmailConfig) MarshalJSON() ([]byte, error) {
 	toSerialize["address"] = o.Address
 	toSerialize["formats"] = o.Formats
 	toSerialize["type"] = o.Type
+	if o.Verified != nil {
+		toSerialize["verified"] = o.Verified
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -133,9 +166,10 @@ func (o NotificationChannelEmailConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotificationChannelEmailConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Address *string                               `json:"address"`
-		Formats *[]NotificationChannelEmailFormatType `json:"formats"`
-		Type    *NotificationChannelEmailConfigType   `json:"type"`
+		Address  *string                               `json:"address"`
+		Formats  *[]NotificationChannelEmailFormatType `json:"formats"`
+		Type     *NotificationChannelEmailConfigType   `json:"type"`
+		Verified *bool                                 `json:"verified,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +185,7 @@ func (o *NotificationChannelEmailConfig) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"address", "formats", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"address", "formats", "type", "verified"})
 	} else {
 		return err
 	}
@@ -164,6 +198,7 @@ func (o *NotificationChannelEmailConfig) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		o.Type = *all.Type
 	}
+	o.Verified = all.Verified
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
