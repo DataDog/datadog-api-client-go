@@ -10,18 +10,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateStatusPageRequestDataAttributesType The type of the status page controlling how the status page is accessed.
+// CreateStatusPageRequestDataAttributesType The type of the status page controlling how the status page is accessed. Public pages are accessible to anyone, internal pages are accessible to authenticated users in the Datadog organization, and private pages are accessible only to users matching an allow email access policy and no deny email access policy.
 type CreateStatusPageRequestDataAttributesType string
 
 // List of CreateStatusPageRequestDataAttributesType.
 const (
 	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_PUBLIC   CreateStatusPageRequestDataAttributesType = "public"
 	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_INTERNAL CreateStatusPageRequestDataAttributesType = "internal"
+	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_PRIVATE  CreateStatusPageRequestDataAttributesType = "private"
 )
 
 var allowedCreateStatusPageRequestDataAttributesTypeEnumValues = []CreateStatusPageRequestDataAttributesType{
 	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_PUBLIC,
 	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_INTERNAL,
+	CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_PRIVATE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
