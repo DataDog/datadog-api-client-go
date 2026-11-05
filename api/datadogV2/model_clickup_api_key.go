@@ -13,7 +13,7 @@ import (
 // ClickupAPIKey The definition of the `ClickupAPIKey` object.
 type ClickupAPIKey struct {
 	// The `ClickupAPIKey` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken ClickupAPIKeyApiToken `json:"api_token"`
 	// The definition of the `ClickupAPIKey` object.
 	Type ClickupAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type ClickupAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewClickupAPIKey(apiToken string, typeVar ClickupAPIKeyType) *ClickupAPIKey {
+func NewClickupAPIKey(apiToken ClickupAPIKeyApiToken, typeVar ClickupAPIKeyType) *ClickupAPIKey {
 	this := ClickupAPIKey{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewClickupAPIKeyWithDefaults() *ClickupAPIKey {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *ClickupAPIKey) GetApiToken() string {
+func (o *ClickupAPIKey) GetApiToken() ClickupAPIKeyApiToken {
 	if o == nil {
-		var ret string
+		var ret ClickupAPIKeyApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *ClickupAPIKey) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *ClickupAPIKey) GetApiTokenOk() (*string, bool) {
+func (o *ClickupAPIKey) GetApiTokenOk() (*ClickupAPIKeyApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *ClickupAPIKey) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *ClickupAPIKey) SetApiToken(v string) {
+func (o *ClickupAPIKey) SetApiToken(v ClickupAPIKeyApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o ClickupAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ClickupAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string            `json:"api_token"`
-		Type     *ClickupAPIKeyType `json:"type"`
+		ApiToken *ClickupAPIKeyApiToken `json:"api_token"`
+		Type     *ClickupAPIKeyType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

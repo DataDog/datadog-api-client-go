@@ -13,7 +13,7 @@ import (
 // GitlabAPIKey The definition of the `GitlabAPIKey` object.
 type GitlabAPIKey struct {
 	// The `GitlabAPIKey` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken GitlabAPIKeyApiToken `json:"api_token"`
 	// The definition of the `GitlabAPIKey` object.
 	Type GitlabAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type GitlabAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGitlabAPIKey(apiToken string, typeVar GitlabAPIKeyType) *GitlabAPIKey {
+func NewGitlabAPIKey(apiToken GitlabAPIKeyApiToken, typeVar GitlabAPIKeyType) *GitlabAPIKey {
 	this := GitlabAPIKey{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewGitlabAPIKeyWithDefaults() *GitlabAPIKey {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *GitlabAPIKey) GetApiToken() string {
+func (o *GitlabAPIKey) GetApiToken() GitlabAPIKeyApiToken {
 	if o == nil {
-		var ret string
+		var ret GitlabAPIKeyApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *GitlabAPIKey) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *GitlabAPIKey) GetApiTokenOk() (*string, bool) {
+func (o *GitlabAPIKey) GetApiTokenOk() (*GitlabAPIKeyApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *GitlabAPIKey) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *GitlabAPIKey) SetApiToken(v string) {
+func (o *GitlabAPIKey) SetApiToken(v GitlabAPIKeyApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o GitlabAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GitlabAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token"`
-		Type     *GitlabAPIKeyType `json:"type"`
+		ApiToken *GitlabAPIKeyApiToken `json:"api_token"`
+		Type     *GitlabAPIKeyType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

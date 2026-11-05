@@ -13,7 +13,7 @@ import (
 // SplitAPIKey The definition of the `SplitAPIKey` object.
 type SplitAPIKey struct {
 	// The `SplitAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey SplitAPIKeyApiKey `json:"api_key"`
 	// The definition of the `SplitAPIKey` object.
 	Type SplitAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type SplitAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSplitAPIKey(apiKey string, typeVar SplitAPIKeyType) *SplitAPIKey {
+func NewSplitAPIKey(apiKey SplitAPIKeyApiKey, typeVar SplitAPIKeyType) *SplitAPIKey {
 	this := SplitAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewSplitAPIKeyWithDefaults() *SplitAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *SplitAPIKey) GetApiKey() string {
+func (o *SplitAPIKey) GetApiKey() SplitAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret SplitAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *SplitAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *SplitAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *SplitAPIKey) GetApiKeyOk() (*SplitAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *SplitAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *SplitAPIKey) SetApiKey(v string) {
+func (o *SplitAPIKey) SetApiKey(v SplitAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o SplitAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string          `json:"api_key"`
-		Type   *SplitAPIKeyType `json:"type"`
+		ApiKey *SplitAPIKeyApiKey `json:"api_key"`
+		Type   *SplitAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

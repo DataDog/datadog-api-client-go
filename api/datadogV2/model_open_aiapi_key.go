@@ -13,7 +13,7 @@ import (
 // OpenAIAPIKey The definition of the `OpenAIAPIKey` object.
 type OpenAIAPIKey struct {
 	// The `OpenAIAPIKey` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken OpenAIAPIKeyApiToken `json:"api_token"`
 	// The definition of the `OpenAIAPIKey` object.
 	Type OpenAIAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type OpenAIAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewOpenAIAPIKey(apiToken string, typeVar OpenAIAPIKeyType) *OpenAIAPIKey {
+func NewOpenAIAPIKey(apiToken OpenAIAPIKeyApiToken, typeVar OpenAIAPIKeyType) *OpenAIAPIKey {
 	this := OpenAIAPIKey{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewOpenAIAPIKeyWithDefaults() *OpenAIAPIKey {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *OpenAIAPIKey) GetApiToken() string {
+func (o *OpenAIAPIKey) GetApiToken() OpenAIAPIKeyApiToken {
 	if o == nil {
-		var ret string
+		var ret OpenAIAPIKeyApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *OpenAIAPIKey) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *OpenAIAPIKey) GetApiTokenOk() (*string, bool) {
+func (o *OpenAIAPIKey) GetApiTokenOk() (*OpenAIAPIKeyApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *OpenAIAPIKey) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *OpenAIAPIKey) SetApiToken(v string) {
+func (o *OpenAIAPIKey) SetApiToken(v OpenAIAPIKeyApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o OpenAIAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpenAIAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token"`
-		Type     *OpenAIAPIKeyType `json:"type"`
+		ApiToken *OpenAIAPIKeyApiToken `json:"api_token"`
+		Type     *OpenAIAPIKeyType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

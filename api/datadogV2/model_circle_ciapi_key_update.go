@@ -13,7 +13,7 @@ import (
 // CircleCIAPIKeyUpdate The definition of the `CircleCIAPIKey` object.
 type CircleCIAPIKeyUpdate struct {
 	// The `CircleCIAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *CircleCIAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `CircleCIAPIKey` object.
 	Type CircleCIAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewCircleCIAPIKeyUpdateWithDefaults() *CircleCIAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *CircleCIAPIKeyUpdate) GetApiToken() string {
+func (o *CircleCIAPIKeyUpdate) GetApiToken() CircleCIAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret CircleCIAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *CircleCIAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CircleCIAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *CircleCIAPIKeyUpdate) GetApiTokenOk() (*CircleCIAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *CircleCIAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *CircleCIAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given CircleCIAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *CircleCIAPIKeyUpdate) SetApiToken(v CircleCIAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o CircleCIAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CircleCIAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string             `json:"api_token,omitempty"`
-		Type     *CircleCIAPIKeyType `json:"type"`
+		ApiToken *CircleCIAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *CircleCIAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

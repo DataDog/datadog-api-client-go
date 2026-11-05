@@ -13,13 +13,13 @@ import (
 // ServiceNowBasicAuth The definition of the `ServiceNowBasicAuth` object.
 type ServiceNowBasicAuth struct {
 	// The `ServiceNowBasicAuth` `instance`.
-	Instance string `json:"instance"`
+	Instance ServiceNowBasicAuthInstance `json:"instance"`
 	// The `ServiceNowBasicAuth` `password`.
-	Password string `json:"password"`
+	Password ServiceNowBasicAuthPassword `json:"password"`
 	// The definition of the `ServiceNowBasicAuth` object.
 	Type ServiceNowBasicAuthType `json:"type"`
 	// The `ServiceNowBasicAuth` `username`.
-	Username string `json:"username"`
+	Username ServiceNowBasicAuthUsername `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,7 +29,7 @@ type ServiceNowBasicAuth struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewServiceNowBasicAuth(instance string, password string, typeVar ServiceNowBasicAuthType, username string) *ServiceNowBasicAuth {
+func NewServiceNowBasicAuth(instance ServiceNowBasicAuthInstance, password ServiceNowBasicAuthPassword, typeVar ServiceNowBasicAuthType, username ServiceNowBasicAuthUsername) *ServiceNowBasicAuth {
 	this := ServiceNowBasicAuth{}
 	this.Instance = instance
 	this.Password = password
@@ -47,9 +47,9 @@ func NewServiceNowBasicAuthWithDefaults() *ServiceNowBasicAuth {
 }
 
 // GetInstance returns the Instance field value.
-func (o *ServiceNowBasicAuth) GetInstance() string {
+func (o *ServiceNowBasicAuth) GetInstance() ServiceNowBasicAuthInstance {
 	if o == nil {
-		var ret string
+		var ret ServiceNowBasicAuthInstance
 		return ret
 	}
 	return o.Instance
@@ -57,7 +57,7 @@ func (o *ServiceNowBasicAuth) GetInstance() string {
 
 // GetInstanceOk returns a tuple with the Instance field value
 // and a boolean to check if the value has been set.
-func (o *ServiceNowBasicAuth) GetInstanceOk() (*string, bool) {
+func (o *ServiceNowBasicAuth) GetInstanceOk() (*ServiceNowBasicAuthInstance, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,14 +65,14 @@ func (o *ServiceNowBasicAuth) GetInstanceOk() (*string, bool) {
 }
 
 // SetInstance sets field value.
-func (o *ServiceNowBasicAuth) SetInstance(v string) {
+func (o *ServiceNowBasicAuth) SetInstance(v ServiceNowBasicAuthInstance) {
 	o.Instance = v
 }
 
 // GetPassword returns the Password field value.
-func (o *ServiceNowBasicAuth) GetPassword() string {
+func (o *ServiceNowBasicAuth) GetPassword() ServiceNowBasicAuthPassword {
 	if o == nil {
-		var ret string
+		var ret ServiceNowBasicAuthPassword
 		return ret
 	}
 	return o.Password
@@ -80,7 +80,7 @@ func (o *ServiceNowBasicAuth) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *ServiceNowBasicAuth) GetPasswordOk() (*string, bool) {
+func (o *ServiceNowBasicAuth) GetPasswordOk() (*ServiceNowBasicAuthPassword, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *ServiceNowBasicAuth) GetPasswordOk() (*string, bool) {
 }
 
 // SetPassword sets field value.
-func (o *ServiceNowBasicAuth) SetPassword(v string) {
+func (o *ServiceNowBasicAuth) SetPassword(v ServiceNowBasicAuthPassword) {
 	o.Password = v
 }
 
@@ -116,9 +116,9 @@ func (o *ServiceNowBasicAuth) SetType(v ServiceNowBasicAuthType) {
 }
 
 // GetUsername returns the Username field value.
-func (o *ServiceNowBasicAuth) GetUsername() string {
+func (o *ServiceNowBasicAuth) GetUsername() ServiceNowBasicAuthUsername {
 	if o == nil {
-		var ret string
+		var ret ServiceNowBasicAuthUsername
 		return ret
 	}
 	return o.Username
@@ -126,7 +126,7 @@ func (o *ServiceNowBasicAuth) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *ServiceNowBasicAuth) GetUsernameOk() (*string, bool) {
+func (o *ServiceNowBasicAuth) GetUsernameOk() (*ServiceNowBasicAuthUsername, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *ServiceNowBasicAuth) GetUsernameOk() (*string, bool) {
 }
 
 // SetUsername sets field value.
-func (o *ServiceNowBasicAuth) SetUsername(v string) {
+func (o *ServiceNowBasicAuth) SetUsername(v ServiceNowBasicAuthUsername) {
 	o.Username = v
 }
 
@@ -158,10 +158,10 @@ func (o ServiceNowBasicAuth) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceNowBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Instance *string                  `json:"instance"`
-		Password *string                  `json:"password"`
-		Type     *ServiceNowBasicAuthType `json:"type"`
-		Username *string                  `json:"username"`
+		Instance *ServiceNowBasicAuthInstance `json:"instance"`
+		Password *ServiceNowBasicAuthPassword `json:"password"`
+		Type     *ServiceNowBasicAuthType     `json:"type"`
+		Username *ServiceNowBasicAuthUsername `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

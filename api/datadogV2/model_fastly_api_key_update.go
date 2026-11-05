@@ -13,7 +13,7 @@ import (
 // FastlyAPIKeyUpdate The definition of the `FastlyAPIKey` object.
 type FastlyAPIKeyUpdate struct {
 	// The `FastlyAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *FastlyAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `FastlyAPIKey` object.
 	Type FastlyAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewFastlyAPIKeyUpdateWithDefaults() *FastlyAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *FastlyAPIKeyUpdate) GetApiKey() string {
+func (o *FastlyAPIKeyUpdate) GetApiKey() FastlyAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret FastlyAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *FastlyAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FastlyAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *FastlyAPIKeyUpdate) GetApiKeyOk() (*FastlyAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *FastlyAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *FastlyAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given FastlyAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *FastlyAPIKeyUpdate) SetApiKey(v FastlyAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o FastlyAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string           `json:"api_key,omitempty"`
-		Type   *FastlyAPIKeyType `json:"type"`
+		ApiKey *FastlyAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *FastlyAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

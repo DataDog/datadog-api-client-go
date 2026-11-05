@@ -13,7 +13,7 @@ import (
 // ClickupAPIKeyUpdate The definition of the `ClickupAPIKey` object.
 type ClickupAPIKeyUpdate struct {
 	// The `ClickupAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *ClickupAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `ClickupAPIKey` object.
 	Type ClickupAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewClickupAPIKeyUpdateWithDefaults() *ClickupAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *ClickupAPIKeyUpdate) GetApiToken() string {
+func (o *ClickupAPIKeyUpdate) GetApiToken() ClickupAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret ClickupAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *ClickupAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClickupAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *ClickupAPIKeyUpdate) GetApiTokenOk() (*ClickupAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *ClickupAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *ClickupAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given ClickupAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *ClickupAPIKeyUpdate) SetApiToken(v ClickupAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o ClickupAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ClickupAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string            `json:"api_token,omitempty"`
-		Type     *ClickupAPIKeyType `json:"type"`
+		ApiToken *ClickupAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *ClickupAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

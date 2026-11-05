@@ -13,7 +13,7 @@ import (
 // SplitAPIKeyUpdate The definition of the `SplitAPIKey` object.
 type SplitAPIKeyUpdate struct {
 	// The `SplitAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *SplitAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `SplitAPIKey` object.
 	Type SplitAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewSplitAPIKeyUpdateWithDefaults() *SplitAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *SplitAPIKeyUpdate) GetApiKey() string {
+func (o *SplitAPIKeyUpdate) GetApiKey() SplitAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret SplitAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *SplitAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SplitAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *SplitAPIKeyUpdate) GetApiKeyOk() (*SplitAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *SplitAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *SplitAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given SplitAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *SplitAPIKeyUpdate) SetApiKey(v SplitAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o SplitAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string          `json:"api_key,omitempty"`
-		Type   *SplitAPIKeyType `json:"type"`
+		ApiKey *SplitAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *SplitAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

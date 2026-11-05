@@ -13,7 +13,7 @@ import (
 // NotionAPIKeyUpdate The definition of the `NotionAPIKey` object.
 type NotionAPIKeyUpdate struct {
 	// The `NotionAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *NotionAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `NotionAPIKey` object.
 	Type NotionAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewNotionAPIKeyUpdateWithDefaults() *NotionAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *NotionAPIKeyUpdate) GetApiToken() string {
+func (o *NotionAPIKeyUpdate) GetApiToken() NotionAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret NotionAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *NotionAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotionAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *NotionAPIKeyUpdate) GetApiTokenOk() (*NotionAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *NotionAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *NotionAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given NotionAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *NotionAPIKeyUpdate) SetApiToken(v NotionAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o NotionAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotionAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token,omitempty"`
-		Type     *NotionAPIKeyType `json:"type"`
+		ApiToken *NotionAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *NotionAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

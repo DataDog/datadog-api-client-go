@@ -16,6 +16,8 @@ type HTTPTokenAuth struct {
 	Body *HTTPBody `json:"body,omitempty"`
 	// The `HTTPTokenAuth` `headers`.
 	Headers []HTTPHeader `json:"headers,omitempty"`
+	// HTTP authentication tokens returned by the API. Use `tokens` when creating or updating tokens.
+	HttpTokens []HTTPTokenResponse `json:"http_tokens,omitempty"`
 	// The `HTTPTokenAuth` `tokens`.
 	Tokens []HTTPToken `json:"tokens,omitempty"`
 	// The definition of `HTTPTokenAuthType` object.
@@ -99,6 +101,34 @@ func (o *HTTPTokenAuth) HasHeaders() bool {
 // SetHeaders gets a reference to the given []HTTPHeader and assigns it to the Headers field.
 func (o *HTTPTokenAuth) SetHeaders(v []HTTPHeader) {
 	o.Headers = v
+}
+
+// GetHttpTokens returns the HttpTokens field value if set, zero value otherwise.
+func (o *HTTPTokenAuth) GetHttpTokens() []HTTPTokenResponse {
+	if o == nil || o.HttpTokens == nil {
+		var ret []HTTPTokenResponse
+		return ret
+	}
+	return o.HttpTokens
+}
+
+// GetHttpTokensOk returns a tuple with the HttpTokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HTTPTokenAuth) GetHttpTokensOk() (*[]HTTPTokenResponse, bool) {
+	if o == nil || o.HttpTokens == nil {
+		return nil, false
+	}
+	return &o.HttpTokens, true
+}
+
+// HasHttpTokens returns a boolean if a field has been set.
+func (o *HTTPTokenAuth) HasHttpTokens() bool {
+	return o != nil && o.HttpTokens != nil
+}
+
+// SetHttpTokens gets a reference to the given []HTTPTokenResponse and assigns it to the HttpTokens field.
+func (o *HTTPTokenAuth) SetHttpTokens(v []HTTPTokenResponse) {
+	o.HttpTokens = v
 }
 
 // GetTokens returns the Tokens field value if set, zero value otherwise.
@@ -192,6 +222,9 @@ func (o HTTPTokenAuth) MarshalJSON() ([]byte, error) {
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
+	if o.HttpTokens != nil {
+		toSerialize["http_tokens"] = o.HttpTokens
+	}
 	if o.Tokens != nil {
 		toSerialize["tokens"] = o.Tokens
 	}
@@ -209,11 +242,12 @@ func (o HTTPTokenAuth) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPTokenAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Body          *HTTPBody          `json:"body,omitempty"`
-		Headers       []HTTPHeader       `json:"headers,omitempty"`
-		Tokens        []HTTPToken        `json:"tokens,omitempty"`
-		Type          *HTTPTokenAuthType `json:"type"`
-		UrlParameters []UrlParam         `json:"url_parameters,omitempty"`
+		Body          *HTTPBody           `json:"body,omitempty"`
+		Headers       []HTTPHeader        `json:"headers,omitempty"`
+		HttpTokens    []HTTPTokenResponse `json:"http_tokens,omitempty"`
+		Tokens        []HTTPToken         `json:"tokens,omitempty"`
+		Type          *HTTPTokenAuthType  `json:"type"`
+		UrlParameters []UrlParam          `json:"url_parameters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,7 +257,7 @@ func (o *HTTPTokenAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"body", "headers", "tokens", "type", "url_parameters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"body", "headers", "http_tokens", "tokens", "type", "url_parameters"})
 	} else {
 		return err
 	}
@@ -234,6 +268,7 @@ func (o *HTTPTokenAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Body = all.Body
 	o.Headers = all.Headers
+	o.HttpTokens = all.HttpTokens
 	o.Tokens = all.Tokens
 	if !all.Type.IsValid() {
 		hasInvalidField = true

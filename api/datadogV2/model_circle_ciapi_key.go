@@ -13,7 +13,7 @@ import (
 // CircleCIAPIKey The definition of the `CircleCIAPIKey` object.
 type CircleCIAPIKey struct {
 	// The `CircleCIAPIKey` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken CircleCIAPIKeyApiToken `json:"api_token"`
 	// The definition of the `CircleCIAPIKey` object.
 	Type CircleCIAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type CircleCIAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCircleCIAPIKey(apiToken string, typeVar CircleCIAPIKeyType) *CircleCIAPIKey {
+func NewCircleCIAPIKey(apiToken CircleCIAPIKeyApiToken, typeVar CircleCIAPIKeyType) *CircleCIAPIKey {
 	this := CircleCIAPIKey{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewCircleCIAPIKeyWithDefaults() *CircleCIAPIKey {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *CircleCIAPIKey) GetApiToken() string {
+func (o *CircleCIAPIKey) GetApiToken() CircleCIAPIKeyApiToken {
 	if o == nil {
-		var ret string
+		var ret CircleCIAPIKeyApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *CircleCIAPIKey) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *CircleCIAPIKey) GetApiTokenOk() (*string, bool) {
+func (o *CircleCIAPIKey) GetApiTokenOk() (*CircleCIAPIKeyApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *CircleCIAPIKey) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *CircleCIAPIKey) SetApiToken(v string) {
+func (o *CircleCIAPIKey) SetApiToken(v CircleCIAPIKeyApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o CircleCIAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CircleCIAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string             `json:"api_token"`
-		Type     *CircleCIAPIKeyType `json:"type"`
+		ApiToken *CircleCIAPIKeyApiToken `json:"api_token"`
+		Type     *CircleCIAPIKeyType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

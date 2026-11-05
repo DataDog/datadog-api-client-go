@@ -13,7 +13,7 @@ import (
 // StatsigAPIKeyUpdate The definition of the `StatsigAPIKey` object.
 type StatsigAPIKeyUpdate struct {
 	// The `StatsigAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *StatsigAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `StatsigAPIKey` object.
 	Type StatsigAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewStatsigAPIKeyUpdateWithDefaults() *StatsigAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *StatsigAPIKeyUpdate) GetApiKey() string {
+func (o *StatsigAPIKeyUpdate) GetApiKey() StatsigAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret StatsigAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *StatsigAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatsigAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *StatsigAPIKeyUpdate) GetApiKeyOk() (*StatsigAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *StatsigAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *StatsigAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given StatsigAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *StatsigAPIKeyUpdate) SetApiKey(v StatsigAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o StatsigAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *StatsigAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string            `json:"api_key,omitempty"`
-		Type   *StatsigAPIKeyType `json:"type"`
+		ApiKey *StatsigAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *StatsigAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

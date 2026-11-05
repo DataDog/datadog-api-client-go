@@ -13,7 +13,7 @@ import (
 // VirusTotalAPIKeyUpdate The definition of the `VirusTotalAPIKey` object.
 type VirusTotalAPIKeyUpdate struct {
 	// The `VirusTotalAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *VirusTotalAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `VirusTotalAPIKey` object.
 	Type VirusTotalAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewVirusTotalAPIKeyUpdateWithDefaults() *VirusTotalAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *VirusTotalAPIKeyUpdate) GetApiKey() string {
+func (o *VirusTotalAPIKeyUpdate) GetApiKey() VirusTotalAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret VirusTotalAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *VirusTotalAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirusTotalAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *VirusTotalAPIKeyUpdate) GetApiKeyOk() (*VirusTotalAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *VirusTotalAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *VirusTotalAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given VirusTotalAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *VirusTotalAPIKeyUpdate) SetApiKey(v VirusTotalAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o VirusTotalAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *VirusTotalAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string               `json:"api_key,omitempty"`
-		Type   *VirusTotalAPIKeyType `json:"type"`
+		ApiKey *VirusTotalAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *VirusTotalAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

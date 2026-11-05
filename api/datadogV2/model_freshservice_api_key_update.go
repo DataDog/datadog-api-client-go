@@ -13,9 +13,9 @@ import (
 // FreshserviceAPIKeyUpdate The definition of the `FreshserviceAPIKey` object.
 type FreshserviceAPIKeyUpdate struct {
 	// The `FreshserviceAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *FreshserviceAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The `FreshserviceAPIKeyUpdate` `domain`.
-	Domain *string `json:"domain,omitempty"`
+	Domain *FreshserviceAPIKeyUpdateDomain `json:"domain,omitempty"`
 	// The definition of the `FreshserviceAPIKey` object.
 	Type FreshserviceAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -42,9 +42,9 @@ func NewFreshserviceAPIKeyUpdateWithDefaults() *FreshserviceAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *FreshserviceAPIKeyUpdate) GetApiKey() string {
+func (o *FreshserviceAPIKeyUpdate) GetApiKey() FreshserviceAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret FreshserviceAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -52,7 +52,7 @@ func (o *FreshserviceAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FreshserviceAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *FreshserviceAPIKeyUpdate) GetApiKeyOk() (*FreshserviceAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -64,15 +64,15 @@ func (o *FreshserviceAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *FreshserviceAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given FreshserviceAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *FreshserviceAPIKeyUpdate) SetApiKey(v FreshserviceAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
-func (o *FreshserviceAPIKeyUpdate) GetDomain() string {
+func (o *FreshserviceAPIKeyUpdate) GetDomain() FreshserviceAPIKeyUpdateDomain {
 	if o == nil || o.Domain == nil {
-		var ret string
+		var ret FreshserviceAPIKeyUpdateDomain
 		return ret
 	}
 	return *o.Domain
@@ -80,7 +80,7 @@ func (o *FreshserviceAPIKeyUpdate) GetDomain() string {
 
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FreshserviceAPIKeyUpdate) GetDomainOk() (*string, bool) {
+func (o *FreshserviceAPIKeyUpdate) GetDomainOk() (*FreshserviceAPIKeyUpdateDomain, bool) {
 	if o == nil || o.Domain == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *FreshserviceAPIKeyUpdate) HasDomain() bool {
 	return o != nil && o.Domain != nil
 }
 
-// SetDomain gets a reference to the given string and assigns it to the Domain field.
-func (o *FreshserviceAPIKeyUpdate) SetDomain(v string) {
+// SetDomain gets a reference to the given FreshserviceAPIKeyUpdateDomain and assigns it to the Domain field.
+func (o *FreshserviceAPIKeyUpdate) SetDomain(v FreshserviceAPIKeyUpdateDomain) {
 	o.Domain = &v
 }
 
@@ -143,9 +143,9 @@ func (o FreshserviceAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FreshserviceAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string                 `json:"api_key,omitempty"`
-		Domain *string                 `json:"domain,omitempty"`
-		Type   *FreshserviceAPIKeyType `json:"type"`
+		ApiKey *FreshserviceAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Domain *FreshserviceAPIKeyUpdateDomain `json:"domain,omitempty"`
+		Type   *FreshserviceAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

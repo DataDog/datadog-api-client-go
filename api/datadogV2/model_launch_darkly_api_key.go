@@ -13,7 +13,7 @@ import (
 // LaunchDarklyAPIKey The definition of the `LaunchDarklyAPIKey` object.
 type LaunchDarklyAPIKey struct {
 	// The `LaunchDarklyAPIKey` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken LaunchDarklyAPIKeyApiToken `json:"api_token"`
 	// The definition of the `LaunchDarklyAPIKey` object.
 	Type LaunchDarklyAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type LaunchDarklyAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLaunchDarklyAPIKey(apiToken string, typeVar LaunchDarklyAPIKeyType) *LaunchDarklyAPIKey {
+func NewLaunchDarklyAPIKey(apiToken LaunchDarklyAPIKeyApiToken, typeVar LaunchDarklyAPIKeyType) *LaunchDarklyAPIKey {
 	this := LaunchDarklyAPIKey{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewLaunchDarklyAPIKeyWithDefaults() *LaunchDarklyAPIKey {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *LaunchDarklyAPIKey) GetApiToken() string {
+func (o *LaunchDarklyAPIKey) GetApiToken() LaunchDarklyAPIKeyApiToken {
 	if o == nil {
-		var ret string
+		var ret LaunchDarklyAPIKeyApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *LaunchDarklyAPIKey) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *LaunchDarklyAPIKey) GetApiTokenOk() (*string, bool) {
+func (o *LaunchDarklyAPIKey) GetApiTokenOk() (*LaunchDarklyAPIKeyApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *LaunchDarklyAPIKey) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *LaunchDarklyAPIKey) SetApiToken(v string) {
+func (o *LaunchDarklyAPIKey) SetApiToken(v LaunchDarklyAPIKeyApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o LaunchDarklyAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LaunchDarklyAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string                 `json:"api_token"`
-		Type     *LaunchDarklyAPIKeyType `json:"type"`
+		ApiToken *LaunchDarklyAPIKeyApiToken `json:"api_token"`
+		Type     *LaunchDarklyAPIKeyType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

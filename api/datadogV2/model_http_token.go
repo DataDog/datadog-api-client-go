@@ -17,7 +17,7 @@ type HTTPToken struct {
 	// The definition of `TokenType` object.
 	Type TokenType `json:"type"`
 	// The `HTTPToken` `value`.
-	Value string `json:"value"`
+	Value HTTPTokenValue `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,7 +27,7 @@ type HTTPToken struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHTTPToken(name string, typeVar TokenType, value string) *HTTPToken {
+func NewHTTPToken(name string, typeVar TokenType, value HTTPTokenValue) *HTTPToken {
 	this := HTTPToken{}
 	this.Name = name
 	this.Type = typeVar
@@ -90,9 +90,9 @@ func (o *HTTPToken) SetType(v TokenType) {
 }
 
 // GetValue returns the Value field value.
-func (o *HTTPToken) GetValue() string {
+func (o *HTTPToken) GetValue() HTTPTokenValue {
 	if o == nil {
-		var ret string
+		var ret HTTPTokenValue
 		return ret
 	}
 	return o.Value
@@ -100,7 +100,7 @@ func (o *HTTPToken) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *HTTPToken) GetValueOk() (*string, bool) {
+func (o *HTTPToken) GetValueOk() (*HTTPTokenValue, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *HTTPToken) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value.
-func (o *HTTPToken) SetValue(v string) {
+func (o *HTTPToken) SetValue(v HTTPTokenValue) {
 	o.Value = v
 }
 
@@ -131,9 +131,9 @@ func (o HTTPToken) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPToken) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string    `json:"name"`
-		Type  *TokenType `json:"type"`
-		Value *string    `json:"value"`
+		Name  *string         `json:"name"`
+		Type  *TokenType      `json:"type"`
+		Value *HTTPTokenValue `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

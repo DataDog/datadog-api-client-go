@@ -13,7 +13,7 @@ import (
 // AnthropicAPIKeyUpdate The definition of the `AnthropicAPIKey` object.
 type AnthropicAPIKeyUpdate struct {
 	// The `AnthropicAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *AnthropicAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `AnthropicAPIKey` object.
 	Type AnthropicAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewAnthropicAPIKeyUpdateWithDefaults() *AnthropicAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *AnthropicAPIKeyUpdate) GetApiToken() string {
+func (o *AnthropicAPIKeyUpdate) GetApiToken() AnthropicAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret AnthropicAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *AnthropicAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AnthropicAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *AnthropicAPIKeyUpdate) GetApiTokenOk() (*AnthropicAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *AnthropicAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *AnthropicAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given AnthropicAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *AnthropicAPIKeyUpdate) SetApiToken(v AnthropicAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o AnthropicAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AnthropicAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string              `json:"api_token,omitempty"`
-		Type     *AnthropicAPIKeyType `json:"type"`
+		ApiToken *AnthropicAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *AnthropicAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

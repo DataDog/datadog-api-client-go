@@ -13,7 +13,7 @@ import (
 // GreyNoiseAPIKey The definition of the `GreyNoiseAPIKey` object.
 type GreyNoiseAPIKey struct {
 	// The `GreyNoiseAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey GreyNoiseAPIKeyApiKey `json:"api_key"`
 	// The definition of the `GreyNoiseAPIKey` object.
 	Type GreyNoiseAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type GreyNoiseAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGreyNoiseAPIKey(apiKey string, typeVar GreyNoiseAPIKeyType) *GreyNoiseAPIKey {
+func NewGreyNoiseAPIKey(apiKey GreyNoiseAPIKeyApiKey, typeVar GreyNoiseAPIKeyType) *GreyNoiseAPIKey {
 	this := GreyNoiseAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewGreyNoiseAPIKeyWithDefaults() *GreyNoiseAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *GreyNoiseAPIKey) GetApiKey() string {
+func (o *GreyNoiseAPIKey) GetApiKey() GreyNoiseAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret GreyNoiseAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *GreyNoiseAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *GreyNoiseAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *GreyNoiseAPIKey) GetApiKeyOk() (*GreyNoiseAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *GreyNoiseAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *GreyNoiseAPIKey) SetApiKey(v string) {
+func (o *GreyNoiseAPIKey) SetApiKey(v GreyNoiseAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o GreyNoiseAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GreyNoiseAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string              `json:"api_key"`
-		Type   *GreyNoiseAPIKeyType `json:"type"`
+		ApiKey *GreyNoiseAPIKeyApiKey `json:"api_key"`
+		Type   *GreyNoiseAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
