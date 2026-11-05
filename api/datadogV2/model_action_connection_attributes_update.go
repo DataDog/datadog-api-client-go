@@ -10,6 +10,8 @@ import (
 
 // ActionConnectionAttributesUpdate The definition of `ActionConnectionAttributesUpdate` object.
 type ActionConnectionAttributesUpdate struct {
+	// AWS Secrets Manager settings shared by the credential references on a `DATACENTER` connection. These settings are required whenever a field uses an AWS Secrets Manager reference.
+	ExternalSecretsManager NullableActionConnectionAWSSecretsManager `json:"external_secrets_manager,omitempty"`
 	// The definition of `ActionConnectionIntegrationUpdate` object.
 	Integration *ActionConnectionIntegrationUpdate `json:"integration,omitempty"`
 	// Name of the connection
@@ -37,6 +39,45 @@ func NewActionConnectionAttributesUpdate() *ActionConnectionAttributesUpdate {
 func NewActionConnectionAttributesUpdateWithDefaults() *ActionConnectionAttributesUpdate {
 	this := ActionConnectionAttributesUpdate{}
 	return &this
+}
+
+// GetExternalSecretsManager returns the ExternalSecretsManager field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ActionConnectionAttributesUpdate) GetExternalSecretsManager() ActionConnectionAWSSecretsManager {
+	if o == nil || o.ExternalSecretsManager.Get() == nil {
+		var ret ActionConnectionAWSSecretsManager
+		return ret
+	}
+	return *o.ExternalSecretsManager.Get()
+}
+
+// GetExternalSecretsManagerOk returns a tuple with the ExternalSecretsManager field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ActionConnectionAttributesUpdate) GetExternalSecretsManagerOk() (*ActionConnectionAWSSecretsManager, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalSecretsManager.Get(), o.ExternalSecretsManager.IsSet()
+}
+
+// HasExternalSecretsManager returns a boolean if a field has been set.
+func (o *ActionConnectionAttributesUpdate) HasExternalSecretsManager() bool {
+	return o != nil && o.ExternalSecretsManager.IsSet()
+}
+
+// SetExternalSecretsManager gets a reference to the given NullableActionConnectionAWSSecretsManager and assigns it to the ExternalSecretsManager field.
+func (o *ActionConnectionAttributesUpdate) SetExternalSecretsManager(v ActionConnectionAWSSecretsManager) {
+	o.ExternalSecretsManager.Set(&v)
+}
+
+// SetExternalSecretsManagerNil sets the value for ExternalSecretsManager to be an explicit nil.
+func (o *ActionConnectionAttributesUpdate) SetExternalSecretsManagerNil() {
+	o.ExternalSecretsManager.Set(nil)
+}
+
+// UnsetExternalSecretsManager ensures that no value is present for ExternalSecretsManager, not even an explicit nil.
+func (o *ActionConnectionAttributesUpdate) UnsetExternalSecretsManager() {
+	o.ExternalSecretsManager.Unset()
 }
 
 // GetIntegration returns the Integration field value if set, zero value otherwise.
@@ -129,6 +170,9 @@ func (o ActionConnectionAttributesUpdate) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ExternalSecretsManager.IsSet() {
+		toSerialize["external_secrets_manager"] = o.ExternalSecretsManager.Get()
+	}
 	if o.Integration != nil {
 		toSerialize["integration"] = o.Integration
 	}
@@ -148,19 +192,21 @@ func (o ActionConnectionAttributesUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ActionConnectionAttributesUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Integration *ActionConnectionIntegrationUpdate `json:"integration,omitempty"`
-		Name        *string                            `json:"name,omitempty"`
-		Tags        []string                           `json:"tags,omitempty"`
+		ExternalSecretsManager NullableActionConnectionAWSSecretsManager `json:"external_secrets_manager,omitempty"`
+		Integration            *ActionConnectionIntegrationUpdate        `json:"integration,omitempty"`
+		Name                   *string                                   `json:"name,omitempty"`
+		Tags                   []string                                  `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"integration", "name", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"external_secrets_manager", "integration", "name", "tags"})
 	} else {
 		return err
 	}
+	o.ExternalSecretsManager = all.ExternalSecretsManager
 	o.Integration = all.Integration
 	o.Name = all.Name
 	o.Tags = all.Tags

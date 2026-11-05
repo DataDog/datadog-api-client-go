@@ -13,7 +13,7 @@ import (
 // LaunchDarklyAPIKeyUpdate The definition of the `LaunchDarklyAPIKey` object.
 type LaunchDarklyAPIKeyUpdate struct {
 	// The `LaunchDarklyAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *LaunchDarklyAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `LaunchDarklyAPIKey` object.
 	Type LaunchDarklyAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewLaunchDarklyAPIKeyUpdateWithDefaults() *LaunchDarklyAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *LaunchDarklyAPIKeyUpdate) GetApiToken() string {
+func (o *LaunchDarklyAPIKeyUpdate) GetApiToken() LaunchDarklyAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret LaunchDarklyAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *LaunchDarklyAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LaunchDarklyAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *LaunchDarklyAPIKeyUpdate) GetApiTokenOk() (*LaunchDarklyAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *LaunchDarklyAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *LaunchDarklyAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given LaunchDarklyAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *LaunchDarklyAPIKeyUpdate) SetApiToken(v LaunchDarklyAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o LaunchDarklyAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LaunchDarklyAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string                 `json:"api_token,omitempty"`
-		Type     *LaunchDarklyAPIKeyType `json:"type"`
+		ApiToken *LaunchDarklyAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *LaunchDarklyAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -13,7 +13,7 @@ import (
 // GeminiAPIKey The definition of the `GeminiAPIKey` object.
 type GeminiAPIKey struct {
 	// The `GeminiAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey GeminiAPIKeyApiKey `json:"api_key"`
 	// The definition of the `GeminiAPIKey` object.
 	Type GeminiAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type GeminiAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGeminiAPIKey(apiKey string, typeVar GeminiAPIKeyType) *GeminiAPIKey {
+func NewGeminiAPIKey(apiKey GeminiAPIKeyApiKey, typeVar GeminiAPIKeyType) *GeminiAPIKey {
 	this := GeminiAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewGeminiAPIKeyWithDefaults() *GeminiAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *GeminiAPIKey) GetApiKey() string {
+func (o *GeminiAPIKey) GetApiKey() GeminiAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret GeminiAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *GeminiAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *GeminiAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *GeminiAPIKey) GetApiKeyOk() (*GeminiAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *GeminiAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *GeminiAPIKey) SetApiKey(v string) {
+func (o *GeminiAPIKey) SetApiKey(v GeminiAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o GeminiAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeminiAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string           `json:"api_key"`
-		Type   *GeminiAPIKeyType `json:"type"`
+		ApiKey *GeminiAPIKeyApiKey `json:"api_key"`
+		Type   *GeminiAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -13,13 +13,13 @@ import (
 // DatadogAPIKeyUpdate The definition of the `DatadogAPIKey` object.
 type DatadogAPIKeyUpdate struct {
 	// The `DatadogAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *DatadogAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The `DatadogAPIKeyUpdate` `app_key`.
-	AppKey *string `json:"app_key,omitempty"`
+	AppKey *DatadogAPIKeyUpdateAppKey `json:"app_key,omitempty"`
 	// The `DatadogAPIKeyUpdate` `datacenter`.
-	Datacenter *string `json:"datacenter,omitempty"`
+	Datacenter *DatadogAPIKeyUpdateDatacenter `json:"datacenter,omitempty"`
 	// Custom subdomain used for Datadog URLs generated with this Connection. For example, if this org uses `https://acme.datadoghq.com` to access Datadog, set this field to `acme`. If this field is omitted, generated URLs will use the default site URL for its datacenter (see [https://docs.datadoghq.com/getting_started/site](https://docs.datadoghq.com/getting_started/site)).
-	Subdomain *string `json:"subdomain,omitempty"`
+	Subdomain *DatadogAPIKeySubdomain `json:"subdomain,omitempty"`
 	// The definition of the `DatadogAPIKey` object.
 	Type DatadogAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -46,9 +46,9 @@ func NewDatadogAPIKeyUpdateWithDefaults() *DatadogAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *DatadogAPIKeyUpdate) GetApiKey() string {
+func (o *DatadogAPIKeyUpdate) GetApiKey() DatadogAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret DatadogAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -56,7 +56,7 @@ func (o *DatadogAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatadogAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *DatadogAPIKeyUpdate) GetApiKeyOk() (*DatadogAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *DatadogAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *DatadogAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given DatadogAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *DatadogAPIKeyUpdate) SetApiKey(v DatadogAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
 // GetAppKey returns the AppKey field value if set, zero value otherwise.
-func (o *DatadogAPIKeyUpdate) GetAppKey() string {
+func (o *DatadogAPIKeyUpdate) GetAppKey() DatadogAPIKeyUpdateAppKey {
 	if o == nil || o.AppKey == nil {
-		var ret string
+		var ret DatadogAPIKeyUpdateAppKey
 		return ret
 	}
 	return *o.AppKey
@@ -84,7 +84,7 @@ func (o *DatadogAPIKeyUpdate) GetAppKey() string {
 
 // GetAppKeyOk returns a tuple with the AppKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatadogAPIKeyUpdate) GetAppKeyOk() (*string, bool) {
+func (o *DatadogAPIKeyUpdate) GetAppKeyOk() (*DatadogAPIKeyUpdateAppKey, bool) {
 	if o == nil || o.AppKey == nil {
 		return nil, false
 	}
@@ -96,15 +96,15 @@ func (o *DatadogAPIKeyUpdate) HasAppKey() bool {
 	return o != nil && o.AppKey != nil
 }
 
-// SetAppKey gets a reference to the given string and assigns it to the AppKey field.
-func (o *DatadogAPIKeyUpdate) SetAppKey(v string) {
+// SetAppKey gets a reference to the given DatadogAPIKeyUpdateAppKey and assigns it to the AppKey field.
+func (o *DatadogAPIKeyUpdate) SetAppKey(v DatadogAPIKeyUpdateAppKey) {
 	o.AppKey = &v
 }
 
 // GetDatacenter returns the Datacenter field value if set, zero value otherwise.
-func (o *DatadogAPIKeyUpdate) GetDatacenter() string {
+func (o *DatadogAPIKeyUpdate) GetDatacenter() DatadogAPIKeyUpdateDatacenter {
 	if o == nil || o.Datacenter == nil {
-		var ret string
+		var ret DatadogAPIKeyUpdateDatacenter
 		return ret
 	}
 	return *o.Datacenter
@@ -112,7 +112,7 @@ func (o *DatadogAPIKeyUpdate) GetDatacenter() string {
 
 // GetDatacenterOk returns a tuple with the Datacenter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatadogAPIKeyUpdate) GetDatacenterOk() (*string, bool) {
+func (o *DatadogAPIKeyUpdate) GetDatacenterOk() (*DatadogAPIKeyUpdateDatacenter, bool) {
 	if o == nil || o.Datacenter == nil {
 		return nil, false
 	}
@@ -124,15 +124,15 @@ func (o *DatadogAPIKeyUpdate) HasDatacenter() bool {
 	return o != nil && o.Datacenter != nil
 }
 
-// SetDatacenter gets a reference to the given string and assigns it to the Datacenter field.
-func (o *DatadogAPIKeyUpdate) SetDatacenter(v string) {
+// SetDatacenter gets a reference to the given DatadogAPIKeyUpdateDatacenter and assigns it to the Datacenter field.
+func (o *DatadogAPIKeyUpdate) SetDatacenter(v DatadogAPIKeyUpdateDatacenter) {
 	o.Datacenter = &v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
-func (o *DatadogAPIKeyUpdate) GetSubdomain() string {
+func (o *DatadogAPIKeyUpdate) GetSubdomain() DatadogAPIKeySubdomain {
 	if o == nil || o.Subdomain == nil {
-		var ret string
+		var ret DatadogAPIKeySubdomain
 		return ret
 	}
 	return *o.Subdomain
@@ -140,7 +140,7 @@ func (o *DatadogAPIKeyUpdate) GetSubdomain() string {
 
 // GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatadogAPIKeyUpdate) GetSubdomainOk() (*string, bool) {
+func (o *DatadogAPIKeyUpdate) GetSubdomainOk() (*DatadogAPIKeySubdomain, bool) {
 	if o == nil || o.Subdomain == nil {
 		return nil, false
 	}
@@ -152,8 +152,8 @@ func (o *DatadogAPIKeyUpdate) HasSubdomain() bool {
 	return o != nil && o.Subdomain != nil
 }
 
-// SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
-func (o *DatadogAPIKeyUpdate) SetSubdomain(v string) {
+// SetSubdomain gets a reference to the given DatadogAPIKeySubdomain and assigns it to the Subdomain field.
+func (o *DatadogAPIKeyUpdate) SetSubdomain(v DatadogAPIKeySubdomain) {
 	o.Subdomain = &v
 }
 
@@ -209,11 +209,11 @@ func (o DatadogAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DatadogAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey     *string            `json:"api_key,omitempty"`
-		AppKey     *string            `json:"app_key,omitempty"`
-		Datacenter *string            `json:"datacenter,omitempty"`
-		Subdomain  *string            `json:"subdomain,omitempty"`
-		Type       *DatadogAPIKeyType `json:"type"`
+		ApiKey     *DatadogAPIKeyUpdateApiKey     `json:"api_key,omitempty"`
+		AppKey     *DatadogAPIKeyUpdateAppKey     `json:"app_key,omitempty"`
+		Datacenter *DatadogAPIKeyUpdateDatacenter `json:"datacenter,omitempty"`
+		Subdomain  *DatadogAPIKeySubdomain        `json:"subdomain,omitempty"`
+		Type       *DatadogAPIKeyType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

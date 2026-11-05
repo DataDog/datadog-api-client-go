@@ -13,11 +13,11 @@ import (
 // ConfigCatSDKKeyUpdate The definition of the `ConfigCatSDKKey` object.
 type ConfigCatSDKKeyUpdate struct {
 	// The `ConfigCatSDKKeyUpdate` `api_password`.
-	ApiPassword *string `json:"api_password,omitempty"`
+	ApiPassword *ConfigCatSDKKeyUpdateApiPassword `json:"api_password,omitempty"`
 	// The `ConfigCatSDKKeyUpdate` `api_username`.
-	ApiUsername *string `json:"api_username,omitempty"`
+	ApiUsername *ConfigCatSDKKeyUpdateApiUsername `json:"api_username,omitempty"`
 	// The `ConfigCatSDKKeyUpdate` `sdk_key`.
-	SdkKey *string `json:"sdk_key,omitempty"`
+	SdkKey *ConfigCatSDKKeyUpdateSdkKey `json:"sdk_key,omitempty"`
 	// The definition of the `ConfigCatSDKKey` object.
 	Type ConfigCatSDKKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,9 +44,9 @@ func NewConfigCatSDKKeyUpdateWithDefaults() *ConfigCatSDKKeyUpdate {
 }
 
 // GetApiPassword returns the ApiPassword field value if set, zero value otherwise.
-func (o *ConfigCatSDKKeyUpdate) GetApiPassword() string {
+func (o *ConfigCatSDKKeyUpdate) GetApiPassword() ConfigCatSDKKeyUpdateApiPassword {
 	if o == nil || o.ApiPassword == nil {
-		var ret string
+		var ret ConfigCatSDKKeyUpdateApiPassword
 		return ret
 	}
 	return *o.ApiPassword
@@ -54,7 +54,7 @@ func (o *ConfigCatSDKKeyUpdate) GetApiPassword() string {
 
 // GetApiPasswordOk returns a tuple with the ApiPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConfigCatSDKKeyUpdate) GetApiPasswordOk() (*string, bool) {
+func (o *ConfigCatSDKKeyUpdate) GetApiPasswordOk() (*ConfigCatSDKKeyUpdateApiPassword, bool) {
 	if o == nil || o.ApiPassword == nil {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *ConfigCatSDKKeyUpdate) HasApiPassword() bool {
 	return o != nil && o.ApiPassword != nil
 }
 
-// SetApiPassword gets a reference to the given string and assigns it to the ApiPassword field.
-func (o *ConfigCatSDKKeyUpdate) SetApiPassword(v string) {
+// SetApiPassword gets a reference to the given ConfigCatSDKKeyUpdateApiPassword and assigns it to the ApiPassword field.
+func (o *ConfigCatSDKKeyUpdate) SetApiPassword(v ConfigCatSDKKeyUpdateApiPassword) {
 	o.ApiPassword = &v
 }
 
 // GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
-func (o *ConfigCatSDKKeyUpdate) GetApiUsername() string {
+func (o *ConfigCatSDKKeyUpdate) GetApiUsername() ConfigCatSDKKeyUpdateApiUsername {
 	if o == nil || o.ApiUsername == nil {
-		var ret string
+		var ret ConfigCatSDKKeyUpdateApiUsername
 		return ret
 	}
 	return *o.ApiUsername
@@ -82,7 +82,7 @@ func (o *ConfigCatSDKKeyUpdate) GetApiUsername() string {
 
 // GetApiUsernameOk returns a tuple with the ApiUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConfigCatSDKKeyUpdate) GetApiUsernameOk() (*string, bool) {
+func (o *ConfigCatSDKKeyUpdate) GetApiUsernameOk() (*ConfigCatSDKKeyUpdateApiUsername, bool) {
 	if o == nil || o.ApiUsername == nil {
 		return nil, false
 	}
@@ -94,15 +94,15 @@ func (o *ConfigCatSDKKeyUpdate) HasApiUsername() bool {
 	return o != nil && o.ApiUsername != nil
 }
 
-// SetApiUsername gets a reference to the given string and assigns it to the ApiUsername field.
-func (o *ConfigCatSDKKeyUpdate) SetApiUsername(v string) {
+// SetApiUsername gets a reference to the given ConfigCatSDKKeyUpdateApiUsername and assigns it to the ApiUsername field.
+func (o *ConfigCatSDKKeyUpdate) SetApiUsername(v ConfigCatSDKKeyUpdateApiUsername) {
 	o.ApiUsername = &v
 }
 
 // GetSdkKey returns the SdkKey field value if set, zero value otherwise.
-func (o *ConfigCatSDKKeyUpdate) GetSdkKey() string {
+func (o *ConfigCatSDKKeyUpdate) GetSdkKey() ConfigCatSDKKeyUpdateSdkKey {
 	if o == nil || o.SdkKey == nil {
-		var ret string
+		var ret ConfigCatSDKKeyUpdateSdkKey
 		return ret
 	}
 	return *o.SdkKey
@@ -110,7 +110,7 @@ func (o *ConfigCatSDKKeyUpdate) GetSdkKey() string {
 
 // GetSdkKeyOk returns a tuple with the SdkKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConfigCatSDKKeyUpdate) GetSdkKeyOk() (*string, bool) {
+func (o *ConfigCatSDKKeyUpdate) GetSdkKeyOk() (*ConfigCatSDKKeyUpdateSdkKey, bool) {
 	if o == nil || o.SdkKey == nil {
 		return nil, false
 	}
@@ -122,8 +122,8 @@ func (o *ConfigCatSDKKeyUpdate) HasSdkKey() bool {
 	return o != nil && o.SdkKey != nil
 }
 
-// SetSdkKey gets a reference to the given string and assigns it to the SdkKey field.
-func (o *ConfigCatSDKKeyUpdate) SetSdkKey(v string) {
+// SetSdkKey gets a reference to the given ConfigCatSDKKeyUpdateSdkKey and assigns it to the SdkKey field.
+func (o *ConfigCatSDKKeyUpdate) SetSdkKey(v ConfigCatSDKKeyUpdateSdkKey) {
 	o.SdkKey = &v
 }
 
@@ -176,10 +176,10 @@ func (o ConfigCatSDKKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfigCatSDKKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiPassword *string              `json:"api_password,omitempty"`
-		ApiUsername *string              `json:"api_username,omitempty"`
-		SdkKey      *string              `json:"sdk_key,omitempty"`
-		Type        *ConfigCatSDKKeyType `json:"type"`
+		ApiPassword *ConfigCatSDKKeyUpdateApiPassword `json:"api_password,omitempty"`
+		ApiUsername *ConfigCatSDKKeyUpdateApiUsername `json:"api_username,omitempty"`
+		SdkKey      *ConfigCatSDKKeyUpdateSdkKey      `json:"sdk_key,omitempty"`
+		Type        *ConfigCatSDKKeyType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

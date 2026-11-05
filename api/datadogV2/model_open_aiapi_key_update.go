@@ -13,7 +13,7 @@ import (
 // OpenAIAPIKeyUpdate The definition of the `OpenAIAPIKey` object.
 type OpenAIAPIKeyUpdate struct {
 	// The `OpenAIAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *OpenAIAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `OpenAIAPIKey` object.
 	Type OpenAIAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewOpenAIAPIKeyUpdateWithDefaults() *OpenAIAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *OpenAIAPIKeyUpdate) GetApiToken() string {
+func (o *OpenAIAPIKeyUpdate) GetApiToken() OpenAIAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret OpenAIAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *OpenAIAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpenAIAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *OpenAIAPIKeyUpdate) GetApiTokenOk() (*OpenAIAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *OpenAIAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *OpenAIAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given OpenAIAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *OpenAIAPIKeyUpdate) SetApiToken(v OpenAIAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o OpenAIAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpenAIAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token,omitempty"`
-		Type     *OpenAIAPIKeyType `json:"type"`
+		ApiToken *OpenAIAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *OpenAIAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

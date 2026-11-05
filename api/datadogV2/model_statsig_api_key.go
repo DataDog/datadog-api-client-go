@@ -13,7 +13,7 @@ import (
 // StatsigAPIKey The definition of the `StatsigAPIKey` object.
 type StatsigAPIKey struct {
 	// The `StatsigAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey StatsigAPIKeyApiKey `json:"api_key"`
 	// The definition of the `StatsigAPIKey` object.
 	Type StatsigAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type StatsigAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewStatsigAPIKey(apiKey string, typeVar StatsigAPIKeyType) *StatsigAPIKey {
+func NewStatsigAPIKey(apiKey StatsigAPIKeyApiKey, typeVar StatsigAPIKeyType) *StatsigAPIKey {
 	this := StatsigAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewStatsigAPIKeyWithDefaults() *StatsigAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *StatsigAPIKey) GetApiKey() string {
+func (o *StatsigAPIKey) GetApiKey() StatsigAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret StatsigAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *StatsigAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *StatsigAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *StatsigAPIKey) GetApiKeyOk() (*StatsigAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *StatsigAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *StatsigAPIKey) SetApiKey(v string) {
+func (o *StatsigAPIKey) SetApiKey(v StatsigAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o StatsigAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *StatsigAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string            `json:"api_key"`
-		Type   *StatsigAPIKeyType `json:"type"`
+		ApiKey *StatsigAPIKeyApiKey `json:"api_key"`
+		Type   *StatsigAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

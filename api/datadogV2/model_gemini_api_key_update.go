@@ -13,7 +13,7 @@ import (
 // GeminiAPIKeyUpdate The definition of the `GeminiAPIKey` object.
 type GeminiAPIKeyUpdate struct {
 	// The `GeminiAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *GeminiAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `GeminiAPIKey` object.
 	Type GeminiAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewGeminiAPIKeyUpdateWithDefaults() *GeminiAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *GeminiAPIKeyUpdate) GetApiKey() string {
+func (o *GeminiAPIKeyUpdate) GetApiKey() GeminiAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret GeminiAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *GeminiAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GeminiAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *GeminiAPIKeyUpdate) GetApiKeyOk() (*GeminiAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *GeminiAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *GeminiAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given GeminiAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *GeminiAPIKeyUpdate) SetApiKey(v GeminiAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o GeminiAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeminiAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string           `json:"api_key,omitempty"`
-		Type   *GeminiAPIKeyType `json:"type"`
+		ApiKey *GeminiAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *GeminiAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

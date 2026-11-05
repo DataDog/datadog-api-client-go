@@ -13,7 +13,7 @@ import (
 // VirusTotalAPIKey The definition of the `VirusTotalAPIKey` object.
 type VirusTotalAPIKey struct {
 	// The `VirusTotalAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey VirusTotalAPIKeyApiKey `json:"api_key"`
 	// The definition of the `VirusTotalAPIKey` object.
 	Type VirusTotalAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type VirusTotalAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewVirusTotalAPIKey(apiKey string, typeVar VirusTotalAPIKeyType) *VirusTotalAPIKey {
+func NewVirusTotalAPIKey(apiKey VirusTotalAPIKeyApiKey, typeVar VirusTotalAPIKeyType) *VirusTotalAPIKey {
 	this := VirusTotalAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewVirusTotalAPIKeyWithDefaults() *VirusTotalAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *VirusTotalAPIKey) GetApiKey() string {
+func (o *VirusTotalAPIKey) GetApiKey() VirusTotalAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret VirusTotalAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *VirusTotalAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *VirusTotalAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *VirusTotalAPIKey) GetApiKeyOk() (*VirusTotalAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *VirusTotalAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *VirusTotalAPIKey) SetApiKey(v string) {
+func (o *VirusTotalAPIKey) SetApiKey(v VirusTotalAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o VirusTotalAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *VirusTotalAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string               `json:"api_key"`
-		Type   *VirusTotalAPIKeyType `json:"type"`
+		ApiKey *VirusTotalAPIKeyApiKey `json:"api_key"`
+		Type   *VirusTotalAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

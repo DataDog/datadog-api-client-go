@@ -13,7 +13,7 @@ import (
 // CloudflareAPIToken The definition of the `CloudflareAPIToken` object.
 type CloudflareAPIToken struct {
 	// The `CloudflareAPIToken` `api_token`.
-	ApiToken string `json:"api_token"`
+	ApiToken CloudflareAPITokenApiToken `json:"api_token"`
 	// The definition of the `CloudflareAPIToken` object.
 	Type CloudflareAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type CloudflareAPIToken struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCloudflareAPIToken(apiToken string, typeVar CloudflareAPITokenType) *CloudflareAPIToken {
+func NewCloudflareAPIToken(apiToken CloudflareAPITokenApiToken, typeVar CloudflareAPITokenType) *CloudflareAPIToken {
 	this := CloudflareAPIToken{}
 	this.ApiToken = apiToken
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewCloudflareAPITokenWithDefaults() *CloudflareAPIToken {
 }
 
 // GetApiToken returns the ApiToken field value.
-func (o *CloudflareAPIToken) GetApiToken() string {
+func (o *CloudflareAPIToken) GetApiToken() CloudflareAPITokenApiToken {
 	if o == nil {
-		var ret string
+		var ret CloudflareAPITokenApiToken
 		return ret
 	}
 	return o.ApiToken
@@ -51,7 +51,7 @@ func (o *CloudflareAPIToken) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value
 // and a boolean to check if the value has been set.
-func (o *CloudflareAPIToken) GetApiTokenOk() (*string, bool) {
+func (o *CloudflareAPIToken) GetApiTokenOk() (*CloudflareAPITokenApiToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *CloudflareAPIToken) GetApiTokenOk() (*string, bool) {
 }
 
 // SetApiToken sets field value.
-func (o *CloudflareAPIToken) SetApiToken(v string) {
+func (o *CloudflareAPIToken) SetApiToken(v CloudflareAPITokenApiToken) {
 	o.ApiToken = v
 }
 
@@ -104,8 +104,8 @@ func (o CloudflareAPIToken) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAPIToken) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string                 `json:"api_token"`
-		Type     *CloudflareAPITokenType `json:"type"`
+		ApiToken *CloudflareAPITokenApiToken `json:"api_token"`
+		Type     *CloudflareAPITokenType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

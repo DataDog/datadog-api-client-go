@@ -13,9 +13,9 @@ import (
 // GCPServiceAccount The definition of the `GCPServiceAccount` object.
 type GCPServiceAccount struct {
 	// The `GCPServiceAccount` `private_key`.
-	PrivateKey string `json:"private_key"`
+	PrivateKey GCPServiceAccountPrivateKey `json:"private_key"`
 	// The `GCPServiceAccount` `service_account_email`.
-	ServiceAccountEmail string `json:"service_account_email"`
+	ServiceAccountEmail GCPServiceAccountServiceAccountEmail `json:"service_account_email"`
 	// The definition of the `GCPServiceAccount` object.
 	Type GCPServiceAccountCredentialType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,7 +27,7 @@ type GCPServiceAccount struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGCPServiceAccount(privateKey string, serviceAccountEmail string, typeVar GCPServiceAccountCredentialType) *GCPServiceAccount {
+func NewGCPServiceAccount(privateKey GCPServiceAccountPrivateKey, serviceAccountEmail GCPServiceAccountServiceAccountEmail, typeVar GCPServiceAccountCredentialType) *GCPServiceAccount {
 	this := GCPServiceAccount{}
 	this.PrivateKey = privateKey
 	this.ServiceAccountEmail = serviceAccountEmail
@@ -44,9 +44,9 @@ func NewGCPServiceAccountWithDefaults() *GCPServiceAccount {
 }
 
 // GetPrivateKey returns the PrivateKey field value.
-func (o *GCPServiceAccount) GetPrivateKey() string {
+func (o *GCPServiceAccount) GetPrivateKey() GCPServiceAccountPrivateKey {
 	if o == nil {
-		var ret string
+		var ret GCPServiceAccountPrivateKey
 		return ret
 	}
 	return o.PrivateKey
@@ -54,7 +54,7 @@ func (o *GCPServiceAccount) GetPrivateKey() string {
 
 // GetPrivateKeyOk returns a tuple with the PrivateKey field value
 // and a boolean to check if the value has been set.
-func (o *GCPServiceAccount) GetPrivateKeyOk() (*string, bool) {
+func (o *GCPServiceAccount) GetPrivateKeyOk() (*GCPServiceAccountPrivateKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,14 +62,14 @@ func (o *GCPServiceAccount) GetPrivateKeyOk() (*string, bool) {
 }
 
 // SetPrivateKey sets field value.
-func (o *GCPServiceAccount) SetPrivateKey(v string) {
+func (o *GCPServiceAccount) SetPrivateKey(v GCPServiceAccountPrivateKey) {
 	o.PrivateKey = v
 }
 
 // GetServiceAccountEmail returns the ServiceAccountEmail field value.
-func (o *GCPServiceAccount) GetServiceAccountEmail() string {
+func (o *GCPServiceAccount) GetServiceAccountEmail() GCPServiceAccountServiceAccountEmail {
 	if o == nil {
-		var ret string
+		var ret GCPServiceAccountServiceAccountEmail
 		return ret
 	}
 	return o.ServiceAccountEmail
@@ -77,7 +77,7 @@ func (o *GCPServiceAccount) GetServiceAccountEmail() string {
 
 // GetServiceAccountEmailOk returns a tuple with the ServiceAccountEmail field value
 // and a boolean to check if the value has been set.
-func (o *GCPServiceAccount) GetServiceAccountEmailOk() (*string, bool) {
+func (o *GCPServiceAccount) GetServiceAccountEmailOk() (*GCPServiceAccountServiceAccountEmail, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *GCPServiceAccount) GetServiceAccountEmailOk() (*string, bool) {
 }
 
 // SetServiceAccountEmail sets field value.
-func (o *GCPServiceAccount) SetServiceAccountEmail(v string) {
+func (o *GCPServiceAccount) SetServiceAccountEmail(v GCPServiceAccountServiceAccountEmail) {
 	o.ServiceAccountEmail = v
 }
 
@@ -131,9 +131,9 @@ func (o GCPServiceAccount) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPServiceAccount) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PrivateKey          *string                          `json:"private_key"`
-		ServiceAccountEmail *string                          `json:"service_account_email"`
-		Type                *GCPServiceAccountCredentialType `json:"type"`
+		PrivateKey          *GCPServiceAccountPrivateKey          `json:"private_key"`
+		ServiceAccountEmail *GCPServiceAccountServiceAccountEmail `json:"service_account_email"`
+		Type                *GCPServiceAccountCredentialType      `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

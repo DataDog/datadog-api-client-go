@@ -13,7 +13,7 @@ import (
 // GitlabAPIKeyUpdate The definition of the `GitlabAPIKey` object.
 type GitlabAPIKeyUpdate struct {
 	// The `GitlabAPIKeyUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *GitlabAPIKeyUpdateApiToken `json:"api_token,omitempty"`
 	// The definition of the `GitlabAPIKey` object.
 	Type GitlabAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewGitlabAPIKeyUpdateWithDefaults() *GitlabAPIKeyUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *GitlabAPIKeyUpdate) GetApiToken() string {
+func (o *GitlabAPIKeyUpdate) GetApiToken() GitlabAPIKeyUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret GitlabAPIKeyUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -50,7 +50,7 @@ func (o *GitlabAPIKeyUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GitlabAPIKeyUpdate) GetApiTokenOk() (*string, bool) {
+func (o *GitlabAPIKeyUpdate) GetApiTokenOk() (*GitlabAPIKeyUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *GitlabAPIKeyUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *GitlabAPIKeyUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given GitlabAPIKeyUpdateApiToken and assigns it to the ApiToken field.
+func (o *GitlabAPIKeyUpdate) SetApiToken(v GitlabAPIKeyUpdateApiToken) {
 	o.ApiToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o GitlabAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GitlabAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token,omitempty"`
-		Type     *GitlabAPIKeyType `json:"type"`
+		ApiToken *GitlabAPIKeyUpdateApiToken `json:"api_token,omitempty"`
+		Type     *GitlabAPIKeyType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

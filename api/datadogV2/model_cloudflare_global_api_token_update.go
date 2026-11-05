@@ -13,9 +13,9 @@ import (
 // CloudflareGlobalAPITokenUpdate The definition of the `CloudflareGlobalAPIToken` object.
 type CloudflareGlobalAPITokenUpdate struct {
 	// The `CloudflareGlobalAPITokenUpdate` `auth_email`.
-	AuthEmail *string `json:"auth_email,omitempty"`
+	AuthEmail *CloudflareGlobalAPITokenUpdateAuthEmail `json:"auth_email,omitempty"`
 	// The `CloudflareGlobalAPITokenUpdate` `global_api_key`.
-	GlobalApiKey *string `json:"global_api_key,omitempty"`
+	GlobalApiKey *CloudflareGlobalAPITokenUpdateGlobalApiKey `json:"global_api_key,omitempty"`
 	// The definition of the `CloudflareGlobalAPIToken` object.
 	Type CloudflareGlobalAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -42,9 +42,9 @@ func NewCloudflareGlobalAPITokenUpdateWithDefaults() *CloudflareGlobalAPITokenUp
 }
 
 // GetAuthEmail returns the AuthEmail field value if set, zero value otherwise.
-func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmail() string {
+func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmail() CloudflareGlobalAPITokenUpdateAuthEmail {
 	if o == nil || o.AuthEmail == nil {
-		var ret string
+		var ret CloudflareGlobalAPITokenUpdateAuthEmail
 		return ret
 	}
 	return *o.AuthEmail
@@ -52,7 +52,7 @@ func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmail() string {
 
 // GetAuthEmailOk returns a tuple with the AuthEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmailOk() (*string, bool) {
+func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmailOk() (*CloudflareGlobalAPITokenUpdateAuthEmail, bool) {
 	if o == nil || o.AuthEmail == nil {
 		return nil, false
 	}
@@ -64,15 +64,15 @@ func (o *CloudflareGlobalAPITokenUpdate) HasAuthEmail() bool {
 	return o != nil && o.AuthEmail != nil
 }
 
-// SetAuthEmail gets a reference to the given string and assigns it to the AuthEmail field.
-func (o *CloudflareGlobalAPITokenUpdate) SetAuthEmail(v string) {
+// SetAuthEmail gets a reference to the given CloudflareGlobalAPITokenUpdateAuthEmail and assigns it to the AuthEmail field.
+func (o *CloudflareGlobalAPITokenUpdate) SetAuthEmail(v CloudflareGlobalAPITokenUpdateAuthEmail) {
 	o.AuthEmail = &v
 }
 
 // GetGlobalApiKey returns the GlobalApiKey field value if set, zero value otherwise.
-func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKey() string {
+func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKey() CloudflareGlobalAPITokenUpdateGlobalApiKey {
 	if o == nil || o.GlobalApiKey == nil {
-		var ret string
+		var ret CloudflareGlobalAPITokenUpdateGlobalApiKey
 		return ret
 	}
 	return *o.GlobalApiKey
@@ -80,7 +80,7 @@ func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKey() string {
 
 // GetGlobalApiKeyOk returns a tuple with the GlobalApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKeyOk() (*string, bool) {
+func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKeyOk() (*CloudflareGlobalAPITokenUpdateGlobalApiKey, bool) {
 	if o == nil || o.GlobalApiKey == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *CloudflareGlobalAPITokenUpdate) HasGlobalApiKey() bool {
 	return o != nil && o.GlobalApiKey != nil
 }
 
-// SetGlobalApiKey gets a reference to the given string and assigns it to the GlobalApiKey field.
-func (o *CloudflareGlobalAPITokenUpdate) SetGlobalApiKey(v string) {
+// SetGlobalApiKey gets a reference to the given CloudflareGlobalAPITokenUpdateGlobalApiKey and assigns it to the GlobalApiKey field.
+func (o *CloudflareGlobalAPITokenUpdate) SetGlobalApiKey(v CloudflareGlobalAPITokenUpdateGlobalApiKey) {
 	o.GlobalApiKey = &v
 }
 
@@ -143,9 +143,9 @@ func (o CloudflareGlobalAPITokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareGlobalAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthEmail    *string                       `json:"auth_email,omitempty"`
-		GlobalApiKey *string                       `json:"global_api_key,omitempty"`
-		Type         *CloudflareGlobalAPITokenType `json:"type"`
+		AuthEmail    *CloudflareGlobalAPITokenUpdateAuthEmail    `json:"auth_email,omitempty"`
+		GlobalApiKey *CloudflareGlobalAPITokenUpdateGlobalApiKey `json:"global_api_key,omitempty"`
+		Type         *CloudflareGlobalAPITokenType               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

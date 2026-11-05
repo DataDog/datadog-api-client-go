@@ -13,7 +13,7 @@ import (
 // FastlyAPIKey The definition of the `FastlyAPIKey` object.
 type FastlyAPIKey struct {
 	// The `FastlyAPIKey` `api_key`.
-	ApiKey string `json:"api_key"`
+	ApiKey FastlyAPIKeyApiKey `json:"api_key"`
 	// The definition of the `FastlyAPIKey` object.
 	Type FastlyAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,7 +25,7 @@ type FastlyAPIKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFastlyAPIKey(apiKey string, typeVar FastlyAPIKeyType) *FastlyAPIKey {
+func NewFastlyAPIKey(apiKey FastlyAPIKeyApiKey, typeVar FastlyAPIKeyType) *FastlyAPIKey {
 	this := FastlyAPIKey{}
 	this.ApiKey = apiKey
 	this.Type = typeVar
@@ -41,9 +41,9 @@ func NewFastlyAPIKeyWithDefaults() *FastlyAPIKey {
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *FastlyAPIKey) GetApiKey() string {
+func (o *FastlyAPIKey) GetApiKey() FastlyAPIKeyApiKey {
 	if o == nil {
-		var ret string
+		var ret FastlyAPIKeyApiKey
 		return ret
 	}
 	return o.ApiKey
@@ -51,7 +51,7 @@ func (o *FastlyAPIKey) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
-func (o *FastlyAPIKey) GetApiKeyOk() (*string, bool) {
+func (o *FastlyAPIKey) GetApiKeyOk() (*FastlyAPIKeyApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *FastlyAPIKey) GetApiKeyOk() (*string, bool) {
 }
 
 // SetApiKey sets field value.
-func (o *FastlyAPIKey) SetApiKey(v string) {
+func (o *FastlyAPIKey) SetApiKey(v FastlyAPIKeyApiKey) {
 	o.ApiKey = v
 }
 
@@ -104,8 +104,8 @@ func (o FastlyAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string           `json:"api_key"`
-		Type   *FastlyAPIKeyType `json:"type"`
+		ApiKey *FastlyAPIKeyApiKey `json:"api_key"`
+		Type   *FastlyAPIKeyType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

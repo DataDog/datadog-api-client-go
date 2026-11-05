@@ -13,7 +13,7 @@ import (
 // AsanaAccessTokenUpdate The definition of the `AsanaAccessToken` object.
 type AsanaAccessTokenUpdate struct {
 	// The `AsanaAccessTokenUpdate` `access_token`.
-	AccessToken *string `json:"access_token,omitempty"`
+	AccessToken *AsanaAccessTokenUpdateAccessToken `json:"access_token,omitempty"`
 	// The definition of the `AsanaAccessToken` object.
 	Type AsanaAccessTokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewAsanaAccessTokenUpdateWithDefaults() *AsanaAccessTokenUpdate {
 }
 
 // GetAccessToken returns the AccessToken field value if set, zero value otherwise.
-func (o *AsanaAccessTokenUpdate) GetAccessToken() string {
+func (o *AsanaAccessTokenUpdate) GetAccessToken() AsanaAccessTokenUpdateAccessToken {
 	if o == nil || o.AccessToken == nil {
-		var ret string
+		var ret AsanaAccessTokenUpdateAccessToken
 		return ret
 	}
 	return *o.AccessToken
@@ -50,7 +50,7 @@ func (o *AsanaAccessTokenUpdate) GetAccessToken() string {
 
 // GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsanaAccessTokenUpdate) GetAccessTokenOk() (*string, bool) {
+func (o *AsanaAccessTokenUpdate) GetAccessTokenOk() (*AsanaAccessTokenUpdateAccessToken, bool) {
 	if o == nil || o.AccessToken == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *AsanaAccessTokenUpdate) HasAccessToken() bool {
 	return o != nil && o.AccessToken != nil
 }
 
-// SetAccessToken gets a reference to the given string and assigns it to the AccessToken field.
-func (o *AsanaAccessTokenUpdate) SetAccessToken(v string) {
+// SetAccessToken gets a reference to the given AsanaAccessTokenUpdateAccessToken and assigns it to the AccessToken field.
+func (o *AsanaAccessTokenUpdate) SetAccessToken(v AsanaAccessTokenUpdateAccessToken) {
 	o.AccessToken = &v
 }
 
@@ -110,8 +110,8 @@ func (o AsanaAccessTokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AsanaAccessTokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessToken *string               `json:"access_token,omitempty"`
-		Type        *AsanaAccessTokenType `json:"type"`
+		AccessToken *AsanaAccessTokenUpdateAccessToken `json:"access_token,omitempty"`
+		Type        *AsanaAccessTokenType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

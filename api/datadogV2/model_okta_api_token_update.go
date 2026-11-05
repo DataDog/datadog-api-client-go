@@ -13,9 +13,9 @@ import (
 // OktaAPITokenUpdate The definition of the `OktaAPIToken` object.
 type OktaAPITokenUpdate struct {
 	// The `OktaAPITokenUpdate` `api_token`.
-	ApiToken *string `json:"api_token,omitempty"`
+	ApiToken *OktaAPITokenUpdateApiToken `json:"api_token,omitempty"`
 	// The `OktaAPITokenUpdate` `domain`.
-	Domain *string `json:"domain,omitempty"`
+	Domain *OktaAPITokenUpdateDomain `json:"domain,omitempty"`
 	// The definition of the `OktaAPIToken` object.
 	Type OktaAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -42,9 +42,9 @@ func NewOktaAPITokenUpdateWithDefaults() *OktaAPITokenUpdate {
 }
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
-func (o *OktaAPITokenUpdate) GetApiToken() string {
+func (o *OktaAPITokenUpdate) GetApiToken() OktaAPITokenUpdateApiToken {
 	if o == nil || o.ApiToken == nil {
-		var ret string
+		var ret OktaAPITokenUpdateApiToken
 		return ret
 	}
 	return *o.ApiToken
@@ -52,7 +52,7 @@ func (o *OktaAPITokenUpdate) GetApiToken() string {
 
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OktaAPITokenUpdate) GetApiTokenOk() (*string, bool) {
+func (o *OktaAPITokenUpdate) GetApiTokenOk() (*OktaAPITokenUpdateApiToken, bool) {
 	if o == nil || o.ApiToken == nil {
 		return nil, false
 	}
@@ -64,15 +64,15 @@ func (o *OktaAPITokenUpdate) HasApiToken() bool {
 	return o != nil && o.ApiToken != nil
 }
 
-// SetApiToken gets a reference to the given string and assigns it to the ApiToken field.
-func (o *OktaAPITokenUpdate) SetApiToken(v string) {
+// SetApiToken gets a reference to the given OktaAPITokenUpdateApiToken and assigns it to the ApiToken field.
+func (o *OktaAPITokenUpdate) SetApiToken(v OktaAPITokenUpdateApiToken) {
 	o.ApiToken = &v
 }
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
-func (o *OktaAPITokenUpdate) GetDomain() string {
+func (o *OktaAPITokenUpdate) GetDomain() OktaAPITokenUpdateDomain {
 	if o == nil || o.Domain == nil {
-		var ret string
+		var ret OktaAPITokenUpdateDomain
 		return ret
 	}
 	return *o.Domain
@@ -80,7 +80,7 @@ func (o *OktaAPITokenUpdate) GetDomain() string {
 
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OktaAPITokenUpdate) GetDomainOk() (*string, bool) {
+func (o *OktaAPITokenUpdate) GetDomainOk() (*OktaAPITokenUpdateDomain, bool) {
 	if o == nil || o.Domain == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *OktaAPITokenUpdate) HasDomain() bool {
 	return o != nil && o.Domain != nil
 }
 
-// SetDomain gets a reference to the given string and assigns it to the Domain field.
-func (o *OktaAPITokenUpdate) SetDomain(v string) {
+// SetDomain gets a reference to the given OktaAPITokenUpdateDomain and assigns it to the Domain field.
+func (o *OktaAPITokenUpdate) SetDomain(v OktaAPITokenUpdateDomain) {
 	o.Domain = &v
 }
 
@@ -143,9 +143,9 @@ func (o OktaAPITokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token,omitempty"`
-		Domain   *string           `json:"domain,omitempty"`
-		Type     *OktaAPITokenType `json:"type"`
+		ApiToken *OktaAPITokenUpdateApiToken `json:"api_token,omitempty"`
+		Domain   *OktaAPITokenUpdateDomain   `json:"domain,omitempty"`
+		Type     *OktaAPITokenType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

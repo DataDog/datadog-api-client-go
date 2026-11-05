@@ -13,7 +13,7 @@ import (
 // GreyNoiseAPIKeyUpdate The definition of the `GreyNoiseAPIKey` object.
 type GreyNoiseAPIKeyUpdate struct {
 	// The `GreyNoiseAPIKeyUpdate` `api_key`.
-	ApiKey *string `json:"api_key,omitempty"`
+	ApiKey *GreyNoiseAPIKeyUpdateApiKey `json:"api_key,omitempty"`
 	// The definition of the `GreyNoiseAPIKey` object.
 	Type GreyNoiseAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +40,9 @@ func NewGreyNoiseAPIKeyUpdateWithDefaults() *GreyNoiseAPIKeyUpdate {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *GreyNoiseAPIKeyUpdate) GetApiKey() string {
+func (o *GreyNoiseAPIKeyUpdate) GetApiKey() GreyNoiseAPIKeyUpdateApiKey {
 	if o == nil || o.ApiKey == nil {
-		var ret string
+		var ret GreyNoiseAPIKeyUpdateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -50,7 +50,7 @@ func (o *GreyNoiseAPIKeyUpdate) GetApiKey() string {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GreyNoiseAPIKeyUpdate) GetApiKeyOk() (*string, bool) {
+func (o *GreyNoiseAPIKeyUpdate) GetApiKeyOk() (*GreyNoiseAPIKeyUpdateApiKey, bool) {
 	if o == nil || o.ApiKey == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *GreyNoiseAPIKeyUpdate) HasApiKey() bool {
 	return o != nil && o.ApiKey != nil
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *GreyNoiseAPIKeyUpdate) SetApiKey(v string) {
+// SetApiKey gets a reference to the given GreyNoiseAPIKeyUpdateApiKey and assigns it to the ApiKey field.
+func (o *GreyNoiseAPIKeyUpdate) SetApiKey(v GreyNoiseAPIKeyUpdateApiKey) {
 	o.ApiKey = &v
 }
 
@@ -110,8 +110,8 @@ func (o GreyNoiseAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GreyNoiseAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string              `json:"api_key,omitempty"`
-		Type   *GreyNoiseAPIKeyType `json:"type"`
+		ApiKey *GreyNoiseAPIKeyUpdateApiKey `json:"api_key,omitempty"`
+		Type   *GreyNoiseAPIKeyType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
