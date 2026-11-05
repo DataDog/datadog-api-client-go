@@ -26,8 +26,8 @@ type ObservabilityPipelineParseGrokProcessor struct {
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
-	// The list of Grok parsing rules selected by either source field or include query.
-	Rules []ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules"`
+	// The list of custom Grok parsing rules selected by either source field or include query. Omit to use only the Datadog library rules.
+	Rules []ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules,omitempty"`
 	// The processor type. The value should always be `parse_grok`.
 	Type ObservabilityPipelineParseGrokProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -39,7 +39,7 @@ type ObservabilityPipelineParseGrokProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineParseGrokProcessor(enabled bool, id string, include string, rules []ObservabilityPipelineParseGrokProcessorRuleItem, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
+func NewObservabilityPipelineParseGrokProcessor(enabled bool, id string, include string, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
 	this := ObservabilityPipelineParseGrokProcessor{}
 	var disableLibraryRules bool = false
 	this.DisableLibraryRules = &disableLibraryRules
@@ -48,7 +48,6 @@ func NewObservabilityPipelineParseGrokProcessor(enabled bool, id string, include
 	this.Field = &field
 	this.Id = id
 	this.Include = include
-	this.Rules = rules
 	this.Type = typeVar
 	return &this
 }
@@ -220,25 +219,30 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetRules returns the Rules field value.
+// GetRules returns the Rules field value if set, zero value otherwise.
 func (o *ObservabilityPipelineParseGrokProcessor) GetRules() []ObservabilityPipelineParseGrokProcessorRuleItem {
-	if o == nil {
+	if o == nil || o.Rules == nil {
 		var ret []ObservabilityPipelineParseGrokProcessorRuleItem
 		return ret
 	}
 	return o.Rules
 }
 
-// GetRulesOk returns a tuple with the Rules field value
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineParseGrokProcessor) GetRulesOk() (*[]ObservabilityPipelineParseGrokProcessorRuleItem, bool) {
-	if o == nil {
+	if o == nil || o.Rules == nil {
 		return nil, false
 	}
 	return &o.Rules, true
 }
 
-// SetRules sets field value.
+// HasRules returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) HasRules() bool {
+	return o != nil && o.Rules != nil
+}
+
+// SetRules gets a reference to the given []ObservabilityPipelineParseGrokProcessorRuleItem and assigns it to the Rules field.
 func (o *ObservabilityPipelineParseGrokProcessor) SetRules(v []ObservabilityPipelineParseGrokProcessorRuleItem) {
 	o.Rules = v
 }
@@ -284,7 +288,9 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
-	toSerialize["rules"] = o.Rules
+	if o.Rules != nil {
+		toSerialize["rules"] = o.Rules
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -296,14 +302,14 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisableLibraryRules *bool                                              `json:"disable_library_rules,omitempty"`
-		DisplayName         *string                                            `json:"display_name,omitempty"`
-		Enabled             *bool                                              `json:"enabled"`
-		Field               *string                                            `json:"field,omitempty"`
-		Id                  *string                                            `json:"id"`
-		Include             *string                                            `json:"include"`
-		Rules               *[]ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules"`
-		Type                *ObservabilityPipelineParseGrokProcessorType       `json:"type"`
+		DisableLibraryRules *bool                                             `json:"disable_library_rules,omitempty"`
+		DisplayName         *string                                           `json:"display_name,omitempty"`
+		Enabled             *bool                                             `json:"enabled"`
+		Field               *string                                           `json:"field,omitempty"`
+		Id                  *string                                           `json:"id"`
+		Include             *string                                           `json:"include"`
+		Rules               []ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules,omitempty"`
+		Type                *ObservabilityPipelineParseGrokProcessorType      `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -316,9 +322,6 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
-	}
-	if all.Rules == nil {
-		return fmt.Errorf("required field rules missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -337,7 +340,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	o.Field = all.Field
 	o.Id = *all.Id
 	o.Include = *all.Include
-	o.Rules = *all.Rules
+	o.Rules = all.Rules
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
