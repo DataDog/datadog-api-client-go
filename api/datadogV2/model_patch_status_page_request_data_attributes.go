@@ -16,13 +16,17 @@ type PatchStatusPageRequestDataAttributes struct {
 	DomainPrefix *string `json:"domain_prefix,omitempty"`
 	// The base64-encoded image data displayed in email notifications sent to status page subscribers.
 	EmailHeaderImage *string `json:"email_header_image,omitempty"`
+	// Whether email notifications are enabled for the status page. Must be enabled when `subscriptions_enabled` is `true`.
+	EmailNotificationsEnabled *bool `json:"email_notifications_enabled,omitempty"`
 	// The base64-encoded image data displayed in the browser tab.
 	Favicon *string `json:"favicon,omitempty"`
+	// Whether Microsoft Teams subscriptions are enabled for the status page.
+	MsTeamsSubscriptionsEnabled *bool `json:"ms_teams_subscriptions_enabled,omitempty"`
 	// The name of the status page.
 	Name *string `json:"name,omitempty"`
 	// Whether the RSS feed is enabled for the status page.
 	RssFeedEnabled *bool `json:"rss_feed_enabled,omitempty"`
-	// The Slack app icon URL for the status page.
+	// The base64-encoded image data used as the Slack app icon.
 	SlackAppIcon *string `json:"slack_app_icon,omitempty"`
 	// Whether Slack subscriptions are enabled for the status page.
 	SlackSubscriptionsEnabled *bool `json:"slack_subscriptions_enabled,omitempty"`
@@ -140,6 +144,34 @@ func (o *PatchStatusPageRequestDataAttributes) SetEmailHeaderImage(v string) {
 	o.EmailHeaderImage = &v
 }
 
+// GetEmailNotificationsEnabled returns the EmailNotificationsEnabled field value if set, zero value otherwise.
+func (o *PatchStatusPageRequestDataAttributes) GetEmailNotificationsEnabled() bool {
+	if o == nil || o.EmailNotificationsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EmailNotificationsEnabled
+}
+
+// GetEmailNotificationsEnabledOk returns a tuple with the EmailNotificationsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchStatusPageRequestDataAttributes) GetEmailNotificationsEnabledOk() (*bool, bool) {
+	if o == nil || o.EmailNotificationsEnabled == nil {
+		return nil, false
+	}
+	return o.EmailNotificationsEnabled, true
+}
+
+// HasEmailNotificationsEnabled returns a boolean if a field has been set.
+func (o *PatchStatusPageRequestDataAttributes) HasEmailNotificationsEnabled() bool {
+	return o != nil && o.EmailNotificationsEnabled != nil
+}
+
+// SetEmailNotificationsEnabled gets a reference to the given bool and assigns it to the EmailNotificationsEnabled field.
+func (o *PatchStatusPageRequestDataAttributes) SetEmailNotificationsEnabled(v bool) {
+	o.EmailNotificationsEnabled = &v
+}
+
 // GetFavicon returns the Favicon field value if set, zero value otherwise.
 func (o *PatchStatusPageRequestDataAttributes) GetFavicon() string {
 	if o == nil || o.Favicon == nil {
@@ -166,6 +198,34 @@ func (o *PatchStatusPageRequestDataAttributes) HasFavicon() bool {
 // SetFavicon gets a reference to the given string and assigns it to the Favicon field.
 func (o *PatchStatusPageRequestDataAttributes) SetFavicon(v string) {
 	o.Favicon = &v
+}
+
+// GetMsTeamsSubscriptionsEnabled returns the MsTeamsSubscriptionsEnabled field value if set, zero value otherwise.
+func (o *PatchStatusPageRequestDataAttributes) GetMsTeamsSubscriptionsEnabled() bool {
+	if o == nil || o.MsTeamsSubscriptionsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MsTeamsSubscriptionsEnabled
+}
+
+// GetMsTeamsSubscriptionsEnabledOk returns a tuple with the MsTeamsSubscriptionsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchStatusPageRequestDataAttributes) GetMsTeamsSubscriptionsEnabledOk() (*bool, bool) {
+	if o == nil || o.MsTeamsSubscriptionsEnabled == nil {
+		return nil, false
+	}
+	return o.MsTeamsSubscriptionsEnabled, true
+}
+
+// HasMsTeamsSubscriptionsEnabled returns a boolean if a field has been set.
+func (o *PatchStatusPageRequestDataAttributes) HasMsTeamsSubscriptionsEnabled() bool {
+	return o != nil && o.MsTeamsSubscriptionsEnabled != nil
+}
+
+// SetMsTeamsSubscriptionsEnabled gets a reference to the given bool and assigns it to the MsTeamsSubscriptionsEnabled field.
+func (o *PatchStatusPageRequestDataAttributes) SetMsTeamsSubscriptionsEnabled(v bool) {
+	o.MsTeamsSubscriptionsEnabled = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -407,8 +467,14 @@ func (o PatchStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.EmailHeaderImage != nil {
 		toSerialize["email_header_image"] = o.EmailHeaderImage
 	}
+	if o.EmailNotificationsEnabled != nil {
+		toSerialize["email_notifications_enabled"] = o.EmailNotificationsEnabled
+	}
 	if o.Favicon != nil {
 		toSerialize["favicon"] = o.Favicon
+	}
+	if o.MsTeamsSubscriptionsEnabled != nil {
+		toSerialize["ms_teams_subscriptions_enabled"] = o.MsTeamsSubscriptionsEnabled
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -444,25 +510,27 @@ func (o PatchStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CompanyLogo               *string                                                   `json:"company_logo,omitempty"`
-		DomainPrefix              *string                                                   `json:"domain_prefix,omitempty"`
-		EmailHeaderImage          *string                                                   `json:"email_header_image,omitempty"`
-		Favicon                   *string                                                   `json:"favicon,omitempty"`
-		Name                      *string                                                   `json:"name,omitempty"`
-		RssFeedEnabled            *bool                                                     `json:"rss_feed_enabled,omitempty"`
-		SlackAppIcon              *string                                                   `json:"slack_app_icon,omitempty"`
-		SlackSubscriptionsEnabled *bool                                                     `json:"slack_subscriptions_enabled,omitempty"`
-		SubscriptionsEnabled      *bool                                                     `json:"subscriptions_enabled,omitempty"`
-		Type                      *CreateStatusPageRequestDataAttributesType                `json:"type,omitempty"`
-		VisualizationLayout       *CreateStatusPageRequestDataAttributesVisualizationLayout `json:"visualization_layout,omitempty"`
-		VisualizationType         *CreateStatusPageRequestDataAttributesVisualizationType   `json:"visualization_type,omitempty"`
+		CompanyLogo                 *string                                                   `json:"company_logo,omitempty"`
+		DomainPrefix                *string                                                   `json:"domain_prefix,omitempty"`
+		EmailHeaderImage            *string                                                   `json:"email_header_image,omitempty"`
+		EmailNotificationsEnabled   *bool                                                     `json:"email_notifications_enabled,omitempty"`
+		Favicon                     *string                                                   `json:"favicon,omitempty"`
+		MsTeamsSubscriptionsEnabled *bool                                                     `json:"ms_teams_subscriptions_enabled,omitempty"`
+		Name                        *string                                                   `json:"name,omitempty"`
+		RssFeedEnabled              *bool                                                     `json:"rss_feed_enabled,omitempty"`
+		SlackAppIcon                *string                                                   `json:"slack_app_icon,omitempty"`
+		SlackSubscriptionsEnabled   *bool                                                     `json:"slack_subscriptions_enabled,omitempty"`
+		SubscriptionsEnabled        *bool                                                     `json:"subscriptions_enabled,omitempty"`
+		Type                        *CreateStatusPageRequestDataAttributesType                `json:"type,omitempty"`
+		VisualizationLayout         *CreateStatusPageRequestDataAttributesVisualizationLayout `json:"visualization_layout,omitempty"`
+		VisualizationType           *CreateStatusPageRequestDataAttributesVisualizationType   `json:"visualization_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "favicon", "name", "rss_feed_enabled", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_layout", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "email_notifications_enabled", "favicon", "ms_teams_subscriptions_enabled", "name", "rss_feed_enabled", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_layout", "visualization_type"})
 	} else {
 		return err
 	}
@@ -471,7 +539,9 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.CompanyLogo = all.CompanyLogo
 	o.DomainPrefix = all.DomainPrefix
 	o.EmailHeaderImage = all.EmailHeaderImage
+	o.EmailNotificationsEnabled = all.EmailNotificationsEnabled
 	o.Favicon = all.Favicon
+	o.MsTeamsSubscriptionsEnabled = all.MsTeamsSubscriptionsEnabled
 	o.Name = all.Name
 	o.RssFeedEnabled = all.RssFeedEnabled
 	o.SlackAppIcon = all.SlackAppIcon
