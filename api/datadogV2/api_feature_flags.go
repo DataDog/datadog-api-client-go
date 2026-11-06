@@ -1321,7 +1321,7 @@ func (r *ListFeatureFlagsEnvironmentsOptionalParameters) WithOffset(offset int64
 
 // ListFeatureFlagsEnvironments List environments.
 // Returns a list of environments for the organization.
-// Supports filtering by name, key, and DD_ENV.
+// Use `dd_env` to filter by an exact DD_ENV value in an environment's `queries` list.
 func (a *FeatureFlagsApi) ListFeatureFlagsEnvironments(ctx _context.Context, o ...ListFeatureFlagsEnvironmentsOptionalParameters) (ListEnvironmentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1983,9 +1983,13 @@ func (a *FeatureFlagsApi) UpdateFeatureFlag(ctx _context.Context, featureFlagId 
 }
 
 // UpdateFeatureFlagsEnvironment Update an environment.
-// Updates an existing environment's metadata such as
+// Updates an environment's name, DD_ENV values, and settings.
 //
-//	name and description.
+// Every request must include `name` and `queries`, even when changing only `observe_full_evaluation_data`.
+// To preserve the current name and DD_ENV values, get the environment first and include those values in the request.
+//
+// Omitting `is_production` or `require_feature_flag_approval` resets that setting to `false`.
+// Include their current values to preserve them. Omitting `observe_full_evaluation_data` preserves its current value.
 func (a *FeatureFlagsApi) UpdateFeatureFlagsEnvironment(ctx _context.Context, environmentId uuid.UUID, body UpdateEnvironmentRequest) (EnvironmentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
