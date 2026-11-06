@@ -1723,6 +1723,7 @@
 //   - [UsageMeteringApi.GetMonthlyCostAttribution]
 //   - [UsageMeteringApi.GetMyTemporaryGrantRequest]
 //   - [UsageMeteringApi.GetProjectedCost]
+//   - [UsageMeteringApi.GetQuota]
 //   - [UsageMeteringApi.GetTemporaryGrantRequest]
 //   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]
 //   - [UsageMeteringApi.GetUsageAttributionTypes]

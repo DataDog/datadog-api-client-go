@@ -276,13 +276,38 @@ func (a *UsageMeteringApi) CreateTemporaryGrantRequest(ctx _context.Context, bod
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DeletePendingQuotaOptionalParameters holds optional parameters for DeletePendingQuota.
+type DeletePendingQuotaOptionalParameters struct {
+	IncludeDescendants *bool
+}
+
+// NewDeletePendingQuotaOptionalParameters creates an empty struct for parameters.
+func NewDeletePendingQuotaOptionalParameters() *DeletePendingQuotaOptionalParameters {
+	this := DeletePendingQuotaOptionalParameters{}
+	return &this
+}
+
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *DeletePendingQuotaOptionalParameters) WithIncludeDescendants(includeDescendants bool) *DeletePendingQuotaOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
 // DeletePendingQuota Cancel a scheduled usage quota limit.
 // Cancels the limit change scheduled to take effect at the start of the next usage period, leaving the usage quota and its current limit unchanged. Returns `404` when the quota does not exist, has no scheduled change, or its scheduled change has already taken effect; in every case the quota is left unchanged. The quota must belong to the caller's organization or one of its descendants, and its opaque identifier must belong to the requested quota namespace. Requires the `billing_edit` permission.
-func (a *UsageMeteringApi) DeletePendingQuota(ctx _context.Context, quotaNamespace string, id string) (*_nethttp.Response, error) {
+func (a *UsageMeteringApi) DeletePendingQuota(ctx _context.Context, quotaNamespace string, id string, o ...DeletePendingQuotaOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
+		optionalParams     DeletePendingQuotaOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return nil, datadog.ReportError("only one argument of type DeletePendingQuotaOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.DeletePendingQuota"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -305,6 +330,9 @@ func (a *UsageMeteringApi) DeletePendingQuota(ctx _context.Context, quotaNamespa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.IncludeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
+	}
 	localVarHeaderParams["Accept"] = "*/*"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -363,13 +391,38 @@ func (a *UsageMeteringApi) DeletePendingQuota(ctx _context.Context, quotaNamespa
 	return localVarHTTPResponse, nil
 }
 
+// DeleteQuotaOptionalParameters holds optional parameters for DeleteQuota.
+type DeleteQuotaOptionalParameters struct {
+	IncludeDescendants *bool
+}
+
+// NewDeleteQuotaOptionalParameters creates an empty struct for parameters.
+func NewDeleteQuotaOptionalParameters() *DeleteQuotaOptionalParameters {
+	this := DeleteQuotaOptionalParameters{}
+	return &this
+}
+
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *DeleteQuotaOptionalParameters) WithIncludeDescendants(includeDescendants bool) *DeleteQuotaOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
 // DeleteQuota Delete a usage quota.
 // Deletes a usage quota by its opaque identifier. The quota must belong to the caller's organization or one of its descendants, and its opaque identifier must belong to the requested quota namespace. Requires the `billing_edit` permission.
-func (a *UsageMeteringApi) DeleteQuota(ctx _context.Context, quotaNamespace string, id string) (*_nethttp.Response, error) {
+func (a *UsageMeteringApi) DeleteQuota(ctx _context.Context, quotaNamespace string, id string, o ...DeleteQuotaOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
+		optionalParams     DeleteQuotaOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return nil, datadog.ReportError("only one argument of type DeleteQuotaOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.DeleteQuota"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -392,6 +445,9 @@ func (a *UsageMeteringApi) DeleteQuota(ctx _context.Context, quotaNamespace stri
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.IncludeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
+	}
 	localVarHeaderParams["Accept"] = "*/*"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -1785,6 +1841,131 @@ func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetQuotaOptionalParameters holds optional parameters for GetQuota.
+type GetQuotaOptionalParameters struct {
+	IncludeDescendants *bool
+}
+
+// NewGetQuotaOptionalParameters creates an empty struct for parameters.
+func NewGetQuotaOptionalParameters() *GetQuotaOptionalParameters {
+	this := GetQuotaOptionalParameters{}
+	return &this
+}
+
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetQuotaOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetQuotaOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
+// GetQuota Get a usage quota.
+// Returns the effective configuration of one usage quota by its opaque identifier. Future pending changes are returned separately; a pending change that is already effective is returned as the current limit. The quota must belong to the caller's organization or an authorized descendant in the same datacenter. Set `include_descendants=false` to reject all other organizations. Stored quotas remain readable after the scoped user, role, or team is deleted. Requires `billing_read` or `billing_edit`.
+func (a *UsageMeteringApi) GetQuota(ctx _context.Context, quotaNamespace string, id string, o ...GetQuotaOptionalParameters) (UsageQuotaResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue UsageQuotaResponse
+		optionalParams      GetQuotaOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetQuotaOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetQuota"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetQuota")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/quotas/{quota_namespace}/{id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{quota_namespace}", _neturl.PathEscape(datadog.ParameterToString(quotaNamespace, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.IncludeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetTemporaryGrantRequest Get an organization temporary grant request.
 // Read an organization request, justification, decision, and linked grant state. Requires Billing Edit. Requires an authenticated human user. Service-account credentials are unsupported. Request status remains approved after expiry, revocation, or replacement.
 func (a *UsageMeteringApi) GetTemporaryGrantRequest(ctx _context.Context, requestId uuid.UUID) (TemporaryGrantRequestResponse, *_nethttp.Response, error) {
@@ -3019,14 +3200,39 @@ func (a *UsageMeteringApi) ListTemporaryGrantRequestsWithPagination(ctx _context
 	return items, cancel
 }
 
+// UpdateQuotaOptionalParameters holds optional parameters for UpdateQuota.
+type UpdateQuotaOptionalParameters struct {
+	IncludeDescendants *bool
+}
+
+// NewUpdateQuotaOptionalParameters creates an empty struct for parameters.
+func NewUpdateQuotaOptionalParameters() *UpdateQuotaOptionalParameters {
+	this := UpdateQuotaOptionalParameters{}
+	return &this
+}
+
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *UpdateQuotaOptionalParameters) WithIncludeDescendants(includeDescendants bool) *UpdateQuotaOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
 // UpdateQuota Update a usage quota.
-// Updates the supplied fields on a usage quota and leaves omitted fields unchanged. For an organization-wide quota, `pending_usage_limit` schedules a limit for the next usage period. The quota must belong to the caller's organization or one of its descendants, and its opaque identifier must belong to the requested quota namespace. Requires the `billing_edit` permission.
-func (a *UsageMeteringApi) UpdateQuota(ctx _context.Context, quotaNamespace string, id string, body UsageQuotaUpdateRequest) (UsageQuotaResponse, *_nethttp.Response, error) {
+// Updates the supplied fields on a usage quota. Setting `enforced=false` clears any pending change atomically, including when enforcement is already disabled. Other immediate updates preserve future pending changes when `pending_usage_limit` is omitted. For an organization-wide quota, `pending_usage_limit` schedules a limit for the next usage period. The quota must belong to the caller's organization or one of its descendants, and its opaque identifier must belong to the requested quota namespace. Requires the `billing_edit` permission.
+func (a *UsageMeteringApi) UpdateQuota(ctx _context.Context, quotaNamespace string, id string, body UsageQuotaUpdateRequest, o ...UpdateQuotaOptionalParameters) (UsageQuotaResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue UsageQuotaResponse
+		optionalParams      UpdateQuotaOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateQuotaOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.UpdateQuota"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -3049,6 +3255,9 @@ func (a *UsageMeteringApi) UpdateQuota(ctx _context.Context, quotaNamespace stri
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.IncludeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
