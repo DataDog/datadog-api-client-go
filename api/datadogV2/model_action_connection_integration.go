@@ -23,6 +23,7 @@ type ActionConnectionIntegration struct {
 	FreshserviceIntegration *FreshserviceIntegration
 	GCPIntegration          *GCPIntegration
 	GeminiIntegration       *GeminiIntegration
+	GithubIntegration       *GithubIntegration
 	GitlabIntegration       *GitlabIntegration
 	GreyNoiseIntegration    *GreyNoiseIntegration
 	HTTPIntegration         *HTTPIntegration
@@ -102,6 +103,11 @@ func GCPIntegrationAsActionConnectionIntegration(v *GCPIntegration) ActionConnec
 // GeminiIntegrationAsActionConnectionIntegration is a convenience function that returns GeminiIntegration wrapped in ActionConnectionIntegration.
 func GeminiIntegrationAsActionConnectionIntegration(v *GeminiIntegration) ActionConnectionIntegration {
 	return ActionConnectionIntegration{GeminiIntegration: v}
+}
+
+// GithubIntegrationAsActionConnectionIntegration is a convenience function that returns GithubIntegration wrapped in ActionConnectionIntegration.
+func GithubIntegrationAsActionConnectionIntegration(v *GithubIntegration) ActionConnectionIntegration {
+	return ActionConnectionIntegration{GithubIntegration: v}
 }
 
 // GitlabIntegrationAsActionConnectionIntegration is a convenience function that returns GitlabIntegration wrapped in ActionConnectionIntegration.
@@ -384,6 +390,23 @@ func (obj *ActionConnectionIntegration) UnmarshalJSON(data []byte) error {
 		obj.GeminiIntegration = nil
 	}
 
+	// try to unmarshal data into GithubIntegration
+	err = datadog.Unmarshal(data, &obj.GithubIntegration)
+	if err == nil {
+		if obj.GithubIntegration != nil && obj.GithubIntegration.UnparsedObject == nil {
+			jsonGithubIntegration, _ := datadog.Marshal(obj.GithubIntegration)
+			if string(jsonGithubIntegration) == "{}" { // empty struct
+				obj.GithubIntegration = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.GithubIntegration = nil
+		}
+	} else {
+		obj.GithubIntegration = nil
+	}
+
 	// try to unmarshal data into GitlabIntegration
 	err = datadog.Unmarshal(data, &obj.GitlabIntegration)
 	if err == nil {
@@ -586,6 +609,7 @@ func (obj *ActionConnectionIntegration) UnmarshalJSON(data []byte) error {
 		obj.FreshserviceIntegration = nil
 		obj.GCPIntegration = nil
 		obj.GeminiIntegration = nil
+		obj.GithubIntegration = nil
 		obj.GitlabIntegration = nil
 		obj.GreyNoiseIntegration = nil
 		obj.HTTPIntegration = nil
@@ -654,6 +678,10 @@ func (obj ActionConnectionIntegration) MarshalJSON() ([]byte, error) {
 
 	if obj.GeminiIntegration != nil {
 		return datadog.Marshal(&obj.GeminiIntegration)
+	}
+
+	if obj.GithubIntegration != nil {
+		return datadog.Marshal(&obj.GithubIntegration)
 	}
 
 	if obj.GitlabIntegration != nil {
@@ -758,6 +786,10 @@ func (obj *ActionConnectionIntegration) GetActualInstance() interface{} {
 
 	if obj.GeminiIntegration != nil {
 		return obj.GeminiIntegration
+	}
+
+	if obj.GithubIntegration != nil {
+		return obj.GithubIntegration
 	}
 
 	if obj.GitlabIntegration != nil {
