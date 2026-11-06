@@ -12,7 +12,9 @@ import (
 type Unit struct {
 	// Unit family, allows for conversion between units of the same family, for scaling.
 	Family *string `json:"family,omitempty"`
-	// Unit name
+	// The identifier of the unit.
+	Id *int64 `json:"id,omitempty"`
+	// Unit name.
 	Name *string `json:"name,omitempty"`
 	// Plural form of the unit name.
 	Plural *string `json:"plural,omitempty"`
@@ -68,6 +70,34 @@ func (o *Unit) HasFamily() bool {
 // SetFamily gets a reference to the given string and assigns it to the Family field.
 func (o *Unit) SetFamily(v string) {
 	o.Family = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Unit) GetId() int64 {
+	if o == nil || o.Id == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Unit) GetIdOk() (*int64, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Unit) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *Unit) SetId(v int64) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -191,6 +221,9 @@ func (o Unit) MarshalJSON() ([]byte, error) {
 	if o.Family != nil {
 		toSerialize["family"] = o.Family
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -214,6 +247,7 @@ func (o Unit) MarshalJSON() ([]byte, error) {
 func (o *Unit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Family      *string  `json:"family,omitempty"`
+		Id          *int64   `json:"id,omitempty"`
 		Name        *string  `json:"name,omitempty"`
 		Plural      *string  `json:"plural,omitempty"`
 		ScaleFactor *float64 `json:"scale_factor,omitempty"`
@@ -224,11 +258,12 @@ func (o *Unit) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"family", "name", "plural", "scale_factor", "short_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"family", "id", "name", "plural", "scale_factor", "short_name"})
 	} else {
 		return err
 	}
 	o.Family = all.Family
+	o.Id = all.Id
 	o.Name = all.Name
 	o.Plural = all.Plural
 	o.ScaleFactor = all.ScaleFactor
