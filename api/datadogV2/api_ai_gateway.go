@@ -574,7 +574,7 @@ func (a *AIGatewayApi) CreateAiGatewayProvider(ctx _context.Context, body AiGate
 }
 
 // CreateAiGatewayRateLimit Create an AI Gateway rate limit.
-// Create a rate limit. All requests matching its scope share one allowance, and every matching rate limit applies. Returns 409 when another active rate limit has the same user, Team, and tags, or when the organization already has the maximum number of rate limits.
+// Create a rate limit. All requests matching its scope share one allowance, unless a selector makes it a template, which gives each matched user, Team, or value its own allowance. Every matching rate limit applies. Returns 409 when another active rate limit has the same user, Team, tags, and selector, or when the organization already has the maximum number of rate limits.
 func (a *AIGatewayApi) CreateAiGatewayRateLimit(ctx _context.Context, body AiGatewayRateLimitCreateRequest) (AiGatewayRateLimitResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2510,6 +2510,129 @@ func (a *AIGatewayApi) GetAiGatewayRateLimit(ctx _context.Context, id uuid.UUID)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetAiGatewayRateLimitInstancesSummaryOptionalParameters holds optional parameters for GetAiGatewayRateLimitInstancesSummary.
+type GetAiGatewayRateLimitInstancesSummaryOptionalParameters struct {
+	SplitDim *[]string
+}
+
+// NewGetAiGatewayRateLimitInstancesSummaryOptionalParameters creates an empty struct for parameters.
+func NewGetAiGatewayRateLimitInstancesSummaryOptionalParameters() *GetAiGatewayRateLimitInstancesSummaryOptionalParameters {
+	this := GetAiGatewayRateLimitInstancesSummaryOptionalParameters{}
+	return &this
+}
+
+// WithSplitDim sets the corresponding parameter name and returns the struct.
+func (r *GetAiGatewayRateLimitInstancesSummaryOptionalParameters) WithSplitDim(splitDim []string) *GetAiGatewayRateLimitInstancesSummaryOptionalParameters {
+	r.SplitDim = &splitDim
+	return r
+}
+
+// GetAiGatewayRateLimitInstancesSummary Get an AI Gateway rate limit counter summary.
+// Aggregate a template rate limit's counters, including how many there are, how many are near or at their limit, and the fullest counter's utilization. Use split_dim to aggregate only counters that match every given dimension value.
+func (a *AIGatewayApi) GetAiGatewayRateLimitInstancesSummary(ctx _context.Context, id uuid.UUID, o ...GetAiGatewayRateLimitInstancesSummaryOptionalParameters) (AiGatewayRateLimitInstancesSummaryResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue AiGatewayRateLimitInstancesSummaryResponse
+		optionalParams      GetAiGatewayRateLimitInstancesSummaryOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetAiGatewayRateLimitInstancesSummaryOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetAiGatewayRateLimitInstancesSummary"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AIGatewayApi.GetAiGatewayRateLimitInstancesSummary")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/rate-limits/{id}/instances/summary"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.SplitDim != nil {
+		t := *optionalParams.SplitDim
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("split_dim", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("split_dim", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetAiGatewayRateLimitUsage Get AI Gateway rate limit usage.
 // Get live usage for the organization's rate limits. Returns requests and tokens counted in the rolling one-minute window and requests limited in the last 15 minutes for each enabled rate limit, plus `untracked` (traffic no enforced rate limit covers) and `total` (all gateway traffic).
 func (a *AIGatewayApi) GetAiGatewayRateLimitUsage(ctx _context.Context) (AiGatewayRateLimitUsageListResponse, *_nethttp.Response, error) {
@@ -3735,6 +3858,159 @@ func (a *AIGatewayApi) ListAiGatewayProviders(ctx _context.Context) (AiGatewayPr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListAiGatewayRateLimitInstancesOptionalParameters holds optional parameters for ListAiGatewayRateLimitInstances.
+type ListAiGatewayRateLimitInstancesOptionalParameters struct {
+	SplitDim *[]string
+	Sort     *AiGatewayRateLimitInstanceSort
+	Limit    *int64
+	Offset   *int64
+}
+
+// NewListAiGatewayRateLimitInstancesOptionalParameters creates an empty struct for parameters.
+func NewListAiGatewayRateLimitInstancesOptionalParameters() *ListAiGatewayRateLimitInstancesOptionalParameters {
+	this := ListAiGatewayRateLimitInstancesOptionalParameters{}
+	return &this
+}
+
+// WithSplitDim sets the corresponding parameter name and returns the struct.
+func (r *ListAiGatewayRateLimitInstancesOptionalParameters) WithSplitDim(splitDim []string) *ListAiGatewayRateLimitInstancesOptionalParameters {
+	r.SplitDim = &splitDim
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListAiGatewayRateLimitInstancesOptionalParameters) WithSort(sort AiGatewayRateLimitInstanceSort) *ListAiGatewayRateLimitInstancesOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *ListAiGatewayRateLimitInstancesOptionalParameters) WithLimit(limit int64) *ListAiGatewayRateLimitInstancesOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithOffset sets the corresponding parameter name and returns the struct.
+func (r *ListAiGatewayRateLimitInstancesOptionalParameters) WithOffset(offset int64) *ListAiGatewayRateLimitInstancesOptionalParameters {
+	r.Offset = &offset
+	return r
+}
+
+// ListAiGatewayRateLimitInstances List AI Gateway rate limit counters.
+// List the counters of a template rate limit, one per matched user, Team, or value, with their live usage. Counters appear within a few minutes of their first request and are dropped after 30 days without one. Usage is read for counters seen in the last 20 minutes, at most 200 per request; past that, rows carry usage_known false. A rate limit with one shared allowance returns an empty list.
+func (a *AIGatewayApi) ListAiGatewayRateLimitInstances(ctx _context.Context, id uuid.UUID, o ...ListAiGatewayRateLimitInstancesOptionalParameters) (AiGatewayRateLimitInstanceListResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue AiGatewayRateLimitInstanceListResponse
+		optionalParams      ListAiGatewayRateLimitInstancesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAiGatewayRateLimitInstancesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListAiGatewayRateLimitInstances"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AIGatewayApi.ListAiGatewayRateLimitInstances")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/rate-limits/{id}/instances"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.SplitDim != nil {
+		t := *optionalParams.SplitDim
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("split_dim", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("split_dim", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.Offset != nil {
+		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListAiGatewayRateLimits List AI Gateway rate limits.
 // List the organization's AI Gateway rate limits.
 func (a *AIGatewayApi) ListAiGatewayRateLimits(ctx _context.Context) (AiGatewayRateLimitListResponse, *_nethttp.Response, error) {
@@ -4735,7 +5011,7 @@ func (a *AIGatewayApi) UpdateAiGatewayProvider(ctx _context.Context, id int64, b
 }
 
 // UpdateAiGatewayRateLimit Update an AI Gateway rate limit.
-// Update a rate limit. Only the attributes sent are changed. Scope stays editable, and changes never reset current usage. Returns 409 when the rule was changed concurrently or the new scope duplicates another rule.
+// Update a rate limit. Only the attributes sent are changed, and changes never reset current usage. Scope stays editable, except on a template rate limit, whose user_id, team_id, and tags are rejected with 400. Returns 409 when the rule was changed concurrently or the new scope duplicates another rule.
 func (a *AIGatewayApi) UpdateAiGatewayRateLimit(ctx _context.Context, id uuid.UUID, body AiGatewayRateLimitUpdateRequest) (AiGatewayRateLimitResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
