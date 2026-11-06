@@ -12,8 +12,11 @@ import (
 type IncidentImpactCreatedTrigger struct {
 	// The maximum number of times to execute a workflow for an incident.
 	ExecutionLimit *ExecutionLimit `json:"executionLimit,omitempty"`
-	// The type of incident that triggers the workflow.
+	// The type of incident that triggers the workflow. Deprecated. Use `incidentTypes` instead.
+	// Deprecated
 	IncidentType *string `json:"incidentType,omitempty"`
+	// The types of incidents that trigger the workflow.
+	IncidentTypes []string `json:"incidentTypes,omitempty"`
 	// Conditions that determine which incidents trigger the workflow.
 	TagCondition *IncidentCondition `json:"tagCondition,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -67,6 +70,7 @@ func (o *IncidentImpactCreatedTrigger) SetExecutionLimit(v ExecutionLimit) {
 }
 
 // GetIncidentType returns the IncidentType field value if set, zero value otherwise.
+// Deprecated
 func (o *IncidentImpactCreatedTrigger) GetIncidentType() string {
 	if o == nil || o.IncidentType == nil {
 		var ret string
@@ -77,6 +81,7 @@ func (o *IncidentImpactCreatedTrigger) GetIncidentType() string {
 
 // GetIncidentTypeOk returns a tuple with the IncidentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *IncidentImpactCreatedTrigger) GetIncidentTypeOk() (*string, bool) {
 	if o == nil || o.IncidentType == nil {
 		return nil, false
@@ -90,8 +95,37 @@ func (o *IncidentImpactCreatedTrigger) HasIncidentType() bool {
 }
 
 // SetIncidentType gets a reference to the given string and assigns it to the IncidentType field.
+// Deprecated
 func (o *IncidentImpactCreatedTrigger) SetIncidentType(v string) {
 	o.IncidentType = &v
+}
+
+// GetIncidentTypes returns the IncidentTypes field value if set, zero value otherwise.
+func (o *IncidentImpactCreatedTrigger) GetIncidentTypes() []string {
+	if o == nil || o.IncidentTypes == nil {
+		var ret []string
+		return ret
+	}
+	return o.IncidentTypes
+}
+
+// GetIncidentTypesOk returns a tuple with the IncidentTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentImpactCreatedTrigger) GetIncidentTypesOk() (*[]string, bool) {
+	if o == nil || o.IncidentTypes == nil {
+		return nil, false
+	}
+	return &o.IncidentTypes, true
+}
+
+// HasIncidentTypes returns a boolean if a field has been set.
+func (o *IncidentImpactCreatedTrigger) HasIncidentTypes() bool {
+	return o != nil && o.IncidentTypes != nil
+}
+
+// SetIncidentTypes gets a reference to the given []string and assigns it to the IncidentTypes field.
+func (o *IncidentImpactCreatedTrigger) SetIncidentTypes(v []string) {
+	o.IncidentTypes = v
 }
 
 // GetTagCondition returns the TagCondition field value if set, zero value otherwise.
@@ -134,6 +168,9 @@ func (o IncidentImpactCreatedTrigger) MarshalJSON() ([]byte, error) {
 	if o.IncidentType != nil {
 		toSerialize["incidentType"] = o.IncidentType
 	}
+	if o.IncidentTypes != nil {
+		toSerialize["incidentTypes"] = o.IncidentTypes
+	}
 	if o.TagCondition != nil {
 		toSerialize["tagCondition"] = o.TagCondition
 	}
@@ -149,6 +186,7 @@ func (o *IncidentImpactCreatedTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ExecutionLimit *ExecutionLimit    `json:"executionLimit,omitempty"`
 		IncidentType   *string            `json:"incidentType,omitempty"`
+		IncidentTypes  []string           `json:"incidentTypes,omitempty"`
 		TagCondition   *IncidentCondition `json:"tagCondition,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +194,7 @@ func (o *IncidentImpactCreatedTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"executionLimit", "incidentType", "tagCondition"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"executionLimit", "incidentType", "incidentTypes", "tagCondition"})
 	} else {
 		return err
 	}
@@ -167,6 +205,7 @@ func (o *IncidentImpactCreatedTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ExecutionLimit = all.ExecutionLimit
 	o.IncidentType = all.IncidentType
+	o.IncidentTypes = all.IncidentTypes
 	if all.TagCondition != nil && all.TagCondition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
