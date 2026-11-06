@@ -16,6 +16,7 @@ type MonitorFormulaAndFunctionQueryDefinition struct {
 	MonitorFormulaAndFunctionDataJobsQueryDefinition           *MonitorFormulaAndFunctionDataJobsQueryDefinition
 	MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition
 	MonitorFormulaAndFunctionAggregateFilteredQueryDefinition  *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition
+	MonitorFormulaAndFunctionMetricQueryDefinition             *MonitorFormulaAndFunctionMetricQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -49,6 +50,11 @@ func MonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionAsMonitorFormulaA
 // MonitorFormulaAndFunctionAggregateFilteredQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition is a convenience function that returns MonitorFormulaAndFunctionAggregateFilteredQueryDefinition wrapped in MonitorFormulaAndFunctionQueryDefinition.
 func MonitorFormulaAndFunctionAggregateFilteredQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition(v *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) MonitorFormulaAndFunctionQueryDefinition {
 	return MonitorFormulaAndFunctionQueryDefinition{MonitorFormulaAndFunctionAggregateFilteredQueryDefinition: v}
+}
+
+// MonitorFormulaAndFunctionMetricQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition is a convenience function that returns MonitorFormulaAndFunctionMetricQueryDefinition wrapped in MonitorFormulaAndFunctionQueryDefinition.
+func MonitorFormulaAndFunctionMetricQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition(v *MonitorFormulaAndFunctionMetricQueryDefinition) MonitorFormulaAndFunctionQueryDefinition {
+	return MonitorFormulaAndFunctionQueryDefinition{MonitorFormulaAndFunctionMetricQueryDefinition: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -157,6 +163,23 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 		obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition = nil
 	}
 
+	// try to unmarshal data into MonitorFormulaAndFunctionMetricQueryDefinition
+	err = datadog.Unmarshal(data, &obj.MonitorFormulaAndFunctionMetricQueryDefinition)
+	if err == nil {
+		if obj.MonitorFormulaAndFunctionMetricQueryDefinition != nil && obj.MonitorFormulaAndFunctionMetricQueryDefinition.UnparsedObject == nil {
+			jsonMonitorFormulaAndFunctionMetricQueryDefinition, _ := datadog.Marshal(obj.MonitorFormulaAndFunctionMetricQueryDefinition)
+			if string(jsonMonitorFormulaAndFunctionMetricQueryDefinition) == "{}" { // empty struct
+				obj.MonitorFormulaAndFunctionMetricQueryDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.MonitorFormulaAndFunctionMetricQueryDefinition = nil
+		}
+	} else {
+		obj.MonitorFormulaAndFunctionMetricQueryDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorFormulaAndFunctionEventQueryDefinition = nil
@@ -165,6 +188,7 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 		obj.MonitorFormulaAndFunctionDataJobsQueryDefinition = nil
 		obj.MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition = nil
 		obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition = nil
+		obj.MonitorFormulaAndFunctionMetricQueryDefinition = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -194,6 +218,10 @@ func (obj MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 
 	if obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition != nil {
 		return datadog.Marshal(&obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition)
+	}
+
+	if obj.MonitorFormulaAndFunctionMetricQueryDefinition != nil {
+		return datadog.Marshal(&obj.MonitorFormulaAndFunctionMetricQueryDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -226,6 +254,10 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() interfa
 
 	if obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionAggregateFilteredQueryDefinition
+	}
+
+	if obj.MonitorFormulaAndFunctionMetricQueryDefinition != nil {
+		return obj.MonitorFormulaAndFunctionMetricQueryDefinition
 	}
 
 	// all schemas are nil

@@ -15,13 +15,11 @@ type MonitorFormulaAndFunctionCostDataSource string
 
 // List of MonitorFormulaAndFunctionCostDataSource.
 const (
-	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_METRICS       MonitorFormulaAndFunctionCostDataSource = "metrics"
 	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_CLOUD_COST    MonitorFormulaAndFunctionCostDataSource = "cloud_cost"
 	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_DATADOG_USAGE MonitorFormulaAndFunctionCostDataSource = "datadog_usage"
 )
 
 var allowedMonitorFormulaAndFunctionCostDataSourceEnumValues = []MonitorFormulaAndFunctionCostDataSource{
-	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_METRICS,
 	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_CLOUD_COST,
 	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_DATADOG_USAGE,
 }
