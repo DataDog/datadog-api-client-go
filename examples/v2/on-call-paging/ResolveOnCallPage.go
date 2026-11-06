@@ -1,4 +1,4 @@
-// Resolve On-Call Page returns "Accepted." response
+// Resolve On-Call Page returns "No Content." response
 
 package main
 

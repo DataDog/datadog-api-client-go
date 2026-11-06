@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreatePageResponseData The information returned after successfully creating a page.
+// CreatePageResponseData The information returned after successfully creating a Page.
 type CreatePageResponseData struct {
-	// The unique ID of the created page.
+	// The unique ID of the created Page.
 	Id *string `json:"id,omitempty"`
 	// The type of resource used when creating an On-Call Page.
 	Type CreatePageResponseDataType `json:"type"`
