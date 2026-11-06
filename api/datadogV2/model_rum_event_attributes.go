@@ -12,15 +12,16 @@ import (
 
 // RUMEventAttributes JSON object containing all event attributes and their associated values.
 type RUMEventAttributes struct {
-	// JSON object of attributes from RUM events.
+	// JSON object of attributes from RUM events. Attributes are nested by path: the facet `@view.name` used in queries is returned as `attributes.view.name`.
+	// Common attributes include `type` (the event type: `session`, `view`, `action`, `resource`, `error`, `long_task` or `vital`), `application.id`, `session.id`, `view.id`, `view.name` and `usr.id`. Durations such as `view.time_spent`, `view.loading_time` and `resource.duration` are in nanoseconds.
 	Attributes map[string]interface{} `json:"attributes,omitempty"`
 	// The name of the application or service generating RUM events.
 	// It is used to switch from RUM to APM, so make sure you define the same
 	// value when you use both products.
 	Service *string `json:"service,omitempty"`
-	// Array of tags associated with your event.
+	// Array of tags associated with your event, in `key:value` format.
 	Tags []string `json:"tags,omitempty"`
-	// Timestamp of your event.
+	// Timestamp of your event, in ISO 8601 format.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

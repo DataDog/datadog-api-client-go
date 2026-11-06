@@ -12,7 +12,8 @@ import (
 
 // RUMApplicationUpdate RUM application update.
 type RUMApplicationUpdate struct {
-	// RUM application update attributes.
+	// RUM application update attributes. Only the attributes you provide are changed, omitted attributes keep their current value.
+	// Changing `product_analytics_retention_state` or `product_analytics_replay_sample_rate` requires the `product_analytics_apps_write` permission.
 	Attributes *RUMApplicationUpdateAttributes `json:"attributes,omitempty"`
 	// RUM application ID.
 	Id string `json:"id"`

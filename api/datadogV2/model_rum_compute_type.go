@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMComputeType The type of compute.
+// RUMComputeType The type of compute. `total` returns one value per bucket, `timeseries` returns a list of time points per bucket.
 type RUMComputeType string
 
 // List of RUMComputeType.
