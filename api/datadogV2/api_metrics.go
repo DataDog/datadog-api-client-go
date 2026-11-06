@@ -888,7 +888,11 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 }
 
 // EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
-// Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
+// Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations
+// configuration using Metrics without Limits&trade;.
+//
+// To compare current volumes across many metrics, use `GET /api/v2/metrics` with `include=metric_volumes`
+// instead of calling this endpoint for each metric.
 func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1432,6 +1436,9 @@ func (r *ListActiveMetricConfigurationsOptionalParameters) WithWindowSeconds(win
 
 // ListActiveMetricConfigurations List active tags and aggregations.
 // List tags and aggregations that are actively queried on dashboards, notebooks, monitors, the Metrics Explorer, and using the API for a given metric name.
+//
+// To find which of many metrics are queried or not queried, use `GET /api/v2/metrics` with `filter[queried]`
+// instead of calling this endpoint for each metric.
 func (a *MetricsApi) ListActiveMetricConfigurations(ctx _context.Context, metricName string, o ...ListActiveMetricConfigurationsOptionalParameters) (MetricSuggestedTagsAndAggregationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1600,9 +1607,12 @@ func (a *MetricsApi) ListMetricAssets(ctx _context.Context, metricName string) (
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
 //
-// A metric may exist and submit data without having a tag configuration. If no tag configuration exists
-// for the metric, this endpoint returns `404 Not Found`. This response does not indicate that the metric
-// itself is missing.
+// A metric may exist and submit data without having a tag configuration. A `404 Not Found` response usually
+// means that the metric has no tag configuration, but it is also returned when no metric with this name exists
+// in your organization.
+//
+// To list tag configurations for many metrics, use `GET /api/v2/metrics` with `filter[configured]=true`
+// instead of calling this endpoint for each metric.
 func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1690,6 +1700,8 @@ type ListTagConfigurationsOptionalParameters struct {
 	FilterQueriedWindowSeconds *int64
 	FilterTags                 *string
 	FilterRelatedAssets        *bool
+	FilterMetricsId            *string
+	FilterHistoricalMetrics    *bool
 	Include                    *string
 	Sort                       *string
 	WindowSeconds              *int64
@@ -1757,6 +1769,18 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterRelatedAssets(filter
 	return r
 }
 
+// WithFilterMetricsId sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricsId(filterMetricsId string) *ListTagConfigurationsOptionalParameters {
+	r.FilterMetricsId = &filterMetricsId
+	return r
+}
+
+// WithFilterHistoricalMetrics sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithFilterHistoricalMetrics(filterHistoricalMetrics bool) *ListTagConfigurationsOptionalParameters {
+	r.FilterHistoricalMetrics = &filterHistoricalMetrics
+	return r
+}
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithInclude(include string) *ListTagConfigurationsOptionalParameters {
 	r.Include = &include
@@ -1787,10 +1811,56 @@ func (r *ListTagConfigurationsOptionalParameters) WithPageCursor(pageCursor stri
 	return r
 }
 
-// ListTagConfigurations Get a list of metrics.
-// Get a list of actively reporting metrics for your organization. Pagination is optional using the `page[cursor]` and `page[size]` query parameters.
+// ListTagConfigurations List all metrics with volumes and query activity.
+// Get a list of actively reporting metrics for your organization, with optional volumes, query activity,
+// and tag configuration filters. When you need volumes, query activity, or tag configuration status for
+// many metrics, use this endpoint instead of calling per-metric endpoints (such as
+// `GET /api/v2/metrics/{metric_name}/volumes` or `GET /api/v2/metrics/{metric_name}/tags`) in a loop,
+// which is slower and quickly reaches rate limits. This endpoint does not return the tag keys or values
+// that a metric was submitted with.
 //
-// Query parameters use bracket notation (for example, `filter[tags]`, `filter[queried][window][seconds]`). Pass them as standard URL query strings, URL-encoding the brackets if your client does not handle them. For example: `GET /api/v2/metrics?filter[tags]=env:prod&window[seconds]=86400&page[size]=500`.
+// Always paginate: send `page[size]` (up to 10000; a few hundred to a few thousand is typical) and follow
+// `meta.pagination.next_cursor` (or `links.next`) until it is null or missing. Without `page[size]` or `page[cursor]`,
+// the response is not paginated: it returns matching metrics in one response, with no pagination metadata,
+// up to a limit of 250,000 metrics by default (some organizations have a different limit). Metrics beyond
+// the limit are left out without any indication. Unpaginated requests in large organizations can also be
+// slow or time out, and clients with response-size limits may fail or truncate the response.
+// If a request with `page[cursor]` returns `410 Gone`, the cursor has expired: restart from the first page
+// (send `page[size]` without `page[cursor]`).
+//
+//   - **Volumes**: `include=metric_volumes` adds the indexed and ingested volume of each metric. The volume is a
+//     fixed one-hour value and is not affected by `window[seconds]`. Volumes are not returned inside `data`:
+//     each metric with volume data has a `relationships.metric_volumes.data` reference, and the volumes
+//     themselves are returned as `metric_volumes` resources in the top-level `included` array. To join them,
+//     match `included[].id` to the `id` of `data[]` items with type `metrics`; both are the metric name.
+//     `manage_tags` items in `data` repeat the same `id`, so skip them when joining. Metrics without volume
+//     data, such as standard (non-custom) metrics, have no `metric_volumes` reference or entry.
+//   - **Top metrics by volume**: `sort=-metric_volumes.indexed_volume` together with `include=metric_volumes`
+//     and `page[size]` (for example, `page[size]=20`) returns the metrics with the highest indexed volume
+//     first. Sorting requires a paginated request.
+//   - **Volume for a family of metrics**: `filter[metrics.id]=http.request*` with `include=metric_volumes`
+//     and `page[size]` returns volumes for every metric whose name starts with `http.request` (a value whose
+//     only `*` is at the end is case-sensitive). A value without `*` matches names that contain it, ignoring
+//     case.
+//   - **Unqueried metrics**: `filter[queried]=false` with `filter[queried][window][seconds]` (for example,
+//     `2592000` for 30 days) and `page[size]` returns metrics that were not queried in that window.
+//   - **Metrics without a tag configuration**: `filter[configured]=false` with `page[size]` returns custom
+//     metrics that have no Metrics without Limits&trade; tag configuration.
+//   - **Metric types**: if `filter[metric_type]` is omitted, metrics of all types are returned.
+//
+// Examples:
+//   - Top 20 metrics by indexed volume:
+//     `GET /api/v2/metrics?include=metric_volumes&sort=-metric_volumes.indexed_volume&page[size]=20`
+//   - Metrics not queried in the last 30 days, with their volumes:
+//     `GET /api/v2/metrics?filter[queried]=false&filter[queried][window][seconds]=2592000&include=metric_volumes&page[size]=1000`
+//   - Metrics without a tag configuration:
+//     `GET /api/v2/metrics?filter[configured]=false&page[size]=1000`
+//   - Volumes for metrics whose name starts with `http.request`:
+//     `GET /api/v2/metrics?filter[metrics.id]=http.request*&include=metric_volumes&page[size]=1000`
+//
+// Query parameters use bracket notation (for example, `filter[tags]`, `filter[queried][window][seconds]`).
+// Pass them as standard URL query strings, URL-encoding the brackets if your client does not handle them.
+// For example: `GET /api/v2/metrics?filter[tags]=env:prod&window[seconds]=86400&page[size]=500`.
 func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1843,6 +1913,12 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	if optionalParams.FilterRelatedAssets != nil {
 		localVarQueryParams.Add("filter[related_assets]", datadog.ParameterToString(*optionalParams.FilterRelatedAssets, ""))
 	}
+	if optionalParams.FilterMetricsId != nil {
+		localVarQueryParams.Add("filter[metrics.id]", datadog.ParameterToString(*optionalParams.FilterMetricsId, ""))
+	}
+	if optionalParams.FilterHistoricalMetrics != nil {
+		localVarQueryParams.Add("filter[historical_metrics]", datadog.ParameterToString(*optionalParams.FilterHistoricalMetrics, ""))
+	}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
 	}
@@ -1893,7 +1969,7 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 410 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2457,6 +2533,14 @@ func (r *ListTagsByMetricNameOptionalParameters) WithPageLimit(pageLimit int32) 
 // ListTagsByMetricName List tags by metric name.
 // View indexed and ingested tags for a given metric name.
 // Results are filtered by the `window[seconds]` parameter, which defaults to 14400 (4 hours).
+// This window only limits which tags are returned; it does not affect whether the metric is found.
+//
+// A `404 Not Found` response means that no metric with this exact name exists in your organization.
+// Metric names must match exactly. Distribution metrics do not have suffixes such as `.avg` or `.count`,
+// so use the base metric name.
+//
+// For high-cardinality metrics, keep responses small with `filter[include_tag_values]=false`,
+// `page[limit]`, and `filter[match]`.
 func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string, o ...ListTagsByMetricNameOptionalParameters) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2580,6 +2664,10 @@ func (r *ListVolumesByMetricNameOptionalParameters) WithWindowSeconds(windowSeco
 // View hourly average cardinality for the given metric name over the look back period.
 // For Metric Name Pricing customers, view total point volume for the given metric name
 // over the look back period.
+//
+// To get the last hour's indexed and ingested volumes for many metrics, use `GET /api/v2/metrics` with
+// `include=metric_volumes` instead of calling this endpoint for each metric. Use this endpoint when you need
+// a longer look-back for a single metric.
 func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string, o ...ListVolumesByMetricNameOptionalParameters) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
