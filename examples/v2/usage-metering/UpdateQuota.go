@@ -30,7 +30,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.UpdateQuota", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.UpdateQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18", body)
+	resp, r, err := api.UpdateQuota(ctx, "ai_credits", "MTIzNB9haV9jcmVkaXRzH3VzZXJfaGFuZGxlOl9fQUxMX18", body, *datadogV2.NewUpdateQuotaOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.UpdateQuota`: %v\n", err)
