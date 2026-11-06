@@ -16,9 +16,9 @@ type TagIndexingRuleCreateAttributes struct {
 	ExcludeTagsMode *bool `json:"exclude_tags_mode,omitempty"`
 	// Metric name prefixes excluded from the rule's scope.
 	IgnoredMetricNameMatches []string `json:"ignored_metric_name_matches,omitempty"`
-	// Metric name prefixes (glob patterns) this rule applies to.
+	// Metric name prefixes (glob patterns) this rule applies to. At most 50 patterns, each at most 200 characters.
 	MetricNameMatches []string `json:"metric_name_matches"`
-	// Human-readable name for the rule.
+	// Human-readable name for the rule. At most 200 characters.
 	Name string `json:"name"`
 	// Versioned configuration options for a tag indexing rule.
 	Options *TagIndexingRuleOptions `json:"options,omitempty"`
