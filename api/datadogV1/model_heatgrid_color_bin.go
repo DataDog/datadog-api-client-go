@@ -10,10 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HeatgridColorBin A color and optional lower threshold for a discrete bin.
+// HeatgridColorBin A color, optional lower threshold, and optional label for a discrete bin.
 type HeatgridColorBin struct {
 	// A color string, or two color strings for the light and dark themes, in that order.
 	Color HeatgridColor `json:"color"`
+	// Name of the bin.
+	Label *string `json:"label,omitempty"`
 	// Inclusive lower bound. Omit for the first bin.
 	LowerBound *float64 `json:"lower_bound,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -61,6 +63,34 @@ func (o *HeatgridColorBin) SetColor(v HeatgridColor) {
 	o.Color = v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *HeatgridColorBin) GetLabel() string {
+	if o == nil || o.Label == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatgridColorBin) GetLabelOk() (*string, bool) {
+	if o == nil || o.Label == nil {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *HeatgridColorBin) HasLabel() bool {
+	return o != nil && o.Label != nil
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *HeatgridColorBin) SetLabel(v string) {
+	o.Label = &v
+}
+
 // GetLowerBound returns the LowerBound field value if set, zero value otherwise.
 func (o *HeatgridColorBin) GetLowerBound() float64 {
 	if o == nil || o.LowerBound == nil {
@@ -96,6 +126,9 @@ func (o HeatgridColorBin) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["color"] = o.Color
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
+	}
 	if o.LowerBound != nil {
 		toSerialize["lower_bound"] = o.LowerBound
 	}
@@ -106,6 +139,7 @@ func (o HeatgridColorBin) MarshalJSON() ([]byte, error) {
 func (o *HeatgridColorBin) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Color      *HeatgridColor `json:"color"`
+		Label      *string        `json:"label,omitempty"`
 		LowerBound *float64       `json:"lower_bound,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -115,6 +149,7 @@ func (o *HeatgridColorBin) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field color missing")
 	}
 	o.Color = *all.Color
+	o.Label = all.Label
 	o.LowerBound = all.LowerBound
 
 	return nil
