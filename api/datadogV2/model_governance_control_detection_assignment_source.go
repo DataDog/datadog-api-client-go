@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GovernanceControlDetectionAssignmentSource How the detection's current assignment was determined. Possible values are `auto_resolved`, `manual`, `reassigned`, and `cleared`.
+// GovernanceControlDetectionAssignmentSource How the detection's current assignment was determined. Possible values are `auto_resolved`, `manual`, `reassigned`, and `cleared`. `null` when not set.
 type GovernanceControlDetectionAssignmentSource string
 
 // List of GovernanceControlDetectionAssignmentSource.
@@ -67,4 +67,48 @@ func (v GovernanceControlDetectionAssignmentSource) IsValid() bool {
 // Ptr returns reference to GovernanceControlDetectionAssignmentSource value.
 func (v GovernanceControlDetectionAssignmentSource) Ptr() *GovernanceControlDetectionAssignmentSource {
 	return &v
+}
+
+// NullableGovernanceControlDetectionAssignmentSource handles when a null is used for GovernanceControlDetectionAssignmentSource.
+type NullableGovernanceControlDetectionAssignmentSource struct {
+	value *GovernanceControlDetectionAssignmentSource
+	isSet bool
+}
+
+// Get returns the associated value.
+func (v NullableGovernanceControlDetectionAssignmentSource) Get() *GovernanceControlDetectionAssignmentSource {
+	return v.value
+}
+
+// Set changes the value and indicates it's been called.
+func (v *NullableGovernanceControlDetectionAssignmentSource) Set(val *GovernanceControlDetectionAssignmentSource) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns whether Set has been called.
+func (v NullableGovernanceControlDetectionAssignmentSource) IsSet() bool {
+	return v.isSet
+}
+
+// Unset sets the value to nil and resets the set flag.
+func (v *NullableGovernanceControlDetectionAssignmentSource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableGovernanceControlDetectionAssignmentSource initializes the struct as if Set has been called.
+func NewNullableGovernanceControlDetectionAssignmentSource(val *GovernanceControlDetectionAssignmentSource) *NullableGovernanceControlDetectionAssignmentSource {
+	return &NullableGovernanceControlDetectionAssignmentSource{value: val, isSet: true}
+}
+
+// MarshalJSON serializes the associated value.
+func (v NullableGovernanceControlDetectionAssignmentSource) MarshalJSON() ([]byte, error) {
+	return datadog.Marshal(v.value)
+}
+
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
+func (v *NullableGovernanceControlDetectionAssignmentSource) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return datadog.Unmarshal(src, &v.value)
 }
