@@ -21,7 +21,7 @@ type AiGatewayRateLimitAttributes struct {
 	CreatedBy string `json:"created_by"`
 	// Whether this rate limit is active.
 	Enabled bool `json:"enabled"`
-	// Maximum input tokens per rolling minute shared by all matching traffic. Null when this rule does not limit input tokens.
+	// Maximum input tokens per rolling minute shared by all matching traffic, or per counter for a template rate limit. Null when this rule does not limit input tokens.
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Action taken when request rate exceeds the limit.
 	Mode AiGatewayRateLimitMode `json:"mode"`
@@ -29,14 +29,16 @@ type AiGatewayRateLimitAttributes struct {
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
 	// Rate limit name.
 	Name string `json:"name"`
-	// Maximum output tokens per rolling minute shared by all matching traffic. Null when this rule does not limit output tokens.
+	// Maximum output tokens per rolling minute shared by all matching traffic, or per counter for a template rate limit. Null when this rule does not limit output tokens.
 	OutputTokensPerMinute datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
-	// Maximum requests per rolling minute shared by all matching traffic. Null when this rule does not limit requests.
+	// Maximum requests per rolling minute shared by all matching traffic, or per counter for a template rate limit. Null when this rule does not limit requests.
 	RequestsPerMinute datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
 	// Increases on every change to the definition.
 	Revision int64 `json:"revision"`
 	// Whether provider or model scope metadata was withheld. Omit unchanged scope fields on an unrelated update to preserve their saved values.
 	ScopeRestricted bool `json:"scope_restricted"`
+	// Dimension rules for a template rate limit, which gives each matched user, Team, or value its own allowance with the rule's limits. Can't be combined with user_id, team_id, or tags, and can't be changed after creation. Omit for a rule with one shared allowance.
+	Selector []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
 	// Optional scope tags, such as provider, model, ml_app, or custom dimensions. A request matches when it has all of these tags.
 	Tags map[string]string `json:"tags"`
 	// Optional Team UUID. Count only requests attributed to this Datadog Team.
@@ -396,6 +398,35 @@ func (o *AiGatewayRateLimitAttributes) SetScopeRestricted(v bool) {
 	o.ScopeRestricted = v
 }
 
+// GetSelector returns the Selector field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRateLimitAttributes) GetSelector() []AiGatewayRateLimitSelectorEntry {
+	if o == nil {
+		var ret []AiGatewayRateLimitSelectorEntry
+		return ret
+	}
+	return o.Selector
+}
+
+// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRateLimitAttributes) GetSelectorOk() (*[]AiGatewayRateLimitSelectorEntry, bool) {
+	if o == nil || o.Selector == nil {
+		return nil, false
+	}
+	return &o.Selector, true
+}
+
+// HasSelector returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitAttributes) HasSelector() bool {
+	return o != nil && o.Selector != nil
+}
+
+// SetSelector gets a reference to the given []AiGatewayRateLimitSelectorEntry and assigns it to the Selector field.
+func (o *AiGatewayRateLimitAttributes) SetSelector(v []AiGatewayRateLimitSelectorEntry) {
+	o.Selector = v
+}
+
 // GetTags returns the Tags field value.
 func (o *AiGatewayRateLimitAttributes) GetTags() map[string]string {
 	if o == nil {
@@ -572,6 +603,9 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["scope_restricted"] = o.ScopeRestricted
+	if o.Selector != nil {
+		toSerialize["selector"] = o.Selector
+	}
 	toSerialize["tags"] = o.Tags
 	if o.TeamId.IsSet() {
 		toSerialize["team_id"] = o.TeamId.Get()
@@ -595,22 +629,23 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt             *time.Time              `json:"created_at"`
-		CreatedBy             *string                 `json:"created_by"`
-		Enabled               *bool                   `json:"enabled"`
-		InputTokensPerMinute  datadog.NullableInt64   `json:"input_tokens_per_minute,omitempty"`
-		Mode                  *AiGatewayRateLimitMode `json:"mode"`
-		MonitorId             datadog.NullableInt64   `json:"monitor_id,omitempty"`
-		Name                  *string                 `json:"name"`
-		OutputTokensPerMinute datadog.NullableInt64   `json:"output_tokens_per_minute,omitempty"`
-		RequestsPerMinute     datadog.NullableInt64   `json:"requests_per_minute,omitempty"`
-		Revision              *int64                  `json:"revision"`
-		ScopeRestricted       *bool                   `json:"scope_restricted"`
-		Tags                  *map[string]string      `json:"tags"`
-		TeamId                datadog.NullableUUID    `json:"team_id,omitempty"`
-		UpdatedAt             *time.Time              `json:"updated_at"`
-		UpdatedBy             *string                 `json:"updated_by"`
-		UserId                datadog.NullableUUID    `json:"user_id,omitempty"`
+		CreatedAt             *time.Time                        `json:"created_at"`
+		CreatedBy             *string                           `json:"created_by"`
+		Enabled               *bool                             `json:"enabled"`
+		InputTokensPerMinute  datadog.NullableInt64             `json:"input_tokens_per_minute,omitempty"`
+		Mode                  *AiGatewayRateLimitMode           `json:"mode"`
+		MonitorId             datadog.NullableInt64             `json:"monitor_id,omitempty"`
+		Name                  *string                           `json:"name"`
+		OutputTokensPerMinute datadog.NullableInt64             `json:"output_tokens_per_minute,omitempty"`
+		RequestsPerMinute     datadog.NullableInt64             `json:"requests_per_minute,omitempty"`
+		Revision              *int64                            `json:"revision"`
+		ScopeRestricted       *bool                             `json:"scope_restricted"`
+		Selector              []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
+		Tags                  *map[string]string                `json:"tags"`
+		TeamId                datadog.NullableUUID              `json:"team_id,omitempty"`
+		UpdatedAt             *time.Time                        `json:"updated_at"`
+		UpdatedBy             *string                           `json:"updated_by"`
+		UserId                datadog.NullableUUID              `json:"user_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -647,7 +682,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "enabled", "input_tokens_per_minute", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "tags", "team_id", "updated_at", "updated_by", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "enabled", "input_tokens_per_minute", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "selector", "tags", "team_id", "updated_at", "updated_by", "user_id"})
 	} else {
 		return err
 	}
@@ -668,6 +703,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.RequestsPerMinute = all.RequestsPerMinute
 	o.Revision = *all.Revision
 	o.ScopeRestricted = *all.ScopeRestricted
+	o.Selector = all.Selector
 	o.Tags = *all.Tags
 	o.TeamId = all.TeamId
 	o.UpdatedAt = *all.UpdatedAt
