@@ -13,7 +13,8 @@ import (
 // RUMOperationJourneyRum The definition of a RUM operation's journey, used to detect it from RUM events.
 type RUMOperationJourneyRum struct {
 	// The ordered list of steps composing the RUM journey.
-	RumSteps []RUMOperationJourneyStep `json:"rum_steps"`
+	// `null` in responses for operations that have no journey defined.
+	RumSteps datadog.NullableList[RUMOperationJourneyStep] `json:"rum_steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +24,7 @@ type RUMOperationJourneyRum struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRUMOperationJourneyRum(rumSteps []RUMOperationJourneyStep) *RUMOperationJourneyRum {
+func NewRUMOperationJourneyRum(rumSteps datadog.NullableList[RUMOperationJourneyStep]) *RUMOperationJourneyRum {
 	this := RUMOperationJourneyRum{}
 	this.RumSteps = rumSteps
 	return &this
@@ -38,26 +39,28 @@ func NewRUMOperationJourneyRumWithDefaults() *RUMOperationJourneyRum {
 }
 
 // GetRumSteps returns the RumSteps field value.
+// If the value is explicit nil, the zero value for []RUMOperationJourneyStep will be returned.
 func (o *RUMOperationJourneyRum) GetRumSteps() []RUMOperationJourneyStep {
-	if o == nil {
+	if o == nil || o.RumSteps.Get() == nil {
 		var ret []RUMOperationJourneyStep
 		return ret
 	}
-	return o.RumSteps
+	return *o.RumSteps.Get()
 }
 
 // GetRumStepsOk returns a tuple with the RumSteps field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *RUMOperationJourneyRum) GetRumStepsOk() (*[]RUMOperationJourneyStep, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RumSteps, true
+	return o.RumSteps.Get(), o.RumSteps.IsSet()
 }
 
 // SetRumSteps sets field value.
 func (o *RUMOperationJourneyRum) SetRumSteps(v []RUMOperationJourneyStep) {
-	o.RumSteps = v
+	o.RumSteps.Set(&v)
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -66,7 +69,7 @@ func (o RUMOperationJourneyRum) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["rum_steps"] = o.RumSteps
+	toSerialize["rum_steps"] = o.RumSteps.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,12 +80,12 @@ func (o RUMOperationJourneyRum) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMOperationJourneyRum) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RumSteps *[]RUMOperationJourneyStep `json:"rum_steps"`
+		RumSteps datadog.NullableList[RUMOperationJourneyStep] `json:"rum_steps"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.RumSteps == nil {
+	if !all.RumSteps.IsSet() {
 		return fmt.Errorf("required field rum_steps missing")
 	}
 	additionalProperties := make(map[string]interface{})
@@ -91,7 +94,7 @@ func (o *RUMOperationJourneyRum) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.RumSteps = *all.RumSteps
+	o.RumSteps = all.RumSteps
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
