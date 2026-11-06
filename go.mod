@@ -1,6 +1,6 @@
 module github.com/DataDog/datadog-api-client-go/v2
 
-go 1.22
+go 1.26.0
 
 retract (
 	// Version used to retract v2.0.0 and v2.0.1. DO NOT USE.
@@ -18,7 +18,7 @@ require (
 	github.com/aws/smithy-go v1.23.0
 	github.com/goccy/go-json v0.10.2
 	github.com/google/uuid v1.5.0
-	golang.org/x/oauth2 v0.10.0
+	golang.org/x/oauth2 v0.37.0
 )
 
 require (
@@ -30,8 +30,4 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.29.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.35.1 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
-	golang.org/x/net v0.17.0 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
 )
