@@ -21,12 +21,16 @@ type MonitorFormulaAndFunctionDataQualityQueryDefinition struct {
 	// The data quality measure to query. Common values include:
 	// `bytes`, `cardinality`, `custom`, `freshness`, `max`, `mean`, `min`,
 	// `nullness`, `percent_negative`, `percent_zero`, `row_count`, `stddev`,
-	// `sum`, `uniqueness`. Additional values may be supported.
+	// `sum`, `uniqueness`. `data-jobs alert` job duration monitors use `duration`.
+	// Additional values may be supported.
 	Measure string `json:"measure"`
 	// Monitor configuration options for data quality queries.
 	MonitorOptions *MonitorFormulaAndFunctionDataQualityMonitorOptions `json:"monitor_options,omitempty"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
+	// Optional filter on individual runs, using metrics filter syntax.
+	// Only supported by `data-jobs alert` job duration monitors.
+	RunFilter *string `json:"run_filter,omitempty"`
 	// Schema version for the data quality query.
 	SchemaVersion *string `json:"schema_version,omitempty"`
 	// Optional scoping expression to further filter metrics. Uses metrics filter syntax.
@@ -206,6 +210,34 @@ func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) SetName(v string) 
 	o.Name = v
 }
 
+// GetRunFilter returns the RunFilter field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) GetRunFilter() string {
+	if o == nil || o.RunFilter == nil {
+		var ret string
+		return ret
+	}
+	return *o.RunFilter
+}
+
+// GetRunFilterOk returns a tuple with the RunFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) GetRunFilterOk() (*string, bool) {
+	if o == nil || o.RunFilter == nil {
+		return nil, false
+	}
+	return o.RunFilter, true
+}
+
+// HasRunFilter returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) HasRunFilter() bool {
+	return o != nil && o.RunFilter != nil
+}
+
+// SetRunFilter gets a reference to the given string and assigns it to the RunFilter field.
+func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) SetRunFilter(v string) {
+	o.RunFilter = &v
+}
+
 // GetSchemaVersion returns the SchemaVersion field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) GetSchemaVersion() string {
 	if o == nil || o.SchemaVersion == nil {
@@ -278,6 +310,9 @@ func (o MonitorFormulaAndFunctionDataQualityQueryDefinition) MarshalJSON() ([]by
 		toSerialize["monitor_options"] = o.MonitorOptions
 	}
 	toSerialize["name"] = o.Name
+	if o.RunFilter != nil {
+		toSerialize["run_filter"] = o.RunFilter
+	}
 	if o.SchemaVersion != nil {
 		toSerialize["schema_version"] = o.SchemaVersion
 	}
@@ -300,6 +335,7 @@ func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) UnmarshalJSON(byte
 		Measure        *string                                             `json:"measure"`
 		MonitorOptions *MonitorFormulaAndFunctionDataQualityMonitorOptions `json:"monitor_options,omitempty"`
 		Name           *string                                             `json:"name"`
+		RunFilter      *string                                             `json:"run_filter,omitempty"`
 		SchemaVersion  *string                                             `json:"schema_version,omitempty"`
 		Scope          *string                                             `json:"scope,omitempty"`
 	}{}
@@ -320,7 +356,7 @@ func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "filter", "group_by", "measure", "monitor_options", "name", "schema_version", "scope"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "filter", "group_by", "measure", "monitor_options", "name", "run_filter", "schema_version", "scope"})
 	} else {
 		return err
 	}
@@ -339,6 +375,7 @@ func (o *MonitorFormulaAndFunctionDataQualityQueryDefinition) UnmarshalJSON(byte
 	}
 	o.MonitorOptions = all.MonitorOptions
 	o.Name = *all.Name
+	o.RunFilter = all.RunFilter
 	o.SchemaVersion = all.SchemaVersion
 	o.Scope = all.Scope
 
