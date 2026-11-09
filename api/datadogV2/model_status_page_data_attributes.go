@@ -22,7 +22,7 @@ type StatusPageDataAttributes struct {
 	CustomDomain datadog.NullableString `json:"custom_domain,omitempty"`
 	// Whether the custom domain is configured.
 	CustomDomainEnabled *bool `json:"custom_domain_enabled,omitempty"`
-	// The subdomain of the status page's url taking the form `https://{domain_prefix}.statuspage.datadoghq.com`. Globally unique across Datadog Status Pages.
+	// The subdomain of the status page URL. Public pages use `https://{domain_prefix}.statuspage.datadoghq.com`, while private pages use `https://{domain_prefix}.private.statuspage.datadoghq.com`. Globally unique across Datadog Status Pages.
 	DomainPrefix *string `json:"domain_prefix,omitempty"`
 	// Base64-encoded image data included in email notifications sent to status page subscribers.
 	EmailHeaderImage datadog.NullableString `json:"email_header_image,omitempty"`
@@ -48,7 +48,7 @@ type StatusPageDataAttributes struct {
 	SlackSubscriptionsEnabled *bool `json:"slack_subscriptions_enabled,omitempty"`
 	// Whether users can subscribe to the status page.
 	SubscriptionsEnabled *bool `json:"subscriptions_enabled,omitempty"`
-	// The type of the status page controlling how the status page is accessed.
+	// The type of the status page controlling how the status page is accessed. Public pages are accessible to anyone, internal pages are accessible to authenticated users in the Datadog organization, and private pages are accessible only to users matching an allow email access policy and no deny email access policy.
 	Type *CreateStatusPageRequestDataAttributesType `json:"type,omitempty"`
 	// The layout of components on the status page. Defaults to `list`. `grid` requires `visualization_type` to be `component_name_only`; changing `visualization_type` to any other value resets the layout to `list`.
 	VisualizationLayout *CreateStatusPageRequestDataAttributesVisualizationLayout `json:"visualization_layout,omitempty"`
