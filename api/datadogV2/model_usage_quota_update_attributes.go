@@ -12,7 +12,11 @@ import (
 type UsageQuotaUpdateAttributes struct {
 	// Whether to actively block usage above the limit. Omit this field to leave the current enforcement setting unchanged.
 	Enforced datadog.NullableBool `json:"enforced,omitempty"`
-	// The non-negative, whole-number limit to schedule for the organization-wide quota in the usage units defined by the quota namespace. It is not checked against current usage. Each write schedules the value for 00:00 UTC on the first day of the next calendar month and replaces any previously scheduled change; the server computes `pending_effective_from`. Omit this field to leave any scheduled change unchanged, including when raising `usage_limit`; use `DELETE /api/v2/usage/quotas/{quota_namespace}/{id}/pending` to cancel one.
+	// The limit to apply to the organization-wide quota at 00:00 UTC on the first day of the next calendar month. Must be a non-negative integer in the usage units defined by the quota namespace. This value is not checked against current usage.
+	//
+	// Setting this field replaces any previously scheduled limit. The server sets `pending_effective_from`.
+	//
+	// Omitting this field preserves the scheduled change, even when increasing `usage_limit`. Setting `enforced=false` clears the scheduled change. To cancel it explicitly, use `DELETE /api/v2/usage/quotas/{quota_namespace}/{id}/pending`.
 	PendingUsageLimit datadog.NullableInt64 `json:"pending_usage_limit,omitempty"`
 	// The new quota limit in the usage units defined by the quota namespace. For an organization-wide quota (empty scope), the limit must be greater than the usage already recorded in the current period. Omit this field to leave the current limit unchanged.
 	UsageLimit datadog.NullableInt64 `json:"usage_limit,omitempty"`
