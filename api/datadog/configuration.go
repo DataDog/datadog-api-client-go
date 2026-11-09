@@ -1231,6 +1231,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteRequestedTemporaryGrant":                          false,
 			"v2.DeleteTemporaryGrantRequest":                            false,
 			"v2.GetMyTemporaryGrantRequest":                             false,
+			"v2.GetQuota":                                               false,
 			"v2.GetTemporaryGrantRequest":                               false,
 			"v2.ListMyTemporaryGrantRequests":                           false,
 			"v2.ListQuotas":                                             false,
