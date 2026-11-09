@@ -254,6 +254,7 @@ func (r *GetTraceByIDOptionalParameters) WithIncludeFields(includeFields []strin
 // A `400 Bad Request` response means the trace ID is malformed. A `404 Not Found` response means
 // no trace with this ID is available, such as when the trace is outside the retention period.
 // This endpoint is rate limited to `60` requests per minute per organization.
+// For very large traces, use Get a pruned trace by ID, or set `include_fields` to keep only the tags you need.
 func (a *APMTraceApi) GetTraceByID(ctx _context.Context, traceId string, o ...GetTraceByIDOptionalParameters) (TraceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

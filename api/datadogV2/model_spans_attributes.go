@@ -44,7 +44,8 @@ type SpansAttributes struct {
 	StartTimestamp *time.Time `json:"start_timestamp,omitempty"`
 	// Array of tags associated with your span.
 	Tags []string `json:"tags,omitempty"`
-	// Id of the trace to which the span belongs.
+	// ID of the trace to which the span belongs: a 32-character hexadecimal string for 128-bit trace IDs,
+	// or a decimal string for 64-bit trace IDs. Pass it unchanged to Get a trace by ID.
 	TraceId *string `json:"trace_id,omitempty"`
 	// The type of the span.
 	Type *string `json:"type,omitempty"`

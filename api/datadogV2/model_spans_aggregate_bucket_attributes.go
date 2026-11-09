@@ -12,9 +12,10 @@ import (
 type SpansAggregateBucketAttributes struct {
 	// The key, value pairs for each group by.
 	By map[string]interface{} `json:"by,omitempty"`
-	// The compute data.
+	// Map of compute ID (`c0`, `c1`, ... in request order) to the computed value, or to a list of
+	// `{time, value}` points for a `timeseries` compute.
 	Compute interface{} `json:"compute,omitempty"`
-	// A map of the metric name -> value for regular compute or list of values for a timeseries.
+	// Not returned by this endpoint. Read the values from `compute` instead.
 	Computes map[string]SpansAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
