@@ -294,7 +294,6 @@
 //   - [CSMThreatsApi.DeleteCSMThreatsAgentRule]
 //   - [CSMThreatsApi.DeleteCloudWorkloadSecurityAgentRule]
 //   - [CSMThreatsApi.DownloadCSMThreatsPolicy]
-//   - [CSMThreatsApi.DownloadCloudWorkloadPolicyFile]
 //   - [CSMThreatsApi.GetCSMThreatsAgentPolicy]
 //   - [CSMThreatsApi.GetCSMThreatsAgentRule]
 //   - [CSMThreatsApi.GetCloudWorkloadSecurityAgentRule]
