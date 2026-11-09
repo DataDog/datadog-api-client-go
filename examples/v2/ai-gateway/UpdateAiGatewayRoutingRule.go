@@ -18,14 +18,22 @@ func main() {
 			Attributes: datadogV2.AiGatewayRoutingRuleReplaceAttributes{
 				Tiers: []datadogV2.AiGatewayRoutingRuleTierRequest{
 					{
+						Classifier: *datadogV2.NewNullableAiGatewayRoutingRuleClassifierRequest(&datadogV2.AiGatewayRoutingRuleClassifierRequest{
+							ConfidenceThreshold: *datadog.NewNullableFloat64(datadog.PtrFloat64(0.6)),
+							Context:             datadog.PtrString("Requests come from the internal coding assistant."),
+							Model:               datadog.PtrString("gpt-6-luna"),
+							Provider:            datadog.PtrString("prod-us"),
+						}),
 						Ordering: *datadogV2.NewNullableAiGatewayNullableRoutingRuleTierOrdering(datadogV2.AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED.Ptr()),
 						Targets: []datadogV2.AiGatewayRoutingRuleTargetRequest{
 							{
+								Default:        *datadog.NewNullableBool(datadog.PtrBool(false)),
 								Id:             datadog.PtrInt64(901),
 								Model:          datadog.PtrString("gpt-5.2-codex"),
 								ModelId:        datadog.PtrInt64(101),
 								Provider:       datadog.PtrString("prod-us"),
 								ReasoningLevel: *datadogV2.NewNullableAiGatewayRoutingReasoningLevel(datadogV2.AIGATEWAYROUTINGREASONINGLEVEL_MEDIUM.Ptr()),
+								Rubric:         *datadog.NewNullableString(datadog.PtrString("Writing, reviewing, or debugging code.")),
 								Slug:           datadog.PtrString("coding-fallback"),
 								Type:           datadogV2.AIGATEWAYROUTINGRULETARGETTYPE_MODEL,
 								Weight:         *datadog.NewNullableInt64(datadog.PtrInt64(70)),

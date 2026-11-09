@@ -17,11 +17,13 @@ type AiGatewayRoutingRuleTierOrdering string
 const (
 	AIGATEWAYROUTINGRULETIERORDERING_CONFIGURED        AiGatewayRoutingRuleTierOrdering = "configured"
 	AIGATEWAYROUTINGRULETIERORDERING_WEIGHTED_AFFINITY AiGatewayRoutingRuleTierOrdering = "weighted_affinity"
+	AIGATEWAYROUTINGRULETIERORDERING_CLASSIFIED        AiGatewayRoutingRuleTierOrdering = "classified"
 )
 
 var allowedAiGatewayRoutingRuleTierOrderingEnumValues = []AiGatewayRoutingRuleTierOrdering{
 	AIGATEWAYROUTINGRULETIERORDERING_CONFIGURED,
 	AIGATEWAYROUTINGRULETIERORDERING_WEIGHTED_AFFINITY,
+	AIGATEWAYROUTINGRULETIERORDERING_CLASSIFIED,
 }
 
 // GetAllowedValues reeturns the list of possible values.

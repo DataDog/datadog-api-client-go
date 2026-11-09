@@ -12,6 +12,8 @@ import (
 
 // AiGatewayRoutingRuleTier Routing fallback tier containing targets and their effective ordering.
 type AiGatewayRoutingRuleTier struct {
+	// Decision model of a classified tier.
+	Classifier *AiGatewayRoutingRuleClassifier `json:"classifier,omitempty"`
 	// How a tier orders its targets.
 	Ordering AiGatewayRoutingRuleTierOrdering `json:"ordering"`
 	// Stored tier ordering is inconsistent. mixed means targets have different supported orderings, and unknown means a target has an unsupported ordering. The tier is reported as configured without weights. Replace the rule to repair it. Omitted for consistent tiers. A forced deletion cannot rewrite a surviving tier with an unknown issue.
@@ -40,6 +42,34 @@ func NewAiGatewayRoutingRuleTier(ordering AiGatewayRoutingRuleTierOrdering, targ
 func NewAiGatewayRoutingRuleTierWithDefaults() *AiGatewayRoutingRuleTier {
 	this := AiGatewayRoutingRuleTier{}
 	return &this
+}
+
+// GetClassifier returns the Classifier field value if set, zero value otherwise.
+func (o *AiGatewayRoutingRuleTier) GetClassifier() AiGatewayRoutingRuleClassifier {
+	if o == nil || o.Classifier == nil {
+		var ret AiGatewayRoutingRuleClassifier
+		return ret
+	}
+	return *o.Classifier
+}
+
+// GetClassifierOk returns a tuple with the Classifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRoutingRuleTier) GetClassifierOk() (*AiGatewayRoutingRuleClassifier, bool) {
+	if o == nil || o.Classifier == nil {
+		return nil, false
+	}
+	return o.Classifier, true
+}
+
+// HasClassifier returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleTier) HasClassifier() bool {
+	return o != nil && o.Classifier != nil
+}
+
+// SetClassifier gets a reference to the given AiGatewayRoutingRuleClassifier and assigns it to the Classifier field.
+func (o *AiGatewayRoutingRuleTier) SetClassifier(v AiGatewayRoutingRuleClassifier) {
+	o.Classifier = &v
 }
 
 // GetOrdering returns the Ordering field value.
@@ -122,6 +152,9 @@ func (o AiGatewayRoutingRuleTier) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Classifier != nil {
+		toSerialize["classifier"] = o.Classifier
+	}
 	toSerialize["ordering"] = o.Ordering
 	if o.OrderingIssue != nil {
 		toSerialize["ordering_issue"] = o.OrderingIssue
@@ -137,6 +170,7 @@ func (o AiGatewayRoutingRuleTier) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleTier) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Classifier    *AiGatewayRoutingRuleClassifier        `json:"classifier,omitempty"`
 		Ordering      *AiGatewayRoutingRuleTierOrdering      `json:"ordering"`
 		OrderingIssue *AiGatewayRoutingRuleTierOrderingIssue `json:"ordering_issue,omitempty"`
 		Targets       *[]AiGatewayRoutingRuleTarget          `json:"targets"`
@@ -152,12 +186,16 @@ func (o *AiGatewayRoutingRuleTier) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ordering", "ordering_issue", "targets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"classifier", "ordering", "ordering_issue", "targets"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.Classifier != nil && all.Classifier.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Classifier = all.Classifier
 	if !all.Ordering.IsValid() {
 		hasInvalidField = true
 	} else {

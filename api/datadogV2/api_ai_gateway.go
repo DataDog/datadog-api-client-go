@@ -663,7 +663,9 @@ func (a *AIGatewayApi) CreateAiGatewayRateLimit(ctx _context.Context, body AiGat
 }
 
 // CreateAiGatewayRoutingRule Create an AI Gateway routing rule.
-// Create an organization-owned routing rule. Data capture overrides are managed independently. Each tier has an ordering, which defaults to configured. A weighted_affinity tier distributes first-choice assignments by relative target weights (1 to 10000, default 1) and accepts only distinct model targets with an explicit provider. Weights need not total 100. Configured tiers must omit weights or set them to null.
+// Create an organization-owned routing rule. Data capture overrides are managed independently. Each tier has an ordering, which defaults to configured. A weighted_affinity tier distributes first-choice assignments by relative target weights (1 to 10000, default 1) and accepts only distinct model targets with an explicit provider. Weights need not total 100. Configured tiers must omit weights or set them to null. In a classified tier, the decision model set in classifier picks one destination for each request by its rubric. Only the first tier can be classified. It accepts only model targets with an explicit provider: one default destination without a rubric, and 1 to 9 other destinations, each with a different rubric.
+//
+// **Note**: Classified routing is in Preview and may not be available for all organizations. Saving a classified tier returns 403 Forbidden unless the feature is enabled for your organization.
 func (a *AIGatewayApi) CreateAiGatewayRoutingRule(ctx _context.Context, body AiGatewayRoutingRuleCreateRequest) (AiGatewayRoutingRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -728,7 +730,7 @@ func (a *AIGatewayApi) CreateAiGatewayRoutingRule(ctx _context.Context, body AiG
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4825,7 +4827,9 @@ func (a *AIGatewayApi) UpdateAiGatewayRateLimit(ctx _context.Context, id uuid.UU
 }
 
 // UpdateAiGatewayRoutingRule Replace an AI Gateway routing rule.
-// Replace a routing rule's tiers. The slug is immutable; data capture is managed independently. This is a full replacement: omitted or null ordering resets the tier to configured, and omitted or null weights in a weighted_affinity tier reset to 1. Omitted or null reasoning_level clears a model destination's reasoning override. Replacing a rule repairs tiers reported with an ordering_issue.
+// Replace a routing rule's tiers. The slug is immutable; data capture is managed independently. This is a full replacement: omitted or null ordering resets the tier to configured, and omitted or null weights in a weighted_affinity tier reset to 1. Omitted or null reasoning_level clears a model destination's reasoning override. In a classified tier, omit both the classifier's provider and model to keep the saved decision model. An omitted context clears it, and an omitted or null confidence_threshold resets to 0.5. Replacing a rule repairs tiers reported with an ordering_issue.
+//
+// **Note**: Classified routing is in Preview and may not be available for all organizations. Saving a classified tier returns 403 Forbidden unless the feature is enabled for your organization.
 func (a *AIGatewayApi) UpdateAiGatewayRoutingRule(ctx _context.Context, slug string, body AiGatewayRoutingRuleReplaceRequest) (AiGatewayRoutingRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -4894,7 +4898,7 @@ func (a *AIGatewayApi) UpdateAiGatewayRoutingRule(ctx _context.Context, slug str
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

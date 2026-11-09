@@ -10,18 +10,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AiGatewayNullableRoutingRuleTierOrdering How a tier orders its targets. Omitted or null defaults to configured, which preserves target order. The weighted_affinity ordering distributes first-choice assignments by relative target weights and accepts only model targets with an explicit provider, without repeated provider and model pairs in the same tier.
+// AiGatewayNullableRoutingRuleTierOrdering How a tier orders its targets. Omitted or null defaults to configured, which preserves target order. The weighted_affinity ordering distributes first-choice assignments by relative target weights and accepts only model targets with an explicit provider, without repeated provider and model pairs in the same tier. The classified ordering lets a decision model pick one destination for each request by its rubric. It is allowed only on the first tier, and it needs a classifier and exactly one default destination.
+//
+// **Note**: Classified routing is in Preview and may not be available for all organizations. Saving a classified tier returns 403 Forbidden unless the feature is enabled for your organization.
 type AiGatewayNullableRoutingRuleTierOrdering string
 
 // List of AiGatewayNullableRoutingRuleTierOrdering.
 const (
 	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED        AiGatewayNullableRoutingRuleTierOrdering = "configured"
 	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_WEIGHTED_AFFINITY AiGatewayNullableRoutingRuleTierOrdering = "weighted_affinity"
+	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CLASSIFIED        AiGatewayNullableRoutingRuleTierOrdering = "classified"
 )
 
 var allowedAiGatewayNullableRoutingRuleTierOrderingEnumValues = []AiGatewayNullableRoutingRuleTierOrdering{
 	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED,
 	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_WEIGHTED_AFFINITY,
+	AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CLASSIFIED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
