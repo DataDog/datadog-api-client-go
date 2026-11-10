@@ -72,7 +72,7 @@ func (a *LogsPipelinesApi) CreateLogsPipeline(ctx _context.Context, body LogsPip
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 {
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -159,7 +159,7 @@ func (a *LogsPipelinesApi) DeleteLogsPipeline(ctx _context.Context, pipelineId s
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 {
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -487,7 +487,7 @@ func (a *LogsPipelinesApi) UpdateLogsPipeline(ctx _context.Context, pipelineId s
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 {
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -580,7 +580,7 @@ func (a *LogsPipelinesApi) UpdateLogsPipelineOrder(ctx _context.Context, body Lo
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 422 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 422 {
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
