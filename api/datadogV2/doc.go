@@ -1227,6 +1227,7 @@
 //   - [RolesApi.UpdateRole]
 //   - [RumAudienceManagementApi.CreateConnection]
 //   - [RumAudienceManagementApi.DeleteConnection]
+//   - [RumAudienceManagementApi.DeleteUserProfile]
 //   - [RumAudienceManagementApi.GetAccountFacetInfo]
 //   - [RumAudienceManagementApi.GetMapping]
 //   - [RumAudienceManagementApi.GetUserFacetInfo]
