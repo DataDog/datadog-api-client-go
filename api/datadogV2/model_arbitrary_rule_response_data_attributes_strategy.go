@@ -28,8 +28,16 @@ type ArbitraryRuleResponseDataAttributesStrategy struct {
 	EvaluateGroupedByTagKeys []string `json:"evaluate_grouped_by_tag_keys,omitempty"`
 	// The `strategy` `granularity`.
 	Granularity *string `json:"granularity,omitempty"`
+	// Only supported for `proportional_timeseries` and `even_timeseries` rules. Creates a synthetic tag from timeseries input rows before `tag_transforms` are applied.
+	MappingTransform *ArbitraryRuleMappingTransform `json:"mapping_transform,omitempty"`
 	// The `strategy` `method`.
 	Method string `json:"method"`
+	// Tags added to every cost row allocated by the rule.
+	StaticTags []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems `json:"static_tags,omitempty"`
+	// Integration metrics query used to calculate coverage.
+	SupportingTimeseries map[string]interface{} `json:"supporting_timeseries,omitempty"`
+	// Only supported for `proportional_timeseries` and `even_timeseries` rules. Applies tag key renames and tag value transforms to timeseries input rows after `mapping_transform`.
+	TagTransforms *ArbitraryRuleTagTransforms `json:"tag_transforms,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -277,6 +285,34 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) SetGranularity(v string) {
 	o.Granularity = &v
 }
 
+// GetMappingTransform returns the MappingTransform field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMappingTransform() ArbitraryRuleMappingTransform {
+	if o == nil || o.MappingTransform == nil {
+		var ret ArbitraryRuleMappingTransform
+		return ret
+	}
+	return *o.MappingTransform
+}
+
+// GetMappingTransformOk returns a tuple with the MappingTransform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMappingTransformOk() (*ArbitraryRuleMappingTransform, bool) {
+	if o == nil || o.MappingTransform == nil {
+		return nil, false
+	}
+	return o.MappingTransform, true
+}
+
+// HasMappingTransform returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) HasMappingTransform() bool {
+	return o != nil && o.MappingTransform != nil
+}
+
+// SetMappingTransform gets a reference to the given ArbitraryRuleMappingTransform and assigns it to the MappingTransform field.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) SetMappingTransform(v ArbitraryRuleMappingTransform) {
+	o.MappingTransform = &v
+}
+
 // GetMethod returns the Method field value.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMethod() string {
 	if o == nil {
@@ -298,6 +334,91 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMethodOk() (*string, bo
 // SetMethod sets field value.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetMethod(v string) {
 	o.Method = v
+}
+
+// GetStaticTags returns the StaticTags field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetStaticTags() []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems {
+	if o == nil || o.StaticTags == nil {
+		var ret []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems
+		return ret
+	}
+	return o.StaticTags
+}
+
+// GetStaticTagsOk returns a tuple with the StaticTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetStaticTagsOk() (*[]ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems, bool) {
+	if o == nil || o.StaticTags == nil {
+		return nil, false
+	}
+	return &o.StaticTags, true
+}
+
+// HasStaticTags returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) HasStaticTags() bool {
+	return o != nil && o.StaticTags != nil
+}
+
+// SetStaticTags gets a reference to the given []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems and assigns it to the StaticTags field.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) SetStaticTags(v []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) {
+	o.StaticTags = v
+}
+
+// GetSupportingTimeseries returns the SupportingTimeseries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetSupportingTimeseries() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.SupportingTimeseries
+}
+
+// GetSupportingTimeseriesOk returns a tuple with the SupportingTimeseries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetSupportingTimeseriesOk() (*map[string]interface{}, bool) {
+	if o == nil || o.SupportingTimeseries == nil {
+		return nil, false
+	}
+	return &o.SupportingTimeseries, true
+}
+
+// HasSupportingTimeseries returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) HasSupportingTimeseries() bool {
+	return o != nil && o.SupportingTimeseries != nil
+}
+
+// SetSupportingTimeseries gets a reference to the given map[string]interface{} and assigns it to the SupportingTimeseries field.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) SetSupportingTimeseries(v map[string]interface{}) {
+	o.SupportingTimeseries = v
+}
+
+// GetTagTransforms returns the TagTransforms field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetTagTransforms() ArbitraryRuleTagTransforms {
+	if o == nil || o.TagTransforms == nil {
+		var ret ArbitraryRuleTagTransforms
+		return ret
+	}
+	return *o.TagTransforms
+}
+
+// GetTagTransformsOk returns a tuple with the TagTransforms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) GetTagTransformsOk() (*ArbitraryRuleTagTransforms, bool) {
+	if o == nil || o.TagTransforms == nil {
+		return nil, false
+	}
+	return o.TagTransforms, true
+}
+
+// HasTagTransforms returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) HasTagTransforms() bool {
+	return o != nil && o.TagTransforms != nil
+}
+
+// SetTagTransforms gets a reference to the given ArbitraryRuleTagTransforms and assigns it to the TagTransforms field.
+func (o *ArbitraryRuleResponseDataAttributesStrategy) SetTagTransforms(v ArbitraryRuleTagTransforms) {
+	o.TagTransforms = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -330,7 +451,19 @@ func (o ArbitraryRuleResponseDataAttributesStrategy) MarshalJSON() ([]byte, erro
 	if o.Granularity != nil {
 		toSerialize["granularity"] = o.Granularity
 	}
+	if o.MappingTransform != nil {
+		toSerialize["mapping_transform"] = o.MappingTransform
+	}
 	toSerialize["method"] = o.Method
+	if o.StaticTags != nil {
+		toSerialize["static_tags"] = o.StaticTags
+	}
+	if o.SupportingTimeseries != nil {
+		toSerialize["supporting_timeseries"] = o.SupportingTimeseries
+	}
+	if o.TagTransforms != nil {
+		toSerialize["tag_transforms"] = o.TagTransforms
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -341,15 +474,19 @@ func (o ArbitraryRuleResponseDataAttributesStrategy) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllocatedBy              []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems              `json:"allocated_by,omitempty"`
-		AllocatedByFilters       []ArbitraryRuleResponseDataAttributesStrategyAllocatedByFiltersItems       `json:"allocated_by_filters,omitempty"`
-		AllocatedByTagKeys       []string                                                                   `json:"allocated_by_tag_keys,omitempty"`
-		BasedOnCosts             []ArbitraryRuleResponseDataAttributesStrategyBasedOnCostsItems             `json:"based_on_costs,omitempty"`
-		BasedOnTimeseries        map[string]interface{}                                                     `json:"based_on_timeseries,omitempty"`
-		EvaluateGroupedByFilters []ArbitraryRuleResponseDataAttributesStrategyEvaluateGroupedByFiltersItems `json:"evaluate_grouped_by_filters,omitempty"`
-		EvaluateGroupedByTagKeys []string                                                                   `json:"evaluate_grouped_by_tag_keys,omitempty"`
-		Granularity              *string                                                                    `json:"granularity,omitempty"`
-		Method                   *string                                                                    `json:"method"`
+		AllocatedBy              []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems                   `json:"allocated_by,omitempty"`
+		AllocatedByFilters       []ArbitraryRuleResponseDataAttributesStrategyAllocatedByFiltersItems            `json:"allocated_by_filters,omitempty"`
+		AllocatedByTagKeys       []string                                                                        `json:"allocated_by_tag_keys,omitempty"`
+		BasedOnCosts             []ArbitraryRuleResponseDataAttributesStrategyBasedOnCostsItems                  `json:"based_on_costs,omitempty"`
+		BasedOnTimeseries        map[string]interface{}                                                          `json:"based_on_timeseries,omitempty"`
+		EvaluateGroupedByFilters []ArbitraryRuleResponseDataAttributesStrategyEvaluateGroupedByFiltersItems      `json:"evaluate_grouped_by_filters,omitempty"`
+		EvaluateGroupedByTagKeys []string                                                                        `json:"evaluate_grouped_by_tag_keys,omitempty"`
+		Granularity              *string                                                                         `json:"granularity,omitempty"`
+		MappingTransform         *ArbitraryRuleMappingTransform                                                  `json:"mapping_transform,omitempty"`
+		Method                   *string                                                                         `json:"method"`
+		StaticTags               []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems `json:"static_tags,omitempty"`
+		SupportingTimeseries     map[string]interface{}                                                          `json:"supporting_timeseries,omitempty"`
+		TagTransforms            *ArbitraryRuleTagTransforms                                                     `json:"tag_transforms,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -359,10 +496,12 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "mapping_transform", "method", "static_tags", "supporting_timeseries", "tag_transforms"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AllocatedBy = all.AllocatedBy
 	o.AllocatedByFilters = all.AllocatedByFilters
 	o.AllocatedByTagKeys = all.AllocatedByTagKeys
@@ -371,10 +510,24 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) UnmarshalJSON(bytes []byte
 	o.EvaluateGroupedByFilters = all.EvaluateGroupedByFilters
 	o.EvaluateGroupedByTagKeys = all.EvaluateGroupedByTagKeys
 	o.Granularity = all.Granularity
+	if all.MappingTransform != nil && all.MappingTransform.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.MappingTransform = all.MappingTransform
 	o.Method = *all.Method
+	o.StaticTags = all.StaticTags
+	o.SupportingTimeseries = all.SupportingTimeseries
+	if all.TagTransforms != nil && all.TagTransforms.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.TagTransforms = all.TagTransforms
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

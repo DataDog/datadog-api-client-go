@@ -12,8 +12,8 @@ import (
 
 // RulesValidateQueryRequestDataAttributes The definition of `RulesValidateQueryRequestDataAttributes` object.
 type RulesValidateQueryRequestDataAttributes struct {
-	// The `attributes` `Query`.
-	Query string `json:"Query"`
+	// The tag pipeline rule query to validate, in Datadog tag query syntax: `tag:value` terms combined with `AND`, `OR`, and `NOT`.
+	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -66,7 +66,7 @@ func (o RulesValidateQueryRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["Query"] = o.Query
+	toSerialize["query"] = o.Query
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,17 +77,17 @@ func (o RulesValidateQueryRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RulesValidateQueryRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query *string `json:"Query"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Query == nil {
-		return fmt.Errorf("required field Query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"Query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"query"})
 	} else {
 		return err
 	}

@@ -18,6 +18,14 @@ type GCPUsageCostConfigAttributes struct {
 	BucketName string `json:"bucket_name"`
 	// The timestamp when the Google Cloud Usage Cost config was created.
 	CreatedAt *string `json:"created_at,omitempty"`
+	// The BigQuery table the committed use discount (CUD) metadata is read from. Only returned when CUD metadata is configured for the account.
+	CudMetadataConfig *GCPCudMetadataConfig `json:"cud_metadata_config,omitempty"`
+	// The error codes reported for the committed use discount (CUD) metadata export. Only returned when CUD metadata is configured for the account.
+	CudMetadataErrorCodes []int32 `json:"cud_metadata_error_codes,omitempty"`
+	// The state of the Google Cloud committed use discount (CUD) metadata export. Only returned when CUD metadata is configured for the account.
+	CudMetadataState *string `json:"cud_metadata_state,omitempty"`
+	// The timestamp when the committed use discount (CUD) metadata state was last updated. Only returned when CUD metadata is configured for the account.
+	CudMetadataStatusUpdatedAt *string `json:"cud_metadata_status_updated_at,omitempty"`
 	// The export dataset name used for the Google Cloud Usage Cost Report.
 	Dataset string `json:"dataset"`
 	// The error messages for the Google Cloud Usage Cost config.
@@ -140,6 +148,118 @@ func (o *GCPUsageCostConfigAttributes) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *GCPUsageCostConfigAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
+}
+
+// GetCudMetadataConfig returns the CudMetadataConfig field value if set, zero value otherwise.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataConfig() GCPCudMetadataConfig {
+	if o == nil || o.CudMetadataConfig == nil {
+		var ret GCPCudMetadataConfig
+		return ret
+	}
+	return *o.CudMetadataConfig
+}
+
+// GetCudMetadataConfigOk returns a tuple with the CudMetadataConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataConfigOk() (*GCPCudMetadataConfig, bool) {
+	if o == nil || o.CudMetadataConfig == nil {
+		return nil, false
+	}
+	return o.CudMetadataConfig, true
+}
+
+// HasCudMetadataConfig returns a boolean if a field has been set.
+func (o *GCPUsageCostConfigAttributes) HasCudMetadataConfig() bool {
+	return o != nil && o.CudMetadataConfig != nil
+}
+
+// SetCudMetadataConfig gets a reference to the given GCPCudMetadataConfig and assigns it to the CudMetadataConfig field.
+func (o *GCPUsageCostConfigAttributes) SetCudMetadataConfig(v GCPCudMetadataConfig) {
+	o.CudMetadataConfig = &v
+}
+
+// GetCudMetadataErrorCodes returns the CudMetadataErrorCodes field value if set, zero value otherwise.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataErrorCodes() []int32 {
+	if o == nil || o.CudMetadataErrorCodes == nil {
+		var ret []int32
+		return ret
+	}
+	return o.CudMetadataErrorCodes
+}
+
+// GetCudMetadataErrorCodesOk returns a tuple with the CudMetadataErrorCodes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataErrorCodesOk() (*[]int32, bool) {
+	if o == nil || o.CudMetadataErrorCodes == nil {
+		return nil, false
+	}
+	return &o.CudMetadataErrorCodes, true
+}
+
+// HasCudMetadataErrorCodes returns a boolean if a field has been set.
+func (o *GCPUsageCostConfigAttributes) HasCudMetadataErrorCodes() bool {
+	return o != nil && o.CudMetadataErrorCodes != nil
+}
+
+// SetCudMetadataErrorCodes gets a reference to the given []int32 and assigns it to the CudMetadataErrorCodes field.
+func (o *GCPUsageCostConfigAttributes) SetCudMetadataErrorCodes(v []int32) {
+	o.CudMetadataErrorCodes = v
+}
+
+// GetCudMetadataState returns the CudMetadataState field value if set, zero value otherwise.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataState() string {
+	if o == nil || o.CudMetadataState == nil {
+		var ret string
+		return ret
+	}
+	return *o.CudMetadataState
+}
+
+// GetCudMetadataStateOk returns a tuple with the CudMetadataState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataStateOk() (*string, bool) {
+	if o == nil || o.CudMetadataState == nil {
+		return nil, false
+	}
+	return o.CudMetadataState, true
+}
+
+// HasCudMetadataState returns a boolean if a field has been set.
+func (o *GCPUsageCostConfigAttributes) HasCudMetadataState() bool {
+	return o != nil && o.CudMetadataState != nil
+}
+
+// SetCudMetadataState gets a reference to the given string and assigns it to the CudMetadataState field.
+func (o *GCPUsageCostConfigAttributes) SetCudMetadataState(v string) {
+	o.CudMetadataState = &v
+}
+
+// GetCudMetadataStatusUpdatedAt returns the CudMetadataStatusUpdatedAt field value if set, zero value otherwise.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataStatusUpdatedAt() string {
+	if o == nil || o.CudMetadataStatusUpdatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.CudMetadataStatusUpdatedAt
+}
+
+// GetCudMetadataStatusUpdatedAtOk returns a tuple with the CudMetadataStatusUpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPUsageCostConfigAttributes) GetCudMetadataStatusUpdatedAtOk() (*string, bool) {
+	if o == nil || o.CudMetadataStatusUpdatedAt == nil {
+		return nil, false
+	}
+	return o.CudMetadataStatusUpdatedAt, true
+}
+
+// HasCudMetadataStatusUpdatedAt returns a boolean if a field has been set.
+func (o *GCPUsageCostConfigAttributes) HasCudMetadataStatusUpdatedAt() bool {
+	return o != nil && o.CudMetadataStatusUpdatedAt != nil
+}
+
+// SetCudMetadataStatusUpdatedAt gets a reference to the given string and assigns it to the CudMetadataStatusUpdatedAt field.
+func (o *GCPUsageCostConfigAttributes) SetCudMetadataStatusUpdatedAt(v string) {
+	o.CudMetadataStatusUpdatedAt = &v
 }
 
 // GetDataset returns the Dataset field value.
@@ -422,6 +542,18 @@ func (o GCPUsageCostConfigAttributes) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.CudMetadataConfig != nil {
+		toSerialize["cud_metadata_config"] = o.CudMetadataConfig
+	}
+	if o.CudMetadataErrorCodes != nil {
+		toSerialize["cud_metadata_error_codes"] = o.CudMetadataErrorCodes
+	}
+	if o.CudMetadataState != nil {
+		toSerialize["cud_metadata_state"] = o.CudMetadataState
+	}
+	if o.CudMetadataStatusUpdatedAt != nil {
+		toSerialize["cud_metadata_status_updated_at"] = o.CudMetadataStatusUpdatedAt
+	}
 	toSerialize["dataset"] = o.Dataset
 	if o.ErrorMessages.IsSet() {
 		toSerialize["error_messages"] = o.ErrorMessages.Get()
@@ -452,19 +584,23 @@ func (o GCPUsageCostConfigAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPUsageCostConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId         *string                      `json:"account_id"`
-		BucketName        *string                      `json:"bucket_name"`
-		CreatedAt         *string                      `json:"created_at,omitempty"`
-		Dataset           *string                      `json:"dataset"`
-		ErrorMessages     datadog.NullableList[string] `json:"error_messages,omitempty"`
-		ExportPrefix      *string                      `json:"export_prefix"`
-		ExportProjectName *string                      `json:"export_project_name"`
-		Months            *int32                       `json:"months,omitempty"`
-		ProjectId         *string                      `json:"project_id,omitempty"`
-		ServiceAccount    *string                      `json:"service_account"`
-		Status            *string                      `json:"status"`
-		StatusUpdatedAt   *string                      `json:"status_updated_at,omitempty"`
-		UpdatedAt         *string                      `json:"updated_at,omitempty"`
+		AccountId                  *string                      `json:"account_id"`
+		BucketName                 *string                      `json:"bucket_name"`
+		CreatedAt                  *string                      `json:"created_at,omitempty"`
+		CudMetadataConfig          *GCPCudMetadataConfig        `json:"cud_metadata_config,omitempty"`
+		CudMetadataErrorCodes      []int32                      `json:"cud_metadata_error_codes,omitempty"`
+		CudMetadataState           *string                      `json:"cud_metadata_state,omitempty"`
+		CudMetadataStatusUpdatedAt *string                      `json:"cud_metadata_status_updated_at,omitempty"`
+		Dataset                    *string                      `json:"dataset"`
+		ErrorMessages              datadog.NullableList[string] `json:"error_messages,omitempty"`
+		ExportPrefix               *string                      `json:"export_prefix"`
+		ExportProjectName          *string                      `json:"export_project_name"`
+		Months                     *int32                       `json:"months,omitempty"`
+		ProjectId                  *string                      `json:"project_id,omitempty"`
+		ServiceAccount             *string                      `json:"service_account"`
+		Status                     *string                      `json:"status"`
+		StatusUpdatedAt            *string                      `json:"status_updated_at,omitempty"`
+		UpdatedAt                  *string                      `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -492,13 +628,22 @@ func (o *GCPUsageCostConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "bucket_name", "created_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "bucket_name", "created_at", "cud_metadata_config", "cud_metadata_error_codes", "cud_metadata_state", "cud_metadata_status_updated_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AccountId = *all.AccountId
 	o.BucketName = *all.BucketName
 	o.CreatedAt = all.CreatedAt
+	if all.CudMetadataConfig != nil && all.CudMetadataConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.CudMetadataConfig = all.CudMetadataConfig
+	o.CudMetadataErrorCodes = all.CudMetadataErrorCodes
+	o.CudMetadataState = all.CudMetadataState
+	o.CudMetadataStatusUpdatedAt = all.CudMetadataStatusUpdatedAt
 	o.Dataset = *all.Dataset
 	o.ErrorMessages = all.ErrorMessages
 	o.ExportPrefix = *all.ExportPrefix
@@ -512,6 +657,10 @@ func (o *GCPUsageCostConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
