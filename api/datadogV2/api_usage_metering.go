@@ -22,6 +22,7 @@ type UsageMeteringApi datadog.Service
 // CreateQuotasOptionalParameters holds optional parameters for CreateQuotas.
 type CreateQuotasOptionalParameters struct {
 	IncludeDescendants *bool
+	CreateOnly         *bool
 }
 
 // NewCreateQuotasOptionalParameters creates an empty struct for parameters.
@@ -36,9 +37,19 @@ func (r *CreateQuotasOptionalParameters) WithIncludeDescendants(includeDescendan
 	return r
 }
 
+// WithCreateOnly sets the corresponding parameter name and returns the struct.
+func (r *CreateQuotasOptionalParameters) WithCreateOnly(createOnly bool) *CreateQuotasOptionalParameters {
+	r.CreateOnly = &createOnly
+	return r
+}
+
 // CreateQuotas Create or update usage quotas.
 // Creates or updates one or more usage quotas by scope. If a quota already exists for a supplied scope, it is updated.
 // Otherwise, a quota is created only when `usage_limit` and `enforced` are provided.
+// Set `create_only=true` to atomically create exactly one quota in the caller's organization and reject an
+// existing quota with `409` instead of updating it. This mode does not support pending limits or descendant writes.
+// Repeated create-only requests do not replay the original response. If a response is lost, a retry can return `409`
+// even if the first request succeeded; reconcile the outcome before retrying or importing the quota.
 // For the organization-wide quota, `pending_usage_limit` schedules a limit for the next usage period and can
 // accompany an immediate limit or update an existing quota by itself.
 // Scheduled changes follow `include_descendants` like the other fields. Requires the `billing_edit` permission.
@@ -108,6 +119,9 @@ func (a *UsageMeteringApi) CreateQuotas(ctx _context.Context, quotaNamespace str
 	if optionalParams.IncludeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
 	}
+	if optionalParams.CreateOnly != nil {
+		localVarQueryParams.Add("create_only", datadog.ParameterToString(*optionalParams.CreateOnly, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -146,7 +160,7 @@ func (a *UsageMeteringApi) CreateQuotas(ctx _context.Context, quotaNamespace str
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 500 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
