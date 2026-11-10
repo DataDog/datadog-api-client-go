@@ -19,6 +19,8 @@ type ArbitraryRuleResponseDataAttributes struct {
 	Created time.Time `json:"created"`
 	// The `attributes` `enabled`.
 	Enabled bool `json:"enabled"`
+	// Whether the rule is an out-of-the-box rule provided by Datadog. Omitted when `false`.
+	IsOotb *bool `json:"is_ootb,omitempty"`
 	// The `attributes` `last_modified_user_uuid`.
 	LastModifiedUserUuid string `json:"last_modified_user_uuid"`
 	// The `attributes` `order_id`.
@@ -29,6 +31,8 @@ type ArbitraryRuleResponseDataAttributes struct {
 	Provider []string `json:"provider"`
 	// The `attributes` `rejected`.
 	Rejected *bool `json:"rejected,omitempty"`
+	// Rule category. Omitted for custom rules.
+	RuleCategory *ArbitraryRuleResponseDataAttributesRuleCategory `json:"rule_category,omitempty"`
 	// The `attributes` `rule_name`.
 	RuleName string `json:"rule_name"`
 	// The definition of `ArbitraryRuleResponseDataAttributesStrategy` object.
@@ -37,6 +41,10 @@ type ArbitraryRuleResponseDataAttributes struct {
 	Type string `json:"type"`
 	// The `attributes` `updated`.
 	Updated time.Time `json:"updated"`
+	// The first date the rule applies to. Omitted when the rule has no start date.
+	ValidFromDate *time.Time `json:"valid_from_date,omitempty"`
+	// The last date the rule applies to. Omitted when the rule has no end date.
+	ValidThroughDate *time.Time `json:"valid_through_date,omitempty"`
 	// The `attributes` `version`.
 	Version int32 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -139,6 +147,34 @@ func (o *ArbitraryRuleResponseDataAttributes) GetEnabledOk() (*bool, bool) {
 // SetEnabled sets field value.
 func (o *ArbitraryRuleResponseDataAttributes) SetEnabled(v bool) {
 	o.Enabled = v
+}
+
+// GetIsOotb returns the IsOotb field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributes) GetIsOotb() bool {
+	if o == nil || o.IsOotb == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsOotb
+}
+
+// GetIsOotbOk returns a tuple with the IsOotb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributes) GetIsOotbOk() (*bool, bool) {
+	if o == nil || o.IsOotb == nil {
+		return nil, false
+	}
+	return o.IsOotb, true
+}
+
+// HasIsOotb returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributes) HasIsOotb() bool {
+	return o != nil && o.IsOotb != nil
+}
+
+// SetIsOotb gets a reference to the given bool and assigns it to the IsOotb field.
+func (o *ArbitraryRuleResponseDataAttributes) SetIsOotb(v bool) {
+	o.IsOotb = &v
 }
 
 // GetLastModifiedUserUuid returns the LastModifiedUserUuid field value.
@@ -266,6 +302,34 @@ func (o *ArbitraryRuleResponseDataAttributes) SetRejected(v bool) {
 	o.Rejected = &v
 }
 
+// GetRuleCategory returns the RuleCategory field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributes) GetRuleCategory() ArbitraryRuleResponseDataAttributesRuleCategory {
+	if o == nil || o.RuleCategory == nil {
+		var ret ArbitraryRuleResponseDataAttributesRuleCategory
+		return ret
+	}
+	return *o.RuleCategory
+}
+
+// GetRuleCategoryOk returns a tuple with the RuleCategory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributes) GetRuleCategoryOk() (*ArbitraryRuleResponseDataAttributesRuleCategory, bool) {
+	if o == nil || o.RuleCategory == nil {
+		return nil, false
+	}
+	return o.RuleCategory, true
+}
+
+// HasRuleCategory returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributes) HasRuleCategory() bool {
+	return o != nil && o.RuleCategory != nil
+}
+
+// SetRuleCategory gets a reference to the given ArbitraryRuleResponseDataAttributesRuleCategory and assigns it to the RuleCategory field.
+func (o *ArbitraryRuleResponseDataAttributes) SetRuleCategory(v ArbitraryRuleResponseDataAttributesRuleCategory) {
+	o.RuleCategory = &v
+}
+
 // GetRuleName returns the RuleName field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetRuleName() string {
 	if o == nil {
@@ -358,6 +422,62 @@ func (o *ArbitraryRuleResponseDataAttributes) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
+// GetValidFromDate returns the ValidFromDate field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributes) GetValidFromDate() time.Time {
+	if o == nil || o.ValidFromDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ValidFromDate
+}
+
+// GetValidFromDateOk returns a tuple with the ValidFromDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributes) GetValidFromDateOk() (*time.Time, bool) {
+	if o == nil || o.ValidFromDate == nil {
+		return nil, false
+	}
+	return o.ValidFromDate, true
+}
+
+// HasValidFromDate returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributes) HasValidFromDate() bool {
+	return o != nil && o.ValidFromDate != nil
+}
+
+// SetValidFromDate gets a reference to the given time.Time and assigns it to the ValidFromDate field.
+func (o *ArbitraryRuleResponseDataAttributes) SetValidFromDate(v time.Time) {
+	o.ValidFromDate = &v
+}
+
+// GetValidThroughDate returns the ValidThroughDate field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributes) GetValidThroughDate() time.Time {
+	if o == nil || o.ValidThroughDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ValidThroughDate
+}
+
+// GetValidThroughDateOk returns a tuple with the ValidThroughDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributes) GetValidThroughDateOk() (*time.Time, bool) {
+	if o == nil || o.ValidThroughDate == nil {
+		return nil, false
+	}
+	return o.ValidThroughDate, true
+}
+
+// HasValidThroughDate returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributes) HasValidThroughDate() bool {
+	return o != nil && o.ValidThroughDate != nil
+}
+
+// SetValidThroughDate gets a reference to the given time.Time and assigns it to the ValidThroughDate field.
+func (o *ArbitraryRuleResponseDataAttributes) SetValidThroughDate(v time.Time) {
+	o.ValidThroughDate = &v
+}
+
 // GetVersion returns the Version field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetVersion() int32 {
 	if o == nil {
@@ -394,6 +514,9 @@ func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	toSerialize["enabled"] = o.Enabled
+	if o.IsOotb != nil {
+		toSerialize["is_ootb"] = o.IsOotb
+	}
 	toSerialize["last_modified_user_uuid"] = o.LastModifiedUserUuid
 	toSerialize["order_id"] = o.OrderId
 	if o.ProcessingStatus != nil {
@@ -403,6 +526,9 @@ func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Rejected != nil {
 		toSerialize["rejected"] = o.Rejected
 	}
+	if o.RuleCategory != nil {
+		toSerialize["rule_category"] = o.RuleCategory
+	}
 	toSerialize["rule_name"] = o.RuleName
 	toSerialize["strategy"] = o.Strategy
 	toSerialize["type"] = o.Type
@@ -410,6 +536,12 @@ func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["updated"] = o.Updated.Format("2006-01-02T15:04:05Z07:00")
 	} else {
 		toSerialize["updated"] = o.Updated.Format("2006-01-02T15:04:05.000Z07:00")
+	}
+	if o.ValidFromDate != nil {
+		toSerialize["valid_from_date"] = o.ValidFromDate
+	}
+	if o.ValidThroughDate != nil {
+		toSerialize["valid_through_date"] = o.ValidThroughDate
 	}
 	toSerialize["version"] = o.Version
 
@@ -425,15 +557,19 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 		CostsToAllocate      *[]ArbitraryRuleResponseDataAttributesCostsToAllocateItems `json:"costs_to_allocate"`
 		Created              *time.Time                                                 `json:"created"`
 		Enabled              *bool                                                      `json:"enabled"`
+		IsOotb               *bool                                                      `json:"is_ootb,omitempty"`
 		LastModifiedUserUuid *string                                                    `json:"last_modified_user_uuid"`
 		OrderId              *int64                                                     `json:"order_id"`
 		ProcessingStatus     *string                                                    `json:"processing_status,omitempty"`
 		Provider             *[]string                                                  `json:"provider"`
 		Rejected             *bool                                                      `json:"rejected,omitempty"`
+		RuleCategory         *ArbitraryRuleResponseDataAttributesRuleCategory           `json:"rule_category,omitempty"`
 		RuleName             *string                                                    `json:"rule_name"`
 		Strategy             *ArbitraryRuleResponseDataAttributesStrategy               `json:"strategy"`
 		Type                 *string                                                    `json:"type"`
 		Updated              *time.Time                                                 `json:"updated"`
+		ValidFromDate        *time.Time                                                 `json:"valid_from_date,omitempty"`
+		ValidThroughDate     *time.Time                                                 `json:"valid_through_date,omitempty"`
 		Version              *int32                                                     `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -474,7 +610,7 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "created", "enabled", "last_modified_user_uuid", "order_id", "processing_status", "provider", "rejected", "rule_name", "strategy", "type", "updated", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "created", "enabled", "is_ootb", "last_modified_user_uuid", "order_id", "processing_status", "provider", "rejected", "rule_category", "rule_name", "strategy", "type", "updated", "valid_from_date", "valid_through_date", "version"})
 	} else {
 		return err
 	}
@@ -483,11 +619,17 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.CostsToAllocate = *all.CostsToAllocate
 	o.Created = *all.Created
 	o.Enabled = *all.Enabled
+	o.IsOotb = all.IsOotb
 	o.LastModifiedUserUuid = *all.LastModifiedUserUuid
 	o.OrderId = *all.OrderId
 	o.ProcessingStatus = all.ProcessingStatus
 	o.Provider = *all.Provider
 	o.Rejected = all.Rejected
+	if all.RuleCategory != nil && !all.RuleCategory.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.RuleCategory = all.RuleCategory
+	}
 	o.RuleName = *all.RuleName
 	if all.Strategy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -495,6 +637,8 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Strategy = *all.Strategy
 	o.Type = *all.Type
 	o.Updated = *all.Updated
+	o.ValidFromDate = all.ValidFromDate
+	o.ValidThroughDate = all.ValidThroughDate
 	o.Version = *all.Version
 
 	if len(additionalProperties) > 0 {

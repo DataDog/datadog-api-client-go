@@ -1281,6 +1281,8 @@ func NewConfiguration() *Configuration {
 			"v2.TriggerDeploymentGatesEvaluation":                       false,
 			"v2.UpdateDeploymentGate":                                   false,
 			"v2.UpdateDeploymentRule":                                   false,
+			"v2.GetEUDMDevice":                                          false,
+			"v2.GetEUDMDevices":                                         false,
 			"v2.CloneForm":                                              false,
 			"v2.CreateAndPublishForm":                                   false,
 			"v2.CreateForm":                                             false,

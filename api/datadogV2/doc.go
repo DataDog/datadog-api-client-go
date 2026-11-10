@@ -591,6 +591,8 @@
 //   - [ElasticCloudIntegrationApi.GetElasticCloudIntegrationAccount]
 //   - [ElasticCloudIntegrationApi.ListElasticCloudIntegrationAccounts]
 //   - [ElasticCloudIntegrationApi.UpdateElasticCloudIntegrationAccount]
+//   - [EndUserDeviceMonitoringApi.GetEUDMDevice]
+//   - [EndUserDeviceMonitoringApi.GetEUDMDevices]
 //   - [EntityIntegrationConfigsApi.DeleteEntityIntegrationConfig]
 //   - [EntityIntegrationConfigsApi.GetEntityIntegrationConfig]
 //   - [EntityIntegrationConfigsApi.UpdateEntityIntegrationConfig]
