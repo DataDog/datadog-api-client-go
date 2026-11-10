@@ -10,10 +10,12 @@ import (
 
 // IssuesSearchResultIncluded - An array of related resources, returned when the `include` query parameter is used.
 type IssuesSearchResultIncluded struct {
-	Issue     *Issue
-	IssueCase *IssueCase
-	IssueUser *IssueUser
-	IssueTeam *IssueTeam
+	Issue            *Issue
+	IssueCase        *IssueCase
+	IssueUser        *IssueUser
+	IssueTeam        *IssueTeam
+	IssuePullRequest *IssuePullRequest
+	IssueWatch       *IssueWatch
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -37,6 +39,16 @@ func IssueUserAsIssuesSearchResultIncluded(v *IssueUser) IssuesSearchResultInclu
 // IssueTeamAsIssuesSearchResultIncluded is a convenience function that returns IssueTeam wrapped in IssuesSearchResultIncluded.
 func IssueTeamAsIssuesSearchResultIncluded(v *IssueTeam) IssuesSearchResultIncluded {
 	return IssuesSearchResultIncluded{IssueTeam: v}
+}
+
+// IssuePullRequestAsIssuesSearchResultIncluded is a convenience function that returns IssuePullRequest wrapped in IssuesSearchResultIncluded.
+func IssuePullRequestAsIssuesSearchResultIncluded(v *IssuePullRequest) IssuesSearchResultIncluded {
+	return IssuesSearchResultIncluded{IssuePullRequest: v}
+}
+
+// IssueWatchAsIssuesSearchResultIncluded is a convenience function that returns IssueWatch wrapped in IssuesSearchResultIncluded.
+func IssueWatchAsIssuesSearchResultIncluded(v *IssueWatch) IssuesSearchResultIncluded {
+	return IssuesSearchResultIncluded{IssueWatch: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -111,12 +123,48 @@ func (obj *IssuesSearchResultIncluded) UnmarshalJSON(data []byte) error {
 		obj.IssueTeam = nil
 	}
 
+	// try to unmarshal data into IssuePullRequest
+	err = datadog.Unmarshal(data, &obj.IssuePullRequest)
+	if err == nil {
+		if obj.IssuePullRequest != nil && obj.IssuePullRequest.UnparsedObject == nil {
+			jsonIssuePullRequest, _ := datadog.Marshal(obj.IssuePullRequest)
+			if string(jsonIssuePullRequest) == "{}" { // empty struct
+				obj.IssuePullRequest = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IssuePullRequest = nil
+		}
+	} else {
+		obj.IssuePullRequest = nil
+	}
+
+	// try to unmarshal data into IssueWatch
+	err = datadog.Unmarshal(data, &obj.IssueWatch)
+	if err == nil {
+		if obj.IssueWatch != nil && obj.IssueWatch.UnparsedObject == nil {
+			jsonIssueWatch, _ := datadog.Marshal(obj.IssueWatch)
+			if string(jsonIssueWatch) == "{}" { // empty struct
+				obj.IssueWatch = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IssueWatch = nil
+		}
+	} else {
+		obj.IssueWatch = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.Issue = nil
 		obj.IssueCase = nil
 		obj.IssueUser = nil
 		obj.IssueTeam = nil
+		obj.IssuePullRequest = nil
+		obj.IssueWatch = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -138,6 +186,14 @@ func (obj IssuesSearchResultIncluded) MarshalJSON() ([]byte, error) {
 
 	if obj.IssueTeam != nil {
 		return datadog.Marshal(&obj.IssueTeam)
+	}
+
+	if obj.IssuePullRequest != nil {
+		return datadog.Marshal(&obj.IssuePullRequest)
+	}
+
+	if obj.IssueWatch != nil {
+		return datadog.Marshal(&obj.IssueWatch)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -162,6 +218,14 @@ func (obj *IssuesSearchResultIncluded) GetActualInstance() interface{} {
 
 	if obj.IssueTeam != nil {
 		return obj.IssueTeam
+	}
+
+	if obj.IssuePullRequest != nil {
+		return obj.IssuePullRequest
+	}
+
+	if obj.IssueWatch != nil {
+		return obj.IssueWatch
 	}
 
 	// all schemas are nil

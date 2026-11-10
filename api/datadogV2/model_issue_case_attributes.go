@@ -39,6 +39,10 @@ type IssueCaseAttributes struct {
 	// Deprecated way of representing the work item status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.
 	// Deprecated
 	Status *CaseStatus `json:"status,omitempty"`
+	// Status group of the work item.
+	StatusGroup *CaseStatusGroup `json:"status_group,omitempty"`
+	// Status of the work item. Must be one of the existing statuses for the work item's type.
+	StatusName *string `json:"status_name,omitempty"`
 	// Title of the case.
 	Title *string `json:"title,omitempty"`
 	// Type of the case.
@@ -436,6 +440,62 @@ func (o *IssueCaseAttributes) SetStatus(v CaseStatus) {
 	o.Status = &v
 }
 
+// GetStatusGroup returns the StatusGroup field value if set, zero value otherwise.
+func (o *IssueCaseAttributes) GetStatusGroup() CaseStatusGroup {
+	if o == nil || o.StatusGroup == nil {
+		var ret CaseStatusGroup
+		return ret
+	}
+	return *o.StatusGroup
+}
+
+// GetStatusGroupOk returns a tuple with the StatusGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IssueCaseAttributes) GetStatusGroupOk() (*CaseStatusGroup, bool) {
+	if o == nil || o.StatusGroup == nil {
+		return nil, false
+	}
+	return o.StatusGroup, true
+}
+
+// HasStatusGroup returns a boolean if a field has been set.
+func (o *IssueCaseAttributes) HasStatusGroup() bool {
+	return o != nil && o.StatusGroup != nil
+}
+
+// SetStatusGroup gets a reference to the given CaseStatusGroup and assigns it to the StatusGroup field.
+func (o *IssueCaseAttributes) SetStatusGroup(v CaseStatusGroup) {
+	o.StatusGroup = &v
+}
+
+// GetStatusName returns the StatusName field value if set, zero value otherwise.
+func (o *IssueCaseAttributes) GetStatusName() string {
+	if o == nil || o.StatusName == nil {
+		var ret string
+		return ret
+	}
+	return *o.StatusName
+}
+
+// GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IssueCaseAttributes) GetStatusNameOk() (*string, bool) {
+	if o == nil || o.StatusName == nil {
+		return nil, false
+	}
+	return o.StatusName, true
+}
+
+// HasStatusName returns a boolean if a field has been set.
+func (o *IssueCaseAttributes) HasStatusName() bool {
+	return o != nil && o.StatusName != nil
+}
+
+// SetStatusName gets a reference to the given string and assigns it to the StatusName field.
+func (o *IssueCaseAttributes) SetStatusName(v string) {
+	o.StatusName = &v
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -553,6 +613,12 @@ func (o IssueCaseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+	if o.StatusGroup != nil {
+		toSerialize["status_group"] = o.StatusGroup
+	}
+	if o.StatusName != nil {
+		toSerialize["status_name"] = o.StatusName
+	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
@@ -582,6 +648,8 @@ func (o *IssueCaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt     *time.Time            `json:"modified_at,omitempty"`
 		Priority       *CasePriority         `json:"priority,omitempty"`
 		Status         *CaseStatus           `json:"status,omitempty"`
+		StatusGroup    *CaseStatusGroup      `json:"status_group,omitempty"`
+		StatusName     *string               `json:"status_name,omitempty"`
 		Title          *string               `json:"title,omitempty"`
 		Type           *string               `json:"type,omitempty"`
 	}{}
@@ -590,7 +658,7 @@ func (o *IssueCaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "linear_issue", "modified_at", "priority", "status", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "linear_issue", "modified_at", "priority", "status", "status_group", "status_name", "title", "type"})
 	} else {
 		return err
 	}
@@ -623,6 +691,12 @@ func (o *IssueCaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Status = all.Status
 	}
+	if all.StatusGroup != nil && !all.StatusGroup.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.StatusGroup = all.StatusGroup
+	}
+	o.StatusName = all.StatusName
 	o.Title = all.Title
 	o.Type = all.Type
 
