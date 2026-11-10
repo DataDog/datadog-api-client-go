@@ -21,14 +21,14 @@ type RUMOperationResponseAttributes struct {
 	Category datadog.NullableString `json:"category,omitempty"`
 	// The timestamp when the RUM operation was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// A Datadog user referenced by a RUM operation.
-	CreatedBy *RUMOperationUser `json:"created_by,omitempty"`
+	// A Datadog user referenced by a RUM operation. `null` when the user could not be resolved.
+	CreatedBy NullableRUMOperationUser `json:"created_by,omitempty"`
 	// A description of the RUM operation.
 	Description datadog.NullableString `json:"description,omitempty"`
 	// A human-readable display name for the RUM operation.
 	DisplayName *string `json:"display_name,omitempty"`
 	// The list of journey IDs associated with the RUM operation.
-	FeatureIds []string `json:"feature_ids,omitempty"`
+	FeatureIds datadog.NullableList[string] `json:"feature_ids,omitempty"`
 	// The definition of a RUM operation's journey, used to detect it from RUM events.
 	JourneyRum RUMOperationJourneyRum `json:"journey_rum"`
 	// The unique name of the RUM operation. Must not contain spaces.
@@ -36,11 +36,11 @@ type RUMOperationResponseAttributes struct {
 	// The ID of the organization the RUM operation belongs to.
 	OrgId *int64 `json:"org_id,omitempty"`
 	// A list of tags associated with the RUM operation.
-	Tags []string `json:"tags"`
+	Tags datadog.NullableList[string] `json:"tags"`
 	// The timestamp when the RUM operation was last updated.
 	UpdatedAt datadog.NullableTime `json:"updated_at,omitempty"`
-	// A Datadog user referenced by a RUM operation.
-	UpdatedBy *RUMOperationUser `json:"updated_by,omitempty"`
+	// A Datadog user referenced by a RUM operation. `null` when the user could not be resolved.
+	UpdatedBy NullableRUMOperationUser `json:"updated_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -50,7 +50,7 @@ type RUMOperationResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRUMOperationResponseAttributes(journeyRum RUMOperationJourneyRum, name string, tags []string) *RUMOperationResponseAttributes {
+func NewRUMOperationResponseAttributes(journeyRum RUMOperationJourneyRum, name string, tags datadog.NullableList[string]) *RUMOperationResponseAttributes {
 	this := RUMOperationResponseAttributes{}
 	this.JourneyRum = journeyRum
 	this.Name = name
@@ -172,32 +172,43 @@ func (o *RUMOperationResponseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RUMOperationResponseAttributes) GetCreatedBy() RUMOperationUser {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil || o.CreatedBy.Get() == nil {
 		var ret RUMOperationUser
 		return ret
 	}
-	return *o.CreatedBy
+	return *o.CreatedBy.Get()
 }
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *RUMOperationResponseAttributes) GetCreatedByOk() (*RUMOperationUser, bool) {
-	if o == nil || o.CreatedBy == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedBy, true
+	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *RUMOperationResponseAttributes) HasCreatedBy() bool {
-	return o != nil && o.CreatedBy != nil
+	return o != nil && o.CreatedBy.IsSet()
 }
 
-// SetCreatedBy gets a reference to the given RUMOperationUser and assigns it to the CreatedBy field.
+// SetCreatedBy gets a reference to the given NullableRUMOperationUser and assigns it to the CreatedBy field.
 func (o *RUMOperationResponseAttributes) SetCreatedBy(v RUMOperationUser) {
-	o.CreatedBy = &v
+	o.CreatedBy.Set(&v)
+}
+
+// SetCreatedByNil sets the value for CreatedBy to be an explicit nil.
+func (o *RUMOperationResponseAttributes) SetCreatedByNil() {
+	o.CreatedBy.Set(nil)
+}
+
+// UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil.
+func (o *RUMOperationResponseAttributes) UnsetCreatedBy() {
+	o.CreatedBy.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -267,32 +278,43 @@ func (o *RUMOperationResponseAttributes) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
-// GetFeatureIds returns the FeatureIds field value if set, zero value otherwise.
+// GetFeatureIds returns the FeatureIds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RUMOperationResponseAttributes) GetFeatureIds() []string {
-	if o == nil || o.FeatureIds == nil {
+	if o == nil || o.FeatureIds.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.FeatureIds
+	return *o.FeatureIds.Get()
 }
 
 // GetFeatureIdsOk returns a tuple with the FeatureIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *RUMOperationResponseAttributes) GetFeatureIdsOk() (*[]string, bool) {
-	if o == nil || o.FeatureIds == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.FeatureIds, true
+	return o.FeatureIds.Get(), o.FeatureIds.IsSet()
 }
 
 // HasFeatureIds returns a boolean if a field has been set.
 func (o *RUMOperationResponseAttributes) HasFeatureIds() bool {
-	return o != nil && o.FeatureIds != nil
+	return o != nil && o.FeatureIds.IsSet()
 }
 
-// SetFeatureIds gets a reference to the given []string and assigns it to the FeatureIds field.
+// SetFeatureIds gets a reference to the given datadog.NullableList[string] and assigns it to the FeatureIds field.
 func (o *RUMOperationResponseAttributes) SetFeatureIds(v []string) {
-	o.FeatureIds = v
+	o.FeatureIds.Set(&v)
+}
+
+// SetFeatureIdsNil sets the value for FeatureIds to be an explicit nil.
+func (o *RUMOperationResponseAttributes) SetFeatureIdsNil() {
+	o.FeatureIds.Set(nil)
+}
+
+// UnsetFeatureIds ensures that no value is present for FeatureIds, not even an explicit nil.
+func (o *RUMOperationResponseAttributes) UnsetFeatureIds() {
+	o.FeatureIds.Unset()
 }
 
 // GetJourneyRum returns the JourneyRum field value.
@@ -370,26 +392,28 @@ func (o *RUMOperationResponseAttributes) SetOrgId(v int64) {
 }
 
 // GetTags returns the Tags field value.
+// If the value is explicit nil, the zero value for []string will be returned.
 func (o *RUMOperationResponseAttributes) GetTags() []string {
-	if o == nil {
+	if o == nil || o.Tags.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Tags
+	return *o.Tags.Get()
 }
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *RUMOperationResponseAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tags, true
+	return o.Tags.Get(), o.Tags.IsSet()
 }
 
 // SetTags sets field value.
 func (o *RUMOperationResponseAttributes) SetTags(v []string) {
-	o.Tags = v
+	o.Tags.Set(&v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -431,32 +455,43 @@ func (o *RUMOperationResponseAttributes) UnsetUpdatedAt() {
 	o.UpdatedAt.Unset()
 }
 
-// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RUMOperationResponseAttributes) GetUpdatedBy() RUMOperationUser {
-	if o == nil || o.UpdatedBy == nil {
+	if o == nil || o.UpdatedBy.Get() == nil {
 		var ret RUMOperationUser
 		return ret
 	}
-	return *o.UpdatedBy
+	return *o.UpdatedBy.Get()
 }
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *RUMOperationResponseAttributes) GetUpdatedByOk() (*RUMOperationUser, bool) {
-	if o == nil || o.UpdatedBy == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.UpdatedBy, true
+	return o.UpdatedBy.Get(), o.UpdatedBy.IsSet()
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
 func (o *RUMOperationResponseAttributes) HasUpdatedBy() bool {
-	return o != nil && o.UpdatedBy != nil
+	return o != nil && o.UpdatedBy.IsSet()
 }
 
-// SetUpdatedBy gets a reference to the given RUMOperationUser and assigns it to the UpdatedBy field.
+// SetUpdatedBy gets a reference to the given NullableRUMOperationUser and assigns it to the UpdatedBy field.
 func (o *RUMOperationResponseAttributes) SetUpdatedBy(v RUMOperationUser) {
-	o.UpdatedBy = &v
+	o.UpdatedBy.Set(&v)
+}
+
+// SetUpdatedByNil sets the value for UpdatedBy to be an explicit nil.
+func (o *RUMOperationResponseAttributes) SetUpdatedByNil() {
+	o.UpdatedBy.Set(nil)
+}
+
+// UnsetUpdatedBy ensures that no value is present for UpdatedBy, not even an explicit nil.
+func (o *RUMOperationResponseAttributes) UnsetUpdatedBy() {
+	o.UpdatedBy.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -478,8 +513,8 @@ func (o RUMOperationResponseAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.CreatedBy != nil {
-		toSerialize["created_by"] = o.CreatedBy
+	if o.CreatedBy.IsSet() {
+		toSerialize["created_by"] = o.CreatedBy.Get()
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
@@ -487,20 +522,20 @@ func (o RUMOperationResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
-	if o.FeatureIds != nil {
-		toSerialize["feature_ids"] = o.FeatureIds
+	if o.FeatureIds.IsSet() {
+		toSerialize["feature_ids"] = o.FeatureIds.Get()
 	}
 	toSerialize["journey_rum"] = o.JourneyRum
 	toSerialize["name"] = o.Name
 	if o.OrgId != nil {
 		toSerialize["org_id"] = o.OrgId
 	}
-	toSerialize["tags"] = o.Tags
+	toSerialize["tags"] = o.Tags.Get()
 	if o.UpdatedAt.IsSet() {
 		toSerialize["updated_at"] = o.UpdatedAt.Get()
 	}
-	if o.UpdatedBy != nil {
-		toSerialize["updated_by"] = o.UpdatedBy
+	if o.UpdatedBy.IsSet() {
+		toSerialize["updated_by"] = o.UpdatedBy.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -512,19 +547,19 @@ func (o RUMOperationResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMOperationResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId datadog.NullableUUID    `json:"application_id,omitempty"`
-		Category      datadog.NullableString  `json:"category,omitempty"`
-		CreatedAt     *time.Time              `json:"created_at,omitempty"`
-		CreatedBy     *RUMOperationUser       `json:"created_by,omitempty"`
-		Description   datadog.NullableString  `json:"description,omitempty"`
-		DisplayName   *string                 `json:"display_name,omitempty"`
-		FeatureIds    []string                `json:"feature_ids,omitempty"`
-		JourneyRum    *RUMOperationJourneyRum `json:"journey_rum"`
-		Name          *string                 `json:"name"`
-		OrgId         *int64                  `json:"org_id,omitempty"`
-		Tags          *[]string               `json:"tags"`
-		UpdatedAt     datadog.NullableTime    `json:"updated_at,omitempty"`
-		UpdatedBy     *RUMOperationUser       `json:"updated_by,omitempty"`
+		ApplicationId datadog.NullableUUID         `json:"application_id,omitempty"`
+		Category      datadog.NullableString       `json:"category,omitempty"`
+		CreatedAt     *time.Time                   `json:"created_at,omitempty"`
+		CreatedBy     NullableRUMOperationUser     `json:"created_by,omitempty"`
+		Description   datadog.NullableString       `json:"description,omitempty"`
+		DisplayName   *string                      `json:"display_name,omitempty"`
+		FeatureIds    datadog.NullableList[string] `json:"feature_ids,omitempty"`
+		JourneyRum    *RUMOperationJourneyRum      `json:"journey_rum"`
+		Name          *string                      `json:"name"`
+		OrgId         *int64                       `json:"org_id,omitempty"`
+		Tags          datadog.NullableList[string] `json:"tags"`
+		UpdatedAt     datadog.NullableTime         `json:"updated_at,omitempty"`
+		UpdatedBy     NullableRUMOperationUser     `json:"updated_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -535,7 +570,7 @@ func (o *RUMOperationResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
-	if all.Tags == nil {
+	if !all.Tags.IsSet() {
 		return fmt.Errorf("required field tags missing")
 	}
 	additionalProperties := make(map[string]interface{})
@@ -549,9 +584,6 @@ func (o *RUMOperationResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.ApplicationId = all.ApplicationId
 	o.Category = all.Category
 	o.CreatedAt = all.CreatedAt
-	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.CreatedBy = all.CreatedBy
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
@@ -562,11 +594,8 @@ func (o *RUMOperationResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.JourneyRum = *all.JourneyRum
 	o.Name = *all.Name
 	o.OrgId = all.OrgId
-	o.Tags = *all.Tags
+	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
-	if all.UpdatedBy != nil && all.UpdatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.UpdatedBy = all.UpdatedBy
 
 	if len(additionalProperties) > 0 {
