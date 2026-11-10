@@ -1188,8 +1188,6 @@ func NewConfiguration() *Configuration {
 			"v2.SearchSecurityMonitoringHistsignals":                    false,
 			"v2.StartSecurityMonitoringBatchMigration":                  false,
 			"v2.StartSecurityMonitoringRuleProposal":                    false,
-			"v2.UpdateFindingsAssignee":                                 false,
-			"v2.UpdateFindingsSeverity":                                 false,
 			"v2.UpdateSecurityFindingsAutomationDueDateRule":            false,
 			"v2.UpdateSecurityFindingsAutomationInboxRule":              false,
 			"v2.UpdateSecurityFindingsAutomationMuteRule":               false,
