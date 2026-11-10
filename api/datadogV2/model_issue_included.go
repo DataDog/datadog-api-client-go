@@ -10,10 +10,12 @@ import (
 
 // IssueIncluded - An array of related resources, returned when the `include` query parameter is used.
 type IssueIncluded struct {
-	IssueCase   *IssueCase
-	IssueUser   *IssueUser
-	IssueTeam   *IssueTeam
-	IssueSample *IssueSample
+	IssueCase        *IssueCase
+	IssueUser        *IssueUser
+	IssueTeam        *IssueTeam
+	IssuePullRequest *IssuePullRequest
+	IssueWatch       *IssueWatch
+	IssueSample      *IssueSample
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -32,6 +34,16 @@ func IssueUserAsIssueIncluded(v *IssueUser) IssueIncluded {
 // IssueTeamAsIssueIncluded is a convenience function that returns IssueTeam wrapped in IssueIncluded.
 func IssueTeamAsIssueIncluded(v *IssueTeam) IssueIncluded {
 	return IssueIncluded{IssueTeam: v}
+}
+
+// IssuePullRequestAsIssueIncluded is a convenience function that returns IssuePullRequest wrapped in IssueIncluded.
+func IssuePullRequestAsIssueIncluded(v *IssuePullRequest) IssueIncluded {
+	return IssueIncluded{IssuePullRequest: v}
+}
+
+// IssueWatchAsIssueIncluded is a convenience function that returns IssueWatch wrapped in IssueIncluded.
+func IssueWatchAsIssueIncluded(v *IssueWatch) IssueIncluded {
+	return IssueIncluded{IssueWatch: v}
 }
 
 // IssueSampleAsIssueIncluded is a convenience function that returns IssueSample wrapped in IssueIncluded.
@@ -94,6 +106,40 @@ func (obj *IssueIncluded) UnmarshalJSON(data []byte) error {
 		obj.IssueTeam = nil
 	}
 
+	// try to unmarshal data into IssuePullRequest
+	err = datadog.Unmarshal(data, &obj.IssuePullRequest)
+	if err == nil {
+		if obj.IssuePullRequest != nil && obj.IssuePullRequest.UnparsedObject == nil {
+			jsonIssuePullRequest, _ := datadog.Marshal(obj.IssuePullRequest)
+			if string(jsonIssuePullRequest) == "{}" { // empty struct
+				obj.IssuePullRequest = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IssuePullRequest = nil
+		}
+	} else {
+		obj.IssuePullRequest = nil
+	}
+
+	// try to unmarshal data into IssueWatch
+	err = datadog.Unmarshal(data, &obj.IssueWatch)
+	if err == nil {
+		if obj.IssueWatch != nil && obj.IssueWatch.UnparsedObject == nil {
+			jsonIssueWatch, _ := datadog.Marshal(obj.IssueWatch)
+			if string(jsonIssueWatch) == "{}" { // empty struct
+				obj.IssueWatch = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IssueWatch = nil
+		}
+	} else {
+		obj.IssueWatch = nil
+	}
+
 	// try to unmarshal data into IssueSample
 	err = datadog.Unmarshal(data, &obj.IssueSample)
 	if err == nil {
@@ -116,6 +162,8 @@ func (obj *IssueIncluded) UnmarshalJSON(data []byte) error {
 		obj.IssueCase = nil
 		obj.IssueUser = nil
 		obj.IssueTeam = nil
+		obj.IssuePullRequest = nil
+		obj.IssueWatch = nil
 		obj.IssueSample = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -134,6 +182,14 @@ func (obj IssueIncluded) MarshalJSON() ([]byte, error) {
 
 	if obj.IssueTeam != nil {
 		return datadog.Marshal(&obj.IssueTeam)
+	}
+
+	if obj.IssuePullRequest != nil {
+		return datadog.Marshal(&obj.IssuePullRequest)
+	}
+
+	if obj.IssueWatch != nil {
+		return datadog.Marshal(&obj.IssueWatch)
 	}
 
 	if obj.IssueSample != nil {
@@ -158,6 +214,14 @@ func (obj *IssueIncluded) GetActualInstance() interface{} {
 
 	if obj.IssueTeam != nil {
 		return obj.IssueTeam
+	}
+
+	if obj.IssuePullRequest != nil {
+		return obj.IssuePullRequest
+	}
+
+	if obj.IssueWatch != nil {
+		return obj.IssueWatch
 	}
 
 	if obj.IssueSample != nil {

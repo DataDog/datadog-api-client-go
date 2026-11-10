@@ -109,6 +109,7 @@ func (r *GetIssueOptionalParameters) WithFilterSamplesBiases(filterSamplesBiases
 
 // GetIssue Get the details of an error tracking issue.
 // Retrieve the full details for a specific error tracking issue, including attributes and relationships.
+// Returns 403 if the caller lacks the `error_tracking_read` permission or does not have access to the issue's data.
 func (a *ErrorTrackingApi) GetIssue(ctx _context.Context, issueId string, o ...GetIssueOptionalParameters) (IssueResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
