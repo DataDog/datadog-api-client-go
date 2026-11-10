@@ -14,6 +14,10 @@ import (
 type AIGuardEvaluateAttributesResponse struct {
 	// The recommended action for the evaluated conversation.
 	Action AIGuardAction `json:"action"`
+	// The span tags that tracers should add to the `ai_guard` span. Each item contains a
+	// backend-defined key and value, and clients should not assume a fixed set of keys.
+	// Example keys include `ai_guard.evaluate_id` and `ai_guard.evaluation_context`.
+	ExtraTags []AIGuardExtraTag `json:"extra_tags,omitempty"`
 	// The global threat probability, between `0` and `1`. Included only when computed.
 	GlobalProb *float64 `json:"global_prob,omitempty"`
 	// Whether blocking is enabled for the organization.
@@ -92,6 +96,34 @@ func (o *AIGuardEvaluateAttributesResponse) GetActionOk() (*AIGuardAction, bool)
 // SetAction sets field value.
 func (o *AIGuardEvaluateAttributesResponse) SetAction(v AIGuardAction) {
 	o.Action = v
+}
+
+// GetExtraTags returns the ExtraTags field value if set, zero value otherwise.
+func (o *AIGuardEvaluateAttributesResponse) GetExtraTags() []AIGuardExtraTag {
+	if o == nil || o.ExtraTags == nil {
+		var ret []AIGuardExtraTag
+		return ret
+	}
+	return o.ExtraTags
+}
+
+// GetExtraTagsOk returns a tuple with the ExtraTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AIGuardEvaluateAttributesResponse) GetExtraTagsOk() (*[]AIGuardExtraTag, bool) {
+	if o == nil || o.ExtraTags == nil {
+		return nil, false
+	}
+	return &o.ExtraTags, true
+}
+
+// HasExtraTags returns a boolean if a field has been set.
+func (o *AIGuardEvaluateAttributesResponse) HasExtraTags() bool {
+	return o != nil && o.ExtraTags != nil
+}
+
+// SetExtraTags gets a reference to the given []AIGuardExtraTag and assigns it to the ExtraTags field.
+func (o *AIGuardEvaluateAttributesResponse) SetExtraTags(v []AIGuardExtraTag) {
+	o.ExtraTags = v
 }
 
 // GetGlobalProb returns the GlobalProb field value if set, zero value otherwise.
@@ -307,6 +339,9 @@ func (o AIGuardEvaluateAttributesResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["action"] = o.Action
+	if o.ExtraTags != nil {
+		toSerialize["extra_tags"] = o.ExtraTags
+	}
 	if o.GlobalProb != nil {
 		toSerialize["global_prob"] = o.GlobalProb
 	}
@@ -336,6 +371,7 @@ func (o AIGuardEvaluateAttributesResponse) MarshalJSON() ([]byte, error) {
 func (o *AIGuardEvaluateAttributesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Action                *AIGuardAction                `json:"action"`
+		ExtraTags             []AIGuardExtraTag             `json:"extra_tags,omitempty"`
 		GlobalProb            *float64                      `json:"global_prob,omitempty"`
 		IsBlockingEnabled     *bool                         `json:"is_blocking_enabled"`
 		Reason                *string                       `json:"reason"`
@@ -365,7 +401,7 @@ func (o *AIGuardEvaluateAttributesResponse) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "global_prob", "is_blocking_enabled", "reason", "redaction_replacements", "scfw_findings", "sds_findings", "tag_probs", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "extra_tags", "global_prob", "is_blocking_enabled", "reason", "redaction_replacements", "scfw_findings", "sds_findings", "tag_probs", "tags"})
 	} else {
 		return err
 	}
@@ -376,6 +412,7 @@ func (o *AIGuardEvaluateAttributesResponse) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		o.Action = *all.Action
 	}
+	o.ExtraTags = all.ExtraTags
 	o.GlobalProb = all.GlobalProb
 	o.IsBlockingEnabled = *all.IsBlockingEnabled
 	o.Reason = *all.Reason
