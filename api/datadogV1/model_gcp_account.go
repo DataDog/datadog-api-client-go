@@ -5,6 +5,8 @@
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -35,6 +37,8 @@ type GCPAccount struct {
 	// **Note:** This field is deprecated. Instead, use `monitored_resource_configs` with `type=gce_instance`
 	// Deprecated
 	HostFilters *string `json:"host_filters,omitempty"`
+	// The Datadog-assigned ID of the GCP integration account.
+	Id *uuid.UUID `json:"id,omitempty"`
 	// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled to be set to true.
 	IsCspmEnabled *bool `json:"is_cspm_enabled,omitempty"`
 	// When enabled, Datadog scans for all resource change data in your Google Cloud environment.
@@ -341,6 +345,34 @@ func (o *GCPAccount) HasHostFilters() bool {
 // Deprecated
 func (o *GCPAccount) SetHostFilters(v string) {
 	o.HostFilters = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GCPAccount) GetId() uuid.UUID {
+	if o == nil || o.Id == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPAccount) GetIdOk() (*uuid.UUID, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *GCPAccount) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given uuid.UUID and assigns it to the Id field.
+func (o *GCPAccount) SetId(v uuid.UUID) {
+	o.Id = &v
 }
 
 // GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.
@@ -656,6 +688,9 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	if o.HostFilters != nil {
 		toSerialize["host_filters"] = o.HostFilters
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.IsCspmEnabled != nil {
 		toSerialize["is_cspm_enabled"] = o.IsCspmEnabled
 	}
@@ -705,6 +740,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		CloudRunRevisionFilters           []string                     `json:"cloud_run_revision_filters,omitempty"`
 		Errors                            []string                     `json:"errors,omitempty"`
 		HostFilters                       *string                      `json:"host_filters,omitempty"`
+		Id                                *uuid.UUID                   `json:"id,omitempty"`
 		IsCspmEnabled                     *bool                        `json:"is_cspm_enabled,omitempty"`
 		IsResourceChangeCollectionEnabled *bool                        `json:"is_resource_change_collection_enabled,omitempty"`
 		IsSecurityCommandCenterEnabled    *bool                        `json:"is_security_command_center_enabled,omitempty"`
@@ -721,7 +757,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "cloud_run_revision_filters", "errors", "host_filters", "is_cspm_enabled", "is_resource_change_collection_enabled", "is_security_command_center_enabled", "monitored_resource_configs", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "cloud_run_revision_filters", "errors", "host_filters", "id", "is_cspm_enabled", "is_resource_change_collection_enabled", "is_security_command_center_enabled", "monitored_resource_configs", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type"})
 	} else {
 		return err
 	}
@@ -734,6 +770,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.CloudRunRevisionFilters = all.CloudRunRevisionFilters
 	o.Errors = all.Errors
 	o.HostFilters = all.HostFilters
+	o.Id = all.Id
 	o.IsCspmEnabled = all.IsCspmEnabled
 	o.IsResourceChangeCollectionEnabled = all.IsResourceChangeCollectionEnabled
 	o.IsSecurityCommandCenterEnabled = all.IsSecurityCommandCenterEnabled
