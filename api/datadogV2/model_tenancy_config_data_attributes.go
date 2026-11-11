@@ -10,6 +10,8 @@ import (
 
 // TenancyConfigDataAttributes Attributes of an OCI tenancy integration configuration, including authentication details, region settings, and collection options.
 type TenancyConfigDataAttributes struct {
+	// List of Datadog tags applied to data collected from the tenancy.
+	AccountTags []string `json:"account_tags,omitempty"`
 	// The identifier of the billing plan associated with the OCI tenancy.
 	BillingPlanId *int32 `json:"billing_plan_id,omitempty"`
 	// Version number of the integration the tenancy is integrated with
@@ -18,8 +20,16 @@ type TenancyConfigDataAttributes struct {
 	CostCollectionEnabled *bool `json:"cost_collection_enabled,omitempty"`
 	// The OCID of the OCI compartment used by the Datadog integration stack.
 	DdCompartmentId *string `json:"dd_compartment_id,omitempty"`
+	// The version of the Datadog infrastructure-as-code stack applied to the tenancy (for example, 1.2.0).
+	DdIacVersion *string `json:"dd_iac_version,omitempty"`
 	// The OCID of the OCI Resource Manager stack used by the Datadog integration.
 	DdStackId *string `json:"dd_stack_id,omitempty"`
+	// List of OCI defined tags applied to the Datadog-managed connector hubs.
+	DefinedTags []string `json:"defined_tags,omitempty"`
+	// Whether resource change events collection from OCI is enabled for the tenancy.
+	EventsCollectionEnabled *bool `json:"events_collection_enabled,omitempty"`
+	// Access control details for the tenancy configuration, used to determine whether the requesting user can edit it.
+	GraceResource *TenancyConfigDataAttributesGraceResource `json:"grace_resource,omitempty"`
 	// The home region of the OCI tenancy (for example, us-ashburn-1).
 	HomeRegion *string `json:"home_region,omitempty"`
 	// Log collection configuration for an OCI tenancy, indicating which compartments and services have log collection enabled.
@@ -32,6 +42,8 @@ type TenancyConfigDataAttributes struct {
 	RegionsConfig *TenancyConfigDataAttributesRegionsConfig `json:"regions_config,omitempty"`
 	// Whether resource collection from OCI is enabled for the tenancy.
 	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
+	// Whether service quota collection from OCI is enabled for the tenancy.
+	ServiceQuotaCollectionEnabled *bool `json:"service_quota_collection_enabled,omitempty"`
 	// The human-readable name of the OCI tenancy.
 	TenancyName *string `json:"tenancy_name,omitempty"`
 	// The OCID of the OCI user used by the Datadog integration for authentication.
@@ -56,6 +68,34 @@ func NewTenancyConfigDataAttributes() *TenancyConfigDataAttributes {
 func NewTenancyConfigDataAttributesWithDefaults() *TenancyConfigDataAttributes {
 	this := TenancyConfigDataAttributes{}
 	return &this
+}
+
+// GetAccountTags returns the AccountTags field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetAccountTags() []string {
+	if o == nil || o.AccountTags == nil {
+		var ret []string
+		return ret
+	}
+	return o.AccountTags
+}
+
+// GetAccountTagsOk returns a tuple with the AccountTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetAccountTagsOk() (*[]string, bool) {
+	if o == nil || o.AccountTags == nil {
+		return nil, false
+	}
+	return &o.AccountTags, true
+}
+
+// HasAccountTags returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasAccountTags() bool {
+	return o != nil && o.AccountTags != nil
+}
+
+// SetAccountTags gets a reference to the given []string and assigns it to the AccountTags field.
+func (o *TenancyConfigDataAttributes) SetAccountTags(v []string) {
+	o.AccountTags = v
 }
 
 // GetBillingPlanId returns the BillingPlanId field value if set, zero value otherwise.
@@ -170,6 +210,34 @@ func (o *TenancyConfigDataAttributes) SetDdCompartmentId(v string) {
 	o.DdCompartmentId = &v
 }
 
+// GetDdIacVersion returns the DdIacVersion field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetDdIacVersion() string {
+	if o == nil || o.DdIacVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.DdIacVersion
+}
+
+// GetDdIacVersionOk returns a tuple with the DdIacVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetDdIacVersionOk() (*string, bool) {
+	if o == nil || o.DdIacVersion == nil {
+		return nil, false
+	}
+	return o.DdIacVersion, true
+}
+
+// HasDdIacVersion returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasDdIacVersion() bool {
+	return o != nil && o.DdIacVersion != nil
+}
+
+// SetDdIacVersion gets a reference to the given string and assigns it to the DdIacVersion field.
+func (o *TenancyConfigDataAttributes) SetDdIacVersion(v string) {
+	o.DdIacVersion = &v
+}
+
 // GetDdStackId returns the DdStackId field value if set, zero value otherwise.
 func (o *TenancyConfigDataAttributes) GetDdStackId() string {
 	if o == nil || o.DdStackId == nil {
@@ -196,6 +264,90 @@ func (o *TenancyConfigDataAttributes) HasDdStackId() bool {
 // SetDdStackId gets a reference to the given string and assigns it to the DdStackId field.
 func (o *TenancyConfigDataAttributes) SetDdStackId(v string) {
 	o.DdStackId = &v
+}
+
+// GetDefinedTags returns the DefinedTags field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetDefinedTags() []string {
+	if o == nil || o.DefinedTags == nil {
+		var ret []string
+		return ret
+	}
+	return o.DefinedTags
+}
+
+// GetDefinedTagsOk returns a tuple with the DefinedTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetDefinedTagsOk() (*[]string, bool) {
+	if o == nil || o.DefinedTags == nil {
+		return nil, false
+	}
+	return &o.DefinedTags, true
+}
+
+// HasDefinedTags returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasDefinedTags() bool {
+	return o != nil && o.DefinedTags != nil
+}
+
+// SetDefinedTags gets a reference to the given []string and assigns it to the DefinedTags field.
+func (o *TenancyConfigDataAttributes) SetDefinedTags(v []string) {
+	o.DefinedTags = v
+}
+
+// GetEventsCollectionEnabled returns the EventsCollectionEnabled field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetEventsCollectionEnabled() bool {
+	if o == nil || o.EventsCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EventsCollectionEnabled
+}
+
+// GetEventsCollectionEnabledOk returns a tuple with the EventsCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetEventsCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.EventsCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.EventsCollectionEnabled, true
+}
+
+// HasEventsCollectionEnabled returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasEventsCollectionEnabled() bool {
+	return o != nil && o.EventsCollectionEnabled != nil
+}
+
+// SetEventsCollectionEnabled gets a reference to the given bool and assigns it to the EventsCollectionEnabled field.
+func (o *TenancyConfigDataAttributes) SetEventsCollectionEnabled(v bool) {
+	o.EventsCollectionEnabled = &v
+}
+
+// GetGraceResource returns the GraceResource field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetGraceResource() TenancyConfigDataAttributesGraceResource {
+	if o == nil || o.GraceResource == nil {
+		var ret TenancyConfigDataAttributesGraceResource
+		return ret
+	}
+	return *o.GraceResource
+}
+
+// GetGraceResourceOk returns a tuple with the GraceResource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetGraceResourceOk() (*TenancyConfigDataAttributesGraceResource, bool) {
+	if o == nil || o.GraceResource == nil {
+		return nil, false
+	}
+	return o.GraceResource, true
+}
+
+// HasGraceResource returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasGraceResource() bool {
+	return o != nil && o.GraceResource != nil
+}
+
+// SetGraceResource gets a reference to the given TenancyConfigDataAttributesGraceResource and assigns it to the GraceResource field.
+func (o *TenancyConfigDataAttributes) SetGraceResource(v TenancyConfigDataAttributesGraceResource) {
+	o.GraceResource = &v
 }
 
 // GetHomeRegion returns the HomeRegion field value if set, zero value otherwise.
@@ -366,6 +518,34 @@ func (o *TenancyConfigDataAttributes) SetResourceCollectionEnabled(v bool) {
 	o.ResourceCollectionEnabled = &v
 }
 
+// GetServiceQuotaCollectionEnabled returns the ServiceQuotaCollectionEnabled field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributes) GetServiceQuotaCollectionEnabled() bool {
+	if o == nil || o.ServiceQuotaCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ServiceQuotaCollectionEnabled
+}
+
+// GetServiceQuotaCollectionEnabledOk returns a tuple with the ServiceQuotaCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributes) GetServiceQuotaCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.ServiceQuotaCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.ServiceQuotaCollectionEnabled, true
+}
+
+// HasServiceQuotaCollectionEnabled returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributes) HasServiceQuotaCollectionEnabled() bool {
+	return o != nil && o.ServiceQuotaCollectionEnabled != nil
+}
+
+// SetServiceQuotaCollectionEnabled gets a reference to the given bool and assigns it to the ServiceQuotaCollectionEnabled field.
+func (o *TenancyConfigDataAttributes) SetServiceQuotaCollectionEnabled(v bool) {
+	o.ServiceQuotaCollectionEnabled = &v
+}
+
 // GetTenancyName returns the TenancyName field value if set, zero value otherwise.
 func (o *TenancyConfigDataAttributes) GetTenancyName() string {
 	if o == nil || o.TenancyName == nil {
@@ -428,6 +608,9 @@ func (o TenancyConfigDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AccountTags != nil {
+		toSerialize["account_tags"] = o.AccountTags
+	}
 	if o.BillingPlanId != nil {
 		toSerialize["billing_plan_id"] = o.BillingPlanId
 	}
@@ -440,8 +623,20 @@ func (o TenancyConfigDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.DdCompartmentId != nil {
 		toSerialize["dd_compartment_id"] = o.DdCompartmentId
 	}
+	if o.DdIacVersion != nil {
+		toSerialize["dd_iac_version"] = o.DdIacVersion
+	}
 	if o.DdStackId != nil {
 		toSerialize["dd_stack_id"] = o.DdStackId
+	}
+	if o.DefinedTags != nil {
+		toSerialize["defined_tags"] = o.DefinedTags
+	}
+	if o.EventsCollectionEnabled != nil {
+		toSerialize["events_collection_enabled"] = o.EventsCollectionEnabled
+	}
+	if o.GraceResource != nil {
+		toSerialize["grace_resource"] = o.GraceResource
 	}
 	if o.HomeRegion != nil {
 		toSerialize["home_region"] = o.HomeRegion
@@ -461,6 +656,9 @@ func (o TenancyConfigDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.ResourceCollectionEnabled != nil {
 		toSerialize["resource_collection_enabled"] = o.ResourceCollectionEnabled
 	}
+	if o.ServiceQuotaCollectionEnabled != nil {
+		toSerialize["service_quota_collection_enabled"] = o.ServiceQuotaCollectionEnabled
+	}
 	if o.TenancyName != nil {
 		toSerialize["tenancy_name"] = o.TenancyName
 	}
@@ -477,36 +675,50 @@ func (o TenancyConfigDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TenancyConfigDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BillingPlanId             *int32                                    `json:"billing_plan_id,omitempty"`
-		ConfigVersion             *int64                                    `json:"config_version,omitempty"`
-		CostCollectionEnabled     *bool                                     `json:"cost_collection_enabled,omitempty"`
-		DdCompartmentId           *string                                   `json:"dd_compartment_id,omitempty"`
-		DdStackId                 *string                                   `json:"dd_stack_id,omitempty"`
-		HomeRegion                *string                                   `json:"home_region,omitempty"`
-		LogsConfig                *TenancyConfigDataAttributesLogsConfig    `json:"logs_config,omitempty"`
-		MetricsConfig             *TenancyConfigDataAttributesMetricsConfig `json:"metrics_config,omitempty"`
-		ParentTenancyName         *string                                   `json:"parent_tenancy_name,omitempty"`
-		RegionsConfig             *TenancyConfigDataAttributesRegionsConfig `json:"regions_config,omitempty"`
-		ResourceCollectionEnabled *bool                                     `json:"resource_collection_enabled,omitempty"`
-		TenancyName               *string                                   `json:"tenancy_name,omitempty"`
-		UserOcid                  *string                                   `json:"user_ocid,omitempty"`
+		AccountTags                   []string                                  `json:"account_tags,omitempty"`
+		BillingPlanId                 *int32                                    `json:"billing_plan_id,omitempty"`
+		ConfigVersion                 *int64                                    `json:"config_version,omitempty"`
+		CostCollectionEnabled         *bool                                     `json:"cost_collection_enabled,omitempty"`
+		DdCompartmentId               *string                                   `json:"dd_compartment_id,omitempty"`
+		DdIacVersion                  *string                                   `json:"dd_iac_version,omitempty"`
+		DdStackId                     *string                                   `json:"dd_stack_id,omitempty"`
+		DefinedTags                   []string                                  `json:"defined_tags,omitempty"`
+		EventsCollectionEnabled       *bool                                     `json:"events_collection_enabled,omitempty"`
+		GraceResource                 *TenancyConfigDataAttributesGraceResource `json:"grace_resource,omitempty"`
+		HomeRegion                    *string                                   `json:"home_region,omitempty"`
+		LogsConfig                    *TenancyConfigDataAttributesLogsConfig    `json:"logs_config,omitempty"`
+		MetricsConfig                 *TenancyConfigDataAttributesMetricsConfig `json:"metrics_config,omitempty"`
+		ParentTenancyName             *string                                   `json:"parent_tenancy_name,omitempty"`
+		RegionsConfig                 *TenancyConfigDataAttributesRegionsConfig `json:"regions_config,omitempty"`
+		ResourceCollectionEnabled     *bool                                     `json:"resource_collection_enabled,omitempty"`
+		ServiceQuotaCollectionEnabled *bool                                     `json:"service_quota_collection_enabled,omitempty"`
+		TenancyName                   *string                                   `json:"tenancy_name,omitempty"`
+		UserOcid                      *string                                   `json:"user_ocid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billing_plan_id", "config_version", "cost_collection_enabled", "dd_compartment_id", "dd_stack_id", "home_region", "logs_config", "metrics_config", "parent_tenancy_name", "regions_config", "resource_collection_enabled", "tenancy_name", "user_ocid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "billing_plan_id", "config_version", "cost_collection_enabled", "dd_compartment_id", "dd_iac_version", "dd_stack_id", "defined_tags", "events_collection_enabled", "grace_resource", "home_region", "logs_config", "metrics_config", "parent_tenancy_name", "regions_config", "resource_collection_enabled", "service_quota_collection_enabled", "tenancy_name", "user_ocid"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AccountTags = all.AccountTags
 	o.BillingPlanId = all.BillingPlanId
 	o.ConfigVersion = all.ConfigVersion
 	o.CostCollectionEnabled = all.CostCollectionEnabled
 	o.DdCompartmentId = all.DdCompartmentId
+	o.DdIacVersion = all.DdIacVersion
 	o.DdStackId = all.DdStackId
+	o.DefinedTags = all.DefinedTags
+	o.EventsCollectionEnabled = all.EventsCollectionEnabled
+	if all.GraceResource != nil && all.GraceResource.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.GraceResource = all.GraceResource
 	o.HomeRegion = all.HomeRegion
 	if all.LogsConfig != nil && all.LogsConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -522,6 +734,7 @@ func (o *TenancyConfigDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.RegionsConfig = all.RegionsConfig
 	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
+	o.ServiceQuotaCollectionEnabled = all.ServiceQuotaCollectionEnabled
 	o.TenancyName = all.TenancyName
 	o.UserOcid = all.UserOcid
 

@@ -10,12 +10,12 @@ import (
 
 // TenancyConfigDataAttributesRegionsConfig Region configuration for an OCI tenancy, indicating which regions are available, enabled, or disabled for data collection.
 type TenancyConfigDataAttributesRegionsConfig struct {
-	// List of OCI regions available for data collection in the tenancy.
-	Available []string `json:"available,omitempty"`
-	// List of OCI regions explicitly disabled for data collection.
-	Disabled []string `json:"disabled,omitempty"`
-	// List of OCI regions enabled for data collection.
-	Enabled []string `json:"enabled,omitempty"`
+	// List of OCI regions available for data collection in the tenancy. Returns `null` when no regions are set.
+	Available datadog.NullableList[string] `json:"available,omitempty"`
+	// List of OCI regions explicitly disabled for data collection. Returns `null` when no regions are set.
+	Disabled datadog.NullableList[string] `json:"disabled,omitempty"`
+	// List of OCI regions enabled for data collection. Returns `null` when no regions are set.
+	Enabled datadog.NullableList[string] `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -38,88 +38,121 @@ func NewTenancyConfigDataAttributesRegionsConfigWithDefaults() *TenancyConfigDat
 	return &this
 }
 
-// GetAvailable returns the Available field value if set, zero value otherwise.
+// GetAvailable returns the Available field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenancyConfigDataAttributesRegionsConfig) GetAvailable() []string {
-	if o == nil || o.Available == nil {
+	if o == nil || o.Available.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Available
+	return *o.Available.Get()
 }
 
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TenancyConfigDataAttributesRegionsConfig) GetAvailableOk() (*[]string, bool) {
-	if o == nil || o.Available == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Available, true
+	return o.Available.Get(), o.Available.IsSet()
 }
 
 // HasAvailable returns a boolean if a field has been set.
 func (o *TenancyConfigDataAttributesRegionsConfig) HasAvailable() bool {
-	return o != nil && o.Available != nil
+	return o != nil && o.Available.IsSet()
 }
 
-// SetAvailable gets a reference to the given []string and assigns it to the Available field.
+// SetAvailable gets a reference to the given datadog.NullableList[string] and assigns it to the Available field.
 func (o *TenancyConfigDataAttributesRegionsConfig) SetAvailable(v []string) {
-	o.Available = v
+	o.Available.Set(&v)
 }
 
-// GetDisabled returns the Disabled field value if set, zero value otherwise.
+// SetAvailableNil sets the value for Available to be an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) SetAvailableNil() {
+	o.Available.Set(nil)
+}
+
+// UnsetAvailable ensures that no value is present for Available, not even an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) UnsetAvailable() {
+	o.Available.Unset()
+}
+
+// GetDisabled returns the Disabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenancyConfigDataAttributesRegionsConfig) GetDisabled() []string {
-	if o == nil || o.Disabled == nil {
+	if o == nil || o.Disabled.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Disabled
+	return *o.Disabled.Get()
 }
 
 // GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TenancyConfigDataAttributesRegionsConfig) GetDisabledOk() (*[]string, bool) {
-	if o == nil || o.Disabled == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Disabled, true
+	return o.Disabled.Get(), o.Disabled.IsSet()
 }
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *TenancyConfigDataAttributesRegionsConfig) HasDisabled() bool {
-	return o != nil && o.Disabled != nil
+	return o != nil && o.Disabled.IsSet()
 }
 
-// SetDisabled gets a reference to the given []string and assigns it to the Disabled field.
+// SetDisabled gets a reference to the given datadog.NullableList[string] and assigns it to the Disabled field.
 func (o *TenancyConfigDataAttributesRegionsConfig) SetDisabled(v []string) {
-	o.Disabled = v
+	o.Disabled.Set(&v)
 }
 
-// GetEnabled returns the Enabled field value if set, zero value otherwise.
+// SetDisabledNil sets the value for Disabled to be an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) SetDisabledNil() {
+	o.Disabled.Set(nil)
+}
+
+// UnsetDisabled ensures that no value is present for Disabled, not even an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) UnsetDisabled() {
+	o.Disabled.Unset()
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenancyConfigDataAttributesRegionsConfig) GetEnabled() []string {
-	if o == nil || o.Enabled == nil {
+	if o == nil || o.Enabled.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Enabled
+	return *o.Enabled.Get()
 }
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TenancyConfigDataAttributesRegionsConfig) GetEnabledOk() (*[]string, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled.Get(), o.Enabled.IsSet()
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *TenancyConfigDataAttributesRegionsConfig) HasEnabled() bool {
-	return o != nil && o.Enabled != nil
+	return o != nil && o.Enabled.IsSet()
 }
 
-// SetEnabled gets a reference to the given []string and assigns it to the Enabled field.
+// SetEnabled gets a reference to the given datadog.NullableList[string] and assigns it to the Enabled field.
 func (o *TenancyConfigDataAttributesRegionsConfig) SetEnabled(v []string) {
-	o.Enabled = v
+	o.Enabled.Set(&v)
+}
+
+// SetEnabledNil sets the value for Enabled to be an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) SetEnabledNil() {
+	o.Enabled.Set(nil)
+}
+
+// UnsetEnabled ensures that no value is present for Enabled, not even an explicit nil.
+func (o *TenancyConfigDataAttributesRegionsConfig) UnsetEnabled() {
+	o.Enabled.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -128,14 +161,14 @@ func (o TenancyConfigDataAttributesRegionsConfig) MarshalJSON() ([]byte, error) 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Available != nil {
-		toSerialize["available"] = o.Available
+	if o.Available.IsSet() {
+		toSerialize["available"] = o.Available.Get()
 	}
-	if o.Disabled != nil {
-		toSerialize["disabled"] = o.Disabled
+	if o.Disabled.IsSet() {
+		toSerialize["disabled"] = o.Disabled.Get()
 	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
+	if o.Enabled.IsSet() {
+		toSerialize["enabled"] = o.Enabled.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -147,9 +180,9 @@ func (o TenancyConfigDataAttributesRegionsConfig) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *TenancyConfigDataAttributesRegionsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Available []string `json:"available,omitempty"`
-		Disabled  []string `json:"disabled,omitempty"`
-		Enabled   []string `json:"enabled,omitempty"`
+		Available datadog.NullableList[string] `json:"available,omitempty"`
+		Disabled  datadog.NullableList[string] `json:"disabled,omitempty"`
+		Enabled   datadog.NullableList[string] `json:"enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
