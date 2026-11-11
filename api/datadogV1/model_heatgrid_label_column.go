@@ -5,15 +5,15 @@
 package datadogV1
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HeatgridLabelColumn Configuration of the group label column.
+// HeatgridLabelColumn Configuration of the group label column. Its width is sized automatically when omitted.
 type HeatgridLabelColumn struct {
+	// Ordered string replacement rules for the group labels.
+	TextFormats []HeatgridTextFormatRule `json:"text_formats,omitempty"`
 	// Width of the label column.
-	Width HeatgridLabelColumnWidth `json:"width"`
+	Width *HeatgridLabelColumnWidth `json:"width,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
@@ -22,9 +22,8 @@ type HeatgridLabelColumn struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHeatgridLabelColumn(width HeatgridLabelColumnWidth) *HeatgridLabelColumn {
+func NewHeatgridLabelColumn() *HeatgridLabelColumn {
 	this := HeatgridLabelColumn{}
-	this.Width = width
 	return &this
 }
 
@@ -36,27 +35,60 @@ func NewHeatgridLabelColumnWithDefaults() *HeatgridLabelColumn {
 	return &this
 }
 
-// GetWidth returns the Width field value.
+// GetTextFormats returns the TextFormats field value if set, zero value otherwise.
+func (o *HeatgridLabelColumn) GetTextFormats() []HeatgridTextFormatRule {
+	if o == nil || o.TextFormats == nil {
+		var ret []HeatgridTextFormatRule
+		return ret
+	}
+	return o.TextFormats
+}
+
+// GetTextFormatsOk returns a tuple with the TextFormats field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatgridLabelColumn) GetTextFormatsOk() (*[]HeatgridTextFormatRule, bool) {
+	if o == nil || o.TextFormats == nil {
+		return nil, false
+	}
+	return &o.TextFormats, true
+}
+
+// HasTextFormats returns a boolean if a field has been set.
+func (o *HeatgridLabelColumn) HasTextFormats() bool {
+	return o != nil && o.TextFormats != nil
+}
+
+// SetTextFormats gets a reference to the given []HeatgridTextFormatRule and assigns it to the TextFormats field.
+func (o *HeatgridLabelColumn) SetTextFormats(v []HeatgridTextFormatRule) {
+	o.TextFormats = v
+}
+
+// GetWidth returns the Width field value if set, zero value otherwise.
 func (o *HeatgridLabelColumn) GetWidth() HeatgridLabelColumnWidth {
-	if o == nil {
+	if o == nil || o.Width == nil {
 		var ret HeatgridLabelColumnWidth
 		return ret
 	}
-	return o.Width
+	return *o.Width
 }
 
-// GetWidthOk returns a tuple with the Width field value
+// GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HeatgridLabelColumn) GetWidthOk() (*HeatgridLabelColumnWidth, bool) {
-	if o == nil {
+	if o == nil || o.Width == nil {
 		return nil, false
 	}
-	return &o.Width, true
+	return o.Width, true
 }
 
-// SetWidth sets field value.
+// HasWidth returns a boolean if a field has been set.
+func (o *HeatgridLabelColumn) HasWidth() bool {
+	return o != nil && o.Width != nil
+}
+
+// SetWidth gets a reference to the given HeatgridLabelColumnWidth and assigns it to the Width field.
 func (o *HeatgridLabelColumn) SetWidth(v HeatgridLabelColumnWidth) {
-	o.Width = v
+	o.Width = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -65,27 +97,31 @@ func (o HeatgridLabelColumn) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["width"] = o.Width
+	if o.TextFormats != nil {
+		toSerialize["text_formats"] = o.TextFormats
+	}
+	if o.Width != nil {
+		toSerialize["width"] = o.Width
+	}
 	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
 func (o *HeatgridLabelColumn) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Width *HeatgridLabelColumnWidth `json:"width"`
+		TextFormats []HeatgridTextFormatRule  `json:"text_formats,omitempty"`
+		Width       *HeatgridLabelColumnWidth `json:"width,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Width == nil {
-		return fmt.Errorf("required field width missing")
-	}
 
 	hasInvalidField := false
-	if !all.Width.IsValid() {
+	o.TextFormats = all.TextFormats
+	if all.Width != nil && !all.Width.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Width = *all.Width
+		o.Width = all.Width
 	}
 
 	if hasInvalidField {
