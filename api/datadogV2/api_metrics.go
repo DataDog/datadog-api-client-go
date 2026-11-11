@@ -906,6 +906,11 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 //
 // To compare current volumes across many metrics, use `GET /api/v2/metrics` with `include=metric_volumes`
 // instead of calling this endpoint for each metric.
+//
+// A `404 Not Found` response means that no metric with this name exists in your organization. A
+// `400 Bad Request` response means that a query parameter is invalid, or that the metric has no data in the
+// queried window. For no data, the error message says so and names the window that was queried, which can
+// differ from the requested one.
 func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1620,9 +1625,9 @@ func (a *MetricsApi) ListMetricAssets(ctx _context.Context, metricName string) (
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
 //
-// A metric may exist and submit data without having a tag configuration. A `404 Not Found` response usually
-// means that the metric has no tag configuration, but it is also returned when no metric with this name exists
-// in your organization.
+// A metric may exist and submit data without having a tag configuration. Both cases return `404 Not Found`,
+// with different messages: `No tag configuration for <metric_name>` when the metric exists without a tag
+// configuration, and `<metric_name> not found` when no metric with this name exists in your organization.
 //
 // To list tag configurations for many metrics, use `GET /api/v2/metrics` with `filter[configured]=true`
 // instead of calling this endpoint for each metric.
