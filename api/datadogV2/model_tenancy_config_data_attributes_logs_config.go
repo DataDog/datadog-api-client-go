@@ -16,6 +16,8 @@ type TenancyConfigDataAttributesLogsConfig struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// List of OCI service names for which log collection is enabled.
 	EnabledServices []string `json:"enabled_services,omitempty"`
+	// Map of OCI service names to the resource tag filters that scope log collection for that service.
+	ResourceTagFilters map[string][]string `json:"resource_tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -122,6 +124,34 @@ func (o *TenancyConfigDataAttributesLogsConfig) SetEnabledServices(v []string) {
 	o.EnabledServices = v
 }
 
+// GetResourceTagFilters returns the ResourceTagFilters field value if set, zero value otherwise.
+func (o *TenancyConfigDataAttributesLogsConfig) GetResourceTagFilters() map[string][]string {
+	if o == nil || o.ResourceTagFilters == nil {
+		var ret map[string][]string
+		return ret
+	}
+	return o.ResourceTagFilters
+}
+
+// GetResourceTagFiltersOk returns a tuple with the ResourceTagFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenancyConfigDataAttributesLogsConfig) GetResourceTagFiltersOk() (*map[string][]string, bool) {
+	if o == nil || o.ResourceTagFilters == nil {
+		return nil, false
+	}
+	return &o.ResourceTagFilters, true
+}
+
+// HasResourceTagFilters returns a boolean if a field has been set.
+func (o *TenancyConfigDataAttributesLogsConfig) HasResourceTagFilters() bool {
+	return o != nil && o.ResourceTagFilters != nil
+}
+
+// SetResourceTagFilters gets a reference to the given map[string][]string and assigns it to the ResourceTagFilters field.
+func (o *TenancyConfigDataAttributesLogsConfig) SetResourceTagFilters(v map[string][]string) {
+	o.ResourceTagFilters = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TenancyConfigDataAttributesLogsConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,6 +167,9 @@ func (o TenancyConfigDataAttributesLogsConfig) MarshalJSON() ([]byte, error) {
 	if o.EnabledServices != nil {
 		toSerialize["enabled_services"] = o.EnabledServices
 	}
+	if o.ResourceTagFilters != nil {
+		toSerialize["resource_tag_filters"] = o.ResourceTagFilters
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -147,22 +180,24 @@ func (o TenancyConfigDataAttributesLogsConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TenancyConfigDataAttributesLogsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CompartmentTagFilters []string `json:"compartment_tag_filters,omitempty"`
-		Enabled               *bool    `json:"enabled,omitempty"`
-		EnabledServices       []string `json:"enabled_services,omitempty"`
+		CompartmentTagFilters []string            `json:"compartment_tag_filters,omitempty"`
+		Enabled               *bool               `json:"enabled,omitempty"`
+		EnabledServices       []string            `json:"enabled_services,omitempty"`
+		ResourceTagFilters    map[string][]string `json:"resource_tag_filters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compartment_tag_filters", "enabled", "enabled_services"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compartment_tag_filters", "enabled", "enabled_services", "resource_tag_filters"})
 	} else {
 		return err
 	}
 	o.CompartmentTagFilters = all.CompartmentTagFilters
 	o.Enabled = all.Enabled
 	o.EnabledServices = all.EnabledServices
+	o.ResourceTagFilters = all.ResourceTagFilters
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
