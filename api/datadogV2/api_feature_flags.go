@@ -17,9 +17,217 @@ import (
 // FeatureFlagsApi service type
 type FeatureFlagsApi datadog.Service
 
+// ApplyFlagSuggestion Apply an approved flag change suggestion.
+// Applies a previously approved feature flag change suggestion. Requires contributor or
+// editor access to the flag. Pending, rejected, or discarded suggestions return `409 Conflict`.
+// An already applied suggestion also returns `409 Conflict`, except that retrying an applied
+// experiment action succeeds. This endpoint does not require a request body.
+//
+// When an `ALLOCATIONS` suggestion is applied, either by this endpoint or by an approval that applies it,
+// each exposure schedule with `autostart` set to `true`, no `absolute_start_time`, and no future
+// `scheduled_start_time` starts at apply time. This includes a schedule that is already running, so a
+// suggestion that omits its `absolute_start_time` restarts its rollout. If its `selection_interval_ms` is
+// greater than `0`, every step except the last uses that interval. An `absolute_start_time` in the
+// suggestion is kept, including one set by the allocations request that built the suggestion, so time spent
+// waiting for approval counts toward its rollout steps.
+// Schedules with `apm_retention`, in the suggestion or on the saved schedule, are the exception: apply does
+// not start them, and they start only through the exposure schedule start endpoint. When the suggestion omits
+// `apm_retention` or `absolute_start_time` for a saved schedule with `apm_retention`, apply keeps the saved
+// values, so a running schedule keeps its start, unless the suggestion changes its rollout strategy, which
+// stops it.
+func (a *FeatureFlagsApi) ApplyFlagSuggestion(ctx _context.Context, suggestionId uuid.UUID) (FeatureFlagSuggestionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagSuggestionResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.ApplyFlagSuggestion")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/suggestions/{suggestion_id}/apply"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suggestion_id}", _neturl.PathEscape(datadog.ParameterToString(suggestionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ApproveFlagSuggestion Approve a flag change suggestion.
+// Approves a feature flag change suggestion and applies the change immediately by default.
+// Set `apply` to `false` to approve without applying, then call `ApplyFlagSuggestion` later.
+// Until it is applied or deleted, an approved suggestion still blocks conflicting changes.
+// Requires editor access to the flag or the Feature Flag Approvals Override permission.
+// A creator cannot approve their own suggestion unless they have override permission.
+// Applied or discarded suggestions return `409 Conflict`. Retrying approval of an already
+// applied experiment action with `apply` set to `true` succeeds.
+func (a *FeatureFlagsApi) ApproveFlagSuggestion(ctx _context.Context, suggestionId uuid.UUID, body ApproveFlagSuggestionRequest) (FeatureFlagSuggestionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagSuggestionResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.ApproveFlagSuggestion")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/suggestions/{suggestion_id}/approve"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suggestion_id}", _neturl.PathEscape(datadog.ParameterToString(suggestionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ArchiveFeatureFlag Archive a feature flag.
-// Archives a feature flag. Archived flags are
-// hidden from the main list but remain accessible and can be unarchived.
+// Archives a feature flag. Archived flags are hidden from the main list but remain accessible
+// and can be unarchived.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion. The change is not applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) ArchiveFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID) (FeatureFlagResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -80,6 +288,15 @@ func (a *FeatureFlagsApi) ArchiveFeatureFlag(ctx _context.Context, featureFlagId
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -97,7 +314,17 @@ func (a *FeatureFlagsApi) ArchiveFeatureFlag(ctx _context.Context, featureFlagId
 }
 
 // CreateAllocationsForFeatureFlagInEnvironment Create targeting rules for a flag env.
-// Creates a new targeting rule (allocation) for a specific feature flag in a specific environment.
+// Creates a new targeting rule (allocation) for a feature flag in an environment.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `202 Accepted` with an
+// `approval-required` resource. No allocation is created and no suggestion is persisted.
+// The resource ID is the flag ID. Submit its `property`, `action`, `suggestion`, and `environment_id`
+// to `CreateFlagSuggestion`, together with `notification_rule_targets`, to request approval.
+// The suggestion value contains the complete desired allocation set, including the new rule.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict`, including for callers with
+// override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) CreateAllocationsForFeatureFlagInEnvironment(ctx _context.Context, featureFlagId uuid.UUID, environmentId uuid.UUID, body CreateAllocationsRequest) (AllocationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -338,6 +565,119 @@ func (a *FeatureFlagsApi) CreateFeatureFlagsEnvironment(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateFlagSuggestion Create a flag change suggestion.
+// Creates a persisted suggestion for a feature flag change that requires approval.
+// The change is not applied until the suggestion is approved and applied. Requires
+// contributor or editor access to the flag. The request must contain at least one
+// `notification_rule_targets` handle for review notifications.
+//
+// Use this endpoint to submit the proposed change from the `202 Accepted` approval-required
+// response of `CreateAllocationsForFeatureFlagInEnvironment`. Other approval-gated mutation endpoints
+// return `201 Created` with a persisted suggestion. Do not submit those suggestions again.
+//
+// An `environment_id` is required for `ALLOCATIONS`, `DEFAULT_VARIANT`, and `OVERRIDE_VARIANT`.
+// For allocation and variant changes, `suggestion` is a JSON-encoded string, not a nested
+// JSON object. Conflicting suggestions that are pending, or approved but not yet applied,
+// return `409 Conflict`.
+//
+// The allocations in an `ALLOCATIONS` suggestion are validated with the rules that
+// `UpdateAllocationsForFeatureFlagInEnvironment` applies to a change that requires approval, including the
+// rules for request fields, targeting rules and their `ONE_OF` and `NOT_ONE_OF` value limits, variant and
+// metric references, draft allocations, and exposure schedules. A schedule with `apm_retention` that has not
+// started must be started with the exposure schedule start endpoint, not with `autostart` or an
+// `absolute_start_time`. That endpoint's Product Analytics Experiments Write permission checks also apply.
+// If that endpoint would reject the allocations, this endpoint returns the same error: `400 Bad Request` for
+// invalid allocations, for example a `UNIFORM_INTERVALS` schedule with a `selection_interval_ms` of `0`,
+// `403 Forbidden` when the caller lacks the Experiments Write permission the lineup needs, and
+// `409 Conflict` for a lineup that changes or omits a draft allocation.
+func (a *FeatureFlagsApi) CreateFlagSuggestion(ctx _context.Context, featureFlagId uuid.UUID, body CreateFlagSuggestionRequest) (FeatureFlagSuggestionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagSuggestionResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.CreateFlagSuggestion")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/{feature_flag_id}/suggestions"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{feature_flag_id}", _neturl.PathEscape(datadog.ParameterToString(featureFlagId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // CreateVariantForFeatureFlag Add a variant to a feature flag.
 // Adds a single new variant to an existing feature flag. This endpoint is
 // additive-only: it never modifies existing variants. A request whose `key`
@@ -493,10 +833,98 @@ func (a *FeatureFlagsApi) DeleteFeatureFlagsEnvironment(ctx _context.Context, en
 	return localVarHTTPResponse, nil
 }
 
+// DeleteFlagSuggestion Delete or discard a flag change suggestion.
+// Deletes a pending suggestion or discards an approved suggestion that has not been
+// applied. Requires editor access to the flag, or contributor access for the suggestion's
+// creator. Applied and rejected suggestions return `409 Conflict`. A missing or already
+// discarded suggestion returns `204 No Content`.
+func (a *FeatureFlagsApi) DeleteFlagSuggestion(ctx _context.Context, suggestionId uuid.UUID) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.DeleteFlagSuggestion")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/suggestions/{suggestion_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suggestion_id}", _neturl.PathEscape(datadog.ParameterToString(suggestionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 // DeleteVariantFromFeatureFlag Delete a variant.
 // Deletes a variant from a feature flag.
 //
-// When backend approvals are enabled and the flag requires approval, this endpoint creates and returns a `FlagSuggestion` with `201 Created` instead of deleting the variant immediately. If a pending suggestion already exists for this flag's variant property, the endpoint returns `409 Conflict`.
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion, in the same format as the `GetFlagSuggestion` response. The change is not
+// applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) DeleteVariantFromFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, variantId uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -565,7 +993,17 @@ func (a *FeatureFlagsApi) DeleteVariantFromFeatureFlag(ctx _context.Context, fea
 }
 
 // DisableFeatureFlagEnvironment Disable a feature flag in an environment.
-// Disable a feature flag in a specific environment.
+// Disables a feature flag in a specific environment.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion, in the same format as the `GetFlagSuggestion` response. The change is not
+// applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) DisableFeatureFlagEnvironment(ctx _context.Context, featureFlagId uuid.UUID, environmentId uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -619,6 +1057,15 @@ func (a *FeatureFlagsApi) DisableFeatureFlagEnvironment(ctx _context.Context, fe
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -634,7 +1081,17 @@ func (a *FeatureFlagsApi) DisableFeatureFlagEnvironment(ctx _context.Context, fe
 }
 
 // EnableFeatureFlagEnvironment Enable a feature flag in an environment.
-// Enable a feature flag in a specific environment.
+// Enables a feature flag in a specific environment.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion, in the same format as the `GetFlagSuggestion` response. The change is not
+// applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) EnableFeatureFlagEnvironment(ctx _context.Context, featureFlagId uuid.UUID, environmentId uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -687,6 +1144,15 @@ func (a *FeatureFlagsApi) EnableFeatureFlagEnvironment(ctx _context.Context, fea
 		newErr := datadog.GenericOpenAPIError{
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
@@ -837,6 +1303,95 @@ func (a *FeatureFlagsApi) GetFeatureFlagsEnvironment(ctx _context.Context, envir
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetFlagSuggestion Get a flag change suggestion.
+// Returns a feature flag change suggestion by ID. Use `lifecycle_status` to distinguish
+// pending, approved, applied, rejected, and discarded suggestions. An approved suggestion
+// has not yet been applied; an applied suggestion has changed the flag.
+func (a *FeatureFlagsApi) GetFlagSuggestion(ctx _context.Context, suggestionId uuid.UUID) (FeatureFlagSuggestionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagSuggestionResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.GetFlagSuggestion")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/suggestions/{suggestion_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suggestion_id}", _neturl.PathEscape(datadog.ParameterToString(suggestionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1498,6 +2053,99 @@ func (a *FeatureFlagsApi) PauseExposureSchedule(ctx _context.Context, exposureSc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// RejectFlagSuggestion Reject a flag change suggestion.
+// Rejects a pending feature flag change suggestion without applying the change. Requires
+// editor access to the flag or the Feature Flag Approvals Override permission. Rejecting
+// an already rejected suggestion succeeds. Approved, applied, or discarded suggestions
+// return `409 Conflict`.
+func (a *FeatureFlagsApi) RejectFlagSuggestion(ctx _context.Context, suggestionId uuid.UUID, body RejectFlagSuggestionRequest) (FeatureFlagSuggestionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagSuggestionResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.RejectFlagSuggestion")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/suggestions/{suggestion_id}/reject"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suggestion_id}", _neturl.PathEscape(datadog.ParameterToString(suggestionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ResumeExposureSchedule Resume a progressive rollout.
 // Resumes progression for a previously paused progressive rollout.
 func (a *FeatureFlagsApi) ResumeExposureSchedule(ctx _context.Context, exposureScheduleId uuid.UUID) (AllocationExposureScheduleResponse, *_nethttp.Response, error) {
@@ -1733,8 +2381,16 @@ func (a *FeatureFlagsApi) StopExposureSchedule(ctx _context.Context, exposureSch
 }
 
 // UnarchiveFeatureFlag Unarchive a feature flag.
-// Unarchives a previously archived feature flag,
-// making it visible in the main list again.
+// Unarchives a previously archived feature flag, making it visible in the main list again.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion. The change is not applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) UnarchiveFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID) (FeatureFlagResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1795,6 +2451,15 @@ func (a *FeatureFlagsApi) UnarchiveFeatureFlag(ctx _context.Context, featureFlag
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1811,15 +2476,53 @@ func (a *FeatureFlagsApi) UnarchiveFeatureFlag(ctx _context.Context, featureFlag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters holds optional parameters for UpdateAllocationsForFeatureFlagInEnvironment.
+type UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters struct {
+	DefaultVariantKey *string
+}
+
+// NewUpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters creates an empty struct for parameters.
+func NewUpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters() *UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters {
+	this := UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters{}
+	return &this
+}
+
+// WithDefaultVariantKey sets the corresponding parameter name and returns the struct.
+func (r *UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters) WithDefaultVariantKey(defaultVariantKey string) *UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters {
+	r.DefaultVariantKey = &defaultVariantKey
+	return r
+}
+
 // UpdateAllocationsForFeatureFlagInEnvironment Update targeting rules for a flag.
-// Updates targeting rules (allocations) for a specific feature flag in a specific environment.
-// This operation replaces the existing allocation set with the request payload.
-func (a *FeatureFlagsApi) UpdateAllocationsForFeatureFlagInEnvironment(ctx _context.Context, featureFlagId uuid.UUID, environmentId uuid.UUID, body OverwriteAllocationsRequest) (ListAllocationsResponse, *_nethttp.Response, error) {
+// Updates targeting rules (allocations) for a feature flag in an environment. This operation
+// replaces the existing allocation set with the request payload.
+//
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion. The change is not applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
+//
+// When approval is required, combining allocation replacement with `default_variant_key`
+// returns `400 Bad Request`. Omit that parameter and submit the default variant change
+// separately with `CreateFlagSuggestion` using the `DEFAULT_VARIANT` property and the variant ID.
+func (a *FeatureFlagsApi) UpdateAllocationsForFeatureFlagInEnvironment(ctx _context.Context, featureFlagId uuid.UUID, environmentId uuid.UUID, body OverwriteAllocationsRequest, o ...UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters) (ListAllocationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue ListAllocationsResponse
+		optionalParams      UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.UpdateAllocationsForFeatureFlagInEnvironment")
 	if err != nil {
@@ -1833,6 +2536,9 @@ func (a *FeatureFlagsApi) UpdateAllocationsForFeatureFlagInEnvironment(ctx _cont
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.DefaultVariantKey != nil {
+		localVarQueryParams.Add("default_variant_key", datadog.ParameterToString(*optionalParams.DefaultVariantKey, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1895,14 +2601,30 @@ func (a *FeatureFlagsApi) UpdateAllocationsForFeatureFlagInEnvironment(ctx _cont
 }
 
 // UpdateFeatureFlag Update a feature flag.
-// Updates an existing feature flag's metadata such as
-//
-//	name and description. Does not modify targeting rules or allocations.
+// Updates an existing feature flag's metadata, including its name,
+// description, distribution channel, and tags. Does not modify targeting rules or allocations.
 //
 // To change the owning team, update `tags` and include a tag of the form
 // `team:<team-handle>` in the array. `tags` is a full replacement of the
 // existing tag set (including any `team:` tag), so include every tag you
 // want to keep, not just the ones you're adding.
+//
+// To change the lifecycle, set `staleness_status` to `ACTIVE` (temporary) or `PERMANENT`.
+// Either value clears any snooze; omit it to keep the lifecycle. Send `staleness_status` in a
+// separate request from `distribution_channel`. Do not copy the top-level `staleness_status`
+// from a response into the request: that legacy response field is always `ACTIVE`, so
+// copying it makes a `PERMANENT` flag temporary.
+//
+// When backend approvals are enabled and a distribution channel change requires approval,
+// callers without the Feature Flag Approvals Override permission receive `201 Created`
+// with a suggestion instead of an updated flag. No fields in the request are applied.
+// The suggestion contains only the distribution channel change. To update other fields, such as
+// name, description, JSON schema, and tags, send a separate request without `distribution_channel`.
+//
+// While backend approvals are enabled, a request that includes `distribution_channel`
+// returns `409 Conflict` if a distribution channel suggestion for the flag is pending, or
+// approved but not yet applied. No fields are applied, including for callers with override
+// permission.
 func (a *FeatureFlagsApi) UpdateFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, body UpdateFeatureFlagRequest) (FeatureFlagResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -1960,6 +2682,109 @@ func (a *FeatureFlagsApi) UpdateFeatureFlag(ctx _context.Context, featureFlagId 
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UpdateFeatureFlagApprovals Set the approval requirement for a feature flag.
+// Enables or disables the approval requirement for a feature flag. Requires the Feature
+// Flag Write permission and contributor or editor access to the flag. Disabling approvals
+// also requires the Feature Flag Approvals Override permission, even if approvals are already disabled.
+// This operation updates the setting directly and does not create a suggestion. Changing the setting
+// returns `409 Conflict` when a pending experiment request or a running approved experiment uses the flag.
+func (a *FeatureFlagsApi) UpdateFeatureFlagApprovals(ctx _context.Context, featureFlagId uuid.UUID, body UpdateFeatureFlagApprovalsRequest) (FeatureFlagResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue FeatureFlagResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.FeatureFlagsApi.UpdateFeatureFlagApprovals")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/feature-flags/{feature_flag_id}/require-approval"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{feature_flag_id}", _neturl.PathEscape(datadog.ParameterToString(featureFlagId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2183,7 +3008,15 @@ func (a *FeatureFlagsApi) UpdateSavedFilterAttributes(ctx _context.Context, save
 // UpdateVariantForFeatureFlag Update a variant.
 // Updates the name and value of an existing variant on a feature flag.
 //
-// When backend approvals are enabled and the flag requires approval, this endpoint creates and returns a `FlagSuggestion` with `201 Created` instead of applying the change immediately. Use the returned suggestion `id` to approve or reject the change. If a pending suggestion already exists for this flag's variant property, the endpoint returns `409 Conflict`.
+// When backend approvals are enabled and this change requires approval, callers without
+// the Feature Flag Approvals Override permission receive `201 Created` with a persisted
+// suggestion, in the same format as the `GetFlagSuggestion` response. The change is not
+// applied until the suggestion is approved and applied.
+// Use the returned suggestion ID with `GetFlagSuggestion`, `ApproveFlagSuggestion`,
+// `RejectFlagSuggestion`, or `DeleteFlagSuggestion`.
+//
+// A conflicting suggestion that is pending, or approved but not yet applied, returns `409 Conflict` without applying the change,
+// including for callers with override permission or when approval is no longer required.
 func (a *FeatureFlagsApi) UpdateVariantForFeatureFlag(ctx _context.Context, featureFlagId uuid.UUID, variantId uuid.UUID, body UpdateVariantRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
