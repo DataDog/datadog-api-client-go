@@ -642,6 +642,7 @@
 //   - [ExperimentsApi.GetMetricCollection]
 //   - [ExperimentsApi.GetMetricSQLModel]
 //   - [ExperimentsApi.GetSubjectType]
+//   - [ExperimentsApi.ListExperimentHoldouts]
 //   - [ExperimentsApi.ListExperimentMetricGroups]
 //   - [ExperimentsApi.ListExperimentProtocols]
 //   - [ExperimentsApi.ListExperiments]
