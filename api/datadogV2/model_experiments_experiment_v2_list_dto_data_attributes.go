@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -28,6 +30,8 @@ type ExperimentsExperimentV2ListDTODataAttributes struct {
 	EventsStartDate datadog.NullableTime `json:"events_start_date,omitempty"`
 	// Kind of experiment. STANDARD is an ordinary experiment. Other values, such as CANARY and HOLDOUT, identify experiments owned by another workflow. New kinds may be added; treat unknown values as non-standard.
 	ExperimentType *string `json:"experiment_type,omitempty"`
+	// IDs of the holdouts the experiment is attached to, in evaluation order: MANAGED holdouts first, starting with the GLOBAL holdout, followed by EXTERNAL holdouts. For a draft experiment, the list includes the GLOBAL holdout that the experiment would join if it started. `GET /api/v2/experiments/{experiment_id}/holdouts` returns their details.
+	HoldoutIds []uuid.UUID `json:"holdout_ids,omitempty"`
 	// Expected effect that the experiment is designed to test.
 	Hypothesis *string `json:"hypothesis,omitempty"`
 	// Metadata associated with migration of this resource.
@@ -355,6 +359,34 @@ func (o *ExperimentsExperimentV2ListDTODataAttributes) HasExperimentType() bool 
 // SetExperimentType gets a reference to the given string and assigns it to the ExperimentType field.
 func (o *ExperimentsExperimentV2ListDTODataAttributes) SetExperimentType(v string) {
 	o.ExperimentType = &v
+}
+
+// GetHoldoutIds returns the HoldoutIds field value if set, zero value otherwise.
+func (o *ExperimentsExperimentV2ListDTODataAttributes) GetHoldoutIds() []uuid.UUID {
+	if o == nil || o.HoldoutIds == nil {
+		var ret []uuid.UUID
+		return ret
+	}
+	return o.HoldoutIds
+}
+
+// GetHoldoutIdsOk returns a tuple with the HoldoutIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsExperimentV2ListDTODataAttributes) GetHoldoutIdsOk() (*[]uuid.UUID, bool) {
+	if o == nil || o.HoldoutIds == nil {
+		return nil, false
+	}
+	return &o.HoldoutIds, true
+}
+
+// HasHoldoutIds returns a boolean if a field has been set.
+func (o *ExperimentsExperimentV2ListDTODataAttributes) HasHoldoutIds() bool {
+	return o != nil && o.HoldoutIds != nil
+}
+
+// SetHoldoutIds gets a reference to the given []uuid.UUID and assigns it to the HoldoutIds field.
+func (o *ExperimentsExperimentV2ListDTODataAttributes) SetHoldoutIds(v []uuid.UUID) {
+	o.HoldoutIds = v
 }
 
 // GetHypothesis returns the Hypothesis field value if set, zero value otherwise.
@@ -805,6 +837,9 @@ func (o ExperimentsExperimentV2ListDTODataAttributes) MarshalJSON() ([]byte, err
 	if o.ExperimentType != nil {
 		toSerialize["experiment_type"] = o.ExperimentType
 	}
+	if o.HoldoutIds != nil {
+		toSerialize["holdout_ids"] = o.HoldoutIds
+	}
 	if o.Hypothesis != nil {
 		toSerialize["hypothesis"] = o.Hypothesis
 	}
@@ -869,6 +904,7 @@ func (o *ExperimentsExperimentV2ListDTODataAttributes) UnmarshalJSON(bytes []byt
 		EventsEndDate        datadog.NullableTime                                                  `json:"events_end_date,omitempty"`
 		EventsStartDate      datadog.NullableTime                                                  `json:"events_start_date,omitempty"`
 		ExperimentType       *string                                                               `json:"experiment_type,omitempty"`
+		HoldoutIds           []uuid.UUID                                                           `json:"holdout_ids,omitempty"`
 		Hypothesis           *string                                                               `json:"hypothesis,omitempty"`
 		MigrationMetadata    interface{}                                                           `json:"migration_metadata,omitempty"`
 		Name                 *string                                                               `json:"name,omitempty"`
@@ -889,7 +925,7 @@ func (o *ExperimentsExperimentV2ListDTODataAttributes) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignments_end_date", "assignments_start_date", "concluded_at", "conclusion", "created_at", "events_end_date", "events_start_date", "experiment_type", "hypothesis", "migration_metadata", "name", "pipeline_table_suffix", "protocol_id", "related_links", "results_last_updated", "status", "structured_metadata", "subject_type_id", "summary", "tags", "teams", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignments_end_date", "assignments_start_date", "concluded_at", "conclusion", "created_at", "events_end_date", "events_start_date", "experiment_type", "holdout_ids", "hypothesis", "migration_metadata", "name", "pipeline_table_suffix", "protocol_id", "related_links", "results_last_updated", "status", "structured_metadata", "subject_type_id", "summary", "tags", "teams", "updated_at"})
 	} else {
 		return err
 	}
@@ -906,6 +942,7 @@ func (o *ExperimentsExperimentV2ListDTODataAttributes) UnmarshalJSON(bytes []byt
 	o.EventsEndDate = all.EventsEndDate
 	o.EventsStartDate = all.EventsStartDate
 	o.ExperimentType = all.ExperimentType
+	o.HoldoutIds = all.HoldoutIds
 	o.Hypothesis = all.Hypothesis
 	o.MigrationMetadata = all.MigrationMetadata
 	o.Name = all.Name
