@@ -1535,6 +1535,7 @@ func NewConfiguration() *Configuration {
 			"v2.QueryProductAnalyticsSankey":                            false,
 			"v2.CreateConnection":                                       false,
 			"v2.DeleteConnection":                                       false,
+			"v2.DeleteUserProfile":                                      false,
 			"v2.GetAccountFacetInfo":                                    false,
 			"v2.GetMapping":                                             false,
 			"v2.GetUserFacetInfo":                                       false,
