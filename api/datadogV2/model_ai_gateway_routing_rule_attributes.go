@@ -15,8 +15,8 @@ import (
 type AiGatewayRoutingRuleAttributes struct {
 	// Time when the resource was created.
 	CreatedAt time.Time `json:"created_at"`
-	// Stable numeric route identifier used by scoped policies.
-	RouteId *int64 `json:"route_id,omitempty"`
+	// Stable numeric route identifier used by scoped policies and `ai-gateway-route` restriction policies.
+	RouteId int64 `json:"route_id"`
 	//
 	Tiers []AiGatewayRoutingRuleTier `json:"tiers"`
 	// Time when the resource was last updated.
@@ -30,9 +30,10 @@ type AiGatewayRoutingRuleAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAiGatewayRoutingRuleAttributes(createdAt time.Time, tiers []AiGatewayRoutingRuleTier, updatedAt time.Time) *AiGatewayRoutingRuleAttributes {
+func NewAiGatewayRoutingRuleAttributes(createdAt time.Time, routeId int64, tiers []AiGatewayRoutingRuleTier, updatedAt time.Time) *AiGatewayRoutingRuleAttributes {
 	this := AiGatewayRoutingRuleAttributes{}
 	this.CreatedAt = createdAt
+	this.RouteId = routeId
 	this.Tiers = tiers
 	this.UpdatedAt = updatedAt
 	return &this
@@ -69,32 +70,27 @@ func (o *AiGatewayRoutingRuleAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
-// GetRouteId returns the RouteId field value if set, zero value otherwise.
+// GetRouteId returns the RouteId field value.
 func (o *AiGatewayRoutingRuleAttributes) GetRouteId() int64 {
-	if o == nil || o.RouteId == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.RouteId
+	return o.RouteId
 }
 
-// GetRouteIdOk returns a tuple with the RouteId field value if set, nil otherwise
+// GetRouteIdOk returns a tuple with the RouteId field value
 // and a boolean to check if the value has been set.
 func (o *AiGatewayRoutingRuleAttributes) GetRouteIdOk() (*int64, bool) {
-	if o == nil || o.RouteId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RouteId, true
+	return &o.RouteId, true
 }
 
-// HasRouteId returns a boolean if a field has been set.
-func (o *AiGatewayRoutingRuleAttributes) HasRouteId() bool {
-	return o != nil && o.RouteId != nil
-}
-
-// SetRouteId gets a reference to the given int64 and assigns it to the RouteId field.
+// SetRouteId sets field value.
 func (o *AiGatewayRoutingRuleAttributes) SetRouteId(v int64) {
-	o.RouteId = &v
+	o.RouteId = v
 }
 
 // GetTiers returns the Tiers field value.
@@ -154,9 +150,7 @@ func (o AiGatewayRoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
-	if o.RouteId != nil {
-		toSerialize["route_id"] = o.RouteId
-	}
+	toSerialize["route_id"] = o.RouteId
 	toSerialize["tiers"] = o.Tiers
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -174,7 +168,7 @@ func (o AiGatewayRoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 func (o *AiGatewayRoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt *time.Time                  `json:"created_at"`
-		RouteId   *int64                      `json:"route_id,omitempty"`
+		RouteId   *int64                      `json:"route_id"`
 		Tiers     *[]AiGatewayRoutingRuleTier `json:"tiers"`
 		UpdatedAt *time.Time                  `json:"updated_at"`
 	}{}
@@ -183,6 +177,9 @@ func (o *AiGatewayRoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	if all.CreatedAt == nil {
 		return fmt.Errorf("required field created_at missing")
+	}
+	if all.RouteId == nil {
+		return fmt.Errorf("required field route_id missing")
 	}
 	if all.Tiers == nil {
 		return fmt.Errorf("required field tiers missing")
@@ -197,7 +194,7 @@ func (o *AiGatewayRoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	o.CreatedAt = *all.CreatedAt
-	o.RouteId = all.RouteId
+	o.RouteId = *all.RouteId
 	o.Tiers = *all.Tiers
 	o.UpdatedAt = *all.UpdatedAt
 

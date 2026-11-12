@@ -17,8 +17,8 @@ type RestrictionPoliciesApi datadog.Service
 
 // DeleteRestrictionPolicy Delete a restriction policy.
 // Deletes the restriction policy associated with a specified resource.
-// For AI Gateway provider policies, requires `ai_gateway_config_write` and standard restriction-policy authorization.
-// Deleting a provider policy restores normal unrestricted defaults.
+// For AI Gateway provider and route policies, requires `ai_gateway_config_write` and standard restriction-policy authorization.
+// Deleting a provider or route policy restores normal unrestricted defaults.
 func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, resourceId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -87,7 +87,7 @@ func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, r
 
 // GetRestrictionPolicy Get a restriction policy.
 // Retrieves the restriction policy associated with a specified resource.
-// For AI Gateway provider policies, requires `ai_gateway_config_read`.
+// For AI Gateway provider and route policies, requires `ai_gateway_config_read`.
 func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, resourceId string) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -187,6 +187,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // #### Supported resources
 // Restriction policies can be applied to the following resources:
 // - AI Gateway Providers: `ai-gateway-provider`
+// - AI Gateway Routes: `ai-gateway-route`
 // - Dashboards: `dashboard`
 // - Integration Services: `integration-service`
 // - Integration Webhooks: `integration-webhook`
@@ -216,17 +217,18 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - Feature Flags: `feature-flag`
 // - Network Path Configs: `network-path-config`
 //
-// AI Gateway provider policies control configuration and inherited model/catalog/pricing visibility.
-// The editor relation includes View. Providers have no Run relation; restriction policies don't affect inference.
-// Reading provider policies requires `ai_gateway_config_read`. Updating or deleting them requires
+// AI Gateway provider policies control configuration and inherited model/catalog/pricing visibility. Route policies control route configuration and identifying nested references.
+// The editor relation includes View. Providers and routes have no Run relation; restriction policies don't affect inference.
+// Reading provider or route policies requires `ai_gateway_config_read`. Updating or deleting them requires
 // `ai_gateway_config_write` and follows standard restriction-policy authorization, including
 // administrator recovery and self-lockout checks.
-// Providers without a restriction policy retain the normal unrestricted defaults.
+// Providers and routes without a restriction policy retain the normal unrestricted defaults.
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
 // ----------------------------|--------------------------
 // AI Gateway Providers        | `viewer`, `editor`
+// AI Gateway Routes           | `viewer`, `editor`
 // Dashboards                  | `viewer`, `editor`
 // Integration Services        | `viewer`, `editor`
 // Integration Webhooks        | `viewer`, `editor`

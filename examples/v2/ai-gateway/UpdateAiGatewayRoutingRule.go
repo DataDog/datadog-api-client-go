@@ -1,4 +1,4 @@
-// Replace an AI Gateway routing rule returns "OK" response
+// Update an AI Gateway routing rule returns "OK" response
 
 package main
 
@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
@@ -16,16 +17,28 @@ func main() {
 	body := datadogV2.AiGatewayRoutingRuleReplaceRequest{
 		Data: datadogV2.AiGatewayRoutingRuleReplaceData{
 			Attributes: datadogV2.AiGatewayRoutingRuleReplaceAttributes{
+				ExpectedUpdatedAt: datadog.PtrTime(time.Date(2026, 8, 24, 12, 0, 0, 0, time.UTC)),
+				RemovedTargetIds: []int64{
+					901,
+				},
 				Tiers: []datadogV2.AiGatewayRoutingRuleTierRequest{
 					{
+						Classifier: *datadogV2.NewNullableAiGatewayRoutingClassifierRequest(&datadogV2.AiGatewayRoutingClassifierRequest{
+							ConfidenceThreshold: *datadog.NewNullableFloat64(datadog.PtrFloat64(0.5)),
+							Context:             datadog.PtrString("Requests come from engineers."),
+							Model:               datadog.PtrString("gpt-6-luna"),
+							Provider:            datadog.PtrString("openai"),
+						}),
 						Ordering: *datadogV2.NewNullableAiGatewayNullableRoutingRuleTierOrdering(datadogV2.AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED.Ptr()),
 						Targets: []datadogV2.AiGatewayRoutingRuleTargetRequest{
 							{
+								Default:        *datadog.NewNullableBool(datadog.PtrBool(false)),
 								Id:             datadog.PtrInt64(901),
 								Model:          datadog.PtrString("gpt-5.2-codex"),
 								ModelId:        datadog.PtrInt64(101),
 								Provider:       datadog.PtrString("prod-us"),
 								ReasoningLevel: *datadogV2.NewNullableAiGatewayRoutingReasoningLevel(datadogV2.AIGATEWAYROUTINGREASONINGLEVEL_MEDIUM.Ptr()),
+								Rubric:         *datadog.NewNullableString(datadog.PtrString("Short factual questions.")),
 								Slug:           datadog.PtrString("coding-fallback"),
 								Type:           datadogV2.AIGATEWAYROUTINGRULETARGETTYPE_MODEL,
 								Weight:         *datadog.NewNullableInt64(datadog.PtrInt64(70)),

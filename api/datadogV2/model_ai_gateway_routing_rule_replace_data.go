@@ -12,7 +12,7 @@ import (
 
 // AiGatewayRoutingRuleReplaceData Data used to replace an AI Gateway routing rule.
 type AiGatewayRoutingRuleReplaceData struct {
-	// Attributes used to replace an AI Gateway routing rule.
+	// Partial route update. Omit tiers to preserve the entire graph, including hidden selections. Saved target IDs retain omitted settings. Replacing tiers must explicitly retain or remove every hidden occurrence.
 	Attributes AiGatewayRoutingRuleReplaceAttributes `json:"attributes"`
 	// Resource identifier.
 	Id string `json:"id"`

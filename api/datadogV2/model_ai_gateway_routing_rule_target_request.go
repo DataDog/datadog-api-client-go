@@ -12,7 +12,9 @@ import (
 
 // AiGatewayRoutingRuleTargetRequest Model target or reference to another routing rule used to create or replace a rule.
 type AiGatewayRoutingRuleTargetRequest struct {
-	// Saved target row ID. On replacement, retain this ID only within its original route and at most once. A stale or foreign ID is rejected.
+	// Whether this is the single default classified destination. Omission preserves a saved value; null clears it.
+	Default datadog.NullableBool `json:"default,omitempty"`
+	// Saved target row ID. On replacement, retain this ID only within its original route and at most once. A stale, foreign, duplicate, or destination-changing ID is rejected. Hidden route targets can be retained using only this parent-local ID and type.
 	Id *int64 `json:"id,omitempty"`
 	// Model name. Omit when retaining a saved target by ID or selecting a concrete target by model_id.
 	Model *string `json:"model,omitempty"`
@@ -20,13 +22,15 @@ type AiGatewayRoutingRuleTargetRequest struct {
 	ModelId *int64 `json:"model_id,omitempty"`
 	// Provider slug. weighted_affinity requires an explicit provider and does not allow "*".
 	Provider *string `json:"provider,omitempty"`
-	// Optional reasoning effort preference for this model destination. Must be supported by the selected model and provider. For provider "*", every eligible provider must support the level. An explicit value overrides the request's reasoning setting, subject to model-group policy. Omitted or null preserves request and provider behavior; none is an explicit level, not the default. Omitted or null clears an override on full replacement. Routing-rule references cannot set this field; each referenced model destination owns its override. If an override cannot be applied at runtime, the gateway keeps the destination and restores the caller's original reasoning settings, or preserves the provider default when omitted. It rechecks all applicable route and model-group policies against those settings before sending. Model-group max_reasoning_level enforces hard limits; the override is not an additional cap. Normal fallback applies if governance denies the resulting request or the destination cannot otherwise serve it. Metrics and span tags record the override outcome and incompatibility reason. When response headers have not already been committed, `X-Ai-Gateway-Reasoning-Override` reports applied or not_applied for the returned attempt, and `X-Ai-Gateway-Reasoning-Override-Reason` reports the reason when not applied.
+	// Optional reasoning effort preference for this model destination. Must be supported by the selected model and provider. For provider "*", every eligible provider must support the level. An explicit value overrides the request's reasoning setting, subject to model-group policy. Omitted or null preserves request and provider behavior; none is an explicit level, not the default. On update, omission preserves a saved target override; null explicitly clears it. Routing-rule references cannot set this field; each referenced model destination owns its override. If an override cannot be applied at runtime, the gateway keeps the destination and restores the caller's original reasoning settings, or preserves the provider default when omitted. It rechecks all applicable route and model-group policies against those settings before sending. Model-group max_reasoning_level enforces hard limits; the override is not an additional cap. Normal fallback applies if governance denies the resulting request or the destination cannot otherwise serve it. Metrics and span tags record the override outcome and incompatibility reason. When response headers have not already been committed, `X-Ai-Gateway-Reasoning-Override` reports applied or not_applied for the returned attempt, and `X-Ai-Gateway-Reasoning-Override-Reason` reports the reason when not applied.
 	ReasoningLevel NullableAiGatewayRoutingReasoningLevel `json:"reasoning_level,omitempty"`
-	// Organization-unique routing rule slug. Allowed only in configured tiers.
+	// Destination rubric in a classified tier. Omission preserves a saved value; null clears it. Must be absent on the default destination.
+	Rubric datadog.NullableString `json:"rubric,omitempty"`
+	// Organization-unique routing rule slug. New references require route View. Omit to retain a saved target by its parent-local ID. Allowed only in configured tiers.
 	Slug *string `json:"slug,omitempty"`
 	// Type of routing target.
 	Type AiGatewayRoutingRuleTargetType `json:"type"`
-	// Relative weight in a weighted_affinity tier. Omitted or null defaults to 1. Weights need not total 100. Must be omitted or null in configured tiers.
+	// Relative weight in a weighted_affinity tier. Omission preserves a saved target weight; new targets and explicit null default to 1. Weights need not total 100. Must be omitted or null in configured tiers.
 	Weight datadog.NullableInt64 `json:"weight,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -49,6 +53,45 @@ func NewAiGatewayRoutingRuleTargetRequest(typeVar AiGatewayRoutingRuleTargetType
 func NewAiGatewayRoutingRuleTargetRequestWithDefaults() *AiGatewayRoutingRuleTargetRequest {
 	this := AiGatewayRoutingRuleTargetRequest{}
 	return &this
+}
+
+// GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRoutingRuleTargetRequest) GetDefault() bool {
+	if o == nil || o.Default.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Default.Get()
+}
+
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRoutingRuleTargetRequest) GetDefaultOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Default.Get(), o.Default.IsSet()
+}
+
+// HasDefault returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleTargetRequest) HasDefault() bool {
+	return o != nil && o.Default.IsSet()
+}
+
+// SetDefault gets a reference to the given datadog.NullableBool and assigns it to the Default field.
+func (o *AiGatewayRoutingRuleTargetRequest) SetDefault(v bool) {
+	o.Default.Set(&v)
+}
+
+// SetDefaultNil sets the value for Default to be an explicit nil.
+func (o *AiGatewayRoutingRuleTargetRequest) SetDefaultNil() {
+	o.Default.Set(nil)
+}
+
+// UnsetDefault ensures that no value is present for Default, not even an explicit nil.
+func (o *AiGatewayRoutingRuleTargetRequest) UnsetDefault() {
+	o.Default.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -202,6 +245,45 @@ func (o *AiGatewayRoutingRuleTargetRequest) UnsetReasoningLevel() {
 	o.ReasoningLevel.Unset()
 }
 
+// GetRubric returns the Rubric field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRoutingRuleTargetRequest) GetRubric() string {
+	if o == nil || o.Rubric.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Rubric.Get()
+}
+
+// GetRubricOk returns a tuple with the Rubric field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRoutingRuleTargetRequest) GetRubricOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Rubric.Get(), o.Rubric.IsSet()
+}
+
+// HasRubric returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleTargetRequest) HasRubric() bool {
+	return o != nil && o.Rubric.IsSet()
+}
+
+// SetRubric gets a reference to the given datadog.NullableString and assigns it to the Rubric field.
+func (o *AiGatewayRoutingRuleTargetRequest) SetRubric(v string) {
+	o.Rubric.Set(&v)
+}
+
+// SetRubricNil sets the value for Rubric to be an explicit nil.
+func (o *AiGatewayRoutingRuleTargetRequest) SetRubricNil() {
+	o.Rubric.Set(nil)
+}
+
+// UnsetRubric ensures that no value is present for Rubric, not even an explicit nil.
+func (o *AiGatewayRoutingRuleTargetRequest) UnsetRubric() {
+	o.Rubric.Unset()
+}
+
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *AiGatewayRoutingRuleTargetRequest) GetSlug() string {
 	if o == nil || o.Slug == nil {
@@ -298,6 +380,9 @@ func (o AiGatewayRoutingRuleTargetRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Default.IsSet() {
+		toSerialize["default"] = o.Default.Get()
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -312,6 +397,9 @@ func (o AiGatewayRoutingRuleTargetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ReasoningLevel.IsSet() {
 		toSerialize["reasoning_level"] = o.ReasoningLevel.Get()
+	}
+	if o.Rubric.IsSet() {
+		toSerialize["rubric"] = o.Rubric.Get()
 	}
 	if o.Slug != nil {
 		toSerialize["slug"] = o.Slug
@@ -330,11 +418,13 @@ func (o AiGatewayRoutingRuleTargetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleTargetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Default        datadog.NullableBool                   `json:"default,omitempty"`
 		Id             *int64                                 `json:"id,omitempty"`
 		Model          *string                                `json:"model,omitempty"`
 		ModelId        *int64                                 `json:"model_id,omitempty"`
 		Provider       *string                                `json:"provider,omitempty"`
 		ReasoningLevel NullableAiGatewayRoutingReasoningLevel `json:"reasoning_level,omitempty"`
+		Rubric         datadog.NullableString                 `json:"rubric,omitempty"`
 		Slug           *string                                `json:"slug,omitempty"`
 		Type           *AiGatewayRoutingRuleTargetType        `json:"type"`
 		Weight         datadog.NullableInt64                  `json:"weight,omitempty"`
@@ -347,12 +437,13 @@ func (o *AiGatewayRoutingRuleTargetRequest) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "model", "model_id", "provider", "reasoning_level", "slug", "type", "weight"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"default", "id", "model", "model_id", "provider", "reasoning_level", "rubric", "slug", "type", "weight"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Default = all.Default
 	o.Id = all.Id
 	o.Model = all.Model
 	o.ModelId = all.ModelId
@@ -362,6 +453,7 @@ func (o *AiGatewayRoutingRuleTargetRequest) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		o.ReasoningLevel = all.ReasoningLevel
 	}
+	o.Rubric = all.Rubric
 	o.Slug = all.Slug
 	if !all.Type.IsValid() {
 		hasInvalidField = true

@@ -10,6 +10,8 @@ import (
 
 // JSONAPIErrorItem API error response body
 type JSONAPIErrorItem struct {
+	// An application-specific error code.
+	Code *string `json:"code,omitempty"`
 	// A human-readable explanation specific to this occurrence of the error.
 	Detail *string `json:"detail,omitempty"`
 	// Non-standard meta-information about the error
@@ -40,6 +42,34 @@ func NewJSONAPIErrorItem() *JSONAPIErrorItem {
 func NewJSONAPIErrorItemWithDefaults() *JSONAPIErrorItem {
 	this := JSONAPIErrorItem{}
 	return &this
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *JSONAPIErrorItem) GetCode() string {
+	if o == nil || o.Code == nil {
+		var ret string
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JSONAPIErrorItem) GetCodeOk() (*string, bool) {
+	if o == nil || o.Code == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *JSONAPIErrorItem) HasCode() bool {
+	return o != nil && o.Code != nil
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *JSONAPIErrorItem) SetCode(v string) {
+	o.Code = &v
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
@@ -188,6 +218,9 @@ func (o JSONAPIErrorItem) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
+	}
 	if o.Detail != nil {
 		toSerialize["detail"] = o.Detail
 	}
@@ -213,6 +246,7 @@ func (o JSONAPIErrorItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JSONAPIErrorItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Code   *string                 `json:"code,omitempty"`
 		Detail *string                 `json:"detail,omitempty"`
 		Meta   map[string]interface{}  `json:"meta,omitempty"`
 		Source *JSONAPIErrorItemSource `json:"source,omitempty"`
@@ -224,12 +258,13 @@ func (o *JSONAPIErrorItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"detail", "meta", "source", "status", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"code", "detail", "meta", "source", "status", "title"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Code = all.Code
 	o.Detail = all.Detail
 	o.Meta = all.Meta
 	if all.Source != nil && all.Source.UnparsedObject != nil && o.UnparsedObject == nil {

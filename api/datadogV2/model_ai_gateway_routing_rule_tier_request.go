@@ -12,7 +12,9 @@ import (
 
 // AiGatewayRoutingRuleTierRequest Routing fallback tier used to create or replace a rule.
 type AiGatewayRoutingRuleTierRequest struct {
-	// How a tier orders its targets. Omitted or null defaults to configured, which preserves target order. The weighted_affinity ordering distributes first-choice assignments by relative target weights and accepts only model targets with an explicit provider, without repeated provider and model pairs in the same tier.
+	// Decision model and settings for a classified tier. Omission preserves the saved classifier; null clears it. Newly selected models require provider View.
+	Classifier NullableAiGatewayRoutingClassifierRequest `json:"classifier,omitempty"`
+	// How a tier orders its targets. Omission preserves the saved same-position tier on update; null resets to configured. New tiers default to configured. The weighted_affinity ordering distributes first-choice assignments by relative target weights and accepts only model targets with an explicit provider, without repeated provider and model pairs in the same tier. The `classified` ordering is allowed only in the first tier and requires a classifier, destination rubrics, and one default destination.
 	Ordering NullableAiGatewayNullableRoutingRuleTierOrdering `json:"ordering,omitempty"`
 	//
 	Targets []AiGatewayRoutingRuleTargetRequest `json:"targets"`
@@ -27,8 +29,6 @@ type AiGatewayRoutingRuleTierRequest struct {
 // will change when the set of required properties is changed.
 func NewAiGatewayRoutingRuleTierRequest(targets []AiGatewayRoutingRuleTargetRequest) *AiGatewayRoutingRuleTierRequest {
 	this := AiGatewayRoutingRuleTierRequest{}
-	var ordering AiGatewayNullableRoutingRuleTierOrdering = AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED
-	this.Ordering = *NewNullableAiGatewayNullableRoutingRuleTierOrdering(&ordering)
 	this.Targets = targets
 	return &this
 }
@@ -38,9 +38,46 @@ func NewAiGatewayRoutingRuleTierRequest(targets []AiGatewayRoutingRuleTargetRequ
 // but it doesn't guarantee that properties required by API are set.
 func NewAiGatewayRoutingRuleTierRequestWithDefaults() *AiGatewayRoutingRuleTierRequest {
 	this := AiGatewayRoutingRuleTierRequest{}
-	var ordering AiGatewayNullableRoutingRuleTierOrdering = AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED
-	this.Ordering = *NewNullableAiGatewayNullableRoutingRuleTierOrdering(&ordering)
 	return &this
+}
+
+// GetClassifier returns the Classifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRoutingRuleTierRequest) GetClassifier() AiGatewayRoutingClassifierRequest {
+	if o == nil || o.Classifier.Get() == nil {
+		var ret AiGatewayRoutingClassifierRequest
+		return ret
+	}
+	return *o.Classifier.Get()
+}
+
+// GetClassifierOk returns a tuple with the Classifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRoutingRuleTierRequest) GetClassifierOk() (*AiGatewayRoutingClassifierRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Classifier.Get(), o.Classifier.IsSet()
+}
+
+// HasClassifier returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleTierRequest) HasClassifier() bool {
+	return o != nil && o.Classifier.IsSet()
+}
+
+// SetClassifier gets a reference to the given NullableAiGatewayRoutingClassifierRequest and assigns it to the Classifier field.
+func (o *AiGatewayRoutingRuleTierRequest) SetClassifier(v AiGatewayRoutingClassifierRequest) {
+	o.Classifier.Set(&v)
+}
+
+// SetClassifierNil sets the value for Classifier to be an explicit nil.
+func (o *AiGatewayRoutingRuleTierRequest) SetClassifierNil() {
+	o.Classifier.Set(nil)
+}
+
+// UnsetClassifier ensures that no value is present for Classifier, not even an explicit nil.
+func (o *AiGatewayRoutingRuleTierRequest) UnsetClassifier() {
+	o.Classifier.Unset()
 }
 
 // GetOrdering returns the Ordering field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -111,6 +148,9 @@ func (o AiGatewayRoutingRuleTierRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Classifier.IsSet() {
+		toSerialize["classifier"] = o.Classifier.Get()
+	}
 	if o.Ordering.IsSet() {
 		toSerialize["ordering"] = o.Ordering.Get()
 	}
@@ -125,8 +165,9 @@ func (o AiGatewayRoutingRuleTierRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleTierRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Ordering NullableAiGatewayNullableRoutingRuleTierOrdering `json:"ordering,omitempty"`
-		Targets  *[]AiGatewayRoutingRuleTargetRequest             `json:"targets"`
+		Classifier NullableAiGatewayRoutingClassifierRequest        `json:"classifier,omitempty"`
+		Ordering   NullableAiGatewayNullableRoutingRuleTierOrdering `json:"ordering,omitempty"`
+		Targets    *[]AiGatewayRoutingRuleTargetRequest             `json:"targets"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -136,12 +177,13 @@ func (o *AiGatewayRoutingRuleTierRequest) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ordering", "targets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"classifier", "ordering", "targets"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Classifier = all.Classifier
 	if all.Ordering.Get() != nil && !all.Ordering.Get().IsValid() {
 		hasInvalidField = true
 	} else {
