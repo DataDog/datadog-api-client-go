@@ -202,8 +202,8 @@ func (a *MetricsApi) CreateHistoricalMetricsConfiguration(ctx _context.Context, 
 }
 
 // CreateTagConfiguration Create a tag configuration.
-// Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
-// Optionally, include percentile aggregations on any distribution metric. By setting `exclude_tags_mode`
+// Define queryable tag keys for an existing count, gauge, rate, distribution, or native histogram metric.
+// Distribution and native histogram metrics support percentile aggregations. By setting `exclude_tags_mode`
 // to true, the behavior is changed from an allow-list to a deny-list, and tags in the defined list are
 // not queryable. Can only be used with application keys of users with the `Manage Tags for Metrics`
 // permission.
@@ -3208,8 +3208,8 @@ func (a *MetricsApi) UpdateDerivedMetric(ctx _context.Context, metricName string
 }
 
 // UpdateTagConfiguration Update a tag configuration.
-// Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
-// of a count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed
+// Update the tag configuration of a metric, percentile aggregations of a distribution or native histogram metric,
+// or custom aggregations of a count, rate, or gauge metric. By setting `exclude_tags_mode` to true, the behavior changes
 // from an allow-list to a deny-list, and tags in the defined list will not be queryable.
 // Can only be used with application keys from users with the `Manage Tags for Metrics` permission. This endpoint requires
 // a tag configuration to be created first.
