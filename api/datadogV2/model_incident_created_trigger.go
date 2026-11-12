@@ -10,8 +10,11 @@ import (
 
 // IncidentCreatedTrigger Trigger a workflow when an incident is declared.
 type IncidentCreatedTrigger struct {
-	// The type of incident that triggers the workflow.
+	// Deprecated. Use `incidentTypes` instead. The type of incident that triggers the workflow.
+	// Deprecated
 	IncidentType *string `json:"incidentType,omitempty"`
+	// The types of incident that trigger the workflow.
+	IncidentTypes []IncidentTriggerIncidentType `json:"incidentTypes,omitempty"`
 	// Conditions that determine which incidents trigger the workflow.
 	TagCondition *IncidentCondition `json:"tagCondition,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,6 +40,7 @@ func NewIncidentCreatedTriggerWithDefaults() *IncidentCreatedTrigger {
 }
 
 // GetIncidentType returns the IncidentType field value if set, zero value otherwise.
+// Deprecated
 func (o *IncidentCreatedTrigger) GetIncidentType() string {
 	if o == nil || o.IncidentType == nil {
 		var ret string
@@ -47,6 +51,7 @@ func (o *IncidentCreatedTrigger) GetIncidentType() string {
 
 // GetIncidentTypeOk returns a tuple with the IncidentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *IncidentCreatedTrigger) GetIncidentTypeOk() (*string, bool) {
 	if o == nil || o.IncidentType == nil {
 		return nil, false
@@ -60,8 +65,37 @@ func (o *IncidentCreatedTrigger) HasIncidentType() bool {
 }
 
 // SetIncidentType gets a reference to the given string and assigns it to the IncidentType field.
+// Deprecated
 func (o *IncidentCreatedTrigger) SetIncidentType(v string) {
 	o.IncidentType = &v
+}
+
+// GetIncidentTypes returns the IncidentTypes field value if set, zero value otherwise.
+func (o *IncidentCreatedTrigger) GetIncidentTypes() []IncidentTriggerIncidentType {
+	if o == nil || o.IncidentTypes == nil {
+		var ret []IncidentTriggerIncidentType
+		return ret
+	}
+	return o.IncidentTypes
+}
+
+// GetIncidentTypesOk returns a tuple with the IncidentTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentCreatedTrigger) GetIncidentTypesOk() (*[]IncidentTriggerIncidentType, bool) {
+	if o == nil || o.IncidentTypes == nil {
+		return nil, false
+	}
+	return &o.IncidentTypes, true
+}
+
+// HasIncidentTypes returns a boolean if a field has been set.
+func (o *IncidentCreatedTrigger) HasIncidentTypes() bool {
+	return o != nil && o.IncidentTypes != nil
+}
+
+// SetIncidentTypes gets a reference to the given []IncidentTriggerIncidentType and assigns it to the IncidentTypes field.
+func (o *IncidentCreatedTrigger) SetIncidentTypes(v []IncidentTriggerIncidentType) {
+	o.IncidentTypes = v
 }
 
 // GetTagCondition returns the TagCondition field value if set, zero value otherwise.
@@ -101,6 +135,9 @@ func (o IncidentCreatedTrigger) MarshalJSON() ([]byte, error) {
 	if o.IncidentType != nil {
 		toSerialize["incidentType"] = o.IncidentType
 	}
+	if o.IncidentTypes != nil {
+		toSerialize["incidentTypes"] = o.IncidentTypes
+	}
 	if o.TagCondition != nil {
 		toSerialize["tagCondition"] = o.TagCondition
 	}
@@ -114,21 +151,23 @@ func (o IncidentCreatedTrigger) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentCreatedTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IncidentType *string            `json:"incidentType,omitempty"`
-		TagCondition *IncidentCondition `json:"tagCondition,omitempty"`
+		IncidentType  *string                       `json:"incidentType,omitempty"`
+		IncidentTypes []IncidentTriggerIncidentType `json:"incidentTypes,omitempty"`
+		TagCondition  *IncidentCondition            `json:"tagCondition,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"incidentType", "tagCondition"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"incidentType", "incidentTypes", "tagCondition"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.IncidentType = all.IncidentType
+	o.IncidentTypes = all.IncidentTypes
 	if all.TagCondition != nil && all.TagCondition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

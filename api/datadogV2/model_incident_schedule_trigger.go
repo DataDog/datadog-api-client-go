@@ -12,8 +12,11 @@ import (
 
 // IncidentScheduleTrigger Trigger a workflow on a schedule for an incident.
 type IncidentScheduleTrigger struct {
-	// The type of incident that triggers the workflow.
+	// Deprecated. Use `incidentTypes` instead. The type of incident that triggers the workflow.
+	// Deprecated
 	IncidentType *string `json:"incidentType,omitempty"`
+	// The types of incident that trigger the workflow.
+	IncidentTypes []IncidentTriggerIncidentType `json:"incidentTypes,omitempty"`
 	// The recurrence rule for the schedule, expressed as an iCalendar `RRULE` string.
 	Rrule string `json:"rrule"`
 	// Conditions that determine which incidents trigger the workflow.
@@ -42,6 +45,7 @@ func NewIncidentScheduleTriggerWithDefaults() *IncidentScheduleTrigger {
 }
 
 // GetIncidentType returns the IncidentType field value if set, zero value otherwise.
+// Deprecated
 func (o *IncidentScheduleTrigger) GetIncidentType() string {
 	if o == nil || o.IncidentType == nil {
 		var ret string
@@ -52,6 +56,7 @@ func (o *IncidentScheduleTrigger) GetIncidentType() string {
 
 // GetIncidentTypeOk returns a tuple with the IncidentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *IncidentScheduleTrigger) GetIncidentTypeOk() (*string, bool) {
 	if o == nil || o.IncidentType == nil {
 		return nil, false
@@ -65,8 +70,37 @@ func (o *IncidentScheduleTrigger) HasIncidentType() bool {
 }
 
 // SetIncidentType gets a reference to the given string and assigns it to the IncidentType field.
+// Deprecated
 func (o *IncidentScheduleTrigger) SetIncidentType(v string) {
 	o.IncidentType = &v
+}
+
+// GetIncidentTypes returns the IncidentTypes field value if set, zero value otherwise.
+func (o *IncidentScheduleTrigger) GetIncidentTypes() []IncidentTriggerIncidentType {
+	if o == nil || o.IncidentTypes == nil {
+		var ret []IncidentTriggerIncidentType
+		return ret
+	}
+	return o.IncidentTypes
+}
+
+// GetIncidentTypesOk returns a tuple with the IncidentTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentScheduleTrigger) GetIncidentTypesOk() (*[]IncidentTriggerIncidentType, bool) {
+	if o == nil || o.IncidentTypes == nil {
+		return nil, false
+	}
+	return &o.IncidentTypes, true
+}
+
+// HasIncidentTypes returns a boolean if a field has been set.
+func (o *IncidentScheduleTrigger) HasIncidentTypes() bool {
+	return o != nil && o.IncidentTypes != nil
+}
+
+// SetIncidentTypes gets a reference to the given []IncidentTriggerIncidentType and assigns it to the IncidentTypes field.
+func (o *IncidentScheduleTrigger) SetIncidentTypes(v []IncidentTriggerIncidentType) {
+	o.IncidentTypes = v
 }
 
 // GetRrule returns the Rrule field value.
@@ -129,6 +163,9 @@ func (o IncidentScheduleTrigger) MarshalJSON() ([]byte, error) {
 	if o.IncidentType != nil {
 		toSerialize["incidentType"] = o.IncidentType
 	}
+	if o.IncidentTypes != nil {
+		toSerialize["incidentTypes"] = o.IncidentTypes
+	}
 	toSerialize["rrule"] = o.Rrule
 	if o.TagCondition != nil {
 		toSerialize["tagCondition"] = o.TagCondition
@@ -143,9 +180,10 @@ func (o IncidentScheduleTrigger) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentScheduleTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IncidentType *string            `json:"incidentType,omitempty"`
-		Rrule        *string            `json:"rrule"`
-		TagCondition *IncidentCondition `json:"tagCondition,omitempty"`
+		IncidentType  *string                       `json:"incidentType,omitempty"`
+		IncidentTypes []IncidentTriggerIncidentType `json:"incidentTypes,omitempty"`
+		Rrule         *string                       `json:"rrule"`
+		TagCondition  *IncidentCondition            `json:"tagCondition,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,13 +193,14 @@ func (o *IncidentScheduleTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"incidentType", "rrule", "tagCondition"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"incidentType", "incidentTypes", "rrule", "tagCondition"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.IncidentType = all.IncidentType
+	o.IncidentTypes = all.IncidentTypes
 	o.Rrule = *all.Rrule
 	if all.TagCondition != nil && all.TagCondition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
