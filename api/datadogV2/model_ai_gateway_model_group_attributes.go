@@ -33,6 +33,8 @@ type AiGatewayModelGroupAttributes struct {
 	Revision *int64 `json:"revision,omitempty"`
 	//
 	RoutingRules []AiGatewayModelGroupRoutingRule `json:"routing_rules"`
+	// Whether some saved routes are hidden from the caller. Omit routing_rule_slugs to preserve all memberships; replacing the visible selection also preserves saved hidden memberships.
+	RoutingRulesRestricted *bool `json:"routing_rules_restricted,omitempty"`
 	// Time when the resource was last updated.
 	UpdatedAt time.Time `json:"updated_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -304,6 +306,34 @@ func (o *AiGatewayModelGroupAttributes) SetRoutingRules(v []AiGatewayModelGroupR
 	o.RoutingRules = v
 }
 
+// GetRoutingRulesRestricted returns the RoutingRulesRestricted field value if set, zero value otherwise.
+func (o *AiGatewayModelGroupAttributes) GetRoutingRulesRestricted() bool {
+	if o == nil || o.RoutingRulesRestricted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RoutingRulesRestricted
+}
+
+// GetRoutingRulesRestrictedOk returns a tuple with the RoutingRulesRestricted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelGroupAttributes) GetRoutingRulesRestrictedOk() (*bool, bool) {
+	if o == nil || o.RoutingRulesRestricted == nil {
+		return nil, false
+	}
+	return o.RoutingRulesRestricted, true
+}
+
+// HasRoutingRulesRestricted returns a boolean if a field has been set.
+func (o *AiGatewayModelGroupAttributes) HasRoutingRulesRestricted() bool {
+	return o != nil && o.RoutingRulesRestricted != nil
+}
+
+// SetRoutingRulesRestricted gets a reference to the given bool and assigns it to the RoutingRulesRestricted field.
+func (o *AiGatewayModelGroupAttributes) SetRoutingRulesRestricted(v bool) {
+	o.RoutingRulesRestricted = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value.
 func (o *AiGatewayModelGroupAttributes) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -349,6 +379,9 @@ func (o AiGatewayModelGroupAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["revision"] = o.Revision
 	}
 	toSerialize["routing_rules"] = o.RoutingRules
+	if o.RoutingRulesRestricted != nil {
+		toSerialize["routing_rules_restricted"] = o.RoutingRulesRestricted
+	}
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -364,17 +397,18 @@ func (o AiGatewayModelGroupAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowFastMode     *bool                                      `json:"allow_fast_mode"`
-		CreatedAt         *time.Time                                 `json:"created_at"`
-		MaxReasoningLevel NullableAiGatewayNullableMaxReasoningLevel `json:"max_reasoning_level"`
-		ModelIds          *[]int64                                   `json:"model_ids"`
-		Models            *[]AiGatewayModelGroupModel                `json:"models"`
-		Name              *string                                    `json:"name"`
-		ProviderIds       *[]int64                                   `json:"provider_ids"`
-		Providers         *[]AiGatewayModelGroupProvider             `json:"providers"`
-		Revision          *int64                                     `json:"revision,omitempty"`
-		RoutingRules      *[]AiGatewayModelGroupRoutingRule          `json:"routing_rules"`
-		UpdatedAt         *time.Time                                 `json:"updated_at"`
+		AllowFastMode          *bool                                      `json:"allow_fast_mode"`
+		CreatedAt              *time.Time                                 `json:"created_at"`
+		MaxReasoningLevel      NullableAiGatewayNullableMaxReasoningLevel `json:"max_reasoning_level"`
+		ModelIds               *[]int64                                   `json:"model_ids"`
+		Models                 *[]AiGatewayModelGroupModel                `json:"models"`
+		Name                   *string                                    `json:"name"`
+		ProviderIds            *[]int64                                   `json:"provider_ids"`
+		Providers              *[]AiGatewayModelGroupProvider             `json:"providers"`
+		Revision               *int64                                     `json:"revision,omitempty"`
+		RoutingRules           *[]AiGatewayModelGroupRoutingRule          `json:"routing_rules"`
+		RoutingRulesRestricted *bool                                      `json:"routing_rules_restricted,omitempty"`
+		UpdatedAt              *time.Time                                 `json:"updated_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -411,7 +445,7 @@ func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_fast_mode", "created_at", "max_reasoning_level", "model_ids", "models", "name", "provider_ids", "providers", "revision", "routing_rules", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_fast_mode", "created_at", "max_reasoning_level", "model_ids", "models", "name", "provider_ids", "providers", "revision", "routing_rules", "routing_rules_restricted", "updated_at"})
 	} else {
 		return err
 	}
@@ -431,6 +465,7 @@ func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Providers = *all.Providers
 	o.Revision = all.Revision
 	o.RoutingRules = *all.RoutingRules
+	o.RoutingRulesRestricted = all.RoutingRulesRestricted
 	o.UpdatedAt = *all.UpdatedAt
 
 	if len(additionalProperties) > 0 {

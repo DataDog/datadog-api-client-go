@@ -19,14 +19,22 @@ func main() {
 				Slug: "coding",
 				Tiers: []datadogV2.AiGatewayRoutingRuleTierRequest{
 					{
+						Classifier: *datadogV2.NewNullableAiGatewayRoutingClassifierRequest(&datadogV2.AiGatewayRoutingClassifierRequest{
+							ConfidenceThreshold: *datadog.NewNullableFloat64(datadog.PtrFloat64(0.5)),
+							Context:             datadog.PtrString("Requests come from engineers."),
+							Model:               datadog.PtrString("gpt-6-luna"),
+							Provider:            datadog.PtrString("openai"),
+						}),
 						Ordering: *datadogV2.NewNullableAiGatewayNullableRoutingRuleTierOrdering(datadogV2.AIGATEWAYNULLABLEROUTINGRULETIERORDERING_CONFIGURED.Ptr()),
 						Targets: []datadogV2.AiGatewayRoutingRuleTargetRequest{
 							{
+								Default:        *datadog.NewNullableBool(datadog.PtrBool(false)),
 								Id:             datadog.PtrInt64(901),
 								Model:          datadog.PtrString("gpt-5.2-codex"),
 								ModelId:        datadog.PtrInt64(101),
 								Provider:       datadog.PtrString("prod-us"),
 								ReasoningLevel: *datadogV2.NewNullableAiGatewayRoutingReasoningLevel(datadogV2.AIGATEWAYROUTINGREASONINGLEVEL_MEDIUM.Ptr()),
+								Rubric:         *datadog.NewNullableString(datadog.PtrString("Short factual questions.")),
 								Slug:           datadog.PtrString("coding-fallback"),
 								Type:           datadogV2.AIGATEWAYROUTINGRULETARGETTYPE_MODEL,
 								Weight:         *datadog.NewNullableInt64(datadog.PtrInt64(70)),
