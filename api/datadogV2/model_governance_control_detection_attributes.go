@@ -19,10 +19,6 @@ type GovernanceControlDetectionAttributes struct {
 	AssignedTo *string `json:"assigned_to,omitempty"`
 	// How the detection's current assignment was determined. Possible values are `auto_resolved`, `manual`, `reassigned`, and `cleared`.
 	AssignmentSource GovernanceControlDetectionAssignmentSource `json:"assignment_source"`
-	// DEPRECATED: mirrors `detection_type` for backward compatibility; use `detection_type`
-	// instead.
-	// Deprecated
-	ControlId string `json:"control_id"`
 	// The date and time when the detection was created.
 	CreatedAt time.Time `json:"created_at"`
 	// The type of detection, which determines what condition was detected.
@@ -56,10 +52,9 @@ type GovernanceControlDetectionAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlDetectionAttributes(assignmentSource GovernanceControlDetectionAssignmentSource, controlId string, createdAt time.Time, detectionType string, displayName string, priority int64, resourceId string, resourceType string, state GovernanceControlDetectionState) *GovernanceControlDetectionAttributes {
+func NewGovernanceControlDetectionAttributes(assignmentSource GovernanceControlDetectionAssignmentSource, createdAt time.Time, detectionType string, displayName string, priority int64, resourceId string, resourceType string, state GovernanceControlDetectionState) *GovernanceControlDetectionAttributes {
 	this := GovernanceControlDetectionAttributes{}
 	this.AssignmentSource = assignmentSource
-	this.ControlId = controlId
 	this.CreatedAt = createdAt
 	this.DetectionType = detectionType
 	this.DisplayName = displayName
@@ -155,32 +150,6 @@ func (o *GovernanceControlDetectionAttributes) GetAssignmentSourceOk() (*Governa
 // SetAssignmentSource sets field value.
 func (o *GovernanceControlDetectionAttributes) SetAssignmentSource(v GovernanceControlDetectionAssignmentSource) {
 	o.AssignmentSource = v
-}
-
-// GetControlId returns the ControlId field value.
-// Deprecated
-func (o *GovernanceControlDetectionAttributes) GetControlId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ControlId
-}
-
-// GetControlIdOk returns a tuple with the ControlId field value
-// and a boolean to check if the value has been set.
-// Deprecated
-func (o *GovernanceControlDetectionAttributes) GetControlIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ControlId, true
-}
-
-// SetControlId sets field value.
-// Deprecated
-func (o *GovernanceControlDetectionAttributes) SetControlId(v string) {
-	o.ControlId = v
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -497,7 +466,6 @@ func (o GovernanceControlDetectionAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["assigned_to"] = o.AssignedTo
 	}
 	toSerialize["assignment_source"] = o.AssignmentSource
-	toSerialize["control_id"] = o.ControlId
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -549,7 +517,6 @@ func (o *GovernanceControlDetectionAttributes) UnmarshalJSON(bytes []byte) (err 
 		AssignedTeam     *string                                     `json:"assigned_team,omitempty"`
 		AssignedTo       *string                                     `json:"assigned_to,omitempty"`
 		AssignmentSource *GovernanceControlDetectionAssignmentSource `json:"assignment_source"`
-		ControlId        *string                                     `json:"control_id"`
 		CreatedAt        *time.Time                                  `json:"created_at"`
 		DetectionType    *string                                     `json:"detection_type"`
 		DisplayName      *string                                     `json:"display_name"`
@@ -568,9 +535,6 @@ func (o *GovernanceControlDetectionAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	if all.AssignmentSource == nil {
 		return fmt.Errorf("required field assignment_source missing")
-	}
-	if all.ControlId == nil {
-		return fmt.Errorf("required field control_id missing")
 	}
 	if all.CreatedAt == nil {
 		return fmt.Errorf("required field created_at missing")
@@ -595,7 +559,7 @@ func (o *GovernanceControlDetectionAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assigned_team", "assigned_to", "assignment_source", "control_id", "created_at", "detection_type", "display_name", "exception_at", "exception_by", "metadata", "mitigate_after", "mitigated_at", "priority", "resource_id", "resource_type", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assigned_team", "assigned_to", "assignment_source", "created_at", "detection_type", "display_name", "exception_at", "exception_by", "metadata", "mitigate_after", "mitigated_at", "priority", "resource_id", "resource_type", "state"})
 	} else {
 		return err
 	}
@@ -608,7 +572,6 @@ func (o *GovernanceControlDetectionAttributes) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		o.AssignmentSource = *all.AssignmentSource
 	}
-	o.ControlId = *all.ControlId
 	o.CreatedAt = *all.CreatedAt
 	o.DetectionType = *all.DetectionType
 	o.DisplayName = *all.DisplayName
