@@ -13,16 +13,23 @@ import (
 // MonitorFormulaAndFunctionDataJobsQueryDefinition A formula and functions data jobs query.
 type MonitorFormulaAndFunctionDataJobsQueryDefinition struct {
 	// The type of job being monitored. Valid values include:
-	// `databricks.job`, `spark.application`, `airflow.dag`,
-	// `dbt.job`, `dbt.model`, `dbt.test`, `glue.job`.
+	// `databricks.job`, `spark.application`, `airflow.dag`, `dbt.job`, `glue.job`, `adf.pipeline`.
+	// The `aastra` dialect also accepts `airflow.job`, `dbt.model`, and `dbt.test`.
 	// Custom job types are supported with the `custom.ol.` prefix.
 	JobType string `json:"job_type"`
-	// Filter expression used to select the jobs to monitor.
+	// Filter expression used to select the jobs to monitor. Its syntax depends on `query_dialect`:
+	// a metric tag filter such as `job_name:smoke*` for `metric`, or an Aastra entity search
+	// such as ``search for databricks_job where `@team:data-eng` `` for `aastra`.
 	JobsQuery string `json:"jobs_query"`
+	// Monitor configuration options for data jobs queries.
+	MonitorOptions *MonitorFormulaAndFunctionDataJobsMonitorOptions `json:"monitor_options,omitempty"`
 	// Name of the query for use in formulas. Must be `run_query`.
 	Name string `json:"name"`
-	// Query dialect for data jobs queries. Currently only `metric` is supported.
+	// Query dialect for data jobs queries. Valid values are `metric` and `aastra`.
 	QueryDialect string `json:"query_dialect"`
+	// Optional filter on individual runs, using metrics filter syntax.
+	// Only supported with the `aastra` query dialect.
+	RunFilter *string `json:"run_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -95,6 +102,34 @@ func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) SetJobsQuery(v string
 	o.JobsQuery = v
 }
 
+// GetMonitorOptions returns the MonitorOptions field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) GetMonitorOptions() MonitorFormulaAndFunctionDataJobsMonitorOptions {
+	if o == nil || o.MonitorOptions == nil {
+		var ret MonitorFormulaAndFunctionDataJobsMonitorOptions
+		return ret
+	}
+	return *o.MonitorOptions
+}
+
+// GetMonitorOptionsOk returns a tuple with the MonitorOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) GetMonitorOptionsOk() (*MonitorFormulaAndFunctionDataJobsMonitorOptions, bool) {
+	if o == nil || o.MonitorOptions == nil {
+		return nil, false
+	}
+	return o.MonitorOptions, true
+}
+
+// HasMonitorOptions returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) HasMonitorOptions() bool {
+	return o != nil && o.MonitorOptions != nil
+}
+
+// SetMonitorOptions gets a reference to the given MonitorFormulaAndFunctionDataJobsMonitorOptions and assigns it to the MonitorOptions field.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) SetMonitorOptions(v MonitorFormulaAndFunctionDataJobsMonitorOptions) {
+	o.MonitorOptions = &v
+}
+
 // GetName returns the Name field value.
 func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) GetName() string {
 	if o == nil {
@@ -141,6 +176,34 @@ func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) SetQueryDialect(v str
 	o.QueryDialect = v
 }
 
+// GetRunFilter returns the RunFilter field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) GetRunFilter() string {
+	if o == nil || o.RunFilter == nil {
+		var ret string
+		return ret
+	}
+	return *o.RunFilter
+}
+
+// GetRunFilterOk returns a tuple with the RunFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) GetRunFilterOk() (*string, bool) {
+	if o == nil || o.RunFilter == nil {
+		return nil, false
+	}
+	return o.RunFilter, true
+}
+
+// HasRunFilter returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) HasRunFilter() bool {
+	return o != nil && o.RunFilter != nil
+}
+
+// SetRunFilter gets a reference to the given string and assigns it to the RunFilter field.
+func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) SetRunFilter(v string) {
+	o.RunFilter = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionDataJobsQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,8 +212,14 @@ func (o MonitorFormulaAndFunctionDataJobsQueryDefinition) MarshalJSON() ([]byte,
 	}
 	toSerialize["job_type"] = o.JobType
 	toSerialize["jobs_query"] = o.JobsQuery
+	if o.MonitorOptions != nil {
+		toSerialize["monitor_options"] = o.MonitorOptions
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["query_dialect"] = o.QueryDialect
+	if o.RunFilter != nil {
+		toSerialize["run_filter"] = o.RunFilter
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,10 +230,12 @@ func (o MonitorFormulaAndFunctionDataJobsQueryDefinition) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		JobType      *string `json:"job_type"`
-		JobsQuery    *string `json:"jobs_query"`
-		Name         *string `json:"name"`
-		QueryDialect *string `json:"query_dialect"`
+		JobType        *string                                          `json:"job_type"`
+		JobsQuery      *string                                          `json:"jobs_query"`
+		MonitorOptions *MonitorFormulaAndFunctionDataJobsMonitorOptions `json:"monitor_options,omitempty"`
+		Name           *string                                          `json:"name"`
+		QueryDialect   *string                                          `json:"query_dialect"`
+		RunFilter      *string                                          `json:"run_filter,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,17 +254,28 @@ func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"job_type", "jobs_query", "name", "query_dialect"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"job_type", "jobs_query", "monitor_options", "name", "query_dialect", "run_filter"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.JobType = *all.JobType
 	o.JobsQuery = *all.JobsQuery
+	if all.MonitorOptions != nil && all.MonitorOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.MonitorOptions = all.MonitorOptions
 	o.Name = *all.Name
 	o.QueryDialect = *all.QueryDialect
+	o.RunFilter = all.RunFilter
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
