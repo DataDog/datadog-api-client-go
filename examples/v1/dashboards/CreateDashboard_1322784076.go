@@ -67,7 +67,7 @@ func main() {
 							ShowCaption: datadog.PtrBool(true),
 						},
 						LabelColumn: &datadogV1.HeatgridLabelColumn{
-							Width: datadogV1.HEATGRIDLABELCOLUMNWIDTH_M,
+							Width: datadogV1.HEATGRIDLABELCOLUMNWIDTH_M.Ptr(),
 						},
 					}},
 			},
