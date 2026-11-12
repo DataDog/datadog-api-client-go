@@ -476,6 +476,7 @@
 //   - [CloudCostManagementApi.UpdateCostAzureUCConfigs]
 //   - [CloudCostManagementApi.UpdateCostGCPUsageCostConfig]
 //   - [CloudCostManagementApi.UpdateCustomAllocationRule]
+//   - [CloudCostManagementApi.UpdateCustomCostsFile]
 //   - [CloudCostManagementApi.UpdateTagPipelinesRuleset]
 //   - [CloudCostManagementApi.UpdateUnitCost]
 //   - [CloudCostManagementApi.UploadCustomCostsFile]
