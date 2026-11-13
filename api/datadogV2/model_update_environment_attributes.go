@@ -10,13 +10,15 @@ import (
 
 // UpdateEnvironmentAttributes Attributes for updating an environment.
 type UpdateEnvironmentAttributes struct {
-	// Indicates whether this is a production environment.
+	// Indicates whether this is a production environment. If omitted, resets to false. Include the existing value to preserve it.
 	IsProduction *bool `json:"is_production,omitempty"`
-	// The name of the environment.
+	// The name of the environment. Required on every request and unique within the organization. Must contain 1 to 200 ASCII characters, start with a letter or digit, and contain only letters, digits, spaces, underscores, hyphens, and periods.
 	Name *string `json:"name,omitempty"`
-	// List of queries to define the environment scope.
+	// Controls whether feature flag evaluation events may include original targeting identifiers and full evaluation context. When true, SDKs may include this data. When false, SDKs hash targeting identifiers and omit evaluation context. If omitted, the existing value is preserved.
+	ObserveFullEvaluationData *bool `json:"observe_full_evaluation_data,omitempty"`
+	// Required list of at least one exact DD_ENV value associated with this environment. Values cannot be used by another environment in the same organization. Wildcards and search expressions are not supported.
 	Queries []string `json:"queries,omitempty"`
-	// Indicates whether feature flag changes require approval in this environment.
+	// Indicates whether feature flag changes require approval in this environment. If omitted, resets to false. Include the existing value to preserve it.
 	RequireFeatureFlagApproval *bool `json:"require_feature_flag_approval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -96,6 +98,34 @@ func (o *UpdateEnvironmentAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetObserveFullEvaluationData returns the ObserveFullEvaluationData field value if set, zero value otherwise.
+func (o *UpdateEnvironmentAttributes) GetObserveFullEvaluationData() bool {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ObserveFullEvaluationData
+}
+
+// GetObserveFullEvaluationDataOk returns a tuple with the ObserveFullEvaluationData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateEnvironmentAttributes) GetObserveFullEvaluationDataOk() (*bool, bool) {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		return nil, false
+	}
+	return o.ObserveFullEvaluationData, true
+}
+
+// HasObserveFullEvaluationData returns a boolean if a field has been set.
+func (o *UpdateEnvironmentAttributes) HasObserveFullEvaluationData() bool {
+	return o != nil && o.ObserveFullEvaluationData != nil
+}
+
+// SetObserveFullEvaluationData gets a reference to the given bool and assigns it to the ObserveFullEvaluationData field.
+func (o *UpdateEnvironmentAttributes) SetObserveFullEvaluationData(v bool) {
+	o.ObserveFullEvaluationData = &v
+}
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *UpdateEnvironmentAttributes) GetQueries() []string {
 	if o == nil || o.Queries == nil {
@@ -164,6 +194,9 @@ func (o UpdateEnvironmentAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.ObserveFullEvaluationData != nil {
+		toSerialize["observe_full_evaluation_data"] = o.ObserveFullEvaluationData
+	}
 	if o.Queries != nil {
 		toSerialize["queries"] = o.Queries
 	}
@@ -182,6 +215,7 @@ func (o *UpdateEnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IsProduction               *bool    `json:"is_production,omitempty"`
 		Name                       *string  `json:"name,omitempty"`
+		ObserveFullEvaluationData  *bool    `json:"observe_full_evaluation_data,omitempty"`
 		Queries                    []string `json:"queries,omitempty"`
 		RequireFeatureFlagApproval *bool    `json:"require_feature_flag_approval,omitempty"`
 	}{}
@@ -190,12 +224,13 @@ func (o *UpdateEnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "queries", "require_feature_flag_approval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval"})
 	} else {
 		return err
 	}
 	o.IsProduction = all.IsProduction
 	o.Name = all.Name
+	o.ObserveFullEvaluationData = all.ObserveFullEvaluationData
 	o.Queries = all.Queries
 	o.RequireFeatureFlagApproval = all.RequireFeatureFlagApproval
 
