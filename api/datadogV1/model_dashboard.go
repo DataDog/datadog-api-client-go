@@ -14,6 +14,8 @@ import (
 // Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying
 // key performance metrics, which enable you to monitor the health of your infrastructure.
 type Dashboard struct {
+	// Archive date of the dashboard.
+	ArchivedAt *time.Time `json:"archived_at,omitempty"`
 	// Identifier of the dashboard author.
 	AuthorHandle *string `json:"author_handle,omitempty"`
 	// Name of the dashboard author.
@@ -82,6 +84,34 @@ func NewDashboard(layoutType DashboardLayoutType, title string, widgets []Widget
 func NewDashboardWithDefaults() *Dashboard {
 	this := Dashboard{}
 	return &this
+}
+
+// GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise.
+func (o *Dashboard) GetArchivedAt() time.Time {
+	if o == nil || o.ArchivedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ArchivedAt
+}
+
+// GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetArchivedAtOk() (*time.Time, bool) {
+	if o == nil || o.ArchivedAt == nil {
+		return nil, false
+	}
+	return o.ArchivedAt, true
+}
+
+// HasArchivedAt returns a boolean if a field has been set.
+func (o *Dashboard) HasArchivedAt() bool {
+	return o != nil && o.ArchivedAt != nil
+}
+
+// SetArchivedAt gets a reference to the given time.Time and assigns it to the ArchivedAt field.
+func (o *Dashboard) SetArchivedAt(v time.Time) {
+	o.ArchivedAt = &v
 }
 
 // GetAuthorHandle returns the AuthorHandle field value if set, zero value otherwise.
@@ -685,6 +715,13 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ArchivedAt != nil {
+		if o.ArchivedAt.Nanosecond() == 0 {
+			toSerialize["archived_at"] = o.ArchivedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["archived_at"] = o.ArchivedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
+	}
 	if o.AuthorHandle != nil {
 		toSerialize["author_handle"] = o.AuthorHandle
 	}
@@ -757,6 +794,7 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		ArchivedAt              *time.Time                        `json:"archived_at,omitempty"`
 		AuthorHandle            *string                           `json:"author_handle,omitempty"`
 		AuthorName              datadog.NullableString            `json:"author_name,omitempty"`
 		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
@@ -792,12 +830,13 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "default_timeframe", "description", "experience_type", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "author_handle", "author_name", "created_at", "default_timeframe", "description", "experience_type", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.ArchivedAt = all.ArchivedAt
 	o.AuthorHandle = all.AuthorHandle
 	o.AuthorName = all.AuthorName
 	o.CreatedAt = all.CreatedAt
