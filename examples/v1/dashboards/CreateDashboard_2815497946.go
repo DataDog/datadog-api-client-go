@@ -36,7 +36,6 @@ func main() {
 									RequestType: datadogV1.TOPOLOGYREQUESTTYPE_TOPOLOGY.Ptr(),
 									Query: &datadogV1.TopologyQueryDataStreams{
 										DataSource: datadogV1.TOPOLOGYQUERYDATASTREAMSDATASOURCE_DATA_STREAMS,
-										Service:    "",
 										Filters: []string{
 											"env:prod",
 										},

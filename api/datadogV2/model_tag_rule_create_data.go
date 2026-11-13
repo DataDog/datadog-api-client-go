@@ -12,9 +12,11 @@ import (
 
 // TagRuleCreateData Data object for creating a tag rule.
 type TagRuleCreateData struct {
-	// Attributes that can be supplied when creating a tag rule.
+	// Attributes that can be supplied when creating a tag rule. If `tag_value_patterns`
+	// contains `*`, set `required` and `negated` to different values. If both are `false`,
+	// the rule has no effect. If both are `true`, no value can satisfy the rule.
 	Attributes TagRuleCreateAttributes `json:"attributes"`
-	// JSON:API resource type for a tag rule.
+	// JSON:API resource type for a tag rule. Requests accept `tag_rule` or `tag_policy`; responses use `tag_policy`.
 	Type TagRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
