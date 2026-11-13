@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagRuleResourceType JSON:API resource type for a tag rule.
+// TagRuleResourceType JSON:API resource type for a tag rule. Requests accept `tag_rule` or `tag_policy`; responses use `tag_policy`.
 type TagRuleResourceType string
 
 // List of TagRuleResourceType.
 const (
-	TAGRULERESOURCETYPE_TAG_RULE TagRuleResourceType = "tag_rule"
+	TAGRULERESOURCETYPE_TAG_RULE   TagRuleResourceType = "tag_rule"
+	TAGRULERESOURCETYPE_TAG_POLICY TagRuleResourceType = "tag_policy"
 )
 
 var allowedTagRuleResourceTypeEnumValues = []TagRuleResourceType{
 	TAGRULERESOURCETYPE_TAG_RULE,
+	TAGRULERESOURCETYPE_TAG_POLICY,
 }
 
 // GetAllowedValues reeturns the list of possible values.

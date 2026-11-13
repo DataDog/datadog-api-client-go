@@ -21,7 +21,7 @@ func main() {
 				Negated:  datadog.PtrBool(false),
 				Required: datadog.PtrBool(true),
 				RuleType: datadogV2.TAGRULECREATETYPE_SURFACING,
-				Scope:    "env",
+				Scope:    "env:prod",
 				Source:   datadogV2.TAGRULESOURCE_LOGS,
 				TagKey:   "service",
 				TagValuePatterns: []string{
@@ -29,7 +29,7 @@ func main() {
 					"web",
 				},
 			},
-			Type: datadogV2.TAGRULERESOURCETYPE_TAG_RULE,
+			Type: datadogV2.TAGRULERESOURCETYPE_TAG_POLICY,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
