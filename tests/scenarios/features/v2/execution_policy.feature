@@ -63,10 +63,42 @@ Feature: Execution Policy
     Then the response status is 201 Created
 
   @team:ddoghq/action-platform
+  Scenario: Create an execution policy with explicit empty remote shell commands returns "Created" response
+    Given operation "CreateExecutionPolicy" enabled
+    And new "CreateExecutionPolicy" request
+    And body with value {"data": {"type": "execution_policy", "attributes": {"name": "Empty remote shell policy {{ unique_lower_alnum }}", "effect": "allow", "action_pattern": {"integration": "INTEGRATION_REMOTE_ACTION", "action_fqns": ["com.datadoghq.remoteaction.rshell.runCommand"]}, "scope": {"remote_action_rshell": {"rules": [{"target_paths": ["/var/log"], "access": "read_only"}], "allowed_commands": {"commands": []}}}}}}
+    When the request is sent
+    Then the response status is 201 Created
+
+  @team:ddoghq/action-platform
+  Scenario: Create an execution policy with literal remote shell commands returns "Created" response
+    Given operation "CreateExecutionPolicy" enabled
+    And new "CreateExecutionPolicy" request
+    And body with value {"data": {"type": "execution_policy", "attributes": {"name": "Literal remote shell policy {{ unique_lower_alnum }}", "effect": "allow", "action_pattern": {"integration": "INTEGRATION_REMOTE_ACTION", "action_fqns": ["com.datadoghq.remoteaction.rshell.runCommand"]}, "scope": {"remote_action_rshell": {"rules": [{"target_paths": ["/var/log"], "access": "read_only"}], "allowed_commands": {"commands": [{"command": "rshell:cat"}, {"command": "rshell:ls"}]}}}}}}
+    When the request is sent
+    Then the response status is 201 Created
+
+  @team:ddoghq/action-platform
   Scenario: Create an execution policy with scope and targets returns "Created" response
     Given operation "CreateExecutionPolicy" enabled
     And new "CreateExecutionPolicy" request
     And body with value {"data": {"type": "execution_policy", "attributes": {"name": "Cassette Execution Policy {{ unique_lower_alnum }}", "effect": "allow", "action_pattern": {"integration": "INTEGRATION_SCRIPT", "action_fqns": ["com.datadoghq.script.*"]}, "scope": {"scripts": {"rules": [{"target_script_names": ["restart_service.sh"]}]}}, "targets": [{"name": "Production hosts", "agent_tags": ["env:prod"]}]}}}
+    When the request is sent
+    Then the response status is 201 Created
+
+  @team:ddoghq/action-platform
+  Scenario: Create an execution policy with the exact remote shell wildcard returns "Created" response
+    Given operation "CreateExecutionPolicy" enabled
+    And new "CreateExecutionPolicy" request
+    And body with value {"data": {"type": "execution_policy", "attributes": {"name": "Wildcard remote shell policy {{ unique_lower_alnum }}", "effect": "allow", "action_pattern": {"integration": "INTEGRATION_REMOTE_ACTION", "action_fqns": ["com.datadoghq.remoteaction.rshell.runCommand"]}, "scope": {"remote_action_rshell": {"rules": [{"target_paths": ["/var/log"], "access": "read_only"}], "allowed_commands": {"commands": [{"command": "rshell:*"}]}}}}}}
+    When the request is sent
+    Then the response status is 201 Created
+
+  @team:ddoghq/action-platform
+  Scenario: Create an execution policy with transitional remote shell command omission returns "Created" response
+    Given operation "CreateExecutionPolicy" enabled
+    And new "CreateExecutionPolicy" request
+    And body with value {"data": {"type": "execution_policy", "attributes": {"name": "Legacy remote shell policy {{ unique_lower_alnum }}", "effect": "allow", "action_pattern": {"integration": "INTEGRATION_REMOTE_ACTION", "action_fqns": ["com.datadoghq.remoteaction.rshell.runCommand"]}, "scope": {"remote_action_rshell": {"rules": [{"target_paths": ["/var/log"], "access": "read_only"}]}}}}}
     When the request is sent
     Then the response status is 201 Created
 
