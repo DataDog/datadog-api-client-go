@@ -603,6 +603,7 @@
 //   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
 //   - [ErrorTrackingApi.SearchIssues]
+//   - [ErrorTrackingApi.SnoozeIssue]
 //   - [ErrorTrackingApi.UpdateIssueAssignee]
 //   - [ErrorTrackingApi.UpdateIssueState]
 //   - [EventsApi.CreateEvent]

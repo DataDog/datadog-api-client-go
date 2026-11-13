@@ -20,7 +20,7 @@ func main() {
 				TagValuePatterns: []string{},
 			},
 			Id:   "123",
-			Type: datadogV2.TAGRULERESOURCETYPE_TAG_RULE,
+			Type: datadogV2.TAGRULERESOURCETYPE_TAG_POLICY,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

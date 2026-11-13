@@ -16,10 +16,11 @@ type TopologyQueryDataStreams struct {
 	DataSource TopologyQueryDataStreamsDataSource `json:"data_source"`
 	// Your environment and primary tag (or * if enabled for your account).
 	Filters []string `json:"filters"`
-	// A search string for filtering services. When set, this replaces the `service` field.
+	// A search string for filtering services. Replaces the deprecated `service` field.
 	QueryString *string `json:"query_string,omitempty"`
-	// (deprecated) Name of the service. Leave this empty and use query_string instead.
-	Service string `json:"service"`
+	// (deprecated) Name of the service. Use `query_string` instead.
+	// Deprecated
+	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
@@ -28,11 +29,10 @@ type TopologyQueryDataStreams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTopologyQueryDataStreams(dataSource TopologyQueryDataStreamsDataSource, filters []string, service string) *TopologyQueryDataStreams {
+func NewTopologyQueryDataStreams(dataSource TopologyQueryDataStreamsDataSource, filters []string) *TopologyQueryDataStreams {
 	this := TopologyQueryDataStreams{}
 	this.DataSource = dataSource
 	this.Filters = filters
-	this.Service = service
 	return &this
 }
 
@@ -118,27 +118,35 @@ func (o *TopologyQueryDataStreams) SetQueryString(v string) {
 	o.QueryString = &v
 }
 
-// GetService returns the Service field value.
+// GetService returns the Service field value if set, zero value otherwise.
+// Deprecated
 func (o *TopologyQueryDataStreams) GetService() string {
-	if o == nil {
+	if o == nil || o.Service == nil {
 		var ret string
 		return ret
 	}
-	return o.Service
+	return *o.Service
 }
 
-// GetServiceOk returns a tuple with the Service field value
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TopologyQueryDataStreams) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Service == nil {
 		return nil, false
 	}
-	return &o.Service, true
+	return o.Service, true
 }
 
-// SetService sets field value.
+// HasService returns a boolean if a field has been set.
+func (o *TopologyQueryDataStreams) HasService() bool {
+	return o != nil && o.Service != nil
+}
+
+// SetService gets a reference to the given string and assigns it to the Service field.
+// Deprecated
 func (o *TopologyQueryDataStreams) SetService(v string) {
-	o.Service = v
+	o.Service = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -152,7 +160,9 @@ func (o TopologyQueryDataStreams) MarshalJSON() ([]byte, error) {
 	if o.QueryString != nil {
 		toSerialize["query_string"] = o.QueryString
 	}
-	toSerialize["service"] = o.Service
+	if o.Service != nil {
+		toSerialize["service"] = o.Service
+	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -162,7 +172,7 @@ func (o *TopologyQueryDataStreams) UnmarshalJSON(bytes []byte) (err error) {
 		DataSource  *TopologyQueryDataStreamsDataSource `json:"data_source"`
 		Filters     *[]string                           `json:"filters"`
 		QueryString *string                             `json:"query_string,omitempty"`
-		Service     *string                             `json:"service"`
+		Service     *string                             `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -173,9 +183,6 @@ func (o *TopologyQueryDataStreams) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Filters == nil {
 		return fmt.Errorf("required field filters missing")
 	}
-	if all.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
 
 	hasInvalidField := false
 	if !all.DataSource.IsValid() {
@@ -185,7 +192,7 @@ func (o *TopologyQueryDataStreams) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Filters = *all.Filters
 	o.QueryString = all.QueryString
-	o.Service = *all.Service
+	o.Service = all.Service
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
