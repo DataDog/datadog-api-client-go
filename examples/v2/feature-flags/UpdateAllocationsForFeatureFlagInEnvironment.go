@@ -82,7 +82,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewFeatureFlagsApi(apiClient)
-	resp, r, err := api.UpdateAllocationsForFeatureFlagInEnvironment(ctx, uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"), uuid.MustParse("550e8400-e29b-41d4-a716-446655440001"), body)
+	resp, r, err := api.UpdateAllocationsForFeatureFlagInEnvironment(ctx, uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"), uuid.MustParse("550e8400-e29b-41d4-a716-446655440001"), body, *datadogV2.NewUpdateAllocationsForFeatureFlagInEnvironmentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeatureFlagsApi.UpdateAllocationsForFeatureFlagInEnvironment`: %v\n", err)
