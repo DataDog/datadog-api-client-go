@@ -88,7 +88,7 @@ jobs:
             tests/go.sum
       - name: Check minimum supported Go version and core dependency isolation
         run: |
-          go build ./api/datadog ./auth/aws
+          go build ./api/datadog ./auth/aws ./auth/oidc
           go list -deps ./api/datadog > /tmp/core-deps.txt
           if grep -Eq '^github.com/aws/' /tmp/core-deps.txt; then
             echo 'Core client unexpectedly imports the AWS SDK'
@@ -96,7 +96,7 @@ jobs:
           fi
       - name: Test authentication and credential refresh
         working-directory: tests
-        run: go test -race ./api -run 'AWS|Authenticate|WithStaticCredentials|GenerateProof'
+        run: go test -race ./api -run 'AWS|OIDC|Authenticate|WithStaticCredentials|GenerateProof|CheckDatadogScoped'
         env:
           GOTOOLCHAIN: auto
 
