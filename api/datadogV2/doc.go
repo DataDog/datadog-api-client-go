@@ -600,6 +600,7 @@
 //   - [EntityRiskScoresApi.ListEntityRiskScores]
 //   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
+//   - [ErrorTrackingApi.GetIssueImpact]
 //   - [ErrorTrackingApi.SearchIssues]
 //   - [ErrorTrackingApi.UpdateIssueAssignee]
 //   - [ErrorTrackingApi.UpdateIssueState]
