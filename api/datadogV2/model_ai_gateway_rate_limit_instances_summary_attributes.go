@@ -14,7 +14,7 @@ import (
 
 // AiGatewayRateLimitInstancesSummaryAttributes Aggregate of a template rate limit's counters.
 type AiGatewayRateLimitInstancesSummaryAttributes struct {
-	// Number of counters.
+	// Number of counters that were near or at a limit, or limited a request, in the last hour. Counters with room to spare aren't recorded.
 	InstanceCount int64 `json:"instance_count"`
 	// Requests the counters rejected in the last 15 minutes (ENFORCE), totaled over the counters whose usage was read.
 	LimitedRequests *int64 `json:"limited_requests,omitempty"`

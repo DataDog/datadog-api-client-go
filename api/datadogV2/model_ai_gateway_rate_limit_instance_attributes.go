@@ -15,6 +15,10 @@ import (
 
 // AiGatewayRateLimitInstanceAttributes One counter of a template rate limit and its live usage.
 type AiGatewayRateLimitInstanceAttributes struct {
+	// Priced spend, in microcents, counted in the rolling one-minute window. 0 when the rate limit doesn't limit cost.
+	CostMicrocents *int64 `json:"cost_microcents,omitempty"`
+	// The rate limit's per-counter spend limit, in microcents. Null when it doesn't limit cost.
+	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// When the gateway first recorded a request for this counter.
 	FirstSeen time.Time `json:"first_seen"`
 	// Input tokens counted in the rolling one-minute window.
@@ -23,7 +27,7 @@ type AiGatewayRateLimitInstanceAttributes struct {
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Opaque canonical key identifying the counter.
 	InstanceKey string `json:"instance_key"`
-	// When the gateway last recorded a request for this counter; up to a few minutes behind live traffic.
+	// When the gateway last saw this counter hot, that is near or at a limit or limiting; up to a few minutes behind live traffic.
 	LastSeen time.Time `json:"last_seen"`
 	// Requests this counter rejected in the last 15 minutes (ENFORCE).
 	LimitedRequests int64 `json:"limited_requests"`
@@ -77,6 +81,73 @@ func NewAiGatewayRateLimitInstanceAttributes(firstSeen time.Time, inputTokens in
 func NewAiGatewayRateLimitInstanceAttributesWithDefaults() *AiGatewayRateLimitInstanceAttributes {
 	this := AiGatewayRateLimitInstanceAttributes{}
 	return &this
+}
+
+// GetCostMicrocents returns the CostMicrocents field value if set, zero value otherwise.
+func (o *AiGatewayRateLimitInstanceAttributes) GetCostMicrocents() int64 {
+	if o == nil || o.CostMicrocents == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CostMicrocents
+}
+
+// GetCostMicrocentsOk returns a tuple with the CostMicrocents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRateLimitInstanceAttributes) GetCostMicrocentsOk() (*int64, bool) {
+	if o == nil || o.CostMicrocents == nil {
+		return nil, false
+	}
+	return o.CostMicrocents, true
+}
+
+// HasCostMicrocents returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitInstanceAttributes) HasCostMicrocents() bool {
+	return o != nil && o.CostMicrocents != nil
+}
+
+// SetCostMicrocents gets a reference to the given int64 and assigns it to the CostMicrocents field.
+func (o *AiGatewayRateLimitInstanceAttributes) SetCostMicrocents(v int64) {
+	o.CostMicrocents = &v
+}
+
+// GetCostMicrocentsPerMinute returns the CostMicrocentsPerMinute field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRateLimitInstanceAttributes) GetCostMicrocentsPerMinute() int64 {
+	if o == nil || o.CostMicrocentsPerMinute.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CostMicrocentsPerMinute.Get()
+}
+
+// GetCostMicrocentsPerMinuteOk returns a tuple with the CostMicrocentsPerMinute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRateLimitInstanceAttributes) GetCostMicrocentsPerMinuteOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CostMicrocentsPerMinute.Get(), o.CostMicrocentsPerMinute.IsSet()
+}
+
+// HasCostMicrocentsPerMinute returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitInstanceAttributes) HasCostMicrocentsPerMinute() bool {
+	return o != nil && o.CostMicrocentsPerMinute.IsSet()
+}
+
+// SetCostMicrocentsPerMinute gets a reference to the given datadog.NullableInt64 and assigns it to the CostMicrocentsPerMinute field.
+func (o *AiGatewayRateLimitInstanceAttributes) SetCostMicrocentsPerMinute(v int64) {
+	o.CostMicrocentsPerMinute.Set(&v)
+}
+
+// SetCostMicrocentsPerMinuteNil sets the value for CostMicrocentsPerMinute to be an explicit nil.
+func (o *AiGatewayRateLimitInstanceAttributes) SetCostMicrocentsPerMinuteNil() {
+	o.CostMicrocentsPerMinute.Set(nil)
+}
+
+// UnsetCostMicrocentsPerMinute ensures that no value is present for CostMicrocentsPerMinute, not even an explicit nil.
+func (o *AiGatewayRateLimitInstanceAttributes) UnsetCostMicrocentsPerMinute() {
+	o.CostMicrocentsPerMinute.Unset()
 }
 
 // GetFirstSeen returns the FirstSeen field value.
@@ -478,6 +549,12 @@ func (o AiGatewayRateLimitInstanceAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CostMicrocents != nil {
+		toSerialize["cost_microcents"] = o.CostMicrocents
+	}
+	if o.CostMicrocentsPerMinute.IsSet() {
+		toSerialize["cost_microcents_per_minute"] = o.CostMicrocentsPerMinute.Get()
+	}
 	if o.FirstSeen.Nanosecond() == 0 {
 		toSerialize["first_seen"] = o.FirstSeen.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -517,21 +594,23 @@ func (o AiGatewayRateLimitInstanceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitInstanceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstSeen             *time.Time            `json:"first_seen"`
-		InputTokens           *int64                `json:"input_tokens"`
-		InputTokensPerMinute  datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
-		InstanceKey           *string               `json:"instance_key"`
-		LastSeen              *time.Time            `json:"last_seen"`
-		LimitedRequests       *int64                `json:"limited_requests"`
-		OutputTokens          *int64                `json:"output_tokens"`
-		OutputTokensPerMinute datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
-		RateLimitId           *uuid.UUID            `json:"rate_limit_id"`
-		Requests              *int64                `json:"requests"`
-		RequestsPerMinute     datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
-		SplitDims             *map[string]string    `json:"split_dims"`
-		UsageKnown            *bool                 `json:"usage_known"`
-		Utilization           *float64              `json:"utilization"`
-		WouldLimitRequests    *int64                `json:"would_limit_requests"`
+		CostMicrocents          *int64                `json:"cost_microcents,omitempty"`
+		CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
+		FirstSeen               *time.Time            `json:"first_seen"`
+		InputTokens             *int64                `json:"input_tokens"`
+		InputTokensPerMinute    datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
+		InstanceKey             *string               `json:"instance_key"`
+		LastSeen                *time.Time            `json:"last_seen"`
+		LimitedRequests         *int64                `json:"limited_requests"`
+		OutputTokens            *int64                `json:"output_tokens"`
+		OutputTokensPerMinute   datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
+		RateLimitId             *uuid.UUID            `json:"rate_limit_id"`
+		Requests                *int64                `json:"requests"`
+		RequestsPerMinute       datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
+		SplitDims               *map[string]string    `json:"split_dims"`
+		UsageKnown              *bool                 `json:"usage_known"`
+		Utilization             *float64              `json:"utilization"`
+		WouldLimitRequests      *int64                `json:"would_limit_requests"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -574,10 +653,12 @@ func (o *AiGatewayRateLimitInstanceAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first_seen", "input_tokens", "input_tokens_per_minute", "instance_key", "last_seen", "limited_requests", "output_tokens", "output_tokens_per_minute", "rate_limit_id", "requests", "requests_per_minute", "split_dims", "usage_known", "utilization", "would_limit_requests"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents", "cost_microcents_per_minute", "first_seen", "input_tokens", "input_tokens_per_minute", "instance_key", "last_seen", "limited_requests", "output_tokens", "output_tokens_per_minute", "rate_limit_id", "requests", "requests_per_minute", "split_dims", "usage_known", "utilization", "would_limit_requests"})
 	} else {
 		return err
 	}
+	o.CostMicrocents = all.CostMicrocents
+	o.CostMicrocentsPerMinute = all.CostMicrocentsPerMinute
 	o.FirstSeen = *all.FirstSeen
 	o.InputTokens = *all.InputTokens
 	o.InputTokensPerMinute = all.InputTokensPerMinute

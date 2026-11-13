@@ -14,6 +14,8 @@ import (
 
 // AiGatewayRateLimitCreateAttributes Attributes used to create an AI Gateway rate limit.
 type AiGatewayRateLimitCreateAttributes struct {
+	// Maximum priced spend per rolling minute, in microcents of 1e-8 USD each. At most 10000000000000, that is $100,000. In `ENFORCE` mode, requests to a model with no pricing are rejected, because their cost can't be counted.
+	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// Maximum input tokens per rolling minute.
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Action taken when request rate exceeds the limit.
@@ -22,7 +24,7 @@ type AiGatewayRateLimitCreateAttributes struct {
 	Name string `json:"name"`
 	// Maximum output tokens per rolling minute.
 	OutputTokensPerMinute datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
-	// Maximum requests per rolling minute. At least one of `requests_per_minute`, `input_tokens_per_minute`, and `output_tokens_per_minute` is required.
+	// Maximum requests per rolling minute. At least one of `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, and `cost_microcents_per_minute` is required.
 	RequestsPerMinute datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
 	// Dimension rules for a template rate limit, which gives each matched user, Team, or value its own allowance with the rule's limits. Can't be combined with user_id, team_id, or tags, and can't be changed after creation. Omit for a rule with one shared allowance.
 	Selector []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
@@ -53,6 +55,45 @@ func NewAiGatewayRateLimitCreateAttributes(name string) *AiGatewayRateLimitCreat
 func NewAiGatewayRateLimitCreateAttributesWithDefaults() *AiGatewayRateLimitCreateAttributes {
 	this := AiGatewayRateLimitCreateAttributes{}
 	return &this
+}
+
+// GetCostMicrocentsPerMinute returns the CostMicrocentsPerMinute field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRateLimitCreateAttributes) GetCostMicrocentsPerMinute() int64 {
+	if o == nil || o.CostMicrocentsPerMinute.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CostMicrocentsPerMinute.Get()
+}
+
+// GetCostMicrocentsPerMinuteOk returns a tuple with the CostMicrocentsPerMinute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRateLimitCreateAttributes) GetCostMicrocentsPerMinuteOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CostMicrocentsPerMinute.Get(), o.CostMicrocentsPerMinute.IsSet()
+}
+
+// HasCostMicrocentsPerMinute returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitCreateAttributes) HasCostMicrocentsPerMinute() bool {
+	return o != nil && o.CostMicrocentsPerMinute.IsSet()
+}
+
+// SetCostMicrocentsPerMinute gets a reference to the given datadog.NullableInt64 and assigns it to the CostMicrocentsPerMinute field.
+func (o *AiGatewayRateLimitCreateAttributes) SetCostMicrocentsPerMinute(v int64) {
+	o.CostMicrocentsPerMinute.Set(&v)
+}
+
+// SetCostMicrocentsPerMinuteNil sets the value for CostMicrocentsPerMinute to be an explicit nil.
+func (o *AiGatewayRateLimitCreateAttributes) SetCostMicrocentsPerMinuteNil() {
+	o.CostMicrocentsPerMinute.Set(nil)
+}
+
+// UnsetCostMicrocentsPerMinute ensures that no value is present for CostMicrocentsPerMinute, not even an explicit nil.
+func (o *AiGatewayRateLimitCreateAttributes) UnsetCostMicrocentsPerMinute() {
+	o.CostMicrocentsPerMinute.Unset()
 }
 
 // GetInputTokensPerMinute returns the InputTokensPerMinute field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -342,6 +383,9 @@ func (o AiGatewayRateLimitCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CostMicrocentsPerMinute.IsSet() {
+		toSerialize["cost_microcents_per_minute"] = o.CostMicrocentsPerMinute.Get()
+	}
 	if o.InputTokensPerMinute.IsSet() {
 		toSerialize["input_tokens_per_minute"] = o.InputTokensPerMinute.Get()
 	}
@@ -377,15 +421,16 @@ func (o AiGatewayRateLimitCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		InputTokensPerMinute  datadog.NullableInt64             `json:"input_tokens_per_minute,omitempty"`
-		Mode                  *AiGatewayRateLimitMode           `json:"mode,omitempty"`
-		Name                  *string                           `json:"name"`
-		OutputTokensPerMinute datadog.NullableInt64             `json:"output_tokens_per_minute,omitempty"`
-		RequestsPerMinute     datadog.NullableInt64             `json:"requests_per_minute,omitempty"`
-		Selector              []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
-		Tags                  map[string]string                 `json:"tags,omitempty"`
-		TeamId                *uuid.UUID                        `json:"team_id,omitempty"`
-		UserId                *uuid.UUID                        `json:"user_id,omitempty"`
+		CostMicrocentsPerMinute datadog.NullableInt64             `json:"cost_microcents_per_minute,omitempty"`
+		InputTokensPerMinute    datadog.NullableInt64             `json:"input_tokens_per_minute,omitempty"`
+		Mode                    *AiGatewayRateLimitMode           `json:"mode,omitempty"`
+		Name                    *string                           `json:"name"`
+		OutputTokensPerMinute   datadog.NullableInt64             `json:"output_tokens_per_minute,omitempty"`
+		RequestsPerMinute       datadog.NullableInt64             `json:"requests_per_minute,omitempty"`
+		Selector                []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
+		Tags                    map[string]string                 `json:"tags,omitempty"`
+		TeamId                  *uuid.UUID                        `json:"team_id,omitempty"`
+		UserId                  *uuid.UUID                        `json:"user_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -395,12 +440,13 @@ func (o *AiGatewayRateLimitCreateAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "selector", "tags", "team_id", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "selector", "tags", "team_id", "user_id"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.CostMicrocentsPerMinute = all.CostMicrocentsPerMinute
 	o.InputTokensPerMinute = all.InputTokensPerMinute
 	if all.Mode != nil && !all.Mode.IsValid() {
 		hasInvalidField = true

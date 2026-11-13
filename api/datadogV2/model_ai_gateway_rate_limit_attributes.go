@@ -15,6 +15,8 @@ import (
 
 // AiGatewayRateLimitAttributes Attributes of an AI Gateway rate limit.
 type AiGatewayRateLimitAttributes struct {
+	// Maximum priced spend per rolling minute, in microcents of 1e-8 USD each, shared by all matching traffic, or per counter for a template rate limit. Null when this rule does not limit cost.
+	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// Creation timestamp.
 	CreatedAt time.Time `json:"created_at"`
 	// Email of the user who created this rate limit.
@@ -24,7 +26,7 @@ type AiGatewayRateLimitAttributes struct {
 	// Maximum input tokens per rolling minute shared by all matching traffic, or per counter for a template rate limit. Null when this rule does not limit input tokens.
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Whether the selector gives each matching value its own allowance, that is, whether it has at least one per_value entry. Returned even when scope_restricted hides the selector.
-	IsTemplate *bool `json:"is_template,omitempty"`
+	IsTemplate bool `json:"is_template"`
 	// Action taken when request rate exceeds the limit.
 	Mode AiGatewayRateLimitMode `json:"mode"`
 	// Datadog monitor that alerts on this rule. Null until one is provisioned.
@@ -46,7 +48,7 @@ type AiGatewayRateLimitAttributes struct {
 	// Optional Team UUID. Count only requests attributed to this Datadog Team.
 	TeamId datadog.NullableUUID `json:"team_id,omitempty"`
 	// Dimensions of the selector's per_value entries, such as user_id or tag:env, each matching value of which gets its own allowance. Empty unless is_template is true. Returned even when scope_restricted hides the selector.
-	TemplateSplitDims []string `json:"template_split_dims,omitempty"`
+	TemplateSplitDims []string `json:"template_split_dims"`
 	// Last modification timestamp.
 	UpdatedAt time.Time `json:"updated_at"`
 	// Email of the user who last modified this rate limit.
@@ -62,16 +64,18 @@ type AiGatewayRateLimitAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAiGatewayRateLimitAttributes(createdAt time.Time, createdBy string, enabled bool, mode AiGatewayRateLimitMode, name string, revision int64, scopeRestricted bool, tags map[string]string, updatedAt time.Time, updatedBy string) *AiGatewayRateLimitAttributes {
+func NewAiGatewayRateLimitAttributes(createdAt time.Time, createdBy string, enabled bool, isTemplate bool, mode AiGatewayRateLimitMode, name string, revision int64, scopeRestricted bool, tags map[string]string, templateSplitDims []string, updatedAt time.Time, updatedBy string) *AiGatewayRateLimitAttributes {
 	this := AiGatewayRateLimitAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
 	this.Enabled = enabled
+	this.IsTemplate = isTemplate
 	this.Mode = mode
 	this.Name = name
 	this.Revision = revision
 	this.ScopeRestricted = scopeRestricted
 	this.Tags = tags
+	this.TemplateSplitDims = templateSplitDims
 	this.UpdatedAt = updatedAt
 	this.UpdatedBy = updatedBy
 	return &this
@@ -83,6 +87,45 @@ func NewAiGatewayRateLimitAttributes(createdAt time.Time, createdBy string, enab
 func NewAiGatewayRateLimitAttributesWithDefaults() *AiGatewayRateLimitAttributes {
 	this := AiGatewayRateLimitAttributes{}
 	return &this
+}
+
+// GetCostMicrocentsPerMinute returns the CostMicrocentsPerMinute field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRateLimitAttributes) GetCostMicrocentsPerMinute() int64 {
+	if o == nil || o.CostMicrocentsPerMinute.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CostMicrocentsPerMinute.Get()
+}
+
+// GetCostMicrocentsPerMinuteOk returns a tuple with the CostMicrocentsPerMinute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRateLimitAttributes) GetCostMicrocentsPerMinuteOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CostMicrocentsPerMinute.Get(), o.CostMicrocentsPerMinute.IsSet()
+}
+
+// HasCostMicrocentsPerMinute returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitAttributes) HasCostMicrocentsPerMinute() bool {
+	return o != nil && o.CostMicrocentsPerMinute.IsSet()
+}
+
+// SetCostMicrocentsPerMinute gets a reference to the given datadog.NullableInt64 and assigns it to the CostMicrocentsPerMinute field.
+func (o *AiGatewayRateLimitAttributes) SetCostMicrocentsPerMinute(v int64) {
+	o.CostMicrocentsPerMinute.Set(&v)
+}
+
+// SetCostMicrocentsPerMinuteNil sets the value for CostMicrocentsPerMinute to be an explicit nil.
+func (o *AiGatewayRateLimitAttributes) SetCostMicrocentsPerMinuteNil() {
+	o.CostMicrocentsPerMinute.Set(nil)
+}
+
+// UnsetCostMicrocentsPerMinute ensures that no value is present for CostMicrocentsPerMinute, not even an explicit nil.
+func (o *AiGatewayRateLimitAttributes) UnsetCostMicrocentsPerMinute() {
+	o.CostMicrocentsPerMinute.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -193,32 +236,27 @@ func (o *AiGatewayRateLimitAttributes) UnsetInputTokensPerMinute() {
 	o.InputTokensPerMinute.Unset()
 }
 
-// GetIsTemplate returns the IsTemplate field value if set, zero value otherwise.
+// GetIsTemplate returns the IsTemplate field value.
 func (o *AiGatewayRateLimitAttributes) GetIsTemplate() bool {
-	if o == nil || o.IsTemplate == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.IsTemplate
+	return o.IsTemplate
 }
 
-// GetIsTemplateOk returns a tuple with the IsTemplate field value if set, nil otherwise
+// GetIsTemplateOk returns a tuple with the IsTemplate field value
 // and a boolean to check if the value has been set.
 func (o *AiGatewayRateLimitAttributes) GetIsTemplateOk() (*bool, bool) {
-	if o == nil || o.IsTemplate == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.IsTemplate, true
+	return &o.IsTemplate, true
 }
 
-// HasIsTemplate returns a boolean if a field has been set.
-func (o *AiGatewayRateLimitAttributes) HasIsTemplate() bool {
-	return o != nil && o.IsTemplate != nil
-}
-
-// SetIsTemplate gets a reference to the given bool and assigns it to the IsTemplate field.
+// SetIsTemplate sets field value.
 func (o *AiGatewayRateLimitAttributes) SetIsTemplate(v bool) {
-	o.IsTemplate = &v
+	o.IsTemplate = v
 }
 
 // GetMode returns the Mode field value.
@@ -521,30 +559,25 @@ func (o *AiGatewayRateLimitAttributes) UnsetTeamId() {
 	o.TeamId.Unset()
 }
 
-// GetTemplateSplitDims returns the TemplateSplitDims field value if set, zero value otherwise.
+// GetTemplateSplitDims returns the TemplateSplitDims field value.
 func (o *AiGatewayRateLimitAttributes) GetTemplateSplitDims() []string {
-	if o == nil || o.TemplateSplitDims == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
 	return o.TemplateSplitDims
 }
 
-// GetTemplateSplitDimsOk returns a tuple with the TemplateSplitDims field value if set, nil otherwise
+// GetTemplateSplitDimsOk returns a tuple with the TemplateSplitDims field value
 // and a boolean to check if the value has been set.
 func (o *AiGatewayRateLimitAttributes) GetTemplateSplitDimsOk() (*[]string, bool) {
-	if o == nil || o.TemplateSplitDims == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TemplateSplitDims, true
 }
 
-// HasTemplateSplitDims returns a boolean if a field has been set.
-func (o *AiGatewayRateLimitAttributes) HasTemplateSplitDims() bool {
-	return o != nil && o.TemplateSplitDims != nil
-}
-
-// SetTemplateSplitDims gets a reference to the given []string and assigns it to the TemplateSplitDims field.
+// SetTemplateSplitDims sets field value.
 func (o *AiGatewayRateLimitAttributes) SetTemplateSplitDims(v []string) {
 	o.TemplateSplitDims = v
 }
@@ -640,6 +673,9 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CostMicrocentsPerMinute.IsSet() {
+		toSerialize["cost_microcents_per_minute"] = o.CostMicrocentsPerMinute.Get()
+	}
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -650,9 +686,7 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	if o.InputTokensPerMinute.IsSet() {
 		toSerialize["input_tokens_per_minute"] = o.InputTokensPerMinute.Get()
 	}
-	if o.IsTemplate != nil {
-		toSerialize["is_template"] = o.IsTemplate
-	}
+	toSerialize["is_template"] = o.IsTemplate
 	toSerialize["mode"] = o.Mode
 	if o.MonitorId.IsSet() {
 		toSerialize["monitor_id"] = o.MonitorId.Get()
@@ -673,9 +707,7 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	if o.TeamId.IsSet() {
 		toSerialize["team_id"] = o.TeamId.Get()
 	}
-	if o.TemplateSplitDims != nil {
-		toSerialize["template_split_dims"] = o.TemplateSplitDims
-	}
+	toSerialize["template_split_dims"] = o.TemplateSplitDims
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -695,25 +727,26 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt             *time.Time                        `json:"created_at"`
-		CreatedBy             *string                           `json:"created_by"`
-		Enabled               *bool                             `json:"enabled"`
-		InputTokensPerMinute  datadog.NullableInt64             `json:"input_tokens_per_minute,omitempty"`
-		IsTemplate            *bool                             `json:"is_template,omitempty"`
-		Mode                  *AiGatewayRateLimitMode           `json:"mode"`
-		MonitorId             datadog.NullableInt64             `json:"monitor_id,omitempty"`
-		Name                  *string                           `json:"name"`
-		OutputTokensPerMinute datadog.NullableInt64             `json:"output_tokens_per_minute,omitempty"`
-		RequestsPerMinute     datadog.NullableInt64             `json:"requests_per_minute,omitempty"`
-		Revision              *int64                            `json:"revision"`
-		ScopeRestricted       *bool                             `json:"scope_restricted"`
-		Selector              []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
-		Tags                  *map[string]string                `json:"tags"`
-		TeamId                datadog.NullableUUID              `json:"team_id,omitempty"`
-		TemplateSplitDims     []string                          `json:"template_split_dims,omitempty"`
-		UpdatedAt             *time.Time                        `json:"updated_at"`
-		UpdatedBy             *string                           `json:"updated_by"`
-		UserId                datadog.NullableUUID              `json:"user_id,omitempty"`
+		CostMicrocentsPerMinute datadog.NullableInt64             `json:"cost_microcents_per_minute,omitempty"`
+		CreatedAt               *time.Time                        `json:"created_at"`
+		CreatedBy               *string                           `json:"created_by"`
+		Enabled                 *bool                             `json:"enabled"`
+		InputTokensPerMinute    datadog.NullableInt64             `json:"input_tokens_per_minute,omitempty"`
+		IsTemplate              *bool                             `json:"is_template"`
+		Mode                    *AiGatewayRateLimitMode           `json:"mode"`
+		MonitorId               datadog.NullableInt64             `json:"monitor_id,omitempty"`
+		Name                    *string                           `json:"name"`
+		OutputTokensPerMinute   datadog.NullableInt64             `json:"output_tokens_per_minute,omitempty"`
+		RequestsPerMinute       datadog.NullableInt64             `json:"requests_per_minute,omitempty"`
+		Revision                *int64                            `json:"revision"`
+		ScopeRestricted         *bool                             `json:"scope_restricted"`
+		Selector                []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
+		Tags                    *map[string]string                `json:"tags"`
+		TeamId                  datadog.NullableUUID              `json:"team_id,omitempty"`
+		TemplateSplitDims       *[]string                         `json:"template_split_dims"`
+		UpdatedAt               *time.Time                        `json:"updated_at"`
+		UpdatedBy               *string                           `json:"updated_by"`
+		UserId                  datadog.NullableUUID              `json:"user_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -726,6 +759,9 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Enabled == nil {
 		return fmt.Errorf("required field enabled missing")
+	}
+	if all.IsTemplate == nil {
+		return fmt.Errorf("required field is_template missing")
 	}
 	if all.Mode == nil {
 		return fmt.Errorf("required field mode missing")
@@ -742,6 +778,9 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Tags == nil {
 		return fmt.Errorf("required field tags missing")
 	}
+	if all.TemplateSplitDims == nil {
+		return fmt.Errorf("required field template_split_dims missing")
+	}
 	if all.UpdatedAt == nil {
 		return fmt.Errorf("required field updated_at missing")
 	}
@@ -750,17 +789,18 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "enabled", "input_tokens_per_minute", "is_template", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "selector", "tags", "team_id", "template_split_dims", "updated_at", "updated_by", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "created_at", "created_by", "enabled", "input_tokens_per_minute", "is_template", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "selector", "tags", "team_id", "template_split_dims", "updated_at", "updated_by", "user_id"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.CostMicrocentsPerMinute = all.CostMicrocentsPerMinute
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
 	o.Enabled = *all.Enabled
 	o.InputTokensPerMinute = all.InputTokensPerMinute
-	o.IsTemplate = all.IsTemplate
+	o.IsTemplate = *all.IsTemplate
 	if !all.Mode.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -775,7 +815,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Selector = all.Selector
 	o.Tags = *all.Tags
 	o.TeamId = all.TeamId
-	o.TemplateSplitDims = all.TemplateSplitDims
+	o.TemplateSplitDims = *all.TemplateSplitDims
 	o.UpdatedAt = *all.UpdatedAt
 	o.UpdatedBy = *all.UpdatedBy
 	o.UserId = all.UserId

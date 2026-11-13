@@ -1075,6 +1075,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListAiGatewayProviderModels":                            false,
 			"v2.ListAiGatewayProviders":                                 false,
 			"v2.ListAiGatewayRateLimitInstances":                        false,
+			"v2.ListAiGatewayRateLimitInstancesSummaries":               false,
 			"v2.ListAiGatewayRateLimits":                                false,
 			"v2.ListAiGatewayRoutingRules":                              false,
 			"v2.OverrideAiGatewayBudgetInstanceCapacity":                false,

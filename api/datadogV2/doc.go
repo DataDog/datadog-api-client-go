@@ -43,6 +43,7 @@
 //   - [AIGatewayApi.ListAiGatewayProviderModels]
 //   - [AIGatewayApi.ListAiGatewayProviders]
 //   - [AIGatewayApi.ListAiGatewayRateLimitInstances]
+//   - [AIGatewayApi.ListAiGatewayRateLimitInstancesSummaries]
 //   - [AIGatewayApi.ListAiGatewayRateLimits]
 //   - [AIGatewayApi.ListAiGatewayRoutingRules]
 //   - [AIGatewayApi.OverrideAiGatewayBudgetInstanceCapacity]
