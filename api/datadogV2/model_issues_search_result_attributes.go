@@ -11,12 +11,12 @@ import (
 // IssuesSearchResultAttributes Object containing the information of a search result.
 type IssuesSearchResultAttributes struct {
 	// Count of sessions impacted by the issue over the queried time window.
-	// Returned for RUM, LLM Observability, browser, and mobile searches,
+	// Returned for RUM and LLM Observability tracks, for browser, mobile, and agent personas,
 	// or when `issue.impacted_sessions` is requested in the `include` query parameter.
 	// Omitted when zero unless requested in the `include` query parameter.
 	ImpactedSessions *int64 `json:"impacted_sessions,omitempty"`
 	// Count of users impacted by the issue over the queried time window.
-	// Returned for RUM, browser, and mobile searches,
+	// Returned for the RUM track, for browser and mobile personas,
 	// or when `issue.impacted_users` is requested in the `include` query parameter.
 	// Omitted when zero unless requested in the `include` query parameter.
 	ImpactedUsers *int64 `json:"impacted_users,omitempty"`

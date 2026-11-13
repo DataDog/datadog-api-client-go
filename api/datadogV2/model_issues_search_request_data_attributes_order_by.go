@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IssuesSearchRequestDataAttributesOrderBy The attribute to sort the search results by.
+// IssuesSearchRequestDataAttributesOrderBy The attribute to sort the search results by, in descending order. Defaults to `TOTAL_COUNT`.
 type IssuesSearchRequestDataAttributesOrderBy string
 
 // List of IssuesSearchRequestDataAttributesOrderBy.
@@ -19,6 +19,7 @@ const (
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_FIRST_SEEN        IssuesSearchRequestDataAttributesOrderBy = "FIRST_SEEN"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_IMPACTED_SESSIONS IssuesSearchRequestDataAttributesOrderBy = "IMPACTED_SESSIONS"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_PRIORITY          IssuesSearchRequestDataAttributesOrderBy = "PRIORITY"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_IMPACTED_ACCOUNTS IssuesSearchRequestDataAttributesOrderBy = "IMPACTED_ACCOUNTS"
 )
 
 var allowedIssuesSearchRequestDataAttributesOrderByEnumValues = []IssuesSearchRequestDataAttributesOrderBy{
@@ -26,6 +27,7 @@ var allowedIssuesSearchRequestDataAttributesOrderByEnumValues = []IssuesSearchRe
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_FIRST_SEEN,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_IMPACTED_SESSIONS,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_PRIORITY,
+	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_IMPACTED_ACCOUNTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.

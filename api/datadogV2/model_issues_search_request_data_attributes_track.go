@@ -10,20 +10,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IssuesSearchRequestDataAttributesTrack Track of the events to query. Either track(s) or persona(s) must be specified.
+// IssuesSearchRequestDataAttributesTrack Track of the events to query. Either `track` or `persona` must be specified.
+// If both are specified, `persona` is ignored.
 type IssuesSearchRequestDataAttributesTrack string
 
 // List of IssuesSearchRequestDataAttributesTrack.
 const (
-	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_TRACE IssuesSearchRequestDataAttributesTrack = "trace"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LOGS  IssuesSearchRequestDataAttributesTrack = "logs"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_RUM   IssuesSearchRequestDataAttributesTrack = "rum"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_TRACE  IssuesSearchRequestDataAttributesTrack = "trace"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LOGS   IssuesSearchRequestDataAttributesTrack = "logs"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_RUM    IssuesSearchRequestDataAttributesTrack = "rum"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LLMOBS IssuesSearchRequestDataAttributesTrack = "llmobs"
 )
 
 var allowedIssuesSearchRequestDataAttributesTrackEnumValues = []IssuesSearchRequestDataAttributesTrack{
 	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_TRACE,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LOGS,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_RUM,
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LLMOBS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
