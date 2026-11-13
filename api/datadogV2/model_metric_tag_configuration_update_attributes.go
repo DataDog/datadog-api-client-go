@@ -16,8 +16,8 @@ type MetricTagConfigurationUpdateAttributes struct {
 	// When set to false, the configuration will include the configured tags and exclude any other submitted tags.
 	// Defaults to false. Requires `tags` property.
 	ExcludeTagsMode *bool `json:"exclude_tags_mode,omitempty"`
-	// Toggle to include/exclude percentiles for a distribution metric.
-	// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+	// Include percentile aggregations for metric types `distribution`, `exponential_histogram`,
+	// and `explicit_histogram`. Omit this field to keep the current setting.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags,omitempty"`
