@@ -16,6 +16,10 @@ type CoverageSummaryAttributes struct {
 	EvaluatedFlagsCount *int64 `json:"evaluated_flags_count,omitempty"`
 	// Total number of coverage reports evaluated.
 	EvaluatedReportsCount *int64 `json:"evaluated_reports_count,omitempty"`
+	// Coverage statistics broken down by flag. Each entry contains only coverage percentages.
+	// Branch summaries include the flags of the latest covered commit, including coverage carried forward
+	// to that commit. Pull request summaries include flags across all commits of the pull request.
+	Flags map[string]CoverageSummaryFlagStats `json:"flags,omitempty"`
 	// Overall patch coverage percentage.
 	PatchCoverage datadog.NullableFloat64 `json:"patch_coverage,omitempty"`
 	// Coverage statistics broken down by service.
@@ -127,6 +131,35 @@ func (o *CoverageSummaryAttributes) HasEvaluatedReportsCount() bool {
 // SetEvaluatedReportsCount gets a reference to the given int64 and assigns it to the EvaluatedReportsCount field.
 func (o *CoverageSummaryAttributes) SetEvaluatedReportsCount(v int64) {
 	o.EvaluatedReportsCount = &v
+}
+
+// GetFlags returns the Flags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CoverageSummaryAttributes) GetFlags() map[string]CoverageSummaryFlagStats {
+	if o == nil {
+		var ret map[string]CoverageSummaryFlagStats
+		return ret
+	}
+	return o.Flags
+}
+
+// GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CoverageSummaryAttributes) GetFlagsOk() (*map[string]CoverageSummaryFlagStats, bool) {
+	if o == nil || o.Flags == nil {
+		return nil, false
+	}
+	return &o.Flags, true
+}
+
+// HasFlags returns a boolean if a field has been set.
+func (o *CoverageSummaryAttributes) HasFlags() bool {
+	return o != nil && o.Flags != nil
+}
+
+// SetFlags gets a reference to the given map[string]CoverageSummaryFlagStats and assigns it to the Flags field.
+func (o *CoverageSummaryAttributes) SetFlags(v map[string]CoverageSummaryFlagStats) {
+	o.Flags = v
 }
 
 // GetPatchCoverage returns the PatchCoverage field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -251,6 +284,9 @@ func (o CoverageSummaryAttributes) MarshalJSON() ([]byte, error) {
 	if o.EvaluatedReportsCount != nil {
 		toSerialize["evaluated_reports_count"] = o.EvaluatedReportsCount
 	}
+	if o.Flags != nil {
+		toSerialize["flags"] = o.Flags
+	}
 	if o.PatchCoverage.IsSet() {
 		toSerialize["patch_coverage"] = o.PatchCoverage.Get()
 	}
@@ -273,6 +309,7 @@ func (o *CoverageSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Codeowners            map[string]CoverageSummaryCodeownerStats `json:"codeowners,omitempty"`
 		EvaluatedFlagsCount   *int64                                   `json:"evaluated_flags_count,omitempty"`
 		EvaluatedReportsCount *int64                                   `json:"evaluated_reports_count,omitempty"`
+		Flags                 map[string]CoverageSummaryFlagStats      `json:"flags,omitempty"`
 		PatchCoverage         datadog.NullableFloat64                  `json:"patch_coverage,omitempty"`
 		Services              map[string]CoverageSummaryServiceStats   `json:"services,omitempty"`
 		TotalCoverage         datadog.NullableFloat64                  `json:"total_coverage,omitempty"`
@@ -282,13 +319,14 @@ func (o *CoverageSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"codeowners", "evaluated_flags_count", "evaluated_reports_count", "patch_coverage", "services", "total_coverage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"codeowners", "evaluated_flags_count", "evaluated_reports_count", "flags", "patch_coverage", "services", "total_coverage"})
 	} else {
 		return err
 	}
 	o.Codeowners = all.Codeowners
 	o.EvaluatedFlagsCount = all.EvaluatedFlagsCount
 	o.EvaluatedReportsCount = all.EvaluatedReportsCount
+	o.Flags = all.Flags
 	o.PatchCoverage = all.PatchCoverage
 	o.Services = all.Services
 	o.TotalCoverage = all.TotalCoverage

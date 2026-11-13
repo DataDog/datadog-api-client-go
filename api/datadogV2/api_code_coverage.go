@@ -17,8 +17,8 @@ type CodeCoverageApi datadog.Service
 
 // GetCodeCoverageBranchSummary Get code coverage summary for a branch.
 // Retrieve aggregated code coverage statistics for a specific branch in a repository.
-// This endpoint provides overall coverage metrics as well as breakdowns by service
-// and code owner.
+// This endpoint provides overall coverage metrics as well as breakdowns by service,
+// code owner, and flag.
 func (a *CodeCoverageApi) GetCodeCoverageBranchSummary(ctx _context.Context, body BranchCoverageSummaryRequest) (CoverageSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -99,8 +99,8 @@ func (a *CodeCoverageApi) GetCodeCoverageBranchSummary(ctx _context.Context, bod
 
 // GetCodeCoverageCommitSummary Get code coverage summary for a commit.
 // Retrieve aggregated code coverage statistics for a specific commit in a repository.
-// This endpoint provides overall coverage metrics as well as breakdowns by service
-// and code owner.
+// This endpoint provides overall coverage metrics as well as breakdowns by service,
+// code owner, and flag.
 //
 // The commit SHA must be a 40-character hexadecimal string (SHA-1 hash).
 func (a *CodeCoverageApi) GetCodeCoverageCommitSummary(ctx _context.Context, body CommitCoverageSummaryRequest) (CoverageSummaryResponse, *_nethttp.Response, error) {
@@ -265,8 +265,8 @@ func (a *CodeCoverageApi) GetCodeCoverageFiles(ctx _context.Context, body FilesC
 
 // GetCodeCoveragePRSummary Get code coverage summary for a pull request.
 // Retrieve aggregated code coverage statistics for a specific pull request in a repository.
-// This endpoint provides overall coverage metrics as well as breakdowns by service
-// and code owner.
+// This endpoint provides overall coverage metrics as well as breakdowns by service,
+// code owner, and flag.
 func (a *CodeCoverageApi) GetCodeCoveragePRSummary(ctx _context.Context, body PRCoverageSummaryRequest) (CoverageSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
