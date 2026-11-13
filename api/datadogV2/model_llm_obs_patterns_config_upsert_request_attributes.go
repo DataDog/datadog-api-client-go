@@ -22,6 +22,9 @@ type LLMObsPatternsConfigUpsertRequestAttributes struct {
 	HierarchyDepth int32 `json:"hierarchy_depth"`
 	// Integration provider for a bring-your-own-model configuration.
 	IntegrationProvider *string `json:"integration_provider,omitempty"`
+	// Minimum topic size, the smallest number of interactions a topic must contain. Topics with fewer
+	// interactions are moved to Outliers. Must be at least 2 and less than `num_records`. Required when creating a configuration.
+	MinClusterSize *int32 `json:"min_cluster_size,omitempty"`
 	// Model name for a bring-your-own-model configuration.
 	ModelName *string `json:"model_name,omitempty"`
 	// Name of the configuration.
@@ -189,6 +192,34 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) HasIntegrationProvider() b
 // SetIntegrationProvider gets a reference to the given string and assigns it to the IntegrationProvider field.
 func (o *LLMObsPatternsConfigUpsertRequestAttributes) SetIntegrationProvider(v string) {
 	o.IntegrationProvider = &v
+}
+
+// GetMinClusterSize returns the MinClusterSize field value if set, zero value otherwise.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) GetMinClusterSize() int32 {
+	if o == nil || o.MinClusterSize == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MinClusterSize
+}
+
+// GetMinClusterSizeOk returns a tuple with the MinClusterSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) GetMinClusterSizeOk() (*int32, bool) {
+	if o == nil || o.MinClusterSize == nil {
+		return nil, false
+	}
+	return o.MinClusterSize, true
+}
+
+// HasMinClusterSize returns a boolean if a field has been set.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) HasMinClusterSize() bool {
+	return o != nil && o.MinClusterSize != nil
+}
+
+// SetMinClusterSize gets a reference to the given int32 and assigns it to the MinClusterSize field.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) SetMinClusterSize(v int32) {
+	o.MinClusterSize = &v
 }
 
 // GetModelName returns the ModelName field value if set, zero value otherwise.
@@ -361,6 +392,9 @@ func (o LLMObsPatternsConfigUpsertRequestAttributes) MarshalJSON() ([]byte, erro
 	if o.IntegrationProvider != nil {
 		toSerialize["integration_provider"] = o.IntegrationProvider
 	}
+	if o.MinClusterSize != nil {
+		toSerialize["min_cluster_size"] = o.MinClusterSize
+	}
 	if o.ModelName != nil {
 		toSerialize["model_name"] = o.ModelName
 	}
@@ -388,6 +422,7 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) UnmarshalJSON(bytes []byte
 		EvpQuery            *string  `json:"evp_query"`
 		HierarchyDepth      *int32   `json:"hierarchy_depth"`
 		IntegrationProvider *string  `json:"integration_provider,omitempty"`
+		MinClusterSize      *int32   `json:"min_cluster_size,omitempty"`
 		ModelName           *string  `json:"model_name,omitempty"`
 		Name                *string  `json:"name"`
 		NumRecords          *int32   `json:"num_records"`
@@ -415,7 +450,7 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "config_id", "evp_query", "hierarchy_depth", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "config_id", "evp_query", "hierarchy_depth", "integration_provider", "min_cluster_size", "model_name", "name", "num_records", "sampling_ratio", "scope", "template"})
 	} else {
 		return err
 	}
@@ -424,6 +459,7 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) UnmarshalJSON(bytes []byte
 	o.EvpQuery = *all.EvpQuery
 	o.HierarchyDepth = *all.HierarchyDepth
 	o.IntegrationProvider = all.IntegrationProvider
+	o.MinClusterSize = all.MinClusterSize
 	o.ModelName = all.ModelName
 	o.Name = *all.Name
 	o.NumRecords = *all.NumRecords

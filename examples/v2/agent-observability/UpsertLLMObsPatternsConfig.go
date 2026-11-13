@@ -21,6 +21,7 @@ func main() {
 				EvpQuery:            "@ml_app:support-bot",
 				HierarchyDepth:      2,
 				IntegrationProvider: datadog.PtrString("openai"),
+				MinClusterSize:      datadog.PtrInt32(15),
 				ModelName:           datadog.PtrString("gpt-4o"),
 				Name:                "Support chatbot topics",
 				NumRecords:          1000,
