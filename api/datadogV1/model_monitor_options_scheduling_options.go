@@ -10,7 +10,7 @@ import (
 
 // MonitorOptionsSchedulingOptions Configuration options for scheduling.
 type MonitorOptionsSchedulingOptions struct {
-	// Configuration options for the custom schedule. **This feature is in private beta.**
+	// Configuration options for the custom schedule.
 	CustomSchedule *MonitorOptionsCustomSchedule `json:"custom_schedule,omitempty"`
 	// Configuration options for the evaluation window. If `hour_starts` is set, no other fields may be set. Otherwise, `day_starts` and `month_starts` must be set together.
 	EvaluationWindow *MonitorOptionsSchedulingOptionsEvaluationWindow `json:"evaluation_window,omitempty"`

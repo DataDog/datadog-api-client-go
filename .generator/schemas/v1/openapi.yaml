@@ -9580,8 +9580,6 @@ components:
 
         `draft`: The monitor appears as Draft and does not send notifications.
         `published`: The monitor is active and evaluates conditions and notify as configured.
-
-        This field is in preview. The draft value is only available to customers with the feature enabled.
       enum:
         - draft
         - published
@@ -10635,7 +10633,7 @@ components:
           nullable: true
           type: integer
         variables:
-          description: List of requests that can be used in the monitor query. **This feature is currently in beta.**
+          description: List of requests that can be used in the monitor query.
           items:
             $ref: "#/components/schemas/MonitorFormulaAndFunctionQueryDefinition"
           type: array
@@ -10658,7 +10656,7 @@ components:
       readOnly: true
       type: object
     MonitorOptionsCustomSchedule:
-      description: Configuration options for the custom schedule. **This feature is in private beta.**
+      description: Configuration options for the custom schedule.
       properties:
         recurrences:
           description: Array of custom schedule recurrences.
@@ -23219,17 +23217,17 @@ components:
           minItems: 1
           type: array
         query_string:
-          description: A search string for filtering services. When set, this replaces the `service` field.
+          description: A search string for filtering services. Replaces the deprecated `service` field.
           example: "service:myservice"
           type: string
         service:
-          description: (deprecated) Name of the service. Leave this empty and use query_string instead.
+          deprecated: true
+          description: (deprecated) Name of the service. Use `query_string` instead.
           example: myservice
           type: string
       required:
         - data_source
         - filters
-        - service
       type: object
     TopologyQueryDataStreamsDataSource:
       description: Name of the data source.

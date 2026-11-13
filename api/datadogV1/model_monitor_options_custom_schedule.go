@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MonitorOptionsCustomSchedule Configuration options for the custom schedule. **This feature is in private beta.**
+// MonitorOptionsCustomSchedule Configuration options for the custom schedule.
 type MonitorOptionsCustomSchedule struct {
 	// Array of custom schedule recurrences.
 	Recurrences []MonitorOptionsCustomScheduleRecurrence `json:"recurrences,omitempty"`
