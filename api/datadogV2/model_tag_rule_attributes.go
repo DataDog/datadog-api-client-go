@@ -35,6 +35,7 @@ type TagRuleAttributes struct {
 	Required bool `json:"required"`
 	// How the rule is enforced. `blocking` rejects telemetry that violates the rule.
 	// `surfacing` only highlights non-compliant telemetry without blocking it.
+	// RUM supports only `surfacing` rules.
 	RuleType TagRuleType `json:"rule_type"`
 	// The scope the rule applies within.
 	Scope string `json:"scope"`

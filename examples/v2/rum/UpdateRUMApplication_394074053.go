@@ -21,7 +21,7 @@ func main() {
 			Attributes: &datadogV2.RUMApplicationUpdateAttributes{
 				Name:                           datadog.PtrString("updated_rum_with_product_scales"),
 				RumEventProcessingState:        datadogV2.RUMEVENTPROCESSINGSTATE_ALL.Ptr(),
-				ProductAnalyticsRetentionState: datadogV2.RUMPRODUCTANALYTICSRETENTIONSTATE_MAX.Ptr(),
+				ProductAnalyticsRetentionState: datadogV2.RUMPRODUCTANALYTICSRETENTIONSTATEREQUEST_MAX.Ptr(),
 			},
 			Id:   RumApplicationDataID,
 			Type: datadogV2.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,

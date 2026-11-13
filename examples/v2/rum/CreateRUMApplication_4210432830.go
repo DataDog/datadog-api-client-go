@@ -17,9 +17,9 @@ func main() {
 		Data: datadogV2.RUMApplicationCreate{
 			Attributes: datadogV2.RUMApplicationCreateAttributes{
 				Name:                           "test-rum-with-product-scales-5c67ebb32077e1d9",
-				Type:                           datadog.PtrString("browser"),
+				Type:                           datadogV2.RUMAPPLICATIONPLATFORMTYPE_BROWSER.Ptr(),
 				RumEventProcessingState:        datadogV2.RUMEVENTPROCESSINGSTATE_ERROR_FOCUSED_MODE.Ptr(),
-				ProductAnalyticsRetentionState: datadogV2.RUMPRODUCTANALYTICSRETENTIONSTATE_NONE.Ptr(),
+				ProductAnalyticsRetentionState: datadogV2.RUMPRODUCTANALYTICSRETENTIONSTATEREQUEST_NONE.Ptr(),
 			},
 			Type: datadogV2.RUMAPPLICATIONCREATETYPE_RUM_APPLICATION_CREATE,
 		},
