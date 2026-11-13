@@ -22,8 +22,17 @@ func main() {
 				Name:                  "Default rate limit",
 				OutputTokensPerMinute: *datadog.NewNullableInt64(nil),
 				RequestsPerMinute:     *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-				TeamId:                datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000002")),
-				UserId:                datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000001")),
+				Selector: []datadogV2.AiGatewayRateLimitSelectorEntry{
+					{
+						Dim:      "user_id",
+						PerValue: true,
+						Values: []string{
+							"11111111-1111-1111-1111-111111111111",
+						},
+					},
+				},
+				TeamId: datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000002")),
+				UserId: datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000001")),
 			},
 			Type: datadogV2.AIGATEWAYRATELIMITTYPE_RATE_LIMITS,
 		},
