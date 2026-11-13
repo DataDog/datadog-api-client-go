@@ -10,9 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagRuleCreateAttributes Attributes that can be supplied when creating a tag rule.
+// TagRuleCreateAttributes Attributes that can be supplied when creating a tag rule. If `tag_value_patterns`
+// contains `*`, set `required` and `negated` to different values. If both are `false`,
+// the rule has no effect. If both are `true`, no value can satisfy the rule.
 type TagRuleCreateAttributes struct {
-	// Whether the rule is currently enforced. Defaults to `true` for newly created rules.
+	// The API ignores this value on creation and always enables new rules. To disable a rule, use the "Update a tag rule" endpoint.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Human-readable name for the tag rule.
 	Name string `json:"name"`
@@ -23,15 +25,20 @@ type TagRuleCreateAttributes struct {
 	// The rule type allowed when creating a tag rule. Only `surfacing` is accepted at
 	// creation time.
 	RuleType TagRuleCreateType `json:"rule_type"`
-	// The scope the rule applies within. Typically an environment, team, or
-	// organization-level identifier used to limit where the rule is enforced.
+	// The scope the rule applies within. For logs and spans, use a search query, such
+	// as `env:prod`, or `*` to match all telemetry. For metrics, use a metric selector
+	// with an optional tag filter, such as `system.cpu.*{env:prod}`. A metric wildcard
+	// is allowed only once, at the end of the metric selector.
 	Scope string `json:"scope"`
 	// The telemetry source that a tag rule applies to.
 	Source TagRuleSource `json:"source"`
-	// The tag key that the rule governs (for example, `service`).
+	// The tag key that the rule governs (for example, `service`). Allowed characters
+	// are ASCII letters, digits, underscores, hyphens, periods, and slashes. The keys
+	// `host` and `device` are not supported in any letter case.
 	TagKey string `json:"tag_key"`
-	// One or more patterns that valid values for the tag key must match. At least one
-	// pattern is required.
+	// Between 1 and 30 non-empty patterns that valid values for the tag key must match.
+	// Allowed characters are ASCII letters, digits, underscores, colons, hyphens,
+	// periods, commas, slashes, and asterisks.
 	TagValuePatterns []string `json:"tag_value_patterns"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

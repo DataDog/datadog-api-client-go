@@ -9,7 +9,9 @@ import (
 )
 
 // TagRuleUpdateAttributes Mutable attributes of a tag rule. Each field is optional; omitting a field leaves its
-// current value unchanged. The `source` of a rule cannot be changed.
+// current value unchanged. The `source` of a rule cannot be changed. Tag keys, patterns,
+// and metrics scopes have the same constraints as on creation. If the effective
+// `tag_value_patterns` contains `*`, set `required` and `negated` to different values.
 type TagRuleUpdateAttributes struct {
 	// Whether the rule is currently enforced.
 	Enabled *bool `json:"enabled,omitempty"`
@@ -21,6 +23,7 @@ type TagRuleUpdateAttributes struct {
 	Required *bool `json:"required,omitempty"`
 	// How the rule is enforced. `blocking` rejects telemetry that violates the rule.
 	// `surfacing` only highlights non-compliant telemetry without blocking it.
+	// RUM supports only `surfacing` rules.
 	RuleType *TagRuleType `json:"rule_type,omitempty"`
 	// The scope the rule applies within.
 	Scope *string `json:"scope,omitempty"`
