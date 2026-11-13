@@ -43,6 +43,12 @@ type GCPSTSServiceAccountAttributes struct {
 	MetricNamespaceConfigs []GCPMetricNamespaceConfig `json:"metric_namespace_configs,omitempty"`
 	// Configurations for GCP monitored resources.
 	MonitoredResourceConfigs []GCPMonitoredResourceConfig `json:"monitored_resource_configs,omitempty"`
+	// Configurations that limit which GCP projects Datadog monitors, out of the projects this service
+	// account can access. Each type can have at most one configuration. A project is monitored only if
+	// it passes the filters of every configured type. By default, Datadog monitors every project the
+	// service account can access. When updating a service account, omit this field to keep the current
+	// filters, or send an empty list to remove them.
+	ProjectFilterConfigs []GCPProjectFilterConfig `json:"project_filter_configs,omitempty"`
 	// Configurations for GCP location filtering, such as region, multi-region, or zone. Only monitored resources that match the specified regions are imported into Datadog. By default, Datadog collects from all locations.
 	RegionFilterConfigs []string `json:"region_filter_configs,omitempty"`
 	// When enabled, Datadog scans for all project-level resources in your GCP environment.
@@ -459,6 +465,34 @@ func (o *GCPSTSServiceAccountAttributes) SetMonitoredResourceConfigs(v []GCPMoni
 	o.MonitoredResourceConfigs = v
 }
 
+// GetProjectFilterConfigs returns the ProjectFilterConfigs field value if set, zero value otherwise.
+func (o *GCPSTSServiceAccountAttributes) GetProjectFilterConfigs() []GCPProjectFilterConfig {
+	if o == nil || o.ProjectFilterConfigs == nil {
+		var ret []GCPProjectFilterConfig
+		return ret
+	}
+	return o.ProjectFilterConfigs
+}
+
+// GetProjectFilterConfigsOk returns a tuple with the ProjectFilterConfigs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPSTSServiceAccountAttributes) GetProjectFilterConfigsOk() (*[]GCPProjectFilterConfig, bool) {
+	if o == nil || o.ProjectFilterConfigs == nil {
+		return nil, false
+	}
+	return &o.ProjectFilterConfigs, true
+}
+
+// HasProjectFilterConfigs returns a boolean if a field has been set.
+func (o *GCPSTSServiceAccountAttributes) HasProjectFilterConfigs() bool {
+	return o != nil && o.ProjectFilterConfigs != nil
+}
+
+// SetProjectFilterConfigs gets a reference to the given []GCPProjectFilterConfig and assigns it to the ProjectFilterConfigs field.
+func (o *GCPSTSServiceAccountAttributes) SetProjectFilterConfigs(v []GCPProjectFilterConfig) {
+	o.ProjectFilterConfigs = v
+}
+
 // GetRegionFilterConfigs returns the RegionFilterConfigs field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetRegionFilterConfigs() []string {
 	if o == nil || o.RegionFilterConfigs == nil {
@@ -560,6 +594,9 @@ func (o GCPSTSServiceAccountAttributes) MarshalJSON() ([]byte, error) {
 	if o.MonitoredResourceConfigs != nil {
 		toSerialize["monitored_resource_configs"] = o.MonitoredResourceConfigs
 	}
+	if o.ProjectFilterConfigs != nil {
+		toSerialize["project_filter_configs"] = o.ProjectFilterConfigs
+	}
 	if o.RegionFilterConfigs != nil {
 		toSerialize["region_filter_configs"] = o.RegionFilterConfigs
 	}
@@ -589,6 +626,7 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 		IsSecurityCommandCenterEnabled       *bool                        `json:"is_security_command_center_enabled,omitempty"`
 		MetricNamespaceConfigs               []GCPMetricNamespaceConfig   `json:"metric_namespace_configs,omitempty"`
 		MonitoredResourceConfigs             []GCPMonitoredResourceConfig `json:"monitored_resource_configs,omitempty"`
+		ProjectFilterConfigs                 []GCPProjectFilterConfig     `json:"project_filter_configs,omitempty"`
 		RegionFilterConfigs                  []string                     `json:"region_filter_configs,omitempty"`
 		ResourceCollectionEnabled            *bool                        `json:"resource_collection_enabled,omitempty"`
 	}{}
@@ -597,7 +635,7 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "automute", "client_email", "cloud_run_revision_filters", "host_filters", "is_cspm_enabled", "is_global_location_enabled", "is_org_folder_resource_collection_enabled", "is_per_project_quota_enabled", "is_resource_change_collection_enabled", "is_security_command_center_enabled", "metric_namespace_configs", "monitored_resource_configs", "region_filter_configs", "resource_collection_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "automute", "client_email", "cloud_run_revision_filters", "host_filters", "is_cspm_enabled", "is_global_location_enabled", "is_org_folder_resource_collection_enabled", "is_per_project_quota_enabled", "is_resource_change_collection_enabled", "is_security_command_center_enabled", "metric_namespace_configs", "monitored_resource_configs", "project_filter_configs", "region_filter_configs", "resource_collection_enabled"})
 	} else {
 		return err
 	}
@@ -614,6 +652,7 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.IsSecurityCommandCenterEnabled = all.IsSecurityCommandCenterEnabled
 	o.MetricNamespaceConfigs = all.MetricNamespaceConfigs
 	o.MonitoredResourceConfigs = all.MonitoredResourceConfigs
+	o.ProjectFilterConfigs = all.ProjectFilterConfigs
 	o.RegionFilterConfigs = all.RegionFilterConfigs
 	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
 
