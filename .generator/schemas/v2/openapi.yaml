@@ -49346,9 +49346,55 @@ components:
       x-enum-varnames:
         - READ_ONLY
         - READ_WRITE
-    ExecutionPolicyRemoteActionRshellScope:
-      description: Restricts the policy to specific remote shell paths.
+    ExecutionPolicyRemoteActionRshellAllowedCommand:
+      description: A non-elevated remote shell command allowed by the policy.
       properties:
+        command:
+          description: |-
+            The fully qualified command identifier. Use the exact `rshell:*` identifier
+            to allow all commands in the organization's Balto allowlist, or use a literal
+            identifier such as `rshell:cat`.
+          example: "rshell:cat"
+          pattern: "^rshell:[^:]+$"
+          type: string
+      required:
+        - command
+      type: object
+    ExecutionPolicyRemoteActionRshellAllowedCommands:
+      description: |-
+        The non-elevated remote shell commands this policy contributes. The command list
+        is additive across matching policies and is capped by the organization's Balto
+        allowlist. An explicit empty list (`commands: []`) contributes no commands.
+        The exact wildcard `rshell:*` contributes the current Balto command ceiling.
+        A literal list can contain values such as `rshell:cat` and `rshell:ls`.
+        For compatibility with policies created before this field existed,
+        `allowed_commands` may be omitted temporarily. Compatibility readers currently
+        interpret that omission as inheriting the organization's Balto allowlist; it is
+        not equivalent to an explicit empty list. After supported writers and write
+        guards are deployed and legacy policies are backfilled, a later rollout will
+        require this choice for applicable `rshell` ALLOW policies and reject it when
+        missing. That future requirement does not apply to unrelated action families or
+        DENY policies, and this transitional schema does not enforce it yet.
+      properties:
+        commands:
+          description: |-
+            The command identifiers contributed by this policy. Set this to `[]` to
+            contribute no commands; do not omit `commands` when `allowed_commands` is
+            present.
+          example:
+            - command: "rshell:cat"
+            - command: "rshell:ls"
+          items:
+            $ref: "#/components/schemas/ExecutionPolicyRemoteActionRshellAllowedCommand"
+          type: array
+      required:
+        - commands
+      type: object
+    ExecutionPolicyRemoteActionRshellScope:
+      description: Restricts the policy to specific remote shell paths and commands.
+      properties:
+        allowed_commands:
+          $ref: "#/components/schemas/ExecutionPolicyRemoteActionRshellAllowedCommands"
         rules:
           description: The remote shell scope rules.
           items:
@@ -158482,6 +158528,93 @@ paths:
                       effect: allow
                       name: "Block prod restarts"
                     type: execution_policy
+              exact_wildcard:
+                summary: Allow all commands in the organization's Balto allowlist
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "All remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands:
+                              - command: "rshell:*"
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    type: execution_policy
+              explicit_empty:
+                summary: Explicitly allow no remote shell commands
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "No remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands: []
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    type: execution_policy
+              literal_list:
+                summary: Allow a literal list of remote shell commands
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "Read-only remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands:
+                              - command: "rshell:cat"
+                              - command: "rshell:ls"
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    type: execution_policy
+              transitional_omission:
+                description: |-
+                  Compatibility readers currently interpret the missing choice as inheriting
+                  the organization's Balto allowlist. It is distinct from an explicit empty
+                  list. A later rollout will require the choice for applicable rshell ALLOW
+                  policies after supported writers, write guards, and legacy backfill are in
+                  place; this requirement does not apply to unrelated actions or DENY policies.
+                summary: Legacy policy without an allowed command choice
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "Legacy remote shell policy"
+                      scope:
+                        remote_action_rshell:
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    type: execution_policy
             schema:
               $ref: "#/components/schemas/ExecutionPolicyCreateRequest"
         description: The execution policy to create.
@@ -158646,6 +158779,97 @@ paths:
                         integration: INTEGRATION_SCRIPT
                       effect: allow
                       name: "Block prod restarts"
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    type: execution_policy
+              exact_wildcard:
+                summary: Allow all commands in the organization's Balto allowlist
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "All remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands:
+                              - command: "rshell:*"
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    type: execution_policy
+              explicit_empty:
+                summary: Explicitly allow no remote shell commands
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "No remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands: []
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    type: execution_policy
+              literal_list:
+                summary: Allow a literal list of remote shell commands
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "Read-only remote shell commands"
+                      scope:
+                        remote_action_rshell:
+                          allowed_commands:
+                            commands:
+                              - command: "rshell:cat"
+                              - command: "rshell:ls"
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    type: execution_policy
+              transitional_omission:
+                description: |-
+                  Compatibility readers currently interpret the missing choice as inheriting
+                  the organization's Balto allowlist. It is distinct from an explicit empty
+                  list. A later rollout will require the choice for applicable rshell ALLOW
+                  policies after supported writers, write guards, and legacy backfill are in
+                  place; this requirement does not apply to unrelated actions or DENY policies.
+                summary: Legacy policy without an allowed command choice
+                value:
+                  data:
+                    attributes:
+                      action_pattern:
+                        action_fqns:
+                          - "com.datadoghq.remoteaction.rshell.runCommand"
+                        integration: INTEGRATION_REMOTE_ACTION
+                      effect: allow
+                      name: "Legacy remote shell policy"
+                      scope:
+                        remote_action_rshell:
+                          rules:
+                            - access: read_only
+                              target_paths:
+                                - "/var/log"
                     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
                     type: execution_policy
             schema:
