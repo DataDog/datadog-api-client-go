@@ -137,7 +137,8 @@ func (r *DeleteTagRuleOptionalParameters) WithHardDelete(hardDelete bool) *Delet
 // DeleteTagRule Delete a tag rule.
 // Delete a tag rule. By default the rule is soft-deleted so it can be recovered later
 // and so that historical score data remains queryable. Pass `hard_delete=true` to remove
-// the rule permanently.
+// the rule permanently. Deleting a `blocking` rule additionally requires the
+// `telemetry_rules_activate` permission.
 func (a *TagRulesApi) DeleteTagRule(ctx _context.Context, ruleId string, o ...DeleteTagRuleOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -695,6 +696,9 @@ func (a *TagRulesApi) ListTagRules(ctx _context.Context, o ...ListTagRulesOption
 // Update one or more attributes of an existing tag rule. Only the fields supplied in the
 // request body are modified; omitted fields retain their current values. The rule's
 // `source` cannot be changed after creation.
+// Promoting a rule from `surfacing` to `blocking` additionally requires the
+// `telemetry_rules_activate` permission, and your organization must have access to
+// blocking rules. You can't promote RUM rules to `blocking`.
 func (a *TagRulesApi) UpdateTagRule(ctx _context.Context, ruleId string, body TagRuleUpdateRequest) (TagRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

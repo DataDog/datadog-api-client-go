@@ -15,6 +15,8 @@ import (
 
 // Allocation Targeting rule (allocation) details for a feature flag environment.
 type Allocation struct {
+	// The bandit that serves through this targeting rule allocation. Absent when no bandit uses it. Until the bandit ends, only the bandit's own operations can change or delete the allocation; its position among the flag's targeting rules can still change.
+	BanditId *uuid.UUID `json:"bandit_id,omitempty"`
 	// The timestamp when the targeting rule allocation was created.
 	CreatedAt time.Time `json:"created_at"`
 	// Environment IDs associated with this targeting rule allocation.
@@ -71,6 +73,34 @@ func NewAllocation(createdAt time.Time, environmentIds []uuid.UUID, guardrailMet
 func NewAllocationWithDefaults() *Allocation {
 	this := Allocation{}
 	return &this
+}
+
+// GetBanditId returns the BanditId field value if set, zero value otherwise.
+func (o *Allocation) GetBanditId() uuid.UUID {
+	if o == nil || o.BanditId == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return *o.BanditId
+}
+
+// GetBanditIdOk returns a tuple with the BanditId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Allocation) GetBanditIdOk() (*uuid.UUID, bool) {
+	if o == nil || o.BanditId == nil {
+		return nil, false
+	}
+	return o.BanditId, true
+}
+
+// HasBanditId returns a boolean if a field has been set.
+func (o *Allocation) HasBanditId() bool {
+	return o != nil && o.BanditId != nil
+}
+
+// SetBanditId gets a reference to the given uuid.UUID and assigns it to the BanditId field.
+func (o *Allocation) SetBanditId(v uuid.UUID) {
+	o.BanditId = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -404,6 +434,9 @@ func (o Allocation) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.BanditId != nil {
+		toSerialize["bandit_id"] = o.BanditId
+	}
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -441,6 +474,7 @@ func (o Allocation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Allocation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		BanditId         *uuid.UUID                  `json:"bandit_id,omitempty"`
 		CreatedAt        *time.Time                  `json:"created_at"`
 		EnvironmentIds   *[]uuid.UUID                `json:"environment_ids"`
 		ExperimentId     datadog.NullableString      `json:"experiment_id,omitempty"`
@@ -490,12 +524,13 @@ func (o *Allocation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "environment_ids", "experiment_id", "exposure_schedule", "guardrail_metrics", "id", "key", "name", "order_position", "targeting_rules", "type", "updated_at", "variant_weights"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bandit_id", "created_at", "environment_ids", "experiment_id", "exposure_schedule", "guardrail_metrics", "id", "key", "name", "order_position", "targeting_rules", "type", "updated_at", "variant_weights"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.BanditId = all.BanditId
 	o.CreatedAt = *all.CreatedAt
 	o.EnvironmentIds = *all.EnvironmentIds
 	o.ExperimentId = all.ExperimentId
