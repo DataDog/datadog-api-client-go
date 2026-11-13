@@ -18,7 +18,7 @@ type TagRuleData struct {
 	Id string `json:"id"`
 	// Related resources for a tag rule. Only present when the corresponding `include` query parameter is supplied.
 	Relationships *TagRuleRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for a tag rule.
+	// JSON:API resource type for a tag rule. Requests accept `tag_rule` or `tag_policy`; responses use `tag_policy`.
 	Type TagRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
