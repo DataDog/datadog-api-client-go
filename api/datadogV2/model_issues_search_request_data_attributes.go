@@ -18,9 +18,10 @@ type IssuesSearchRequestDataAttributes struct {
 	AssigneeIds []uuid.UUID `json:"assignee_ids,omitempty"`
 	// Start date (inclusive) of the query in milliseconds since the Unix epoch.
 	From int64 `json:"from"`
-	// The attribute to sort the search results by.
+	// The attribute to sort the search results by, in descending order. Defaults to `TOTAL_COUNT`.
 	OrderBy *IssuesSearchRequestDataAttributesOrderBy `json:"order_by,omitempty"`
-	// Persona for the search. Either track(s) or persona(s) must be specified.
+	// Persona for the search. Either `track` or `persona` must be specified.
+	// Ignored if `track` is specified.
 	Persona *IssuesSearchRequestDataAttributesPersona `json:"persona,omitempty"`
 	// Search query following the event search syntax.
 	Query string `json:"query"`
@@ -30,7 +31,8 @@ type IssuesSearchRequestDataAttributes struct {
 	TeamIds []uuid.UUID `json:"team_ids,omitempty"`
 	// End date (exclusive) of the query in milliseconds since the Unix epoch.
 	To int64 `json:"to"`
-	// Track of the events to query. Either track(s) or persona(s) must be specified.
+	// Track of the events to query. Either `track` or `persona` must be specified.
+	// If both are specified, `persona` is ignored.
 	Track *IssuesSearchRequestDataAttributesTrack `json:"track,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

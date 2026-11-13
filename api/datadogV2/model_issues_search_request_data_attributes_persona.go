@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IssuesSearchRequestDataAttributesPersona Persona for the search. Either track(s) or persona(s) must be specified.
+// IssuesSearchRequestDataAttributesPersona Persona for the search. Either `track` or `persona` must be specified.
+// Ignored if `track` is specified.
 type IssuesSearchRequestDataAttributesPersona string
 
 // List of IssuesSearchRequestDataAttributesPersona.
@@ -19,6 +20,7 @@ const (
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BROWSER IssuesSearchRequestDataAttributesPersona = "BROWSER"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_MOBILE  IssuesSearchRequestDataAttributesPersona = "MOBILE"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BACKEND IssuesSearchRequestDataAttributesPersona = "BACKEND"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_AGENT   IssuesSearchRequestDataAttributesPersona = "AGENT"
 )
 
 var allowedIssuesSearchRequestDataAttributesPersonaEnumValues = []IssuesSearchRequestDataAttributesPersona{
@@ -26,6 +28,7 @@ var allowedIssuesSearchRequestDataAttributesPersonaEnumValues = []IssuesSearchRe
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BROWSER,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_MOBILE,
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BACKEND,
+	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_AGENT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
