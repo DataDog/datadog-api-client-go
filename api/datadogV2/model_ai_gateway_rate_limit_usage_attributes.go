@@ -12,6 +12,8 @@ import (
 
 // AiGatewayRateLimitUsageAttributes Live consumption of one AI Gateway rate limit.
 type AiGatewayRateLimitUsageAttributes struct {
+	// Priced spend, in microcents, counted in the rolling one-minute window. Only rules with a cost limit count it, so it is 0 for other rules and for the untracked and total entries.
+	CostMicrocents *int64 `json:"cost_microcents,omitempty"`
 	// Input tokens counted in the rolling one-minute window.
 	InputTokens int64 `json:"input_tokens"`
 	// Requests this rate limit rejected in the last 15 minutes. Applies when mode is ENFORCE.
@@ -47,6 +49,34 @@ func NewAiGatewayRateLimitUsageAttributes(inputTokens int64, limitedRequests int
 func NewAiGatewayRateLimitUsageAttributesWithDefaults() *AiGatewayRateLimitUsageAttributes {
 	this := AiGatewayRateLimitUsageAttributes{}
 	return &this
+}
+
+// GetCostMicrocents returns the CostMicrocents field value if set, zero value otherwise.
+func (o *AiGatewayRateLimitUsageAttributes) GetCostMicrocents() int64 {
+	if o == nil || o.CostMicrocents == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CostMicrocents
+}
+
+// GetCostMicrocentsOk returns a tuple with the CostMicrocents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRateLimitUsageAttributes) GetCostMicrocentsOk() (*int64, bool) {
+	if o == nil || o.CostMicrocents == nil {
+		return nil, false
+	}
+	return o.CostMicrocents, true
+}
+
+// HasCostMicrocents returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitUsageAttributes) HasCostMicrocents() bool {
+	return o != nil && o.CostMicrocents != nil
+}
+
+// SetCostMicrocents gets a reference to the given int64 and assigns it to the CostMicrocents field.
+func (o *AiGatewayRateLimitUsageAttributes) SetCostMicrocents(v int64) {
+	o.CostMicrocents = &v
 }
 
 // GetInputTokens returns the InputTokens field value.
@@ -170,6 +200,9 @@ func (o AiGatewayRateLimitUsageAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CostMicrocents != nil {
+		toSerialize["cost_microcents"] = o.CostMicrocents
+	}
 	toSerialize["input_tokens"] = o.InputTokens
 	toSerialize["limited_requests"] = o.LimitedRequests
 	toSerialize["output_tokens"] = o.OutputTokens
@@ -185,6 +218,7 @@ func (o AiGatewayRateLimitUsageAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitUsageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		CostMicrocents     *int64 `json:"cost_microcents,omitempty"`
 		InputTokens        *int64 `json:"input_tokens"`
 		LimitedRequests    *int64 `json:"limited_requests"`
 		OutputTokens       *int64 `json:"output_tokens"`
@@ -211,10 +245,11 @@ func (o *AiGatewayRateLimitUsageAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"input_tokens", "limited_requests", "output_tokens", "requests", "would_limit_requests"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents", "input_tokens", "limited_requests", "output_tokens", "requests", "would_limit_requests"})
 	} else {
 		return err
 	}
+	o.CostMicrocents = all.CostMicrocents
 	o.InputTokens = *all.InputTokens
 	o.LimitedRequests = *all.LimitedRequests
 	o.OutputTokens = *all.OutputTokens

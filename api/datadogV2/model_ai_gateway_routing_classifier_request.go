@@ -16,7 +16,7 @@ type AiGatewayRoutingClassifierRequest struct {
 	Context *string `json:"context,omitempty"`
 	// Decision model on the provider. Omit together with provider to preserve the saved selection.
 	Model *string `json:"model,omitempty"`
-	// Decision-model provider slug. It must name a provider of type `openai`, `baseten`, or `typesafe`, the provider types that serve a decision model. Omit together with model to preserve the saved selection.
+	// Decision-model provider slug. Omit together with model to preserve the saved selection.
 	Provider *string `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

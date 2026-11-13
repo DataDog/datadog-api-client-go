@@ -17,11 +17,12 @@ func main() {
 	body := datadogV2.AiGatewayRateLimitCreateRequest{
 		Data: datadogV2.AiGatewayRateLimitCreateData{
 			Attributes: datadogV2.AiGatewayRateLimitCreateAttributes{
-				InputTokensPerMinute:  *datadog.NewNullableInt64(nil),
-				Mode:                  datadogV2.AIGATEWAYRATELIMITMODE_ALERT.Ptr(),
-				Name:                  "Default rate limit",
-				OutputTokensPerMinute: *datadog.NewNullableInt64(nil),
-				RequestsPerMinute:     *datadog.NewNullableInt64(datadog.PtrInt64(600)),
+				CostMicrocentsPerMinute: *datadog.NewNullableInt64(datadog.PtrInt64(100000000)),
+				InputTokensPerMinute:    *datadog.NewNullableInt64(nil),
+				Mode:                    datadogV2.AIGATEWAYRATELIMITMODE_ALERT.Ptr(),
+				Name:                    "Default rate limit",
+				OutputTokensPerMinute:   *datadog.NewNullableInt64(nil),
+				RequestsPerMinute:       *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 				Selector: []datadogV2.AiGatewayRateLimitSelectorEntry{
 					{
 						Dim:      "user_id",

@@ -17,13 +17,14 @@ func main() {
 	body := datadogV2.AiGatewayRateLimitUpdateRequest{
 		Data: datadogV2.AiGatewayRateLimitUpdateData{
 			Attributes: datadogV2.AiGatewayRateLimitUpdateAttributes{
-				InputTokensPerMinute:  *datadog.NewNullableInt64(nil),
-				Mode:                  datadogV2.AIGATEWAYRATELIMITMODE_ALERT.Ptr(),
-				OutputTokensPerMinute: *datadog.NewNullableInt64(nil),
-				RequestsPerMinute:     *datadog.NewNullableInt64(nil),
-				Tags:                  nil,
-				TeamId:                *datadog.NewNullableString(nil),
-				UserId:                *datadog.NewNullableString(nil),
+				CostMicrocentsPerMinute: *datadog.NewNullableInt64(nil),
+				InputTokensPerMinute:    *datadog.NewNullableInt64(nil),
+				Mode:                    datadogV2.AIGATEWAYRATELIMITMODE_ALERT.Ptr(),
+				OutputTokensPerMinute:   *datadog.NewNullableInt64(nil),
+				RequestsPerMinute:       *datadog.NewNullableInt64(nil),
+				Tags:                    nil,
+				TeamId:                  *datadog.NewNullableString(nil),
+				UserId:                  *datadog.NewNullableString(nil),
 			},
 			Id:   uuid.MustParse("11111111-1111-1111-1111-111111111111"),
 			Type: datadogV2.AIGATEWAYRATELIMITTYPE_RATE_LIMITS,
