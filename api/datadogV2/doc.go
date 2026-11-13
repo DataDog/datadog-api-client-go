@@ -1749,6 +1749,7 @@
 //   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]
 //   - [UsageMeteringApi.GetUsageAttributionTypes]
 //   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]
+//   - [UsageMeteringApi.GetUsageMonthlyResources]
 //   - [UsageMeteringApi.GetUsageObservabilityPipelines]
 //   - [UsageMeteringApi.GetUsageSummaryAvailableFields]
 //   - [UsageMeteringApi.ListMyTemporaryGrantRequests]
