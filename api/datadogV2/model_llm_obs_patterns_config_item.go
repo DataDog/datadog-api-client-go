@@ -25,6 +25,9 @@ type LLMObsPatternsConfigItem struct {
 	Id string `json:"id"`
 	// Integration provider for a bring-your-own-model configuration.
 	IntegrationProvider datadog.NullableString `json:"integration_provider,omitempty"`
+	// Minimum topic size, the smallest number of interactions a topic must contain. Topics with fewer
+	// interactions are moved to Outliers.
+	MinClusterSize int32 `json:"min_cluster_size"`
 	// Model name for a bring-your-own-model configuration.
 	ModelName datadog.NullableString `json:"model_name,omitempty"`
 	// Name of the configuration.
@@ -48,12 +51,13 @@ type LLMObsPatternsConfigItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsPatternsConfigItem(createdAt time.Time, evpQuery string, hierarchyDepth int32, id string, name string, numRecords int32, samplingRatio float64, scope string, updatedAt time.Time) *LLMObsPatternsConfigItem {
+func NewLLMObsPatternsConfigItem(createdAt time.Time, evpQuery string, hierarchyDepth int32, id string, minClusterSize int32, name string, numRecords int32, samplingRatio float64, scope string, updatedAt time.Time) *LLMObsPatternsConfigItem {
 	this := LLMObsPatternsConfigItem{}
 	this.CreatedAt = createdAt
 	this.EvpQuery = evpQuery
 	this.HierarchyDepth = hierarchyDepth
 	this.Id = id
+	this.MinClusterSize = minClusterSize
 	this.Name = name
 	this.NumRecords = numRecords
 	this.SamplingRatio = samplingRatio
@@ -238,6 +242,29 @@ func (o *LLMObsPatternsConfigItem) SetIntegrationProviderNil() {
 // UnsetIntegrationProvider ensures that no value is present for IntegrationProvider, not even an explicit nil.
 func (o *LLMObsPatternsConfigItem) UnsetIntegrationProvider() {
 	o.IntegrationProvider.Unset()
+}
+
+// GetMinClusterSize returns the MinClusterSize field value.
+func (o *LLMObsPatternsConfigItem) GetMinClusterSize() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+	return o.MinClusterSize
+}
+
+// GetMinClusterSizeOk returns a tuple with the MinClusterSize field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsConfigItem) GetMinClusterSizeOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MinClusterSize, true
+}
+
+// SetMinClusterSize sets field value.
+func (o *LLMObsPatternsConfigItem) SetMinClusterSize(v int32) {
+	o.MinClusterSize = v
 }
 
 // GetModelName returns the ModelName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -453,6 +480,7 @@ func (o LLMObsPatternsConfigItem) MarshalJSON() ([]byte, error) {
 	if o.IntegrationProvider.IsSet() {
 		toSerialize["integration_provider"] = o.IntegrationProvider.Get()
 	}
+	toSerialize["min_cluster_size"] = o.MinClusterSize
 	if o.ModelName.IsSet() {
 		toSerialize["model_name"] = o.ModelName.Get()
 	}
@@ -484,6 +512,7 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 		HierarchyDepth      *int32                 `json:"hierarchy_depth"`
 		Id                  *string                `json:"id"`
 		IntegrationProvider datadog.NullableString `json:"integration_provider,omitempty"`
+		MinClusterSize      *int32                 `json:"min_cluster_size"`
 		ModelName           datadog.NullableString `json:"model_name,omitempty"`
 		Name                *string                `json:"name"`
 		NumRecords          *int32                 `json:"num_records"`
@@ -507,6 +536,9 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
+	if all.MinClusterSize == nil {
+		return fmt.Errorf("required field min_cluster_size missing")
+	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
@@ -524,7 +556,7 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "created_at", "evp_query", "hierarchy_depth", "id", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "created_at", "evp_query", "hierarchy_depth", "id", "integration_provider", "min_cluster_size", "model_name", "name", "num_records", "sampling_ratio", "scope", "template", "updated_at"})
 	} else {
 		return err
 	}
@@ -534,6 +566,7 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.HierarchyDepth = *all.HierarchyDepth
 	o.Id = *all.Id
 	o.IntegrationProvider = all.IntegrationProvider
+	o.MinClusterSize = *all.MinClusterSize
 	o.ModelName = all.ModelName
 	o.Name = *all.Name
 	o.NumRecords = *all.NumRecords
