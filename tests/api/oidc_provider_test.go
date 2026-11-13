@@ -85,6 +85,45 @@ func TestOIDCAuthenticateExchangesTokenFromFile(t *testing.T) {
 	}
 }
 
+func TestOIDCProofMatchesAuthenticateProof(t *testing.T) {
+	token := oidcScopedToken(t, "system:serviceaccount:datadog:agent")
+	t.Setenv("DD_TEST_OIDC_TOKEN", token)
+
+	var authorization string
+	server := newDelegatedTokenServer(t, func(request *http.Request) {
+		authorization = request.Header.Get("Authorization")
+	})
+	defer server.Close()
+
+	provider, err := oidcauth.New(oidcauth.WithTokenEnv("DD_TEST_OIDC_TOKEN"))
+	if err != nil {
+		t.Fatalf("creating provider: %v", err)
+	}
+	proof, err := provider.Proof(testOrgUUID)
+	if err != nil {
+		t.Fatalf("building proof: %v", err)
+	}
+	if proof != "oidc-"+token {
+		t.Fatalf("proof = %q, want oidc-<token>", proof)
+	}
+	credentials, err := provider.Authenticate(delegatedTokenContext(server.URL), oidcDelegatedTokenConfig())
+	if err != nil {
+		t.Fatalf("authenticating: %v", err)
+	}
+	if authorization != "Delegated "+proof || credentials.DelegatedProof != proof {
+		t.Fatalf("Authenticate sent %q, want the proof returned by Proof", authorization)
+	}
+
+	t.Setenv("DD_TEST_OIDC_TOKEN", oidcTestToken(t, map[string]any{"aud": "other-api", "exp": time.Now().Add(time.Minute).Unix()}))
+	var scopeError *oidcauth.TokenScopeError
+	if _, err := provider.Proof(testOrgUUID); !errors.As(err, &scopeError) {
+		t.Fatalf("Proof for an unscoped token returned %v, want TokenScopeError", err)
+	}
+	if _, err := provider.Proof(""); err == nil {
+		t.Fatal("Proof without an org UUID succeeded, want an error")
+	}
+}
+
 func TestOIDCAuthenticateExchangesTokenFromEnvironment(t *testing.T) {
 	token := oidcScopedToken(t, "project_path:group/project:ref_type:branch:ref:main")
 	t.Setenv("DD_TEST_OIDC_TOKEN", token)

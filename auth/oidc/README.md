@@ -45,6 +45,10 @@ environment variable; an environment variable cannot change without restarting
 the process. `oidcauth.WithHTTPClient` sets the client used for the exchange, for
 custom proxy, TLS, or timeout settings.
 
+`Provider.Proof` returns the `oidc-<token>` proof after the same checks, without
+contacting Datadog. Callers that exchange the proof at another endpoint, such as
+`/api/v2/intake-key`, can reuse the token handling and audience checks.
+
 ## Datadog setup
 
 The organization needs a custom OIDC provider and an identity mapping:
