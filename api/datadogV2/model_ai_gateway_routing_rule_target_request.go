@@ -20,11 +20,11 @@ type AiGatewayRoutingRuleTargetRequest struct {
 	Model *string `json:"model,omitempty"`
 	// Opaque model catalog ID for a concrete model target. New selections require provider View; saved selections can be retained without metadata.
 	ModelId *int64 `json:"model_id,omitempty"`
-	// Provider slug. weighted_affinity and classified tiers require an explicit provider and do not allow "*".
+	// Provider slug. weighted_affinity requires an explicit provider and does not allow "*".
 	Provider *string `json:"provider,omitempty"`
 	// Optional reasoning effort preference for this model destination. Must be supported by the selected model and provider. For provider "*", every eligible provider must support the level. An explicit value overrides the request's reasoning setting, subject to model-group policy. Omitted or null preserves request and provider behavior; none is an explicit level, not the default. On update, omission preserves a saved target override; null explicitly clears it. Routing-rule references cannot set this field; each referenced model destination owns its override. If an override cannot be applied at runtime, the gateway keeps the destination and restores the caller's original reasoning settings, or preserves the provider default when omitted. It rechecks all applicable route and model-group policies against those settings before sending. Model-group max_reasoning_level enforces hard limits; the override is not an additional cap. Normal fallback applies if governance denies the resulting request or the destination cannot otherwise serve it. Metrics and span tags record the override outcome and incompatibility reason. When response headers have not already been committed, `X-Ai-Gateway-Reasoning-Override` reports applied or not_applied for the returned attempt, and `X-Ai-Gateway-Reasoning-Override-Reason` reports the reason when not applied.
 	ReasoningLevel NullableAiGatewayRoutingReasoningLevel `json:"reasoning_level,omitempty"`
-	// Destination rubric in a classified tier: when the decision model picks this destination. Up to 300 characters after leading and trailing spaces are trimmed, and different for each destination in the tier. Omission preserves a saved value; null clears it. Must be absent on the default destination.
+	// Destination rubric in a classified tier. Omission preserves a saved value; null clears it. Must be absent on the default destination.
 	Rubric datadog.NullableString `json:"rubric,omitempty"`
 	// Organization-unique routing rule slug. New references require route View. Omit to retain a saved target by its parent-local ID. Allowed only in configured tiers.
 	Slug *string `json:"slug,omitempty"`
