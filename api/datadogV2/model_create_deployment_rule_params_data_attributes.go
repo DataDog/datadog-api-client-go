@@ -17,8 +17,9 @@ type CreateDeploymentRuleParamsDataAttributes struct {
 	// The name of the deployment rule.
 	Name string `json:"name"`
 	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Bits Deployment Analysis rules only accept `duration`, using the faulty deployment detection options shape.
 	Options DeploymentRulesOptions `json:"options"`
-	// The type of the deployment rule (faulty_deployment_detection or monitor).
+	// The type of the deployment rule (faulty_deployment_detection, monitor, or bits_deployment_analysis).
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

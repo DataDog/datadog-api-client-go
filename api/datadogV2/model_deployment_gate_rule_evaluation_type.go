@@ -17,11 +17,13 @@ type DeploymentGateRuleEvaluationType string
 const (
 	DEPLOYMENTGATERULEEVALUATIONTYPE_MONITOR                     DeploymentGateRuleEvaluationType = "monitor"
 	DEPLOYMENTGATERULEEVALUATIONTYPE_FAULTY_DEPLOYMENT_DETECTION DeploymentGateRuleEvaluationType = "faulty_deployment_detection"
+	DEPLOYMENTGATERULEEVALUATIONTYPE_BITS_DEPLOYMENT_ANALYSIS    DeploymentGateRuleEvaluationType = "bits_deployment_analysis"
 )
 
 var allowedDeploymentGateRuleEvaluationTypeEnumValues = []DeploymentGateRuleEvaluationType{
 	DEPLOYMENTGATERULEEVALUATIONTYPE_MONITOR,
 	DEPLOYMENTGATERULEEVALUATIONTYPE_FAULTY_DEPLOYMENT_DETECTION,
+	DEPLOYMENTGATERULEEVALUATIONTYPE_BITS_DEPLOYMENT_ANALYSIS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
