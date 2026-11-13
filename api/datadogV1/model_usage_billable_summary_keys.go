@@ -69,6 +69,10 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	DbmNormalizedQueriesSum *UsageBillableSummaryBody `json:"dbm_normalized_queries_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
+	ErrorTrackingSum *UsageBillableSummaryBody `json:"error_tracking_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ErrorTrackingTieredSum *UsageBillableSummaryBody `json:"error_tracking_tiered_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
 	FargateContainerApmAndProfilerAverage *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_average,omitempty"`
 	// Response with properties for each aggregated usage type.
 	FargateContainerApmAndProfilerSum *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_sum,omitempty"`
@@ -1020,6 +1024,62 @@ func (o *UsageBillableSummaryKeys) HasDbmNormalizedQueriesSum() bool {
 // SetDbmNormalizedQueriesSum gets a reference to the given UsageBillableSummaryBody and assigns it to the DbmNormalizedQueriesSum field.
 func (o *UsageBillableSummaryKeys) SetDbmNormalizedQueriesSum(v UsageBillableSummaryBody) {
 	o.DbmNormalizedQueriesSum = &v
+}
+
+// GetErrorTrackingSum returns the ErrorTrackingSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetErrorTrackingSum() UsageBillableSummaryBody {
+	if o == nil || o.ErrorTrackingSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ErrorTrackingSum
+}
+
+// GetErrorTrackingSumOk returns a tuple with the ErrorTrackingSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetErrorTrackingSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ErrorTrackingSum == nil {
+		return nil, false
+	}
+	return o.ErrorTrackingSum, true
+}
+
+// HasErrorTrackingSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasErrorTrackingSum() bool {
+	return o != nil && o.ErrorTrackingSum != nil
+}
+
+// SetErrorTrackingSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ErrorTrackingSum field.
+func (o *UsageBillableSummaryKeys) SetErrorTrackingSum(v UsageBillableSummaryBody) {
+	o.ErrorTrackingSum = &v
+}
+
+// GetErrorTrackingTieredSum returns the ErrorTrackingTieredSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetErrorTrackingTieredSum() UsageBillableSummaryBody {
+	if o == nil || o.ErrorTrackingTieredSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ErrorTrackingTieredSum
+}
+
+// GetErrorTrackingTieredSumOk returns a tuple with the ErrorTrackingTieredSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetErrorTrackingTieredSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ErrorTrackingTieredSum == nil {
+		return nil, false
+	}
+	return o.ErrorTrackingTieredSum, true
+}
+
+// HasErrorTrackingTieredSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasErrorTrackingTieredSum() bool {
+	return o != nil && o.ErrorTrackingTieredSum != nil
+}
+
+// SetErrorTrackingTieredSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ErrorTrackingTieredSum field.
+func (o *UsageBillableSummaryKeys) SetErrorTrackingTieredSum(v UsageBillableSummaryBody) {
+	o.ErrorTrackingTieredSum = &v
 }
 
 // GetFargateContainerApmAndProfilerAverage returns the FargateContainerApmAndProfilerAverage field value if set, zero value otherwise.
@@ -2795,6 +2855,12 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.DbmNormalizedQueriesSum != nil {
 		toSerialize["dbm_normalized_queries_sum"] = o.DbmNormalizedQueriesSum
 	}
+	if o.ErrorTrackingSum != nil {
+		toSerialize["error_tracking_sum"] = o.ErrorTrackingSum
+	}
+	if o.ErrorTrackingTieredSum != nil {
+		toSerialize["error_tracking_tiered_sum"] = o.ErrorTrackingTieredSum
+	}
 	if o.FargateContainerApmAndProfilerAverage != nil {
 		toSerialize["fargate_container_apm_and_profiler_average"] = o.FargateContainerApmAndProfilerAverage
 	}
@@ -3014,6 +3080,8 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		DbmHostTop99p                         *UsageBillableSummaryBody `json:"dbm_host_top99p,omitempty"`
 		DbmNormalizedQueriesAverage           *UsageBillableSummaryBody `json:"dbm_normalized_queries_average,omitempty"`
 		DbmNormalizedQueriesSum               *UsageBillableSummaryBody `json:"dbm_normalized_queries_sum,omitempty"`
+		ErrorTrackingSum                      *UsageBillableSummaryBody `json:"error_tracking_sum,omitempty"`
+		ErrorTrackingTieredSum                *UsageBillableSummaryBody `json:"error_tracking_tiered_sum,omitempty"`
 		FargateContainerApmAndProfilerAverage *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_average,omitempty"`
 		FargateContainerApmAndProfilerSum     *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_sum,omitempty"`
 		FargateContainerAverage               *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
@@ -3080,7 +3148,7 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_fargate_average", "apm_fargate_sum", "apm_host_sum", "apm_host_top99p", "apm_profiler_host_sum", "apm_profiler_host_top99p", "apm_trace_search_sum", "application_security_fargate_average", "application_security_host_sum", "application_security_host_top99p", "ci_pipeline_indexed_spans_sum", "ci_pipeline_maximum", "ci_pipeline_sum", "ci_test_indexed_spans_sum", "ci_testing_maximum", "ci_testing_sum", "cloud_cost_management_average", "cloud_cost_management_sum", "cspm_container_sum", "cspm_host_sum", "cspm_host_top99p", "custom_event_sum", "cws_container_sum", "cws_host_sum", "cws_host_top99p", "dbm_host_sum", "dbm_host_top99p", "dbm_normalized_queries_average", "dbm_normalized_queries_sum", "fargate_container_apm_and_profiler_average", "fargate_container_apm_and_profiler_sum", "fargate_container_average", "fargate_container_profiler_average", "fargate_container_profiler_sum", "fargate_container_sum", "incident_management_maximum", "incident_management_sum", "infra_and_apm_host_sum", "infra_and_apm_host_top99p", "infra_container_sum", "infra_host_sum", "infra_host_top99p", "ingested_spans_sum", "ingested_timeseries_average", "ingested_timeseries_sum", "iot_sum", "iot_top99p", "lambda_function_average", "lambda_function_sum", "logs_forwarding_sum", "logs_indexed_15day_sum", "logs_indexed_180day_sum", "logs_indexed_1day_sum", "logs_indexed_30day_sum", "logs_indexed_360day_sum", "logs_indexed_3day_sum", "logs_indexed_45day_sum", "logs_indexed_60day_sum", "logs_indexed_7day_sum", "logs_indexed_90day_sum", "logs_indexed_custom_retention_sum", "logs_indexed_sum", "logs_ingested_sum", "network_device_sum", "network_device_top99p", "npm_flow_sum", "npm_host_sum", "npm_host_top99p", "observability_pipeline_sum", "online_archive_sum", "prof_container_sum", "prof_host_sum", "prof_host_top99p", "rum_lite_sum", "rum_replay_sum", "rum_sum", "rum_units_sum", "sensitive_data_scanner_sum", "serverless_apm_sum", "serverless_infra_average", "serverless_infra_sum", "serverless_invocation_sum", "siem_sum", "standard_timeseries_average", "synthetics_api_tests_sum", "synthetics_app_testing_maximum", "synthetics_browser_checks_sum", "timeseries_average", "timeseries_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_fargate_average", "apm_fargate_sum", "apm_host_sum", "apm_host_top99p", "apm_profiler_host_sum", "apm_profiler_host_top99p", "apm_trace_search_sum", "application_security_fargate_average", "application_security_host_sum", "application_security_host_top99p", "ci_pipeline_indexed_spans_sum", "ci_pipeline_maximum", "ci_pipeline_sum", "ci_test_indexed_spans_sum", "ci_testing_maximum", "ci_testing_sum", "cloud_cost_management_average", "cloud_cost_management_sum", "cspm_container_sum", "cspm_host_sum", "cspm_host_top99p", "custom_event_sum", "cws_container_sum", "cws_host_sum", "cws_host_top99p", "dbm_host_sum", "dbm_host_top99p", "dbm_normalized_queries_average", "dbm_normalized_queries_sum", "error_tracking_sum", "error_tracking_tiered_sum", "fargate_container_apm_and_profiler_average", "fargate_container_apm_and_profiler_sum", "fargate_container_average", "fargate_container_profiler_average", "fargate_container_profiler_sum", "fargate_container_sum", "incident_management_maximum", "incident_management_sum", "infra_and_apm_host_sum", "infra_and_apm_host_top99p", "infra_container_sum", "infra_host_sum", "infra_host_top99p", "ingested_spans_sum", "ingested_timeseries_average", "ingested_timeseries_sum", "iot_sum", "iot_top99p", "lambda_function_average", "lambda_function_sum", "logs_forwarding_sum", "logs_indexed_15day_sum", "logs_indexed_180day_sum", "logs_indexed_1day_sum", "logs_indexed_30day_sum", "logs_indexed_360day_sum", "logs_indexed_3day_sum", "logs_indexed_45day_sum", "logs_indexed_60day_sum", "logs_indexed_7day_sum", "logs_indexed_90day_sum", "logs_indexed_custom_retention_sum", "logs_indexed_sum", "logs_ingested_sum", "network_device_sum", "network_device_top99p", "npm_flow_sum", "npm_host_sum", "npm_host_top99p", "observability_pipeline_sum", "online_archive_sum", "prof_container_sum", "prof_host_sum", "prof_host_top99p", "rum_lite_sum", "rum_replay_sum", "rum_sum", "rum_units_sum", "sensitive_data_scanner_sum", "serverless_apm_sum", "serverless_infra_average", "serverless_infra_sum", "serverless_invocation_sum", "siem_sum", "standard_timeseries_average", "synthetics_api_tests_sum", "synthetics_app_testing_maximum", "synthetics_browser_checks_sum", "timeseries_average", "timeseries_sum"})
 	} else {
 		return err
 	}
@@ -3202,6 +3270,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.DbmNormalizedQueriesSum = all.DbmNormalizedQueriesSum
+	if all.ErrorTrackingSum != nil && all.ErrorTrackingSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ErrorTrackingSum = all.ErrorTrackingSum
+	if all.ErrorTrackingTieredSum != nil && all.ErrorTrackingTieredSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ErrorTrackingTieredSum = all.ErrorTrackingTieredSum
 	if all.FargateContainerApmAndProfilerAverage != nil && all.FargateContainerApmAndProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
