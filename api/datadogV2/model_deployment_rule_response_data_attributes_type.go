@@ -17,11 +17,13 @@ type DeploymentRuleResponseDataAttributesType string
 const (
 	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_FAULTY_DEPLOYMENT_DETECTION DeploymentRuleResponseDataAttributesType = "faulty_deployment_detection"
 	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_MONITOR                     DeploymentRuleResponseDataAttributesType = "monitor"
+	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_BITS_DEPLOYMENT_ANALYSIS    DeploymentRuleResponseDataAttributesType = "bits_deployment_analysis"
 )
 
 var allowedDeploymentRuleResponseDataAttributesTypeEnumValues = []DeploymentRuleResponseDataAttributesType{
 	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_FAULTY_DEPLOYMENT_DETECTION,
 	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_MONITOR,
+	DEPLOYMENTRULERESPONSEDATAATTRIBUTESTYPE_BITS_DEPLOYMENT_ANALYSIS,
 }
 
 // GetAllowedValues reeturns the list of possible values.

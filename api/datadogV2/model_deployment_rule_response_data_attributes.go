@@ -24,6 +24,7 @@ type DeploymentRuleResponseDataAttributes struct {
 	// The name of the deployment rule.
 	Name string `json:"name"`
 	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Bits Deployment Analysis rules use the faulty deployment detection options shape and accept only `duration`.
 	Options DeploymentRulesOptions `json:"options"`
 	// The type of the deployment rule.
 	Type DeploymentRuleResponseDataAttributesType `json:"type"`

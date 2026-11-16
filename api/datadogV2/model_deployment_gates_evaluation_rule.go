@@ -10,8 +10,9 @@ import (
 
 // DeploymentGatesEvaluationRule - A rule to evaluate as part of a deployment gate evaluation.
 type DeploymentGatesEvaluationRule struct {
-	DeploymentGatesMonitorRule *DeploymentGatesMonitorRule
-	DeploymentGatesFDDRule     *DeploymentGatesFDDRule
+	DeploymentGatesMonitorRule                *DeploymentGatesMonitorRule
+	DeploymentGatesFDDRule                    *DeploymentGatesFDDRule
+	DeploymentGatesBitsDeploymentAnalysisRule *DeploymentGatesBitsDeploymentAnalysisRule
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func DeploymentGatesMonitorRuleAsDeploymentGatesEvaluationRule(v *DeploymentGate
 // DeploymentGatesFDDRuleAsDeploymentGatesEvaluationRule is a convenience function that returns DeploymentGatesFDDRule wrapped in DeploymentGatesEvaluationRule.
 func DeploymentGatesFDDRuleAsDeploymentGatesEvaluationRule(v *DeploymentGatesFDDRule) DeploymentGatesEvaluationRule {
 	return DeploymentGatesEvaluationRule{DeploymentGatesFDDRule: v}
+}
+
+// DeploymentGatesBitsDeploymentAnalysisRuleAsDeploymentGatesEvaluationRule is a convenience function that returns DeploymentGatesBitsDeploymentAnalysisRule wrapped in DeploymentGatesEvaluationRule.
+func DeploymentGatesBitsDeploymentAnalysisRuleAsDeploymentGatesEvaluationRule(v *DeploymentGatesBitsDeploymentAnalysisRule) DeploymentGatesEvaluationRule {
+	return DeploymentGatesEvaluationRule{DeploymentGatesBitsDeploymentAnalysisRule: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *DeploymentGatesEvaluationRule) UnmarshalJSON(data []byte) error {
 		obj.DeploymentGatesFDDRule = nil
 	}
 
+	// try to unmarshal data into DeploymentGatesBitsDeploymentAnalysisRule
+	err = datadog.Unmarshal(data, &obj.DeploymentGatesBitsDeploymentAnalysisRule)
+	if err == nil {
+		if obj.DeploymentGatesBitsDeploymentAnalysisRule != nil && obj.DeploymentGatesBitsDeploymentAnalysisRule.UnparsedObject == nil {
+			jsonDeploymentGatesBitsDeploymentAnalysisRule, _ := datadog.Marshal(obj.DeploymentGatesBitsDeploymentAnalysisRule)
+			if string(jsonDeploymentGatesBitsDeploymentAnalysisRule) == "{}" { // empty struct
+				obj.DeploymentGatesBitsDeploymentAnalysisRule = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DeploymentGatesBitsDeploymentAnalysisRule = nil
+		}
+	} else {
+		obj.DeploymentGatesBitsDeploymentAnalysisRule = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.DeploymentGatesMonitorRule = nil
 		obj.DeploymentGatesFDDRule = nil
+		obj.DeploymentGatesBitsDeploymentAnalysisRule = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj DeploymentGatesEvaluationRule) MarshalJSON() ([]byte, error) {
 
 	if obj.DeploymentGatesFDDRule != nil {
 		return datadog.Marshal(&obj.DeploymentGatesFDDRule)
+	}
+
+	if obj.DeploymentGatesBitsDeploymentAnalysisRule != nil {
+		return datadog.Marshal(&obj.DeploymentGatesBitsDeploymentAnalysisRule)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *DeploymentGatesEvaluationRule) GetActualInstance() interface{} {
 
 	if obj.DeploymentGatesFDDRule != nil {
 		return obj.DeploymentGatesFDDRule
+	}
+
+	if obj.DeploymentGatesBitsDeploymentAnalysisRule != nil {
+		return obj.DeploymentGatesBitsDeploymentAnalysisRule
 	}
 
 	// all schemas are nil
