@@ -22,6 +22,8 @@ type CustomCostsFileMetadataWithContent struct {
 	Content []CustomCostsFileLineItem `json:"content,omitempty"`
 	// Name of the Custom Costs file.
 	Name *string `json:"name,omitempty"`
+	// Reason the content of the Custom Costs file is not returned. Only set when `content` is omitted.
+	PreviewUnavailableReason *CustomCostsFilePreviewUnavailableReason `json:"preview_unavailable_reason,omitempty"`
 	// Providers contained in the Custom Costs file.
 	ProviderNames []string `json:"provider_names,omitempty"`
 	// Status of the Custom Costs file.
@@ -220,6 +222,34 @@ func (o *CustomCostsFileMetadataWithContent) SetName(v string) {
 	o.Name = &v
 }
 
+// GetPreviewUnavailableReason returns the PreviewUnavailableReason field value if set, zero value otherwise.
+func (o *CustomCostsFileMetadataWithContent) GetPreviewUnavailableReason() CustomCostsFilePreviewUnavailableReason {
+	if o == nil || o.PreviewUnavailableReason == nil {
+		var ret CustomCostsFilePreviewUnavailableReason
+		return ret
+	}
+	return *o.PreviewUnavailableReason
+}
+
+// GetPreviewUnavailableReasonOk returns a tuple with the PreviewUnavailableReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomCostsFileMetadataWithContent) GetPreviewUnavailableReasonOk() (*CustomCostsFilePreviewUnavailableReason, bool) {
+	if o == nil || o.PreviewUnavailableReason == nil {
+		return nil, false
+	}
+	return o.PreviewUnavailableReason, true
+}
+
+// HasPreviewUnavailableReason returns a boolean if a field has been set.
+func (o *CustomCostsFileMetadataWithContent) HasPreviewUnavailableReason() bool {
+	return o != nil && o.PreviewUnavailableReason != nil
+}
+
+// SetPreviewUnavailableReason gets a reference to the given CustomCostsFilePreviewUnavailableReason and assigns it to the PreviewUnavailableReason field.
+func (o *CustomCostsFileMetadataWithContent) SetPreviewUnavailableReason(v CustomCostsFilePreviewUnavailableReason) {
+	o.PreviewUnavailableReason = &v
+}
+
 // GetProviderNames returns the ProviderNames field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetProviderNames() []string {
 	if o == nil || o.ProviderNames == nil {
@@ -356,6 +386,9 @@ func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.PreviewUnavailableReason != nil {
+		toSerialize["preview_unavailable_reason"] = o.PreviewUnavailableReason
+	}
 	if o.ProviderNames != nil {
 		toSerialize["provider_names"] = o.ProviderNames
 	}
@@ -378,23 +411,24 @@ func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AiProvider      *bool                             `json:"ai_provider,omitempty"`
-		BilledCost      *float64                          `json:"billed_cost,omitempty"`
-		BillingCurrency *string                           `json:"billing_currency,omitempty"`
-		ChargePeriod    *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
-		Content         []CustomCostsFileLineItem         `json:"content,omitempty"`
-		Name            *string                           `json:"name,omitempty"`
-		ProviderNames   []string                          `json:"provider_names,omitempty"`
-		Status          *string                           `json:"status,omitempty"`
-		UploadedAt      *float64                          `json:"uploaded_at,omitempty"`
-		UploadedBy      *CustomCostsUser                  `json:"uploaded_by,omitempty"`
+		AiProvider               *bool                                    `json:"ai_provider,omitempty"`
+		BilledCost               *float64                                 `json:"billed_cost,omitempty"`
+		BillingCurrency          *string                                  `json:"billing_currency,omitempty"`
+		ChargePeriod             *CustomCostsFileUsageChargePeriod        `json:"charge_period,omitempty"`
+		Content                  []CustomCostsFileLineItem                `json:"content,omitempty"`
+		Name                     *string                                  `json:"name,omitempty"`
+		PreviewUnavailableReason *CustomCostsFilePreviewUnavailableReason `json:"preview_unavailable_reason,omitempty"`
+		ProviderNames            []string                                 `json:"provider_names,omitempty"`
+		Status                   *string                                  `json:"status,omitempty"`
+		UploadedAt               *float64                                 `json:"uploaded_at,omitempty"`
+		UploadedBy               *CustomCostsUser                         `json:"uploaded_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ai_provider", "billed_cost", "billing_currency", "charge_period", "content", "name", "provider_names", "status", "uploaded_at", "uploaded_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"ai_provider", "billed_cost", "billing_currency", "charge_period", "content", "name", "preview_unavailable_reason", "provider_names", "status", "uploaded_at", "uploaded_by"})
 	} else {
 		return err
 	}
@@ -409,6 +443,11 @@ func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err er
 	o.ChargePeriod = all.ChargePeriod
 	o.Content = all.Content
 	o.Name = all.Name
+	if all.PreviewUnavailableReason != nil && !all.PreviewUnavailableReason.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.PreviewUnavailableReason = all.PreviewUnavailableReason
+	}
 	o.ProviderNames = all.ProviderNames
 	o.Status = all.Status
 	o.UploadedAt = all.UploadedAt

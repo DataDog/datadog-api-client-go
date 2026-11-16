@@ -10,9 +10,9 @@ import (
 
 // CustomCostsUser Metadata of the user that has uploaded the Custom Costs file.
 type CustomCostsUser struct {
-	// The name of the Custom Costs file.
+	// Handle of the user. This is usually the user's email address, but can be another identifier (for example, a UUID for a service account).
 	Email *string `json:"email,omitempty"`
-	// The name of the Custom Costs file.
+	// Icon of the user.
 	Icon *string `json:"icon,omitempty"`
 	// Name of the user.
 	Name *string `json:"name,omitempty"`
