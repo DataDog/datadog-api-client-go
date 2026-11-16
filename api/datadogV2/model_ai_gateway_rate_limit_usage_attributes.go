@@ -12,7 +12,7 @@ import (
 
 // AiGatewayRateLimitUsageAttributes Live consumption of one AI Gateway rate limit.
 type AiGatewayRateLimitUsageAttributes struct {
-	// Priced spend, in microcents, counted in the rolling one-minute window. Only rules with a cost limit count it, so it is 0 for other rules and for the untracked and total entries.
+	// Priced spend, in microcents, counted in the rolling one-minute window. Only rules with a cost limit count spend, so the value is 0 for other rules and for the untracked and total entries.
 	CostMicrocents *int64 `json:"cost_microcents,omitempty"`
 	// Input tokens counted in the rolling one-minute window.
 	InputTokens int64 `json:"input_tokens"`

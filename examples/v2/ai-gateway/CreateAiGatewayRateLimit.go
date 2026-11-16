@@ -34,6 +34,13 @@ func main() {
 				},
 				TeamId: datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000002")),
 				UserId: datadog.PtrUUID(uuid.MustParse("00000000-0000-4000-8000-000000000001")),
+				WindowLimits: []datadogV2.AiGatewayRateLimitWindowLimit{
+					{
+						Amount: 2000000000,
+						Metric: datadogV2.AIGATEWAYRATELIMITWINDOWLIMITMETRIC_COST,
+						Window: datadogV2.AIGATEWAYRATELIMITWINDOWLIMITWINDOW_TWENTY_FOUR_HOURS,
+					},
+				},
 			},
 			Type: datadogV2.AIGATEWAYRATELIMITTYPE_RATE_LIMITS,
 		},

@@ -55,6 +55,8 @@ type AiGatewayRateLimitAttributes struct {
 	UpdatedBy string `json:"updated_by"`
 	// Optional user UUID. Count only this user's requests.
 	UserId datadog.NullableUUID `json:"user_id,omitempty"`
+	// Limits over rolling windows longer than a minute. Each limit counts the rule's matching traffic, or each counter of a template rate limit, over its window. Per-minute limits are in the `*_per_minute` fields. This list is empty when the rule has no window limits.
+	WindowLimits []AiGatewayRateLimitWindowLimit `json:"window_limits,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -667,6 +669,34 @@ func (o *AiGatewayRateLimitAttributes) UnsetUserId() {
 	o.UserId.Unset()
 }
 
+// GetWindowLimits returns the WindowLimits field value if set, zero value otherwise.
+func (o *AiGatewayRateLimitAttributes) GetWindowLimits() []AiGatewayRateLimitWindowLimit {
+	if o == nil || o.WindowLimits == nil {
+		var ret []AiGatewayRateLimitWindowLimit
+		return ret
+	}
+	return o.WindowLimits
+}
+
+// GetWindowLimitsOk returns a tuple with the WindowLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRateLimitAttributes) GetWindowLimitsOk() (*[]AiGatewayRateLimitWindowLimit, bool) {
+	if o == nil || o.WindowLimits == nil {
+		return nil, false
+	}
+	return &o.WindowLimits, true
+}
+
+// HasWindowLimits returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitAttributes) HasWindowLimits() bool {
+	return o != nil && o.WindowLimits != nil
+}
+
+// SetWindowLimits gets a reference to the given []AiGatewayRateLimitWindowLimit and assigns it to the WindowLimits field.
+func (o *AiGatewayRateLimitAttributes) SetWindowLimits(v []AiGatewayRateLimitWindowLimit) {
+	o.WindowLimits = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -717,6 +747,9 @@ func (o AiGatewayRateLimitAttributes) MarshalJSON() ([]byte, error) {
 	if o.UserId.IsSet() {
 		toSerialize["user_id"] = o.UserId.Get()
 	}
+	if o.WindowLimits != nil {
+		toSerialize["window_limits"] = o.WindowLimits
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -747,6 +780,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		UpdatedAt               *time.Time                        `json:"updated_at"`
 		UpdatedBy               *string                           `json:"updated_by"`
 		UserId                  datadog.NullableUUID              `json:"user_id,omitempty"`
+		WindowLimits            []AiGatewayRateLimitWindowLimit   `json:"window_limits,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -789,7 +823,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "created_at", "created_by", "enabled", "input_tokens_per_minute", "is_template", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "selector", "tags", "team_id", "template_split_dims", "updated_at", "updated_by", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "created_at", "created_by", "enabled", "input_tokens_per_minute", "is_template", "mode", "monitor_id", "name", "output_tokens_per_minute", "requests_per_minute", "revision", "scope_restricted", "selector", "tags", "team_id", "template_split_dims", "updated_at", "updated_by", "user_id", "window_limits"})
 	} else {
 		return err
 	}
@@ -819,6 +853,7 @@ func (o *AiGatewayRateLimitAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.UpdatedAt = *all.UpdatedAt
 	o.UpdatedBy = *all.UpdatedBy
 	o.UserId = all.UserId
+	o.WindowLimits = all.WindowLimits
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

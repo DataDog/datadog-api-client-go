@@ -14,7 +14,7 @@ import (
 
 // AiGatewayRateLimitCreateAttributes Attributes used to create an AI Gateway rate limit.
 type AiGatewayRateLimitCreateAttributes struct {
-	// Maximum priced spend per rolling minute, in microcents of 1e-8 USD each. At most 10000000000000, that is $100,000. In `ENFORCE` mode, requests to a model with no pricing are rejected, because their cost can't be counted.
+	// Maximum priced spend per rolling minute, in microcents of 1e-8 USD each. In `ENFORCE` mode, the gateway rejects requests to models with no pricing because their cost can't be counted.
 	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// Maximum input tokens per rolling minute.
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
@@ -24,7 +24,7 @@ type AiGatewayRateLimitCreateAttributes struct {
 	Name string `json:"name"`
 	// Maximum output tokens per rolling minute.
 	OutputTokensPerMinute datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
-	// Maximum requests per rolling minute. At least one of `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, and `cost_microcents_per_minute` is required.
+	// Maximum requests per rolling minute. At least one of `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, `cost_microcents_per_minute`, or a non-empty `window_limits` is required.
 	RequestsPerMinute datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
 	// Dimension rules for a template rate limit, which gives each matched user, Team, or value its own allowance with the rule's limits. Can't be combined with user_id, team_id, or tags, and can't be changed after creation. Omit for a rule with one shared allowance.
 	Selector []AiGatewayRateLimitSelectorEntry `json:"selector,omitempty"`
@@ -34,6 +34,8 @@ type AiGatewayRateLimitCreateAttributes struct {
 	TeamId *uuid.UUID `json:"team_id,omitempty"`
 	// Optional UUID. Count only this user's requests.
 	UserId *uuid.UUID `json:"user_id,omitempty"`
+	// Limits over rolling windows longer than a minute, such as $20 of spend per 24 hours. This field is available only to organizations with the feature enabled. Other organizations receive a 400 Bad Request response for a non-empty list. Each limit counts the rule's matching traffic, or each counter of a template rate limit, over its window. Set per-minute limits in the `*_per_minute` fields. A rule can have at most four limits in total, including any per-minute limits that are set. Each metric and window pair can appear only once, and for the same metric, a longer window must have a larger amount. In `ENFORCE` mode, the gateway rejects a request that exceeds any limit with HTTP 429 and a `Retry-After` header. If the list includes a `cost` limit, the gateway also rejects requests to models with no pricing because their cost can't be counted.
+	WindowLimits []AiGatewayRateLimitWindowLimit `json:"window_limits,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -377,6 +379,34 @@ func (o *AiGatewayRateLimitCreateAttributes) SetUserId(v uuid.UUID) {
 	o.UserId = &v
 }
 
+// GetWindowLimits returns the WindowLimits field value if set, zero value otherwise.
+func (o *AiGatewayRateLimitCreateAttributes) GetWindowLimits() []AiGatewayRateLimitWindowLimit {
+	if o == nil || o.WindowLimits == nil {
+		var ret []AiGatewayRateLimitWindowLimit
+		return ret
+	}
+	return o.WindowLimits
+}
+
+// GetWindowLimitsOk returns a tuple with the WindowLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRateLimitCreateAttributes) GetWindowLimitsOk() (*[]AiGatewayRateLimitWindowLimit, bool) {
+	if o == nil || o.WindowLimits == nil {
+		return nil, false
+	}
+	return &o.WindowLimits, true
+}
+
+// HasWindowLimits returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitCreateAttributes) HasWindowLimits() bool {
+	return o != nil && o.WindowLimits != nil
+}
+
+// SetWindowLimits gets a reference to the given []AiGatewayRateLimitWindowLimit and assigns it to the WindowLimits field.
+func (o *AiGatewayRateLimitCreateAttributes) SetWindowLimits(v []AiGatewayRateLimitWindowLimit) {
+	o.WindowLimits = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayRateLimitCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -411,6 +441,9 @@ func (o AiGatewayRateLimitCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UserId != nil {
 		toSerialize["user_id"] = o.UserId
 	}
+	if o.WindowLimits != nil {
+		toSerialize["window_limits"] = o.WindowLimits
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -431,6 +464,7 @@ func (o *AiGatewayRateLimitCreateAttributes) UnmarshalJSON(bytes []byte) (err er
 		Tags                    map[string]string                 `json:"tags,omitempty"`
 		TeamId                  *uuid.UUID                        `json:"team_id,omitempty"`
 		UserId                  *uuid.UUID                        `json:"user_id,omitempty"`
+		WindowLimits            []AiGatewayRateLimitWindowLimit   `json:"window_limits,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -440,7 +474,7 @@ func (o *AiGatewayRateLimitCreateAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "selector", "tags", "team_id", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "selector", "tags", "team_id", "user_id", "window_limits"})
 	} else {
 		return err
 	}
@@ -460,6 +494,7 @@ func (o *AiGatewayRateLimitCreateAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Tags = all.Tags
 	o.TeamId = all.TeamId
 	o.UserId = all.UserId
+	o.WindowLimits = all.WindowLimits
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

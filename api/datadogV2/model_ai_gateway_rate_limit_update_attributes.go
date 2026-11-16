@@ -10,19 +10,19 @@ import (
 
 // AiGatewayRateLimitUpdateAttributes Attributes used to update an AI Gateway rate limit. Only sent fields are changed.
 type AiGatewayRateLimitUpdateAttributes struct {
-	// Spend limit in microcents per rolling minute. Set to 0 to remove the cost limit. Null is ignored. At least one limit must remain.
+	// Spend limit in microcents per rolling minute. Set to 0 to remove the cost limit. Null is ignored. At least one limit, per-minute or in `window_limits`, must remain.
 	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// Whether this rate limit is active.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Set to 0 to remove the request limit. Null is ignored. At least one limit must remain.
+	// Set to 0 to remove the input token limit. Null is ignored. At least one limit, per-minute or in `window_limits`, must remain.
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Action taken when request rate exceeds the limit.
 	Mode *AiGatewayRateLimitMode `json:"mode,omitempty"`
 	// Rate limit name.
 	Name *string `json:"name,omitempty"`
-	// Set to 0 to remove the request limit. Null is ignored. At least one limit must remain.
+	// Set to 0 to remove the output token limit. Null is ignored. At least one limit, per-minute or in `window_limits`, must remain.
 	OutputTokensPerMinute datadog.NullableInt64 `json:"output_tokens_per_minute,omitempty"`
-	// Set to 0 to remove the request limit. Null is ignored. At least one limit must remain.
+	// Set to 0 to remove the request limit. Null is ignored. At least one limit, per-minute or in `window_limits`, must remain.
 	RequestsPerMinute datadog.NullableInt64 `json:"requests_per_minute,omitempty"`
 	// Replaces all scope tags. An empty object clears them. Null is ignored.
 	Tags map[string]string `json:"tags,omitempty"`
@@ -30,6 +30,8 @@ type AiGatewayRateLimitUpdateAttributes struct {
 	TeamId datadog.NullableString `json:"team_id,omitempty"`
 	// Replaces the user scope. An empty string clears it. Null is ignored.
 	UserId datadog.NullableString `json:"user_id,omitempty"`
+	// Replaces all limits over rolling windows longer than a minute. If `window_limits` is null or omitted, the existing limits are unchanged. An empty array removes them all. This field is available only to organizations with the feature enabled. Other organizations receive a 400 Bad Request response for a non-empty list. The same rules as on create apply. A rule can have at most four limits in total, including any per-minute limits that are set. Each metric and window pair can appear only once, and for the same metric, a longer window must have a larger amount. In `ENFORCE` mode, if the list includes a `cost` limit, the gateway rejects requests to models with no pricing because their cost can't be counted.
+	WindowLimits []AiGatewayRateLimitWindowLimit `json:"window_limits,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -399,6 +401,35 @@ func (o *AiGatewayRateLimitUpdateAttributes) UnsetUserId() {
 	o.UserId.Unset()
 }
 
+// GetWindowLimits returns the WindowLimits field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRateLimitUpdateAttributes) GetWindowLimits() []AiGatewayRateLimitWindowLimit {
+	if o == nil {
+		var ret []AiGatewayRateLimitWindowLimit
+		return ret
+	}
+	return o.WindowLimits
+}
+
+// GetWindowLimitsOk returns a tuple with the WindowLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRateLimitUpdateAttributes) GetWindowLimitsOk() (*[]AiGatewayRateLimitWindowLimit, bool) {
+	if o == nil || o.WindowLimits == nil {
+		return nil, false
+	}
+	return &o.WindowLimits, true
+}
+
+// HasWindowLimits returns a boolean if a field has been set.
+func (o *AiGatewayRateLimitUpdateAttributes) HasWindowLimits() bool {
+	return o != nil && o.WindowLimits != nil
+}
+
+// SetWindowLimits gets a reference to the given []AiGatewayRateLimitWindowLimit and assigns it to the WindowLimits field.
+func (o *AiGatewayRateLimitUpdateAttributes) SetWindowLimits(v []AiGatewayRateLimitWindowLimit) {
+	o.WindowLimits = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayRateLimitUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -435,6 +466,9 @@ func (o AiGatewayRateLimitUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UserId.IsSet() {
 		toSerialize["user_id"] = o.UserId.Get()
 	}
+	if o.WindowLimits != nil {
+		toSerialize["window_limits"] = o.WindowLimits
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -445,23 +479,24 @@ func (o AiGatewayRateLimitUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRateLimitUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CostMicrocentsPerMinute datadog.NullableInt64   `json:"cost_microcents_per_minute,omitempty"`
-		Enabled                 *bool                   `json:"enabled,omitempty"`
-		InputTokensPerMinute    datadog.NullableInt64   `json:"input_tokens_per_minute,omitempty"`
-		Mode                    *AiGatewayRateLimitMode `json:"mode,omitempty"`
-		Name                    *string                 `json:"name,omitempty"`
-		OutputTokensPerMinute   datadog.NullableInt64   `json:"output_tokens_per_minute,omitempty"`
-		RequestsPerMinute       datadog.NullableInt64   `json:"requests_per_minute,omitempty"`
-		Tags                    map[string]string       `json:"tags,omitempty"`
-		TeamId                  datadog.NullableString  `json:"team_id,omitempty"`
-		UserId                  datadog.NullableString  `json:"user_id,omitempty"`
+		CostMicrocentsPerMinute datadog.NullableInt64           `json:"cost_microcents_per_minute,omitempty"`
+		Enabled                 *bool                           `json:"enabled,omitempty"`
+		InputTokensPerMinute    datadog.NullableInt64           `json:"input_tokens_per_minute,omitempty"`
+		Mode                    *AiGatewayRateLimitMode         `json:"mode,omitempty"`
+		Name                    *string                         `json:"name,omitempty"`
+		OutputTokensPerMinute   datadog.NullableInt64           `json:"output_tokens_per_minute,omitempty"`
+		RequestsPerMinute       datadog.NullableInt64           `json:"requests_per_minute,omitempty"`
+		Tags                    map[string]string               `json:"tags,omitempty"`
+		TeamId                  datadog.NullableString          `json:"team_id,omitempty"`
+		UserId                  datadog.NullableString          `json:"user_id,omitempty"`
+		WindowLimits            []AiGatewayRateLimitWindowLimit `json:"window_limits,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "enabled", "input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "tags", "team_id", "user_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_microcents_per_minute", "enabled", "input_tokens_per_minute", "mode", "name", "output_tokens_per_minute", "requests_per_minute", "tags", "team_id", "user_id", "window_limits"})
 	} else {
 		return err
 	}
@@ -481,6 +516,7 @@ func (o *AiGatewayRateLimitUpdateAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Tags = all.Tags
 	o.TeamId = all.TeamId
 	o.UserId = all.UserId
+	o.WindowLimits = all.WindowLimits
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
