@@ -41,7 +41,9 @@ type FeatureFlagListItemAttributes struct {
 	RequireApproval *bool `json:"require_approval,omitempty"`
 	// The feature flag's current staleness state and suggested actions.
 	StalenessDetails *FeatureFlagStalenessDetails `json:"staleness_details,omitempty"`
-	// Legacy status retained for compatibility. This field is always `ACTIVE`; use `staleness_details.staleness_status` for the computed status.
+	// Legacy status retained for compatibility. This field is always `ACTIVE`; use
+	// `staleness_details.staleness_status` for the computed status. Do not copy it into an update
+	// request: sending `ACTIVE` makes a `PERMANENT` flag temporary and clears any snooze.
 	// Deprecated
 	StalenessStatus *string `json:"staleness_status,omitempty"`
 	// An explicit staleness status override. Omitted when no override is set.

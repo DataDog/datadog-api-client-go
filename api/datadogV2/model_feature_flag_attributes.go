@@ -41,7 +41,10 @@ type FeatureFlagAttributes struct {
 	RequireApproval *bool `json:"require_approval,omitempty"`
 	// The feature flag's current staleness state and suggested actions.
 	StalenessDetails *FeatureFlagStalenessDetails `json:"staleness_details,omitempty"`
-	// Indicates the whether a feature flag is stale or not.
+	// Legacy status retained for compatibility. This field is always `ACTIVE`; use
+	// `staleness_details.staleness_status` for the computed status. Do not copy it into an update
+	// request: sending `ACTIVE` makes a `PERMANENT` flag temporary and clears any snooze.
+	// Deprecated
 	StalenessStatus *string `json:"staleness_status,omitempty"`
 	// An explicit staleness status override. Omitted when no override is set.
 	StalenessStatusOverride *FeatureFlagStalenessStatusOverride `json:"staleness_status_override,omitempty"`
@@ -452,6 +455,7 @@ func (o *FeatureFlagAttributes) SetStalenessDetails(v FeatureFlagStalenessDetail
 }
 
 // GetStalenessStatus returns the StalenessStatus field value if set, zero value otherwise.
+// Deprecated
 func (o *FeatureFlagAttributes) GetStalenessStatus() string {
 	if o == nil || o.StalenessStatus == nil {
 		var ret string
@@ -462,6 +466,7 @@ func (o *FeatureFlagAttributes) GetStalenessStatus() string {
 
 // GetStalenessStatusOk returns a tuple with the StalenessStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *FeatureFlagAttributes) GetStalenessStatusOk() (*string, bool) {
 	if o == nil || o.StalenessStatus == nil {
 		return nil, false
@@ -475,6 +480,7 @@ func (o *FeatureFlagAttributes) HasStalenessStatus() bool {
 }
 
 // SetStalenessStatus gets a reference to the given string and assigns it to the StalenessStatus field.
+// Deprecated
 func (o *FeatureFlagAttributes) SetStalenessStatus(v string) {
 	o.StalenessStatus = &v
 }
