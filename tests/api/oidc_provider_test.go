@@ -30,6 +30,12 @@ func oidcTestToken(t *testing.T, claims map[string]any) string {
 	return encoding.EncodeToString([]byte(`{"alg":"RS256","typ":"JWT"}`)) + "." + encoding.EncodeToString(payload) + ".signature"
 }
 
+// oidcRawToken keeps the payload's key order and casing, which json.Marshal of a map would not.
+func oidcRawToken(payload string) string {
+	encoding := base64.RawURLEncoding
+	return encoding.EncodeToString([]byte(`{"alg":"RS256","typ":"JWT"}`)) + "." + encoding.EncodeToString([]byte(payload)) + ".signature"
+}
+
 func oidcScopedToken(t *testing.T, subject string) string {
 	t.Helper()
 	return oidcTestToken(t, map[string]any{
@@ -191,6 +197,10 @@ func TestOIDCAuthenticateRefusesTokensNotScopedToDatadog(t *testing.T) {
 		{"expired", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID, "exp": time.Now().Add(-time.Minute).Unix()}), "expired"},
 		{"opaque token", "opaque-access-token", "not a JWT"},
 		{"numeric audience", oidcTestToken(t, map[string]any{"aud": 7, "exp": future}), "neither a string"},
+		{"case-variant audience claim", oidcRawToken(fmt.Sprintf(`{"aud":"another-service","AUD":"datadog/%s","exp":%d}`, testOrgUUID, future)), `aud is "another-service"`},
+		{"case-variant claims only", oidcRawToken(fmt.Sprintf(`{"AUD":"datadog/%s","EXP":%d}`, testOrgUUID, future)), "no aud claim"},
+		{"non-numeric expiry", oidcRawToken(fmt.Sprintf(`{"aud":"datadog/%s","exp":"soon"}`, testOrgUUID)), "exp is not a number"},
+		{"payload is not an object", oidcRawToken(`["aud"]`), "not a JSON object"},
 	}
 
 	var requests atomic.Int32
