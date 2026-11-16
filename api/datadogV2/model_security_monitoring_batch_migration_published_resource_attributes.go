@@ -13,7 +13,7 @@ import (
 // SecurityMonitoringBatchMigrationPublishedResourceAttributes Attributes of the publication outcome of a batch migration resource.
 type SecurityMonitoringBatchMigrationPublishedResourceAttributes struct {
 	// The reason why the resource could not be published.
-	Error *string `json:"error,omitempty"`
+	Error *SecurityMonitoringBatchMigrationPublishError `json:"error,omitempty"`
 	// The ID of the created Cloud SIEM detection rule.
 	RuleId *string `json:"ruleId,omitempty"`
 	// The outcome of publishing a batch migration resource.
@@ -42,9 +42,9 @@ func NewSecurityMonitoringBatchMigrationPublishedResourceAttributesWithDefaults(
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) GetError() string {
+func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) GetError() SecurityMonitoringBatchMigrationPublishError {
 	if o == nil || o.Error == nil {
-		var ret string
+		var ret SecurityMonitoringBatchMigrationPublishError
 		return ret
 	}
 	return *o.Error
@@ -52,7 +52,7 @@ func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) GetError()
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) GetErrorOk() (*string, bool) {
+func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) GetErrorOk() (*SecurityMonitoringBatchMigrationPublishError, bool) {
 	if o == nil || o.Error == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) HasError()
 	return o != nil && o.Error != nil
 }
 
-// SetError gets a reference to the given string and assigns it to the Error field.
-func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) SetError(v string) {
+// SetError gets a reference to the given SecurityMonitoringBatchMigrationPublishError and assigns it to the Error field.
+func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) SetError(v SecurityMonitoringBatchMigrationPublishError) {
 	o.Error = &v
 }
 
@@ -143,7 +143,7 @@ func (o SecurityMonitoringBatchMigrationPublishedResourceAttributes) MarshalJSON
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Error  *string                                                  `json:"error,omitempty"`
+		Error  *SecurityMonitoringBatchMigrationPublishError            `json:"error,omitempty"`
 		RuleId *string                                                  `json:"ruleId,omitempty"`
 		Status *SecurityMonitoringBatchMigrationPublishedResourceStatus `json:"status"`
 	}{}
@@ -161,6 +161,9 @@ func (o *SecurityMonitoringBatchMigrationPublishedResourceAttributes) UnmarshalJ
 	}
 
 	hasInvalidField := false
+	if all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Error = all.Error
 	o.RuleId = all.RuleId
 	if !all.Status.IsValid() {
