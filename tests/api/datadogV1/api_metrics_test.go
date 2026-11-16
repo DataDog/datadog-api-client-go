@@ -114,21 +114,21 @@ func TestMetrics(t *testing.T) {
 		t.Errorf("Error getting metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Nil(metadata.Description)
-	assert.Nil(metadata.Integration)
-	assert.Nil(metadata.PerUnit)
-	assert.Nil(metadata.Unit)
-	assert.Nil(metadata.ShortName)
-	assert.Nil(metadata.StatsdInterval)
-	assert.Nil(metadata.Type)
+	assert.Nil(metadata.Description.Get())
+	assert.Nil(metadata.Integration.Get())
+	assert.Nil(metadata.PerUnit.Get())
+	assert.Nil(metadata.Unit.Get())
+	assert.Nil(metadata.ShortName.Get())
+	assert.Nil(metadata.StatsdInterval.Get())
+	assert.Nil(metadata.Type.Get())
 
 	newMetadata := datadogV1.MetricMetadata{
-		Description:    datadog.PtrString("description"),
-		PerUnit:        datadog.PtrString("second"),
-		Unit:           datadog.PtrString("byte"),
-		ShortName:      datadog.PtrString("short_name"),
-		StatsdInterval: datadog.PtrInt64(20),
-		Type:           datadog.PtrString("count"),
+		Description:    *datadog.NewNullableString(datadog.PtrString("description")),
+		PerUnit:        *datadog.NewNullableString(datadog.PtrString("second")),
+		Unit:           *datadog.NewNullableString(datadog.PtrString("byte")),
+		ShortName:      *datadog.NewNullableString(datadog.PtrString("short_name")),
+		StatsdInterval: *datadog.NewNullableInt64(datadog.PtrInt64(20)),
+		Type:           *datadog.NewNullableString(datadog.PtrString("count")),
 	}
 
 	metadata, httpresp, err = api.UpdateMetricMetadata(ctx, testMetric, newMetadata)
@@ -137,7 +137,7 @@ func TestMetrics(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal("description", metadata.GetDescription())
-	assert.Nil(metadata.Integration)
+	assert.Nil(metadata.Integration.Get())
 	assert.Equal("second", metadata.GetPerUnit())
 	assert.Equal("byte", metadata.GetUnit())
 	assert.Equal("short_name", metadata.GetShortName())
