@@ -14,9 +14,11 @@ import (
 type CreateEnvironmentAttributes struct {
 	// Indicates whether this is a production environment.
 	IsProduction *bool `json:"is_production,omitempty"`
-	// The name of the environment.
+	// The name of the environment. Required on every request and unique within the organization. Must contain 1 to 200 ASCII characters, start with a letter or digit, and contain only letters, digits, spaces, underscores, hyphens, and periods.
 	Name string `json:"name"`
-	// List of queries to define the environment scope.
+	// Controls whether feature flag evaluation events may include original targeting identifiers and full evaluation context. When true, SDKs may include this data. When false, SDKs hash targeting identifiers and omit evaluation context. If omitted, defaults to false.
+	ObserveFullEvaluationData *bool `json:"observe_full_evaluation_data,omitempty"`
+	// Required list of at least one exact DD_ENV value associated with this environment. Values cannot be used by another environment in the same organization. Wildcards and search expressions are not supported.
 	Queries []string `json:"queries"`
 	// Indicates whether feature flag changes require approval in this environment.
 	RequireFeatureFlagApproval *bool `json:"require_feature_flag_approval,omitempty"`
@@ -103,6 +105,34 @@ func (o *CreateEnvironmentAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetObserveFullEvaluationData returns the ObserveFullEvaluationData field value if set, zero value otherwise.
+func (o *CreateEnvironmentAttributes) GetObserveFullEvaluationData() bool {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ObserveFullEvaluationData
+}
+
+// GetObserveFullEvaluationDataOk returns a tuple with the ObserveFullEvaluationData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEnvironmentAttributes) GetObserveFullEvaluationDataOk() (*bool, bool) {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		return nil, false
+	}
+	return o.ObserveFullEvaluationData, true
+}
+
+// HasObserveFullEvaluationData returns a boolean if a field has been set.
+func (o *CreateEnvironmentAttributes) HasObserveFullEvaluationData() bool {
+	return o != nil && o.ObserveFullEvaluationData != nil
+}
+
+// SetObserveFullEvaluationData gets a reference to the given bool and assigns it to the ObserveFullEvaluationData field.
+func (o *CreateEnvironmentAttributes) SetObserveFullEvaluationData(v bool) {
+	o.ObserveFullEvaluationData = &v
+}
+
 // GetQueries returns the Queries field value.
 func (o *CreateEnvironmentAttributes) GetQueries() []string {
 	if o == nil {
@@ -164,6 +194,9 @@ func (o CreateEnvironmentAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["is_production"] = o.IsProduction
 	}
 	toSerialize["name"] = o.Name
+	if o.ObserveFullEvaluationData != nil {
+		toSerialize["observe_full_evaluation_data"] = o.ObserveFullEvaluationData
+	}
 	toSerialize["queries"] = o.Queries
 	if o.RequireFeatureFlagApproval != nil {
 		toSerialize["require_feature_flag_approval"] = o.RequireFeatureFlagApproval
@@ -180,6 +213,7 @@ func (o *CreateEnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IsProduction               *bool     `json:"is_production,omitempty"`
 		Name                       *string   `json:"name"`
+		ObserveFullEvaluationData  *bool     `json:"observe_full_evaluation_data,omitempty"`
 		Queries                    *[]string `json:"queries"`
 		RequireFeatureFlagApproval *bool     `json:"require_feature_flag_approval,omitempty"`
 	}{}
@@ -194,12 +228,13 @@ func (o *CreateEnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "queries", "require_feature_flag_approval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval"})
 	} else {
 		return err
 	}
 	o.IsProduction = all.IsProduction
 	o.Name = *all.Name
+	o.ObserveFullEvaluationData = all.ObserveFullEvaluationData
 	o.Queries = *all.Queries
 	o.RequireFeatureFlagApproval = all.RequireFeatureFlagApproval
 
