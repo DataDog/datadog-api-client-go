@@ -13,6 +13,10 @@ import (
 
 // LLMObsAnnotationItemResponse A single annotation on an interaction, as returned by the API.
 type LLMObsAnnotationItemResponse struct {
+	// Caller-supplied name or identifier for the external person or automated system that produced the labels.
+	// The value is stored and returned as provided. It is not a Datadog user ID or login, and it is not
+	// resolved against Datadog users.
+	Annotator *string `json:"annotator,omitempty"`
 	// Timestamp when the annotation was created.
 	CreatedAt time.Time `json:"created_at"`
 	// Identifier of the user who created the annotation.
@@ -55,6 +59,34 @@ func NewLLMObsAnnotationItemResponse(createdAt time.Time, createdBy string, id s
 func NewLLMObsAnnotationItemResponseWithDefaults() *LLMObsAnnotationItemResponse {
 	this := LLMObsAnnotationItemResponse{}
 	return &this
+}
+
+// GetAnnotator returns the Annotator field value if set, zero value otherwise.
+func (o *LLMObsAnnotationItemResponse) GetAnnotator() string {
+	if o == nil || o.Annotator == nil {
+		var ret string
+		return ret
+	}
+	return *o.Annotator
+}
+
+// GetAnnotatorOk returns a tuple with the Annotator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationItemResponse) GetAnnotatorOk() (*string, bool) {
+	if o == nil || o.Annotator == nil {
+		return nil, false
+	}
+	return o.Annotator, true
+}
+
+// HasAnnotator returns a boolean if a field has been set.
+func (o *LLMObsAnnotationItemResponse) HasAnnotator() bool {
+	return o != nil && o.Annotator != nil
+}
+
+// SetAnnotator gets a reference to the given string and assigns it to the Annotator field.
+func (o *LLMObsAnnotationItemResponse) SetAnnotator(v string) {
+	o.Annotator = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -224,6 +256,9 @@ func (o LLMObsAnnotationItemResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Annotator != nil {
+		toSerialize["annotator"] = o.Annotator
+	}
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -249,6 +284,7 @@ func (o LLMObsAnnotationItemResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsAnnotationItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Annotator     *string                               `json:"annotator,omitempty"`
 		CreatedAt     *time.Time                            `json:"created_at"`
 		CreatedBy     *string                               `json:"created_by"`
 		Id            *string                               `json:"id"`
@@ -283,10 +319,11 @@ func (o *LLMObsAnnotationItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "id", "interaction_id", "label_values", "modified_at", "modified_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotator", "created_at", "created_by", "id", "interaction_id", "label_values", "modified_at", "modified_by"})
 	} else {
 		return err
 	}
+	o.Annotator = all.Annotator
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
 	o.Id = *all.Id
