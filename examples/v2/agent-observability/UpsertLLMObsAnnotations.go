@@ -19,6 +19,7 @@ func main() {
 			Attributes: datadogV2.LLMObsAnnotationsDataAttributesRequest{
 				Annotations: []datadogV2.LLMObsUpsertAnnotationItem{
 					{
+						Annotator:     *datadog.NewNullableString(datadog.PtrString("Alex Contractor")),
 						InteractionId: "00000000-0000-0000-0000-000000000001",
 						LabelValues: []datadogV2.LLMObsAnnotationLabelValue{
 							{

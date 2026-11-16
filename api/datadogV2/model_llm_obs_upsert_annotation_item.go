@@ -13,6 +13,14 @@ import (
 // LLMObsUpsertAnnotationItem A single annotation to create or update. The annotation is matched by
 // `interaction_id` and the requesting user's identity.
 type LLMObsUpsertAnnotationItem struct {
+	// Caller-supplied name or identifier for the external person or automated system that produced the labels.
+	// The value is an opaque string with no required format. Use a stable, recognizable value for the same
+	// producer across annotations.
+	// The value is stored and returned as provided. It is not a Datadog user ID or login, and it is not
+	// resolved against Datadog users.
+	// Omit this field or set it to `null` to preserve existing attribution. Set it to an empty string to clear
+	// attribution.
+	Annotator datadog.NullableString `json:"annotator,omitempty"`
 	// ID of the interaction to annotate.
 	InteractionId string `json:"interaction_id"`
 	// Label values for this annotation. Each entry references a label schema by ID
@@ -40,6 +48,45 @@ func NewLLMObsUpsertAnnotationItem(interactionId string, labelValues []LLMObsAnn
 func NewLLMObsUpsertAnnotationItemWithDefaults() *LLMObsUpsertAnnotationItem {
 	this := LLMObsUpsertAnnotationItem{}
 	return &this
+}
+
+// GetAnnotator returns the Annotator field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LLMObsUpsertAnnotationItem) GetAnnotator() string {
+	if o == nil || o.Annotator.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Annotator.Get()
+}
+
+// GetAnnotatorOk returns a tuple with the Annotator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *LLMObsUpsertAnnotationItem) GetAnnotatorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Annotator.Get(), o.Annotator.IsSet()
+}
+
+// HasAnnotator returns a boolean if a field has been set.
+func (o *LLMObsUpsertAnnotationItem) HasAnnotator() bool {
+	return o != nil && o.Annotator.IsSet()
+}
+
+// SetAnnotator gets a reference to the given datadog.NullableString and assigns it to the Annotator field.
+func (o *LLMObsUpsertAnnotationItem) SetAnnotator(v string) {
+	o.Annotator.Set(&v)
+}
+
+// SetAnnotatorNil sets the value for Annotator to be an explicit nil.
+func (o *LLMObsUpsertAnnotationItem) SetAnnotatorNil() {
+	o.Annotator.Set(nil)
+}
+
+// UnsetAnnotator ensures that no value is present for Annotator, not even an explicit nil.
+func (o *LLMObsUpsertAnnotationItem) UnsetAnnotator() {
+	o.Annotator.Unset()
 }
 
 // GetInteractionId returns the InteractionId field value.
@@ -94,6 +141,9 @@ func (o LLMObsUpsertAnnotationItem) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Annotator.IsSet() {
+		toSerialize["annotator"] = o.Annotator.Get()
+	}
 	toSerialize["interaction_id"] = o.InteractionId
 	toSerialize["label_values"] = o.LabelValues
 
@@ -106,6 +156,7 @@ func (o LLMObsUpsertAnnotationItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsUpsertAnnotationItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Annotator     datadog.NullableString        `json:"annotator,omitempty"`
 		InteractionId *string                       `json:"interaction_id"`
 		LabelValues   *[]LLMObsAnnotationLabelValue `json:"label_values"`
 	}{}
@@ -120,10 +171,11 @@ func (o *LLMObsUpsertAnnotationItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"interaction_id", "label_values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotator", "interaction_id", "label_values"})
 	} else {
 		return err
 	}
+	o.Annotator = all.Annotator
 	o.InteractionId = *all.InteractionId
 	o.LabelValues = *all.LabelValues
 
