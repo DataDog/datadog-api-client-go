@@ -3128,7 +3128,7 @@ func (a *SecurityMonitoringApi) CreateSecurityMonitoringBatchMigrationResources(
 }
 
 // CreateSecurityMonitoringCriticalAsset Create a critical asset.
-// Create a new critical asset.
+// Create a new dynamic severity rule (previously called critical assets).
 func (a *SecurityMonitoringApi) CreateSecurityMonitoringCriticalAsset(ctx _context.Context, body SecurityMonitoringCriticalAssetCreateRequest) (SecurityMonitoringCriticalAssetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -5060,7 +5060,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityMonitoringBatchMigrationResources(
 }
 
 // DeleteSecurityMonitoringCriticalAsset Delete a critical asset.
-// Delete a specific critical asset.
+// Delete a specific dynamic severity rule (previously called critical assets).
 func (a *SecurityMonitoringApi) DeleteSecurityMonitoringCriticalAsset(ctx _context.Context, criticalAssetId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -6330,7 +6330,7 @@ func (a *SecurityMonitoringApi) GetContentPacksStates(ctx _context.Context) (Sec
 }
 
 // GetCriticalAssetsAffectingRule Get critical assets affecting a specific rule.
-// Get the list of critical assets that affect a specific existing rule by the rule's ID.
+// Get the list of dynamic severity rules (previously called critical assets) that affect a specific existing rule by the rule's ID.
 func (a *SecurityMonitoringApi) GetCriticalAssetsAffectingRule(ctx _context.Context, ruleId string) (SecurityMonitoringCriticalAssetsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -8497,7 +8497,7 @@ func (a *SecurityMonitoringApi) GetSecurityFindingsAutomationTicketCreationRule(
 }
 
 // GetSecurityMonitoringCriticalAsset Get a critical asset.
-// Get the details of a specific critical asset.
+// Get the details of a specific dynamic severity rule (previously called critical assets).
 func (a *SecurityMonitoringApi) GetSecurityMonitoringCriticalAsset(ctx _context.Context, criticalAssetId string) (SecurityMonitoringCriticalAssetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -13703,7 +13703,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringBatchMigrations(ctx _conte
 }
 
 // ListSecurityMonitoringCriticalAssets Get all critical assets.
-// Get the list of all critical assets.
+// Get the list of all dynamic severity rules (previously called critical assets).
 func (a *SecurityMonitoringApi) ListSecurityMonitoringCriticalAssets(ctx _context.Context) (SecurityMonitoringCriticalAssetsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -18793,7 +18793,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityMonitoringBatchMigrationResource(c
 }
 
 // UpdateSecurityMonitoringCriticalAsset Update a critical asset.
-// Update a specific critical asset.
+// Update a specific dynamic severity rule (previously called critical assets).
 func (a *SecurityMonitoringApi) UpdateSecurityMonitoringCriticalAsset(ctx _context.Context, criticalAssetId string, body SecurityMonitoringCriticalAssetUpdateRequest) (SecurityMonitoringCriticalAssetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
