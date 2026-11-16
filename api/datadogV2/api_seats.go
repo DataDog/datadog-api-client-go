@@ -121,6 +121,12 @@ func (r *GetSeatsUsersOptionalParameters) WithPageCursor(pageCursor string) *Get
 
 // GetSeatsUsers Get users with seats.
 // Get the list of users assigned seats for a product code.
+//
+// This endpoint requires the `user_access_read` (User Access Read) permission
+// in addition to at least one of `billing_read`, `incident_read`, or `on_call_read`.
+// Scoped application keys, personal access tokens, and service access tokens
+// must include the `user_access_read` scope. Credentials without this scope
+// receive a `403 Forbidden` response.
 func (a *SeatsApi) GetSeatsUsers(ctx _context.Context, productCode string, o ...GetSeatsUsersOptionalParameters) (SeatUserDataArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -188,7 +194,7 @@ func (a *SeatsApi) GetSeatsUsers(ctx _context.Context, productCode string, o ...
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 422 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 422 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
