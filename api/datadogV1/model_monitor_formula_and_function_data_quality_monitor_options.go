@@ -10,12 +10,18 @@ import (
 
 // MonitorFormulaAndFunctionDataQualityMonitorOptions Monitor configuration options for data quality queries.
 type MonitorFormulaAndFunctionDataQualityMonitorOptions struct {
+	// Number of consecutive runs that must breach before the monitor alerts.
+	// Only supported by `data-jobs alert` job duration monitors. Defaults to `1`.
+	ConsecutiveRuns *int64 `json:"consecutive_runs,omitempty"`
 	// Crontab expression to override the default schedule.
 	CrontabOverride *string `json:"crontab_override,omitempty"`
 	// Custom SQL query for the monitor.
 	CustomSql *string `json:"custom_sql,omitempty"`
 	// Custom WHERE clause for the query.
 	CustomWhere *string `json:"custom_where,omitempty"`
+	// How a `data-jobs alert` job duration monitor detects a breach. Must match the
+	// `.detection()` call in the monitor query. Required for job duration monitors.
+	DetectionType *MonitorFormulaAndFunctionDataQualityDetectionType `json:"detection_type,omitempty"`
 	// Columns to group results by.
 	GroupByColumns []string `json:"group_by_columns,omitempty"`
 	// Tuning options for the anomaly detection model used by the monitor.
@@ -49,6 +55,34 @@ func NewMonitorFormulaAndFunctionDataQualityMonitorOptions() *MonitorFormulaAndF
 func NewMonitorFormulaAndFunctionDataQualityMonitorOptionsWithDefaults() *MonitorFormulaAndFunctionDataQualityMonitorOptions {
 	this := MonitorFormulaAndFunctionDataQualityMonitorOptions{}
 	return &this
+}
+
+// GetConsecutiveRuns returns the ConsecutiveRuns field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetConsecutiveRuns() int64 {
+	if o == nil || o.ConsecutiveRuns == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ConsecutiveRuns
+}
+
+// GetConsecutiveRunsOk returns a tuple with the ConsecutiveRuns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetConsecutiveRunsOk() (*int64, bool) {
+	if o == nil || o.ConsecutiveRuns == nil {
+		return nil, false
+	}
+	return o.ConsecutiveRuns, true
+}
+
+// HasConsecutiveRuns returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasConsecutiveRuns() bool {
+	return o != nil && o.ConsecutiveRuns != nil
+}
+
+// SetConsecutiveRuns gets a reference to the given int64 and assigns it to the ConsecutiveRuns field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetConsecutiveRuns(v int64) {
+	o.ConsecutiveRuns = &v
 }
 
 // GetCrontabOverride returns the CrontabOverride field value if set, zero value otherwise.
@@ -133,6 +167,34 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasCustomWhere() bo
 // SetCustomWhere gets a reference to the given string and assigns it to the CustomWhere field.
 func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetCustomWhere(v string) {
 	o.CustomWhere = &v
+}
+
+// GetDetectionType returns the DetectionType field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetDetectionType() MonitorFormulaAndFunctionDataQualityDetectionType {
+	if o == nil || o.DetectionType == nil {
+		var ret MonitorFormulaAndFunctionDataQualityDetectionType
+		return ret
+	}
+	return *o.DetectionType
+}
+
+// GetDetectionTypeOk returns a tuple with the DetectionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetDetectionTypeOk() (*MonitorFormulaAndFunctionDataQualityDetectionType, bool) {
+	if o == nil || o.DetectionType == nil {
+		return nil, false
+	}
+	return o.DetectionType, true
+}
+
+// HasDetectionType returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasDetectionType() bool {
+	return o != nil && o.DetectionType != nil
+}
+
+// SetDetectionType gets a reference to the given MonitorFormulaAndFunctionDataQualityDetectionType and assigns it to the DetectionType field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetDetectionType(v MonitorFormulaAndFunctionDataQualityDetectionType) {
+	o.DetectionType = &v
 }
 
 // GetGroupByColumns returns the GroupByColumns field value if set, zero value otherwise.
@@ -281,6 +343,9 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ConsecutiveRuns != nil {
+		toSerialize["consecutive_runs"] = o.ConsecutiveRuns
+	}
 	if o.CrontabOverride != nil {
 		toSerialize["crontab_override"] = o.CrontabOverride
 	}
@@ -289,6 +354,9 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 	}
 	if o.CustomWhere != nil {
 		toSerialize["custom_where"] = o.CustomWhere
+	}
+	if o.DetectionType != nil {
+		toSerialize["detection_type"] = o.DetectionType
 	}
 	if o.GroupByColumns != nil {
 		toSerialize["group_by_columns"] = o.GroupByColumns
@@ -315,9 +383,11 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		ConsecutiveRuns      *int64                                                    `json:"consecutive_runs,omitempty"`
 		CrontabOverride      *string                                                   `json:"crontab_override,omitempty"`
 		CustomSql            *string                                                   `json:"custom_sql,omitempty"`
 		CustomWhere          *string                                                   `json:"custom_where,omitempty"`
+		DetectionType        *MonitorFormulaAndFunctionDataQualityDetectionType        `json:"detection_type,omitempty"`
 		GroupByColumns       []string                                                  `json:"group_by_columns,omitempty"`
 		ModelConfiguration   *MonitorFormulaAndFunctionDataQualityModelConfiguration   `json:"model_configuration,omitempty"`
 		ModelTypeOverride    *MonitorFormulaAndFunctionDataQualityModelTypeOverride    `json:"model_type_override,omitempty"`
@@ -329,15 +399,21 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"crontab_override", "custom_sql", "custom_where", "group_by_columns", "model_configuration", "model_type_override", "sensitivity", "source_to_target_config"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"consecutive_runs", "crontab_override", "custom_sql", "custom_where", "detection_type", "group_by_columns", "model_configuration", "model_type_override", "sensitivity", "source_to_target_config"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.ConsecutiveRuns = all.ConsecutiveRuns
 	o.CrontabOverride = all.CrontabOverride
 	o.CustomSql = all.CustomSql
 	o.CustomWhere = all.CustomWhere
+	if all.DetectionType != nil && !all.DetectionType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DetectionType = all.DetectionType
+	}
 	o.GroupByColumns = all.GroupByColumns
 	if all.ModelConfiguration != nil && all.ModelConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
