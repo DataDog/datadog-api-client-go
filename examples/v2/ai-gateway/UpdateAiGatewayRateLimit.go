@@ -25,6 +25,13 @@ func main() {
 				Tags:                    nil,
 				TeamId:                  *datadog.NewNullableString(nil),
 				UserId:                  *datadog.NewNullableString(nil),
+				WindowLimits: []datadogV2.AiGatewayRateLimitWindowLimit{
+					{
+						Amount: 2000000000,
+						Metric: datadogV2.AIGATEWAYRATELIMITWINDOWLIMITMETRIC_COST,
+						Window: datadogV2.AIGATEWAYRATELIMITWINDOWLIMITWINDOW_TWENTY_FOUR_HOURS,
+					},
+				},
 			},
 			Id:   uuid.MustParse("11111111-1111-1111-1111-111111111111"),
 			Type: datadogV2.AIGATEWAYRATELIMITTYPE_RATE_LIMITS,

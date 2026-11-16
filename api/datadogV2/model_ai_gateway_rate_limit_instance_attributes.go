@@ -15,9 +15,9 @@ import (
 
 // AiGatewayRateLimitInstanceAttributes One counter of a template rate limit and its live usage.
 type AiGatewayRateLimitInstanceAttributes struct {
-	// Priced spend, in microcents, counted in the rolling one-minute window. 0 when the rate limit doesn't limit cost.
+	// Priced spend, in microcents, counted in the rolling one-minute window. The value is 0 when the rate limit doesn't limit cost.
 	CostMicrocents *int64 `json:"cost_microcents,omitempty"`
-	// The rate limit's per-counter spend limit, in microcents. Null when it doesn't limit cost.
+	// The rate limit's per-counter spend limit, in microcents. Null when the rate limit doesn't limit cost.
 	CostMicrocentsPerMinute datadog.NullableInt64 `json:"cost_microcents_per_minute,omitempty"`
 	// When the gateway first recorded a request for this counter.
 	FirstSeen time.Time `json:"first_seen"`
@@ -27,7 +27,7 @@ type AiGatewayRateLimitInstanceAttributes struct {
 	InputTokensPerMinute datadog.NullableInt64 `json:"input_tokens_per_minute,omitempty"`
 	// Opaque canonical key identifying the counter.
 	InstanceKey string `json:"instance_key"`
-	// When the gateway last saw this counter hot, that is near or at a limit or limiting; up to a few minutes behind live traffic.
+	// When the gateway last recorded this counter as hot, meaning it was at 80% or more of a limit, or it limited or would have limited a request. This value can lag live traffic by a few minutes.
 	LastSeen time.Time `json:"last_seen"`
 	// Requests this counter rejected in the last 15 minutes (ENFORCE).
 	LimitedRequests int64 `json:"limited_requests"`
