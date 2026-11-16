@@ -14,15 +14,20 @@ import (
 // `OCCURRENCES` uses `threshold`, `CARDINALITY` uses `threshold` and `projection`,
 // `ELAPSED_TIME` uses `duration`, and `ANY` and `ALL` use `operands`.
 type IssueWatchCondition struct {
-	// Time that must elapse before the condition is met, as a Go duration string.
+	// Time that must elapse from when the watch started, as a Go duration string, such as `24h`, or `168h` for a
+	// week.
 	Duration *string `json:"duration,omitempty"`
 	// Kind of watch condition.
 	Kind IssueWatchConditionKind `json:"kind"`
 	// Nested conditions combined by `ANY` or `ALL`.
 	Operands []IssueWatchCondition `json:"operands,omitempty"`
-	// Attributes whose distinct values are counted for `CARDINALITY`.
+	// Attributes whose distinct values `CARDINALITY` counts, in search syntax: `@` for attributes, such as
+	// `@usr.id` or `@account.id`, and no prefix for tags and reserved fields, such as `org_id` or `service`.
+	// Only use attributes that the issue's errors carry: a condition on an attribute they don't carry is never
+	// met.
 	Projection []string `json:"projection,omitempty"`
-	// Number of occurrences, or of distinct values for `CARDINALITY`, that triggers the condition.
+	// Number of new occurrences, or of distinct values for `CARDINALITY`, that meets the condition, counted from
+	// when the watch started.
 	Threshold *int64 `json:"threshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

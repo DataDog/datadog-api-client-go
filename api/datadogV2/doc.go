@@ -605,6 +605,7 @@
 //   - [ErrorTrackingApi.GetIssue]
 //   - [ErrorTrackingApi.GetIssueImpact]
 //   - [ErrorTrackingApi.SearchIssues]
+//   - [ErrorTrackingApi.SnoozeIssue]
 //   - [ErrorTrackingApi.UpdateIssueAssignee]
 //   - [ErrorTrackingApi.UpdateIssueState]
 //   - [EventsApi.CreateEvent]
