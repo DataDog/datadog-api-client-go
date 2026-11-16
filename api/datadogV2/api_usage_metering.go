@@ -2375,6 +2375,169 @@ func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetUsageMonthlyResourcesOptionalParameters holds optional parameters for GetUsageMonthlyResources.
+type GetUsageMonthlyResourcesOptionalParameters struct {
+	FilterIncludeDescendants *bool
+	PageLimit                *int64
+	PageNextRecordId         *string
+}
+
+// NewGetUsageMonthlyResourcesOptionalParameters creates an empty struct for parameters.
+func NewGetUsageMonthlyResourcesOptionalParameters() *GetUsageMonthlyResourcesOptionalParameters {
+	this := GetUsageMonthlyResourcesOptionalParameters{}
+	return &this
+}
+
+// WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetUsageMonthlyResourcesOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetUsageMonthlyResourcesOptionalParameters {
+	r.FilterIncludeDescendants = &filterIncludeDescendants
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *GetUsageMonthlyResourcesOptionalParameters) WithPageLimit(pageLimit int64) *GetUsageMonthlyResourcesOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageNextRecordId sets the corresponding parameter name and returns the struct.
+func (r *GetUsageMonthlyResourcesOptionalParameters) WithPageNextRecordId(pageNextRecordId string) *GetUsageMonthlyResourcesOptionalParameters {
+	r.PageNextRecordId = &pageNextRecordId
+	return r
+}
+
+// GetUsageMonthlyResources Get monthly usage by resource.
+// Get resource-level usage for a billing dimension and month, using the same
+// data as the resource breakdown in Plan & Usage. Supports all host and
+// non-host resource types available in that breakdown. Availability depends
+// on the billing dimension and the organization's usage data.
+//
+// Results are scoped to the authenticated organization. Set `filter[include_descendants]`
+// to `true` to also return usage from its descendant organizations in all regions.
+//
+// Set `filter[view]` to `billable` to return resources that contribute to billable usage.
+// For dimensions billed at the 99th percentile, this view returns resources at the
+// selected billing hour. For sum-based dimensions, it returns monthly resource usage.
+// Set `filter[view]` to `all` to return the full monthly resource breakdown. Requests
+// for unsupported billing dimensions, or dimensions configured with an unsupported
+// billing aggregation method, return a `400 Bad Request` error.
+//
+// To get the next page of results, pass the `meta.pagination.next_record_id` value
+// from the previous response as `page[next_record_id]`, and keep all filters unchanged.
+// A null cursor indicates the last page. Paginated responses contain at most
+// `page[limit]` resource records, including queries across descendant organizations.
+//
+// Exception: for any billing dimension billed at the 99th percentile,
+// `filter[view]=billable` returns the complete resource breakdown in one response,
+// including requested descendants. Eligibility depends on the organization's
+// billing configuration for the requested dimension and month, not on the product
+// name. For these queries, `page[limit]` and `page[next_record_id]` are ignored, and
+// `meta.pagination.next_record_id` is null. Sum-based usage and `filter[view]=all`
+// remain paginated.
+func (a *UsageMeteringApi) GetUsageMonthlyResources(ctx _context.Context, filterBillingDimension string, filterMonth string, filterView MonthlyResourcesView, o ...GetUsageMonthlyResourcesOptionalParameters) (MonthlyResourcesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MonthlyResourcesResponse
+		optionalParams      GetUsageMonthlyResourcesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageMonthlyResourcesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetUsageMonthlyResources")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/monthly_resources"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[billing_dimension]", datadog.ParameterToString(filterBillingDimension, ""))
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	localVarQueryParams.Add("filter[view]", datadog.ParameterToString(filterView, ""))
+	if optionalParams.FilterIncludeDescendants != nil {
+		localVarQueryParams.Add("filter[include_descendants]", datadog.ParameterToString(*optionalParams.FilterIncludeDescendants, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageNextRecordId != nil {
+		localVarQueryParams.Add("page[next_record_id]", datadog.ParameterToString(*optionalParams.PageNextRecordId, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetUsageObservabilityPipelinesOptionalParameters holds optional parameters for GetUsageObservabilityPipelines.
 type GetUsageObservabilityPipelinesOptionalParameters struct {
 	EndHr *time.Time
