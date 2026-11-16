@@ -12,13 +12,13 @@ import (
 
 // AiGatewayCaptureConfigurationResponseDataAttributes Organization default mode, scoped overrides, and current configuration revision.
 type AiGatewayCaptureConfigurationResponseDataAttributes struct {
-	// Opaque revision of the organization default and all overrides. Writes require the revision returned by a current read or preview.
+	// Opaque revision of the organization default and all overrides, including hidden overrides. Writes require the revision returned by a current read or preview.
 	ConfigurationRevision string `json:"configuration_revision"`
 	// Items Metadata-only capture adds, each listed once. An item requires the items whose information it already reveals: `tool_output_size`, `tool_names` and `conversation_shape` require `tool_usage`, and `input_size_by_role` requires `tool_output_size`. A set that leaves out a required item is rejected. When several Metadata-only overrides match a request, it gets only the items all of them select.
 	DefaultMetadataCapture []AiGatewayMetadataCaptureItem `json:"default_metadata_capture,omitempty"`
 	// Default capture mode for the organization. Change it in **Org defaults**.
 	DefaultMode AiGatewayCaptureConfigurationResponseDataAttributesDefaultMode `json:"default_mode"`
-	// Scoped overrides currently configured for the organization.
+	// Overrides the caller can View. Hidden overrides still apply to traffic; an empty list does not prove that no overrides exist.
 	Overrides []AiGatewayCaptureOverride `json:"overrides"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
