@@ -14,9 +14,12 @@ import (
 
 func main() {
 	body := datadogV1.MetricMetadata{
-		PerUnit: datadog.PtrString("second"),
-		Type:    datadog.PtrString("count"),
-		Unit:    datadog.PtrString("byte"),
+		Description:    *datadog.NewNullableString(datadog.PtrString("Number of requests received.")),
+		PerUnit:        *datadog.NewNullableString(datadog.PtrString("second")),
+		ShortName:      *datadog.NewNullableString(datadog.PtrString("requests")),
+		StatsdInterval: *datadog.NewNullableInt64(datadog.PtrInt64(10)),
+		Type:           *datadog.NewNullableString(datadog.PtrString("count")),
+		Unit:           *datadog.NewNullableString(datadog.PtrString("byte")),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
