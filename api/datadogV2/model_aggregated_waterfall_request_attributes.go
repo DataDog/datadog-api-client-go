@@ -14,7 +14,9 @@ import (
 type AggregatedWaterfallRequestAttributes struct {
 	// The RUM application ID to analyze.
 	ApplicationId string `json:"application_id"`
-	// Performance criteria to filter view instances by a metric threshold.
+	// Performance criteria to filter view instances by a metric threshold. When criteria are
+	// applied, specify at least one of `min` or `max`. When both are provided, `min` must be less
+	// than `max`.
 	Criteria *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
 	// RUM query string to filter events (for example, @session.type:user @geo.country:US).
 	Filter *string `json:"filter,omitempty"`
