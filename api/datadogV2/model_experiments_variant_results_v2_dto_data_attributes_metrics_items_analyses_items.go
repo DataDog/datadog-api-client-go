@@ -14,8 +14,12 @@ type ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems struc
 	ConfidenceInterval *ExperimentsConfidenceInterval `json:"confidence_interval,omitempty"`
 	// Configured nominal confidence level. Interval bounds can use an adjusted level for multiple testing or hybrid methods.
 	ConfidenceLevel *float64 `json:"confidence_level,omitempty"`
-	// Expected reduction in minimum expected regret from collecting more sample data.
+	// Expected value of sample information: expected reduction in minimum expected regret from additional data over the recorded horizon. Uses the analysis estimand units; relative lift is a fraction, not a percentage. Zero is a valid estimate. Omitted when unavailable or unrecorded.
 	Evsi *float64 `json:"evsi,omitempty"`
+	// Standard error of the hypothetical additional-data estimate used for EVSI, in the same estimand units and CUPED setting. May be present when EVSI computation failed. Omitted when unavailable or unrecorded.
+	EvsiFutureSe *float64 `json:"evsi_future_se,omitempty"`
+	// Recorded reason this analysis has no EVSI estimate. Omitted when unrecorded; absence does not establish availability for historical or imported results. Controls and non-Bayesian analyses omit this field.
+	EvsiUnavailableReason *ExperimentsEVSIUnavailableReason `json:"evsi_unavailable_reason,omitempty"`
 	// Expected effect when the effect is positive.
 	ExpectationAboveZero *float64 `json:"expectation_above_zero,omitempty"`
 	// Expected effect when the effect is negative.
@@ -156,6 +160,62 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 // SetEvsi gets a reference to the given float64 and assigns it to the Evsi field.
 func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) SetEvsi(v float64) {
 	o.Evsi = &v
+}
+
+// GetEvsiFutureSe returns the EvsiFutureSe field value if set, zero value otherwise.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetEvsiFutureSe() float64 {
+	if o == nil || o.EvsiFutureSe == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EvsiFutureSe
+}
+
+// GetEvsiFutureSeOk returns a tuple with the EvsiFutureSe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetEvsiFutureSeOk() (*float64, bool) {
+	if o == nil || o.EvsiFutureSe == nil {
+		return nil, false
+	}
+	return o.EvsiFutureSe, true
+}
+
+// HasEvsiFutureSe returns a boolean if a field has been set.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) HasEvsiFutureSe() bool {
+	return o != nil && o.EvsiFutureSe != nil
+}
+
+// SetEvsiFutureSe gets a reference to the given float64 and assigns it to the EvsiFutureSe field.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) SetEvsiFutureSe(v float64) {
+	o.EvsiFutureSe = &v
+}
+
+// GetEvsiUnavailableReason returns the EvsiUnavailableReason field value if set, zero value otherwise.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetEvsiUnavailableReason() ExperimentsEVSIUnavailableReason {
+	if o == nil || o.EvsiUnavailableReason == nil {
+		var ret ExperimentsEVSIUnavailableReason
+		return ret
+	}
+	return *o.EvsiUnavailableReason
+}
+
+// GetEvsiUnavailableReasonOk returns a tuple with the EvsiUnavailableReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) GetEvsiUnavailableReasonOk() (*ExperimentsEVSIUnavailableReason, bool) {
+	if o == nil || o.EvsiUnavailableReason == nil {
+		return nil, false
+	}
+	return o.EvsiUnavailableReason, true
+}
+
+// HasEvsiUnavailableReason returns a boolean if a field has been set.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) HasEvsiUnavailableReason() bool {
+	return o != nil && o.EvsiUnavailableReason != nil
+}
+
+// SetEvsiUnavailableReason gets a reference to the given ExperimentsEVSIUnavailableReason and assigns it to the EvsiUnavailableReason field.
+func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) SetEvsiUnavailableReason(v ExperimentsEVSIUnavailableReason) {
+	o.EvsiUnavailableReason = &v
 }
 
 // GetExpectationAboveZero returns the ExpectationAboveZero field value if set, zero value otherwise.
@@ -688,6 +748,12 @@ func (o ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) M
 	if o.Evsi != nil {
 		toSerialize["evsi"] = o.Evsi
 	}
+	if o.EvsiFutureSe != nil {
+		toSerialize["evsi_future_se"] = o.EvsiFutureSe
+	}
+	if o.EvsiUnavailableReason != nil {
+		toSerialize["evsi_unavailable_reason"] = o.EvsiUnavailableReason
+	}
 	if o.ExpectationAboveZero != nil {
 		toSerialize["expectation_above_zero"] = o.ExpectationAboveZero
 	}
@@ -755,6 +821,8 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 		ConfidenceInterval    *ExperimentsConfidenceInterval                                                         `json:"confidence_interval,omitempty"`
 		ConfidenceLevel       *float64                                                                               `json:"confidence_level,omitempty"`
 		Evsi                  *float64                                                                               `json:"evsi,omitempty"`
+		EvsiFutureSe          *float64                                                                               `json:"evsi_future_se,omitempty"`
+		EvsiUnavailableReason *ExperimentsEVSIUnavailableReason                                                      `json:"evsi_unavailable_reason,omitempty"`
 		ExpectationAboveZero  *float64                                                                               `json:"expectation_above_zero,omitempty"`
 		ExpectationBelowZero  *float64                                                                               `json:"expectation_below_zero,omitempty"`
 		GlobalLift            *float64                                                                               `json:"global_lift,omitempty"`
@@ -779,7 +847,7 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"confidence_interval", "confidence_level", "evsi", "expectation_above_zero", "expectation_below_zero", "global_lift", "global_lift_lower_bound", "global_lift_upper_bound", "is_cuped_adjusted", "is_unreliable", "lift_type", "method", "minimum_expected_regret", "p_value", "point_estimate", "probability_above_zero", "probability_below_zero", "standard_error", "unreliable_reason", "variant_metric_value", "z_score"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"confidence_interval", "confidence_level", "evsi", "evsi_future_se", "evsi_unavailable_reason", "expectation_above_zero", "expectation_below_zero", "global_lift", "global_lift_lower_bound", "global_lift_upper_bound", "is_cuped_adjusted", "is_unreliable", "lift_type", "method", "minimum_expected_regret", "p_value", "point_estimate", "probability_above_zero", "probability_below_zero", "standard_error", "unreliable_reason", "variant_metric_value", "z_score"})
 	} else {
 		return err
 	}
@@ -791,6 +859,12 @@ func (o *ExperimentsVariantResultsV2DTODataAttributesMetricsItemsAnalysesItems) 
 	o.ConfidenceInterval = all.ConfidenceInterval
 	o.ConfidenceLevel = all.ConfidenceLevel
 	o.Evsi = all.Evsi
+	o.EvsiFutureSe = all.EvsiFutureSe
+	if all.EvsiUnavailableReason != nil && !all.EvsiUnavailableReason.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.EvsiUnavailableReason = all.EvsiUnavailableReason
+	}
 	o.ExpectationAboveZero = all.ExpectationAboveZero
 	o.ExpectationBelowZero = all.ExpectationBelowZero
 	o.GlobalLift = all.GlobalLift

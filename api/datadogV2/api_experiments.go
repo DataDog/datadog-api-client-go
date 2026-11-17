@@ -2383,7 +2383,7 @@ func (a *ExperimentsApi) GetExperimentProtocol(ctx _context.Context, protocolId 
 }
 
 // GetExperimentResults Get experiment results.
-// Get an experiment's computed results: per-variant statistical analysis for the latest successful run. A historical run cannot be selected. Unavailable analysis statistics, including `p_value` and `confidence_interval`, are omitted. The `numerator`, `denominator`, and `variant_metric_value` fields can be null when their values are unavailable. Do not treat an omitted or null value as zero.
+// Get an experiment's computed results: per-variant statistical analysis for the latest successful run. A historical run cannot be selected. Unavailable analysis statistics, including `p_value` and `confidence_interval`, are omitted. The `numerator`, `denominator`, and `variant_metric_value` fields can be null when their values are unavailable. Do not treat an omitted or null value as zero. The response includes the selected run ID and, when recorded, EVSI forecast context and unavailable reasons for Bayesian analyses.
 func (a *ExperimentsApi) GetExperimentResults(ctx _context.Context, experimentId uuid.UUID) (ExperimentsVariantResultsV2DTOArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
