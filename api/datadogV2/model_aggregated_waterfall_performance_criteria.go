@@ -10,7 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AggregatedWaterfallPerformanceCriteria Performance criteria to filter view instances by a metric threshold.
+// AggregatedWaterfallPerformanceCriteria Performance criteria to filter view instances by a metric threshold. When criteria are
+// applied, specify at least one of `min` or `max`. When both are provided, `min` must be less
+// than `max`.
 type AggregatedWaterfallPerformanceCriteria struct {
 	// Maximum threshold in seconds (inclusive).
 	Max *float64 `json:"max,omitempty"`
