@@ -17,10 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/DataDog/datadog-api-client-go/v2/tests"
-	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV1"
-	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV2"
+	"github.com/DataDog/datadog-api-client-go/packages/core/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"github.com/go-bdd/gobdd"
 )
@@ -139,9 +137,7 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 	if testServerEnabled() {
 		server := datadog.ServerConfigurations{{URL: os.Getenv("DD_TEST_SERVER_URL")}}
 		config.Servers = server
-		for operation := range config.OperationServers {
-			config.OperationServers[operation] = server
-		}
+		config.OperationServers = nil
 		session, _ := bddCTX.Get(testServerSessionKey{})
 		config.RetryConfiguration.EnableRetry = false
 		config.HTTPClient = &http.Client{
@@ -186,13 +182,15 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 }
 
 func getAuthenticatedContext(ctx gobdd.Context) context.Context {
-	return testsV1.WithTestAuth(
-		testsV2.WithTestAuth(
-			testsV1.NewDefaultContext(
-				testsV2.NewDefaultContext(GetCtx(ctx)),
-			),
-		),
-	)
+	c := GetCtx(ctx)
+	if site, ok := os.LookupEnv("DD_TEST_SITE"); ok {
+		c = context.WithValue(c, datadog.ContextServerIndex, 2)
+		c = context.WithValue(c, datadog.ContextServerVariables, map[string]string{"site": site})
+	}
+	return context.WithValue(c, datadog.ContextAPIKeys, map[string]datadog.APIKey{
+		"apiKeyAuth": {Key: os.Getenv("DD_TEST_CLIENT_API_KEY")},
+		"appKeyAuth": {Key: os.Getenv("DD_TEST_CLIENT_APP_KEY")},
+	})
 }
 
 // RegisterSuite adds step implementation.
@@ -204,15 +202,11 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		// Enable unstable operation
 		configInterface := clientInterface.MethodByName("GetConfig").Call(nil)[0]
 		unstableOperationId := reflect.ValueOf(fmt.Sprintf("%s.%s", version, s.OperationID))
-		if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{unstableOperationId})[0].Bool() {
-			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-				unstableOperationId, reflect.ValueOf(true),
-			})
-		}
+		configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{unstableOperationId, reflect.ValueOf(true)})
 
 		// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 		tag := strings.Replace(s.Tag, " ", "", -1) + "Api"
-		api := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{clientInterface})[0]
+		api := GetPackageApi(ctx, version, tag, s.OperationID).Call([]reflect.Value{clientInterface})[0]
 		if !api.IsValid() {
 			t.Fatalf("invalid API name %s", tag)
 		}
@@ -301,7 +295,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 	if undo.Undo.Tag != nil {
 		tag = strings.Replace(*undo.Undo.Tag, " ", "", -1) + "Api"
 	}
-	undoAPI := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{undoClientInterface})[0]
+	undoAPI := GetPackageApi(ctx, version, tag, undo.Undo.OperationID).Call([]reflect.Value{undoClientInterface})[0]
 	if !undoAPI.IsValid() {
 		return nil, fmt.Errorf("invalid API name %sApi", tag)
 	}
@@ -332,11 +326,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 			// enable unstable operation
 			configInterface := undoClientInterface.MethodByName("GetConfig").Call(nil)[0]
 			undoOperationID := reflect.ValueOf(fmt.Sprintf("%s.%s", version, undo.Undo.OperationID))
-			if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{undoOperationID})[0].Bool() {
-				configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-					undoOperationID, reflect.ValueOf(true),
-				})
-			}
+			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{undoOperationID, reflect.ValueOf(true)})
 
 			// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId())
 			numArgs := undoOperation.Type().NumIn()

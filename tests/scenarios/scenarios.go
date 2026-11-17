@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	"github.com/DataDog/datadog-api-client-go/packages/core/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
 )
 
@@ -303,6 +303,15 @@ func GetApiByVersionAndName(ctx gobdd.Context, version string, name string) refl
 	}
 
 	return api
+}
+
+// GetPackageApi returns the constructor of the package API class that holds a monolith class's operation.
+func GetPackageApi(ctx gobdd.Context, version string, name string, operationID string) reflect.Value {
+	name = strings.Replace(name, "-", "", -1)
+	if class, ok := packageClasses[version][name+"."+operationID]; ok {
+		name = class
+	}
+	return GetApiByVersionAndName(ctx, version, name)
 }
 
 // SetVersion sets package version.

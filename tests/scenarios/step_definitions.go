@@ -17,8 +17,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	"github.com/DataDog/datadog-api-client-go/packages/core/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
 	is "gotest.tools/assert/cmp"
 )
@@ -52,16 +52,9 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 	setAPIKey(ctx, "appKeyAuth", key)
 }
 
-// anInstanceOf sets API callable to apiKey{}
+// anInstanceOf records the monolith API name; newRequestNative builds the package API that holds the operation.
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
-	ct := GetClient(ctx)
-	version := GetOperationVersion(ctx)
-
-	api := GetApiByVersionAndName(ctx, version, name+"Api")
-	f := api.Call([]reflect.Value{ct})[0]
-
 	ctx.Set(apiNameKey{}, name)
-	SetAPI(ctx, f)
 }
 
 // enableOperations sets unstable operations specific in this clause to enabled
@@ -91,11 +84,13 @@ func newVersionedRequest(t gobdd.StepTest, ctx gobdd.Context, name string, versi
 }
 
 func newRequestNative(t gobdd.StepTest, ctx gobdd.Context, name string) {
-	c, err := ctx.Get(apiKey{})
+	apiName, err := ctx.GetString(apiNameKey{})
 	if err != nil {
 		t.Error(err)
 	}
-	r := c.(reflect.Value)
+	api := GetPackageApi(ctx, GetOperationVersion(ctx), apiName+"Api", name)
+	r := api.Call([]reflect.Value{GetClient(ctx)})[0]
+	SetAPI(ctx, r)
 	f := r.MethodByName(name)
 	if !f.IsValid() {
 		t.Errorf("invalid method name %s on API", name)

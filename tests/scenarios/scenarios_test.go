@@ -13,8 +13,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	"github.com/DataDog/datadog-api-client-go/packages/core/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	msgs "github.com/cucumber/messages-go/v12"
 	"github.com/go-bdd/gobdd"

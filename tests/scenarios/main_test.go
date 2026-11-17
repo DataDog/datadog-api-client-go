@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 // TestMain starts the tracer.

@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/packages/core/api/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
