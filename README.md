@@ -92,7 +92,7 @@ Each module is versioned on its own, with its version in its `version.go`. From 
 
 ## Tests
 
-[`tests/`](tests) is a separate module that runs the BDD scenarios of `tests/scenarios/features` against the split packages, through `replace` directives to `packages/`. The generator writes the features, `tests/scenarios/generated-test` and `tests/scenarios/package_mappings.go`, which imports every package namespace and names the package class of each moved operation. The other runner files are kept by hand, as copies of `master`'s, and pre-commit runs `scripts/tidy-tests.sh` to keep `tests/go.mod` in line with `packages/`.
+[`tests/`](tests) is a separate module that runs the BDD scenarios of `tests/scenarios/features` against the split packages, through `replace` directives to `packages/`. Generation writes the features and the `tests/scenarios/generated-test` data, and the `go_split_package` generator writes `tests/scenarios/package_mappings.go`, which imports every package namespace and names the package class of each moved operation. The other runner files are kept by hand, as copies of `master`'s, and pre-commit runs `scripts/tidy-tests.sh` to keep `tests/go.mod` in line with `packages/`.
 
 The scenarios replay recordings through the generated test server, which needs `python3`; there are no Go cassettes on this branch:
 
