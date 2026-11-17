@@ -1,0 +1,134 @@
+name: Run Tests
+
+permissions:
+  contents: read
+
+env:
+  GIT_AUTHOR_EMAIL: "packages@datadoghq.com"
+  GIT_AUTHOR_NAME: "ci.datadog-api-spec"
+
+on:
+  pull_request:
+    branches:
+      - v3
+  push:
+    branches:
+      - v3
+
+concurrency:
+  group: unit-v3-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit:
+    if: >
+      github.event_name == 'push' ||
+      (github.event.pull_request.draft == false &&
+       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
+       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get GitHub App token
+        id: get_token
+        if: github.event_name == 'pull_request'
+        uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 # v1.11.1
+        with:
+          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+          token: ${{ steps.get_token.outputs.token || github.token }}
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+        with:
+          python-version: '3.11'
+      - name: Install pre-commit
+        run: python -m pip install pre-commit
+      - name: set PY
+        run: echo "PY=$(python -c 'import platform;print(platform.python_version())')" >> $GITHUB_ENV
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: Install Go
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: 1.22.x
+      - name: Run pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure --color=always
+      - name: Commit changes
+        if: failure() && github.event_name == 'pull_request'
+        run: |-
+          git add -A
+          git config user.name "${GIT_AUTHOR_NAME}"
+          git config user.email "${GIT_AUTHOR_EMAIL}"
+          git commit -m "pre-commit fixes"
+          git push origin "HEAD:${HEAD_REF}"
+          exit 1
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+
+  check-packages:
+    name: Check split package modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Check split packages are separate modules
+        run: ./scripts/check-packages.sh
+
+  build-packages:
+    name: Build split packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Install Go
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: 1.22.x
+          cache: true
+          cache-dependency-path: packages/*/go.sum
+      - name: Build and vet each split package
+        run: |
+          shopt -s nullglob
+          for dir in packages/*/; do
+            (cd "$dir" && go build ./... && go vet ./...)
+          done
+        env:
+          GOWORK: "off"
+      - name: Test the core
+        if: hashFiles('packages/core/go.mod') != ''
+        working-directory: packages/core
+        run: |
+          go build --tags=goccy_gojson ./...
+          go test ./...
+        env:
+          GOWORK: "off"
+
+  report:
+    runs-on: ubuntu-latest
+    if: always() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/split/generated/')
+    needs:
+      - check-packages
+      - build-packages
+    permissions:
+      id-token: write
+    steps:
+      - uses: DataDog/dd-octo-sts-action@96a25462dbcb10ebf0bfd6e2ccc917d2ab235b9a # v1.0.4
+        id: octo-sts
+        with:
+          scope: ddoghq/datadog-api-spec
+          policy: datadog-api-client-go.github.post-status-check.pr
+      - name: Get pull request number
+        id: get_pr_number
+        run: echo "spec_pr=${HEAD_REF##*/}" >> $GITHUB_OUTPUT
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+      - name: Post status check
+        uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
+        with:
+          github-token: ${{ steps.octo-sts.outputs.token }}
+          owner: ddoghq
+          repo: datadog-api-spec
+          status: ${{ (needs.check-packages.result == 'cancelled' || needs.build-packages.result == 'cancelled') && 'pending' || (needs.check-packages.result == 'success' && needs.build-packages.result == 'success') && 'success' || 'failure' }}
+          context: v3/unit
+          pull-request: ${{ steps.get_pr_number.outputs.spec_pr }}
