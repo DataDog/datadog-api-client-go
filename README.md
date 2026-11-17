@@ -90,6 +90,19 @@ Each request sends `datadog-api-client-go/<package>/<package version>` followed 
 
 Each module is versioned on its own, with its version in its `version.go`. From major version 2, a module's path ends in `/vN`, such as `github.com/DataDog/datadog-api-client-go/packages/monitors/v2`. Every package requires the core version it was generated with; `go get` the core with the packages you use.
 
+## Tests
+
+[`tests/`](tests) is a separate module that runs the BDD scenarios of `tests/scenarios/features` against the split packages, through `replace` directives to `packages/`. The generator writes the features, `tests/scenarios/generated-test` and `tests/scenarios/package_mappings.go`, which imports every package namespace and names the package class of each moved operation. The other runner files are kept by hand, as copies of `master`'s, and pre-commit runs `scripts/tidy-tests.sh` to keep `tests/go.mod` in line with `packages/`.
+
+The scenarios replay recordings through the generated test server, which needs `python3`; there are no Go cassettes on this branch:
+
+```sh
+cd tests
+DD_USE_GENERATED_TESTS=true go test ./scenarios -count=1
+```
+
+Set `BDD_TAGS` to a comma-separated list of tags, such as `BDD_TAGS='@endpoint(monitors)'`, to run only some scenarios.
+
 ## Contributing
 
 The code on this branch is generated: don't edit it by hand. Changes to the APIs come from Datadog's OpenAPI specifications, and generated pull requests are opened against this branch by internal tooling. Changes to the branch's tooling (pre-commit hooks, CI and the scripts under `scripts/`) are welcome as pull requests.
