@@ -12,7 +12,7 @@ import (
 
 // AiGatewayCaptureUpdateRequestDataAttributes Replacement settings and revisions for updating the override.
 type AiGatewayCaptureUpdateRequestDataAttributes struct {
-	// Opaque revision of the organization default and all overrides. Writes require the revision returned by a current read or preview.
+	// Opaque revision of the organization default and all overrides, including hidden overrides. Writes require the revision returned by a current read or preview.
 	ConfigurationRevision string `json:"configuration_revision"`
 	// Set to `true` to confirm a change that can enable full capture, including a deletion that causes a `full_capture` override or the organization default to apply.
 	ConfirmFullCapture *bool `json:"confirm_full_capture,omitempty"`

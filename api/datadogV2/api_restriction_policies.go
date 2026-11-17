@@ -188,6 +188,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // Restriction policies can be applied to the following resources:
 // - AI Gateway Providers: `ai-gateway-provider`
 // - AI Gateway Routes: `ai-gateway-route`
+// - AI Gateway Capture Overrides: `ai-gateway-capture-override`
 // - Dashboards: `dashboard`
 // - Integration Services: `integration-service`
 // - Integration Webhooks: `integration-webhook`
@@ -218,17 +219,19 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - Network Path Configs: `network-path-config`
 //
 // AI Gateway provider policies control configuration and inherited model/catalog/pricing visibility. Route policies control route configuration and identifying nested references.
-// The editor relation includes View. Providers and routes have no Run relation; restriction policies don't affect inference.
-// Reading provider or route policies requires `ai_gateway_config_read`. Updating or deleting them requires
+// Capture override policies control who can view and edit override configuration. Hidden overrides remain effective for traffic.
+// The editor relation includes View. Providers, routes, and capture overrides have no Run relation; restriction policies don't affect inference.
+// Reading provider, route, or capture override policies requires `ai_gateway_config_read`. Updating or deleting them requires
 // `ai_gateway_config_write` and follows standard restriction-policy authorization, including
 // administrator recovery and self-lockout checks.
-// Providers and routes without a restriction policy retain the normal unrestricted defaults.
+// Providers, routes, and capture overrides without a restriction policy retain the normal unrestricted defaults.
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
 // ----------------------------|--------------------------
 // AI Gateway Providers        | `viewer`, `editor`
 // AI Gateway Routes           | `viewer`, `editor`
+// AI Gateway Capture Overrides | `viewer`, `editor`
 // Dashboards                  | `viewer`, `editor`
 // Integration Services        | `viewer`, `editor`
 // Integration Webhooks        | `viewer`, `editor`
