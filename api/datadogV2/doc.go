@@ -1379,6 +1379,7 @@
 //   - [SecurityMonitoringApi.EditSecurityMonitoringSignalState]
 //   - [SecurityMonitoringApi.EnableSecurityFindingsAutomationDefaultInboxRule]
 //   - [SecurityMonitoringApi.ExportSecurityMonitoringTerraformResource]
+//   - [SecurityMonitoringApi.GetAWSIdentityCenterAWSAccounts]
 //   - [SecurityMonitoringApi.GetContentPacksStates]
 //   - [SecurityMonitoringApi.GetCriticalAssetsAffectingRule]
 //   - [SecurityMonitoringApi.GetCustomFramework]
