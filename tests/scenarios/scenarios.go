@@ -307,6 +307,9 @@ func GetApiByVersionAndName(ctx gobdd.Context, version string, name string) refl
 
 // GetPackageApi returns the constructor of the package API class that holds a monolith class's operation.
 func GetPackageApi(ctx gobdd.Context, version string, name string, operationID string) reflect.Value {
+	if strings.Contains(version, "_") {
+		GetT(ctx).Fatalf("operation %s at %s has no split namespace: split packages are base-only", operationID, version)
+	}
 	name = strings.Replace(name, "-", "", -1)
 	if class, ok := packageClasses[version][name+"."+operationID]; ok {
 		name = class
