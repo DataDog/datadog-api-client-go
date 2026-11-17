@@ -1,0 +1,12 @@
+# See https://help.github.com/articles/about-codeowners/ for syntax
+# Rules are matched bottom-to-top, so one team can own subdirectories
+# and another team can own the rest of the directory.
+
+# All your base
+*                       @DataDog/web-frameworks-approvers @DataDog/web-frameworks
+
+# Documentation
+*.md                    @DataDog/web-frameworks-approvers @DataDog/web-frameworks
+LICENSE                 @DataDog/web-frameworks-approvers @DataDog/web-frameworks
+NOTICE                  @DataDog/web-frameworks-approvers @DataDog/web-frameworks
+LICENSE-3rdparty.csv    @DataDog/web-frameworks-approvers @DataDog/web-frameworks
