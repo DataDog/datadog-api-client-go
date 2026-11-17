@@ -16,7 +16,7 @@ type RUMApplicationListAttributes struct {
 	ApiKeyId *int32 `json:"api_key_id,omitempty"`
 	// Indicates if flat sampling of Session Replay for APM-correlated RUM sessions is enabled.
 	ApmRumFlatSamplingReplayEnabled *bool `json:"apm_rum_flat_sampling_replay_enabled,omitempty"`
-	// Sample rate (0-100) of Session Replay for APM-correlated RUM sessions when flat sampling is enabled.
+	// Fraction (0 to 1) of APM-correlated RUM sessions with Session Replay when flat sampling is enabled.
 	ApmRumFlatSamplingReplaySampleRate *float64 `json:"apm_rum_flat_sampling_replay_sample_rate,omitempty"`
 	// ID of the RUM application.
 	ApplicationId string `json:"application_id"`
@@ -54,7 +54,7 @@ type RUMApplicationListAttributes struct {
 	ShortName *string `json:"short_name,omitempty"`
 	// List of tags associated with the RUM application.
 	Tags []string `json:"tags,omitempty"`
-	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`.
+	// Type of the RUM application. Possible values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`, `react`, `nextjs`, `angular`, `vuejs`, `nuxt`, `tanstack`, `maui`, `salesforce-lwc`, `shopify`, `cpp`, `unreal`.
 	Type string `json:"type"`
 	// Timestamp in ms of the last update date.
 	UpdatedAt int64 `json:"updated_at"`

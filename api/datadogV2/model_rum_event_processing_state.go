@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMEventProcessingState Configures which RUM events are processed and stored for the application.
+// RUMEventProcessingState Configures which RUM events are processed and stored for the application. Defaults to `ALL` when creating an application.
 type RUMEventProcessingState string
 
 // List of RUMEventProcessingState.

@@ -10,9 +10,9 @@ import (
 
 // RUMQueryPageOptions Paging attributes for listing events.
 type RUMQueryPageOptions struct {
-	// List following results with a cursor provided in the previous query.
+	// Cursor to get the next page of results, taken from `meta.page.after` of the previous response. Send it with the same `filter` and `sort` as the request that returned it.
 	Cursor *string `json:"cursor,omitempty"`
-	// Maximum number of events in the response.
+	// Maximum number of events in the response. Between 1 and 1000.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
