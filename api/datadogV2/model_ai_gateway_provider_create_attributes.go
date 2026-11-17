@@ -14,6 +14,13 @@ import (
 type AiGatewayProviderCreateAttributes struct {
 	// Multiplier applied to provider costs. Must be greater than 0 and at most 1000000.
 	CostMultiplier *float64 `json:"cost_multiplier,omitempty"`
+	// Whose credential the gateway sends to the provider. Defaults to `integration_account`, which sends
+	// the integration account's credential. `subscription` forwards each caller's own subscription sign-in
+	// (`ChatGPT` for `openai`, `claude.ai` for `anthropic`) and needs no integration account; it is available
+	// only to organizations with subscription providers enabled. A subscription provider's models are
+	// optional: callers can use any model their subscription includes, and a model you add sets its
+	// pricing. Immutable.
+	CredentialSource *AiGatewayProviderCreateCredentialSource `json:"credential_source,omitempty"`
 	// Reserved for initial View/Edit permissions. Supplying this attribute, including an empty array or null, returns HTTP 503 before discovery or persistence. Omit it for normal creation.
 	InitialBindings []AiGatewayProviderInitialBinding `json:"initial_bindings,omitempty"`
 	// Provider integration account identifier.
@@ -28,6 +35,10 @@ type AiGatewayProviderCreateAttributes struct {
 	Name string `json:"name"`
 	// Immutable routing identifier.
 	Slug string `json:"slug"`
+	// Whether this provider connection is covered by a zero data retention agreement. Defaults to `false`.
+	// For Bedrock, zero data retention is granted per region, so configure one provider per region and set
+	// this only on the covered ones.
+	ZdrEligible *bool `json:"zdr_eligible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -41,6 +52,8 @@ func NewAiGatewayProviderCreateAttributes(name string, slug string) *AiGatewayPr
 	this := AiGatewayProviderCreateAttributes{}
 	var costMultiplier float64 = 1.0
 	this.CostMultiplier = &costMultiplier
+	var credentialSource AiGatewayProviderCreateCredentialSource = AIGATEWAYPROVIDERCREATECREDENTIALSOURCE_INTEGRATION_ACCOUNT
+	this.CredentialSource = &credentialSource
 	this.Name = name
 	this.Slug = slug
 	return &this
@@ -53,6 +66,8 @@ func NewAiGatewayProviderCreateAttributesWithDefaults() *AiGatewayProviderCreate
 	this := AiGatewayProviderCreateAttributes{}
 	var costMultiplier float64 = 1.0
 	this.CostMultiplier = &costMultiplier
+	var credentialSource AiGatewayProviderCreateCredentialSource = AIGATEWAYPROVIDERCREATECREDENTIALSOURCE_INTEGRATION_ACCOUNT
+	this.CredentialSource = &credentialSource
 	return &this
 }
 
@@ -82,6 +97,34 @@ func (o *AiGatewayProviderCreateAttributes) HasCostMultiplier() bool {
 // SetCostMultiplier gets a reference to the given float64 and assigns it to the CostMultiplier field.
 func (o *AiGatewayProviderCreateAttributes) SetCostMultiplier(v float64) {
 	o.CostMultiplier = &v
+}
+
+// GetCredentialSource returns the CredentialSource field value if set, zero value otherwise.
+func (o *AiGatewayProviderCreateAttributes) GetCredentialSource() AiGatewayProviderCreateCredentialSource {
+	if o == nil || o.CredentialSource == nil {
+		var ret AiGatewayProviderCreateCredentialSource
+		return ret
+	}
+	return *o.CredentialSource
+}
+
+// GetCredentialSourceOk returns a tuple with the CredentialSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderCreateAttributes) GetCredentialSourceOk() (*AiGatewayProviderCreateCredentialSource, bool) {
+	if o == nil || o.CredentialSource == nil {
+		return nil, false
+	}
+	return o.CredentialSource, true
+}
+
+// HasCredentialSource returns a boolean if a field has been set.
+func (o *AiGatewayProviderCreateAttributes) HasCredentialSource() bool {
+	return o != nil && o.CredentialSource != nil
+}
+
+// SetCredentialSource gets a reference to the given AiGatewayProviderCreateCredentialSource and assigns it to the CredentialSource field.
+func (o *AiGatewayProviderCreateAttributes) SetCredentialSource(v AiGatewayProviderCreateCredentialSource) {
+	o.CredentialSource = &v
 }
 
 // GetInitialBindings returns the InitialBindings field value if set, zero value otherwise.
@@ -270,6 +313,34 @@ func (o *AiGatewayProviderCreateAttributes) SetSlug(v string) {
 	o.Slug = v
 }
 
+// GetZdrEligible returns the ZdrEligible field value if set, zero value otherwise.
+func (o *AiGatewayProviderCreateAttributes) GetZdrEligible() bool {
+	if o == nil || o.ZdrEligible == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ZdrEligible
+}
+
+// GetZdrEligibleOk returns a tuple with the ZdrEligible field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderCreateAttributes) GetZdrEligibleOk() (*bool, bool) {
+	if o == nil || o.ZdrEligible == nil {
+		return nil, false
+	}
+	return o.ZdrEligible, true
+}
+
+// HasZdrEligible returns a boolean if a field has been set.
+func (o *AiGatewayProviderCreateAttributes) HasZdrEligible() bool {
+	return o != nil && o.ZdrEligible != nil
+}
+
+// SetZdrEligible gets a reference to the given bool and assigns it to the ZdrEligible field.
+func (o *AiGatewayProviderCreateAttributes) SetZdrEligible(v bool) {
+	o.ZdrEligible = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayProviderCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -278,6 +349,9 @@ func (o AiGatewayProviderCreateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.CostMultiplier != nil {
 		toSerialize["cost_multiplier"] = o.CostMultiplier
+	}
+	if o.CredentialSource != nil {
+		toSerialize["credential_source"] = o.CredentialSource
 	}
 	if o.InitialBindings != nil {
 		toSerialize["initial_bindings"] = o.InitialBindings
@@ -296,6 +370,9 @@ func (o AiGatewayProviderCreateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["slug"] = o.Slug
+	if o.ZdrEligible != nil {
+		toSerialize["zdr_eligible"] = o.ZdrEligible
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -306,14 +383,16 @@ func (o AiGatewayProviderCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CostMultiplier       *float64                            `json:"cost_multiplier,omitempty"`
-		InitialBindings      []AiGatewayProviderInitialBinding   `json:"initial_bindings,omitempty"`
-		IntegrationAccountId *string                             `json:"integration_account_id,omitempty"`
-		IntegrationConfig    *AiGatewayProviderIntegrationConfig `json:"integration_config,omitempty"`
-		KnownProvider        *AiGatewayKnownProvider             `json:"known_provider,omitempty"`
-		Models               []AiGatewayModelInput               `json:"models,omitempty"`
-		Name                 *string                             `json:"name"`
-		Slug                 *string                             `json:"slug"`
+		CostMultiplier       *float64                                 `json:"cost_multiplier,omitempty"`
+		CredentialSource     *AiGatewayProviderCreateCredentialSource `json:"credential_source,omitempty"`
+		InitialBindings      []AiGatewayProviderInitialBinding        `json:"initial_bindings,omitempty"`
+		IntegrationAccountId *string                                  `json:"integration_account_id,omitempty"`
+		IntegrationConfig    *AiGatewayProviderIntegrationConfig      `json:"integration_config,omitempty"`
+		KnownProvider        *AiGatewayKnownProvider                  `json:"known_provider,omitempty"`
+		Models               []AiGatewayModelInput                    `json:"models,omitempty"`
+		Name                 *string                                  `json:"name"`
+		Slug                 *string                                  `json:"slug"`
+		ZdrEligible          *bool                                    `json:"zdr_eligible,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -326,13 +405,18 @@ func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "initial_bindings", "integration_account_id", "integration_config", "known_provider", "models", "name", "slug"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "credential_source", "initial_bindings", "integration_account_id", "integration_config", "known_provider", "models", "name", "slug", "zdr_eligible"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.CostMultiplier = all.CostMultiplier
+	if all.CredentialSource != nil && !all.CredentialSource.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CredentialSource = all.CredentialSource
+	}
 	o.InitialBindings = all.InitialBindings
 	o.IntegrationAccountId = all.IntegrationAccountId
 	if all.IntegrationConfig != nil && all.IntegrationConfig.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -347,6 +431,7 @@ func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 	o.Models = all.Models
 	o.Name = *all.Name
 	o.Slug = *all.Slug
+	o.ZdrEligible = all.ZdrEligible
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

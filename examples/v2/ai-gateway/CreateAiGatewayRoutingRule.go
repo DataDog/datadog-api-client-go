@@ -16,6 +16,14 @@ func main() {
 	body := datadogV2.AiGatewayRoutingRuleCreateRequest{
 		Data: datadogV2.AiGatewayRoutingRuleCreateData{
 			Attributes: datadogV2.AiGatewayRoutingRuleCreateAttributes{
+				InitialBindings: []datadogV2.AiGatewayProviderInitialBinding{
+					{
+						Principals: []string{
+							"org:11111111-1111-1111-1111-111111111111",
+						},
+						Relation: datadogV2.AIGATEWAYPROVIDERINITIALBINDINGRELATION_VIEWER,
+					},
+				},
 				Slug: "coding",
 				Tiers: []datadogV2.AiGatewayRoutingRuleTierRequest{
 					{

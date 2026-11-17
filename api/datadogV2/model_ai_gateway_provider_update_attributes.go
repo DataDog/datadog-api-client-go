@@ -14,6 +14,8 @@ type AiGatewayProviderUpdateAttributes struct {
 	CostMultiplier *float64 `json:"cost_multiplier,omitempty"`
 	// Human-readable resource name.
 	Name *string `json:"name,omitempty"`
+	// Whether this provider connection is covered by a zero data retention agreement. Omit to leave unchanged.
+	ZdrEligible *bool `json:"zdr_eligible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -92,6 +94,34 @@ func (o *AiGatewayProviderUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetZdrEligible returns the ZdrEligible field value if set, zero value otherwise.
+func (o *AiGatewayProviderUpdateAttributes) GetZdrEligible() bool {
+	if o == nil || o.ZdrEligible == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ZdrEligible
+}
+
+// GetZdrEligibleOk returns a tuple with the ZdrEligible field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderUpdateAttributes) GetZdrEligibleOk() (*bool, bool) {
+	if o == nil || o.ZdrEligible == nil {
+		return nil, false
+	}
+	return o.ZdrEligible, true
+}
+
+// HasZdrEligible returns a boolean if a field has been set.
+func (o *AiGatewayProviderUpdateAttributes) HasZdrEligible() bool {
+	return o != nil && o.ZdrEligible != nil
+}
+
+// SetZdrEligible gets a reference to the given bool and assigns it to the ZdrEligible field.
+func (o *AiGatewayProviderUpdateAttributes) SetZdrEligible(v bool) {
+	o.ZdrEligible = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayProviderUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -103,6 +133,9 @@ func (o AiGatewayProviderUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.ZdrEligible != nil {
+		toSerialize["zdr_eligible"] = o.ZdrEligible
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,18 +149,20 @@ func (o *AiGatewayProviderUpdateAttributes) UnmarshalJSON(bytes []byte) (err err
 	all := struct {
 		CostMultiplier *float64 `json:"cost_multiplier,omitempty"`
 		Name           *string  `json:"name,omitempty"`
+		ZdrEligible    *bool    `json:"zdr_eligible,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "name", "zdr_eligible"})
 	} else {
 		return err
 	}
 	o.CostMultiplier = all.CostMultiplier
 	o.Name = all.Name
+	o.ZdrEligible = all.ZdrEligible
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

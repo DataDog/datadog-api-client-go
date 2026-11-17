@@ -16,7 +16,8 @@ func main() {
 	body := datadogV2.AiGatewayProviderCreateRequest{
 		Data: datadogV2.AiGatewayProviderCreateData{
 			Attributes: datadogV2.AiGatewayProviderCreateAttributes{
-				CostMultiplier: datadog.PtrFloat64(1.0),
+				CostMultiplier:   datadog.PtrFloat64(1.0),
+				CredentialSource: datadogV2.AIGATEWAYPROVIDERCREATECREDENTIALSOURCE_INTEGRATION_ACCOUNT.Ptr(),
 				InitialBindings: []datadogV2.AiGatewayProviderInitialBinding{
 					{
 						Principals: []string{
@@ -46,8 +47,9 @@ func main() {
 						},
 					},
 				},
-				Name: "production-us",
-				Slug: "prod-us",
+				Name:        "production-us",
+				Slug:        "prod-us",
+				ZdrEligible: datadog.PtrBool(false),
 			},
 			Type: datadogV2.AIGATEWAYPROVIDERTYPE_PROVIDERS,
 		},

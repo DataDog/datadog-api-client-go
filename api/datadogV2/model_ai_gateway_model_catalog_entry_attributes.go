@@ -23,6 +23,8 @@ type AiGatewayModelCatalogEntryAttributes struct {
 	ModelIdCanonical string `json:"model_id_canonical"`
 	// Model identifier sent to the provider.
 	ModelIdWire string `json:"model_id_wire"`
+	// Attributes of a model pricing resource.
+	Pricing *AiGatewayModelPricingAttributes `json:"pricing,omitempty"`
 	// Provider identifier.
 	ProviderId int64 `json:"provider_id"`
 	// How a model catalog entry is managed.
@@ -31,6 +33,9 @@ type AiGatewayModelCatalogEntryAttributes struct {
 	SupportedOperations []AiGatewaySupportedOperation `json:"supported_operations"`
 	// Time when the resource was last updated.
 	UpdatedAt time.Time `json:"updated_at"`
+	// The Datadog side of a model's zero data retention eligibility. The customer side is the provider's
+	// `zdr_eligible` setting.
+	Zdr *AiGatewayModelZdr `json:"zdr,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -181,6 +186,34 @@ func (o *AiGatewayModelCatalogEntryAttributes) SetModelIdWire(v string) {
 	o.ModelIdWire = v
 }
 
+// GetPricing returns the Pricing field value if set, zero value otherwise.
+func (o *AiGatewayModelCatalogEntryAttributes) GetPricing() AiGatewayModelPricingAttributes {
+	if o == nil || o.Pricing == nil {
+		var ret AiGatewayModelPricingAttributes
+		return ret
+	}
+	return *o.Pricing
+}
+
+// GetPricingOk returns a tuple with the Pricing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelCatalogEntryAttributes) GetPricingOk() (*AiGatewayModelPricingAttributes, bool) {
+	if o == nil || o.Pricing == nil {
+		return nil, false
+	}
+	return o.Pricing, true
+}
+
+// HasPricing returns a boolean if a field has been set.
+func (o *AiGatewayModelCatalogEntryAttributes) HasPricing() bool {
+	return o != nil && o.Pricing != nil
+}
+
+// SetPricing gets a reference to the given AiGatewayModelPricingAttributes and assigns it to the Pricing field.
+func (o *AiGatewayModelCatalogEntryAttributes) SetPricing(v AiGatewayModelPricingAttributes) {
+	o.Pricing = &v
+}
+
 // GetProviderId returns the ProviderId field value.
 func (o *AiGatewayModelCatalogEntryAttributes) GetProviderId() int64 {
 	if o == nil {
@@ -273,6 +306,34 @@ func (o *AiGatewayModelCatalogEntryAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetZdr returns the Zdr field value if set, zero value otherwise.
+func (o *AiGatewayModelCatalogEntryAttributes) GetZdr() AiGatewayModelZdr {
+	if o == nil || o.Zdr == nil {
+		var ret AiGatewayModelZdr
+		return ret
+	}
+	return *o.Zdr
+}
+
+// GetZdrOk returns a tuple with the Zdr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelCatalogEntryAttributes) GetZdrOk() (*AiGatewayModelZdr, bool) {
+	if o == nil || o.Zdr == nil {
+		return nil, false
+	}
+	return o.Zdr, true
+}
+
+// HasZdr returns a boolean if a field has been set.
+func (o *AiGatewayModelCatalogEntryAttributes) HasZdr() bool {
+	return o != nil && o.Zdr != nil
+}
+
+// SetZdr gets a reference to the given AiGatewayModelZdr and assigns it to the Zdr field.
+func (o *AiGatewayModelCatalogEntryAttributes) SetZdr(v AiGatewayModelZdr) {
+	o.Zdr = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayModelCatalogEntryAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -290,6 +351,9 @@ func (o AiGatewayModelCatalogEntryAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["model_id_canonical"] = o.ModelIdCanonical
 	toSerialize["model_id_wire"] = o.ModelIdWire
+	if o.Pricing != nil {
+		toSerialize["pricing"] = o.Pricing
+	}
 	toSerialize["provider_id"] = o.ProviderId
 	toSerialize["source"] = o.Source
 	toSerialize["supported_operations"] = o.SupportedOperations
@@ -297,6 +361,9 @@ func (o AiGatewayModelCatalogEntryAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+	}
+	if o.Zdr != nil {
+		toSerialize["zdr"] = o.Zdr
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -308,15 +375,17 @@ func (o AiGatewayModelCatalogEntryAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayModelCatalogEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt           *time.Time                     `json:"created_at"`
-		Enabled             *bool                          `json:"enabled"`
-		Metadata            *AiGatewayModelMetadata        `json:"metadata,omitempty"`
-		ModelIdCanonical    *string                        `json:"model_id_canonical"`
-		ModelIdWire         *string                        `json:"model_id_wire"`
-		ProviderId          *int64                         `json:"provider_id"`
-		Source              *AiGatewayModelSource          `json:"source"`
-		SupportedOperations *[]AiGatewaySupportedOperation `json:"supported_operations"`
-		UpdatedAt           *time.Time                     `json:"updated_at"`
+		CreatedAt           *time.Time                       `json:"created_at"`
+		Enabled             *bool                            `json:"enabled"`
+		Metadata            *AiGatewayModelMetadata          `json:"metadata,omitempty"`
+		ModelIdCanonical    *string                          `json:"model_id_canonical"`
+		ModelIdWire         *string                          `json:"model_id_wire"`
+		Pricing             *AiGatewayModelPricingAttributes `json:"pricing,omitempty"`
+		ProviderId          *int64                           `json:"provider_id"`
+		Source              *AiGatewayModelSource            `json:"source"`
+		SupportedOperations *[]AiGatewaySupportedOperation   `json:"supported_operations"`
+		UpdatedAt           *time.Time                       `json:"updated_at"`
+		Zdr                 *AiGatewayModelZdr               `json:"zdr,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -347,7 +416,7 @@ func (o *AiGatewayModelCatalogEntryAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "enabled", "metadata", "model_id_canonical", "model_id_wire", "provider_id", "source", "supported_operations", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "enabled", "metadata", "model_id_canonical", "model_id_wire", "pricing", "provider_id", "source", "supported_operations", "updated_at", "zdr"})
 	} else {
 		return err
 	}
@@ -361,6 +430,10 @@ func (o *AiGatewayModelCatalogEntryAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.Metadata = all.Metadata
 	o.ModelIdCanonical = *all.ModelIdCanonical
 	o.ModelIdWire = *all.ModelIdWire
+	if all.Pricing != nil && all.Pricing.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Pricing = all.Pricing
 	o.ProviderId = *all.ProviderId
 	if !all.Source.IsValid() {
 		hasInvalidField = true
@@ -369,6 +442,10 @@ func (o *AiGatewayModelCatalogEntryAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	o.SupportedOperations = *all.SupportedOperations
 	o.UpdatedAt = *all.UpdatedAt
+	if all.Zdr != nil && all.Zdr.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Zdr = all.Zdr
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
