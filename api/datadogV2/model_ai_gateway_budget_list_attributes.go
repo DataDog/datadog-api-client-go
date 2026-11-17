@@ -33,6 +33,8 @@ type AiGatewayBudgetListAttributes struct {
 	MonitorId datadog.NullableInt64 `json:"monitor_id"`
 	// Human-readable resource name.
 	Name string `json:"name"`
+	// Health across all counters in the active accounting window. Includes hidden counters; contains no scope values or identities.
+	ReportingSummary *AiGatewayBudgetReportingSummary `json:"reporting_summary,omitempty"`
 	// Whether provider or model scope metadata was withheld. Omit unchanged scope fields on an unrelated update to preserve their saved values.
 	ScopeRestricted bool `json:"scope_restricted"`
 	// Dimension rules for a template budget. A nonempty selector creates independent counters for matched instances. Omit or pass an empty selector for a legacy fixed-scope budget.
@@ -300,6 +302,34 @@ func (o *AiGatewayBudgetListAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetReportingSummary returns the ReportingSummary field value if set, zero value otherwise.
+func (o *AiGatewayBudgetListAttributes) GetReportingSummary() AiGatewayBudgetReportingSummary {
+	if o == nil || o.ReportingSummary == nil {
+		var ret AiGatewayBudgetReportingSummary
+		return ret
+	}
+	return *o.ReportingSummary
+}
+
+// GetReportingSummaryOk returns a tuple with the ReportingSummary field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayBudgetListAttributes) GetReportingSummaryOk() (*AiGatewayBudgetReportingSummary, bool) {
+	if o == nil || o.ReportingSummary == nil {
+		return nil, false
+	}
+	return o.ReportingSummary, true
+}
+
+// HasReportingSummary returns a boolean if a field has been set.
+func (o *AiGatewayBudgetListAttributes) HasReportingSummary() bool {
+	return o != nil && o.ReportingSummary != nil
+}
+
+// SetReportingSummary gets a reference to the given AiGatewayBudgetReportingSummary and assigns it to the ReportingSummary field.
+func (o *AiGatewayBudgetListAttributes) SetReportingSummary(v AiGatewayBudgetReportingSummary) {
+	o.ReportingSummary = &v
+}
+
 // GetScopeRestricted returns the ScopeRestricted field value.
 func (o *AiGatewayBudgetListAttributes) GetScopeRestricted() bool {
 	if o == nil {
@@ -565,6 +595,9 @@ func (o AiGatewayBudgetListAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["enforcement"] = o.Enforcement
 	toSerialize["monitor_id"] = o.MonitorId.Get()
 	toSerialize["name"] = o.Name
+	if o.ReportingSummary != nil {
+		toSerialize["reporting_summary"] = o.ReportingSummary
+	}
 	toSerialize["scope_restricted"] = o.ScopeRestricted
 	if o.Selector != nil {
 		toSerialize["selector"] = o.Selector
@@ -603,25 +636,26 @@ func (o AiGatewayBudgetListAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayBudgetListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CapacityMicrocents              *int64                         `json:"capacity_microcents"`
-		CreatedAt                       *time.Time                     `json:"created_at"`
-		CreatedBy                       *string                        `json:"created_by"`
-		CurrentPeriodCapacityMicrocents *int64                         `json:"current_period_capacity_microcents"`
-		CurrentSpendMicrocents          *int64                         `json:"current_spend_microcents"`
-		Enabled                         *bool                          `json:"enabled"`
-		Enforcement                     *AiGatewayBudgetEnforcement    `json:"enforcement"`
-		MonitorId                       datadog.NullableInt64          `json:"monitor_id"`
-		Name                            *string                        `json:"name"`
-		ScopeRestricted                 *bool                          `json:"scope_restricted"`
-		Selector                        []AiGatewayBudgetSelectorEntry `json:"selector,omitempty"`
-		Tags                            *map[string]string             `json:"tags"`
-		TeamId                          *uuid.UUID                     `json:"team_id,omitempty"`
-		UpdatedAt                       *time.Time                     `json:"updated_at"`
-		UserId                          *uuid.UUID                     `json:"user_id,omitempty"`
-		WarningThreshold                *float64                       `json:"warning_threshold"`
-		WindowEnd                       *time.Time                     `json:"window_end"`
-		WindowPolicy                    *AiGatewayBudgetWindowPolicy   `json:"window_policy"`
-		WindowStart                     *time.Time                     `json:"window_start"`
+		CapacityMicrocents              *int64                           `json:"capacity_microcents"`
+		CreatedAt                       *time.Time                       `json:"created_at"`
+		CreatedBy                       *string                          `json:"created_by"`
+		CurrentPeriodCapacityMicrocents *int64                           `json:"current_period_capacity_microcents"`
+		CurrentSpendMicrocents          *int64                           `json:"current_spend_microcents"`
+		Enabled                         *bool                            `json:"enabled"`
+		Enforcement                     *AiGatewayBudgetEnforcement      `json:"enforcement"`
+		MonitorId                       datadog.NullableInt64            `json:"monitor_id"`
+		Name                            *string                          `json:"name"`
+		ReportingSummary                *AiGatewayBudgetReportingSummary `json:"reporting_summary,omitempty"`
+		ScopeRestricted                 *bool                            `json:"scope_restricted"`
+		Selector                        []AiGatewayBudgetSelectorEntry   `json:"selector,omitempty"`
+		Tags                            *map[string]string               `json:"tags"`
+		TeamId                          *uuid.UUID                       `json:"team_id,omitempty"`
+		UpdatedAt                       *time.Time                       `json:"updated_at"`
+		UserId                          *uuid.UUID                       `json:"user_id,omitempty"`
+		WarningThreshold                *float64                         `json:"warning_threshold"`
+		WindowEnd                       *time.Time                       `json:"window_end"`
+		WindowPolicy                    *AiGatewayBudgetWindowPolicy     `json:"window_policy"`
+		WindowStart                     *time.Time                       `json:"window_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -676,7 +710,7 @@ func (o *AiGatewayBudgetListAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"capacity_microcents", "created_at", "created_by", "current_period_capacity_microcents", "current_spend_microcents", "enabled", "enforcement", "monitor_id", "name", "scope_restricted", "selector", "tags", "team_id", "updated_at", "user_id", "warning_threshold", "window_end", "window_policy", "window_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"capacity_microcents", "created_at", "created_by", "current_period_capacity_microcents", "current_spend_microcents", "enabled", "enforcement", "monitor_id", "name", "reporting_summary", "scope_restricted", "selector", "tags", "team_id", "updated_at", "user_id", "warning_threshold", "window_end", "window_policy", "window_start"})
 	} else {
 		return err
 	}
@@ -695,6 +729,10 @@ func (o *AiGatewayBudgetListAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.MonitorId = all.MonitorId
 	o.Name = *all.Name
+	if all.ReportingSummary != nil && all.ReportingSummary.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ReportingSummary = all.ReportingSummary
 	o.ScopeRestricted = *all.ScopeRestricted
 	o.Selector = all.Selector
 	o.Tags = *all.Tags

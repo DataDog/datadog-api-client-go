@@ -25,6 +25,8 @@ type AiGatewayBudgetInstancesSummaryAttributes struct {
 	OverWarningThresholdCount int64 `json:"over_warning_threshold_count"`
 	// Whether instances were withheld because their provider or model is hidden. Summary counts and totals exclude those instances.
 	RestrictedDetails bool `json:"restricted_details"`
+	// Sum of the capacity of every matching instance in the window, including per-instance overrides.
+	TotalCapacityMicrocents *int64 `json:"total_capacity_microcents,omitempty"`
 	// Spend summed across all instances, in microcents.
 	TotalSpendMicrocents int64 `json:"total_spend_microcents"`
 	// Start of the accounting window.
@@ -173,6 +175,34 @@ func (o *AiGatewayBudgetInstancesSummaryAttributes) SetRestrictedDetails(v bool)
 	o.RestrictedDetails = v
 }
 
+// GetTotalCapacityMicrocents returns the TotalCapacityMicrocents field value if set, zero value otherwise.
+func (o *AiGatewayBudgetInstancesSummaryAttributes) GetTotalCapacityMicrocents() int64 {
+	if o == nil || o.TotalCapacityMicrocents == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TotalCapacityMicrocents
+}
+
+// GetTotalCapacityMicrocentsOk returns a tuple with the TotalCapacityMicrocents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayBudgetInstancesSummaryAttributes) GetTotalCapacityMicrocentsOk() (*int64, bool) {
+	if o == nil || o.TotalCapacityMicrocents == nil {
+		return nil, false
+	}
+	return o.TotalCapacityMicrocents, true
+}
+
+// HasTotalCapacityMicrocents returns a boolean if a field has been set.
+func (o *AiGatewayBudgetInstancesSummaryAttributes) HasTotalCapacityMicrocents() bool {
+	return o != nil && o.TotalCapacityMicrocents != nil
+}
+
+// SetTotalCapacityMicrocents gets a reference to the given int64 and assigns it to the TotalCapacityMicrocents field.
+func (o *AiGatewayBudgetInstancesSummaryAttributes) SetTotalCapacityMicrocents(v int64) {
+	o.TotalCapacityMicrocents = &v
+}
+
 // GetTotalSpendMicrocents returns the TotalSpendMicrocents field value.
 func (o *AiGatewayBudgetInstancesSummaryAttributes) GetTotalSpendMicrocents() int64 {
 	if o == nil {
@@ -230,6 +260,9 @@ func (o AiGatewayBudgetInstancesSummaryAttributes) MarshalJSON() ([]byte, error)
 	toSerialize["instance_count"] = o.InstanceCount
 	toSerialize["over_warning_threshold_count"] = o.OverWarningThresholdCount
 	toSerialize["restricted_details"] = o.RestrictedDetails
+	if o.TotalCapacityMicrocents != nil {
+		toSerialize["total_capacity_microcents"] = o.TotalCapacityMicrocents
+	}
 	toSerialize["total_spend_microcents"] = o.TotalSpendMicrocents
 	if o.WindowStart.Nanosecond() == 0 {
 		toSerialize["window_start"] = o.WindowStart.Format("2006-01-02T15:04:05Z07:00")
@@ -251,6 +284,7 @@ func (o *AiGatewayBudgetInstancesSummaryAttributes) UnmarshalJSON(bytes []byte) 
 		InstanceCount             *int64     `json:"instance_count"`
 		OverWarningThresholdCount *int64     `json:"over_warning_threshold_count"`
 		RestrictedDetails         *bool      `json:"restricted_details"`
+		TotalCapacityMicrocents   *int64     `json:"total_capacity_microcents,omitempty"`
 		TotalSpendMicrocents      *int64     `json:"total_spend_microcents"`
 		WindowStart               *time.Time `json:"window_start"`
 	}{}
@@ -280,7 +314,7 @@ func (o *AiGatewayBudgetInstancesSummaryAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"budget_id", "exceeded_capacity_count", "instance_count", "over_warning_threshold_count", "restricted_details", "total_spend_microcents", "window_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"budget_id", "exceeded_capacity_count", "instance_count", "over_warning_threshold_count", "restricted_details", "total_capacity_microcents", "total_spend_microcents", "window_start"})
 	} else {
 		return err
 	}
@@ -289,6 +323,7 @@ func (o *AiGatewayBudgetInstancesSummaryAttributes) UnmarshalJSON(bytes []byte) 
 	o.InstanceCount = *all.InstanceCount
 	o.OverWarningThresholdCount = *all.OverWarningThresholdCount
 	o.RestrictedDetails = *all.RestrictedDetails
+	o.TotalCapacityMicrocents = all.TotalCapacityMicrocents
 	o.TotalSpendMicrocents = *all.TotalSpendMicrocents
 	o.WindowStart = *all.WindowStart
 

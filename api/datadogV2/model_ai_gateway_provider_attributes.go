@@ -17,6 +17,10 @@ type AiGatewayProviderAttributes struct {
 	CostMultiplier float64 `json:"cost_multiplier"`
 	// Time when the resource was created.
 	CreatedAt time.Time `json:"created_at"`
+	// Whose credential the gateway sends to the provider. `integration_account` sends the integration
+	// account's credential. `subscription` forwards each caller's own subscription sign-in (`ChatGPT` for
+	// `openai`, `claude.ai` for `anthropic`) and needs no integration account.
+	CredentialSource *AiGatewayProviderCredentialSource `json:"credential_source,omitempty"`
 	// Provider integration account identifier.
 	IntegrationAccountId string `json:"integration_account_id"`
 	// Provider-specific integration configuration.
@@ -27,8 +31,14 @@ type AiGatewayProviderAttributes struct {
 	Name string `json:"name"`
 	// Immutable routing identifier.
 	Slug string `json:"slug"`
+	// Read-only. Whether the provider is working, based on the model sync and live calls. Omitted for
+	// providers that are never checked, which include providers without an integration account, and
+	// Azure OpenAI and Gemini providers until live traffic records a status.
+	Status *AiGatewayProviderStatus `json:"status,omitempty"`
 	// Time when the resource was last updated.
 	UpdatedAt time.Time `json:"updated_at"`
+	// Whether this provider connection is covered by a zero data retention agreement.
+	ZdrEligible *bool `json:"zdr_eligible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -102,6 +112,34 @@ func (o *AiGatewayProviderAttributes) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value.
 func (o *AiGatewayProviderAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetCredentialSource returns the CredentialSource field value if set, zero value otherwise.
+func (o *AiGatewayProviderAttributes) GetCredentialSource() AiGatewayProviderCredentialSource {
+	if o == nil || o.CredentialSource == nil {
+		var ret AiGatewayProviderCredentialSource
+		return ret
+	}
+	return *o.CredentialSource
+}
+
+// GetCredentialSourceOk returns a tuple with the CredentialSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderAttributes) GetCredentialSourceOk() (*AiGatewayProviderCredentialSource, bool) {
+	if o == nil || o.CredentialSource == nil {
+		return nil, false
+	}
+	return o.CredentialSource, true
+}
+
+// HasCredentialSource returns a boolean if a field has been set.
+func (o *AiGatewayProviderAttributes) HasCredentialSource() bool {
+	return o != nil && o.CredentialSource != nil
+}
+
+// SetCredentialSource gets a reference to the given AiGatewayProviderCredentialSource and assigns it to the CredentialSource field.
+func (o *AiGatewayProviderAttributes) SetCredentialSource(v AiGatewayProviderCredentialSource) {
+	o.CredentialSource = &v
 }
 
 // GetIntegrationAccountId returns the IntegrationAccountId field value.
@@ -224,6 +262,34 @@ func (o *AiGatewayProviderAttributes) SetSlug(v string) {
 	o.Slug = v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *AiGatewayProviderAttributes) GetStatus() AiGatewayProviderStatus {
+	if o == nil || o.Status == nil {
+		var ret AiGatewayProviderStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderAttributes) GetStatusOk() (*AiGatewayProviderStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *AiGatewayProviderAttributes) HasStatus() bool {
+	return o != nil && o.Status != nil
+}
+
+// SetStatus gets a reference to the given AiGatewayProviderStatus and assigns it to the Status field.
+func (o *AiGatewayProviderAttributes) SetStatus(v AiGatewayProviderStatus) {
+	o.Status = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value.
 func (o *AiGatewayProviderAttributes) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -247,6 +313,34 @@ func (o *AiGatewayProviderAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetZdrEligible returns the ZdrEligible field value if set, zero value otherwise.
+func (o *AiGatewayProviderAttributes) GetZdrEligible() bool {
+	if o == nil || o.ZdrEligible == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ZdrEligible
+}
+
+// GetZdrEligibleOk returns a tuple with the ZdrEligible field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayProviderAttributes) GetZdrEligibleOk() (*bool, bool) {
+	if o == nil || o.ZdrEligible == nil {
+		return nil, false
+	}
+	return o.ZdrEligible, true
+}
+
+// HasZdrEligible returns a boolean if a field has been set.
+func (o *AiGatewayProviderAttributes) HasZdrEligible() bool {
+	return o != nil && o.ZdrEligible != nil
+}
+
+// SetZdrEligible gets a reference to the given bool and assigns it to the ZdrEligible field.
+func (o *AiGatewayProviderAttributes) SetZdrEligible(v bool) {
+	o.ZdrEligible = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AiGatewayProviderAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -259,6 +353,9 @@ func (o AiGatewayProviderAttributes) MarshalJSON() ([]byte, error) {
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
+	if o.CredentialSource != nil {
+		toSerialize["credential_source"] = o.CredentialSource
+	}
 	toSerialize["integration_account_id"] = o.IntegrationAccountId
 	if o.IntegrationConfig != nil {
 		toSerialize["integration_config"] = o.IntegrationConfig
@@ -266,10 +363,16 @@ func (o AiGatewayProviderAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["known_provider"] = o.KnownProvider
 	toSerialize["name"] = o.Name
 	toSerialize["slug"] = o.Slug
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+	}
+	if o.ZdrEligible != nil {
+		toSerialize["zdr_eligible"] = o.ZdrEligible
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -283,12 +386,15 @@ func (o *AiGatewayProviderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CostMultiplier       *float64                            `json:"cost_multiplier"`
 		CreatedAt            *time.Time                          `json:"created_at"`
+		CredentialSource     *AiGatewayProviderCredentialSource  `json:"credential_source,omitempty"`
 		IntegrationAccountId *string                             `json:"integration_account_id"`
 		IntegrationConfig    *AiGatewayProviderIntegrationConfig `json:"integration_config,omitempty"`
 		KnownProvider        *AiGatewayKnownProvider             `json:"known_provider"`
 		Name                 *string                             `json:"name"`
 		Slug                 *string                             `json:"slug"`
+		Status               *AiGatewayProviderStatus            `json:"status,omitempty"`
 		UpdatedAt            *time.Time                          `json:"updated_at"`
+		ZdrEligible          *bool                               `json:"zdr_eligible,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -316,7 +422,7 @@ func (o *AiGatewayProviderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "created_at", "integration_account_id", "integration_config", "known_provider", "name", "slug", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cost_multiplier", "created_at", "credential_source", "integration_account_id", "integration_config", "known_provider", "name", "slug", "status", "updated_at", "zdr_eligible"})
 	} else {
 		return err
 	}
@@ -324,6 +430,11 @@ func (o *AiGatewayProviderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.CostMultiplier = *all.CostMultiplier
 	o.CreatedAt = *all.CreatedAt
+	if all.CredentialSource != nil && !all.CredentialSource.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CredentialSource = all.CredentialSource
+	}
 	o.IntegrationAccountId = *all.IntegrationAccountId
 	if all.IntegrationConfig != nil && all.IntegrationConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -336,7 +447,12 @@ func (o *AiGatewayProviderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Name = *all.Name
 	o.Slug = *all.Slug
+	if all.Status != nil && all.Status.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Status = all.Status
 	o.UpdatedAt = *all.UpdatedAt
+	o.ZdrEligible = all.ZdrEligible
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

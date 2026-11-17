@@ -18,6 +18,7 @@ func main() {
 			Attributes: datadogV2.AiGatewayProviderUpdateAttributes{
 				CostMultiplier: datadog.PtrFloat64(1.0),
 				Name:           datadog.PtrString("production-us-v2"),
+				ZdrEligible:    datadog.PtrBool(false),
 			},
 			Id:   "42",
 			Type: datadogV2.AIGATEWAYPROVIDERTYPE_PROVIDERS,

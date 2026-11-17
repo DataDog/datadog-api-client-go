@@ -12,6 +12,9 @@ import (
 
 // AiGatewayRoutingRuleCreateAttributes Attributes used to create an AI Gateway routing rule.
 type AiGatewayRoutingRuleCreateAttributes struct {
+	// Reserved for initial View and Edit permissions. Supplying this attribute returns HTTP 400 and doesn't
+	// create the route. Create the route, then set its permissions through the restriction policy API.
+	InitialBindings []AiGatewayProviderInitialBinding `json:"initial_bindings,omitempty"`
 	// Organization-unique resource slug.
 	Slug string `json:"slug"`
 	//
@@ -38,6 +41,34 @@ func NewAiGatewayRoutingRuleCreateAttributes(slug string, tiers []AiGatewayRouti
 func NewAiGatewayRoutingRuleCreateAttributesWithDefaults() *AiGatewayRoutingRuleCreateAttributes {
 	this := AiGatewayRoutingRuleCreateAttributes{}
 	return &this
+}
+
+// GetInitialBindings returns the InitialBindings field value if set, zero value otherwise.
+func (o *AiGatewayRoutingRuleCreateAttributes) GetInitialBindings() []AiGatewayProviderInitialBinding {
+	if o == nil || o.InitialBindings == nil {
+		var ret []AiGatewayProviderInitialBinding
+		return ret
+	}
+	return o.InitialBindings
+}
+
+// GetInitialBindingsOk returns a tuple with the InitialBindings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRoutingRuleCreateAttributes) GetInitialBindingsOk() (*[]AiGatewayProviderInitialBinding, bool) {
+	if o == nil || o.InitialBindings == nil {
+		return nil, false
+	}
+	return &o.InitialBindings, true
+}
+
+// HasInitialBindings returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleCreateAttributes) HasInitialBindings() bool {
+	return o != nil && o.InitialBindings != nil
+}
+
+// SetInitialBindings gets a reference to the given []AiGatewayProviderInitialBinding and assigns it to the InitialBindings field.
+func (o *AiGatewayRoutingRuleCreateAttributes) SetInitialBindings(v []AiGatewayProviderInitialBinding) {
+	o.InitialBindings = v
 }
 
 // GetSlug returns the Slug field value.
@@ -92,6 +123,9 @@ func (o AiGatewayRoutingRuleCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.InitialBindings != nil {
+		toSerialize["initial_bindings"] = o.InitialBindings
+	}
 	toSerialize["slug"] = o.Slug
 	toSerialize["tiers"] = o.Tiers
 
@@ -104,8 +138,9 @@ func (o AiGatewayRoutingRuleCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Slug  *string                            `json:"slug"`
-		Tiers *[]AiGatewayRoutingRuleTierRequest `json:"tiers"`
+		InitialBindings []AiGatewayProviderInitialBinding  `json:"initial_bindings,omitempty"`
+		Slug            *string                            `json:"slug"`
+		Tiers           *[]AiGatewayRoutingRuleTierRequest `json:"tiers"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,10 +153,11 @@ func (o *AiGatewayRoutingRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"slug", "tiers"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"initial_bindings", "slug", "tiers"})
 	} else {
 		return err
 	}
+	o.InitialBindings = all.InitialBindings
 	o.Slug = *all.Slug
 	o.Tiers = *all.Tiers
 
