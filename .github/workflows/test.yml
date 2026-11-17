@@ -56,6 +56,8 @@ jobs:
           go-version: 1.22.x
       - name: Run pre-commit
         run: pre-commit run --all-files --show-diff-on-failure --color=always
+        env:
+          GOTOOLCHAIN: auto
       - name: Commit changes
         if: failure() && github.event_name == 'pull_request'
         run: |-
@@ -104,12 +106,40 @@ jobs:
         env:
           GOWORK: "off"
 
+  bdd:
+    name: Run BDD scenarios
+    strategy:
+      matrix:
+        go-build-tags: ["", "--tags=goccy_gojson"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Install Go
+        if: hashFiles('tests/scenarios/package_mappings.go') != ''
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: 1.23.x
+          cache: true
+          cache-dependency-path: |
+            tests/go.sum
+            packages/*/go.sum
+      - name: Run the scenarios against the generated test server
+        if: hashFiles('tests/scenarios/package_mappings.go') != ''
+        working-directory: tests
+        run: go test ./... -count=1 $TESTARGS
+        env:
+          DD_USE_GENERATED_TESTS: "true"
+          TESTARGS: ${{ matrix.go-build-tags }}
+          GOTOOLCHAIN: auto
+          GOWORK: "off"
+
   report:
     runs-on: ubuntu-latest
     if: always() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/split/generated/')
     needs:
       - check-packages
       - build-packages
+      - bdd
     permissions:
       id-token: write
     steps:
@@ -129,6 +159,6 @@ jobs:
           github-token: ${{ steps.octo-sts.outputs.token }}
           owner: ddoghq
           repo: datadog-api-spec
-          status: ${{ (needs.check-packages.result == 'cancelled' || needs.build-packages.result == 'cancelled') && 'pending' || (needs.check-packages.result == 'success' && needs.build-packages.result == 'success') && 'success' || 'failure' }}
+          status: ${{ (needs.check-packages.result == 'cancelled' || needs.build-packages.result == 'cancelled' || needs.bdd.result == 'cancelled') && 'pending' || (needs.check-packages.result == 'success' && needs.build-packages.result == 'success' && needs.bdd.result == 'success') && 'success' || 'failure' }}
           context: v3/unit
           pull-request: ${{ steps.get_pr_number.outputs.spec_pr }}
