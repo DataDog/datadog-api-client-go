@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMGroupByMissing - The value to use for logs that don't have the facet used to group by.
+// RUMGroupByMissing - The value to use for events that don't have the facet used to group by.
 type RUMGroupByMissing struct {
 	RUMGroupByMissingString *string
 	RUMGroupByMissingNumber *float64

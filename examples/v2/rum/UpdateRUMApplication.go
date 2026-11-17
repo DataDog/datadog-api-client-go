@@ -20,7 +20,7 @@ func main() {
 		Data: datadogV2.RUMApplicationUpdate{
 			Attributes: &datadogV2.RUMApplicationUpdateAttributes{
 				Name: datadog.PtrString("updated_name_for_my_existing_rum_application"),
-				Type: datadog.PtrString("browser"),
+				Type: datadogV2.RUMAPPLICATIONPLATFORMTYPE_BROWSER.Ptr(),
 			},
 			Id:   RumApplicationDataID,
 			Type: datadogV2.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,
