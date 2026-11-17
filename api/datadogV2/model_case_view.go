@@ -12,7 +12,7 @@ import (
 
 // CaseView A saved work item view that provides a filtered, reusable list of work items matching a specific query. Views act as persistent dashboards for monitoring work item subsets.
 type CaseView struct {
-	// Attributes of a work item view, including the filter query and optional notification rule.
+	// Attributes of a work item view, including the filter query.
 	Attributes CaseViewAttributes `json:"attributes"`
 	// The view's identifier.
 	Id string `json:"id"`

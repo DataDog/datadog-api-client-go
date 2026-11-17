@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseViewAttributes Attributes of a work item view, including the filter query and optional notification rule.
+// CaseViewAttributes Attributes of a work item view, including the filter query.
 type CaseViewAttributes struct {
 	// Timestamp when the view was created.
 	CreatedAt time.Time `json:"created_at"`
@@ -19,7 +19,8 @@ type CaseViewAttributes struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// A human-readable name for the view, displayed in the Work Management UI.
 	Name string `json:"name"`
-	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching work items.
+	// Deprecated. Identifier of a legacy notification rule linked to this view, if any.
+	// Deprecated
 	NpRuleId *string `json:"np_rule_id,omitempty"`
 	// The search query that determines which work items appear in this view. Uses the same syntax as the Work Management search bar (for example, `status:open priority:P1`).
 	Query string `json:"query"`
@@ -123,6 +124,7 @@ func (o *CaseViewAttributes) SetName(v string) {
 }
 
 // GetNpRuleId returns the NpRuleId field value if set, zero value otherwise.
+// Deprecated
 func (o *CaseViewAttributes) GetNpRuleId() string {
 	if o == nil || o.NpRuleId == nil {
 		var ret string
@@ -133,6 +135,7 @@ func (o *CaseViewAttributes) GetNpRuleId() string {
 
 // GetNpRuleIdOk returns a tuple with the NpRuleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CaseViewAttributes) GetNpRuleIdOk() (*string, bool) {
 	if o == nil || o.NpRuleId == nil {
 		return nil, false
@@ -146,6 +149,7 @@ func (o *CaseViewAttributes) HasNpRuleId() bool {
 }
 
 // SetNpRuleId gets a reference to the given string and assigns it to the NpRuleId field.
+// Deprecated
 func (o *CaseViewAttributes) SetNpRuleId(v string) {
 	o.NpRuleId = &v
 }

@@ -1105,7 +1105,7 @@ func (a *CaseManagementApi) CreateCaseServiceNowTicket(ctx _context.Context, cas
 }
 
 // CreateCaseView Create a case view.
-// Creates a new saved work item view with a name, filter query, and associated project. Optionally, a notification rule can be linked to the view.
+// Creates a new saved work item view with a name, filter query, and associated project.
 func (a *CaseManagementApi) CreateCaseView(ctx _context.Context, body CaseViewCreateRequest) (CaseViewResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4859,7 +4859,7 @@ func (a *CaseManagementApi) UpdateCaseTitle(ctx _context.Context, caseId string,
 }
 
 // UpdateCaseView Update a case view.
-// Updates the name, query, or notification rule of an existing work item view.
+// Updates the name or query of an existing work item view.
 func (a *CaseManagementApi) UpdateCaseView(ctx _context.Context, viewId string, body CaseViewUpdateRequest) (CaseViewResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

@@ -14,7 +14,8 @@ import (
 type CaseViewCreateAttributes struct {
 	// The name of the view.
 	Name string `json:"name"`
-	// The identifier of a notification rule linked to this view. When set, users subscribed to the view receive alerts for matching work items.
+	// Deprecated. This field is ignored. Use `POST /api/v2/cases/projects/{project_id}/notification_rules` to manage project notifications.
+	// Deprecated
 	NpRuleId *string `json:"np_rule_id,omitempty"`
 	// The UUID of the project this view belongs to. Views are scoped to a single project.
 	ProjectId string `json:"project_id"`
@@ -69,6 +70,7 @@ func (o *CaseViewCreateAttributes) SetName(v string) {
 }
 
 // GetNpRuleId returns the NpRuleId field value if set, zero value otherwise.
+// Deprecated
 func (o *CaseViewCreateAttributes) GetNpRuleId() string {
 	if o == nil || o.NpRuleId == nil {
 		var ret string
@@ -79,6 +81,7 @@ func (o *CaseViewCreateAttributes) GetNpRuleId() string {
 
 // GetNpRuleIdOk returns a tuple with the NpRuleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CaseViewCreateAttributes) GetNpRuleIdOk() (*string, bool) {
 	if o == nil || o.NpRuleId == nil {
 		return nil, false
@@ -92,6 +95,7 @@ func (o *CaseViewCreateAttributes) HasNpRuleId() bool {
 }
 
 // SetNpRuleId gets a reference to the given string and assigns it to the NpRuleId field.
+// Deprecated
 func (o *CaseViewCreateAttributes) SetNpRuleId(v string) {
 	o.NpRuleId = &v
 }
