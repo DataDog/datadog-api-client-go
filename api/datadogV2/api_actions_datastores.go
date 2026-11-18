@@ -694,7 +694,7 @@ func (a *ActionsDatastoresApi) ListDatastoreItems(ctx _context.Context, datastor
 }
 
 // ListDatastores List datastores.
-// Lists all datastores for the organization.
+// Lists all datastores in the organization.
 func (a *ActionsDatastoresApi) ListDatastores(ctx _context.Context) (DatastoreArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

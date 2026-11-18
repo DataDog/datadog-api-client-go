@@ -1014,7 +1014,7 @@ func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricNam
 }
 
 // GetDerivedMetric Get a derived metric.
-// Get the definition of a derived metric by name.
+// Get the definition of a derived metric from its name.
 func (a *MetricsApi) GetDerivedMetric(ctx _context.Context, metricName string) (DerivedMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
