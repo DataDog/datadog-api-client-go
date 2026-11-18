@@ -12,6 +12,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	client "github.com/DataDog/datadog-api-client-go/v2"
@@ -82,6 +83,9 @@ type DelegatedTokenCredentials struct {
 	DelegatedToken string
 	DelegatedProof string
 	Expiration     time.Time
+
+	mu      sync.Mutex
+	refresh *delegatedTokenRefresh
 }
 
 // DelegatedTokenConfig provides cloud provider based authentication configuration.
