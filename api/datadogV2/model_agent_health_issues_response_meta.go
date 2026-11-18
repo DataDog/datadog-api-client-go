@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AgentHealthIssuesResponseMeta Pagination metadata for the matching Agent Health issues.
+// AgentHealthIssuesResponseMeta Aggregate counts for the matching Agent Health issues. Present only when `count_by=issue_type` is requested.
 type AgentHealthIssuesResponseMeta struct {
-	// Pagination counts for the Agent Health issues.
+	// Counts for the matching Agent Health issues.
 	Page AgentHealthIssuesResponsePage `json:"page"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

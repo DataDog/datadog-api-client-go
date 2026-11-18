@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AgentHealthIssueData An open Agent Health issue.
+// AgentHealthIssueData An open Agent Health issue with available remediation.
 type AgentHealthIssueData struct {
-	// Attributes of an open Agent Health issue.
+	// Attributes of an open Agent Health issue, including available remediation.
 	Attributes AgentHealthIssueAttributes `json:"attributes"`
 	// The unique identifier of the issue.
 	Id string `json:"id"`

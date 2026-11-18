@@ -10,6 +10,8 @@ import (
 
 // AgentHealthRemediation Remediation for the issue. Omitted when no remediation is available.
 type AgentHealthRemediation struct {
+	// A suggested prompt for an AI assistant to help remediate the issue.
+	AiPrompt *string `json:"ai_prompt,omitempty"`
 	// A script that can be used to remediate the issue.
 	Script *AgentHealthRemediationScript `json:"script,omitempty"`
 	// Steps to remediate the issue.
@@ -36,6 +38,34 @@ func NewAgentHealthRemediation() *AgentHealthRemediation {
 func NewAgentHealthRemediationWithDefaults() *AgentHealthRemediation {
 	this := AgentHealthRemediation{}
 	return &this
+}
+
+// GetAiPrompt returns the AiPrompt field value if set, zero value otherwise.
+func (o *AgentHealthRemediation) GetAiPrompt() string {
+	if o == nil || o.AiPrompt == nil {
+		var ret string
+		return ret
+	}
+	return *o.AiPrompt
+}
+
+// GetAiPromptOk returns a tuple with the AiPrompt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AgentHealthRemediation) GetAiPromptOk() (*string, bool) {
+	if o == nil || o.AiPrompt == nil {
+		return nil, false
+	}
+	return o.AiPrompt, true
+}
+
+// HasAiPrompt returns a boolean if a field has been set.
+func (o *AgentHealthRemediation) HasAiPrompt() bool {
+	return o != nil && o.AiPrompt != nil
+}
+
+// SetAiPrompt gets a reference to the given string and assigns it to the AiPrompt field.
+func (o *AgentHealthRemediation) SetAiPrompt(v string) {
+	o.AiPrompt = &v
 }
 
 // GetScript returns the Script field value if set, zero value otherwise.
@@ -128,6 +158,9 @@ func (o AgentHealthRemediation) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AiPrompt != nil {
+		toSerialize["ai_prompt"] = o.AiPrompt
+	}
 	if o.Script != nil {
 		toSerialize["script"] = o.Script
 	}
@@ -147,21 +180,23 @@ func (o AgentHealthRemediation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthRemediation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Script  *AgentHealthRemediationScript `json:"script,omitempty"`
-		Steps   []AgentHealthRemediationStep  `json:"steps,omitempty"`
-		Summary *string                       `json:"summary,omitempty"`
+		AiPrompt *string                       `json:"ai_prompt,omitempty"`
+		Script   *AgentHealthRemediationScript `json:"script,omitempty"`
+		Steps    []AgentHealthRemediationStep  `json:"steps,omitempty"`
+		Summary  *string                       `json:"summary,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"script", "steps", "summary"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"ai_prompt", "script", "steps", "summary"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AiPrompt = all.AiPrompt
 	if all.Script != nil && all.Script.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
