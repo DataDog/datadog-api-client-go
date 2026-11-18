@@ -96,7 +96,7 @@ jobs:
           fi
       - name: Test authentication and credential refresh
         working-directory: tests
-        run: go test -race ./api -run 'AWS|Authenticate|WithStaticCredentials|GenerateProof'
+        run: go test -race ./api -run 'AWS|Authenticate|WithStaticCredentials|GenerateProof|DelegatedToken'
         env:
           GOTOOLCHAIN: auto
 
