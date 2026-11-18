@@ -58,32 +58,106 @@ type Service struct {
 	Client *APIClient
 }
 
+const (
+	// delegatedTokenRefreshWindow refreshes a token early so a request never carries one that is about to expire.
+	delegatedTokenRefreshWindow = 2 * time.Minute
+	// delegatedTokenRefreshTimeout bounds a shared refresh so a hung provider cannot block every request.
+	delegatedTokenRefreshTimeout = time.Minute
+)
+
+type delegatedTokenRefresh struct {
+	done  chan struct{}
+	token string
+	err   error
+}
+
 // UseDelegatedTokenAuth sets the Authorization header with a delegated token if available in the context.
 func UseDelegatedTokenAuth(ctx context.Context, headerParams *map[string]string, delegatedTokenConfig *DelegatedTokenConfig) error {
-	if ctx != nil {
-		if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok {
-			if delegatedTokenCreds.DelegatedToken == "" || time.Now().After(delegatedTokenCreds.Expiration) {
-				newCreds, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
-				if err != nil {
-					log.Printf("Failed to retrieve delegated token: %v", err)
-					// Reset the token if authentication failed
-					delegatedTokenCreds.DelegatedToken = ""
-					return err
-				}
-				delegatedTokenCreds.DelegatedToken = newCreds.DelegatedToken
-				delegatedTokenCreds.DelegatedProof = newCreds.DelegatedProof
-				delegatedTokenCreds.OrgUUID = newCreds.OrgUUID
-				delegatedTokenCreds.Expiration = newCreds.Expiration
-			}
-			// If authentication succeeded use delegated token auth
-			if delegatedTokenCreds.DelegatedToken != "" {
-				(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenCreds.DelegatedToken)
-			}
-		} else {
-			return errors.New("DelegatedTokenCredentials not found in context")
-		}
+	if ctx == nil {
+		return nil
 	}
+	delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials)
+	if !ok {
+		return errors.New("DelegatedTokenCredentials not found in context")
+	}
+	token, err := delegatedTokenCreds.currentToken(ctx, delegatedTokenConfig)
+	if err != nil {
+		log.Printf("Failed to retrieve delegated token: %v", err)
+		return err
+	}
+	(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, token)
 	return nil
+}
+
+// currentToken returns a token that is not about to expire; concurrent callers share a single refresh.
+func (c *DelegatedTokenCredentials) currentToken(ctx context.Context, config *DelegatedTokenConfig) (string, error) {
+	c.mu.Lock()
+	if c.DelegatedToken != "" && time.Now().Add(delegatedTokenRefreshWindow).Before(c.Expiration) {
+		token := c.DelegatedToken
+		c.mu.Unlock()
+		return token, nil
+	}
+	call := c.refresh
+	if call == nil {
+		call = &delegatedTokenRefresh{done: make(chan struct{})}
+		c.refresh = call
+		// Detach from the caller's cancellation so other waiters still receive the result.
+		refreshCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), delegatedTokenRefreshTimeout)
+		go func() {
+			defer cancel()
+			creds, err := authenticateDelegatedToken(refreshCtx, config)
+			c.finishRefresh(call, creds, err)
+		}()
+	}
+	c.mu.Unlock()
+
+	select {
+	case <-call.done:
+		return call.token, call.err
+	case <-ctx.Done():
+		return "", ctx.Err()
+	}
+}
+
+func authenticateDelegatedToken(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
+	if config == nil || config.ProviderAuth == nil {
+		return nil, errors.New("delegated token configuration has no provider")
+	}
+	creds, err := config.ProviderAuth.Authenticate(ctx, config)
+	if err != nil {
+		return nil, err
+	}
+	if creds == nil || creds.DelegatedToken == "" {
+		return nil, errors.New("delegated token provider returned no token")
+	}
+	return creds, nil
+}
+
+func (c *DelegatedTokenCredentials) finishRefresh(call *delegatedTokenRefresh, creds *DelegatedTokenCredentials, err error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	defer close(call.done)
+	c.refresh = nil
+	if err == nil {
+		c.setLocked(creds)
+		call.token = c.DelegatedToken
+		return
+	}
+	// A failed refresh may keep using a token that is still valid, but never an expired one.
+	if c.DelegatedToken != "" && time.Now().Before(c.Expiration) {
+		log.Printf("Failed to refresh delegated token; using the current token until it expires: %v", err)
+		call.token = c.DelegatedToken
+		return
+	}
+	c.DelegatedToken = ""
+	call.err = err
+}
+
+func (c *DelegatedTokenCredentials) setLocked(creds *DelegatedTokenCredentials) {
+	c.DelegatedToken = creds.DelegatedToken
+	c.DelegatedProof = creds.DelegatedProof
+	c.OrgUUID = creds.OrgUUID
+	c.Expiration = creds.Expiration
 }
 
 // SetAuthKeys sets the appropriate values in the headers parameter.
@@ -537,11 +611,10 @@ func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenC
 	}
 
 	// If the context already has DelegatedTokenCredentials, update it with the new credentials
-	if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok {
-		delegatedTokenCreds.DelegatedToken = creds.DelegatedToken
-		delegatedTokenCreds.DelegatedProof = creds.DelegatedProof
-		delegatedTokenCreds.OrgUUID = creds.OrgUUID
-		delegatedTokenCreds.Expiration = creds.Expiration
+	if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok && delegatedTokenCreds != creds {
+		delegatedTokenCreds.mu.Lock()
+		delegatedTokenCreds.setLocked(creds)
+		delegatedTokenCreds.mu.Unlock()
 	}
 	return creds, nil
 }
