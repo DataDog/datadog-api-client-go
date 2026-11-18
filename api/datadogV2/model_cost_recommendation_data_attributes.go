@@ -16,6 +16,9 @@ type CostRecommendationDataAttributes struct {
 	PotentialDailySavings *CostRecommendationDataAttributesPotentialDailySavings `json:"potential_daily_savings,omitempty"`
 	// The kind of recommendation (for example, `terminate` or `rightsize`).
 	RecommendationType *string `json:"recommendation_type,omitempty"`
+	// ID of the recommender that produced the recommendation (for example,
+	// `aws_ec2_instance_downsize`).
+	RecommenderId *string `json:"recommender_id,omitempty"`
 	// Cloud provider identifier of the resource.
 	ResourceId *string `json:"resource_id,omitempty"`
 	// Resource type (for example, `aws_ec2_instance`).
@@ -128,6 +131,34 @@ func (o *CostRecommendationDataAttributes) SetRecommendationType(v string) {
 	o.RecommendationType = &v
 }
 
+// GetRecommenderId returns the RecommenderId field value if set, zero value otherwise.
+func (o *CostRecommendationDataAttributes) GetRecommenderId() string {
+	if o == nil || o.RecommenderId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RecommenderId
+}
+
+// GetRecommenderIdOk returns a tuple with the RecommenderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CostRecommendationDataAttributes) GetRecommenderIdOk() (*string, bool) {
+	if o == nil || o.RecommenderId == nil {
+		return nil, false
+	}
+	return o.RecommenderId, true
+}
+
+// HasRecommenderId returns a boolean if a field has been set.
+func (o *CostRecommendationDataAttributes) HasRecommenderId() bool {
+	return o != nil && o.RecommenderId != nil
+}
+
+// SetRecommenderId gets a reference to the given string and assigns it to the RecommenderId field.
+func (o *CostRecommendationDataAttributes) SetRecommenderId(v string) {
+	o.RecommenderId = &v
+}
+
 // GetResourceId returns the ResourceId field value if set, zero value otherwise.
 func (o *CostRecommendationDataAttributes) GetResourceId() string {
 	if o == nil || o.ResourceId == nil {
@@ -227,6 +258,9 @@ func (o CostRecommendationDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.RecommendationType != nil {
 		toSerialize["recommendation_type"] = o.RecommendationType
 	}
+	if o.RecommenderId != nil {
+		toSerialize["recommender_id"] = o.RecommenderId
+	}
 	if o.ResourceId != nil {
 		toSerialize["resource_id"] = o.ResourceId
 	}
@@ -249,6 +283,7 @@ func (o *CostRecommendationDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 		DdResourceKey         *string                                                `json:"dd_resource_key,omitempty"`
 		PotentialDailySavings *CostRecommendationDataAttributesPotentialDailySavings `json:"potential_daily_savings,omitempty"`
 		RecommendationType    *string                                                `json:"recommendation_type,omitempty"`
+		RecommenderId         *string                                                `json:"recommender_id,omitempty"`
 		ResourceId            *string                                                `json:"resource_id,omitempty"`
 		ResourceType          *string                                                `json:"resource_type,omitempty"`
 		Tags                  []string                                               `json:"tags,omitempty"`
@@ -258,7 +293,7 @@ func (o *CostRecommendationDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dd_resource_key", "potential_daily_savings", "recommendation_type", "resource_id", "resource_type", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"dd_resource_key", "potential_daily_savings", "recommendation_type", "recommender_id", "resource_id", "resource_type", "tags"})
 	} else {
 		return err
 	}
@@ -270,6 +305,7 @@ func (o *CostRecommendationDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	o.PotentialDailySavings = all.PotentialDailySavings
 	o.RecommendationType = all.RecommendationType
+	o.RecommenderId = all.RecommenderId
 	o.ResourceId = all.ResourceId
 	o.ResourceType = all.ResourceType
 	o.Tags = all.Tags
