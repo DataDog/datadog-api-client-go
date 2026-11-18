@@ -22,7 +22,7 @@ type AiGatewayModelGroupCreateAttributes struct {
 	ModelIds []int64 `json:"model_ids,omitempty"`
 	// Human-readable resource name.
 	Name string `json:"name"`
-	// Explicit provider selections, including current and future models. Omit to preserve selections on update; an empty array clears them. Null is invalid. New selections require provider View; saved hidden IDs can be retained or removed.
+	// Explicit provider selections, including current and future models. Replaces visible selections and preserves saved hidden selections. Omit to preserve the complete selection; an empty array clears only visible selections. Null is invalid. New selections require provider View.
 	ProviderIds []int64 `json:"provider_ids,omitempty"`
 	// Organization-unique routing rule slugs, such as coding-route.
 	RoutingRuleSlugs []string `json:"routing_rule_slugs,omitempty"`

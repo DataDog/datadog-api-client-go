@@ -16,13 +16,13 @@ type AiGatewayModelGroupUpdateAttributes struct {
 	ExpectedRevision *int64 `json:"expected_revision,omitempty"`
 	// Maximum reasoning level permitted by a model group.
 	MaxReasoningLevel NullableAiGatewayNullableMaxReasoningLevel `json:"max_reasoning_level,omitempty"`
-	// Individually selected model catalog IDs. Replaces this selection only. Omit to preserve it; an empty array clears it. Null is invalid. Individual selections do not include future models. New selections require provider View; retaining or removing saved hidden selections requires only parent Edit.
+	// Individually selected model catalog IDs. Replaces visible selections and preserves saved hidden selections. Omit to preserve the complete selection; an empty array clears only visible selections. Null is invalid. Individual selections do not include future models. New selections require provider View.
 	ModelIds []int64 `json:"model_ids,omitempty"`
 	// Human-readable resource name.
 	Name *string `json:"name,omitempty"`
-	// Explicit provider selections, including current and future models. Omit to preserve selections on update; an empty array clears them. Null is invalid. New selections require provider View; saved hidden IDs can be retained or removed.
+	// Explicit provider selections, including current and future models. Replaces visible selections and preserves saved hidden selections. Omit to preserve the complete selection; an empty array clears only visible selections. Null is invalid. New selections require provider View.
 	ProviderIds []int64 `json:"provider_ids,omitempty"`
-	// Organization-unique routing rule slugs. Replaces route selections only. Omit to preserve them; an empty array clears them. Null is invalid.
+	// Organization-unique routing rule slugs. Replaces visible route selections and preserves saved hidden selections. Omit to preserve all route selections; an empty array clears only visible selections. Null is invalid. New selections require route View.
 	RoutingRuleSlugs []string `json:"routing_rule_slugs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
