@@ -265,6 +265,7 @@ func TestOIDCAuthenticateReportsSourceErrors(t *testing.T) {
 	tests := map[string]oidcauth.Option{
 		"missing file":  oidcauth.WithTokenFile(filepath.Join(directory, "missing")),
 		"empty file":    oidcauth.WithTokenFile(emptyFile),
+		"directory":     oidcauth.WithTokenFile(directory),
 		"unset env var": oidcauth.WithTokenEnv("DD_TEST_OIDC_TOKEN_UNSET"),
 	}
 	for name, option := range tests {
