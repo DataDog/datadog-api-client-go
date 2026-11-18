@@ -18,6 +18,9 @@ type ObservabilityPipelineParseGrokProcessorIncludeRule struct {
 	// A list of Grok parsing rules that define how to extract fields from matching logs.
 	// Each rule must contain a name and a valid Grok pattern.
 	MatchRules []ObservabilityPipelineParseGrokProcessorRuleMatchRule `json:"match_rules"`
+	// Optional name identifying this include-based Grok rule in worker diagnostics.
+	// Names must be unique within the processor.
+	Name *string `json:"name,omitempty"`
 	// A list of Grok helper rules that can be referenced by the parsing rules.
 	SupportRules []ObservabilityPipelineParseGrokProcessorRuleSupportRule `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -90,6 +93,34 @@ func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) SetMatchRules(v []O
 	o.MatchRules = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) SetName(v string) {
+	o.Name = &v
+}
+
 // GetSupportRules returns the SupportRules field value if set, zero value otherwise.
 func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) GetSupportRules() []ObservabilityPipelineParseGrokProcessorRuleSupportRule {
 	if o == nil || o.SupportRules == nil {
@@ -126,6 +157,9 @@ func (o ObservabilityPipelineParseGrokProcessorIncludeRule) MarshalJSON() ([]byt
 	}
 	toSerialize["include"] = o.Include
 	toSerialize["match_rules"] = o.MatchRules
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
 	if o.SupportRules != nil {
 		toSerialize["support_rules"] = o.SupportRules
 	}
@@ -141,6 +175,7 @@ func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) UnmarshalJSON(bytes
 	all := struct {
 		Include      *string                                                  `json:"include"`
 		MatchRules   *[]ObservabilityPipelineParseGrokProcessorRuleMatchRule  `json:"match_rules"`
+		Name         *string                                                  `json:"name,omitempty"`
 		SupportRules []ObservabilityPipelineParseGrokProcessorRuleSupportRule `json:"support_rules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -154,12 +189,13 @@ func (o *ObservabilityPipelineParseGrokProcessorIncludeRule) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"include", "match_rules", "support_rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"include", "match_rules", "name", "support_rules"})
 	} else {
 		return err
 	}
 	o.Include = *all.Include
 	o.MatchRules = *all.MatchRules
+	o.Name = all.Name
 	o.SupportRules = all.SupportRules
 
 	if len(additionalProperties) > 0 {
