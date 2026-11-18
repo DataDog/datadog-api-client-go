@@ -15,12 +15,8 @@ import (
 type EnvironmentAttributes struct {
 	// The timestamp when the environment was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// The description of the environment.
-	Description datadog.NullableString `json:"description,omitempty"`
 	// Indicates whether this is a production environment.
 	IsProduction *bool `json:"is_production,omitempty"`
-	// The unique key of the environment.
-	Key *string `json:"key,omitempty"`
 	// The name of the environment.
 	Name string `json:"name"`
 	// Indicates whether feature flag evaluation events include original targeting identifiers and full evaluation context.
@@ -82,45 +78,6 @@ func (o *EnvironmentAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EnvironmentAttributes) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *EnvironmentAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *EnvironmentAttributes) HasDescription() bool {
-	return o != nil && o.Description.IsSet()
-}
-
-// SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
-func (o *EnvironmentAttributes) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-
-// SetDescriptionNil sets the value for Description to be an explicit nil.
-func (o *EnvironmentAttributes) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
-func (o *EnvironmentAttributes) UnsetDescription() {
-	o.Description.Unset()
-}
-
 // GetIsProduction returns the IsProduction field value if set, zero value otherwise.
 func (o *EnvironmentAttributes) GetIsProduction() bool {
 	if o == nil || o.IsProduction == nil {
@@ -147,34 +104,6 @@ func (o *EnvironmentAttributes) HasIsProduction() bool {
 // SetIsProduction gets a reference to the given bool and assigns it to the IsProduction field.
 func (o *EnvironmentAttributes) SetIsProduction(v bool) {
 	o.IsProduction = &v
-}
-
-// GetKey returns the Key field value if set, zero value otherwise.
-func (o *EnvironmentAttributes) GetKey() string {
-	if o == nil || o.Key == nil {
-		var ret string
-		return ret
-	}
-	return *o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EnvironmentAttributes) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
-		return nil, false
-	}
-	return o.Key, true
-}
-
-// HasKey returns a boolean if a field has been set.
-func (o *EnvironmentAttributes) HasKey() bool {
-	return o != nil && o.Key != nil
-}
-
-// SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *EnvironmentAttributes) SetKey(v string) {
-	o.Key = &v
 }
 
 // GetName returns the Name field value.
@@ -325,14 +254,8 @@ func (o EnvironmentAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
 	if o.IsProduction != nil {
 		toSerialize["is_production"] = o.IsProduction
-	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
 	}
 	toSerialize["name"] = o.Name
 	if o.ObserveFullEvaluationData != nil {
@@ -361,15 +284,13 @@ func (o EnvironmentAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt                  *time.Time             `json:"created_at,omitempty"`
-		Description                datadog.NullableString `json:"description,omitempty"`
-		IsProduction               *bool                  `json:"is_production,omitempty"`
-		Key                        *string                `json:"key,omitempty"`
-		Name                       *string                `json:"name"`
-		ObserveFullEvaluationData  *bool                  `json:"observe_full_evaluation_data,omitempty"`
-		Queries                    []string               `json:"queries,omitempty"`
-		RequireFeatureFlagApproval *bool                  `json:"require_feature_flag_approval,omitempty"`
-		UpdatedAt                  *time.Time             `json:"updated_at,omitempty"`
+		CreatedAt                  *time.Time `json:"created_at,omitempty"`
+		IsProduction               *bool      `json:"is_production,omitempty"`
+		Name                       *string    `json:"name"`
+		ObserveFullEvaluationData  *bool      `json:"observe_full_evaluation_data,omitempty"`
+		Queries                    []string   `json:"queries,omitempty"`
+		RequireFeatureFlagApproval *bool      `json:"require_feature_flag_approval,omitempty"`
+		UpdatedAt                  *time.Time `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -379,14 +300,12 @@ func (o *EnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "description", "is_production", "key", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "is_production", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval", "updated_at"})
 	} else {
 		return err
 	}
 	o.CreatedAt = all.CreatedAt
-	o.Description = all.Description
 	o.IsProduction = all.IsProduction
-	o.Key = all.Key
 	o.Name = *all.Name
 	o.ObserveFullEvaluationData = all.ObserveFullEvaluationData
 	o.Queries = all.Queries
