@@ -19,16 +19,22 @@ type AiGatewayModelGroupAttributes struct {
 	CreatedAt time.Time `json:"created_at"`
 	// Maximum reasoning level permitted by a model group.
 	MaxReasoningLevel NullableAiGatewayNullableMaxReasoningLevel `json:"max_reasoning_level"`
-	// All saved model catalog IDs, including selections whose provider metadata is hidden. Preserve these IDs independently of the visible catalog.
+	// Saved model catalog IDs whose providers the caller can view. Hidden identities are omitted. The
+	// `models_restricted` field indicates hidden membership.
 	ModelIds []int64 `json:"model_ids"`
-	// Metadata for saved model selections whose providers the caller can view. Missing metadata does not remove a saved ID.
+	// Metadata for saved model selections whose providers the caller can view. Hidden model identities and metadata are omitted.
 	Models []AiGatewayModelGroupModel `json:"models"`
+	// Whether some saved models are hidden from the caller. Hidden identities, names, and counts are omitted. Editing visible selections preserves hidden memberships.
+	ModelsRestricted *bool `json:"models_restricted,omitempty"`
 	// Human-readable resource name.
 	Name string `json:"name"`
-	// All explicitly selected provider IDs, including hidden providers. Embedded provider metadata includes only viewable providers.
+	// Explicitly selected provider IDs the caller can view. Hidden identities are omitted. The
+	// `providers_restricted` field indicates hidden membership.
 	ProviderIds []int64 `json:"provider_ids"`
-	// Viewable explicitly selected providers, separate from individually selected models. Use provider_ids to retain all selections.
+	// Viewable explicitly selected providers, separate from individually selected models. Hidden provider identities and metadata are omitted.
 	Providers []AiGatewayModelGroupProvider `json:"providers"`
+	// Whether some saved providers are hidden from the caller. Hidden identities, names, and counts are omitted. Editing visible selections preserves hidden memberships.
+	ProvidersRestricted *bool `json:"providers_restricted,omitempty"`
 	// Revision of the organization-wide policy. Present for the default model group and absent for named policies.
 	Revision *int64 `json:"revision,omitempty"`
 	//
@@ -186,6 +192,34 @@ func (o *AiGatewayModelGroupAttributes) SetModels(v []AiGatewayModelGroupModel) 
 	o.Models = v
 }
 
+// GetModelsRestricted returns the ModelsRestricted field value if set, zero value otherwise.
+func (o *AiGatewayModelGroupAttributes) GetModelsRestricted() bool {
+	if o == nil || o.ModelsRestricted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ModelsRestricted
+}
+
+// GetModelsRestrictedOk returns a tuple with the ModelsRestricted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelGroupAttributes) GetModelsRestrictedOk() (*bool, bool) {
+	if o == nil || o.ModelsRestricted == nil {
+		return nil, false
+	}
+	return o.ModelsRestricted, true
+}
+
+// HasModelsRestricted returns a boolean if a field has been set.
+func (o *AiGatewayModelGroupAttributes) HasModelsRestricted() bool {
+	return o != nil && o.ModelsRestricted != nil
+}
+
+// SetModelsRestricted gets a reference to the given bool and assigns it to the ModelsRestricted field.
+func (o *AiGatewayModelGroupAttributes) SetModelsRestricted(v bool) {
+	o.ModelsRestricted = &v
+}
+
 // GetName returns the Name field value.
 func (o *AiGatewayModelGroupAttributes) GetName() string {
 	if o == nil {
@@ -253,6 +287,34 @@ func (o *AiGatewayModelGroupAttributes) GetProvidersOk() (*[]AiGatewayModelGroup
 // SetProviders sets field value.
 func (o *AiGatewayModelGroupAttributes) SetProviders(v []AiGatewayModelGroupProvider) {
 	o.Providers = v
+}
+
+// GetProvidersRestricted returns the ProvidersRestricted field value if set, zero value otherwise.
+func (o *AiGatewayModelGroupAttributes) GetProvidersRestricted() bool {
+	if o == nil || o.ProvidersRestricted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ProvidersRestricted
+}
+
+// GetProvidersRestrictedOk returns a tuple with the ProvidersRestricted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelGroupAttributes) GetProvidersRestrictedOk() (*bool, bool) {
+	if o == nil || o.ProvidersRestricted == nil {
+		return nil, false
+	}
+	return o.ProvidersRestricted, true
+}
+
+// HasProvidersRestricted returns a boolean if a field has been set.
+func (o *AiGatewayModelGroupAttributes) HasProvidersRestricted() bool {
+	return o != nil && o.ProvidersRestricted != nil
+}
+
+// SetProvidersRestricted gets a reference to the given bool and assigns it to the ProvidersRestricted field.
+func (o *AiGatewayModelGroupAttributes) SetProvidersRestricted(v bool) {
+	o.ProvidersRestricted = &v
 }
 
 // GetRevision returns the Revision field value if set, zero value otherwise.
@@ -372,9 +434,15 @@ func (o AiGatewayModelGroupAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["max_reasoning_level"] = o.MaxReasoningLevel.Get()
 	toSerialize["model_ids"] = o.ModelIds
 	toSerialize["models"] = o.Models
+	if o.ModelsRestricted != nil {
+		toSerialize["models_restricted"] = o.ModelsRestricted
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["provider_ids"] = o.ProviderIds
 	toSerialize["providers"] = o.Providers
+	if o.ProvidersRestricted != nil {
+		toSerialize["providers_restricted"] = o.ProvidersRestricted
+	}
 	if o.Revision != nil {
 		toSerialize["revision"] = o.Revision
 	}
@@ -402,9 +470,11 @@ func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		MaxReasoningLevel      NullableAiGatewayNullableMaxReasoningLevel `json:"max_reasoning_level"`
 		ModelIds               *[]int64                                   `json:"model_ids"`
 		Models                 *[]AiGatewayModelGroupModel                `json:"models"`
+		ModelsRestricted       *bool                                      `json:"models_restricted,omitempty"`
 		Name                   *string                                    `json:"name"`
 		ProviderIds            *[]int64                                   `json:"provider_ids"`
 		Providers              *[]AiGatewayModelGroupProvider             `json:"providers"`
+		ProvidersRestricted    *bool                                      `json:"providers_restricted,omitempty"`
 		Revision               *int64                                     `json:"revision,omitempty"`
 		RoutingRules           *[]AiGatewayModelGroupRoutingRule          `json:"routing_rules"`
 		RoutingRulesRestricted *bool                                      `json:"routing_rules_restricted,omitempty"`
@@ -445,7 +515,7 @@ func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_fast_mode", "created_at", "max_reasoning_level", "model_ids", "models", "name", "provider_ids", "providers", "revision", "routing_rules", "routing_rules_restricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_fast_mode", "created_at", "max_reasoning_level", "model_ids", "models", "models_restricted", "name", "provider_ids", "providers", "providers_restricted", "revision", "routing_rules", "routing_rules_restricted", "updated_at"})
 	} else {
 		return err
 	}
@@ -460,9 +530,11 @@ func (o *AiGatewayModelGroupAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.ModelIds = *all.ModelIds
 	o.Models = *all.Models
+	o.ModelsRestricted = all.ModelsRestricted
 	o.Name = *all.Name
 	o.ProviderIds = *all.ProviderIds
 	o.Providers = *all.Providers
+	o.ProvidersRestricted = all.ProvidersRestricted
 	o.Revision = all.Revision
 	o.RoutingRules = *all.RoutingRules
 	o.RoutingRulesRestricted = all.RoutingRulesRestricted
