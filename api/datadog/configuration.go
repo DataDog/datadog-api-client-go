@@ -1594,6 +1594,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListEntityRiskScores":                                   false,
 			"v2.AddSTIXThreatIntel":                                     false,
 			"v2.CountSecurityAgentInvestigations":                       false,
+			"v2.CreateSecurityAgentInvestigation":                       false,
 			"v2.GetSecurityAgentInvestigation":                          false,
 			"v2.ListSecurityAgentInvestigations":                        false,
 			"v2.CreateSLOReportJob":                                     false,

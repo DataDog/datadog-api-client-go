@@ -260,6 +260,7 @@
 //   - [BitsAIApi.ListInvestigations]
 //   - [BitsAIApi.TriggerInvestigation]
 //   - [BitsSecurityAnalystApi.CountSecurityAgentInvestigations]
+//   - [BitsSecurityAnalystApi.CreateSecurityAgentInvestigation]
 //   - [BitsSecurityAnalystApi.GetSecurityAgentInvestigation]
 //   - [BitsSecurityAnalystApi.ListSecurityAgentInvestigations]
 //   - [CIVisibilityGitHubAccountsApi.ListCIAppGitHubAccounts]
