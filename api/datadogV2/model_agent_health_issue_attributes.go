@@ -11,18 +11,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AgentHealthIssueAttributes Attributes of an open Agent Health issue.
+// AgentHealthIssueAttributes Attributes of an open Agent Health issue, including available remediation.
 type AgentHealthIssueAttributes struct {
 	// The category of the issue, such as `configuration`. Omitted when not set.
 	Category *string `json:"category,omitempty"`
 	// The description of the issue. Omitted when empty.
 	Description *string `json:"description,omitempty"`
+	// Free-form, issue-type-specific context. Keys are not part of the stable schema. Omitted when empty.
+	Extra map[string]interface{} `json:"extra,omitempty"`
 	// The time the issue was first seen, in RFC 3339 format. Omitted when empty.
 	FirstSeenAt *time.Time `json:"first_seen_at,omitempty"`
 	// The human-readable name of the issue.
 	IssueName string `json:"issue_name"`
 	// The machine-readable type of the issue.
 	IssueType string `json:"issue_type"`
+	// Remediation for the issue. Omitted when no remediation is available.
+	Remediation *AgentHealthRemediation `json:"remediation,omitempty"`
 	// The identifier of the affected resource, interpreted according to `resource_kind`: hostname for `host`, DaemonSet UID for `deployment` (node Agent), cluster UUID for `cluster`, hostname of the host running the Cluster Agent for `cluster_agent`, or OpenTelemetry collector ID for `otel`.
 	ResourceId string `json:"resource_id"`
 	// The kind of affected resource. Known values are `host`, `deployment`, `cluster`, `cluster_agent`, and `otel`.
@@ -123,6 +127,34 @@ func (o *AgentHealthIssueAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetExtra returns the Extra field value if set, zero value otherwise.
+func (o *AgentHealthIssueAttributes) GetExtra() map[string]interface{} {
+	if o == nil || o.Extra == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Extra
+}
+
+// GetExtraOk returns a tuple with the Extra field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AgentHealthIssueAttributes) GetExtraOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Extra == nil {
+		return nil, false
+	}
+	return &o.Extra, true
+}
+
+// HasExtra returns a boolean if a field has been set.
+func (o *AgentHealthIssueAttributes) HasExtra() bool {
+	return o != nil && o.Extra != nil
+}
+
+// SetExtra gets a reference to the given map[string]interface{} and assigns it to the Extra field.
+func (o *AgentHealthIssueAttributes) SetExtra(v map[string]interface{}) {
+	o.Extra = v
+}
+
 // GetFirstSeenAt returns the FirstSeenAt field value if set, zero value otherwise.
 func (o *AgentHealthIssueAttributes) GetFirstSeenAt() time.Time {
 	if o == nil || o.FirstSeenAt == nil {
@@ -195,6 +227,34 @@ func (o *AgentHealthIssueAttributes) GetIssueTypeOk() (*string, bool) {
 // SetIssueType sets field value.
 func (o *AgentHealthIssueAttributes) SetIssueType(v string) {
 	o.IssueType = v
+}
+
+// GetRemediation returns the Remediation field value if set, zero value otherwise.
+func (o *AgentHealthIssueAttributes) GetRemediation() AgentHealthRemediation {
+	if o == nil || o.Remediation == nil {
+		var ret AgentHealthRemediation
+		return ret
+	}
+	return *o.Remediation
+}
+
+// GetRemediationOk returns a tuple with the Remediation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AgentHealthIssueAttributes) GetRemediationOk() (*AgentHealthRemediation, bool) {
+	if o == nil || o.Remediation == nil {
+		return nil, false
+	}
+	return o.Remediation, true
+}
+
+// HasRemediation returns a boolean if a field has been set.
+func (o *AgentHealthIssueAttributes) HasRemediation() bool {
+	return o != nil && o.Remediation != nil
+}
+
+// SetRemediation gets a reference to the given AgentHealthRemediation and assigns it to the Remediation field.
+func (o *AgentHealthIssueAttributes) SetRemediation(v AgentHealthRemediation) {
+	o.Remediation = &v
 }
 
 // GetResourceId returns the ResourceId field value.
@@ -413,6 +473,9 @@ func (o AgentHealthIssueAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Extra != nil {
+		toSerialize["extra"] = o.Extra
+	}
 	if o.FirstSeenAt != nil {
 		if o.FirstSeenAt.Nanosecond() == 0 {
 			toSerialize["first_seen_at"] = o.FirstSeenAt.Format("2006-01-02T15:04:05Z07:00")
@@ -422,6 +485,9 @@ func (o AgentHealthIssueAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["issue_name"] = o.IssueName
 	toSerialize["issue_type"] = o.IssueType
+	if o.Remediation != nil {
+		toSerialize["remediation"] = o.Remediation
+	}
 	toSerialize["resource_id"] = o.ResourceId
 	toSerialize["resource_kind"] = o.ResourceKind
 	if o.ResourceType != nil {
@@ -452,19 +518,21 @@ func (o AgentHealthIssueAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthIssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category     *string    `json:"category,omitempty"`
-		Description  *string    `json:"description,omitempty"`
-		FirstSeenAt  *time.Time `json:"first_seen_at,omitempty"`
-		IssueName    *string    `json:"issue_name"`
-		IssueType    *string    `json:"issue_type"`
-		ResourceId   *string    `json:"resource_id"`
-		ResourceKind *string    `json:"resource_kind"`
-		ResourceType *string    `json:"resource_type,omitempty"`
-		Severity     *string    `json:"severity"`
-		State        *string    `json:"state"`
-		Tags         []string   `json:"tags,omitempty"`
-		Title        *string    `json:"title,omitempty"`
-		UpdatedAt    *time.Time `json:"updated_at,omitempty"`
+		Category     *string                 `json:"category,omitempty"`
+		Description  *string                 `json:"description,omitempty"`
+		Extra        map[string]interface{}  `json:"extra,omitempty"`
+		FirstSeenAt  *time.Time              `json:"first_seen_at,omitempty"`
+		IssueName    *string                 `json:"issue_name"`
+		IssueType    *string                 `json:"issue_type"`
+		Remediation  *AgentHealthRemediation `json:"remediation,omitempty"`
+		ResourceId   *string                 `json:"resource_id"`
+		ResourceKind *string                 `json:"resource_kind"`
+		ResourceType *string                 `json:"resource_type,omitempty"`
+		Severity     *string                 `json:"severity"`
+		State        *string                 `json:"state"`
+		Tags         []string                `json:"tags,omitempty"`
+		Title        *string                 `json:"title,omitempty"`
+		UpdatedAt    *time.Time              `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -489,15 +557,22 @@ func (o *AgentHealthIssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "description", "first_seen_at", "issue_name", "issue_type", "resource_id", "resource_kind", "resource_type", "severity", "state", "tags", "title", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"category", "description", "extra", "first_seen_at", "issue_name", "issue_type", "remediation", "resource_id", "resource_kind", "resource_type", "severity", "state", "tags", "title", "updated_at"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Category = all.Category
 	o.Description = all.Description
+	o.Extra = all.Extra
 	o.FirstSeenAt = all.FirstSeenAt
 	o.IssueName = *all.IssueName
 	o.IssueType = *all.IssueType
+	if all.Remediation != nil && all.Remediation.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Remediation = all.Remediation
 	o.ResourceId = *all.ResourceId
 	o.ResourceKind = *all.ResourceKind
 	o.ResourceType = all.ResourceType
@@ -509,6 +584,10 @@ func (o *AgentHealthIssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

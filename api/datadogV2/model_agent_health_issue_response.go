@@ -13,7 +13,7 @@ import (
 // AgentHealthIssueResponse A response containing an open Agent Health issue and available remediation.
 type AgentHealthIssueResponse struct {
 	// An open Agent Health issue with available remediation.
-	Data AgentHealthIssueDetailData `json:"data"`
+	Data AgentHealthIssueData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type AgentHealthIssueResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthIssueResponse(data AgentHealthIssueDetailData) *AgentHealthIssueResponse {
+func NewAgentHealthIssueResponse(data AgentHealthIssueData) *AgentHealthIssueResponse {
 	this := AgentHealthIssueResponse{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewAgentHealthIssueResponseWithDefaults() *AgentHealthIssueResponse {
 }
 
 // GetData returns the Data field value.
-func (o *AgentHealthIssueResponse) GetData() AgentHealthIssueDetailData {
+func (o *AgentHealthIssueResponse) GetData() AgentHealthIssueData {
 	if o == nil {
-		var ret AgentHealthIssueDetailData
+		var ret AgentHealthIssueData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *AgentHealthIssueResponse) GetData() AgentHealthIssueDetailData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *AgentHealthIssueResponse) GetDataOk() (*AgentHealthIssueDetailData, bool) {
+func (o *AgentHealthIssueResponse) GetDataOk() (*AgentHealthIssueData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *AgentHealthIssueResponse) GetDataOk() (*AgentHealthIssueDetailData, boo
 }
 
 // SetData sets field value.
-func (o *AgentHealthIssueResponse) SetData(v AgentHealthIssueDetailData) {
+func (o *AgentHealthIssueResponse) SetData(v AgentHealthIssueData) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o AgentHealthIssueResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthIssueResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *AgentHealthIssueDetailData `json:"data"`
+		Data *AgentHealthIssueData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

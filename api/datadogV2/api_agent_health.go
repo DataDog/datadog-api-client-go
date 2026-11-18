@@ -220,8 +220,7 @@ func (a *AgentHealthApi) ListAgentHealthHostIssues(ctx _context.Context, resourc
 
 // ListAgentHealthIssuesOptionalParameters holds optional parameters for ListAgentHealthIssues.
 type ListAgentHealthIssuesOptionalParameters struct {
-	PageSize           *int64
-	PageNumber         *int64
+	CountBy            *AgentHealthIssuesCountBy
 	FilterSeverity     *string
 	FilterCategory     *string
 	FilterIssueType    *string
@@ -235,15 +234,9 @@ func NewListAgentHealthIssuesOptionalParameters() *ListAgentHealthIssuesOptional
 	return &this
 }
 
-// WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListAgentHealthIssuesOptionalParameters) WithPageSize(pageSize int64) *ListAgentHealthIssuesOptionalParameters {
-	r.PageSize = &pageSize
-	return r
-}
-
-// WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListAgentHealthIssuesOptionalParameters) WithPageNumber(pageNumber int64) *ListAgentHealthIssuesOptionalParameters {
-	r.PageNumber = &pageNumber
+// WithCountBy sets the corresponding parameter name and returns the struct.
+func (r *ListAgentHealthIssuesOptionalParameters) WithCountBy(countBy AgentHealthIssuesCountBy) *ListAgentHealthIssuesOptionalParameters {
+	r.CountBy = &countBy
 	return r
 }
 
@@ -278,15 +271,17 @@ func (r *ListAgentHealthIssuesOptionalParameters) WithFilterResourceId(filterRes
 }
 
 // ListAgentHealthIssues List Agent Health issues.
-// List Agent Health issues across your organization. Only open issues are returned.
-// Returns `403` if you lack the `hosts_read` permission.
+// List open Agent Health issues across your organization. Returns `403` if you
+// lack the `hosts_read` permission.
 //
-// Results use a stable order: severity rank (`high`, `medium`, `low`, then other values),
-// then `first_seen_at` descending with missing timestamps last, then issue ID ascending.
-// Use `page[size]` and the zero-based `page[number]` to paginate. Invalid page values
-// return a `400` JSON:API error response. `meta.page.total_filtered_count` is the number
-// of issues matching the filters, and `meta.page.total_count` the number of open issues
-// in the organization.
+// Each item in `data` is a JSON:API resource object whose `attributes` hold the issue
+// fields, including its `issue_type`. Issues use a stable order: severity rank
+// (`high`, `medium`, `low`, then other values), then `first_seen_at` descending with
+// missing timestamps last, then issue ID ascending.
+//
+// Set `count_by=issue_type` to include `meta.page`, where `total_count` is the number of
+// open issues matching the filters and `counts_by_issue_type` holds the per-type counts.
+// `meta` is omitted when `count_by` is not requested.
 //
 // Each filter accepts up to 50 comma-separated exact values of at most 256 characters
 // each, combined with OR within a filter and AND across filters. Blank entries are ignored; an all-blank filter
@@ -325,11 +320,8 @@ func (a *AgentHealthApi) ListAgentHealthIssues(ctx _context.Context, o ...ListAg
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if optionalParams.PageSize != nil {
-		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
-	}
-	if optionalParams.PageNumber != nil {
-		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	if optionalParams.CountBy != nil {
+		localVarQueryParams.Add("count_by", datadog.ParameterToString(*optionalParams.CountBy, ""))
 	}
 	if optionalParams.FilterSeverity != nil {
 		localVarQueryParams.Add("filter[severity]", datadog.ParameterToString(*optionalParams.FilterSeverity, ""))

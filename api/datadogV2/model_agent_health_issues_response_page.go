@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AgentHealthIssuesResponsePage Pagination counts for the Agent Health issues.
+// AgentHealthIssuesResponsePage Counts for the matching Agent Health issues.
 type AgentHealthIssuesResponsePage struct {
-	// The total number of open issues in the organization, ignoring filters.
+	// The number of open issues matching the filters in each issue-type group.
+	CountsByIssueType map[string]int64 `json:"counts_by_issue_type"`
+	// The total number of open issues matching the filters.
 	TotalCount int64 `json:"total_count"`
-	// The total number of open issues matching the filters, across all pages.
-	TotalFilteredCount int64 `json:"total_filtered_count"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +25,10 @@ type AgentHealthIssuesResponsePage struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthIssuesResponsePage(totalCount int64, totalFilteredCount int64) *AgentHealthIssuesResponsePage {
+func NewAgentHealthIssuesResponsePage(countsByIssueType map[string]int64, totalCount int64) *AgentHealthIssuesResponsePage {
 	this := AgentHealthIssuesResponsePage{}
+	this.CountsByIssueType = countsByIssueType
 	this.TotalCount = totalCount
-	this.TotalFilteredCount = totalFilteredCount
 	return &this
 }
 
@@ -38,6 +38,29 @@ func NewAgentHealthIssuesResponsePage(totalCount int64, totalFilteredCount int64
 func NewAgentHealthIssuesResponsePageWithDefaults() *AgentHealthIssuesResponsePage {
 	this := AgentHealthIssuesResponsePage{}
 	return &this
+}
+
+// GetCountsByIssueType returns the CountsByIssueType field value.
+func (o *AgentHealthIssuesResponsePage) GetCountsByIssueType() map[string]int64 {
+	if o == nil {
+		var ret map[string]int64
+		return ret
+	}
+	return o.CountsByIssueType
+}
+
+// GetCountsByIssueTypeOk returns a tuple with the CountsByIssueType field value
+// and a boolean to check if the value has been set.
+func (o *AgentHealthIssuesResponsePage) GetCountsByIssueTypeOk() (*map[string]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CountsByIssueType, true
+}
+
+// SetCountsByIssueType sets field value.
+func (o *AgentHealthIssuesResponsePage) SetCountsByIssueType(v map[string]int64) {
+	o.CountsByIssueType = v
 }
 
 // GetTotalCount returns the TotalCount field value.
@@ -63,37 +86,14 @@ func (o *AgentHealthIssuesResponsePage) SetTotalCount(v int64) {
 	o.TotalCount = v
 }
 
-// GetTotalFilteredCount returns the TotalFilteredCount field value.
-func (o *AgentHealthIssuesResponsePage) GetTotalFilteredCount() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-	return o.TotalFilteredCount
-}
-
-// GetTotalFilteredCountOk returns a tuple with the TotalFilteredCount field value
-// and a boolean to check if the value has been set.
-func (o *AgentHealthIssuesResponsePage) GetTotalFilteredCountOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalFilteredCount, true
-}
-
-// SetTotalFilteredCount sets field value.
-func (o *AgentHealthIssuesResponsePage) SetTotalFilteredCount(v int64) {
-	o.TotalFilteredCount = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AgentHealthIssuesResponsePage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	toSerialize["counts_by_issue_type"] = o.CountsByIssueType
 	toSerialize["total_count"] = o.TotalCount
-	toSerialize["total_filtered_count"] = o.TotalFilteredCount
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -104,26 +104,26 @@ func (o AgentHealthIssuesResponsePage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthIssuesResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TotalCount         *int64 `json:"total_count"`
-		TotalFilteredCount *int64 `json:"total_filtered_count"`
+		CountsByIssueType *map[string]int64 `json:"counts_by_issue_type"`
+		TotalCount        *int64            `json:"total_count"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.CountsByIssueType == nil {
+		return fmt.Errorf("required field counts_by_issue_type missing")
+	}
 	if all.TotalCount == nil {
 		return fmt.Errorf("required field total_count missing")
 	}
-	if all.TotalFilteredCount == nil {
-		return fmt.Errorf("required field total_filtered_count missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"total_count", "total_filtered_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"counts_by_issue_type", "total_count"})
 	} else {
 		return err
 	}
+	o.CountsByIssueType = *all.CountsByIssueType
 	o.TotalCount = *all.TotalCount
-	o.TotalFilteredCount = *all.TotalFilteredCount
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

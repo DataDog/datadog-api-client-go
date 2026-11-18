@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AgentHealthIssuesResponse A paginated response containing open Agent Health issues.
+// AgentHealthIssuesResponse A response containing open Agent Health issues.
 type AgentHealthIssuesResponse struct {
-	// The open Agent Health issues on this page.
+	// The open Agent Health issues matching the request.
 	Data []AgentHealthIssueData `json:"data"`
-	// Pagination metadata for the matching Agent Health issues.
-	Meta AgentHealthIssuesResponseMeta `json:"meta"`
+	// Aggregate counts for the matching Agent Health issues. Present only when `count_by=issue_type` is requested.
+	Meta *AgentHealthIssuesResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +25,9 @@ type AgentHealthIssuesResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthIssuesResponse(data []AgentHealthIssueData, meta AgentHealthIssuesResponseMeta) *AgentHealthIssuesResponse {
+func NewAgentHealthIssuesResponse(data []AgentHealthIssueData) *AgentHealthIssuesResponse {
 	this := AgentHealthIssuesResponse{}
 	this.Data = data
-	this.Meta = meta
 	return &this
 }
 
@@ -63,27 +62,32 @@ func (o *AgentHealthIssuesResponse) SetData(v []AgentHealthIssueData) {
 	o.Data = v
 }
 
-// GetMeta returns the Meta field value.
+// GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *AgentHealthIssuesResponse) GetMeta() AgentHealthIssuesResponseMeta {
-	if o == nil {
+	if o == nil || o.Meta == nil {
 		var ret AgentHealthIssuesResponseMeta
 		return ret
 	}
-	return o.Meta
+	return *o.Meta
 }
 
-// GetMetaOk returns a tuple with the Meta field value
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AgentHealthIssuesResponse) GetMetaOk() (*AgentHealthIssuesResponseMeta, bool) {
-	if o == nil {
+	if o == nil || o.Meta == nil {
 		return nil, false
 	}
-	return &o.Meta, true
+	return o.Meta, true
 }
 
-// SetMeta sets field value.
+// HasMeta returns a boolean if a field has been set.
+func (o *AgentHealthIssuesResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given AgentHealthIssuesResponseMeta and assigns it to the Meta field.
 func (o *AgentHealthIssuesResponse) SetMeta(v AgentHealthIssuesResponseMeta) {
-	o.Meta = v
+	o.Meta = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -93,7 +97,9 @@ func (o AgentHealthIssuesResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
-	toSerialize["meta"] = o.Meta
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -105,16 +111,13 @@ func (o AgentHealthIssuesResponse) MarshalJSON() ([]byte, error) {
 func (o *AgentHealthIssuesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *[]AgentHealthIssueData        `json:"data"`
-		Meta *AgentHealthIssuesResponseMeta `json:"meta"`
+		Meta *AgentHealthIssuesResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Data == nil {
 		return fmt.Errorf("required field data missing")
-	}
-	if all.Meta == nil {
-		return fmt.Errorf("required field meta missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -125,10 +128,10 @@ func (o *AgentHealthIssuesResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	if all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Meta = *all.Meta
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
