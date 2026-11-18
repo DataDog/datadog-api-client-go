@@ -43,7 +43,8 @@ ctx := context.WithValue(context.Background(), datadog.ContextDelegatedToken, &d
 Use `oidcauth.WithTokenEnv` instead of `WithTokenFile` to read the token from an
 environment variable; an environment variable cannot change without restarting
 the process. `oidcauth.WithHTTPClient` sets the client used for the exchange, for
-custom proxy, TLS, or timeout settings.
+custom proxy, TLS, or timeout settings. The exchange never follows redirects,
+so the proof cannot be forwarded to another URL.
 
 `Provider.Proof` returns the `oidc-<token>` proof after the same checks, without
 contacting Datadog. Callers that exchange the proof at another endpoint, such as

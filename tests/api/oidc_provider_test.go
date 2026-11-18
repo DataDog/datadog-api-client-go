@@ -316,6 +316,38 @@ func TestOIDCAuthenticateUsesConfiguredHTTPClient(t *testing.T) {
 	}
 }
 
+func TestOIDCAuthenticateDoesNotFollowRedirects(t *testing.T) {
+	t.Setenv("DD_TEST_OIDC_TOKEN", oidcScopedToken(t, "subject"))
+	var redirectedRequests atomic.Int32
+	target := httptest.NewServer(http.HandlerFunc(func(http.ResponseWriter, *http.Request) {
+		redirectedRequests.Add(1)
+	}))
+	defer target.Close()
+	server := httptest.NewServer(http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
+		http.Redirect(response, request, target.URL+"/api/v2/delegated-token", http.StatusTemporaryRedirect)
+	}))
+	defer server.Close()
+
+	for name, options := range map[string][]oidcauth.Option{
+		"default client": nil,
+		"caller client":  {oidcauth.WithHTTPClient(&http.Client{})},
+	} {
+		t.Run(name, func(t *testing.T) {
+			provider, err := oidcauth.New(append([]oidcauth.Option{oidcauth.WithTokenEnv("DD_TEST_OIDC_TOKEN")}, options...)...)
+			if err != nil {
+				t.Fatalf("creating provider: %v", err)
+			}
+			_, err = provider.Authenticate(delegatedTokenContext(server.URL), oidcDelegatedTokenConfig())
+			if err == nil || !strings.Contains(err.Error(), "307") {
+				t.Fatalf("error = %v, want the redirect status", err)
+			}
+		})
+	}
+	if count := redirectedRequests.Load(); count != 0 {
+		t.Fatalf("the proof was forwarded to the redirect target %d times", count)
+	}
+}
+
 func TestOIDCAuthenticateDoesNotExposeMalformedResponses(t *testing.T) {
 	t.Setenv("DD_TEST_OIDC_TOKEN", oidcScopedToken(t, "subject"))
 	for name, handler := range map[string]http.HandlerFunc{
