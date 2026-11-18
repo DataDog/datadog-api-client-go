@@ -14,7 +14,7 @@ import (
 type ExperimentsVariantResultsV2DTOArray struct {
 	// Resources returned in this response.
 	Data []ExperimentsVariantResultsV2DTOData `json:"data"`
-	// Information about when experiment results were updated and whether they are stale.
+	// Selected experiment result run, its recorded EVSI forecast, and results freshness.
 	Meta *ExperimentsExperimentResultsV2MetaDTO `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -5,16 +5,23 @@
 package datadogV2
 
 import (
+	"fmt"
 	"time"
+
+	"github.com/google/uuid"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ExperimentsExperimentResultsV2MetaDTO Information about when experiment results were updated and whether they are stale.
+// ExperimentsExperimentResultsV2MetaDTO Selected experiment result run, its recorded EVSI forecast, and results freshness.
 type ExperimentsExperimentResultsV2MetaDTO struct {
+	// Forecast horizon and traffic counts used to calculate expected value of sample information (EVSI) for result_run_id. Assumes traffic continues at the rate observed during the lookback window. Omitted if the forecast was not recorded or could not be loaded.
+	EvsiContext *ExperimentsEVSIContext `json:"evsi_context,omitempty"`
 	// Whether the saved results require a refresh or their freshness cannot be confirmed. See stale_reasons for
 	// details.
 	IsStale *bool `json:"is_stale,omitempty"`
+	// ID of the successful experiment run that produced these results.
+	ResultRunId uuid.UUID `json:"result_run_id"`
 	// Time when the experiment results were last updated.
 	ResultsLastUpdated datadog.NullableTime `json:"results_last_updated,omitempty"`
 	// Reasons the saved experiment results are stale.
@@ -28,8 +35,9 @@ type ExperimentsExperimentResultsV2MetaDTO struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewExperimentsExperimentResultsV2MetaDTO() *ExperimentsExperimentResultsV2MetaDTO {
+func NewExperimentsExperimentResultsV2MetaDTO(resultRunId uuid.UUID) *ExperimentsExperimentResultsV2MetaDTO {
 	this := ExperimentsExperimentResultsV2MetaDTO{}
+	this.ResultRunId = resultRunId
 	return &this
 }
 
@@ -39,6 +47,34 @@ func NewExperimentsExperimentResultsV2MetaDTO() *ExperimentsExperimentResultsV2M
 func NewExperimentsExperimentResultsV2MetaDTOWithDefaults() *ExperimentsExperimentResultsV2MetaDTO {
 	this := ExperimentsExperimentResultsV2MetaDTO{}
 	return &this
+}
+
+// GetEvsiContext returns the EvsiContext field value if set, zero value otherwise.
+func (o *ExperimentsExperimentResultsV2MetaDTO) GetEvsiContext() ExperimentsEVSIContext {
+	if o == nil || o.EvsiContext == nil {
+		var ret ExperimentsEVSIContext
+		return ret
+	}
+	return *o.EvsiContext
+}
+
+// GetEvsiContextOk returns a tuple with the EvsiContext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentsExperimentResultsV2MetaDTO) GetEvsiContextOk() (*ExperimentsEVSIContext, bool) {
+	if o == nil || o.EvsiContext == nil {
+		return nil, false
+	}
+	return o.EvsiContext, true
+}
+
+// HasEvsiContext returns a boolean if a field has been set.
+func (o *ExperimentsExperimentResultsV2MetaDTO) HasEvsiContext() bool {
+	return o != nil && o.EvsiContext != nil
+}
+
+// SetEvsiContext gets a reference to the given ExperimentsEVSIContext and assigns it to the EvsiContext field.
+func (o *ExperimentsExperimentResultsV2MetaDTO) SetEvsiContext(v ExperimentsEVSIContext) {
+	o.EvsiContext = &v
 }
 
 // GetIsStale returns the IsStale field value if set, zero value otherwise.
@@ -67,6 +103,29 @@ func (o *ExperimentsExperimentResultsV2MetaDTO) HasIsStale() bool {
 // SetIsStale gets a reference to the given bool and assigns it to the IsStale field.
 func (o *ExperimentsExperimentResultsV2MetaDTO) SetIsStale(v bool) {
 	o.IsStale = &v
+}
+
+// GetResultRunId returns the ResultRunId field value.
+func (o *ExperimentsExperimentResultsV2MetaDTO) GetResultRunId() uuid.UUID {
+	if o == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return o.ResultRunId
+}
+
+// GetResultRunIdOk returns a tuple with the ResultRunId field value
+// and a boolean to check if the value has been set.
+func (o *ExperimentsExperimentResultsV2MetaDTO) GetResultRunIdOk() (*uuid.UUID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResultRunId, true
+}
+
+// SetResultRunId sets field value.
+func (o *ExperimentsExperimentResultsV2MetaDTO) SetResultRunId(v uuid.UUID) {
+	o.ResultRunId = v
 }
 
 // GetResultsLastUpdated returns the ResultsLastUpdated field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,9 +201,13 @@ func (o ExperimentsExperimentResultsV2MetaDTO) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.EvsiContext != nil {
+		toSerialize["evsi_context"] = o.EvsiContext
+	}
 	if o.IsStale != nil {
 		toSerialize["is_stale"] = o.IsStale
 	}
+	toSerialize["result_run_id"] = o.ResultRunId
 	if o.ResultsLastUpdated.IsSet() {
 		toSerialize["results_last_updated"] = o.ResultsLastUpdated.Get()
 	}
@@ -161,25 +224,41 @@ func (o ExperimentsExperimentResultsV2MetaDTO) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ExperimentsExperimentResultsV2MetaDTO) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsStale            *bool                `json:"is_stale,omitempty"`
-		ResultsLastUpdated datadog.NullableTime `json:"results_last_updated,omitempty"`
-		StaleReasons       []string             `json:"stale_reasons,omitempty"`
+		EvsiContext        *ExperimentsEVSIContext `json:"evsi_context,omitempty"`
+		IsStale            *bool                   `json:"is_stale,omitempty"`
+		ResultRunId        *uuid.UUID              `json:"result_run_id"`
+		ResultsLastUpdated datadog.NullableTime    `json:"results_last_updated,omitempty"`
+		StaleReasons       []string                `json:"stale_reasons,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.ResultRunId == nil {
+		return fmt.Errorf("required field result_run_id missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_stale", "results_last_updated", "stale_reasons"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"evsi_context", "is_stale", "result_run_id", "results_last_updated", "stale_reasons"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.EvsiContext != nil && all.EvsiContext.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.EvsiContext = all.EvsiContext
 	o.IsStale = all.IsStale
+	o.ResultRunId = *all.ResultRunId
 	o.ResultsLastUpdated = all.ResultsLastUpdated
 	o.StaleReasons = all.StaleReasons
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
