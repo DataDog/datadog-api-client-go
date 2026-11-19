@@ -233,6 +233,118 @@ func (a *BitsSecurityAnalystApi) CountSecurityAgentInvestigations(ctx _context.C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateSecurityAgentInvestigation Create a Bits Security Analyst investigation.
+// Start a Bits Security Analyst investigation of a signal, or get its investigation if it already has one.
+//
+// If the signal already has an investigation, in any state, the response has its latest investigation.
+// Otherwise, an investigation starts, and the response has the new investigation in the `investigating` state.
+// Set `rerun` to `true` to start a new investigation of a signal that already has one. If the signal's
+// investigation is still running, the response has that investigation, and no new one starts.
+// While the investigation is `investigating`, the response has a `Retry-After` header.
+// `GET /api/v2/security_monitoring/security_agent/investigations/{investigation_id}` reads it right away.
+//
+// The response doesn't have the investigation's content: `conclusion`, `signal`, `key_entities`, `key_evidence`,
+// `steps`, and `response_suggestions`. Get the investigation for its content.
+//
+// This endpoint is rate limited to `30` requests per minute per organization. Every investigation it starts,
+// including a rerun, counts toward the organization's monthly investigation limit. Starting an investigation
+// returns `429` with the code `monthly_limit_reached` once the organization has reached that limit.
+func (a *BitsSecurityAnalystApi) CreateSecurityAgentInvestigation(ctx _context.Context, body SecurityAgentInvestigationCreateRequest) (SecurityAgentInvestigationResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityAgentInvestigationResponse
+	)
+
+	operationId := "v2.CreateSecurityAgentInvestigation"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsSecurityAnalystApi.CreateSecurityAgentInvestigation")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/security_agent/investigations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 422 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetSecurityAgentInvestigationOptionalParameters holds optional parameters for GetSecurityAgentInvestigation.
 type GetSecurityAgentInvestigationOptionalParameters struct {
 	FieldsInvestigations *[]SecurityAgentInvestigationField
