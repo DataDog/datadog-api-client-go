@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AggregatedWaterfallResponseAttributesCriteria Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+// AggregatedWaterfallResponseAttributesCriteria Performance criteria used to filter view instances by a metric threshold, or null if no
+// criteria were applied.
 type AggregatedWaterfallResponseAttributesCriteria struct {
 	// Maximum threshold in seconds (inclusive).
 	Max *float64 `json:"max,omitempty"`

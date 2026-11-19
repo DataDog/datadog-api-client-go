@@ -7,26 +7,29 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AggregatedWaterfallRequestAttributes Attributes for an aggregated waterfall query.
 type AggregatedWaterfallRequestAttributes struct {
 	// The RUM application ID to analyze.
-	ApplicationId string `json:"application_id"`
+	ApplicationId uuid.UUID `json:"application_id"`
 	// Performance criteria to filter view instances by a metric threshold. When criteria are
 	// applied, specify at least one of `min` or `max`. When both are provided, `min` must be less
 	// than `max`.
 	Criteria *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
 	// RUM query string to filter events (for example, @session.type:user @geo.country:US).
 	Filter *string `json:"filter,omitempty"`
-	// Start of the time range as a Unix timestamp in seconds.
+	// Start of the time range as a Unix timestamp in seconds. Must be less than `to`;
+	// the range cannot exceed 7 days.
 	From int64 `json:"from"`
 	// When true, enriches each resource with cross-view appearance statistics.
 	IncludeGlobalAppearance *bool `json:"include_global_appearance,omitempty"`
 	// Number of view instances to sample, between 1 and 500.
 	SampleSize int32 `json:"sample_size"`
-	// End of the time range as a Unix timestamp in seconds.
+	// End of the time range as a Unix timestamp in seconds. Must be greater than `from`.
 	To int64 `json:"to"`
 	// The RUM view name to analyze (for example, /account/login).
 	ViewName string `json:"view_name"`
@@ -39,7 +42,7 @@ type AggregatedWaterfallRequestAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedWaterfallRequestAttributes(applicationId string, from int64, sampleSize int32, to int64, viewName string) *AggregatedWaterfallRequestAttributes {
+func NewAggregatedWaterfallRequestAttributes(applicationId uuid.UUID, from int64, sampleSize int32, to int64, viewName string) *AggregatedWaterfallRequestAttributes {
 	this := AggregatedWaterfallRequestAttributes{}
 	this.ApplicationId = applicationId
 	this.From = from
@@ -58,9 +61,9 @@ func NewAggregatedWaterfallRequestAttributesWithDefaults() *AggregatedWaterfallR
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *AggregatedWaterfallRequestAttributes) GetApplicationId() string {
+func (o *AggregatedWaterfallRequestAttributes) GetApplicationId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.ApplicationId
@@ -68,7 +71,7 @@ func (o *AggregatedWaterfallRequestAttributes) GetApplicationId() string {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedWaterfallRequestAttributes) GetApplicationIdOk() (*string, bool) {
+func (o *AggregatedWaterfallRequestAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +79,7 @@ func (o *AggregatedWaterfallRequestAttributes) GetApplicationIdOk() (*string, bo
 }
 
 // SetApplicationId sets field value.
-func (o *AggregatedWaterfallRequestAttributes) SetApplicationId(v string) {
+func (o *AggregatedWaterfallRequestAttributes) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
@@ -286,7 +289,7 @@ func (o AggregatedWaterfallRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedWaterfallRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId           *string                                 `json:"application_id"`
+		ApplicationId           *uuid.UUID                              `json:"application_id"`
 		Criteria                *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
 		Filter                  *string                                 `json:"filter,omitempty"`
 		From                    *int64                                  `json:"from"`

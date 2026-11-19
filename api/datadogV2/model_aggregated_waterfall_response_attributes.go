@@ -7,14 +7,17 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AggregatedWaterfallResponseAttributes Attributes of an aggregated waterfall response.
 type AggregatedWaterfallResponseAttributes struct {
 	// The RUM application ID that was analyzed.
-	ApplicationId string `json:"application_id"`
-	// Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+	ApplicationId uuid.UUID `json:"application_id"`
+	// Performance criteria used to filter view instances by a metric threshold, or null if no
+	// criteria were applied.
 	Criteria NullableAggregatedWaterfallResponseAttributesCriteria `json:"criteria"`
 	// Start of the analyzed time range as a Unix timestamp in seconds.
 	From int64 `json:"from"`
@@ -39,7 +42,7 @@ type AggregatedWaterfallResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedWaterfallResponseAttributes(applicationId string, criteria NullableAggregatedWaterfallResponseAttributesCriteria, from int64, resources []AggregatedResource, sampledViewIds []string, to int64, totalCacheHitRatePct float64, viewCount int32, viewName string) *AggregatedWaterfallResponseAttributes {
+func NewAggregatedWaterfallResponseAttributes(applicationId uuid.UUID, criteria NullableAggregatedWaterfallResponseAttributesCriteria, from int64, resources []AggregatedResource, sampledViewIds []string, to int64, totalCacheHitRatePct float64, viewCount int32, viewName string) *AggregatedWaterfallResponseAttributes {
 	this := AggregatedWaterfallResponseAttributes{}
 	this.ApplicationId = applicationId
 	this.Criteria = criteria
@@ -62,9 +65,9 @@ func NewAggregatedWaterfallResponseAttributesWithDefaults() *AggregatedWaterfall
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *AggregatedWaterfallResponseAttributes) GetApplicationId() string {
+func (o *AggregatedWaterfallResponseAttributes) GetApplicationId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.ApplicationId
@@ -72,7 +75,7 @@ func (o *AggregatedWaterfallResponseAttributes) GetApplicationId() string {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedWaterfallResponseAttributes) GetApplicationIdOk() (*string, bool) {
+func (o *AggregatedWaterfallResponseAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +83,7 @@ func (o *AggregatedWaterfallResponseAttributes) GetApplicationIdOk() (*string, b
 }
 
 // SetApplicationId sets field value.
-func (o *AggregatedWaterfallResponseAttributes) SetApplicationId(v string) {
+func (o *AggregatedWaterfallResponseAttributes) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
@@ -295,7 +298,7 @@ func (o AggregatedWaterfallResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedWaterfallResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId        *string                                               `json:"application_id"`
+		ApplicationId        *uuid.UUID                                            `json:"application_id"`
 		Criteria             NullableAggregatedWaterfallResponseAttributesCriteria `json:"criteria"`
 		From                 *int64                                                `json:"from"`
 		Resources            *[]AggregatedResource                                 `json:"resources"`
