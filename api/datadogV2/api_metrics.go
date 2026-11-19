@@ -101,7 +101,7 @@ func (a *MetricsApi) CreateDerivedMetric(ctx _context.Context, body DerivedMetri
 }
 
 // CreateHistoricalMetricsConfiguration Enable historical metrics ingestion.
-// Enable historical metrics ingestion (late data ingestion) for a metric. Idempotent:
+// Enable historical metrics ingestion for a metric. Idempotent:
 // enabling an already-enabled metric returns 200 instead of 201. Not supported for
 // distribution metrics, metrics with an existing tag configuration, or most standard
 // (non-custom) metrics.
@@ -111,15 +111,6 @@ func (a *MetricsApi) CreateHistoricalMetricsConfiguration(ctx _context.Context, 
 		localVarPostBody    interface{}
 		localVarReturnValue HistoricalMetricsConfigurationResponse
 	)
-
-	operationId := "v2.CreateHistoricalMetricsConfiguration"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.CreateHistoricalMetricsConfiguration")
 	if err != nil {
@@ -550,15 +541,6 @@ func (a *MetricsApi) DeleteHistoricalMetricsConfiguration(ctx _context.Context, 
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteHistoricalMetricsConfiguration"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.DeleteHistoricalMetricsConfiguration")
 	if err != nil {
@@ -1101,15 +1083,6 @@ func (a *MetricsApi) GetHistoricalMetricsConfiguration(ctx _context.Context, met
 		localVarPostBody    interface{}
 		localVarReturnValue HistoricalMetricsConfigurationResponse
 	)
-
-	operationId := "v2.GetHistoricalMetricsConfiguration"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.GetHistoricalMetricsConfiguration")
 	if err != nil {
