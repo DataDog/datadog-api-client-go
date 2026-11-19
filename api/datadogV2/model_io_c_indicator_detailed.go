@@ -40,6 +40,8 @@ type IoCIndicatorDetailed struct {
 	Indicator *string `json:"indicator,omitempty"`
 	// Type of indicator (for example, IP address or domain).
 	IndicatorType *string `json:"indicator_type,omitempty"`
+	// Whether the indicator is muted for your organization.
+	IsMuted *bool `json:"is_muted,omitempty"`
 	// Timestamp when the indicator was last seen.
 	LastSeen *time.Time `json:"last_seen,omitempty"`
 	// Number of logs that matched this indicator.
@@ -56,8 +58,15 @@ type IoCIndicatorDetailed struct {
 	MSources *IoCScoreEffect `json:"m_sources,omitempty"`
 	// Threat intelligence sources that flagged this indicator as malicious.
 	MaliciousSources []IoCSource `json:"malicious_sources,omitempty"`
+	// OCSF fields in which the indicator was matched. Returned only when `ocsf` is true.
+	MatchedOcsfFields []string `json:"matched_ocsf_fields,omitempty"`
 	// Effect of a scoring factor on the indicator's threat score.
 	MaxTrustScore *IoCScoreEffect `json:"max_trust_score,omitempty"`
+	// Reason provided when the indicator was muted. Returned only when the indicator is muted.
+	MuteReason *string `json:"mute_reason,omitempty"`
+	// Scope of the mute applied to the indicator (for example, `org`). Returned only when the indicator
+	// is muted.
+	MuteScope *string `json:"mute_scope,omitempty"`
 	// Threat score for the indicator (0-100).
 	Score *float64 `json:"score,omitempty"`
 	// Services where this indicator was observed.
@@ -497,6 +506,34 @@ func (o *IoCIndicatorDetailed) SetIndicatorType(v string) {
 	o.IndicatorType = &v
 }
 
+// GetIsMuted returns the IsMuted field value if set, zero value otherwise.
+func (o *IoCIndicatorDetailed) GetIsMuted() bool {
+	if o == nil || o.IsMuted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsMuted
+}
+
+// GetIsMutedOk returns a tuple with the IsMuted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IoCIndicatorDetailed) GetIsMutedOk() (*bool, bool) {
+	if o == nil || o.IsMuted == nil {
+		return nil, false
+	}
+	return o.IsMuted, true
+}
+
+// HasIsMuted returns a boolean if a field has been set.
+func (o *IoCIndicatorDetailed) HasIsMuted() bool {
+	return o != nil && o.IsMuted != nil
+}
+
+// SetIsMuted gets a reference to the given bool and assigns it to the IsMuted field.
+func (o *IoCIndicatorDetailed) SetIsMuted(v bool) {
+	o.IsMuted = &v
+}
+
 // GetLastSeen returns the LastSeen field value if set, zero value otherwise.
 func (o *IoCIndicatorDetailed) GetLastSeen() time.Time {
 	if o == nil || o.LastSeen == nil {
@@ -722,6 +759,34 @@ func (o *IoCIndicatorDetailed) SetMaliciousSources(v []IoCSource) {
 	o.MaliciousSources = v
 }
 
+// GetMatchedOcsfFields returns the MatchedOcsfFields field value if set, zero value otherwise.
+func (o *IoCIndicatorDetailed) GetMatchedOcsfFields() []string {
+	if o == nil || o.MatchedOcsfFields == nil {
+		var ret []string
+		return ret
+	}
+	return o.MatchedOcsfFields
+}
+
+// GetMatchedOcsfFieldsOk returns a tuple with the MatchedOcsfFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IoCIndicatorDetailed) GetMatchedOcsfFieldsOk() (*[]string, bool) {
+	if o == nil || o.MatchedOcsfFields == nil {
+		return nil, false
+	}
+	return &o.MatchedOcsfFields, true
+}
+
+// HasMatchedOcsfFields returns a boolean if a field has been set.
+func (o *IoCIndicatorDetailed) HasMatchedOcsfFields() bool {
+	return o != nil && o.MatchedOcsfFields != nil
+}
+
+// SetMatchedOcsfFields gets a reference to the given []string and assigns it to the MatchedOcsfFields field.
+func (o *IoCIndicatorDetailed) SetMatchedOcsfFields(v []string) {
+	o.MatchedOcsfFields = v
+}
+
 // GetMaxTrustScore returns the MaxTrustScore field value if set, zero value otherwise.
 func (o *IoCIndicatorDetailed) GetMaxTrustScore() IoCScoreEffect {
 	if o == nil || o.MaxTrustScore == nil {
@@ -748,6 +813,62 @@ func (o *IoCIndicatorDetailed) HasMaxTrustScore() bool {
 // SetMaxTrustScore gets a reference to the given IoCScoreEffect and assigns it to the MaxTrustScore field.
 func (o *IoCIndicatorDetailed) SetMaxTrustScore(v IoCScoreEffect) {
 	o.MaxTrustScore = &v
+}
+
+// GetMuteReason returns the MuteReason field value if set, zero value otherwise.
+func (o *IoCIndicatorDetailed) GetMuteReason() string {
+	if o == nil || o.MuteReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.MuteReason
+}
+
+// GetMuteReasonOk returns a tuple with the MuteReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IoCIndicatorDetailed) GetMuteReasonOk() (*string, bool) {
+	if o == nil || o.MuteReason == nil {
+		return nil, false
+	}
+	return o.MuteReason, true
+}
+
+// HasMuteReason returns a boolean if a field has been set.
+func (o *IoCIndicatorDetailed) HasMuteReason() bool {
+	return o != nil && o.MuteReason != nil
+}
+
+// SetMuteReason gets a reference to the given string and assigns it to the MuteReason field.
+func (o *IoCIndicatorDetailed) SetMuteReason(v string) {
+	o.MuteReason = &v
+}
+
+// GetMuteScope returns the MuteScope field value if set, zero value otherwise.
+func (o *IoCIndicatorDetailed) GetMuteScope() string {
+	if o == nil || o.MuteScope == nil {
+		var ret string
+		return ret
+	}
+	return *o.MuteScope
+}
+
+// GetMuteScopeOk returns a tuple with the MuteScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IoCIndicatorDetailed) GetMuteScopeOk() (*string, bool) {
+	if o == nil || o.MuteScope == nil {
+		return nil, false
+	}
+	return o.MuteScope, true
+}
+
+// HasMuteScope returns a boolean if a field has been set.
+func (o *IoCIndicatorDetailed) HasMuteScope() bool {
+	return o != nil && o.MuteScope != nil
+}
+
+// SetMuteScope gets a reference to the given string and assigns it to the MuteScope field.
+func (o *IoCIndicatorDetailed) SetMuteScope(v string) {
+	o.MuteScope = &v
 }
 
 // GetScore returns the Score field value if set, zero value otherwise.
@@ -1139,6 +1260,9 @@ func (o IoCIndicatorDetailed) MarshalJSON() ([]byte, error) {
 	if o.IndicatorType != nil {
 		toSerialize["indicator_type"] = o.IndicatorType
 	}
+	if o.IsMuted != nil {
+		toSerialize["is_muted"] = o.IsMuted
+	}
 	if o.LastSeen != nil {
 		if o.LastSeen.Nanosecond() == 0 {
 			toSerialize["last_seen"] = o.LastSeen.Format("2006-01-02T15:04:05Z07:00")
@@ -1167,8 +1291,17 @@ func (o IoCIndicatorDetailed) MarshalJSON() ([]byte, error) {
 	if o.MaliciousSources != nil {
 		toSerialize["malicious_sources"] = o.MaliciousSources
 	}
+	if o.MatchedOcsfFields != nil {
+		toSerialize["matched_ocsf_fields"] = o.MatchedOcsfFields
+	}
 	if o.MaxTrustScore != nil {
 		toSerialize["max_trust_score"] = o.MaxTrustScore
+	}
+	if o.MuteReason != nil {
+		toSerialize["mute_reason"] = o.MuteReason
+	}
+	if o.MuteScope != nil {
+		toSerialize["mute_scope"] = o.MuteScope
 	}
 	if o.Score != nil {
 		toSerialize["score"] = o.Score
@@ -1234,6 +1367,7 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 		Id                *string                  `json:"id,omitempty"`
 		Indicator         *string                  `json:"indicator,omitempty"`
 		IndicatorType     *string                  `json:"indicator_type,omitempty"`
+		IsMuted           *bool                    `json:"is_muted,omitempty"`
 		LastSeen          *time.Time               `json:"last_seen,omitempty"`
 		LogMatches        *int64                   `json:"log_matches,omitempty"`
 		LogSources        []string                 `json:"log_sources,omitempty"`
@@ -1242,7 +1376,10 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 		MSignal           *IoCScoreEffect          `json:"m_signal,omitempty"`
 		MSources          *IoCScoreEffect          `json:"m_sources,omitempty"`
 		MaliciousSources  []IoCSource              `json:"malicious_sources,omitempty"`
+		MatchedOcsfFields []string                 `json:"matched_ocsf_fields,omitempty"`
 		MaxTrustScore     *IoCScoreEffect          `json:"max_trust_score,omitempty"`
+		MuteReason        *string                  `json:"mute_reason,omitempty"`
+		MuteScope         *string                  `json:"mute_scope,omitempty"`
 		Score             *float64                 `json:"score,omitempty"`
 		Services          []string                 `json:"services,omitempty"`
 		SignalMatches     *int64                   `json:"signal_matches,omitempty"`
@@ -1261,7 +1398,7 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"additional_data", "as_cidr_block", "as_geo", "as_number", "as_organization", "as_type", "benign_sources", "categories", "critical_assets", "first_seen", "hosts", "id", "indicator", "indicator_type", "last_seen", "log_matches", "log_sources", "m_as_type", "m_persistence", "m_signal", "m_sources", "malicious_sources", "max_trust_score", "score", "services", "signal_matches", "signal_severity", "signal_tier", "suspicious_sources", "tags", "triage_history", "triage_state", "triaged_at", "triaged_by", "users"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"additional_data", "as_cidr_block", "as_geo", "as_number", "as_organization", "as_type", "benign_sources", "categories", "critical_assets", "first_seen", "hosts", "id", "indicator", "indicator_type", "is_muted", "last_seen", "log_matches", "log_sources", "m_as_type", "m_persistence", "m_signal", "m_sources", "malicious_sources", "matched_ocsf_fields", "max_trust_score", "mute_reason", "mute_scope", "score", "services", "signal_matches", "signal_severity", "signal_tier", "suspicious_sources", "tags", "triage_history", "triage_state", "triaged_at", "triaged_by", "users"})
 	} else {
 		return err
 	}
@@ -1284,6 +1421,7 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.Indicator = all.Indicator
 	o.IndicatorType = all.IndicatorType
+	o.IsMuted = all.IsMuted
 	o.LastSeen = all.LastSeen
 	o.LogMatches = all.LogMatches
 	o.LogSources = all.LogSources
@@ -1308,11 +1446,14 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 		o.MSources = all.MSources
 	}
 	o.MaliciousSources = all.MaliciousSources
+	o.MatchedOcsfFields = all.MatchedOcsfFields
 	if all.MaxTrustScore != nil && !all.MaxTrustScore.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MaxTrustScore = all.MaxTrustScore
 	}
+	o.MuteReason = all.MuteReason
+	o.MuteScope = all.MuteScope
 	o.Score = all.Score
 	o.Services = all.Services
 	o.SignalMatches = all.SignalMatches
