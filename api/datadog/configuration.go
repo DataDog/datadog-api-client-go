@@ -1676,6 +1676,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteOIDCCloudAuthProvider":                            false,
 			"v2.DeleteTerraformCloudAuthPersonaMapping":                 false,
 			"v2.GetAWSCloudAuthIntakeMapping":                           false,
+			"v2.UpdateAWSCloudAuthIntakeMapping":                        false,
 			"v2.GetAWSCloudAuthPersonaMapping":                          false,
 			"v2.GetGitHubCloudAuthIntakeMapping":                        false,
 			"v2.GetGitHubCloudAuthPersonaMapping":                       false,

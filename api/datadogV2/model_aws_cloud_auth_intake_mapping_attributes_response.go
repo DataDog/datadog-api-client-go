@@ -14,8 +14,8 @@ import (
 type AWSCloudAuthIntakeMappingAttributesResponse struct {
 	// AWS caller ARN pattern allowed to authenticate for telemetry submission. ARN syntax and AWS integration membership are validated by the server. For an assumed role, use the STS assumed-role ARN with a trailing /* wildcard to match its sessions.
 	ArnPattern string `json:"arn_pattern"`
-	// Whether the mapping allows Private Action Runner enrollment. This attribute may be omitted when enrollment is disabled. Enrollment permission is managed separately from the ARN pattern.
-	ParEnrollmentEnabled *bool `json:"par_enrollment_enabled,omitempty"`
+	// Explicit workload capabilities enabled on an intake mapping. The supported capability is par_enrollment. Enabling or disabling it requires `on_prem_runner_write` in addition to mapping write permission. An omitted list on a new mapping enables no capabilities. Unknown and duplicate values are rejected.
+	Capabilities []string `json:"capabilities,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,32 +62,32 @@ func (o *AWSCloudAuthIntakeMappingAttributesResponse) SetArnPattern(v string) {
 	o.ArnPattern = v
 }
 
-// GetParEnrollmentEnabled returns the ParEnrollmentEnabled field value if set, zero value otherwise.
-func (o *AWSCloudAuthIntakeMappingAttributesResponse) GetParEnrollmentEnabled() bool {
-	if o == nil || o.ParEnrollmentEnabled == nil {
-		var ret bool
+// GetCapabilities returns the Capabilities field value if set, zero value otherwise.
+func (o *AWSCloudAuthIntakeMappingAttributesResponse) GetCapabilities() []string {
+	if o == nil || o.Capabilities == nil {
+		var ret []string
 		return ret
 	}
-	return *o.ParEnrollmentEnabled
+	return o.Capabilities
 }
 
-// GetParEnrollmentEnabledOk returns a tuple with the ParEnrollmentEnabled field value if set, nil otherwise
+// GetCapabilitiesOk returns a tuple with the Capabilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSCloudAuthIntakeMappingAttributesResponse) GetParEnrollmentEnabledOk() (*bool, bool) {
-	if o == nil || o.ParEnrollmentEnabled == nil {
+func (o *AWSCloudAuthIntakeMappingAttributesResponse) GetCapabilitiesOk() (*[]string, bool) {
+	if o == nil || o.Capabilities == nil {
 		return nil, false
 	}
-	return o.ParEnrollmentEnabled, true
+	return &o.Capabilities, true
 }
 
-// HasParEnrollmentEnabled returns a boolean if a field has been set.
-func (o *AWSCloudAuthIntakeMappingAttributesResponse) HasParEnrollmentEnabled() bool {
-	return o != nil && o.ParEnrollmentEnabled != nil
+// HasCapabilities returns a boolean if a field has been set.
+func (o *AWSCloudAuthIntakeMappingAttributesResponse) HasCapabilities() bool {
+	return o != nil && o.Capabilities != nil
 }
 
-// SetParEnrollmentEnabled gets a reference to the given bool and assigns it to the ParEnrollmentEnabled field.
-func (o *AWSCloudAuthIntakeMappingAttributesResponse) SetParEnrollmentEnabled(v bool) {
-	o.ParEnrollmentEnabled = &v
+// SetCapabilities gets a reference to the given []string and assigns it to the Capabilities field.
+func (o *AWSCloudAuthIntakeMappingAttributesResponse) SetCapabilities(v []string) {
+	o.Capabilities = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -97,8 +97,8 @@ func (o AWSCloudAuthIntakeMappingAttributesResponse) MarshalJSON() ([]byte, erro
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["arn_pattern"] = o.ArnPattern
-	if o.ParEnrollmentEnabled != nil {
-		toSerialize["par_enrollment_enabled"] = o.ParEnrollmentEnabled
+	if o.Capabilities != nil {
+		toSerialize["capabilities"] = o.Capabilities
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -110,8 +110,8 @@ func (o AWSCloudAuthIntakeMappingAttributesResponse) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSCloudAuthIntakeMappingAttributesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArnPattern           *string `json:"arn_pattern"`
-		ParEnrollmentEnabled *bool   `json:"par_enrollment_enabled,omitempty"`
+		ArnPattern   *string  `json:"arn_pattern"`
+		Capabilities []string `json:"capabilities,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,12 +121,12 @@ func (o *AWSCloudAuthIntakeMappingAttributesResponse) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arn_pattern", "par_enrollment_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"arn_pattern", "capabilities"})
 	} else {
 		return err
 	}
 	o.ArnPattern = *all.ArnPattern
-	o.ParEnrollmentEnabled = all.ParEnrollmentEnabled
+	o.Capabilities = all.Capabilities
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
