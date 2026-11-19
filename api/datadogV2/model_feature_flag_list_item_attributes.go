@@ -17,6 +17,8 @@ import (
 type FeatureFlagListItemAttributes struct {
 	// The timestamp when the feature flag was archived.
 	ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
+	// How subjects are assigned to variants. `DATADOG` is the native scheme. `EPPO` reproduces the assignments that Eppo made for a flag migrated from Eppo, so its subjects keep their variants. Set when the flag is created and never changed.
+	BucketingMode *FeatureFlagBucketingMode `json:"bucketing_mode,omitempty"`
 	// The timestamp when the feature flag was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The ID of the user who created the feature flag.
@@ -118,6 +120,34 @@ func (o *FeatureFlagListItemAttributes) SetArchivedAtNil() {
 // UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil.
 func (o *FeatureFlagListItemAttributes) UnsetArchivedAt() {
 	o.ArchivedAt.Unset()
+}
+
+// GetBucketingMode returns the BucketingMode field value if set, zero value otherwise.
+func (o *FeatureFlagListItemAttributes) GetBucketingMode() FeatureFlagBucketingMode {
+	if o == nil || o.BucketingMode == nil {
+		var ret FeatureFlagBucketingMode
+		return ret
+	}
+	return *o.BucketingMode
+}
+
+// GetBucketingModeOk returns a tuple with the BucketingMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagListItemAttributes) GetBucketingModeOk() (*FeatureFlagBucketingMode, bool) {
+	if o == nil || o.BucketingMode == nil {
+		return nil, false
+	}
+	return o.BucketingMode, true
+}
+
+// HasBucketingMode returns a boolean if a field has been set.
+func (o *FeatureFlagListItemAttributes) HasBucketingMode() bool {
+	return o != nil && o.BucketingMode != nil
+}
+
+// SetBucketingMode gets a reference to the given FeatureFlagBucketingMode and assigns it to the BucketingMode field.
+func (o *FeatureFlagListItemAttributes) SetBucketingMode(v FeatureFlagBucketingMode) {
+	o.BucketingMode = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -622,6 +652,9 @@ func (o FeatureFlagListItemAttributes) MarshalJSON() ([]byte, error) {
 	if o.ArchivedAt.IsSet() {
 		toSerialize["archived_at"] = o.ArchivedAt.Get()
 	}
+	if o.BucketingMode != nil {
+		toSerialize["bucketing_mode"] = o.BucketingMode
+	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -685,6 +718,7 @@ func (o FeatureFlagListItemAttributes) MarshalJSON() ([]byte, error) {
 func (o *FeatureFlagListItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ArchivedAt              datadog.NullableTime                `json:"archived_at,omitempty"`
+		BucketingMode           *FeatureFlagBucketingMode           `json:"bucketing_mode,omitempty"`
 		CreatedAt               *time.Time                          `json:"created_at,omitempty"`
 		CreatedBy               *uuid.UUID                          `json:"created_by,omitempty"`
 		Description             *string                             `json:"description"`
@@ -724,13 +758,18 @@ func (o *FeatureFlagListItemAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "is_favorite", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_details", "staleness_status", "staleness_status_override", "tags", "updated_at", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "bucketing_mode", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "is_favorite", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_details", "staleness_status", "staleness_status_override", "tags", "updated_at", "value_type", "variants"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ArchivedAt = all.ArchivedAt
+	if all.BucketingMode != nil && !all.BucketingMode.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.BucketingMode = all.BucketingMode
+	}
 	o.CreatedAt = all.CreatedAt
 	o.CreatedBy = all.CreatedBy
 	o.Description = *all.Description
