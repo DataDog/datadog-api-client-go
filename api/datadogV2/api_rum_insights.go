@@ -18,7 +18,8 @@ import (
 type RUMInsightsApi datadog.Service
 
 // QueryAggregatedLongTasks Query aggregated long tasks.
-// Get aggregated long task data for a RUM view, grouped by invoker type and sampled across multiple view instances.
+// Get aggregated long task data for a RUM view, grouped by invoker type and sampled across
+// multiple view instances.
 func (a *RUMInsightsApi) QueryAggregatedLongTasks(ctx _context.Context, body AggregatedLongTasksRequest) (AggregatedLongTasksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

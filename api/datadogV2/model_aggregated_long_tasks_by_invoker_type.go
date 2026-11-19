@@ -12,7 +12,8 @@ import (
 
 // AggregatedLongTasksByInvokerType Aggregated long task statistics for a single invoker type.
 type AggregatedLongTasksByInvokerType struct {
-	// Number of sampled views where this invoker type had long tasks contributing to the criteria metric.
+	// Number of sampled views where this invoker type had long tasks contributing to the criteria
+	// metric.
 	CriteriaViewOccurrences *int32 `json:"criteria_view_occurrences,omitempty"`
 	// Rank-product impact score combining view frequency and blocking time severity.
 	ImpactScore *float64 `json:"impact_score,omitempty"`
