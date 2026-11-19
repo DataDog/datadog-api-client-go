@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -14,8 +16,8 @@ import (
 type AggregatedLongTasksResponseData struct {
 	// Attributes of an aggregated long tasks response.
 	Attributes AggregatedLongTasksResponseAttributes `json:"attributes"`
-	// Hash-based unique identifier for this aggregation.
-	Id string `json:"id"`
+	// Unique UUID identifying this response.
+	Id uuid.UUID `json:"id"`
 	// The JSON:API type for aggregated long tasks requests.
 	Type AggregatedLongTasksRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,7 +29,7 @@ type AggregatedLongTasksResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedLongTasksResponseData(attributes AggregatedLongTasksResponseAttributes, id string, typeVar AggregatedLongTasksRequestType) *AggregatedLongTasksResponseData {
+func NewAggregatedLongTasksResponseData(attributes AggregatedLongTasksResponseAttributes, id uuid.UUID, typeVar AggregatedLongTasksRequestType) *AggregatedLongTasksResponseData {
 	this := AggregatedLongTasksResponseData{}
 	this.Attributes = attributes
 	this.Id = id
@@ -67,9 +69,9 @@ func (o *AggregatedLongTasksResponseData) SetAttributes(v AggregatedLongTasksRes
 }
 
 // GetId returns the Id field value.
-func (o *AggregatedLongTasksResponseData) GetId() string {
+func (o *AggregatedLongTasksResponseData) GetId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.Id
@@ -77,7 +79,7 @@ func (o *AggregatedLongTasksResponseData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedLongTasksResponseData) GetIdOk() (*string, bool) {
+func (o *AggregatedLongTasksResponseData) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +87,7 @@ func (o *AggregatedLongTasksResponseData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *AggregatedLongTasksResponseData) SetId(v string) {
+func (o *AggregatedLongTasksResponseData) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
@@ -132,7 +134,7 @@ func (o AggregatedLongTasksResponseData) MarshalJSON() ([]byte, error) {
 func (o *AggregatedLongTasksResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AggregatedLongTasksResponseAttributes `json:"attributes"`
-		Id         *string                                `json:"id"`
+		Id         *uuid.UUID                             `json:"id"`
 		Type       *AggregatedLongTasksRequestType        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

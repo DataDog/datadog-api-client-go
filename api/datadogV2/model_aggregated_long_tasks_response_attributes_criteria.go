@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AggregatedLongTasksResponseAttributesCriteria Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+// AggregatedLongTasksResponseAttributesCriteria Performance criteria used to filter view instances by a metric threshold, or null if no
+// criteria were applied.
 type AggregatedLongTasksResponseAttributesCriteria struct {
 	// Maximum threshold in seconds (inclusive).
 	Max *float64 `json:"max,omitempty"`

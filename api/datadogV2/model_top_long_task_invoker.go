@@ -12,10 +12,11 @@ import (
 
 // TopLongTaskInvoker A top long task invoker within an invoker type.
 type TopLongTaskInvoker struct {
-	// Number of sampled views where this invoker had long tasks contributing to the criteria metric.
+	// Number of sampled views where this invoker had long tasks contributing to the criteria
+	// metric.
 	CriteriaViewOccurrences *int32 `json:"criteria_view_occurrences,omitempty"`
 	// Cleaned source file path for the invoker script.
-	File datadog.NullableString `json:"file,omitempty"`
+	File datadog.NullableString `json:"file"`
 	// Rank-product impact score combining view frequency and blocking time severity.
 	ImpactScore *float64 `json:"impact_score,omitempty"`
 	// Name of the invoker function or script.
@@ -33,8 +34,9 @@ type TopLongTaskInvoker struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTopLongTaskInvoker(invoker string, statsPerView LongTaskStatsPerView, viewOccurrences int32) *TopLongTaskInvoker {
+func NewTopLongTaskInvoker(file datadog.NullableString, invoker string, statsPerView LongTaskStatsPerView, viewOccurrences int32) *TopLongTaskInvoker {
 	this := TopLongTaskInvoker{}
+	this.File = file
 	this.Invoker = invoker
 	this.StatsPerView = statsPerView
 	this.ViewOccurrences = viewOccurrences
@@ -77,7 +79,8 @@ func (o *TopLongTaskInvoker) SetCriteriaViewOccurrences(v int32) {
 	o.CriteriaViewOccurrences = &v
 }
 
-// GetFile returns the File field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFile returns the File field value.
+// If the value is explicit nil, the zero value for string will be returned.
 func (o *TopLongTaskInvoker) GetFile() string {
 	if o == nil || o.File.Get() == nil {
 		var ret string
@@ -86,7 +89,7 @@ func (o *TopLongTaskInvoker) GetFile() string {
 	return *o.File.Get()
 }
 
-// GetFileOk returns a tuple with the File field value if set, nil otherwise
+// GetFileOk returns a tuple with the File field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TopLongTaskInvoker) GetFileOk() (*string, bool) {
@@ -96,24 +99,9 @@ func (o *TopLongTaskInvoker) GetFileOk() (*string, bool) {
 	return o.File.Get(), o.File.IsSet()
 }
 
-// HasFile returns a boolean if a field has been set.
-func (o *TopLongTaskInvoker) HasFile() bool {
-	return o != nil && o.File.IsSet()
-}
-
-// SetFile gets a reference to the given datadog.NullableString and assigns it to the File field.
+// SetFile sets field value.
 func (o *TopLongTaskInvoker) SetFile(v string) {
 	o.File.Set(&v)
-}
-
-// SetFileNil sets the value for File to be an explicit nil.
-func (o *TopLongTaskInvoker) SetFileNil() {
-	o.File.Set(nil)
-}
-
-// UnsetFile ensures that no value is present for File, not even an explicit nil.
-func (o *TopLongTaskInvoker) UnsetFile() {
-	o.File.Unset()
 }
 
 // GetImpactScore returns the ImpactScore field value if set, zero value otherwise.
@@ -222,9 +210,7 @@ func (o TopLongTaskInvoker) MarshalJSON() ([]byte, error) {
 	if o.CriteriaViewOccurrences != nil {
 		toSerialize["criteria_view_occurrences"] = o.CriteriaViewOccurrences
 	}
-	if o.File.IsSet() {
-		toSerialize["file"] = o.File.Get()
-	}
+	toSerialize["file"] = o.File.Get()
 	if o.ImpactScore != nil {
 		toSerialize["impact_score"] = o.ImpactScore
 	}
@@ -242,7 +228,7 @@ func (o TopLongTaskInvoker) MarshalJSON() ([]byte, error) {
 func (o *TopLongTaskInvoker) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CriteriaViewOccurrences *int32                 `json:"criteria_view_occurrences,omitempty"`
-		File                    datadog.NullableString `json:"file,omitempty"`
+		File                    datadog.NullableString `json:"file"`
 		ImpactScore             *float64               `json:"impact_score,omitempty"`
 		Invoker                 *string                `json:"invoker"`
 		StatsPerView            *LongTaskStatsPerView  `json:"stats_per_view"`
@@ -250,6 +236,9 @@ func (o *TopLongTaskInvoker) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if !all.File.IsSet() {
+		return fmt.Errorf("required field file missing")
 	}
 	if all.Invoker == nil {
 		return fmt.Errorf("required field invoker missing")

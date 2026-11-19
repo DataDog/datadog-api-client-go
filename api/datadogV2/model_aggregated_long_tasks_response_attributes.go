@@ -7,24 +7,27 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AggregatedLongTasksResponseAttributes Attributes of an aggregated long tasks response.
 type AggregatedLongTasksResponseAttributes struct {
 	// The RUM application ID that was analyzed.
-	ApplicationId string `json:"application_id"`
-	// Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+	ApplicationId uuid.UUID `json:"application_id"`
+	// Performance criteria used to filter view instances by a metric threshold, or null if no
+	// criteria were applied.
 	Criteria NullableAggregatedLongTasksResponseAttributesCriteria `json:"criteria"`
 	// Start of the analyzed time range as a Unix timestamp in seconds.
 	From int64 `json:"from"`
 	// Long task statistics grouped by invoker type, sorted by impact score descending.
 	LongTasksByInvokerType []AggregatedLongTasksByInvokerType `json:"long_tasks_by_invoker_type"`
-	// List of RUM view IDs sampled for this aggregation, capped at 50.
+	// IDs of sampled views that contain at least one long task. At most 50 IDs are returned.
 	SampledViewIds []string `json:"sampled_view_ids"`
 	// End of the analyzed time range as a Unix timestamp in seconds.
 	To int64 `json:"to"`
-	// Number of view instances included in the analysis.
+	// Number of sampled views that contain at least one long task.
 	ViewCount int32 `json:"view_count"`
 	// The RUM view name that was analyzed.
 	ViewName string `json:"view_name"`
@@ -37,7 +40,7 @@ type AggregatedLongTasksResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedLongTasksResponseAttributes(applicationId string, criteria NullableAggregatedLongTasksResponseAttributesCriteria, from int64, longTasksByInvokerType []AggregatedLongTasksByInvokerType, sampledViewIds []string, to int64, viewCount int32, viewName string) *AggregatedLongTasksResponseAttributes {
+func NewAggregatedLongTasksResponseAttributes(applicationId uuid.UUID, criteria NullableAggregatedLongTasksResponseAttributesCriteria, from int64, longTasksByInvokerType []AggregatedLongTasksByInvokerType, sampledViewIds []string, to int64, viewCount int32, viewName string) *AggregatedLongTasksResponseAttributes {
 	this := AggregatedLongTasksResponseAttributes{}
 	this.ApplicationId = applicationId
 	this.Criteria = criteria
@@ -59,9 +62,9 @@ func NewAggregatedLongTasksResponseAttributesWithDefaults() *AggregatedLongTasks
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *AggregatedLongTasksResponseAttributes) GetApplicationId() string {
+func (o *AggregatedLongTasksResponseAttributes) GetApplicationId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.ApplicationId
@@ -69,7 +72,7 @@ func (o *AggregatedLongTasksResponseAttributes) GetApplicationId() string {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedLongTasksResponseAttributes) GetApplicationIdOk() (*string, bool) {
+func (o *AggregatedLongTasksResponseAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +80,7 @@ func (o *AggregatedLongTasksResponseAttributes) GetApplicationIdOk() (*string, b
 }
 
 // SetApplicationId sets field value.
-func (o *AggregatedLongTasksResponseAttributes) SetApplicationId(v string) {
+func (o *AggregatedLongTasksResponseAttributes) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
@@ -268,7 +271,7 @@ func (o AggregatedLongTasksResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedLongTasksResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId          *string                                               `json:"application_id"`
+		ApplicationId          *uuid.UUID                                            `json:"application_id"`
 		Criteria               NullableAggregatedLongTasksResponseAttributesCriteria `json:"criteria"`
 		From                   *int64                                                `json:"from"`
 		LongTasksByInvokerType *[]AggregatedLongTasksByInvokerType                   `json:"long_tasks_by_invoker_type"`
