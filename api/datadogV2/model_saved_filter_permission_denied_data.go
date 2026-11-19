@@ -12,9 +12,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SavedFilterPermissionDeniedData The caller lacks edit permission on one or more feature flags that reference this saved filter.
+// SavedFilterPermissionDeniedData The caller lacks edit permission on one or more feature flags that reference this saved filter, or on one or more of their environments.
 type SavedFilterPermissionDeniedData struct {
-	// The caller lacks edit permission on one or more feature flags that reference this saved filter.
+	// The caller lacks edit permission on one or more feature flags that reference this saved filter, or on one or more of their environments.
 	Attributes SavedFilterPermissionDeniedAttributes `json:"attributes"`
 	// The ID of the saved filter.
 	Id uuid.UUID `json:"id"`
