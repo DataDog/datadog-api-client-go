@@ -28,6 +28,8 @@ type MonitorFormulaAndFunctionDataQualityMonitorOptions struct {
 	ModelConfiguration *MonitorFormulaAndFunctionDataQualityModelConfiguration `json:"model_configuration,omitempty"`
 	// Override for the model type used in anomaly detection.
 	ModelTypeOverride *MonitorFormulaAndFunctionDataQualityModelTypeOverride `json:"model_type_override,omitempty"`
+	// Platform-specific settings for a data quality monitor.
+	PlatformSettings *MonitorFormulaAndFunctionDataQualityPlatformSettings `json:"platform_settings,omitempty"`
 	// Sensitivity of the anomaly detection model, expressed as a multiplier on the width
 	// of the predicted bounds. Higher values widen the bounds and produce fewer alerts;
 	// lower values tighten them and produce more alerts. Defaults to `3.0`.
@@ -281,6 +283,34 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetModelTypeOverrid
 	o.ModelTypeOverride = &v
 }
 
+// GetPlatformSettings returns the PlatformSettings field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetPlatformSettings() MonitorFormulaAndFunctionDataQualityPlatformSettings {
+	if o == nil || o.PlatformSettings == nil {
+		var ret MonitorFormulaAndFunctionDataQualityPlatformSettings
+		return ret
+	}
+	return *o.PlatformSettings
+}
+
+// GetPlatformSettingsOk returns a tuple with the PlatformSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetPlatformSettingsOk() (*MonitorFormulaAndFunctionDataQualityPlatformSettings, bool) {
+	if o == nil || o.PlatformSettings == nil {
+		return nil, false
+	}
+	return o.PlatformSettings, true
+}
+
+// HasPlatformSettings returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasPlatformSettings() bool {
+	return o != nil && o.PlatformSettings != nil
+}
+
+// SetPlatformSettings gets a reference to the given MonitorFormulaAndFunctionDataQualityPlatformSettings and assigns it to the PlatformSettings field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetPlatformSettings(v MonitorFormulaAndFunctionDataQualityPlatformSettings) {
+	o.PlatformSettings = &v
+}
+
 // GetSensitivity returns the Sensitivity field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetSensitivity() float64 {
 	if o == nil || o.Sensitivity == nil {
@@ -367,6 +397,9 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 	if o.ModelTypeOverride != nil {
 		toSerialize["model_type_override"] = o.ModelTypeOverride
 	}
+	if o.PlatformSettings != nil {
+		toSerialize["platform_settings"] = o.PlatformSettings
+	}
 	if o.Sensitivity != nil {
 		toSerialize["sensitivity"] = o.Sensitivity
 	}
@@ -391,6 +424,7 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 		GroupByColumns       []string                                                  `json:"group_by_columns,omitempty"`
 		ModelConfiguration   *MonitorFormulaAndFunctionDataQualityModelConfiguration   `json:"model_configuration,omitempty"`
 		ModelTypeOverride    *MonitorFormulaAndFunctionDataQualityModelTypeOverride    `json:"model_type_override,omitempty"`
+		PlatformSettings     *MonitorFormulaAndFunctionDataQualityPlatformSettings     `json:"platform_settings,omitempty"`
 		Sensitivity          *float64                                                  `json:"sensitivity,omitempty"`
 		SourceToTargetConfig *MonitorFormulaAndFunctionDataQualitySourceToTargetConfig `json:"source_to_target_config,omitempty"`
 	}{}
@@ -399,7 +433,7 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"consecutive_runs", "crontab_override", "custom_sql", "custom_where", "detection_type", "group_by_columns", "model_configuration", "model_type_override", "sensitivity", "source_to_target_config"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"consecutive_runs", "crontab_override", "custom_sql", "custom_where", "detection_type", "group_by_columns", "model_configuration", "model_type_override", "platform_settings", "sensitivity", "source_to_target_config"})
 	} else {
 		return err
 	}
@@ -424,6 +458,10 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 	} else {
 		o.ModelTypeOverride = all.ModelTypeOverride
 	}
+	if all.PlatformSettings != nil && all.PlatformSettings.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.PlatformSettings = all.PlatformSettings
 	o.Sensitivity = all.Sensitivity
 	if all.SourceToTargetConfig != nil && all.SourceToTargetConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
