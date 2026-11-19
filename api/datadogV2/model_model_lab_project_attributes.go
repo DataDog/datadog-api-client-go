@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -27,8 +29,10 @@ type ModelLabProjectAttributes struct {
 	IsStarred bool `json:"is_starred"`
 	// The name of the project.
 	Name string `json:"name"`
-	// The UUID of the project owner.
+	// The UUID of the user that created the project. The creator is always an owner of the project.
 	OwnerId datadog.NullableString `json:"owner_id,omitempty"`
+	// The UUIDs of the project's owners besides its creator, in the order they became owners.
+	OwnerIds []uuid.UUID `json:"owner_ids,omitempty"`
 	// The list of tags associated with the project.
 	Tags []ModelLabTag `json:"tags"`
 	// The date and time the project was last updated.
@@ -294,6 +298,34 @@ func (o *ModelLabProjectAttributes) UnsetOwnerId() {
 	o.OwnerId.Unset()
 }
 
+// GetOwnerIds returns the OwnerIds field value if set, zero value otherwise.
+func (o *ModelLabProjectAttributes) GetOwnerIds() []uuid.UUID {
+	if o == nil || o.OwnerIds == nil {
+		var ret []uuid.UUID
+		return ret
+	}
+	return o.OwnerIds
+}
+
+// GetOwnerIdsOk returns a tuple with the OwnerIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelLabProjectAttributes) GetOwnerIdsOk() (*[]uuid.UUID, bool) {
+	if o == nil || o.OwnerIds == nil {
+		return nil, false
+	}
+	return &o.OwnerIds, true
+}
+
+// HasOwnerIds returns a boolean if a field has been set.
+func (o *ModelLabProjectAttributes) HasOwnerIds() bool {
+	return o != nil && o.OwnerIds != nil
+}
+
+// SetOwnerIds gets a reference to the given []uuid.UUID and assigns it to the OwnerIds field.
+func (o *ModelLabProjectAttributes) SetOwnerIds(v []uuid.UUID) {
+	o.OwnerIds = v
+}
+
 // GetTags returns the Tags field value.
 func (o *ModelLabProjectAttributes) GetTags() []ModelLabTag {
 	if o == nil {
@@ -364,6 +396,9 @@ func (o ModelLabProjectAttributes) MarshalJSON() ([]byte, error) {
 	if o.OwnerId.IsSet() {
 		toSerialize["owner_id"] = o.OwnerId.Get()
 	}
+	if o.OwnerIds != nil {
+		toSerialize["owner_ids"] = o.OwnerIds
+	}
 	toSerialize["tags"] = o.Tags
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -388,6 +423,7 @@ func (o *ModelLabProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		IsStarred               *bool                  `json:"is_starred"`
 		Name                    *string                `json:"name"`
 		OwnerId                 datadog.NullableString `json:"owner_id,omitempty"`
+		OwnerIds                []uuid.UUID            `json:"owner_ids,omitempty"`
 		Tags                    *[]ModelLabTag         `json:"tags"`
 		UpdatedAt               *time.Time             `json:"updated_at"`
 	}{}
@@ -417,7 +453,7 @@ func (o *ModelLabProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"artifact_storage_location", "created_at", "deleted_at", "description", "external_url", "is_starred", "name", "owner_id", "tags", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"artifact_storage_location", "created_at", "deleted_at", "description", "external_url", "is_starred", "name", "owner_id", "owner_ids", "tags", "updated_at"})
 	} else {
 		return err
 	}
@@ -429,6 +465,7 @@ func (o *ModelLabProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsStarred = *all.IsStarred
 	o.Name = *all.Name
 	o.OwnerId = all.OwnerId
+	o.OwnerIds = all.OwnerIds
 	o.Tags = *all.Tags
 	o.UpdatedAt = *all.UpdatedAt
 
