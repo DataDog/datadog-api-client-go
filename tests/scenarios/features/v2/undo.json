@@ -7800,6 +7800,12 @@
       "type": "safe"
     }
   },
+  "QueryProductAnalyticsJourneyDropOff": {
+    "tag": "Product Analytics",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "QueryProductAnalyticsJourneyFunnel": {
     "tag": "Product Analytics",
     "undo": {
@@ -7849,6 +7855,18 @@
     }
   },
   "QueryProductAnalyticsSankey": {
+    "tag": "Product Analytics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "QueryProductAnalyticsFunnelSuggestions": {
+    "tag": "Product Analytics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "QueryProductAnalyticsFunnelStepSuggestions": {
     "tag": "Product Analytics",
     "undo": {
       "type": "safe"
