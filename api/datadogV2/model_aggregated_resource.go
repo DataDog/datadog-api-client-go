@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AggregatedResource Aggregated performance statistics for a single network resource across sampled view instances.
+// AggregatedResource Aggregated performance statistics for a single network resource across sampled view
+// instances.
 type AggregatedResource struct {
 	// Average total duration in milliseconds.
 	AvgDurationMs float64 `json:"avg_duration_ms"`
@@ -22,11 +23,14 @@ type AggregatedResource struct {
 	CachedCount int32 `json:"cached_count"`
 	// Number of requests downloaded from the network.
 	DownloadedCount int32 `json:"downloaded_count"`
-	// 75th percentile duration across all view names in the application, present when include_global_appearance is true.
+	// 75th percentile duration across all view names in the application, present when
+	// include_global_appearance is true.
 	GlobalP75DurationMs *float64 `json:"global_p75_duration_ms,omitempty"`
-	// Number of distinct view names in the application that load this resource, present when include_global_appearance is true.
+	// Number of distinct view names in the application that load this resource, present when
+	// include_global_appearance is true.
 	GlobalViewNameCount *int32 `json:"global_view_name_count,omitempty"`
-	// Percentage of distinct view names in the application that load this resource, present when include_global_appearance is true.
+	// Percentage of distinct view names in the application that load this resource, present when
+	// include_global_appearance is true.
 	GlobalViewNamePct *float64 `json:"global_view_name_pct,omitempty"`
 	// HTTP method for the resource request.
 	HttpMethod datadog.NullableString `json:"http_method"`

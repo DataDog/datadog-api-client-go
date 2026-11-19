@@ -10,13 +10,14 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.AggregatedWaterfallRequest{
 		Data: datadogV2.AggregatedWaterfallRequestData{
 			Attributes: datadogV2.AggregatedWaterfallRequestAttributes{
-				ApplicationId: "ccbc53b1-74f2-496b-bdd7-9a8fa7b7376b",
+				ApplicationId: uuid.MustParse("ccbc53b1-74f2-496b-bdd7-9a8fa7b7376b"),
 				Criteria: &datadogV2.AggregatedWaterfallPerformanceCriteria{
 					Max:    datadog.PtrFloat64(5.0),
 					Metric: datadogV2.AGGREGATEDWATERFALLPERFORMANCECRITERIAMETRIC_LARGEST_CONTENTFUL_PAINT,

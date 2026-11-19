@@ -117,7 +117,8 @@ func (a *RUMInsightsApi) QueryAggregatedLongTasks(ctx _context.Context, body Agg
 }
 
 // QueryAggregatedWaterfall Query aggregated waterfall.
-// Get aggregated network resource waterfall data for a RUM view, sampled across multiple view instances.
+// Get aggregated network resource waterfall data for a RUM view, sampled across multiple view
+// instances.
 func (a *RUMInsightsApi) QueryAggregatedWaterfall(ctx _context.Context, body AggregatedWaterfallRequest) (AggregatedWaterfallResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
