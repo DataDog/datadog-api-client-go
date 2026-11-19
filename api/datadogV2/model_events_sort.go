@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventsSort The sort parameters when querying events.
+// EventsSort The sort order of events. `-timestamp` returns the newest events first, which is the default, and `timestamp`
+// the oldest first. The client libraries reject any other value.
 type EventsSort string
 
 // List of EventsSort.

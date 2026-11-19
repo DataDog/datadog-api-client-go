@@ -17,7 +17,8 @@ type EventsListRequest struct {
 	Options *EventsQueryOptions `json:"options,omitempty"`
 	// Pagination settings.
 	Page *EventsRequestPage `json:"page,omitempty"`
-	// The sort parameters when querying events.
+	// The sort order of events. `-timestamp` returns the newest events first, which is the default, and `timestamp`
+	// the oldest first. The client libraries reject any other value.
 	Sort *EventsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

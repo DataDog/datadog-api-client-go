@@ -10,11 +10,12 @@ import (
 
 // EventsQueryFilter The search and filter query settings.
 type EventsQueryFilter struct {
-	// The minimum time for the requested events. Supports date math and regular timestamps in milliseconds.
+	// The minimum time for the requested events. Supports date math, ISO 8601 and timestamps in milliseconds.
+	// Widen it from the default to search beyond the last 15 minutes.
 	From *string `json:"from,omitempty"`
-	// The search query following the event search syntax.
+	// The search query following the event search syntax. Attributes take `@` (`@evt.category:alert`); tags and reserved fields don't (`service:web`).
 	Query *string `json:"query,omitempty"`
-	// The maximum time for the requested events. Supports date math and regular timestamps in milliseconds.
+	// The maximum time for the requested events. Supports date math, ISO 8601 and timestamps in milliseconds.
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
