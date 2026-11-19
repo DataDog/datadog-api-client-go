@@ -20,6 +20,8 @@ type ObservabilityPipelineCustomProcessorRemap struct {
 	Include string `json:"include"`
 	// A descriptive name for this remap rule.
 	Name string `json:"name"`
+	// A sample event used to test the VRL script in the pipeline editor.
+	Sample *string `json:"sample,omitempty"`
 	// The VRL script source code that defines the processing logic.
 	Source string `json:"source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -145,6 +147,34 @@ func (o *ObservabilityPipelineCustomProcessorRemap) SetName(v string) {
 	o.Name = v
 }
 
+// GetSample returns the Sample field value if set, zero value otherwise.
+func (o *ObservabilityPipelineCustomProcessorRemap) GetSample() string {
+	if o == nil || o.Sample == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sample
+}
+
+// GetSampleOk returns a tuple with the Sample field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineCustomProcessorRemap) GetSampleOk() (*string, bool) {
+	if o == nil || o.Sample == nil {
+		return nil, false
+	}
+	return o.Sample, true
+}
+
+// HasSample returns a boolean if a field has been set.
+func (o *ObservabilityPipelineCustomProcessorRemap) HasSample() bool {
+	return o != nil && o.Sample != nil
+}
+
+// SetSample gets a reference to the given string and assigns it to the Sample field.
+func (o *ObservabilityPipelineCustomProcessorRemap) SetSample(v string) {
+	o.Sample = &v
+}
+
 // GetSource returns the Source field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetSource() string {
 	if o == nil {
@@ -180,6 +210,9 @@ func (o ObservabilityPipelineCustomProcessorRemap) MarshalJSON() ([]byte, error)
 	}
 	toSerialize["include"] = o.Include
 	toSerialize["name"] = o.Name
+	if o.Sample != nil {
+		toSerialize["sample"] = o.Sample
+	}
 	toSerialize["source"] = o.Source
 
 	for key, value := range o.AdditionalProperties {
@@ -195,6 +228,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) UnmarshalJSON(bytes []byte) 
 		Enabled     *bool   `json:"enabled,omitempty"`
 		Include     *string `json:"include"`
 		Name        *string `json:"name"`
+		Sample      *string `json:"sample,omitempty"`
 		Source      *string `json:"source"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -214,7 +248,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_on_error", "enabled", "include", "name", "source"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"drop_on_error", "enabled", "include", "name", "sample", "source"})
 	} else {
 		return err
 	}
@@ -222,6 +256,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) UnmarshalJSON(bytes []byte) 
 	o.Enabled = all.Enabled
 	o.Include = *all.Include
 	o.Name = *all.Name
+	o.Sample = all.Sample
 	o.Source = *all.Source
 
 	if len(additionalProperties) > 0 {
