@@ -9957,6 +9957,12 @@
       "type": "unsafe"
     }
   },
+  "GetAWSIdentityCenterAWSAccounts": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetEntraIdAzureAppRegistrations": {
     "tag": "Security Monitoring",
     "undo": {

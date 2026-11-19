@@ -10,11 +10,12 @@ import (
 
 // SecurityMonitoringIntegrationConfigUpdateAttributes - Fields to update on the entity context sync configuration. All fields other than the integration type are optional.
 type SecurityMonitoringIntegrationConfigUpdateAttributes struct {
-	SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes *SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes
-	SecurityMonitoringOktaIntegrationConfigUpdateAttributes            *SecurityMonitoringOktaIntegrationConfigUpdateAttributes
-	SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes         *SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes
-	SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes     *SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
-	SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes     *SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes
+	SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes   *SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes
+	SecurityMonitoringOktaIntegrationConfigUpdateAttributes              *SecurityMonitoringOktaIntegrationConfigUpdateAttributes
+	SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes           *SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes
+	SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes *SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes
+	SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes       *SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
+	SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes       *SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -33,6 +34,11 @@ func SecurityMonitoringOktaIntegrationConfigUpdateAttributesAsSecurityMonitoring
 // SecurityMonitoringEntraIdIntegrationConfigUpdateAttributesAsSecurityMonitoringIntegrationConfigUpdateAttributes is a convenience function that returns SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes wrapped in SecurityMonitoringIntegrationConfigUpdateAttributes.
 func SecurityMonitoringEntraIdIntegrationConfigUpdateAttributesAsSecurityMonitoringIntegrationConfigUpdateAttributes(v *SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes) SecurityMonitoringIntegrationConfigUpdateAttributes {
 	return SecurityMonitoringIntegrationConfigUpdateAttributes{SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes: v}
+}
+
+// SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributesAsSecurityMonitoringIntegrationConfigUpdateAttributes is a convenience function that returns SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes wrapped in SecurityMonitoringIntegrationConfigUpdateAttributes.
+func SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributesAsSecurityMonitoringIntegrationConfigUpdateAttributes(v *SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes) SecurityMonitoringIntegrationConfigUpdateAttributes {
+	return SecurityMonitoringIntegrationConfigUpdateAttributes{SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes: v}
 }
 
 // SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributesAsSecurityMonitoringIntegrationConfigUpdateAttributes is a convenience function that returns SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes wrapped in SecurityMonitoringIntegrationConfigUpdateAttributes.
@@ -100,6 +106,23 @@ func (obj *SecurityMonitoringIntegrationConfigUpdateAttributes) UnmarshalJSON(da
 		obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
 	}
 
+	// try to unmarshal data into SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes != nil && obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes)
+			if string(jsonSecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes = nil
+		}
+	} else {
+		obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes = nil
+	}
+
 	// try to unmarshal data into SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
 	err = datadog.Unmarshal(data, &obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes)
 	if err == nil {
@@ -139,6 +162,7 @@ func (obj *SecurityMonitoringIntegrationConfigUpdateAttributes) UnmarshalJSON(da
 		obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes = nil
 		obj.SecurityMonitoringOktaIntegrationConfigUpdateAttributes = nil
 		obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes = nil
+		obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes = nil
 		obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes = nil
 		obj.SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
@@ -158,6 +182,10 @@ func (obj SecurityMonitoringIntegrationConfigUpdateAttributes) MarshalJSON() ([]
 
 	if obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes != nil {
 		return datadog.Marshal(&obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes)
+	}
+
+	if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes != nil {
+		return datadog.Marshal(&obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes)
 	}
 
 	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes != nil {
@@ -186,6 +214,10 @@ func (obj *SecurityMonitoringIntegrationConfigUpdateAttributes) GetActualInstanc
 
 	if obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes != nil {
 		return obj.SecurityMonitoringEntraIdIntegrationConfigUpdateAttributes
+	}
+
+	if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes != nil {
+		return obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigUpdateAttributes
 	}
 
 	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes != nil {
