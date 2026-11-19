@@ -1,0 +1,28 @@
+// Resume bandit returns "The bandit is running." response
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+)
+
+func main() {
+	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
+	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.ResumeBandit", true)
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewExperimentsApi(apiClient)
+	r, err := api.ResumeBandit(ctx, uuid.MustParse("4b1f3c2e-8d5a-4f6b-9c7e-1a2b3c4d5e6f"))
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExperimentsApi.ResumeBandit`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}

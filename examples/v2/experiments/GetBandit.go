@@ -14,13 +14,17 @@ import (
 )
 
 func main() {
+	// there is a valid "bandit" in the system
+	BanditDataID := uuid.MustParse(os.Getenv("BANDIT_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateBandit", true)
 	configuration.SetUnstableOperationEnabled("v2.GetBandit", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewExperimentsApi(apiClient)
-	resp, r, err := api.GetBandit(ctx, uuid.MustParse("4b1f3c2e-8d5a-4f6b-9c7e-1a2b3c4d5e6f"))
+	resp, r, err := api.GetBandit(ctx, BanditDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExperimentsApi.GetBandit`: %v\n", err)
