@@ -60,29 +60,18 @@ type Service struct {
 
 // UseDelegatedTokenAuth sets the Authorization header with a delegated token if available in the context.
 func UseDelegatedTokenAuth(ctx context.Context, headerParams *map[string]string, delegatedTokenConfig *DelegatedTokenConfig) error {
-	if ctx != nil {
-		if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok {
-			if delegatedTokenCreds.DelegatedToken == "" || time.Now().After(delegatedTokenCreds.Expiration) {
-				newCreds, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
-				if err != nil {
-					log.Printf("Failed to retrieve delegated token: %v", err)
-					// Reset the token if authentication failed
-					delegatedTokenCreds.DelegatedToken = ""
-					return err
-				}
-				delegatedTokenCreds.DelegatedToken = newCreds.DelegatedToken
-				delegatedTokenCreds.DelegatedProof = newCreds.DelegatedProof
-				delegatedTokenCreds.OrgUUID = newCreds.OrgUUID
-				delegatedTokenCreds.Expiration = newCreds.Expiration
-			}
-			// If authentication succeeded use delegated token auth
-			if delegatedTokenCreds.DelegatedToken != "" {
-				(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenCreds.DelegatedToken)
-			}
-		} else {
-			return errors.New("DelegatedTokenCredentials not found in context")
-		}
+	if ctx == nil {
+		return errors.New("DelegatedTokenCredentials not found in context")
 	}
+	shared, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials)
+	if !ok || shared == nil {
+		return errors.New("DelegatedTokenCredentials not found in context")
+	}
+	creds, err := shared.authenticate(ctx, delegatedTokenConfig, false)
+	if err != nil {
+		return err
+	}
+	(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, creds.DelegatedToken)
 	return nil
 }
 
@@ -528,20 +517,88 @@ func (c *APIClient) GetDelegatedToken(ctx context.Context) (*DelegatedTokenCrede
 }
 
 func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
-	if config == nil {
-		return nil, nil
+	if ctx == nil {
+		return nil, errors.New("context is required for delegated token authentication")
 	}
-	creds, err := config.ProviderAuth.Authenticate(ctx, config)
-	if err != nil || creds == nil {
+	if shared, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok && shared != nil {
+		return shared.authenticate(ctx, config, true)
+	}
+	return authenticateDelegatedToken(ctx, config)
+}
+
+// delegatedTokenRefresh publishes one immutable exchange result to all waiters.
+type delegatedTokenRefresh struct {
+	done        chan struct{}
+	credentials *DelegatedTokenCredentials
+	err         error
+}
+
+// snapshot copies credential fields without copying their synchronization state.
+// The caller must hold c.mu or own an immutable exchange result.
+func (c *DelegatedTokenCredentials) snapshot() *DelegatedTokenCredentials {
+	return &DelegatedTokenCredentials{
+		OrgUUID: c.OrgUUID, DelegatedToken: c.DelegatedToken,
+		DelegatedProof: c.DelegatedProof, Expiration: c.Expiration,
+	}
+}
+
+func (c *DelegatedTokenCredentials) authenticate(ctx context.Context, config *DelegatedTokenConfig, force bool) (*DelegatedTokenCredentials, error) {
+	if err := ctx.Err(); err != nil {
 		return nil, err
 	}
+	c.mu.Lock()
+	if !force && c.DelegatedToken != "" && time.Now().Before(c.Expiration) {
+		creds := c.snapshot()
+		c.mu.Unlock()
+		return creds, nil
+	}
+	if refresh := c.refresh; refresh != nil {
+		c.mu.Unlock()
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-refresh.done:
+			if refresh.err != nil {
+				return nil, refresh.err
+			}
+			return refresh.credentials.snapshot(), nil
+		}
+	}
+	refresh := &delegatedTokenRefresh{done: make(chan struct{})}
+	c.refresh = refresh
+	c.mu.Unlock()
 
-	// If the context already has DelegatedTokenCredentials, update it with the new credentials
-	if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok {
-		delegatedTokenCreds.DelegatedToken = creds.DelegatedToken
-		delegatedTokenCreds.DelegatedProof = creds.DelegatedProof
-		delegatedTokenCreds.OrgUUID = creds.OrgUUID
-		delegatedTokenCreds.Expiration = creds.Expiration
+	creds, err := authenticateDelegatedToken(ctx, config)
+	c.mu.Lock()
+	if err == nil {
+		c.OrgUUID = creds.OrgUUID
+		c.DelegatedToken = creds.DelegatedToken
+		c.DelegatedProof = creds.DelegatedProof
+		c.Expiration = creds.Expiration
+		refresh.credentials = c.snapshot()
+	}
+	// Failed exchanges leave the previous credentials intact. Callers waiting
+	// for this exchange receive its error even if a later exchange succeeds.
+	refresh.err = err
+	c.refresh = nil
+	close(refresh.done)
+	c.mu.Unlock()
+	if err != nil {
+		return nil, err
+	}
+	return refresh.credentials.snapshot(), nil
+}
+
+func authenticateDelegatedToken(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
+	if config == nil || config.ProviderAuth == nil {
+		return nil, errors.New("delegated token provider is required")
+	}
+	creds, err := config.ProviderAuth.Authenticate(ctx, config)
+	if err != nil {
+		return nil, err
+	}
+	if creds == nil || creds.DelegatedToken == "" {
+		return nil, errors.New("delegated token provider returned empty credentials")
 	}
 	return creds, nil
 }
