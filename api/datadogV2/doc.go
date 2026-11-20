@@ -556,6 +556,7 @@
 //   - [DashboardsApi.ListDashboardsUsage]
 //   - [DataDeletionApi.CancelDataDeletionRequest]
 //   - [DataDeletionApi.CreateDataDeletionRequest]
+//   - [DataDeletionApi.ForceDataDeletionRequest]
 //   - [DataDeletionApi.GetDataDeletionRequests]
 //   - [DataObservabilityApi.GetDataObservabilityMonitorRunStatus]
 //   - [DataObservabilityApi.RunDataObservabilityMonitor]

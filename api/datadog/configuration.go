@@ -1270,6 +1270,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetAllDatasets":                                         false,
 			"v2.GetDataset":                                             false,
 			"v2.UpdateDataset":                                          false,
+			"v2.ForceDataDeletionRequest":                               false,
 			"v2.CreateDeploymentGate":                                   false,
 			"v2.CreateDeploymentRule":                                   false,
 			"v2.DeleteDeploymentGate":                                   false,
