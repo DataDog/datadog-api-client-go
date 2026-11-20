@@ -1,4 +1,4 @@
-// Acknowledge On-Call Page returns "Accepted." response
+// Acknowledge On-Call Page returns "No Content." response
 
 package main
 
