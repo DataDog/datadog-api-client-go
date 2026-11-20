@@ -1190,6 +1190,7 @@ func NewConfiguration() *Configuration {
 			"v2.ReorderSecurityFindingsAutomationSeverityModifierRules": false,
 			"v2.ReorderSecurityFindingsAutomationTicketCreationRules":   false,
 			"v2.RunHistoricalJob":                                       false,
+			"v2.SearchRemediationGroups":                                false,
 			"v2.SearchSecurityMonitoringHistsignals":                    false,
 			"v2.StartSecurityMonitoringBatchMigration":                  false,
 			"v2.StartSecurityMonitoringRuleProposal":                    false,

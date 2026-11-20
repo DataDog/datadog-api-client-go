@@ -16767,6 +16767,253 @@ func (a *SecurityMonitoringApi) RunHistoricalJob(ctx _context.Context, body RunH
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// SearchRemediationGroupsOptionalParameters holds optional parameters for SearchRemediationGroups.
+type SearchRemediationGroupsOptionalParameters struct {
+	FilterFindingType *[]RemediationGroupFindingType
+	FilterQuery       *string
+	Sort              *string
+	PageSize          *int64
+	PageNumber        *int64
+	Include           *RemediationGroupInclude
+}
+
+// NewSearchRemediationGroupsOptionalParameters creates an empty struct for parameters.
+func NewSearchRemediationGroupsOptionalParameters() *SearchRemediationGroupsOptionalParameters {
+	this := SearchRemediationGroupsOptionalParameters{}
+	return &this
+}
+
+// WithFilterFindingType sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithFilterFindingType(filterFindingType []RemediationGroupFindingType) *SearchRemediationGroupsOptionalParameters {
+	r.FilterFindingType = &filterFindingType
+	return r
+}
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithFilterQuery(filterQuery string) *SearchRemediationGroupsOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithSort(sort string) *SearchRemediationGroupsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithPageSize(pageSize int64) *SearchRemediationGroupsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithPageNumber(pageNumber int64) *SearchRemediationGroupsOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *SearchRemediationGroupsOptionalParameters) WithInclude(include RemediationGroupInclude) *SearchRemediationGroupsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// SearchRemediationGroups Search remediation groups.
+// Search the remediation groups of your organization. A remediation group gathers the open security findings
+// that one change fixes, such as updating a package in a repository or upgrading an image.
+//
+// Each group comes from a grouping definition, which sets the finding type it covers and the kind object the
+// group returns:
+//
+// | Grouping definition    | Finding type                       | Kind object      |
+// | ---------------------- | ---------------------------------- | ---------------- |
+// | `sca.package_update`   | `library_vulnerability`            | `package_update` |
+// | `cloudvm.image_update` | `host_and_container_vulnerability` | `image_update`   |
+//
+// Groups are computed from the attributes of security findings, described in the
+// [security findings schema](https://docs.datadoghq.com/security/guide/findings-schema/). The description of
+// each kind object lists the findings its grouping definition reads and the attribute each field comes from.
+//
+// The search includes all open findings, regardless of when they were first detected.
+//
+// This endpoint requires the `cases_read` permission and either the `security_monitoring_findings_read` or
+// `appsec_vm_read` permission.
+func (a *SecurityMonitoringApi) SearchRemediationGroups(ctx _context.Context, o ...SearchRemediationGroupsOptionalParameters) (SearchRemediationGroupsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SearchRemediationGroupsResponse
+		optionalParams      SearchRemediationGroupsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchRemediationGroupsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.SearchRemediationGroups"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.SearchRemediationGroups")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/remediation_groups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterFindingType != nil {
+		t := *optionalParams.FilterFindingType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[finding_type]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[finding_type]", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchRemediationGroupsWithPagination provides a paginated version of SearchRemediationGroups returning a channel with all items.
+func (a *SecurityMonitoringApi) SearchRemediationGroupsWithPagination(ctx _context.Context, o ...SearchRemediationGroupsOptionalParameters) (<-chan datadog.PaginationResult[RemediationGroupData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(50)
+	if len(o) == 0 {
+		o = append(o, SearchRemediationGroupsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(1)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[RemediationGroupData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchRemediationGroups(ctx, o...)
+			if err != nil {
+				var returnItem RemediationGroupData
+				items <- datadog.PaginationResult[RemediationGroupData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[RemediationGroupData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // SearchSecurityFindings Search security findings.
 // Get a list of security findings that match a search query. [See the schema for security findings](https://docs.datadoghq.com/security/guide/findings-schema/).
 //
