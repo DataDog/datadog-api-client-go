@@ -10,46 +10,46 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterData An exclusion filter.
-type RumExclusionFilterData struct {
+// RUMExclusionFilterData An exclusion filter.
+type RUMExclusionFilterData struct {
 	// The attributes of an exclusion filter.
-	Attributes *RumExclusionFilterAttributes `json:"attributes,omitempty"`
+	Attributes *RUMExclusionFilterAttributes `json:"attributes,omitempty"`
 	// The ID of the exclusion filter.
 	Id string `json:"id"`
 	// Metadata about the exclusion filter.
-	Meta *RumExclusionFilterMeta `json:"meta,omitempty"`
+	Meta *RUMExclusionFilterMeta `json:"meta,omitempty"`
 	// The resource type. The value must be `exclusion_filters`.
-	Type RumExclusionFilterType `json:"type"`
+	Type RUMExclusionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFilterData instantiates a new RumExclusionFilterData object.
+// NewRUMExclusionFilterData instantiates a new RUMExclusionFilterData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFilterData(id string, typeVar RumExclusionFilterType) *RumExclusionFilterData {
-	this := RumExclusionFilterData{}
+func NewRUMExclusionFilterData(id string, typeVar RUMExclusionFilterType) *RUMExclusionFilterData {
+	this := RUMExclusionFilterData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumExclusionFilterDataWithDefaults instantiates a new RumExclusionFilterData object.
+// NewRUMExclusionFilterDataWithDefaults instantiates a new RUMExclusionFilterData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFilterDataWithDefaults() *RumExclusionFilterData {
-	this := RumExclusionFilterData{}
-	var typeVar RumExclusionFilterType = RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS
+func NewRUMExclusionFilterDataWithDefaults() *RUMExclusionFilterData {
+	this := RUMExclusionFilterData{}
+	var typeVar RUMExclusionFilterType = RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *RumExclusionFilterData) GetAttributes() RumExclusionFilterAttributes {
+func (o *RUMExclusionFilterData) GetAttributes() RUMExclusionFilterAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret RumExclusionFilterAttributes
+		var ret RUMExclusionFilterAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -57,7 +57,7 @@ func (o *RumExclusionFilterData) GetAttributes() RumExclusionFilterAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterData) GetAttributesOk() (*RumExclusionFilterAttributes, bool) {
+func (o *RUMExclusionFilterData) GetAttributesOk() (*RUMExclusionFilterAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -65,17 +65,17 @@ func (o *RumExclusionFilterData) GetAttributesOk() (*RumExclusionFilterAttribute
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *RumExclusionFilterData) HasAttributes() bool {
+func (o *RUMExclusionFilterData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given RumExclusionFilterAttributes and assigns it to the Attributes field.
-func (o *RumExclusionFilterData) SetAttributes(v RumExclusionFilterAttributes) {
+// SetAttributes gets a reference to the given RUMExclusionFilterAttributes and assigns it to the Attributes field.
+func (o *RUMExclusionFilterData) SetAttributes(v RUMExclusionFilterAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value.
-func (o *RumExclusionFilterData) GetId() string {
+func (o *RUMExclusionFilterData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *RumExclusionFilterData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterData) GetIdOk() (*string, bool) {
+func (o *RUMExclusionFilterData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *RumExclusionFilterData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumExclusionFilterData) SetId(v string) {
+func (o *RUMExclusionFilterData) SetId(v string) {
 	o.Id = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *RumExclusionFilterData) GetMeta() RumExclusionFilterMeta {
+func (o *RUMExclusionFilterData) GetMeta() RUMExclusionFilterMeta {
 	if o == nil || o.Meta == nil {
-		var ret RumExclusionFilterMeta
+		var ret RUMExclusionFilterMeta
 		return ret
 	}
 	return *o.Meta
@@ -108,7 +108,7 @@ func (o *RumExclusionFilterData) GetMeta() RumExclusionFilterMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterData) GetMetaOk() (*RumExclusionFilterMeta, bool) {
+func (o *RUMExclusionFilterData) GetMetaOk() (*RUMExclusionFilterMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -116,19 +116,19 @@ func (o *RumExclusionFilterData) GetMetaOk() (*RumExclusionFilterMeta, bool) {
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *RumExclusionFilterData) HasMeta() bool {
+func (o *RUMExclusionFilterData) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given RumExclusionFilterMeta and assigns it to the Meta field.
-func (o *RumExclusionFilterData) SetMeta(v RumExclusionFilterMeta) {
+// SetMeta gets a reference to the given RUMExclusionFilterMeta and assigns it to the Meta field.
+func (o *RUMExclusionFilterData) SetMeta(v RUMExclusionFilterMeta) {
 	o.Meta = &v
 }
 
 // GetType returns the Type field value.
-func (o *RumExclusionFilterData) GetType() RumExclusionFilterType {
+func (o *RUMExclusionFilterData) GetType() RUMExclusionFilterType {
 	if o == nil {
-		var ret RumExclusionFilterType
+		var ret RUMExclusionFilterType
 		return ret
 	}
 	return o.Type
@@ -136,7 +136,7 @@ func (o *RumExclusionFilterData) GetType() RumExclusionFilterType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterData) GetTypeOk() (*RumExclusionFilterType, bool) {
+func (o *RUMExclusionFilterData) GetTypeOk() (*RUMExclusionFilterType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,12 +144,12 @@ func (o *RumExclusionFilterData) GetTypeOk() (*RumExclusionFilterType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumExclusionFilterData) SetType(v RumExclusionFilterType) {
+func (o *RUMExclusionFilterData) SetType(v RUMExclusionFilterType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFilterData) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFilterData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -170,12 +170,12 @@ func (o RumExclusionFilterData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFilterData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFilterData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumExclusionFilterAttributes `json:"attributes,omitempty"`
+		Attributes *RUMExclusionFilterAttributes `json:"attributes,omitempty"`
 		Id         *string                       `json:"id"`
-		Meta       *RumExclusionFilterMeta       `json:"meta,omitempty"`
-		Type       *RumExclusionFilterType       `json:"type"`
+		Meta       *RUMExclusionFilterMeta       `json:"meta,omitempty"`
+		Type       *RUMExclusionFilterType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

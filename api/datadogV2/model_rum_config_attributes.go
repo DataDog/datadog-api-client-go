@@ -11,8 +11,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumConfigAttributes Attributes of the RUM configuration.
-type RumConfigAttributes struct {
+// RUMConfigAttributes Attributes of the RUM configuration.
+type RUMConfigAttributes struct {
 	// Whether the RUM configuration is disabled for the organization.
 	Disabled *bool `json:"disabled,omitempty"`
 	// Whether application tags are enforced for the RUM applications in the organization.
@@ -36,27 +36,27 @@ type RumConfigAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumConfigAttributes instantiates a new RumConfigAttributes object.
+// NewRUMConfigAttributes instantiates a new RUMConfigAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumConfigAttributes(enforcedApplicationTags bool, retentionFiltersEnabled bool) *RumConfigAttributes {
-	this := RumConfigAttributes{}
+func NewRUMConfigAttributes(enforcedApplicationTags bool, retentionFiltersEnabled bool) *RUMConfigAttributes {
+	this := RUMConfigAttributes{}
 	this.EnforcedApplicationTags = enforcedApplicationTags
 	this.RetentionFiltersEnabled = retentionFiltersEnabled
 	return &this
 }
 
-// NewRumConfigAttributesWithDefaults instantiates a new RumConfigAttributes object.
+// NewRUMConfigAttributesWithDefaults instantiates a new RUMConfigAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumConfigAttributesWithDefaults() *RumConfigAttributes {
-	this := RumConfigAttributes{}
+func NewRUMConfigAttributesWithDefaults() *RUMConfigAttributes {
+	this := RUMConfigAttributes{}
 	return &this
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetDisabled() bool {
+func (o *RUMConfigAttributes) GetDisabled() bool {
 	if o == nil || o.Disabled == nil {
 		var ret bool
 		return ret
@@ -66,7 +66,7 @@ func (o *RumConfigAttributes) GetDisabled() bool {
 
 // GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetDisabledOk() (*bool, bool) {
+func (o *RUMConfigAttributes) GetDisabledOk() (*bool, bool) {
 	if o == nil || o.Disabled == nil {
 		return nil, false
 	}
@@ -74,17 +74,17 @@ func (o *RumConfigAttributes) GetDisabledOk() (*bool, bool) {
 }
 
 // HasDisabled returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasDisabled() bool {
+func (o *RUMConfigAttributes) HasDisabled() bool {
 	return o != nil && o.Disabled != nil
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
-func (o *RumConfigAttributes) SetDisabled(v bool) {
+func (o *RUMConfigAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
 // GetEnforcedApplicationTags returns the EnforcedApplicationTags field value.
-func (o *RumConfigAttributes) GetEnforcedApplicationTags() bool {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTags() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -94,7 +94,7 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTags() bool {
 
 // GetEnforcedApplicationTagsOk returns a tuple with the EnforcedApplicationTags field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetEnforcedApplicationTagsOk() (*bool, bool) {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTagsOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,12 +102,12 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTagsOk() (*bool, bool) {
 }
 
 // SetEnforcedApplicationTags sets field value.
-func (o *RumConfigAttributes) SetEnforcedApplicationTags(v bool) {
+func (o *RUMConfigAttributes) SetEnforcedApplicationTags(v bool) {
 	o.EnforcedApplicationTags = v
 }
 
 // GetEnforcedApplicationTagsUpdatedAt returns the EnforcedApplicationTagsUpdatedAt field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedAt() time.Time {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTagsUpdatedAt() time.Time {
 	if o == nil || o.EnforcedApplicationTagsUpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -117,7 +117,7 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedAt() time.Time {
 
 // GetEnforcedApplicationTagsUpdatedAtOk returns a tuple with the EnforcedApplicationTagsUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTagsUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.EnforcedApplicationTagsUpdatedAt == nil {
 		return nil, false
 	}
@@ -125,17 +125,17 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedAtOk() (*time.Tim
 }
 
 // HasEnforcedApplicationTagsUpdatedAt returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasEnforcedApplicationTagsUpdatedAt() bool {
+func (o *RUMConfigAttributes) HasEnforcedApplicationTagsUpdatedAt() bool {
 	return o != nil && o.EnforcedApplicationTagsUpdatedAt != nil
 }
 
 // SetEnforcedApplicationTagsUpdatedAt gets a reference to the given time.Time and assigns it to the EnforcedApplicationTagsUpdatedAt field.
-func (o *RumConfigAttributes) SetEnforcedApplicationTagsUpdatedAt(v time.Time) {
+func (o *RUMConfigAttributes) SetEnforcedApplicationTagsUpdatedAt(v time.Time) {
 	o.EnforcedApplicationTagsUpdatedAt = &v
 }
 
 // GetEnforcedApplicationTagsUpdatedBy returns the EnforcedApplicationTagsUpdatedBy field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedBy() string {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTagsUpdatedBy() string {
 	if o == nil || o.EnforcedApplicationTagsUpdatedBy == nil {
 		var ret string
 		return ret
@@ -145,7 +145,7 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedBy() string {
 
 // GetEnforcedApplicationTagsUpdatedByOk returns a tuple with the EnforcedApplicationTagsUpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedByOk() (*string, bool) {
+func (o *RUMConfigAttributes) GetEnforcedApplicationTagsUpdatedByOk() (*string, bool) {
 	if o == nil || o.EnforcedApplicationTagsUpdatedBy == nil {
 		return nil, false
 	}
@@ -153,17 +153,17 @@ func (o *RumConfigAttributes) GetEnforcedApplicationTagsUpdatedByOk() (*string, 
 }
 
 // HasEnforcedApplicationTagsUpdatedBy returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasEnforcedApplicationTagsUpdatedBy() bool {
+func (o *RUMConfigAttributes) HasEnforcedApplicationTagsUpdatedBy() bool {
 	return o != nil && o.EnforcedApplicationTagsUpdatedBy != nil
 }
 
 // SetEnforcedApplicationTagsUpdatedBy gets a reference to the given string and assigns it to the EnforcedApplicationTagsUpdatedBy field.
-func (o *RumConfigAttributes) SetEnforcedApplicationTagsUpdatedBy(v string) {
+func (o *RUMConfigAttributes) SetEnforcedApplicationTagsUpdatedBy(v string) {
 	o.EnforcedApplicationTagsUpdatedBy = &v
 }
 
 // GetOotbMetricsVersion returns the OotbMetricsVersion field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetOotbMetricsVersion() int64 {
+func (o *RUMConfigAttributes) GetOotbMetricsVersion() int64 {
 	if o == nil || o.OotbMetricsVersion == nil {
 		var ret int64
 		return ret
@@ -173,7 +173,7 @@ func (o *RumConfigAttributes) GetOotbMetricsVersion() int64 {
 
 // GetOotbMetricsVersionOk returns a tuple with the OotbMetricsVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetOotbMetricsVersionOk() (*int64, bool) {
+func (o *RUMConfigAttributes) GetOotbMetricsVersionOk() (*int64, bool) {
 	if o == nil || o.OotbMetricsVersion == nil {
 		return nil, false
 	}
@@ -181,17 +181,17 @@ func (o *RumConfigAttributes) GetOotbMetricsVersionOk() (*int64, bool) {
 }
 
 // HasOotbMetricsVersion returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasOotbMetricsVersion() bool {
+func (o *RUMConfigAttributes) HasOotbMetricsVersion() bool {
 	return o != nil && o.OotbMetricsVersion != nil
 }
 
 // SetOotbMetricsVersion gets a reference to the given int64 and assigns it to the OotbMetricsVersion field.
-func (o *RumConfigAttributes) SetOotbMetricsVersion(v int64) {
+func (o *RUMConfigAttributes) SetOotbMetricsVersion(v int64) {
 	o.OotbMetricsVersion = &v
 }
 
 // GetOotbMetricsVersionInstalledAt returns the OotbMetricsVersionInstalledAt field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetOotbMetricsVersionInstalledAt() time.Time {
+func (o *RUMConfigAttributes) GetOotbMetricsVersionInstalledAt() time.Time {
 	if o == nil || o.OotbMetricsVersionInstalledAt == nil {
 		var ret time.Time
 		return ret
@@ -201,7 +201,7 @@ func (o *RumConfigAttributes) GetOotbMetricsVersionInstalledAt() time.Time {
 
 // GetOotbMetricsVersionInstalledAtOk returns a tuple with the OotbMetricsVersionInstalledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetOotbMetricsVersionInstalledAtOk() (*time.Time, bool) {
+func (o *RUMConfigAttributes) GetOotbMetricsVersionInstalledAtOk() (*time.Time, bool) {
 	if o == nil || o.OotbMetricsVersionInstalledAt == nil {
 		return nil, false
 	}
@@ -209,17 +209,17 @@ func (o *RumConfigAttributes) GetOotbMetricsVersionInstalledAtOk() (*time.Time, 
 }
 
 // HasOotbMetricsVersionInstalledAt returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasOotbMetricsVersionInstalledAt() bool {
+func (o *RUMConfigAttributes) HasOotbMetricsVersionInstalledAt() bool {
 	return o != nil && o.OotbMetricsVersionInstalledAt != nil
 }
 
 // SetOotbMetricsVersionInstalledAt gets a reference to the given time.Time and assigns it to the OotbMetricsVersionInstalledAt field.
-func (o *RumConfigAttributes) SetOotbMetricsVersionInstalledAt(v time.Time) {
+func (o *RUMConfigAttributes) SetOotbMetricsVersionInstalledAt(v time.Time) {
 	o.OotbMetricsVersionInstalledAt = &v
 }
 
 // GetRetentionFiltersEnabled returns the RetentionFiltersEnabled field value.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabled() bool {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -229,7 +229,7 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabled() bool {
 
 // GetRetentionFiltersEnabledOk returns a tuple with the RetentionFiltersEnabled field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabledOk() (*bool, bool) {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,12 +237,12 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabledOk() (*bool, bool) {
 }
 
 // SetRetentionFiltersEnabled sets field value.
-func (o *RumConfigAttributes) SetRetentionFiltersEnabled(v bool) {
+func (o *RUMConfigAttributes) SetRetentionFiltersEnabled(v bool) {
 	o.RetentionFiltersEnabled = v
 }
 
 // GetRetentionFiltersEnabledUpdatedAt returns the RetentionFiltersEnabledUpdatedAt field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedAt() time.Time {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabledUpdatedAt() time.Time {
 	if o == nil || o.RetentionFiltersEnabledUpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -252,7 +252,7 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedAt() time.Time {
 
 // GetRetentionFiltersEnabledUpdatedAtOk returns a tuple with the RetentionFiltersEnabledUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabledUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.RetentionFiltersEnabledUpdatedAt == nil {
 		return nil, false
 	}
@@ -260,17 +260,17 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedAtOk() (*time.Tim
 }
 
 // HasRetentionFiltersEnabledUpdatedAt returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasRetentionFiltersEnabledUpdatedAt() bool {
+func (o *RUMConfigAttributes) HasRetentionFiltersEnabledUpdatedAt() bool {
 	return o != nil && o.RetentionFiltersEnabledUpdatedAt != nil
 }
 
 // SetRetentionFiltersEnabledUpdatedAt gets a reference to the given time.Time and assigns it to the RetentionFiltersEnabledUpdatedAt field.
-func (o *RumConfigAttributes) SetRetentionFiltersEnabledUpdatedAt(v time.Time) {
+func (o *RUMConfigAttributes) SetRetentionFiltersEnabledUpdatedAt(v time.Time) {
 	o.RetentionFiltersEnabledUpdatedAt = &v
 }
 
 // GetRetentionFiltersEnabledUpdatedBy returns the RetentionFiltersEnabledUpdatedBy field value if set, zero value otherwise.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedBy() string {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabledUpdatedBy() string {
 	if o == nil || o.RetentionFiltersEnabledUpdatedBy == nil {
 		var ret string
 		return ret
@@ -280,7 +280,7 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedBy() string {
 
 // GetRetentionFiltersEnabledUpdatedByOk returns a tuple with the RetentionFiltersEnabledUpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedByOk() (*string, bool) {
+func (o *RUMConfigAttributes) GetRetentionFiltersEnabledUpdatedByOk() (*string, bool) {
 	if o == nil || o.RetentionFiltersEnabledUpdatedBy == nil {
 		return nil, false
 	}
@@ -288,17 +288,17 @@ func (o *RumConfigAttributes) GetRetentionFiltersEnabledUpdatedByOk() (*string, 
 }
 
 // HasRetentionFiltersEnabledUpdatedBy returns a boolean if a field has been set.
-func (o *RumConfigAttributes) HasRetentionFiltersEnabledUpdatedBy() bool {
+func (o *RUMConfigAttributes) HasRetentionFiltersEnabledUpdatedBy() bool {
 	return o != nil && o.RetentionFiltersEnabledUpdatedBy != nil
 }
 
 // SetRetentionFiltersEnabledUpdatedBy gets a reference to the given string and assigns it to the RetentionFiltersEnabledUpdatedBy field.
-func (o *RumConfigAttributes) SetRetentionFiltersEnabledUpdatedBy(v string) {
+func (o *RUMConfigAttributes) SetRetentionFiltersEnabledUpdatedBy(v string) {
 	o.RetentionFiltersEnabledUpdatedBy = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumConfigAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMConfigAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -346,7 +346,7 @@ func (o RumConfigAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Disabled                         *bool      `json:"disabled,omitempty"`
 		EnforcedApplicationTags          *bool      `json:"enforced_application_tags"`

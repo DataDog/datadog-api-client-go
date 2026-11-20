@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaWindowType The window type over which the session limit is enforced.
-type RumRetentionQuotaWindowType string
+// RUMRetentionQuotaWindowType The window type over which the session limit is enforced.
+type RUMRetentionQuotaWindowType string
 
-// List of RumRetentionQuotaWindowType.
+// List of RUMRetentionQuotaWindowType.
 const (
-	RUMRETENTIONQUOTAWINDOWTYPE_DAILY RumRetentionQuotaWindowType = "daily"
+	RUMRETENTIONQUOTAWINDOWTYPE_DAILY RUMRetentionQuotaWindowType = "daily"
 )
 
-var allowedRumRetentionQuotaWindowTypeEnumValues = []RumRetentionQuotaWindowType{
+var allowedRUMRetentionQuotaWindowTypeEnumValues = []RUMRetentionQuotaWindowType{
 	RUMRETENTIONQUOTAWINDOWTYPE_DAILY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionQuotaWindowType) GetAllowedValues() []RumRetentionQuotaWindowType {
-	return allowedRumRetentionQuotaWindowTypeEnumValues
+func (v *RUMRetentionQuotaWindowType) GetAllowedValues() []RUMRetentionQuotaWindowType {
+	return allowedRUMRetentionQuotaWindowTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionQuotaWindowType) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionQuotaWindowType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionQuotaWindowType(value)
+	*v = RUMRetentionQuotaWindowType(value)
 	return nil
 }
 
-// NewRumRetentionQuotaWindowTypeFromValue returns a pointer to a valid RumRetentionQuotaWindowType
+// NewRUMRetentionQuotaWindowTypeFromValue returns a pointer to a valid RUMRetentionQuotaWindowType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionQuotaWindowTypeFromValue(v string) (*RumRetentionQuotaWindowType, error) {
-	ev := RumRetentionQuotaWindowType(v)
+func NewRUMRetentionQuotaWindowTypeFromValue(v string) (*RUMRetentionQuotaWindowType, error) {
+	ev := RUMRetentionQuotaWindowType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionQuotaWindowType: valid values are %v", v, allowedRumRetentionQuotaWindowTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionQuotaWindowType: valid values are %v", v, allowedRUMRetentionQuotaWindowTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionQuotaWindowType) IsValid() bool {
-	for _, existing := range allowedRumRetentionQuotaWindowTypeEnumValues {
+func (v RUMRetentionQuotaWindowType) IsValid() bool {
+	for _, existing := range allowedRUMRetentionQuotaWindowTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRetentionQuotaWindowType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionQuotaWindowType value.
-func (v RumRetentionQuotaWindowType) Ptr() *RumRetentionQuotaWindowType {
+// Ptr returns reference to RUMRetentionQuotaWindowType value.
+func (v RUMRetentionQuotaWindowType) Ptr() *RUMRetentionQuotaWindowType {
 	return &v
 }

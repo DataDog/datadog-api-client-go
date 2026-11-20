@@ -10,38 +10,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUniqueness The rule to count updatable events.
+// RUMMetricUniqueness The rule to count updatable events.
 // Required when `event_type` is `session` or `view`, and must be omitted for other event types. It cannot be changed after creation.
-type RumMetricUniqueness struct {
+type RUMMetricUniqueness struct {
 	// When to count updatable events. `match` when the event is first seen, or `end` when the event is complete. Sessions and views are updated over time, and each one is counted once.
-	When RumMetricUniquenessWhen `json:"when"`
+	When RUMMetricUniquenessWhen `json:"when"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricUniqueness instantiates a new RumMetricUniqueness object.
+// NewRUMMetricUniqueness instantiates a new RUMMetricUniqueness object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricUniqueness(when RumMetricUniquenessWhen) *RumMetricUniqueness {
-	this := RumMetricUniqueness{}
+func NewRUMMetricUniqueness(when RUMMetricUniquenessWhen) *RUMMetricUniqueness {
+	this := RUMMetricUniqueness{}
 	this.When = when
 	return &this
 }
 
-// NewRumMetricUniquenessWithDefaults instantiates a new RumMetricUniqueness object.
+// NewRUMMetricUniquenessWithDefaults instantiates a new RUMMetricUniqueness object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricUniquenessWithDefaults() *RumMetricUniqueness {
-	this := RumMetricUniqueness{}
+func NewRUMMetricUniquenessWithDefaults() *RUMMetricUniqueness {
+	this := RUMMetricUniqueness{}
 	return &this
 }
 
 // GetWhen returns the When field value.
-func (o *RumMetricUniqueness) GetWhen() RumMetricUniquenessWhen {
+func (o *RUMMetricUniqueness) GetWhen() RUMMetricUniquenessWhen {
 	if o == nil {
-		var ret RumMetricUniquenessWhen
+		var ret RUMMetricUniquenessWhen
 		return ret
 	}
 	return o.When
@@ -49,7 +49,7 @@ func (o *RumMetricUniqueness) GetWhen() RumMetricUniquenessWhen {
 
 // GetWhenOk returns a tuple with the When field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricUniqueness) GetWhenOk() (*RumMetricUniquenessWhen, bool) {
+func (o *RUMMetricUniqueness) GetWhenOk() (*RUMMetricUniquenessWhen, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -57,12 +57,12 @@ func (o *RumMetricUniqueness) GetWhenOk() (*RumMetricUniquenessWhen, bool) {
 }
 
 // SetWhen sets field value.
-func (o *RumMetricUniqueness) SetWhen(v RumMetricUniquenessWhen) {
+func (o *RUMMetricUniqueness) SetWhen(v RUMMetricUniquenessWhen) {
 	o.When = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricUniqueness) MarshalJSON() ([]byte, error) {
+func (o RUMMetricUniqueness) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -76,9 +76,9 @@ func (o RumMetricUniqueness) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricUniqueness) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricUniqueness) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		When *RumMetricUniquenessWhen `json:"when"`
+		When *RUMMetricUniquenessWhen `json:"when"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

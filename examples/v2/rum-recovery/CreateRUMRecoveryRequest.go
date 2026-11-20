@@ -14,12 +14,12 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRecoveryCreateRequest{
-		Data: datadogV2.RumRecoveryCreateData{
-			Attributes: datadogV2.RumRecoveryCreateAttributes{
-				RumRecoverySessionsCreateAttributes: &datadogV2.RumRecoverySessionsCreateAttributes{
+	body := datadogV2.RUMRecoveryCreateRequest{
+		Data: datadogV2.RUMRecoveryCreateData{
+			Attributes: datadogV2.RUMRecoveryCreateAttributes{
+				RUMRecoverySessionsCreateAttributes: &datadogV2.RUMRecoverySessionsCreateAttributes{
 					RequestType: datadogV2.RUMRECOVERYSESSIONSREQUESTTYPE_SESSIONS.Ptr(),
-					Sessions: []datadogV2.RumRecoverySessionInput{
+					Sessions: []datadogV2.RUMRecoverySessionInput{
 						{
 							ApplicationId: uuid.MustParse("a33671aa-24fd-4dcd-ba4b-5bbdbafe7690"),
 							SessionId:     uuid.MustParse("00000000-0000-4000-8000-000000000001"),

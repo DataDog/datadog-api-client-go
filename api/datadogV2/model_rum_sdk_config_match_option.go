@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigMatchOption A match option used for URL or origin pattern matching.
-type RumSdkConfigMatchOption struct {
+// RUMSdkConfigMatchOption A match option used for URL or origin pattern matching.
+type RUMSdkConfigMatchOption struct {
 	// The type of match pattern, either a literal string or a regex.
-	RcSerializedType RumSdkConfigMatchOptionSerializedType `json:"rc_serialized_type"`
+	RcSerializedType RUMSdkConfigMatchOptionSerializedType `json:"rc_serialized_type"`
 	// The value to match against.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,29 +21,29 @@ type RumSdkConfigMatchOption struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigMatchOption instantiates a new RumSdkConfigMatchOption object.
+// NewRUMSdkConfigMatchOption instantiates a new RUMSdkConfigMatchOption object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigMatchOption(rcSerializedType RumSdkConfigMatchOptionSerializedType, value string) *RumSdkConfigMatchOption {
-	this := RumSdkConfigMatchOption{}
+func NewRUMSdkConfigMatchOption(rcSerializedType RUMSdkConfigMatchOptionSerializedType, value string) *RUMSdkConfigMatchOption {
+	this := RUMSdkConfigMatchOption{}
 	this.RcSerializedType = rcSerializedType
 	this.Value = value
 	return &this
 }
 
-// NewRumSdkConfigMatchOptionWithDefaults instantiates a new RumSdkConfigMatchOption object.
+// NewRUMSdkConfigMatchOptionWithDefaults instantiates a new RUMSdkConfigMatchOption object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigMatchOptionWithDefaults() *RumSdkConfigMatchOption {
-	this := RumSdkConfigMatchOption{}
+func NewRUMSdkConfigMatchOptionWithDefaults() *RUMSdkConfigMatchOption {
+	this := RUMSdkConfigMatchOption{}
 	return &this
 }
 
 // GetRcSerializedType returns the RcSerializedType field value.
-func (o *RumSdkConfigMatchOption) GetRcSerializedType() RumSdkConfigMatchOptionSerializedType {
+func (o *RUMSdkConfigMatchOption) GetRcSerializedType() RUMSdkConfigMatchOptionSerializedType {
 	if o == nil {
-		var ret RumSdkConfigMatchOptionSerializedType
+		var ret RUMSdkConfigMatchOptionSerializedType
 		return ret
 	}
 	return o.RcSerializedType
@@ -51,7 +51,7 @@ func (o *RumSdkConfigMatchOption) GetRcSerializedType() RumSdkConfigMatchOptionS
 
 // GetRcSerializedTypeOk returns a tuple with the RcSerializedType field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigMatchOption) GetRcSerializedTypeOk() (*RumSdkConfigMatchOptionSerializedType, bool) {
+func (o *RUMSdkConfigMatchOption) GetRcSerializedTypeOk() (*RUMSdkConfigMatchOptionSerializedType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,12 +59,12 @@ func (o *RumSdkConfigMatchOption) GetRcSerializedTypeOk() (*RumSdkConfigMatchOpt
 }
 
 // SetRcSerializedType sets field value.
-func (o *RumSdkConfigMatchOption) SetRcSerializedType(v RumSdkConfigMatchOptionSerializedType) {
+func (o *RUMSdkConfigMatchOption) SetRcSerializedType(v RUMSdkConfigMatchOptionSerializedType) {
 	o.RcSerializedType = v
 }
 
 // GetValue returns the Value field value.
-func (o *RumSdkConfigMatchOption) GetValue() string {
+func (o *RUMSdkConfigMatchOption) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -74,7 +74,7 @@ func (o *RumSdkConfigMatchOption) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigMatchOption) GetValueOk() (*string, bool) {
+func (o *RUMSdkConfigMatchOption) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumSdkConfigMatchOption) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value.
-func (o *RumSdkConfigMatchOption) SetValue(v string) {
+func (o *RUMSdkConfigMatchOption) SetValue(v string) {
 	o.Value = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigMatchOption) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigMatchOption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,9 +102,9 @@ func (o RumSdkConfigMatchOption) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigMatchOption) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigMatchOption) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RcSerializedType *RumSdkConfigMatchOptionSerializedType `json:"rc_serialized_type"`
+		RcSerializedType *RUMSdkConfigMatchOptionSerializedType `json:"rc_serialized_type"`
 		Value            *string                                `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

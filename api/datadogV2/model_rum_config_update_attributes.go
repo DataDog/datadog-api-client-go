@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumConfigUpdateAttributes Attributes of the RUM configuration to update.
-type RumConfigUpdateAttributes struct {
+// RUMConfigUpdateAttributes Attributes of the RUM configuration to update.
+type RUMConfigUpdateAttributes struct {
 	// Whether application tags are enforced for the RUM applications in the organization.
 	EnforcedApplicationTags bool `json:"enforced_application_tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,26 +19,26 @@ type RumConfigUpdateAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumConfigUpdateAttributes instantiates a new RumConfigUpdateAttributes object.
+// NewRUMConfigUpdateAttributes instantiates a new RUMConfigUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumConfigUpdateAttributes(enforcedApplicationTags bool) *RumConfigUpdateAttributes {
-	this := RumConfigUpdateAttributes{}
+func NewRUMConfigUpdateAttributes(enforcedApplicationTags bool) *RUMConfigUpdateAttributes {
+	this := RUMConfigUpdateAttributes{}
 	this.EnforcedApplicationTags = enforcedApplicationTags
 	return &this
 }
 
-// NewRumConfigUpdateAttributesWithDefaults instantiates a new RumConfigUpdateAttributes object.
+// NewRUMConfigUpdateAttributesWithDefaults instantiates a new RUMConfigUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumConfigUpdateAttributesWithDefaults() *RumConfigUpdateAttributes {
-	this := RumConfigUpdateAttributes{}
+func NewRUMConfigUpdateAttributesWithDefaults() *RUMConfigUpdateAttributes {
+	this := RUMConfigUpdateAttributes{}
 	return &this
 }
 
 // GetEnforcedApplicationTags returns the EnforcedApplicationTags field value.
-func (o *RumConfigUpdateAttributes) GetEnforcedApplicationTags() bool {
+func (o *RUMConfigUpdateAttributes) GetEnforcedApplicationTags() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -48,7 +48,7 @@ func (o *RumConfigUpdateAttributes) GetEnforcedApplicationTags() bool {
 
 // GetEnforcedApplicationTagsOk returns a tuple with the EnforcedApplicationTags field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigUpdateAttributes) GetEnforcedApplicationTagsOk() (*bool, bool) {
+func (o *RUMConfigUpdateAttributes) GetEnforcedApplicationTagsOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumConfigUpdateAttributes) GetEnforcedApplicationTagsOk() (*bool, bool)
 }
 
 // SetEnforcedApplicationTags sets field value.
-func (o *RumConfigUpdateAttributes) SetEnforcedApplicationTags(v bool) {
+func (o *RUMConfigUpdateAttributes) SetEnforcedApplicationTags(v bool) {
 	o.EnforcedApplicationTags = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,7 +75,7 @@ func (o RumConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		EnforcedApplicationTags *bool `json:"enforced_application_tags"`
 	}{}

@@ -10,22 +10,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryDiscoveryStatus Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
-type RumRecoveryDiscoveryStatus string
+// RUMRecoveryDiscoveryStatus Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
+type RUMRecoveryDiscoveryStatus string
 
-// List of RumRecoveryDiscoveryStatus.
+// List of RUMRecoveryDiscoveryStatus.
 const (
-	RUMRECOVERYDISCOVERYSTATUS_QUEUED     RumRecoveryDiscoveryStatus = "QUEUED"
-	RUMRECOVERYDISCOVERYSTATUS_PENDING    RumRecoveryDiscoveryStatus = "PENDING"
-	RUMRECOVERYDISCOVERYSTATUS_SLICING    RumRecoveryDiscoveryStatus = "SLICING"
-	RUMRECOVERYDISCOVERYSTATUS_DISCOVERED RumRecoveryDiscoveryStatus = "DISCOVERED"
-	RUMRECOVERYDISCOVERYSTATUS_PROCESSING RumRecoveryDiscoveryStatus = "PROCESSING"
-	RUMRECOVERYDISCOVERYSTATUS_COMPLETED  RumRecoveryDiscoveryStatus = "COMPLETED"
-	RUMRECOVERYDISCOVERYSTATUS_FAILED     RumRecoveryDiscoveryStatus = "FAILED"
-	RUMRECOVERYDISCOVERYSTATUS_CANCELLED  RumRecoveryDiscoveryStatus = "CANCELLED"
+	RUMRECOVERYDISCOVERYSTATUS_QUEUED     RUMRecoveryDiscoveryStatus = "QUEUED"
+	RUMRECOVERYDISCOVERYSTATUS_PENDING    RUMRecoveryDiscoveryStatus = "PENDING"
+	RUMRECOVERYDISCOVERYSTATUS_SLICING    RUMRecoveryDiscoveryStatus = "SLICING"
+	RUMRECOVERYDISCOVERYSTATUS_DISCOVERED RUMRecoveryDiscoveryStatus = "DISCOVERED"
+	RUMRECOVERYDISCOVERYSTATUS_PROCESSING RUMRecoveryDiscoveryStatus = "PROCESSING"
+	RUMRECOVERYDISCOVERYSTATUS_COMPLETED  RUMRecoveryDiscoveryStatus = "COMPLETED"
+	RUMRECOVERYDISCOVERYSTATUS_FAILED     RUMRecoveryDiscoveryStatus = "FAILED"
+	RUMRECOVERYDISCOVERYSTATUS_CANCELLED  RUMRecoveryDiscoveryStatus = "CANCELLED"
 )
 
-var allowedRumRecoveryDiscoveryStatusEnumValues = []RumRecoveryDiscoveryStatus{
+var allowedRUMRecoveryDiscoveryStatusEnumValues = []RUMRecoveryDiscoveryStatus{
 	RUMRECOVERYDISCOVERYSTATUS_QUEUED,
 	RUMRECOVERYDISCOVERYSTATUS_PENDING,
 	RUMRECOVERYDISCOVERYSTATUS_SLICING,
@@ -37,34 +37,34 @@ var allowedRumRecoveryDiscoveryStatusEnumValues = []RumRecoveryDiscoveryStatus{
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryDiscoveryStatus) GetAllowedValues() []RumRecoveryDiscoveryStatus {
-	return allowedRumRecoveryDiscoveryStatusEnumValues
+func (v *RUMRecoveryDiscoveryStatus) GetAllowedValues() []RUMRecoveryDiscoveryStatus {
+	return allowedRUMRecoveryDiscoveryStatusEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryDiscoveryStatus) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryDiscoveryStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryDiscoveryStatus(value)
+	*v = RUMRecoveryDiscoveryStatus(value)
 	return nil
 }
 
-// NewRumRecoveryDiscoveryStatusFromValue returns a pointer to a valid RumRecoveryDiscoveryStatus
+// NewRUMRecoveryDiscoveryStatusFromValue returns a pointer to a valid RUMRecoveryDiscoveryStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryDiscoveryStatusFromValue(v string) (*RumRecoveryDiscoveryStatus, error) {
-	ev := RumRecoveryDiscoveryStatus(v)
+func NewRUMRecoveryDiscoveryStatusFromValue(v string) (*RUMRecoveryDiscoveryStatus, error) {
+	ev := RUMRecoveryDiscoveryStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryDiscoveryStatus: valid values are %v", v, allowedRumRecoveryDiscoveryStatusEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryDiscoveryStatus: valid values are %v", v, allowedRUMRecoveryDiscoveryStatusEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryDiscoveryStatus) IsValid() bool {
-	for _, existing := range allowedRumRecoveryDiscoveryStatusEnumValues {
+func (v RUMRecoveryDiscoveryStatus) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryDiscoveryStatusEnumValues {
 		if existing == v {
 			return true
 		}
@@ -72,7 +72,7 @@ func (v RumRecoveryDiscoveryStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryDiscoveryStatus value.
-func (v RumRecoveryDiscoveryStatus) Ptr() *RumRecoveryDiscoveryStatus {
+// Ptr returns reference to RUMRecoveryDiscoveryStatus value.
+func (v RUMRecoveryDiscoveryStatus) Ptr() *RUMRecoveryDiscoveryStatus {
 	return &v
 }

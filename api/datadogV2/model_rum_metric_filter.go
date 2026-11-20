@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricFilter The RUM-based metric filter. Events matching this filter are aggregated in this metric. The `event_type` filter is added automatically.
-type RumMetricFilter struct {
+// RUMMetricFilter The RUM-based metric filter. Events matching this filter are aggregated in this metric. The `event_type` filter is added automatically.
+type RUMMetricFilter struct {
 	// The search query, following the [RUM search syntax](https://docs.datadoghq.com/real_user_monitoring/explorer/search_syntax/).
 	// Do not include a `@type` filter, it is derived from `event_type`.
 	// It must not contain invisible or control characters such as non-breaking or zero-width spaces.
@@ -22,28 +22,28 @@ type RumMetricFilter struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricFilter instantiates a new RumMetricFilter object.
+// NewRUMMetricFilter instantiates a new RUMMetricFilter object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricFilter(query string) *RumMetricFilter {
-	this := RumMetricFilter{}
+func NewRUMMetricFilter(query string) *RUMMetricFilter {
+	this := RUMMetricFilter{}
 	this.Query = query
 	return &this
 }
 
-// NewRumMetricFilterWithDefaults instantiates a new RumMetricFilter object.
+// NewRUMMetricFilterWithDefaults instantiates a new RUMMetricFilter object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricFilterWithDefaults() *RumMetricFilter {
-	this := RumMetricFilter{}
+func NewRUMMetricFilterWithDefaults() *RUMMetricFilter {
+	this := RUMMetricFilter{}
 	var query string = "*"
 	this.Query = query
 	return &this
 }
 
 // GetQuery returns the Query field value.
-func (o *RumMetricFilter) GetQuery() string {
+func (o *RUMMetricFilter) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *RumMetricFilter) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricFilter) GetQueryOk() (*string, bool) {
+func (o *RUMMetricFilter) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *RumMetricFilter) GetQueryOk() (*string, bool) {
 }
 
 // SetQuery sets field value.
-func (o *RumMetricFilter) SetQuery(v string) {
+func (o *RUMMetricFilter) SetQuery(v string) {
 	o.Query = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricFilter) MarshalJSON() ([]byte, error) {
+func (o RUMMetricFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -80,7 +80,7 @@ func (o RumMetricFilter) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricFilter) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Query *string `json:"query"`
 	}{}

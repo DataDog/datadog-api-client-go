@@ -10,49 +10,49 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigMatchOptionSerializedType The type of match pattern, either a literal string or a regex.
-type RumSdkConfigMatchOptionSerializedType string
+// RUMSdkConfigMatchOptionSerializedType The type of match pattern, either a literal string or a regex.
+type RUMSdkConfigMatchOptionSerializedType string
 
-// List of RumSdkConfigMatchOptionSerializedType.
+// List of RUMSdkConfigMatchOptionSerializedType.
 const (
-	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_STRING RumSdkConfigMatchOptionSerializedType = "string"
-	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_REGEX  RumSdkConfigMatchOptionSerializedType = "regex"
+	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_STRING RUMSdkConfigMatchOptionSerializedType = "string"
+	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_REGEX  RUMSdkConfigMatchOptionSerializedType = "regex"
 )
 
-var allowedRumSdkConfigMatchOptionSerializedTypeEnumValues = []RumSdkConfigMatchOptionSerializedType{
+var allowedRUMSdkConfigMatchOptionSerializedTypeEnumValues = []RUMSdkConfigMatchOptionSerializedType{
 	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_STRING,
 	RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_REGEX,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigMatchOptionSerializedType) GetAllowedValues() []RumSdkConfigMatchOptionSerializedType {
-	return allowedRumSdkConfigMatchOptionSerializedTypeEnumValues
+func (v *RUMSdkConfigMatchOptionSerializedType) GetAllowedValues() []RUMSdkConfigMatchOptionSerializedType {
+	return allowedRUMSdkConfigMatchOptionSerializedTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigMatchOptionSerializedType) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigMatchOptionSerializedType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigMatchOptionSerializedType(value)
+	*v = RUMSdkConfigMatchOptionSerializedType(value)
 	return nil
 }
 
-// NewRumSdkConfigMatchOptionSerializedTypeFromValue returns a pointer to a valid RumSdkConfigMatchOptionSerializedType
+// NewRUMSdkConfigMatchOptionSerializedTypeFromValue returns a pointer to a valid RUMSdkConfigMatchOptionSerializedType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigMatchOptionSerializedTypeFromValue(v string) (*RumSdkConfigMatchOptionSerializedType, error) {
-	ev := RumSdkConfigMatchOptionSerializedType(v)
+func NewRUMSdkConfigMatchOptionSerializedTypeFromValue(v string) (*RUMSdkConfigMatchOptionSerializedType, error) {
+	ev := RUMSdkConfigMatchOptionSerializedType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigMatchOptionSerializedType: valid values are %v", v, allowedRumSdkConfigMatchOptionSerializedTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigMatchOptionSerializedType: valid values are %v", v, allowedRUMSdkConfigMatchOptionSerializedTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigMatchOptionSerializedType) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigMatchOptionSerializedTypeEnumValues {
+func (v RUMSdkConfigMatchOptionSerializedType) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigMatchOptionSerializedTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -60,7 +60,7 @@ func (v RumSdkConfigMatchOptionSerializedType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigMatchOptionSerializedType value.
-func (v RumSdkConfigMatchOptionSerializedType) Ptr() *RumSdkConfigMatchOptionSerializedType {
+// Ptr returns reference to RUMSdkConfigMatchOptionSerializedType value.
+func (v RUMSdkConfigMatchOptionSerializedType) Ptr() *RUMSdkConfigMatchOptionSerializedType {
 	return &v
 }

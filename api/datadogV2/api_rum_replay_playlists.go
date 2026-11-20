@@ -12,44 +12,44 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumReplayPlaylistsApi service type
-type RumReplayPlaylistsApi datadog.Service
+// RUMReplayPlaylistsApi service type
+type RUMReplayPlaylistsApi datadog.Service
 
-// AddRumReplaySessionToPlaylistOptionalParameters holds optional parameters for AddRumReplaySessionToPlaylist.
-type AddRumReplaySessionToPlaylistOptionalParameters struct {
+// AddRUMReplaySessionToPlaylistOptionalParameters holds optional parameters for AddRUMReplaySessionToPlaylist.
+type AddRUMReplaySessionToPlaylistOptionalParameters struct {
 	DataSource *string
 }
 
-// NewAddRumReplaySessionToPlaylistOptionalParameters creates an empty struct for parameters.
-func NewAddRumReplaySessionToPlaylistOptionalParameters() *AddRumReplaySessionToPlaylistOptionalParameters {
-	this := AddRumReplaySessionToPlaylistOptionalParameters{}
+// NewAddRUMReplaySessionToPlaylistOptionalParameters creates an empty struct for parameters.
+func NewAddRUMReplaySessionToPlaylistOptionalParameters() *AddRUMReplaySessionToPlaylistOptionalParameters {
+	this := AddRUMReplaySessionToPlaylistOptionalParameters{}
 	return &this
 }
 
 // WithDataSource sets the corresponding parameter name and returns the struct.
-func (r *AddRumReplaySessionToPlaylistOptionalParameters) WithDataSource(dataSource string) *AddRumReplaySessionToPlaylistOptionalParameters {
+func (r *AddRUMReplaySessionToPlaylistOptionalParameters) WithDataSource(dataSource string) *AddRUMReplaySessionToPlaylistOptionalParameters {
 	r.DataSource = &dataSource
 	return r
 }
 
-// AddRumReplaySessionToPlaylist Add RUM replay session to playlist.
+// AddRUMReplaySessionToPlaylist Add RUM replay session to playlist.
 // Add a session to a playlist.
-func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Context, ts int64, playlistId int64, sessionId string, o ...AddRumReplaySessionToPlaylistOptionalParameters) (PlaylistsSession, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) AddRUMReplaySessionToPlaylist(ctx _context.Context, ts int64, playlistId int64, sessionId string, o ...AddRUMReplaySessionToPlaylistOptionalParameters) (PlaylistsSession, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue PlaylistsSession
-		optionalParams      AddRumReplaySessionToPlaylistOptionalParameters
+		optionalParams      AddRUMReplaySessionToPlaylistOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type AddRumReplaySessionToPlaylistOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type AddRUMReplaySessionToPlaylistOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.AddRumReplaySessionToPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.AddRUMReplaySessionToPlaylist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -123,15 +123,15 @@ func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// BulkRemoveRumReplayPlaylistSessions Bulk remove RUM replay playlist sessions.
+// BulkRemoveRUMReplayPlaylistSessions Bulk remove RUM replay playlist sessions.
 // Remove sessions from a playlist.
-func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context.Context, playlistId int64, body SessionIdArray) (*_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) BulkRemoveRUMReplayPlaylistSessions(ctx _context.Context, playlistId int64, body SessionIdArray) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.BulkRemoveRumReplayPlaylistSessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.BulkRemoveRUMReplayPlaylistSessions")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -194,16 +194,16 @@ func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context
 	return localVarHTTPResponse, nil
 }
 
-// CreateRumReplayPlaylist Create RUM replay playlist.
+// CreateRUMReplayPlaylist Create RUM replay playlist.
 // Create a playlist.
-func (a *RumReplayPlaylistsApi) CreateRumReplayPlaylist(ctx _context.Context, body Playlist) (Playlist, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) CreateRUMReplayPlaylist(ctx _context.Context, body Playlist) (Playlist, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue Playlist
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.CreateRumReplayPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.CreateRUMReplayPlaylist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -274,15 +274,15 @@ func (a *RumReplayPlaylistsApi) CreateRumReplayPlaylist(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteRumReplayPlaylist Delete RUM replay playlist.
+// DeleteRUMReplayPlaylist Delete RUM replay playlist.
 // Delete a playlist.
-func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, playlistId int64) (*_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) DeleteRUMReplayPlaylist(ctx _context.Context, playlistId int64) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.DeleteRumReplayPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.DeleteRUMReplayPlaylist")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -342,16 +342,16 @@ func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, pl
 	return localVarHTTPResponse, nil
 }
 
-// GetRumReplayPlaylist Get RUM replay playlist.
+// GetRUMReplayPlaylist Get RUM replay playlist.
 // Get a playlist.
-func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playlistId int64) (Playlist, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) GetRUMReplayPlaylist(ctx _context.Context, playlistId int64) (Playlist, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue Playlist
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.GetRumReplayPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.GetRUMReplayPlaylist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -420,48 +420,48 @@ func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListRumReplayPlaylistSessionsOptionalParameters holds optional parameters for ListRumReplayPlaylistSessions.
-type ListRumReplayPlaylistSessionsOptionalParameters struct {
+// ListRUMReplayPlaylistSessionsOptionalParameters holds optional parameters for ListRUMReplayPlaylistSessions.
+type ListRUMReplayPlaylistSessionsOptionalParameters struct {
 	PageNumber *int64
 	PageSize   *int64
 }
 
-// NewListRumReplayPlaylistSessionsOptionalParameters creates an empty struct for parameters.
-func NewListRumReplayPlaylistSessionsOptionalParameters() *ListRumReplayPlaylistSessionsOptionalParameters {
-	this := ListRumReplayPlaylistSessionsOptionalParameters{}
+// NewListRUMReplayPlaylistSessionsOptionalParameters creates an empty struct for parameters.
+func NewListRUMReplayPlaylistSessionsOptionalParameters() *ListRUMReplayPlaylistSessionsOptionalParameters {
+	this := ListRUMReplayPlaylistSessionsOptionalParameters{}
 	return &this
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayPlaylistSessionsOptionalParameters {
+func (r *ListRUMReplayPlaylistSessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRUMReplayPlaylistSessionsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayPlaylistSessionsOptionalParameters {
+func (r *ListRUMReplayPlaylistSessionsOptionalParameters) WithPageSize(pageSize int64) *ListRUMReplayPlaylistSessionsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
-// ListRumReplayPlaylistSessions List RUM replay playlist sessions.
+// ListRUMReplayPlaylistSessions List RUM replay playlist sessions.
 // List sessions in a playlist.
-func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Context, playlistId int64, o ...ListRumReplayPlaylistSessionsOptionalParameters) (PlaylistsSessionArray, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) ListRUMReplayPlaylistSessions(ctx _context.Context, playlistId int64, o ...ListRUMReplayPlaylistSessionsOptionalParameters) (PlaylistsSessionArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PlaylistsSessionArray
-		optionalParams      ListRumReplayPlaylistSessionsOptionalParameters
+		optionalParams      ListRUMReplayPlaylistSessionsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRumReplayPlaylistSessionsOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRUMReplayPlaylistSessionsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.ListRumReplayPlaylistSessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.ListRUMReplayPlaylistSessions")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -536,62 +536,62 @@ func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListRumReplayPlaylistsOptionalParameters holds optional parameters for ListRumReplayPlaylists.
-type ListRumReplayPlaylistsOptionalParameters struct {
+// ListRUMReplayPlaylistsOptionalParameters holds optional parameters for ListRUMReplayPlaylists.
+type ListRUMReplayPlaylistsOptionalParameters struct {
 	FilterCreatedByUuid *string
 	FilterQuery         *string
 	PageNumber          *int64
 	PageSize            *int64
 }
 
-// NewListRumReplayPlaylistsOptionalParameters creates an empty struct for parameters.
-func NewListRumReplayPlaylistsOptionalParameters() *ListRumReplayPlaylistsOptionalParameters {
-	this := ListRumReplayPlaylistsOptionalParameters{}
+// NewListRUMReplayPlaylistsOptionalParameters creates an empty struct for parameters.
+func NewListRUMReplayPlaylistsOptionalParameters() *ListRUMReplayPlaylistsOptionalParameters {
+	this := ListRUMReplayPlaylistsOptionalParameters{}
 	return &this
 }
 
 // WithFilterCreatedByUuid sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithFilterCreatedByUuid(filterCreatedByUuid string) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRUMReplayPlaylistsOptionalParameters) WithFilterCreatedByUuid(filterCreatedByUuid string) *ListRUMReplayPlaylistsOptionalParameters {
 	r.FilterCreatedByUuid = &filterCreatedByUuid
 	return r
 }
 
 // WithFilterQuery sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithFilterQuery(filterQuery string) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRUMReplayPlaylistsOptionalParameters) WithFilterQuery(filterQuery string) *ListRUMReplayPlaylistsOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRUMReplayPlaylistsOptionalParameters) WithPageNumber(pageNumber int64) *ListRUMReplayPlaylistsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRUMReplayPlaylistsOptionalParameters) WithPageSize(pageSize int64) *ListRUMReplayPlaylistsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
-// ListRumReplayPlaylists List RUM replay playlists.
+// ListRUMReplayPlaylists List RUM replay playlists.
 // List playlists.
-func (a *RumReplayPlaylistsApi) ListRumReplayPlaylists(ctx _context.Context, o ...ListRumReplayPlaylistsOptionalParameters) (PlaylistArray, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) ListRUMReplayPlaylists(ctx _context.Context, o ...ListRUMReplayPlaylistsOptionalParameters) (PlaylistArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PlaylistArray
-		optionalParams      ListRumReplayPlaylistsOptionalParameters
+		optionalParams      ListRUMReplayPlaylistsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRumReplayPlaylistsOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRUMReplayPlaylistsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.ListRumReplayPlaylists")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.ListRUMReplayPlaylists")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -671,15 +671,15 @@ func (a *RumReplayPlaylistsApi) ListRumReplayPlaylists(ctx _context.Context, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// RemoveRumReplaySessionFromPlaylist Remove RUM replay session from playlist.
+// RemoveRUMReplaySessionFromPlaylist Remove RUM replay session from playlist.
 // Remove a session from a playlist.
-func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.Context, playlistId int64, sessionId string) (*_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) RemoveRUMReplaySessionFromPlaylist(ctx _context.Context, playlistId int64, sessionId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.RemoveRumReplaySessionFromPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.RemoveRUMReplaySessionFromPlaylist")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -740,16 +740,16 @@ func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.
 	return localVarHTTPResponse, nil
 }
 
-// UpdateRumReplayPlaylist Update RUM replay playlist.
+// UpdateRUMReplayPlaylist Update RUM replay playlist.
 // Update a playlist.
-func (a *RumReplayPlaylistsApi) UpdateRumReplayPlaylist(ctx _context.Context, playlistId int64, body Playlist) (Playlist, *_nethttp.Response, error) {
+func (a *RUMReplayPlaylistsApi) UpdateRUMReplayPlaylist(ctx _context.Context, playlistId int64, body Playlist) (Playlist, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue Playlist
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayPlaylistsApi.UpdateRumReplayPlaylist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayPlaylistsApi.UpdateRUMReplayPlaylist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -821,9 +821,9 @@ func (a *RumReplayPlaylistsApi) UpdateRumReplayPlaylist(ctx _context.Context, pl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewRumReplayPlaylistsApi Returns NewRumReplayPlaylistsApi.
-func NewRumReplayPlaylistsApi(client *datadog.APIClient) *RumReplayPlaylistsApi {
-	return &RumReplayPlaylistsApi{
+// NewRUMReplayPlaylistsApi Returns NewRUMReplayPlaylistsApi.
+func NewRUMReplayPlaylistsApi(client *datadog.APIClient) *RUMReplayPlaylistsApi {
+	return &RUMReplayPlaylistsApi{
 		Client: client,
 	}
 }

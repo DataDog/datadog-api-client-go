@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionType JSON:API resource type.
-type RumArchiveSessionType string
+// RUMArchiveSessionType JSON:API resource type.
+type RUMArchiveSessionType string
 
-// List of RumArchiveSessionType.
+// List of RUMArchiveSessionType.
 const (
-	RUMARCHIVESESSIONTYPE_RUM_ARCHIVE_SESSION RumArchiveSessionType = "rum_archive_session"
+	RUMARCHIVESESSIONTYPE_RUM_ARCHIVE_SESSION RUMArchiveSessionType = "rum_archive_session"
 )
 
-var allowedRumArchiveSessionTypeEnumValues = []RumArchiveSessionType{
+var allowedRUMArchiveSessionTypeEnumValues = []RUMArchiveSessionType{
 	RUMARCHIVESESSIONTYPE_RUM_ARCHIVE_SESSION,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumArchiveSessionType) GetAllowedValues() []RumArchiveSessionType {
-	return allowedRumArchiveSessionTypeEnumValues
+func (v *RUMArchiveSessionType) GetAllowedValues() []RUMArchiveSessionType {
+	return allowedRUMArchiveSessionTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumArchiveSessionType) UnmarshalJSON(src []byte) error {
+func (v *RUMArchiveSessionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumArchiveSessionType(value)
+	*v = RUMArchiveSessionType(value)
 	return nil
 }
 
-// NewRumArchiveSessionTypeFromValue returns a pointer to a valid RumArchiveSessionType
+// NewRUMArchiveSessionTypeFromValue returns a pointer to a valid RUMArchiveSessionType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumArchiveSessionTypeFromValue(v string) (*RumArchiveSessionType, error) {
-	ev := RumArchiveSessionType(v)
+func NewRUMArchiveSessionTypeFromValue(v string) (*RUMArchiveSessionType, error) {
+	ev := RUMArchiveSessionType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumArchiveSessionType: valid values are %v", v, allowedRumArchiveSessionTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMArchiveSessionType: valid values are %v", v, allowedRUMArchiveSessionTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumArchiveSessionType) IsValid() bool {
-	for _, existing := range allowedRumArchiveSessionTypeEnumValues {
+func (v RUMArchiveSessionType) IsValid() bool {
+	for _, existing := range allowedRUMArchiveSessionTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumArchiveSessionType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumArchiveSessionType value.
-func (v RumArchiveSessionType) Ptr() *RumArchiveSessionType {
+// Ptr returns reference to RUMArchiveSessionType value.
+func (v RUMArchiveSessionType) Ptr() *RUMArchiveSessionType {
 	return &v
 }

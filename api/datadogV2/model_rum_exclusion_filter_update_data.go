@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterUpdateData The exclusion filter properties to update.
-type RumExclusionFilterUpdateData struct {
+// RUMExclusionFilterUpdateData The exclusion filter properties to update.
+type RUMExclusionFilterUpdateData struct {
 	// The attributes of an exclusion filter that can be updated.
 	// For the built-in Error Tracking exclusion filter, only `enabled` can be set;
 	// `name`, `event_type`, and `query` must be omitted.
-	Attributes RumExclusionFilterUpdateAttributes `json:"attributes"`
+	Attributes RUMExclusionFilterUpdateAttributes `json:"attributes"`
 	// The ID of the exclusion filter. Must match the `ef_id` path parameter.
 	Id string `json:"id"`
 	// The resource type. The value must be `exclusion_filters`.
-	Type RumExclusionFilterType `json:"type"`
+	Type RUMExclusionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFilterUpdateData instantiates a new RumExclusionFilterUpdateData object.
+// NewRUMExclusionFilterUpdateData instantiates a new RUMExclusionFilterUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFilterUpdateData(attributes RumExclusionFilterUpdateAttributes, id string, typeVar RumExclusionFilterType) *RumExclusionFilterUpdateData {
-	this := RumExclusionFilterUpdateData{}
+func NewRUMExclusionFilterUpdateData(attributes RUMExclusionFilterUpdateAttributes, id string, typeVar RUMExclusionFilterType) *RUMExclusionFilterUpdateData {
+	this := RUMExclusionFilterUpdateData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumExclusionFilterUpdateDataWithDefaults instantiates a new RumExclusionFilterUpdateData object.
+// NewRUMExclusionFilterUpdateDataWithDefaults instantiates a new RUMExclusionFilterUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFilterUpdateDataWithDefaults() *RumExclusionFilterUpdateData {
-	this := RumExclusionFilterUpdateData{}
-	var typeVar RumExclusionFilterType = RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS
+func NewRUMExclusionFilterUpdateDataWithDefaults() *RUMExclusionFilterUpdateData {
+	this := RUMExclusionFilterUpdateData{}
+	var typeVar RUMExclusionFilterType = RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumExclusionFilterUpdateData) GetAttributes() RumExclusionFilterUpdateAttributes {
+func (o *RUMExclusionFilterUpdateData) GetAttributes() RUMExclusionFilterUpdateAttributes {
 	if o == nil {
-		var ret RumExclusionFilterUpdateAttributes
+		var ret RUMExclusionFilterUpdateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -58,7 +58,7 @@ func (o *RumExclusionFilterUpdateData) GetAttributes() RumExclusionFilterUpdateA
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateData) GetAttributesOk() (*RumExclusionFilterUpdateAttributes, bool) {
+func (o *RUMExclusionFilterUpdateData) GetAttributesOk() (*RUMExclusionFilterUpdateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *RumExclusionFilterUpdateData) GetAttributesOk() (*RumExclusionFilterUpd
 }
 
 // SetAttributes sets field value.
-func (o *RumExclusionFilterUpdateData) SetAttributes(v RumExclusionFilterUpdateAttributes) {
+func (o *RUMExclusionFilterUpdateData) SetAttributes(v RUMExclusionFilterUpdateAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumExclusionFilterUpdateData) GetId() string {
+func (o *RUMExclusionFilterUpdateData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *RumExclusionFilterUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateData) GetIdOk() (*string, bool) {
+func (o *RUMExclusionFilterUpdateData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,14 +89,14 @@ func (o *RumExclusionFilterUpdateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumExclusionFilterUpdateData) SetId(v string) {
+func (o *RUMExclusionFilterUpdateData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumExclusionFilterUpdateData) GetType() RumExclusionFilterType {
+func (o *RUMExclusionFilterUpdateData) GetType() RUMExclusionFilterType {
 	if o == nil {
-		var ret RumExclusionFilterType
+		var ret RUMExclusionFilterType
 		return ret
 	}
 	return o.Type
@@ -104,7 +104,7 @@ func (o *RumExclusionFilterUpdateData) GetType() RumExclusionFilterType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateData) GetTypeOk() (*RumExclusionFilterType, bool) {
+func (o *RUMExclusionFilterUpdateData) GetTypeOk() (*RUMExclusionFilterType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,12 +112,12 @@ func (o *RumExclusionFilterUpdateData) GetTypeOk() (*RumExclusionFilterType, boo
 }
 
 // SetType sets field value.
-func (o *RumExclusionFilterUpdateData) SetType(v RumExclusionFilterType) {
+func (o *RUMExclusionFilterUpdateData) SetType(v RUMExclusionFilterType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFilterUpdateData) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFilterUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -133,11 +133,11 @@ func (o RumExclusionFilterUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFilterUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFilterUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumExclusionFilterUpdateAttributes `json:"attributes"`
+		Attributes *RUMExclusionFilterUpdateAttributes `json:"attributes"`
 		Id         *string                             `json:"id"`
-		Type       *RumExclusionFilterType             `json:"type"`
+		Type       *RUMExclusionFilterType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -16,18 +16,18 @@ func main() {
 	// there is a valid "rum_metric" in the system
 	RumMetricDataID := os.Getenv("RUM_METRIC_DATA_ID")
 
-	body := datadogV2.RumMetricUpdateRequest{
-		Data: datadogV2.RumMetricUpdateData{
+	body := datadogV2.RUMMetricUpdateRequest{
+		Data: datadogV2.RUMMetricUpdateData{
 			Id:   datadog.PtrString(RumMetricDataID),
 			Type: datadogV2.RUMMETRICTYPE_RUM_METRICS,
-			Attributes: datadogV2.RumMetricUpdateAttributes{
-				Compute: &datadogV2.RumMetricUpdateCompute{
+			Attributes: datadogV2.RUMMetricUpdateAttributes{
+				Compute: &datadogV2.RUMMetricUpdateCompute{
 					IncludePercentiles: datadog.PtrBool(false),
 				},
-				Filter: &datadogV2.RumMetricFilter{
+				Filter: &datadogV2.RUMMetricFilter{
 					Query: "@service:rum-config",
 				},
-				GroupBy: []datadogV2.RumMetricGroupBy{
+				GroupBy: []datadogV2.RUMMetricGroupBy{
 					{
 						Path:    "@browser.version",
 						TagName: datadog.PtrString("browser_version"),
@@ -40,14 +40,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumMetricsApi(apiClient)
-	resp, r, err := api.UpdateRumMetric(ctx, RumMetricDataID, body)
+	api := datadogV2.NewRUMMetricsApi(apiClient)
+	resp, r, err := api.UpdateRUMMetric(ctx, RumMetricDataID, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumMetricsApi.UpdateRumMetric`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMMetricsApi.UpdateRUMMetric`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumMetricsApi.UpdateRumMetric`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMMetricsApi.UpdateRUMMetric`:\n%s\n", responseContent)
 }

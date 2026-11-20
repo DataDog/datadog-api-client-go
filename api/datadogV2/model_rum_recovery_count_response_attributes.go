@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCountResponseAttributes Approximate recoverable count.
-type RumRecoveryCountResponseAttributes struct {
+// RUMRecoveryCountResponseAttributes Approximate recoverable count.
+type RUMRecoveryCountResponseAttributes struct {
 	// Estimated distinct recoverable sessions not already retained in hot storage. The full estimate is returned without capping it at max_recoverable_sessions.
 	EstimatedCount int64 `json:"estimated_count"`
 	// Configured maximum estimated recoverable sessions per batch (100,000 by default). Estimates equal to this value are accepted at creation.
@@ -21,27 +21,27 @@ type RumRecoveryCountResponseAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCountResponseAttributes instantiates a new RumRecoveryCountResponseAttributes object.
+// NewRUMRecoveryCountResponseAttributes instantiates a new RUMRecoveryCountResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCountResponseAttributes(estimatedCount int64, maxRecoverableSessions int64) *RumRecoveryCountResponseAttributes {
-	this := RumRecoveryCountResponseAttributes{}
+func NewRUMRecoveryCountResponseAttributes(estimatedCount int64, maxRecoverableSessions int64) *RUMRecoveryCountResponseAttributes {
+	this := RUMRecoveryCountResponseAttributes{}
 	this.EstimatedCount = estimatedCount
 	this.MaxRecoverableSessions = maxRecoverableSessions
 	return &this
 }
 
-// NewRumRecoveryCountResponseAttributesWithDefaults instantiates a new RumRecoveryCountResponseAttributes object.
+// NewRUMRecoveryCountResponseAttributesWithDefaults instantiates a new RUMRecoveryCountResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCountResponseAttributesWithDefaults() *RumRecoveryCountResponseAttributes {
-	this := RumRecoveryCountResponseAttributes{}
+func NewRUMRecoveryCountResponseAttributesWithDefaults() *RUMRecoveryCountResponseAttributes {
+	this := RUMRecoveryCountResponseAttributes{}
 	return &this
 }
 
 // GetEstimatedCount returns the EstimatedCount field value.
-func (o *RumRecoveryCountResponseAttributes) GetEstimatedCount() int64 {
+func (o *RUMRecoveryCountResponseAttributes) GetEstimatedCount() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -51,7 +51,7 @@ func (o *RumRecoveryCountResponseAttributes) GetEstimatedCount() int64 {
 
 // GetEstimatedCountOk returns a tuple with the EstimatedCount field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountResponseAttributes) GetEstimatedCountOk() (*int64, bool) {
+func (o *RUMRecoveryCountResponseAttributes) GetEstimatedCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,12 +59,12 @@ func (o *RumRecoveryCountResponseAttributes) GetEstimatedCountOk() (*int64, bool
 }
 
 // SetEstimatedCount sets field value.
-func (o *RumRecoveryCountResponseAttributes) SetEstimatedCount(v int64) {
+func (o *RUMRecoveryCountResponseAttributes) SetEstimatedCount(v int64) {
 	o.EstimatedCount = v
 }
 
 // GetMaxRecoverableSessions returns the MaxRecoverableSessions field value.
-func (o *RumRecoveryCountResponseAttributes) GetMaxRecoverableSessions() int64 {
+func (o *RUMRecoveryCountResponseAttributes) GetMaxRecoverableSessions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -74,7 +74,7 @@ func (o *RumRecoveryCountResponseAttributes) GetMaxRecoverableSessions() int64 {
 
 // GetMaxRecoverableSessionsOk returns a tuple with the MaxRecoverableSessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountResponseAttributes) GetMaxRecoverableSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryCountResponseAttributes) GetMaxRecoverableSessionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumRecoveryCountResponseAttributes) GetMaxRecoverableSessionsOk() (*int
 }
 
 // SetMaxRecoverableSessions sets field value.
-func (o *RumRecoveryCountResponseAttributes) SetMaxRecoverableSessions(v int64) {
+func (o *RUMRecoveryCountResponseAttributes) SetMaxRecoverableSessions(v int64) {
 	o.MaxRecoverableSessions = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCountResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCountResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,7 +102,7 @@ func (o RumRecoveryCountResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		EstimatedCount         *int64 `json:"estimated_count"`
 		MaxRecoverableSessions *int64 `json:"max_recoverable_sessions"`

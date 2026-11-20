@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistDataType Rum replay playlist resource type.
+// PlaylistDataType RUM replay playlist resource type.
 type PlaylistDataType string
 
 // List of PlaylistDataType.

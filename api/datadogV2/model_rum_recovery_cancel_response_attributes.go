@@ -11,41 +11,41 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCancelResponseAttributes Batch cancellation acknowledgment.
-type RumRecoveryCancelResponseAttributes struct {
+// RUMRecoveryCancelResponseAttributes Batch cancellation acknowledgment.
+type RUMRecoveryCancelResponseAttributes struct {
 	// Cancellation time.
 	CancelledAt time.Time `json:"cancelled_at"`
 	// Handle of the user who canceled the batch.
 	CancelledBy string `json:"cancelled_by"`
 	// Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
-	DiscoveryStatus RumRecoveryDiscoveryStatus `json:"discovery_status"`
+	DiscoveryStatus RUMRecoveryDiscoveryStatus `json:"discovery_status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCancelResponseAttributes instantiates a new RumRecoveryCancelResponseAttributes object.
+// NewRUMRecoveryCancelResponseAttributes instantiates a new RUMRecoveryCancelResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCancelResponseAttributes(cancelledAt time.Time, cancelledBy string, discoveryStatus RumRecoveryDiscoveryStatus) *RumRecoveryCancelResponseAttributes {
-	this := RumRecoveryCancelResponseAttributes{}
+func NewRUMRecoveryCancelResponseAttributes(cancelledAt time.Time, cancelledBy string, discoveryStatus RUMRecoveryDiscoveryStatus) *RUMRecoveryCancelResponseAttributes {
+	this := RUMRecoveryCancelResponseAttributes{}
 	this.CancelledAt = cancelledAt
 	this.CancelledBy = cancelledBy
 	this.DiscoveryStatus = discoveryStatus
 	return &this
 }
 
-// NewRumRecoveryCancelResponseAttributesWithDefaults instantiates a new RumRecoveryCancelResponseAttributes object.
+// NewRUMRecoveryCancelResponseAttributesWithDefaults instantiates a new RUMRecoveryCancelResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCancelResponseAttributesWithDefaults() *RumRecoveryCancelResponseAttributes {
-	this := RumRecoveryCancelResponseAttributes{}
+func NewRUMRecoveryCancelResponseAttributesWithDefaults() *RUMRecoveryCancelResponseAttributes {
+	this := RUMRecoveryCancelResponseAttributes{}
 	return &this
 }
 
 // GetCancelledAt returns the CancelledAt field value.
-func (o *RumRecoveryCancelResponseAttributes) GetCancelledAt() time.Time {
+func (o *RUMRecoveryCancelResponseAttributes) GetCancelledAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -55,7 +55,7 @@ func (o *RumRecoveryCancelResponseAttributes) GetCancelledAt() time.Time {
 
 // GetCancelledAtOk returns a tuple with the CancelledAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelResponseAttributes) GetCancelledAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryCancelResponseAttributes) GetCancelledAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -63,12 +63,12 @@ func (o *RumRecoveryCancelResponseAttributes) GetCancelledAtOk() (*time.Time, bo
 }
 
 // SetCancelledAt sets field value.
-func (o *RumRecoveryCancelResponseAttributes) SetCancelledAt(v time.Time) {
+func (o *RUMRecoveryCancelResponseAttributes) SetCancelledAt(v time.Time) {
 	o.CancelledAt = v
 }
 
 // GetCancelledBy returns the CancelledBy field value.
-func (o *RumRecoveryCancelResponseAttributes) GetCancelledBy() string {
+func (o *RUMRecoveryCancelResponseAttributes) GetCancelledBy() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -78,7 +78,7 @@ func (o *RumRecoveryCancelResponseAttributes) GetCancelledBy() string {
 
 // GetCancelledByOk returns a tuple with the CancelledBy field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelResponseAttributes) GetCancelledByOk() (*string, bool) {
+func (o *RUMRecoveryCancelResponseAttributes) GetCancelledByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,14 +86,14 @@ func (o *RumRecoveryCancelResponseAttributes) GetCancelledByOk() (*string, bool)
 }
 
 // SetCancelledBy sets field value.
-func (o *RumRecoveryCancelResponseAttributes) SetCancelledBy(v string) {
+func (o *RUMRecoveryCancelResponseAttributes) SetCancelledBy(v string) {
 	o.CancelledBy = v
 }
 
 // GetDiscoveryStatus returns the DiscoveryStatus field value.
-func (o *RumRecoveryCancelResponseAttributes) GetDiscoveryStatus() RumRecoveryDiscoveryStatus {
+func (o *RUMRecoveryCancelResponseAttributes) GetDiscoveryStatus() RUMRecoveryDiscoveryStatus {
 	if o == nil {
-		var ret RumRecoveryDiscoveryStatus
+		var ret RUMRecoveryDiscoveryStatus
 		return ret
 	}
 	return o.DiscoveryStatus
@@ -101,7 +101,7 @@ func (o *RumRecoveryCancelResponseAttributes) GetDiscoveryStatus() RumRecoveryDi
 
 // GetDiscoveryStatusOk returns a tuple with the DiscoveryStatus field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelResponseAttributes) GetDiscoveryStatusOk() (*RumRecoveryDiscoveryStatus, bool) {
+func (o *RUMRecoveryCancelResponseAttributes) GetDiscoveryStatusOk() (*RUMRecoveryDiscoveryStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,12 +109,12 @@ func (o *RumRecoveryCancelResponseAttributes) GetDiscoveryStatusOk() (*RumRecove
 }
 
 // SetDiscoveryStatus sets field value.
-func (o *RumRecoveryCancelResponseAttributes) SetDiscoveryStatus(v RumRecoveryDiscoveryStatus) {
+func (o *RUMRecoveryCancelResponseAttributes) SetDiscoveryStatus(v RUMRecoveryDiscoveryStatus) {
 	o.DiscoveryStatus = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCancelResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCancelResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -134,11 +134,11 @@ func (o RumRecoveryCancelResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCancelResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCancelResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CancelledAt     *time.Time                  `json:"cancelled_at"`
 		CancelledBy     *string                     `json:"cancelled_by"`
-		DiscoveryStatus *RumRecoveryDiscoveryStatus `json:"discovery_status"`
+		DiscoveryStatus *RUMRecoveryDiscoveryStatus `json:"discovery_status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

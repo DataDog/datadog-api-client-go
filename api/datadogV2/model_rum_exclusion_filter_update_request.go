@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterUpdateRequest The exclusion filter body to update.
-type RumExclusionFilterUpdateRequest struct {
+// RUMExclusionFilterUpdateRequest The exclusion filter body to update.
+type RUMExclusionFilterUpdateRequest struct {
 	// The exclusion filter properties to update.
-	Data RumExclusionFilterUpdateData `json:"data"`
+	Data RUMExclusionFilterUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFilterUpdateRequest instantiates a new RumExclusionFilterUpdateRequest object.
+// NewRUMExclusionFilterUpdateRequest instantiates a new RUMExclusionFilterUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFilterUpdateRequest(data RumExclusionFilterUpdateData) *RumExclusionFilterUpdateRequest {
-	this := RumExclusionFilterUpdateRequest{}
+func NewRUMExclusionFilterUpdateRequest(data RUMExclusionFilterUpdateData) *RUMExclusionFilterUpdateRequest {
+	this := RUMExclusionFilterUpdateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumExclusionFilterUpdateRequestWithDefaults instantiates a new RumExclusionFilterUpdateRequest object.
+// NewRUMExclusionFilterUpdateRequestWithDefaults instantiates a new RUMExclusionFilterUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFilterUpdateRequestWithDefaults() *RumExclusionFilterUpdateRequest {
-	this := RumExclusionFilterUpdateRequest{}
+func NewRUMExclusionFilterUpdateRequestWithDefaults() *RUMExclusionFilterUpdateRequest {
+	this := RUMExclusionFilterUpdateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumExclusionFilterUpdateRequest) GetData() RumExclusionFilterUpdateData {
+func (o *RUMExclusionFilterUpdateRequest) GetData() RUMExclusionFilterUpdateData {
 	if o == nil {
-		var ret RumExclusionFilterUpdateData
+		var ret RUMExclusionFilterUpdateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumExclusionFilterUpdateRequest) GetData() RumExclusionFilterUpdateData
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateRequest) GetDataOk() (*RumExclusionFilterUpdateData, bool) {
+func (o *RUMExclusionFilterUpdateRequest) GetDataOk() (*RUMExclusionFilterUpdateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumExclusionFilterUpdateRequest) GetDataOk() (*RumExclusionFilterUpdate
 }
 
 // SetData sets field value.
-func (o *RumExclusionFilterUpdateRequest) SetData(v RumExclusionFilterUpdateData) {
+func (o *RUMExclusionFilterUpdateRequest) SetData(v RUMExclusionFilterUpdateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFilterUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFilterUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumExclusionFilterUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumExclusionFilterUpdateData `json:"data"`
+		Data *RUMExclusionFilterUpdateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

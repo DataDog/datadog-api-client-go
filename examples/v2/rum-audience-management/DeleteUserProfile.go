@@ -17,11 +17,11 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteUserProfile", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumAudienceManagementApi(apiClient)
+	api := datadogV2.NewRUMAudienceManagementApi(apiClient)
 	r, err := api.DeleteUserProfile(ctx, "user-1234")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumAudienceManagementApi.DeleteUserProfile`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMAudienceManagementApi.DeleteUserProfile`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

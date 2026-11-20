@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponseGroupBy A group by rule.
-type RumMetricResponseGroupBy struct {
+// RUMMetricResponseGroupBy A group by rule.
+type RUMMetricResponseGroupBy struct {
 	// The path of the RUM event attribute the metric is grouped by.
 	Path *string `json:"path,omitempty"`
 	// Name of the tag created on the metric. By default, `path` is used as the tag name.
@@ -19,25 +19,25 @@ type RumMetricResponseGroupBy struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricResponseGroupBy instantiates a new RumMetricResponseGroupBy object.
+// NewRUMMetricResponseGroupBy instantiates a new RUMMetricResponseGroupBy object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricResponseGroupBy() *RumMetricResponseGroupBy {
-	this := RumMetricResponseGroupBy{}
+func NewRUMMetricResponseGroupBy() *RUMMetricResponseGroupBy {
+	this := RUMMetricResponseGroupBy{}
 	return &this
 }
 
-// NewRumMetricResponseGroupByWithDefaults instantiates a new RumMetricResponseGroupBy object.
+// NewRUMMetricResponseGroupByWithDefaults instantiates a new RUMMetricResponseGroupBy object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricResponseGroupByWithDefaults() *RumMetricResponseGroupBy {
-	this := RumMetricResponseGroupBy{}
+func NewRUMMetricResponseGroupByWithDefaults() *RUMMetricResponseGroupBy {
+	this := RUMMetricResponseGroupBy{}
 	return &this
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *RumMetricResponseGroupBy) GetPath() string {
+func (o *RUMMetricResponseGroupBy) GetPath() string {
 	if o == nil || o.Path == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *RumMetricResponseGroupBy) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseGroupBy) GetPathOk() (*string, bool) {
+func (o *RUMMetricResponseGroupBy) GetPathOk() (*string, bool) {
 	if o == nil || o.Path == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *RumMetricResponseGroupBy) GetPathOk() (*string, bool) {
 }
 
 // HasPath returns a boolean if a field has been set.
-func (o *RumMetricResponseGroupBy) HasPath() bool {
+func (o *RUMMetricResponseGroupBy) HasPath() bool {
 	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
-func (o *RumMetricResponseGroupBy) SetPath(v string) {
+func (o *RUMMetricResponseGroupBy) SetPath(v string) {
 	o.Path = &v
 }
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
-func (o *RumMetricResponseGroupBy) GetTagName() string {
+func (o *RUMMetricResponseGroupBy) GetTagName() string {
 	if o == nil || o.TagName == nil {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *RumMetricResponseGroupBy) GetTagName() string {
 
 // GetTagNameOk returns a tuple with the TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseGroupBy) GetTagNameOk() (*string, bool) {
+func (o *RUMMetricResponseGroupBy) GetTagNameOk() (*string, bool) {
 	if o == nil || o.TagName == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *RumMetricResponseGroupBy) GetTagNameOk() (*string, bool) {
 }
 
 // HasTagName returns a boolean if a field has been set.
-func (o *RumMetricResponseGroupBy) HasTagName() bool {
+func (o *RUMMetricResponseGroupBy) HasTagName() bool {
 	return o != nil && o.TagName != nil
 }
 
 // SetTagName gets a reference to the given string and assigns it to the TagName field.
-func (o *RumMetricResponseGroupBy) SetTagName(v string) {
+func (o *RUMMetricResponseGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
+func (o RUMMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,7 +112,7 @@ func (o RumMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Path    *string `json:"path,omitempty"`
 		TagName *string `json:"tag_name,omitempty"`

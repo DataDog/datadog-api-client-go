@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCountResponseDataType JSON:API resource type.
-type RumRecoveryCountResponseDataType string
+// RUMRecoveryCountResponseDataType JSON:API resource type.
+type RUMRecoveryCountResponseDataType string
 
-// List of RumRecoveryCountResponseDataType.
+// List of RUMRecoveryCountResponseDataType.
 const (
-	RUMRECOVERYCOUNTRESPONSEDATATYPE_RUM_RECOVERY_COUNT RumRecoveryCountResponseDataType = "rum_recovery_count"
+	RUMRECOVERYCOUNTRESPONSEDATATYPE_RUM_RECOVERY_COUNT RUMRecoveryCountResponseDataType = "rum_recovery_count"
 )
 
-var allowedRumRecoveryCountResponseDataTypeEnumValues = []RumRecoveryCountResponseDataType{
+var allowedRUMRecoveryCountResponseDataTypeEnumValues = []RUMRecoveryCountResponseDataType{
 	RUMRECOVERYCOUNTRESPONSEDATATYPE_RUM_RECOVERY_COUNT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryCountResponseDataType) GetAllowedValues() []RumRecoveryCountResponseDataType {
-	return allowedRumRecoveryCountResponseDataTypeEnumValues
+func (v *RUMRecoveryCountResponseDataType) GetAllowedValues() []RUMRecoveryCountResponseDataType {
+	return allowedRUMRecoveryCountResponseDataTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryCountResponseDataType) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryCountResponseDataType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryCountResponseDataType(value)
+	*v = RUMRecoveryCountResponseDataType(value)
 	return nil
 }
 
-// NewRumRecoveryCountResponseDataTypeFromValue returns a pointer to a valid RumRecoveryCountResponseDataType
+// NewRUMRecoveryCountResponseDataTypeFromValue returns a pointer to a valid RUMRecoveryCountResponseDataType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryCountResponseDataTypeFromValue(v string) (*RumRecoveryCountResponseDataType, error) {
-	ev := RumRecoveryCountResponseDataType(v)
+func NewRUMRecoveryCountResponseDataTypeFromValue(v string) (*RUMRecoveryCountResponseDataType, error) {
+	ev := RUMRecoveryCountResponseDataType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryCountResponseDataType: valid values are %v", v, allowedRumRecoveryCountResponseDataTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryCountResponseDataType: valid values are %v", v, allowedRUMRecoveryCountResponseDataTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryCountResponseDataType) IsValid() bool {
-	for _, existing := range allowedRumRecoveryCountResponseDataTypeEnumValues {
+func (v RUMRecoveryCountResponseDataType) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryCountResponseDataTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRecoveryCountResponseDataType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryCountResponseDataType value.
-func (v RumRecoveryCountResponseDataType) Ptr() *RumRecoveryCountResponseDataType {
+// Ptr returns reference to RUMRecoveryCountResponseDataType value.
+func (v RUMRecoveryCountResponseDataType) Ptr() *RUMRecoveryCountResponseDataType {
 	return &v
 }

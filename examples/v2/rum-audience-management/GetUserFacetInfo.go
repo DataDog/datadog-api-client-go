@@ -34,14 +34,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetUserFacetInfo", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumAudienceManagementApi(apiClient)
+	api := datadogV2.NewRUMAudienceManagementApi(apiClient)
 	resp, r, err := api.GetUserFacetInfo(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumAudienceManagementApi.GetUserFacetInfo`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMAudienceManagementApi.GetUserFacetInfo`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumAudienceManagementApi.GetUserFacetInfo`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMAudienceManagementApi.GetUserFacetInfo`:\n%s\n", responseContent)
 }

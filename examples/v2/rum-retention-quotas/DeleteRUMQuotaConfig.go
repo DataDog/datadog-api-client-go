@@ -1,10 +1,9 @@
-// Get all RUM-based metrics returns "OK" response
+// Delete a RUM retention quota configuration returns "No Content" response
 
 package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -17,14 +16,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumMetricsApi(apiClient)
-	resp, r, err := api.ListRumMetrics(ctx)
+	api := datadogV2.NewRUMRetentionQuotasApi(apiClient)
+	r, err := api.DeleteRUMQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumMetricsApi.ListRumMetrics`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.DeleteRUMQuotaConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-
-	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumMetricsApi.ListRumMetrics`:\n%s\n", responseContent)
 }

@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigPage Page information.
-type RumArchiveConfigPage struct {
+// RUMArchiveConfigPage Page information.
+type RUMArchiveConfigPage struct {
 	// Total configurations for the organization.
 	TotalFilteredCount int64 `json:"total_filtered_count"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,26 +19,26 @@ type RumArchiveConfigPage struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigPage instantiates a new RumArchiveConfigPage object.
+// NewRUMArchiveConfigPage instantiates a new RUMArchiveConfigPage object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigPage(totalFilteredCount int64) *RumArchiveConfigPage {
-	this := RumArchiveConfigPage{}
+func NewRUMArchiveConfigPage(totalFilteredCount int64) *RUMArchiveConfigPage {
+	this := RUMArchiveConfigPage{}
 	this.TotalFilteredCount = totalFilteredCount
 	return &this
 }
 
-// NewRumArchiveConfigPageWithDefaults instantiates a new RumArchiveConfigPage object.
+// NewRUMArchiveConfigPageWithDefaults instantiates a new RUMArchiveConfigPage object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigPageWithDefaults() *RumArchiveConfigPage {
-	this := RumArchiveConfigPage{}
+func NewRUMArchiveConfigPageWithDefaults() *RUMArchiveConfigPage {
+	this := RUMArchiveConfigPage{}
 	return &this
 }
 
 // GetTotalFilteredCount returns the TotalFilteredCount field value.
-func (o *RumArchiveConfigPage) GetTotalFilteredCount() int64 {
+func (o *RUMArchiveConfigPage) GetTotalFilteredCount() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -48,7 +48,7 @@ func (o *RumArchiveConfigPage) GetTotalFilteredCount() int64 {
 
 // GetTotalFilteredCountOk returns a tuple with the TotalFilteredCount field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigPage) GetTotalFilteredCountOk() (*int64, bool) {
+func (o *RUMArchiveConfigPage) GetTotalFilteredCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumArchiveConfigPage) GetTotalFilteredCountOk() (*int64, bool) {
 }
 
 // SetTotalFilteredCount sets field value.
-func (o *RumArchiveConfigPage) SetTotalFilteredCount(v int64) {
+func (o *RUMArchiveConfigPage) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigPage) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,7 +75,7 @@ func (o RumArchiveConfigPage) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigPage) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TotalFilteredCount *int64 `json:"total_filtered_count"`
 	}{}

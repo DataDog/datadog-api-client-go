@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterMeta Metadata about the exclusion filter.
-type RumExclusionFilterMeta struct {
+// RUMExclusionFilterMeta Metadata about the exclusion filter.
+type RUMExclusionFilterMeta struct {
 	// Unix epoch (in milliseconds) when the exclusion filter was last enabled.
 	EnabledAt *int64 `json:"enabled_at,omitempty"`
 	// Unix epoch (in milliseconds) of the last update.
@@ -21,25 +21,25 @@ type RumExclusionFilterMeta struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFilterMeta instantiates a new RumExclusionFilterMeta object.
+// NewRUMExclusionFilterMeta instantiates a new RUMExclusionFilterMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFilterMeta() *RumExclusionFilterMeta {
-	this := RumExclusionFilterMeta{}
+func NewRUMExclusionFilterMeta() *RUMExclusionFilterMeta {
+	this := RUMExclusionFilterMeta{}
 	return &this
 }
 
-// NewRumExclusionFilterMetaWithDefaults instantiates a new RumExclusionFilterMeta object.
+// NewRUMExclusionFilterMetaWithDefaults instantiates a new RUMExclusionFilterMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFilterMetaWithDefaults() *RumExclusionFilterMeta {
-	this := RumExclusionFilterMeta{}
+func NewRUMExclusionFilterMetaWithDefaults() *RUMExclusionFilterMeta {
+	this := RUMExclusionFilterMeta{}
 	return &this
 }
 
 // GetEnabledAt returns the EnabledAt field value if set, zero value otherwise.
-func (o *RumExclusionFilterMeta) GetEnabledAt() int64 {
+func (o *RUMExclusionFilterMeta) GetEnabledAt() int64 {
 	if o == nil || o.EnabledAt == nil {
 		var ret int64
 		return ret
@@ -49,7 +49,7 @@ func (o *RumExclusionFilterMeta) GetEnabledAt() int64 {
 
 // GetEnabledAtOk returns a tuple with the EnabledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterMeta) GetEnabledAtOk() (*int64, bool) {
+func (o *RUMExclusionFilterMeta) GetEnabledAtOk() (*int64, bool) {
 	if o == nil || o.EnabledAt == nil {
 		return nil, false
 	}
@@ -57,17 +57,17 @@ func (o *RumExclusionFilterMeta) GetEnabledAtOk() (*int64, bool) {
 }
 
 // HasEnabledAt returns a boolean if a field has been set.
-func (o *RumExclusionFilterMeta) HasEnabledAt() bool {
+func (o *RUMExclusionFilterMeta) HasEnabledAt() bool {
 	return o != nil && o.EnabledAt != nil
 }
 
 // SetEnabledAt gets a reference to the given int64 and assigns it to the EnabledAt field.
-func (o *RumExclusionFilterMeta) SetEnabledAt(v int64) {
+func (o *RUMExclusionFilterMeta) SetEnabledAt(v int64) {
 	o.EnabledAt = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *RumExclusionFilterMeta) GetUpdatedAt() int64 {
+func (o *RUMExclusionFilterMeta) GetUpdatedAt() int64 {
 	if o == nil || o.UpdatedAt == nil {
 		var ret int64
 		return ret
@@ -77,7 +77,7 @@ func (o *RumExclusionFilterMeta) GetUpdatedAt() int64 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
+func (o *RUMExclusionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -85,17 +85,17 @@ func (o *RumExclusionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *RumExclusionFilterMeta) HasUpdatedAt() bool {
+func (o *RUMExclusionFilterMeta) HasUpdatedAt() bool {
 	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
-func (o *RumExclusionFilterMeta) SetUpdatedAt(v int64) {
+func (o *RUMExclusionFilterMeta) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedByHandle returns the UpdatedByHandle field value if set, zero value otherwise.
-func (o *RumExclusionFilterMeta) GetUpdatedByHandle() string {
+func (o *RUMExclusionFilterMeta) GetUpdatedByHandle() string {
 	if o == nil || o.UpdatedByHandle == nil {
 		var ret string
 		return ret
@@ -105,7 +105,7 @@ func (o *RumExclusionFilterMeta) GetUpdatedByHandle() string {
 
 // GetUpdatedByHandleOk returns a tuple with the UpdatedByHandle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
+func (o *RUMExclusionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
 	if o == nil || o.UpdatedByHandle == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *RumExclusionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
 }
 
 // HasUpdatedByHandle returns a boolean if a field has been set.
-func (o *RumExclusionFilterMeta) HasUpdatedByHandle() bool {
+func (o *RUMExclusionFilterMeta) HasUpdatedByHandle() bool {
 	return o != nil && o.UpdatedByHandle != nil
 }
 
 // SetUpdatedByHandle gets a reference to the given string and assigns it to the UpdatedByHandle field.
-func (o *RumExclusionFilterMeta) SetUpdatedByHandle(v string) {
+func (o *RUMExclusionFilterMeta) SetUpdatedByHandle(v string) {
 	o.UpdatedByHandle = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFilterMeta) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFilterMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,7 +145,7 @@ func (o RumExclusionFilterMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		EnabledAt       *int64  `json:"enabled_at,omitempty"`
 		UpdatedAt       *int64  `json:"updated_at,omitempty"`

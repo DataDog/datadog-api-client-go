@@ -10,38 +10,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigDynamicOptionPair A key-value pair where the value is a dynamic configuration option.
-type RumSdkConfigDynamicOptionPair struct {
+// RUMSdkConfigDynamicOptionPair A key-value pair where the value is a dynamic configuration option.
+type RUMSdkConfigDynamicOptionPair struct {
 	// The key name for this dynamic configuration pair.
 	Key string `json:"key"`
 	// A dynamic configuration option that extracts a value at runtime using a specified strategy.
-	Value RumSdkConfigDynamicOption `json:"value"`
+	Value RUMSdkConfigDynamicOption `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigDynamicOptionPair instantiates a new RumSdkConfigDynamicOptionPair object.
+// NewRUMSdkConfigDynamicOptionPair instantiates a new RUMSdkConfigDynamicOptionPair object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigDynamicOptionPair(key string, value RumSdkConfigDynamicOption) *RumSdkConfigDynamicOptionPair {
-	this := RumSdkConfigDynamicOptionPair{}
+func NewRUMSdkConfigDynamicOptionPair(key string, value RUMSdkConfigDynamicOption) *RUMSdkConfigDynamicOptionPair {
+	this := RUMSdkConfigDynamicOptionPair{}
 	this.Key = key
 	this.Value = value
 	return &this
 }
 
-// NewRumSdkConfigDynamicOptionPairWithDefaults instantiates a new RumSdkConfigDynamicOptionPair object.
+// NewRUMSdkConfigDynamicOptionPairWithDefaults instantiates a new RUMSdkConfigDynamicOptionPair object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigDynamicOptionPairWithDefaults() *RumSdkConfigDynamicOptionPair {
-	this := RumSdkConfigDynamicOptionPair{}
+func NewRUMSdkConfigDynamicOptionPairWithDefaults() *RUMSdkConfigDynamicOptionPair {
+	this := RUMSdkConfigDynamicOptionPair{}
 	return &this
 }
 
 // GetKey returns the Key field value.
-func (o *RumSdkConfigDynamicOptionPair) GetKey() string {
+func (o *RUMSdkConfigDynamicOptionPair) GetKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *RumSdkConfigDynamicOptionPair) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOptionPair) GetKeyOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOptionPair) GetKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +59,14 @@ func (o *RumSdkConfigDynamicOptionPair) GetKeyOk() (*string, bool) {
 }
 
 // SetKey sets field value.
-func (o *RumSdkConfigDynamicOptionPair) SetKey(v string) {
+func (o *RUMSdkConfigDynamicOptionPair) SetKey(v string) {
 	o.Key = v
 }
 
 // GetValue returns the Value field value.
-func (o *RumSdkConfigDynamicOptionPair) GetValue() RumSdkConfigDynamicOption {
+func (o *RUMSdkConfigDynamicOptionPair) GetValue() RUMSdkConfigDynamicOption {
 	if o == nil {
-		var ret RumSdkConfigDynamicOption
+		var ret RUMSdkConfigDynamicOption
 		return ret
 	}
 	return o.Value
@@ -74,7 +74,7 @@ func (o *RumSdkConfigDynamicOptionPair) GetValue() RumSdkConfigDynamicOption {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOptionPair) GetValueOk() (*RumSdkConfigDynamicOption, bool) {
+func (o *RUMSdkConfigDynamicOptionPair) GetValueOk() (*RUMSdkConfigDynamicOption, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumSdkConfigDynamicOptionPair) GetValueOk() (*RumSdkConfigDynamicOption
 }
 
 // SetValue sets field value.
-func (o *RumSdkConfigDynamicOptionPair) SetValue(v RumSdkConfigDynamicOption) {
+func (o *RUMSdkConfigDynamicOptionPair) SetValue(v RUMSdkConfigDynamicOption) {
 	o.Value = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigDynamicOptionPair) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigDynamicOptionPair) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,10 +102,10 @@ func (o RumSdkConfigDynamicOptionPair) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigDynamicOptionPair) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigDynamicOptionPair) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Key   *string                    `json:"key"`
-		Value *RumSdkConfigDynamicOption `json:"value"`
+		Value *RUMSdkConfigDynamicOption `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

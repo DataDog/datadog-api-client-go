@@ -1,4 +1,4 @@
-// Get the RUM configuration returns "OK" response
+// Create the RUM configuration returns "Created" response
 
 package main
 
@@ -13,19 +13,27 @@ import (
 )
 
 func main() {
+	body := datadogV2.RUMConfigCreateRequest{
+		Data: datadogV2.RUMConfigCreateData{
+			Attributes: datadogV2.RUMConfigCreateAttributes{
+				EnforcedApplicationTags: true,
+			},
+			Type: datadogV2.RUMCONFIGTYPE_RUM_CONFIG,
+		},
+	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetRumConfig", true)
+	configuration.SetUnstableOperationEnabled("v2.CreateRUMConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMConfigApi(apiClient)
-	resp, r, err := api.GetRumConfig(ctx)
+	resp, r, err := api.CreateRUMConfig(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RUMConfigApi.GetRumConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMConfigApi.CreateRUMConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RUMConfigApi.GetRumConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMConfigApi.CreateRUMConfig`:\n%s\n", responseContent)
 }

@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigSerializedRegex A serialized regex used as an extractor in dynamic options.
-type RumSdkConfigSerializedRegex struct {
+// RUMSdkConfigSerializedRegex A serialized regex used as an extractor in dynamic options.
+type RUMSdkConfigSerializedRegex struct {
 	// The type identifier for a serialized regex. Always `regex`.
-	RcSerializedType RumSdkConfigSerializedRegexType `json:"rc_serialized_type"`
+	RcSerializedType RUMSdkConfigSerializedRegexType `json:"rc_serialized_type"`
 	// The regex pattern used for extraction.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,29 +21,29 @@ type RumSdkConfigSerializedRegex struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigSerializedRegex instantiates a new RumSdkConfigSerializedRegex object.
+// NewRUMSdkConfigSerializedRegex instantiates a new RUMSdkConfigSerializedRegex object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigSerializedRegex(rcSerializedType RumSdkConfigSerializedRegexType, value string) *RumSdkConfigSerializedRegex {
-	this := RumSdkConfigSerializedRegex{}
+func NewRUMSdkConfigSerializedRegex(rcSerializedType RUMSdkConfigSerializedRegexType, value string) *RUMSdkConfigSerializedRegex {
+	this := RUMSdkConfigSerializedRegex{}
 	this.RcSerializedType = rcSerializedType
 	this.Value = value
 	return &this
 }
 
-// NewRumSdkConfigSerializedRegexWithDefaults instantiates a new RumSdkConfigSerializedRegex object.
+// NewRUMSdkConfigSerializedRegexWithDefaults instantiates a new RUMSdkConfigSerializedRegex object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigSerializedRegexWithDefaults() *RumSdkConfigSerializedRegex {
-	this := RumSdkConfigSerializedRegex{}
+func NewRUMSdkConfigSerializedRegexWithDefaults() *RUMSdkConfigSerializedRegex {
+	this := RUMSdkConfigSerializedRegex{}
 	return &this
 }
 
 // GetRcSerializedType returns the RcSerializedType field value.
-func (o *RumSdkConfigSerializedRegex) GetRcSerializedType() RumSdkConfigSerializedRegexType {
+func (o *RUMSdkConfigSerializedRegex) GetRcSerializedType() RUMSdkConfigSerializedRegexType {
 	if o == nil {
-		var ret RumSdkConfigSerializedRegexType
+		var ret RUMSdkConfigSerializedRegexType
 		return ret
 	}
 	return o.RcSerializedType
@@ -51,7 +51,7 @@ func (o *RumSdkConfigSerializedRegex) GetRcSerializedType() RumSdkConfigSerializ
 
 // GetRcSerializedTypeOk returns a tuple with the RcSerializedType field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigSerializedRegex) GetRcSerializedTypeOk() (*RumSdkConfigSerializedRegexType, bool) {
+func (o *RUMSdkConfigSerializedRegex) GetRcSerializedTypeOk() (*RUMSdkConfigSerializedRegexType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,12 +59,12 @@ func (o *RumSdkConfigSerializedRegex) GetRcSerializedTypeOk() (*RumSdkConfigSeri
 }
 
 // SetRcSerializedType sets field value.
-func (o *RumSdkConfigSerializedRegex) SetRcSerializedType(v RumSdkConfigSerializedRegexType) {
+func (o *RUMSdkConfigSerializedRegex) SetRcSerializedType(v RUMSdkConfigSerializedRegexType) {
 	o.RcSerializedType = v
 }
 
 // GetValue returns the Value field value.
-func (o *RumSdkConfigSerializedRegex) GetValue() string {
+func (o *RUMSdkConfigSerializedRegex) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -74,7 +74,7 @@ func (o *RumSdkConfigSerializedRegex) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigSerializedRegex) GetValueOk() (*string, bool) {
+func (o *RUMSdkConfigSerializedRegex) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumSdkConfigSerializedRegex) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value.
-func (o *RumSdkConfigSerializedRegex) SetValue(v string) {
+func (o *RUMSdkConfigSerializedRegex) SetValue(v string) {
 	o.Value = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigSerializedRegex) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigSerializedRegex) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,9 +102,9 @@ func (o RumSdkConfigSerializedRegex) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigSerializedRegex) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigSerializedRegex) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RcSerializedType *RumSdkConfigSerializedRegexType `json:"rc_serialized_type"`
+		RcSerializedType *RUMSdkConfigSerializedRegexType `json:"rc_serialized_type"`
 		Value            *string                          `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

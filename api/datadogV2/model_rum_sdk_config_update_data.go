@@ -10,45 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigUpdateData The data object for updating a RUM SDK configuration.
-type RumSdkConfigUpdateData struct {
+// RUMSdkConfigUpdateData The data object for updating a RUM SDK configuration.
+type RUMSdkConfigUpdateData struct {
 	// Attributes of the RUM SDK configuration to update.
-	Attributes RumSdkConfigUpdateAttributes `json:"attributes"`
+	Attributes RUMSdkConfigUpdateAttributes `json:"attributes"`
 	// The ID of the RUM SDK configuration to update.
 	Id string `json:"id"`
 	// The type of the resource. The value should always be `rum_sdk_config`.
-	Type RumSdkConfigType `json:"type"`
+	Type RUMSdkConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigUpdateData instantiates a new RumSdkConfigUpdateData object.
+// NewRUMSdkConfigUpdateData instantiates a new RUMSdkConfigUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigUpdateData(attributes RumSdkConfigUpdateAttributes, id string, typeVar RumSdkConfigType) *RumSdkConfigUpdateData {
-	this := RumSdkConfigUpdateData{}
+func NewRUMSdkConfigUpdateData(attributes RUMSdkConfigUpdateAttributes, id string, typeVar RUMSdkConfigType) *RUMSdkConfigUpdateData {
+	this := RUMSdkConfigUpdateData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumSdkConfigUpdateDataWithDefaults instantiates a new RumSdkConfigUpdateData object.
+// NewRUMSdkConfigUpdateDataWithDefaults instantiates a new RUMSdkConfigUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigUpdateDataWithDefaults() *RumSdkConfigUpdateData {
-	this := RumSdkConfigUpdateData{}
-	var typeVar RumSdkConfigType = RUMSDKCONFIGTYPE_RUM_SDK_CONFIG
+func NewRUMSdkConfigUpdateDataWithDefaults() *RUMSdkConfigUpdateData {
+	this := RUMSdkConfigUpdateData{}
+	var typeVar RUMSdkConfigType = RUMSDKCONFIGTYPE_RUM_SDK_CONFIG
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumSdkConfigUpdateData) GetAttributes() RumSdkConfigUpdateAttributes {
+func (o *RUMSdkConfigUpdateData) GetAttributes() RUMSdkConfigUpdateAttributes {
 	if o == nil {
-		var ret RumSdkConfigUpdateAttributes
+		var ret RUMSdkConfigUpdateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -56,7 +56,7 @@ func (o *RumSdkConfigUpdateData) GetAttributes() RumSdkConfigUpdateAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigUpdateData) GetAttributesOk() (*RumSdkConfigUpdateAttributes, bool) {
+func (o *RUMSdkConfigUpdateData) GetAttributesOk() (*RUMSdkConfigUpdateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,12 +64,12 @@ func (o *RumSdkConfigUpdateData) GetAttributesOk() (*RumSdkConfigUpdateAttribute
 }
 
 // SetAttributes sets field value.
-func (o *RumSdkConfigUpdateData) SetAttributes(v RumSdkConfigUpdateAttributes) {
+func (o *RUMSdkConfigUpdateData) SetAttributes(v RUMSdkConfigUpdateAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumSdkConfigUpdateData) GetId() string {
+func (o *RUMSdkConfigUpdateData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *RumSdkConfigUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigUpdateData) GetIdOk() (*string, bool) {
+func (o *RUMSdkConfigUpdateData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,14 +87,14 @@ func (o *RumSdkConfigUpdateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumSdkConfigUpdateData) SetId(v string) {
+func (o *RUMSdkConfigUpdateData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumSdkConfigUpdateData) GetType() RumSdkConfigType {
+func (o *RUMSdkConfigUpdateData) GetType() RUMSdkConfigType {
 	if o == nil {
-		var ret RumSdkConfigType
+		var ret RUMSdkConfigType
 		return ret
 	}
 	return o.Type
@@ -102,7 +102,7 @@ func (o *RumSdkConfigUpdateData) GetType() RumSdkConfigType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigUpdateData) GetTypeOk() (*RumSdkConfigType, bool) {
+func (o *RUMSdkConfigUpdateData) GetTypeOk() (*RUMSdkConfigType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,12 +110,12 @@ func (o *RumSdkConfigUpdateData) GetTypeOk() (*RumSdkConfigType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumSdkConfigUpdateData) SetType(v RumSdkConfigType) {
+func (o *RUMSdkConfigUpdateData) SetType(v RUMSdkConfigType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigUpdateData) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -131,11 +131,11 @@ func (o RumSdkConfigUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumSdkConfigUpdateAttributes `json:"attributes"`
+		Attributes *RUMSdkConfigUpdateAttributes `json:"attributes"`
 		Id         *string                       `json:"id"`
-		Type       *RumSdkConfigType             `json:"type"`
+		Type       *RUMSdkConfigType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

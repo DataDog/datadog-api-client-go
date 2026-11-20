@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUpdateCompute The compute rule properties that can be updated. Only valid for metrics whose `aggregation_type` is `distribution`.
-type RumMetricUpdateCompute struct {
+// RUMMetricUpdateCompute The compute rule properties that can be updated. Only valid for metrics whose `aggregation_type` is `distribution`.
+type RUMMetricUpdateCompute struct {
 	// Toggle to include or exclude percentile aggregations (p50, p75, p90, p95, p99) for distribution metrics.
 	// Required when `aggregation_type` is `distribution`, and must be omitted otherwise.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
@@ -18,25 +18,25 @@ type RumMetricUpdateCompute struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricUpdateCompute instantiates a new RumMetricUpdateCompute object.
+// NewRUMMetricUpdateCompute instantiates a new RUMMetricUpdateCompute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricUpdateCompute() *RumMetricUpdateCompute {
-	this := RumMetricUpdateCompute{}
+func NewRUMMetricUpdateCompute() *RUMMetricUpdateCompute {
+	this := RUMMetricUpdateCompute{}
 	return &this
 }
 
-// NewRumMetricUpdateComputeWithDefaults instantiates a new RumMetricUpdateCompute object.
+// NewRUMMetricUpdateComputeWithDefaults instantiates a new RUMMetricUpdateCompute object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricUpdateComputeWithDefaults() *RumMetricUpdateCompute {
-	this := RumMetricUpdateCompute{}
+func NewRUMMetricUpdateComputeWithDefaults() *RUMMetricUpdateCompute {
+	this := RUMMetricUpdateCompute{}
 	return &this
 }
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
-func (o *RumMetricUpdateCompute) GetIncludePercentiles() bool {
+func (o *RUMMetricUpdateCompute) GetIncludePercentiles() bool {
 	if o == nil || o.IncludePercentiles == nil {
 		var ret bool
 		return ret
@@ -46,7 +46,7 @@ func (o *RumMetricUpdateCompute) GetIncludePercentiles() bool {
 
 // GetIncludePercentilesOk returns a tuple with the IncludePercentiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricUpdateCompute) GetIncludePercentilesOk() (*bool, bool) {
+func (o *RUMMetricUpdateCompute) GetIncludePercentilesOk() (*bool, bool) {
 	if o == nil || o.IncludePercentiles == nil {
 		return nil, false
 	}
@@ -54,17 +54,17 @@ func (o *RumMetricUpdateCompute) GetIncludePercentilesOk() (*bool, bool) {
 }
 
 // HasIncludePercentiles returns a boolean if a field has been set.
-func (o *RumMetricUpdateCompute) HasIncludePercentiles() bool {
+func (o *RUMMetricUpdateCompute) HasIncludePercentiles() bool {
 	return o != nil && o.IncludePercentiles != nil
 }
 
 // SetIncludePercentiles gets a reference to the given bool and assigns it to the IncludePercentiles field.
-func (o *RumMetricUpdateCompute) SetIncludePercentiles(v bool) {
+func (o *RUMMetricUpdateCompute) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricUpdateCompute) MarshalJSON() ([]byte, error) {
+func (o RUMMetricUpdateCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -80,7 +80,7 @@ func (o RumMetricUpdateCompute) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricUpdateCompute) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricUpdateCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	}{}

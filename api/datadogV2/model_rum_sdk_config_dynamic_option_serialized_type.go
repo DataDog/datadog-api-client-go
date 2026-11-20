@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigDynamicOptionSerializedType The type identifier for a dynamic option. Always `dynamic`.
-type RumSdkConfigDynamicOptionSerializedType string
+// RUMSdkConfigDynamicOptionSerializedType The type identifier for a dynamic option. Always `dynamic`.
+type RUMSdkConfigDynamicOptionSerializedType string
 
-// List of RumSdkConfigDynamicOptionSerializedType.
+// List of RUMSdkConfigDynamicOptionSerializedType.
 const (
-	RUMSDKCONFIGDYNAMICOPTIONSERIALIZEDTYPE_DYNAMIC RumSdkConfigDynamicOptionSerializedType = "dynamic"
+	RUMSDKCONFIGDYNAMICOPTIONSERIALIZEDTYPE_DYNAMIC RUMSdkConfigDynamicOptionSerializedType = "dynamic"
 )
 
-var allowedRumSdkConfigDynamicOptionSerializedTypeEnumValues = []RumSdkConfigDynamicOptionSerializedType{
+var allowedRUMSdkConfigDynamicOptionSerializedTypeEnumValues = []RUMSdkConfigDynamicOptionSerializedType{
 	RUMSDKCONFIGDYNAMICOPTIONSERIALIZEDTYPE_DYNAMIC,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigDynamicOptionSerializedType) GetAllowedValues() []RumSdkConfigDynamicOptionSerializedType {
-	return allowedRumSdkConfigDynamicOptionSerializedTypeEnumValues
+func (v *RUMSdkConfigDynamicOptionSerializedType) GetAllowedValues() []RUMSdkConfigDynamicOptionSerializedType {
+	return allowedRUMSdkConfigDynamicOptionSerializedTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigDynamicOptionSerializedType) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigDynamicOptionSerializedType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigDynamicOptionSerializedType(value)
+	*v = RUMSdkConfigDynamicOptionSerializedType(value)
 	return nil
 }
 
-// NewRumSdkConfigDynamicOptionSerializedTypeFromValue returns a pointer to a valid RumSdkConfigDynamicOptionSerializedType
+// NewRUMSdkConfigDynamicOptionSerializedTypeFromValue returns a pointer to a valid RUMSdkConfigDynamicOptionSerializedType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigDynamicOptionSerializedTypeFromValue(v string) (*RumSdkConfigDynamicOptionSerializedType, error) {
-	ev := RumSdkConfigDynamicOptionSerializedType(v)
+func NewRUMSdkConfigDynamicOptionSerializedTypeFromValue(v string) (*RUMSdkConfigDynamicOptionSerializedType, error) {
+	ev := RUMSdkConfigDynamicOptionSerializedType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigDynamicOptionSerializedType: valid values are %v", v, allowedRumSdkConfigDynamicOptionSerializedTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigDynamicOptionSerializedType: valid values are %v", v, allowedRUMSdkConfigDynamicOptionSerializedTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigDynamicOptionSerializedType) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigDynamicOptionSerializedTypeEnumValues {
+func (v RUMSdkConfigDynamicOptionSerializedType) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigDynamicOptionSerializedTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumSdkConfigDynamicOptionSerializedType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigDynamicOptionSerializedType value.
-func (v RumSdkConfigDynamicOptionSerializedType) Ptr() *RumSdkConfigDynamicOptionSerializedType {
+// Ptr returns reference to RUMSdkConfigDynamicOptionSerializedType value.
+func (v RUMSdkConfigDynamicOptionSerializedType) Ptr() *RUMSdkConfigDynamicOptionSerializedType {
 	return &v
 }

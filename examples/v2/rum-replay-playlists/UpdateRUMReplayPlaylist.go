@@ -1,4 +1,4 @@
-// Create RUM replay playlist returns "Created" response
+// Update RUM replay playlist returns "OK" response
 
 package main
 
@@ -30,14 +30,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	resp, r, err := api.CreateRumReplayPlaylist(ctx, body)
+	api := datadogV2.NewRUMReplayPlaylistsApi(apiClient)
+	resp, r, err := api.UpdateRUMReplayPlaylist(ctx, 1234567, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.CreateRumReplayPlaylist`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayPlaylistsApi.UpdateRUMReplayPlaylist`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayPlaylistsApi.CreateRumReplayPlaylist`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMReplayPlaylistsApi.UpdateRUMReplayPlaylist`:\n%s\n", responseContent)
 }

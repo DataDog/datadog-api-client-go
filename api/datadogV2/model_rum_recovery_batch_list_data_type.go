@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchListDataType JSON:API resource type.
-type RumRecoveryBatchListDataType string
+// RUMRecoveryBatchListDataType JSON:API resource type.
+type RUMRecoveryBatchListDataType string
 
-// List of RumRecoveryBatchListDataType.
+// List of RUMRecoveryBatchListDataType.
 const (
-	RUMRECOVERYBATCHLISTDATATYPE_RUM_BATCH_RECOVERY_REQUEST RumRecoveryBatchListDataType = "rum_batch_recovery_request"
+	RUMRECOVERYBATCHLISTDATATYPE_RUM_BATCH_RECOVERY_REQUEST RUMRecoveryBatchListDataType = "rum_batch_recovery_request"
 )
 
-var allowedRumRecoveryBatchListDataTypeEnumValues = []RumRecoveryBatchListDataType{
+var allowedRUMRecoveryBatchListDataTypeEnumValues = []RUMRecoveryBatchListDataType{
 	RUMRECOVERYBATCHLISTDATATYPE_RUM_BATCH_RECOVERY_REQUEST,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryBatchListDataType) GetAllowedValues() []RumRecoveryBatchListDataType {
-	return allowedRumRecoveryBatchListDataTypeEnumValues
+func (v *RUMRecoveryBatchListDataType) GetAllowedValues() []RUMRecoveryBatchListDataType {
+	return allowedRUMRecoveryBatchListDataTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryBatchListDataType) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryBatchListDataType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryBatchListDataType(value)
+	*v = RUMRecoveryBatchListDataType(value)
 	return nil
 }
 
-// NewRumRecoveryBatchListDataTypeFromValue returns a pointer to a valid RumRecoveryBatchListDataType
+// NewRUMRecoveryBatchListDataTypeFromValue returns a pointer to a valid RUMRecoveryBatchListDataType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryBatchListDataTypeFromValue(v string) (*RumRecoveryBatchListDataType, error) {
-	ev := RumRecoveryBatchListDataType(v)
+func NewRUMRecoveryBatchListDataTypeFromValue(v string) (*RUMRecoveryBatchListDataType, error) {
+	ev := RUMRecoveryBatchListDataType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryBatchListDataType: valid values are %v", v, allowedRumRecoveryBatchListDataTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryBatchListDataType: valid values are %v", v, allowedRUMRecoveryBatchListDataTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryBatchListDataType) IsValid() bool {
-	for _, existing := range allowedRumRecoveryBatchListDataTypeEnumValues {
+func (v RUMRecoveryBatchListDataType) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryBatchListDataTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRecoveryBatchListDataType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryBatchListDataType value.
-func (v RumRecoveryBatchListDataType) Ptr() *RumRecoveryBatchListDataType {
+// Ptr returns reference to RUMRecoveryBatchListDataType value.
+func (v RUMRecoveryBatchListDataType) Ptr() *RUMRecoveryBatchListDataType {
 	return &v
 }

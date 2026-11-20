@@ -10,21 +10,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricEventType The type of RUM events the metric is generated from. It is set at creation and cannot be changed.
-type RumMetricEventType string
+// RUMMetricEventType The type of RUM events the metric is generated from. It is set at creation and cannot be changed.
+type RUMMetricEventType string
 
-// List of RumMetricEventType.
+// List of RUMMetricEventType.
 const (
-	RUMMETRICEVENTTYPE_SESSION   RumMetricEventType = "session"
-	RUMMETRICEVENTTYPE_VIEW      RumMetricEventType = "view"
-	RUMMETRICEVENTTYPE_ACTION    RumMetricEventType = "action"
-	RUMMETRICEVENTTYPE_ERROR     RumMetricEventType = "error"
-	RUMMETRICEVENTTYPE_RESOURCE  RumMetricEventType = "resource"
-	RUMMETRICEVENTTYPE_LONG_TASK RumMetricEventType = "long_task"
-	RUMMETRICEVENTTYPE_VITAL     RumMetricEventType = "vital"
+	RUMMETRICEVENTTYPE_SESSION   RUMMetricEventType = "session"
+	RUMMETRICEVENTTYPE_VIEW      RUMMetricEventType = "view"
+	RUMMETRICEVENTTYPE_ACTION    RUMMetricEventType = "action"
+	RUMMETRICEVENTTYPE_ERROR     RUMMetricEventType = "error"
+	RUMMETRICEVENTTYPE_RESOURCE  RUMMetricEventType = "resource"
+	RUMMETRICEVENTTYPE_LONG_TASK RUMMetricEventType = "long_task"
+	RUMMETRICEVENTTYPE_VITAL     RUMMetricEventType = "vital"
 )
 
-var allowedRumMetricEventTypeEnumValues = []RumMetricEventType{
+var allowedRUMMetricEventTypeEnumValues = []RUMMetricEventType{
 	RUMMETRICEVENTTYPE_SESSION,
 	RUMMETRICEVENTTYPE_VIEW,
 	RUMMETRICEVENTTYPE_ACTION,
@@ -35,34 +35,34 @@ var allowedRumMetricEventTypeEnumValues = []RumMetricEventType{
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumMetricEventType) GetAllowedValues() []RumMetricEventType {
-	return allowedRumMetricEventTypeEnumValues
+func (v *RUMMetricEventType) GetAllowedValues() []RUMMetricEventType {
+	return allowedRUMMetricEventTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumMetricEventType) UnmarshalJSON(src []byte) error {
+func (v *RUMMetricEventType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumMetricEventType(value)
+	*v = RUMMetricEventType(value)
 	return nil
 }
 
-// NewRumMetricEventTypeFromValue returns a pointer to a valid RumMetricEventType
+// NewRUMMetricEventTypeFromValue returns a pointer to a valid RUMMetricEventType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumMetricEventTypeFromValue(v string) (*RumMetricEventType, error) {
-	ev := RumMetricEventType(v)
+func NewRUMMetricEventTypeFromValue(v string) (*RUMMetricEventType, error) {
+	ev := RUMMetricEventType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumMetricEventType: valid values are %v", v, allowedRumMetricEventTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMMetricEventType: valid values are %v", v, allowedRUMMetricEventTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumMetricEventType) IsValid() bool {
-	for _, existing := range allowedRumMetricEventTypeEnumValues {
+func (v RUMMetricEventType) IsValid() bool {
+	for _, existing := range allowedRUMMetricEventTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -70,7 +70,7 @@ func (v RumMetricEventType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumMetricEventType value.
-func (v RumMetricEventType) Ptr() *RumMetricEventType {
+// Ptr returns reference to RUMMetricEventType value.
+func (v RUMMetricEventType) Ptr() *RUMMetricEventType {
 	return &v
 }

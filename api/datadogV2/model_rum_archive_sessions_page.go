@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionsPage Search pagination.
-type RumArchiveSessionsPage struct {
+// RUMArchiveSessionsPage Search pagination.
+type RUMArchiveSessionsPage struct {
 	// Opaque continuation cursor. Omitted when no further page is available.
 	NextCursor *string `json:"next_cursor,omitempty"`
 	// Search result count. Can be zero on continuation pages even when sessions are returned. Use `next_cursor` to determine whether more pages are available.
@@ -21,26 +21,26 @@ type RumArchiveSessionsPage struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionsPage instantiates a new RumArchiveSessionsPage object.
+// NewRUMArchiveSessionsPage instantiates a new RUMArchiveSessionsPage object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionsPage(totalCount int64) *RumArchiveSessionsPage {
-	this := RumArchiveSessionsPage{}
+func NewRUMArchiveSessionsPage(totalCount int64) *RUMArchiveSessionsPage {
+	this := RUMArchiveSessionsPage{}
 	this.TotalCount = totalCount
 	return &this
 }
 
-// NewRumArchiveSessionsPageWithDefaults instantiates a new RumArchiveSessionsPage object.
+// NewRUMArchiveSessionsPageWithDefaults instantiates a new RUMArchiveSessionsPage object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionsPageWithDefaults() *RumArchiveSessionsPage {
-	this := RumArchiveSessionsPage{}
+func NewRUMArchiveSessionsPageWithDefaults() *RUMArchiveSessionsPage {
+	this := RUMArchiveSessionsPage{}
 	return &this
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
-func (o *RumArchiveSessionsPage) GetNextCursor() string {
+func (o *RUMArchiveSessionsPage) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *RumArchiveSessionsPage) GetNextCursor() string {
 
 // GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsPage) GetNextCursorOk() (*string, bool) {
+func (o *RUMArchiveSessionsPage) GetNextCursorOk() (*string, bool) {
 	if o == nil || o.NextCursor == nil {
 		return nil, false
 	}
@@ -58,17 +58,17 @@ func (o *RumArchiveSessionsPage) GetNextCursorOk() (*string, bool) {
 }
 
 // HasNextCursor returns a boolean if a field has been set.
-func (o *RumArchiveSessionsPage) HasNextCursor() bool {
+func (o *RUMArchiveSessionsPage) HasNextCursor() bool {
 	return o != nil && o.NextCursor != nil
 }
 
 // SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
-func (o *RumArchiveSessionsPage) SetNextCursor(v string) {
+func (o *RUMArchiveSessionsPage) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
 // GetTotalCount returns the TotalCount field value.
-func (o *RumArchiveSessionsPage) GetTotalCount() int64 {
+func (o *RUMArchiveSessionsPage) GetTotalCount() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -78,7 +78,7 @@ func (o *RumArchiveSessionsPage) GetTotalCount() int64 {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsPage) GetTotalCountOk() (*int64, bool) {
+func (o *RUMArchiveSessionsPage) GetTotalCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,12 +86,12 @@ func (o *RumArchiveSessionsPage) GetTotalCountOk() (*int64, bool) {
 }
 
 // SetTotalCount sets field value.
-func (o *RumArchiveSessionsPage) SetTotalCount(v int64) {
+func (o *RUMArchiveSessionsPage) SetTotalCount(v int64) {
 	o.TotalCount = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionsPage) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionsPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,7 +108,7 @@ func (o RumArchiveSessionsPage) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionsPage) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionsPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		NextCursor *string `json:"next_cursor,omitempty"`
 		TotalCount *int64  `json:"total_count"`

@@ -11,13 +11,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaConfigAttributes The RUM retention quota configuration properties.
-type RumRetentionQuotaConfigAttributes struct {
+// RUMRetentionQuotaConfigAttributes The RUM retention quota configuration properties.
+type RUMRetentionQuotaConfigAttributes struct {
 	// The configuration used when `mode` is `custom`.
-	Custom *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
+	Custom *RUMRetentionQuotaCustomConfig `json:"custom,omitempty"`
 	// The retention quota mode. `custom` enforces a fixed session limit.
 	// `custom` is the only supported mode.
-	Mode RumRetentionQuotaMode `json:"mode"`
+	Mode RUMRetentionQuotaMode `json:"mode"`
 	// The ID of the organization the retention quota configuration belongs to.
 	OrgId int64 `json:"org_id"`
 	// The date the retention quota configuration was last updated.
@@ -29,29 +29,29 @@ type RumRetentionQuotaConfigAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionQuotaConfigAttributes instantiates a new RumRetentionQuotaConfigAttributes object.
+// NewRUMRetentionQuotaConfigAttributes instantiates a new RUMRetentionQuotaConfigAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionQuotaConfigAttributes(mode RumRetentionQuotaMode, orgId int64) *RumRetentionQuotaConfigAttributes {
-	this := RumRetentionQuotaConfigAttributes{}
+func NewRUMRetentionQuotaConfigAttributes(mode RUMRetentionQuotaMode, orgId int64) *RUMRetentionQuotaConfigAttributes {
+	this := RUMRetentionQuotaConfigAttributes{}
 	this.Mode = mode
 	this.OrgId = orgId
 	return &this
 }
 
-// NewRumRetentionQuotaConfigAttributesWithDefaults instantiates a new RumRetentionQuotaConfigAttributes object.
+// NewRUMRetentionQuotaConfigAttributesWithDefaults instantiates a new RUMRetentionQuotaConfigAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionQuotaConfigAttributesWithDefaults() *RumRetentionQuotaConfigAttributes {
-	this := RumRetentionQuotaConfigAttributes{}
+func NewRUMRetentionQuotaConfigAttributesWithDefaults() *RUMRetentionQuotaConfigAttributes {
+	this := RUMRetentionQuotaConfigAttributes{}
 	return &this
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
-func (o *RumRetentionQuotaConfigAttributes) GetCustom() RumRetentionQuotaCustomConfig {
+func (o *RUMRetentionQuotaConfigAttributes) GetCustom() RUMRetentionQuotaCustomConfig {
 	if o == nil || o.Custom == nil {
-		var ret RumRetentionQuotaCustomConfig
+		var ret RUMRetentionQuotaCustomConfig
 		return ret
 	}
 	return *o.Custom
@@ -59,7 +59,7 @@ func (o *RumRetentionQuotaConfigAttributes) GetCustom() RumRetentionQuotaCustomC
 
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigAttributes) GetCustomOk() (*RumRetentionQuotaCustomConfig, bool) {
+func (o *RUMRetentionQuotaConfigAttributes) GetCustomOk() (*RUMRetentionQuotaCustomConfig, bool) {
 	if o == nil || o.Custom == nil {
 		return nil, false
 	}
@@ -67,19 +67,19 @@ func (o *RumRetentionQuotaConfigAttributes) GetCustomOk() (*RumRetentionQuotaCus
 }
 
 // HasCustom returns a boolean if a field has been set.
-func (o *RumRetentionQuotaConfigAttributes) HasCustom() bool {
+func (o *RUMRetentionQuotaConfigAttributes) HasCustom() bool {
 	return o != nil && o.Custom != nil
 }
 
-// SetCustom gets a reference to the given RumRetentionQuotaCustomConfig and assigns it to the Custom field.
-func (o *RumRetentionQuotaConfigAttributes) SetCustom(v RumRetentionQuotaCustomConfig) {
+// SetCustom gets a reference to the given RUMRetentionQuotaCustomConfig and assigns it to the Custom field.
+func (o *RUMRetentionQuotaConfigAttributes) SetCustom(v RUMRetentionQuotaCustomConfig) {
 	o.Custom = &v
 }
 
 // GetMode returns the Mode field value.
-func (o *RumRetentionQuotaConfigAttributes) GetMode() RumRetentionQuotaMode {
+func (o *RUMRetentionQuotaConfigAttributes) GetMode() RUMRetentionQuotaMode {
 	if o == nil {
-		var ret RumRetentionQuotaMode
+		var ret RUMRetentionQuotaMode
 		return ret
 	}
 	return o.Mode
@@ -87,7 +87,7 @@ func (o *RumRetentionQuotaConfigAttributes) GetMode() RumRetentionQuotaMode {
 
 // GetModeOk returns a tuple with the Mode field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigAttributes) GetModeOk() (*RumRetentionQuotaMode, bool) {
+func (o *RUMRetentionQuotaConfigAttributes) GetModeOk() (*RUMRetentionQuotaMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +95,12 @@ func (o *RumRetentionQuotaConfigAttributes) GetModeOk() (*RumRetentionQuotaMode,
 }
 
 // SetMode sets field value.
-func (o *RumRetentionQuotaConfigAttributes) SetMode(v RumRetentionQuotaMode) {
+func (o *RUMRetentionQuotaConfigAttributes) SetMode(v RUMRetentionQuotaMode) {
 	o.Mode = v
 }
 
 // GetOrgId returns the OrgId field value.
-func (o *RumRetentionQuotaConfigAttributes) GetOrgId() int64 {
+func (o *RUMRetentionQuotaConfigAttributes) GetOrgId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -110,7 +110,7 @@ func (o *RumRetentionQuotaConfigAttributes) GetOrgId() int64 {
 
 // GetOrgIdOk returns a tuple with the OrgId field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigAttributes) GetOrgIdOk() (*int64, bool) {
+func (o *RUMRetentionQuotaConfigAttributes) GetOrgIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,12 +118,12 @@ func (o *RumRetentionQuotaConfigAttributes) GetOrgIdOk() (*int64, bool) {
 }
 
 // SetOrgId sets field value.
-func (o *RumRetentionQuotaConfigAttributes) SetOrgId(v int64) {
+func (o *RUMRetentionQuotaConfigAttributes) SetOrgId(v int64) {
 	o.OrgId = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *RumRetentionQuotaConfigAttributes) GetUpdatedAt() time.Time {
+func (o *RUMRetentionQuotaConfigAttributes) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -133,7 +133,7 @@ func (o *RumRetentionQuotaConfigAttributes) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMRetentionQuotaConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -141,17 +141,17 @@ func (o *RumRetentionQuotaConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) 
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *RumRetentionQuotaConfigAttributes) HasUpdatedAt() bool {
+func (o *RUMRetentionQuotaConfigAttributes) HasUpdatedAt() bool {
 	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *RumRetentionQuotaConfigAttributes) SetUpdatedAt(v time.Time) {
+func (o *RUMRetentionQuotaConfigAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *RumRetentionQuotaConfigAttributes) GetUpdatedBy() string {
+func (o *RUMRetentionQuotaConfigAttributes) GetUpdatedBy() string {
 	if o == nil || o.UpdatedBy == nil {
 		var ret string
 		return ret
@@ -161,7 +161,7 @@ func (o *RumRetentionQuotaConfigAttributes) GetUpdatedBy() string {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigAttributes) GetUpdatedByOk() (*string, bool) {
+func (o *RUMRetentionQuotaConfigAttributes) GetUpdatedByOk() (*string, bool) {
 	if o == nil || o.UpdatedBy == nil {
 		return nil, false
 	}
@@ -169,17 +169,17 @@ func (o *RumRetentionQuotaConfigAttributes) GetUpdatedByOk() (*string, bool) {
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
-func (o *RumRetentionQuotaConfigAttributes) HasUpdatedBy() bool {
+func (o *RUMRetentionQuotaConfigAttributes) HasUpdatedBy() bool {
 	return o != nil && o.UpdatedBy != nil
 }
 
 // SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
-func (o *RumRetentionQuotaConfigAttributes) SetUpdatedBy(v string) {
+func (o *RUMRetentionQuotaConfigAttributes) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionQuotaConfigAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionQuotaConfigAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -207,10 +207,10 @@ func (o RumRetentionQuotaConfigAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionQuotaConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionQuotaConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Custom    *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
-		Mode      *RumRetentionQuotaMode         `json:"mode"`
+		Custom    *RUMRetentionQuotaCustomConfig `json:"custom,omitempty"`
+		Mode      *RUMRetentionQuotaMode         `json:"mode"`
 		OrgId     *int64                         `json:"org_id"`
 		UpdatedAt *time.Time                     `json:"updated_at,omitempty"`
 		UpdatedBy *string                        `json:"updated_by,omitempty"`

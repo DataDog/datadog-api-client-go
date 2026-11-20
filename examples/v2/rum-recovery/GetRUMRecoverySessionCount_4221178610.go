@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRecoveryCountRequest{
-		Data: datadogV2.RumRecoveryCountRequestData{
+	body := datadogV2.RUMRecoveryCountRequest{
+		Data: datadogV2.RUMRecoveryCountRequestData{
 			Type: datadog.PtrString("rum_recovery_count"),
-			Attributes: datadogV2.RumRecoveryCountAttributes{
+			Attributes: datadogV2.RUMRecoveryCountAttributes{
 				Query: "service:rum18600-fixture",
 				From:  1621077071000,
 				To:    1636629071000,

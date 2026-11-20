@@ -10,20 +10,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryRequestStatus Recovery request state.
-type RumRecoveryRequestStatus string
+// RUMRecoveryRequestStatus Recovery request state.
+type RUMRecoveryRequestStatus string
 
-// List of RumRecoveryRequestStatus.
+// List of RUMRecoveryRequestStatus.
 const (
-	RUMRECOVERYREQUESTSTATUS_PENDING    RumRecoveryRequestStatus = "PENDING"
-	RUMRECOVERYREQUESTSTATUS_PROCESSING RumRecoveryRequestStatus = "PROCESSING"
-	RUMRECOVERYREQUESTSTATUS_COMPLETED  RumRecoveryRequestStatus = "COMPLETED"
-	RUMRECOVERYREQUESTSTATUS_FAILED     RumRecoveryRequestStatus = "FAILED"
-	RUMRECOVERYREQUESTSTATUS_CANCELLED  RumRecoveryRequestStatus = "CANCELLED"
-	RUMRECOVERYREQUESTSTATUS_EXPIRED    RumRecoveryRequestStatus = "EXPIRED"
+	RUMRECOVERYREQUESTSTATUS_PENDING    RUMRecoveryRequestStatus = "PENDING"
+	RUMRECOVERYREQUESTSTATUS_PROCESSING RUMRecoveryRequestStatus = "PROCESSING"
+	RUMRECOVERYREQUESTSTATUS_COMPLETED  RUMRecoveryRequestStatus = "COMPLETED"
+	RUMRECOVERYREQUESTSTATUS_FAILED     RUMRecoveryRequestStatus = "FAILED"
+	RUMRECOVERYREQUESTSTATUS_CANCELLED  RUMRecoveryRequestStatus = "CANCELLED"
+	RUMRECOVERYREQUESTSTATUS_EXPIRED    RUMRecoveryRequestStatus = "EXPIRED"
 )
 
-var allowedRumRecoveryRequestStatusEnumValues = []RumRecoveryRequestStatus{
+var allowedRUMRecoveryRequestStatusEnumValues = []RUMRecoveryRequestStatus{
 	RUMRECOVERYREQUESTSTATUS_PENDING,
 	RUMRECOVERYREQUESTSTATUS_PROCESSING,
 	RUMRECOVERYREQUESTSTATUS_COMPLETED,
@@ -33,34 +33,34 @@ var allowedRumRecoveryRequestStatusEnumValues = []RumRecoveryRequestStatus{
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryRequestStatus) GetAllowedValues() []RumRecoveryRequestStatus {
-	return allowedRumRecoveryRequestStatusEnumValues
+func (v *RUMRecoveryRequestStatus) GetAllowedValues() []RUMRecoveryRequestStatus {
+	return allowedRUMRecoveryRequestStatusEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryRequestStatus) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryRequestStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryRequestStatus(value)
+	*v = RUMRecoveryRequestStatus(value)
 	return nil
 }
 
-// NewRumRecoveryRequestStatusFromValue returns a pointer to a valid RumRecoveryRequestStatus
+// NewRUMRecoveryRequestStatusFromValue returns a pointer to a valid RUMRecoveryRequestStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryRequestStatusFromValue(v string) (*RumRecoveryRequestStatus, error) {
-	ev := RumRecoveryRequestStatus(v)
+func NewRUMRecoveryRequestStatusFromValue(v string) (*RUMRecoveryRequestStatus, error) {
+	ev := RUMRecoveryRequestStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryRequestStatus: valid values are %v", v, allowedRumRecoveryRequestStatusEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryRequestStatus: valid values are %v", v, allowedRUMRecoveryRequestStatusEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryRequestStatus) IsValid() bool {
-	for _, existing := range allowedRumRecoveryRequestStatusEnumValues {
+func (v RUMRecoveryRequestStatus) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryRequestStatusEnumValues {
 		if existing == v {
 			return true
 		}
@@ -68,7 +68,7 @@ func (v RumRecoveryRequestStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryRequestStatus value.
-func (v RumRecoveryRequestStatus) Ptr() *RumRecoveryRequestStatus {
+// Ptr returns reference to RUMRecoveryRequestStatus value.
+func (v RUMRecoveryRequestStatus) Ptr() *RUMRecoveryRequestStatus {
 	return &v
 }

@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCancelStatus Requested cancellation state.
-type RumRecoveryCancelStatus string
+// RUMRecoveryCancelStatus Requested cancellation state.
+type RUMRecoveryCancelStatus string
 
-// List of RumRecoveryCancelStatus.
+// List of RUMRecoveryCancelStatus.
 const (
-	RUMRECOVERYCANCELSTATUS_CANCELLED RumRecoveryCancelStatus = "cancelled"
+	RUMRECOVERYCANCELSTATUS_CANCELLED RUMRecoveryCancelStatus = "cancelled"
 )
 
-var allowedRumRecoveryCancelStatusEnumValues = []RumRecoveryCancelStatus{
+var allowedRUMRecoveryCancelStatusEnumValues = []RUMRecoveryCancelStatus{
 	RUMRECOVERYCANCELSTATUS_CANCELLED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryCancelStatus) GetAllowedValues() []RumRecoveryCancelStatus {
-	return allowedRumRecoveryCancelStatusEnumValues
+func (v *RUMRecoveryCancelStatus) GetAllowedValues() []RUMRecoveryCancelStatus {
+	return allowedRUMRecoveryCancelStatusEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryCancelStatus) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryCancelStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryCancelStatus(value)
+	*v = RUMRecoveryCancelStatus(value)
 	return nil
 }
 
-// NewRumRecoveryCancelStatusFromValue returns a pointer to a valid RumRecoveryCancelStatus
+// NewRUMRecoveryCancelStatusFromValue returns a pointer to a valid RUMRecoveryCancelStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryCancelStatusFromValue(v string) (*RumRecoveryCancelStatus, error) {
-	ev := RumRecoveryCancelStatus(v)
+func NewRUMRecoveryCancelStatusFromValue(v string) (*RUMRecoveryCancelStatus, error) {
+	ev := RUMRecoveryCancelStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryCancelStatus: valid values are %v", v, allowedRumRecoveryCancelStatusEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryCancelStatus: valid values are %v", v, allowedRUMRecoveryCancelStatusEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryCancelStatus) IsValid() bool {
-	for _, existing := range allowedRumRecoveryCancelStatusEnumValues {
+func (v RUMRecoveryCancelStatus) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryCancelStatusEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRecoveryCancelStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryCancelStatus value.
-func (v RumRecoveryCancelStatus) Ptr() *RumRecoveryCancelStatus {
+// Ptr returns reference to RUMRecoveryCancelStatus value.
+func (v RUMRecoveryCancelStatus) Ptr() *RUMRecoveryCancelStatus {
 	return &v
 }

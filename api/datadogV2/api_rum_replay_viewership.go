@@ -12,19 +12,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumReplayViewershipApi service type
-type RumReplayViewershipApi datadog.Service
+// RUMReplayViewershipApi service type
+type RUMReplayViewershipApi datadog.Service
 
-// CreateRumReplaySessionWatch Create RUM replay session watch.
+// CreateRUMReplaySessionWatch Create RUM replay session watch.
 // Record a session watch.
-func (a *RumReplayViewershipApi) CreateRumReplaySessionWatch(ctx _context.Context, sessionId string, body Watch) (Watch, *_nethttp.Response, error) {
+func (a *RUMReplayViewershipApi) CreateRUMReplaySessionWatch(ctx _context.Context, sessionId string, body Watch) (Watch, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue Watch
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayViewershipApi.CreateRumReplaySessionWatch")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayViewershipApi.CreateRUMReplaySessionWatch")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -96,15 +96,15 @@ func (a *RumReplayViewershipApi) CreateRumReplaySessionWatch(ctx _context.Contex
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteRumReplaySessionWatch Delete RUM replay session watch.
+// DeleteRUMReplaySessionWatch Delete RUM replay session watch.
 // Delete session watch history.
-func (a *RumReplayViewershipApi) DeleteRumReplaySessionWatch(ctx _context.Context, sessionId string) (*_nethttp.Response, error) {
+func (a *RUMReplayViewershipApi) DeleteRUMReplaySessionWatch(ctx _context.Context, sessionId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayViewershipApi.DeleteRumReplaySessionWatch")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayViewershipApi.DeleteRUMReplaySessionWatch")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -164,48 +164,48 @@ func (a *RumReplayViewershipApi) DeleteRumReplaySessionWatch(ctx _context.Contex
 	return localVarHTTPResponse, nil
 }
 
-// ListRumReplaySessionWatchersOptionalParameters holds optional parameters for ListRumReplaySessionWatchers.
-type ListRumReplaySessionWatchersOptionalParameters struct {
+// ListRUMReplaySessionWatchersOptionalParameters holds optional parameters for ListRUMReplaySessionWatchers.
+type ListRUMReplaySessionWatchersOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
 }
 
-// NewListRumReplaySessionWatchersOptionalParameters creates an empty struct for parameters.
-func NewListRumReplaySessionWatchersOptionalParameters() *ListRumReplaySessionWatchersOptionalParameters {
-	this := ListRumReplaySessionWatchersOptionalParameters{}
+// NewListRUMReplaySessionWatchersOptionalParameters creates an empty struct for parameters.
+func NewListRUMReplaySessionWatchersOptionalParameters() *ListRUMReplaySessionWatchersOptionalParameters {
+	this := ListRUMReplaySessionWatchersOptionalParameters{}
 	return &this
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageSize(pageSize int64) *ListRumReplaySessionWatchersOptionalParameters {
+func (r *ListRUMReplaySessionWatchersOptionalParameters) WithPageSize(pageSize int64) *ListRUMReplaySessionWatchersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplaySessionWatchersOptionalParameters {
+func (r *ListRUMReplaySessionWatchersOptionalParameters) WithPageNumber(pageNumber int64) *ListRUMReplaySessionWatchersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
-// ListRumReplaySessionWatchers List RUM replay session watchers.
+// ListRUMReplaySessionWatchers List RUM replay session watchers.
 // List session watchers.
-func (a *RumReplayViewershipApi) ListRumReplaySessionWatchers(ctx _context.Context, sessionId string, o ...ListRumReplaySessionWatchersOptionalParameters) (WatcherArray, *_nethttp.Response, error) {
+func (a *RUMReplayViewershipApi) ListRUMReplaySessionWatchers(ctx _context.Context, sessionId string, o ...ListRUMReplaySessionWatchersOptionalParameters) (WatcherArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue WatcherArray
-		optionalParams      ListRumReplaySessionWatchersOptionalParameters
+		optionalParams      ListRUMReplaySessionWatchersOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRumReplaySessionWatchersOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRUMReplaySessionWatchersOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayViewershipApi.ListRumReplaySessionWatchers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayViewershipApi.ListRUMReplaySessionWatchers")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -280,8 +280,8 @@ func (a *RumReplayViewershipApi) ListRumReplaySessionWatchers(ctx _context.Conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListRumReplayViewershipHistorySessionsOptionalParameters holds optional parameters for ListRumReplayViewershipHistorySessions.
-type ListRumReplayViewershipHistorySessionsOptionalParameters struct {
+// ListRUMReplayViewershipHistorySessionsOptionalParameters holds optional parameters for ListRUMReplayViewershipHistorySessions.
+type ListRUMReplayViewershipHistorySessionsOptionalParameters struct {
 	FilterWatchedAtStart *int64
 	PageNumber           *int64
 	FilterCreatedBy      *string
@@ -291,72 +291,72 @@ type ListRumReplayViewershipHistorySessionsOptionalParameters struct {
 	FilterApplicationId  *string
 }
 
-// NewListRumReplayViewershipHistorySessionsOptionalParameters creates an empty struct for parameters.
-func NewListRumReplayViewershipHistorySessionsOptionalParameters() *ListRumReplayViewershipHistorySessionsOptionalParameters {
-	this := ListRumReplayViewershipHistorySessionsOptionalParameters{}
+// NewListRUMReplayViewershipHistorySessionsOptionalParameters creates an empty struct for parameters.
+func NewListRUMReplayViewershipHistorySessionsOptionalParameters() *ListRUMReplayViewershipHistorySessionsOptionalParameters {
+	this := ListRUMReplayViewershipHistorySessionsOptionalParameters{}
 	return &this
 }
 
 // WithFilterWatchedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterWatchedAtStart(filterWatchedAtStart int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithFilterWatchedAtStart(filterWatchedAtStart int64) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.FilterWatchedAtStart = &filterWatchedAtStart
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithFilterCreatedBy sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterCreatedBy(filterCreatedBy string) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithFilterCreatedBy(filterCreatedBy string) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.FilterCreatedBy = &filterCreatedBy
 	return r
 }
 
 // WithFilterWatchedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterWatchedAtEnd(filterWatchedAtEnd int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithFilterWatchedAtEnd(filterWatchedAtEnd int64) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.FilterWatchedAtEnd = &filterWatchedAtEnd
 	return r
 }
 
 // WithFilterSessionIds sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterSessionIds(filterSessionIds string) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithFilterSessionIds(filterSessionIds string) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.FilterSessionIds = &filterSessionIds
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithPageSize(pageSize int64) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithFilterApplicationId sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterApplicationId(filterApplicationId string) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRUMReplayViewershipHistorySessionsOptionalParameters) WithFilterApplicationId(filterApplicationId string) *ListRUMReplayViewershipHistorySessionsOptionalParameters {
 	r.FilterApplicationId = &filterApplicationId
 	return r
 }
 
-// ListRumReplayViewershipHistorySessions List RUM replay viewership history sessions.
+// ListRUMReplayViewershipHistorySessions List RUM replay viewership history sessions.
 // List watched sessions.
-func (a *RumReplayViewershipApi) ListRumReplayViewershipHistorySessions(ctx _context.Context, o ...ListRumReplayViewershipHistorySessionsOptionalParameters) (ViewershipHistorySessionArray, *_nethttp.Response, error) {
+func (a *RUMReplayViewershipApi) ListRUMReplayViewershipHistorySessions(ctx _context.Context, o ...ListRUMReplayViewershipHistorySessionsOptionalParameters) (ViewershipHistorySessionArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ViewershipHistorySessionArray
-		optionalParams      ListRumReplayViewershipHistorySessionsOptionalParameters
+		optionalParams      ListRUMReplayViewershipHistorySessionsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRumReplayViewershipHistorySessionsOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListRUMReplayViewershipHistorySessionsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayViewershipApi.ListRumReplayViewershipHistorySessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayViewershipApi.ListRUMReplayViewershipHistorySessions")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -445,9 +445,9 @@ func (a *RumReplayViewershipApi) ListRumReplayViewershipHistorySessions(ctx _con
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewRumReplayViewershipApi Returns NewRumReplayViewershipApi.
-func NewRumReplayViewershipApi(client *datadog.APIClient) *RumReplayViewershipApi {
-	return &RumReplayViewershipApi{
+// NewRUMReplayViewershipApi Returns NewRUMReplayViewershipApi.
+func NewRUMReplayViewershipApi(client *datadog.APIClient) *RUMReplayViewershipApi {
+	return &RUMReplayViewershipApi{
 		Client: client,
 	}
 }

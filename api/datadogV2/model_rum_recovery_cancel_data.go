@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCancelData JSON:API resource.
-type RumRecoveryCancelData struct {
+// RUMRecoveryCancelData JSON:API resource.
+type RUMRecoveryCancelData struct {
 	// Batch cancellation.
-	Attributes RumRecoveryCancelAttributes `json:"attributes"`
+	Attributes RUMRecoveryCancelAttributes `json:"attributes"`
 	// Optional resource identifier.
 	Id *string `json:"id,omitempty"`
 	// JSON:API resource type.
@@ -23,28 +23,28 @@ type RumRecoveryCancelData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCancelData instantiates a new RumRecoveryCancelData object.
+// NewRUMRecoveryCancelData instantiates a new RUMRecoveryCancelData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCancelData(attributes RumRecoveryCancelAttributes) *RumRecoveryCancelData {
-	this := RumRecoveryCancelData{}
+func NewRUMRecoveryCancelData(attributes RUMRecoveryCancelAttributes) *RUMRecoveryCancelData {
+	this := RUMRecoveryCancelData{}
 	this.Attributes = attributes
 	return &this
 }
 
-// NewRumRecoveryCancelDataWithDefaults instantiates a new RumRecoveryCancelData object.
+// NewRUMRecoveryCancelDataWithDefaults instantiates a new RUMRecoveryCancelData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCancelDataWithDefaults() *RumRecoveryCancelData {
-	this := RumRecoveryCancelData{}
+func NewRUMRecoveryCancelDataWithDefaults() *RUMRecoveryCancelData {
+	this := RUMRecoveryCancelData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumRecoveryCancelData) GetAttributes() RumRecoveryCancelAttributes {
+func (o *RUMRecoveryCancelData) GetAttributes() RUMRecoveryCancelAttributes {
 	if o == nil {
-		var ret RumRecoveryCancelAttributes
+		var ret RUMRecoveryCancelAttributes
 		return ret
 	}
 	return o.Attributes
@@ -52,7 +52,7 @@ func (o *RumRecoveryCancelData) GetAttributes() RumRecoveryCancelAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelData) GetAttributesOk() (*RumRecoveryCancelAttributes, bool) {
+func (o *RUMRecoveryCancelData) GetAttributesOk() (*RUMRecoveryCancelAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -60,12 +60,12 @@ func (o *RumRecoveryCancelData) GetAttributesOk() (*RumRecoveryCancelAttributes,
 }
 
 // SetAttributes sets field value.
-func (o *RumRecoveryCancelData) SetAttributes(v RumRecoveryCancelAttributes) {
+func (o *RUMRecoveryCancelData) SetAttributes(v RUMRecoveryCancelAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *RumRecoveryCancelData) GetId() string {
+func (o *RUMRecoveryCancelData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *RumRecoveryCancelData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelData) GetIdOk() (*string, bool) {
+func (o *RUMRecoveryCancelData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *RumRecoveryCancelData) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *RumRecoveryCancelData) HasId() bool {
+func (o *RUMRecoveryCancelData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *RumRecoveryCancelData) SetId(v string) {
+func (o *RUMRecoveryCancelData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RumRecoveryCancelData) GetType() string {
+func (o *RUMRecoveryCancelData) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -103,7 +103,7 @@ func (o *RumRecoveryCancelData) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelData) GetTypeOk() (*string, bool) {
+func (o *RUMRecoveryCancelData) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -111,17 +111,17 @@ func (o *RumRecoveryCancelData) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *RumRecoveryCancelData) HasType() bool {
+func (o *RUMRecoveryCancelData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *RumRecoveryCancelData) SetType(v string) {
+func (o *RUMRecoveryCancelData) SetType(v string) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCancelData) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCancelData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -141,9 +141,9 @@ func (o RumRecoveryCancelData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCancelData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCancelData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumRecoveryCancelAttributes `json:"attributes"`
+		Attributes *RUMRecoveryCancelAttributes `json:"attributes"`
 		Id         *string                      `json:"id,omitempty"`
 		Type       *string                      `json:"type,omitempty"`
 	}{}

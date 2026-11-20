@@ -12,8 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionAttributes Archived session metadata.
-type RumArchiveSessionAttributes struct {
+// RUMArchiveSessionAttributes Archived session metadata.
+type RUMArchiveSessionAttributes struct {
 	// Session account id, or null when unavailable.
 	AccountId datadog.NullableString `json:"account_id"`
 	// Session anonymous id, or null when unavailable.
@@ -23,7 +23,7 @@ type RumArchiveSessionAttributes struct {
 	// Session country, or null when unavailable.
 	Country datadog.NullableString `json:"country"`
 	// Session recovery state. A missing recovery record can be represented as null. Optional request_id and recovered_at are omitted when unavailable.
-	RecoveryStatus NullableRumArchiveSessionRecoveryStatus `json:"recovery_status"`
+	RecoveryStatus NullableRUMArchiveSessionRecoveryStatus `json:"recovery_status"`
 	// Service name.
 	Service string `json:"service"`
 	// Session identifier.
@@ -39,12 +39,12 @@ type RumArchiveSessionAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionAttributes instantiates a new RumArchiveSessionAttributes object.
+// NewRUMArchiveSessionAttributes instantiates a new RUMArchiveSessionAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionAttributes(accountId datadog.NullableString, anonymousId datadog.NullableString, applicationId uuid.UUID, country datadog.NullableString, recoveryStatus NullableRumArchiveSessionRecoveryStatus, service string, sessionId string, timestamp int64, userId datadog.NullableString, version datadog.NullableString) *RumArchiveSessionAttributes {
-	this := RumArchiveSessionAttributes{}
+func NewRUMArchiveSessionAttributes(accountId datadog.NullableString, anonymousId datadog.NullableString, applicationId uuid.UUID, country datadog.NullableString, recoveryStatus NullableRUMArchiveSessionRecoveryStatus, service string, sessionId string, timestamp int64, userId datadog.NullableString, version datadog.NullableString) *RUMArchiveSessionAttributes {
+	this := RUMArchiveSessionAttributes{}
 	this.AccountId = accountId
 	this.AnonymousId = anonymousId
 	this.ApplicationId = applicationId
@@ -58,17 +58,17 @@ func NewRumArchiveSessionAttributes(accountId datadog.NullableString, anonymousI
 	return &this
 }
 
-// NewRumArchiveSessionAttributesWithDefaults instantiates a new RumArchiveSessionAttributes object.
+// NewRUMArchiveSessionAttributesWithDefaults instantiates a new RUMArchiveSessionAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionAttributesWithDefaults() *RumArchiveSessionAttributes {
-	this := RumArchiveSessionAttributes{}
+func NewRUMArchiveSessionAttributesWithDefaults() *RUMArchiveSessionAttributes {
+	this := RUMArchiveSessionAttributes{}
 	return &this
 }
 
 // GetAccountId returns the AccountId field value.
 // If the value is explicit nil, the zero value for string will be returned.
-func (o *RumArchiveSessionAttributes) GetAccountId() string {
+func (o *RUMArchiveSessionAttributes) GetAccountId() string {
 	if o == nil || o.AccountId.Get() == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *RumArchiveSessionAttributes) GetAccountId() string {
 // GetAccountIdOk returns a tuple with the AccountId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetAccountIdOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetAccountIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,13 +87,13 @@ func (o *RumArchiveSessionAttributes) GetAccountIdOk() (*string, bool) {
 }
 
 // SetAccountId sets field value.
-func (o *RumArchiveSessionAttributes) SetAccountId(v string) {
+func (o *RUMArchiveSessionAttributes) SetAccountId(v string) {
 	o.AccountId.Set(&v)
 }
 
 // GetAnonymousId returns the AnonymousId field value.
 // If the value is explicit nil, the zero value for string will be returned.
-func (o *RumArchiveSessionAttributes) GetAnonymousId() string {
+func (o *RUMArchiveSessionAttributes) GetAnonymousId() string {
 	if o == nil || o.AnonymousId.Get() == nil {
 		var ret string
 		return ret
@@ -104,7 +104,7 @@ func (o *RumArchiveSessionAttributes) GetAnonymousId() string {
 // GetAnonymousIdOk returns a tuple with the AnonymousId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetAnonymousIdOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetAnonymousIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,12 +112,12 @@ func (o *RumArchiveSessionAttributes) GetAnonymousIdOk() (*string, bool) {
 }
 
 // SetAnonymousId sets field value.
-func (o *RumArchiveSessionAttributes) SetAnonymousId(v string) {
+func (o *RUMArchiveSessionAttributes) SetAnonymousId(v string) {
 	o.AnonymousId.Set(&v)
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *RumArchiveSessionAttributes) GetApplicationId() uuid.UUID {
+func (o *RUMArchiveSessionAttributes) GetApplicationId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -127,7 +127,7 @@ func (o *RumArchiveSessionAttributes) GetApplicationId() uuid.UUID {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
+func (o *RUMArchiveSessionAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -135,13 +135,13 @@ func (o *RumArchiveSessionAttributes) GetApplicationIdOk() (*uuid.UUID, bool) {
 }
 
 // SetApplicationId sets field value.
-func (o *RumArchiveSessionAttributes) SetApplicationId(v uuid.UUID) {
+func (o *RUMArchiveSessionAttributes) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
 // GetCountry returns the Country field value.
 // If the value is explicit nil, the zero value for string will be returned.
-func (o *RumArchiveSessionAttributes) GetCountry() string {
+func (o *RUMArchiveSessionAttributes) GetCountry() string {
 	if o == nil || o.Country.Get() == nil {
 		var ret string
 		return ret
@@ -152,7 +152,7 @@ func (o *RumArchiveSessionAttributes) GetCountry() string {
 // GetCountryOk returns a tuple with the Country field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetCountryOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetCountryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,15 +160,15 @@ func (o *RumArchiveSessionAttributes) GetCountryOk() (*string, bool) {
 }
 
 // SetCountry sets field value.
-func (o *RumArchiveSessionAttributes) SetCountry(v string) {
+func (o *RUMArchiveSessionAttributes) SetCountry(v string) {
 	o.Country.Set(&v)
 }
 
 // GetRecoveryStatus returns the RecoveryStatus field value.
-// If the value is explicit nil, the zero value for RumArchiveSessionRecoveryStatus will be returned.
-func (o *RumArchiveSessionAttributes) GetRecoveryStatus() RumArchiveSessionRecoveryStatus {
+// If the value is explicit nil, the zero value for RUMArchiveSessionRecoveryStatus will be returned.
+func (o *RUMArchiveSessionAttributes) GetRecoveryStatus() RUMArchiveSessionRecoveryStatus {
 	if o == nil || o.RecoveryStatus.Get() == nil {
-		var ret RumArchiveSessionRecoveryStatus
+		var ret RUMArchiveSessionRecoveryStatus
 		return ret
 	}
 	return *o.RecoveryStatus.Get()
@@ -177,7 +177,7 @@ func (o *RumArchiveSessionAttributes) GetRecoveryStatus() RumArchiveSessionRecov
 // GetRecoveryStatusOk returns a tuple with the RecoveryStatus field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetRecoveryStatusOk() (*RumArchiveSessionRecoveryStatus, bool) {
+func (o *RUMArchiveSessionAttributes) GetRecoveryStatusOk() (*RUMArchiveSessionRecoveryStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -185,12 +185,12 @@ func (o *RumArchiveSessionAttributes) GetRecoveryStatusOk() (*RumArchiveSessionR
 }
 
 // SetRecoveryStatus sets field value.
-func (o *RumArchiveSessionAttributes) SetRecoveryStatus(v RumArchiveSessionRecoveryStatus) {
+func (o *RUMArchiveSessionAttributes) SetRecoveryStatus(v RUMArchiveSessionRecoveryStatus) {
 	o.RecoveryStatus.Set(&v)
 }
 
 // GetService returns the Service field value.
-func (o *RumArchiveSessionAttributes) GetService() string {
+func (o *RUMArchiveSessionAttributes) GetService() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -200,7 +200,7 @@ func (o *RumArchiveSessionAttributes) GetService() string {
 
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionAttributes) GetServiceOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetServiceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -208,12 +208,12 @@ func (o *RumArchiveSessionAttributes) GetServiceOk() (*string, bool) {
 }
 
 // SetService sets field value.
-func (o *RumArchiveSessionAttributes) SetService(v string) {
+func (o *RUMArchiveSessionAttributes) SetService(v string) {
 	o.Service = v
 }
 
 // GetSessionId returns the SessionId field value.
-func (o *RumArchiveSessionAttributes) GetSessionId() string {
+func (o *RUMArchiveSessionAttributes) GetSessionId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -223,7 +223,7 @@ func (o *RumArchiveSessionAttributes) GetSessionId() string {
 
 // GetSessionIdOk returns a tuple with the SessionId field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionAttributes) GetSessionIdOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetSessionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -231,12 +231,12 @@ func (o *RumArchiveSessionAttributes) GetSessionIdOk() (*string, bool) {
 }
 
 // SetSessionId sets field value.
-func (o *RumArchiveSessionAttributes) SetSessionId(v string) {
+func (o *RUMArchiveSessionAttributes) SetSessionId(v string) {
 	o.SessionId = v
 }
 
 // GetTimestamp returns the Timestamp field value.
-func (o *RumArchiveSessionAttributes) GetTimestamp() int64 {
+func (o *RUMArchiveSessionAttributes) GetTimestamp() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -246,7 +246,7 @@ func (o *RumArchiveSessionAttributes) GetTimestamp() int64 {
 
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionAttributes) GetTimestampOk() (*int64, bool) {
+func (o *RUMArchiveSessionAttributes) GetTimestampOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -254,13 +254,13 @@ func (o *RumArchiveSessionAttributes) GetTimestampOk() (*int64, bool) {
 }
 
 // SetTimestamp sets field value.
-func (o *RumArchiveSessionAttributes) SetTimestamp(v int64) {
+func (o *RUMArchiveSessionAttributes) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
 // GetUserId returns the UserId field value.
 // If the value is explicit nil, the zero value for string will be returned.
-func (o *RumArchiveSessionAttributes) GetUserId() string {
+func (o *RUMArchiveSessionAttributes) GetUserId() string {
 	if o == nil || o.UserId.Get() == nil {
 		var ret string
 		return ret
@@ -271,7 +271,7 @@ func (o *RumArchiveSessionAttributes) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetUserIdOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetUserIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -279,13 +279,13 @@ func (o *RumArchiveSessionAttributes) GetUserIdOk() (*string, bool) {
 }
 
 // SetUserId sets field value.
-func (o *RumArchiveSessionAttributes) SetUserId(v string) {
+func (o *RUMArchiveSessionAttributes) SetUserId(v string) {
 	o.UserId.Set(&v)
 }
 
 // GetVersion returns the Version field value.
 // If the value is explicit nil, the zero value for string will be returned.
-func (o *RumArchiveSessionAttributes) GetVersion() string {
+func (o *RUMArchiveSessionAttributes) GetVersion() string {
 	if o == nil || o.Version.Get() == nil {
 		var ret string
 		return ret
@@ -296,7 +296,7 @@ func (o *RumArchiveSessionAttributes) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *RumArchiveSessionAttributes) GetVersionOk() (*string, bool) {
+func (o *RUMArchiveSessionAttributes) GetVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -304,12 +304,12 @@ func (o *RumArchiveSessionAttributes) GetVersionOk() (*string, bool) {
 }
 
 // SetVersion sets field value.
-func (o *RumArchiveSessionAttributes) SetVersion(v string) {
+func (o *RUMArchiveSessionAttributes) SetVersion(v string) {
 	o.Version.Set(&v)
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -332,13 +332,13 @@ func (o RumArchiveSessionAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountId      datadog.NullableString                  `json:"account_id"`
 		AnonymousId    datadog.NullableString                  `json:"anonymous_id"`
 		ApplicationId  *uuid.UUID                              `json:"application_id"`
 		Country        datadog.NullableString                  `json:"country"`
-		RecoveryStatus NullableRumArchiveSessionRecoveryStatus `json:"recovery_status"`
+		RecoveryStatus NullableRUMArchiveSessionRecoveryStatus `json:"recovery_status"`
 		Service        *string                                 `json:"service"`
 		SessionId      *string                                 `json:"session_id"`
 		Timestamp      *int64                                  `json:"timestamp"`

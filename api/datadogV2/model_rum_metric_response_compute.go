@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponseCompute The compute rule of the RUM-based metric.
-type RumMetricResponseCompute struct {
+// RUMMetricResponseCompute The compute rule of the RUM-based metric.
+type RUMMetricResponseCompute struct {
 	// The type of aggregation to use.
 	// `count` counts the matching events. `distribution` aggregates the values found at `path`.
-	AggregationType *RumMetricComputeAggregationType `json:"aggregation_type,omitempty"`
+	AggregationType *RUMMetricComputeAggregationType `json:"aggregation_type,omitempty"`
 	// Toggle to include or exclude percentile aggregations (p50, p75, p90, p95, p99) for distribution metrics.
 	// Required when `aggregation_type` is `distribution`, and must be omitted otherwise.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
@@ -24,27 +24,27 @@ type RumMetricResponseCompute struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricResponseCompute instantiates a new RumMetricResponseCompute object.
+// NewRUMMetricResponseCompute instantiates a new RUMMetricResponseCompute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricResponseCompute() *RumMetricResponseCompute {
-	this := RumMetricResponseCompute{}
+func NewRUMMetricResponseCompute() *RUMMetricResponseCompute {
+	this := RUMMetricResponseCompute{}
 	return &this
 }
 
-// NewRumMetricResponseComputeWithDefaults instantiates a new RumMetricResponseCompute object.
+// NewRUMMetricResponseComputeWithDefaults instantiates a new RUMMetricResponseCompute object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricResponseComputeWithDefaults() *RumMetricResponseCompute {
-	this := RumMetricResponseCompute{}
+func NewRUMMetricResponseComputeWithDefaults() *RUMMetricResponseCompute {
+	this := RUMMetricResponseCompute{}
 	return &this
 }
 
 // GetAggregationType returns the AggregationType field value if set, zero value otherwise.
-func (o *RumMetricResponseCompute) GetAggregationType() RumMetricComputeAggregationType {
+func (o *RUMMetricResponseCompute) GetAggregationType() RUMMetricComputeAggregationType {
 	if o == nil || o.AggregationType == nil {
-		var ret RumMetricComputeAggregationType
+		var ret RUMMetricComputeAggregationType
 		return ret
 	}
 	return *o.AggregationType
@@ -52,7 +52,7 @@ func (o *RumMetricResponseCompute) GetAggregationType() RumMetricComputeAggregat
 
 // GetAggregationTypeOk returns a tuple with the AggregationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseCompute) GetAggregationTypeOk() (*RumMetricComputeAggregationType, bool) {
+func (o *RUMMetricResponseCompute) GetAggregationTypeOk() (*RUMMetricComputeAggregationType, bool) {
 	if o == nil || o.AggregationType == nil {
 		return nil, false
 	}
@@ -60,17 +60,17 @@ func (o *RumMetricResponseCompute) GetAggregationTypeOk() (*RumMetricComputeAggr
 }
 
 // HasAggregationType returns a boolean if a field has been set.
-func (o *RumMetricResponseCompute) HasAggregationType() bool {
+func (o *RUMMetricResponseCompute) HasAggregationType() bool {
 	return o != nil && o.AggregationType != nil
 }
 
-// SetAggregationType gets a reference to the given RumMetricComputeAggregationType and assigns it to the AggregationType field.
-func (o *RumMetricResponseCompute) SetAggregationType(v RumMetricComputeAggregationType) {
+// SetAggregationType gets a reference to the given RUMMetricComputeAggregationType and assigns it to the AggregationType field.
+func (o *RUMMetricResponseCompute) SetAggregationType(v RUMMetricComputeAggregationType) {
 	o.AggregationType = &v
 }
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
-func (o *RumMetricResponseCompute) GetIncludePercentiles() bool {
+func (o *RUMMetricResponseCompute) GetIncludePercentiles() bool {
 	if o == nil || o.IncludePercentiles == nil {
 		var ret bool
 		return ret
@@ -80,7 +80,7 @@ func (o *RumMetricResponseCompute) GetIncludePercentiles() bool {
 
 // GetIncludePercentilesOk returns a tuple with the IncludePercentiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseCompute) GetIncludePercentilesOk() (*bool, bool) {
+func (o *RUMMetricResponseCompute) GetIncludePercentilesOk() (*bool, bool) {
 	if o == nil || o.IncludePercentiles == nil {
 		return nil, false
 	}
@@ -88,17 +88,17 @@ func (o *RumMetricResponseCompute) GetIncludePercentilesOk() (*bool, bool) {
 }
 
 // HasIncludePercentiles returns a boolean if a field has been set.
-func (o *RumMetricResponseCompute) HasIncludePercentiles() bool {
+func (o *RUMMetricResponseCompute) HasIncludePercentiles() bool {
 	return o != nil && o.IncludePercentiles != nil
 }
 
 // SetIncludePercentiles gets a reference to the given bool and assigns it to the IncludePercentiles field.
-func (o *RumMetricResponseCompute) SetIncludePercentiles(v bool) {
+func (o *RUMMetricResponseCompute) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *RumMetricResponseCompute) GetPath() string {
+func (o *RUMMetricResponseCompute) GetPath() string {
 	if o == nil || o.Path == nil {
 		var ret string
 		return ret
@@ -108,7 +108,7 @@ func (o *RumMetricResponseCompute) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseCompute) GetPathOk() (*string, bool) {
+func (o *RUMMetricResponseCompute) GetPathOk() (*string, bool) {
 	if o == nil || o.Path == nil {
 		return nil, false
 	}
@@ -116,17 +116,17 @@ func (o *RumMetricResponseCompute) GetPathOk() (*string, bool) {
 }
 
 // HasPath returns a boolean if a field has been set.
-func (o *RumMetricResponseCompute) HasPath() bool {
+func (o *RUMMetricResponseCompute) HasPath() bool {
 	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
-func (o *RumMetricResponseCompute) SetPath(v string) {
+func (o *RUMMetricResponseCompute) SetPath(v string) {
 	o.Path = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricResponseCompute) MarshalJSON() ([]byte, error) {
+func (o RUMMetricResponseCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -148,9 +148,9 @@ func (o RumMetricResponseCompute) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationType    *RumMetricComputeAggregationType `json:"aggregation_type,omitempty"`
+		AggregationType    *RUMMetricComputeAggregationType `json:"aggregation_type,omitempty"`
 		IncludePercentiles *bool                            `json:"include_percentiles,omitempty"`
 		Path               *string                          `json:"path,omitempty"`
 	}{}

@@ -20,16 +20,16 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumTeamsOwnershipApi(apiClient)
+	api := datadogV2.NewRUMTeamsOwnershipApi(apiClient)
 	resp, r, err := api.ListTeamsOwnershipMappings(ctx, *datadogV2.NewListTeamsOwnershipMappingsOptionalParameters().WithFilterViewName([]string{
 		TeamsOwnershipMappingDataAttributesViewName,
 	}))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumTeamsOwnershipApi.ListTeamsOwnershipMappings`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMTeamsOwnershipApi.ListTeamsOwnershipMappings`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumTeamsOwnershipApi.ListTeamsOwnershipMappings`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMTeamsOwnershipApi.ListTeamsOwnershipMappings`:\n%s\n", responseContent)
 }

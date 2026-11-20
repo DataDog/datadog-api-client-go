@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumCrossProductSamplingUpdate The configuration for cross-product retention filters. All fields are optional for partial updates.
-type RumCrossProductSamplingUpdate struct {
+// RUMCrossProductSamplingUpdate The configuration for cross-product retention filters. All fields are optional for partial updates.
+type RUMCrossProductSamplingUpdate struct {
 	// Whether the cross-product retention filter for APM traces is enabled.
 	TraceEnabled *bool `json:"trace_enabled,omitempty"`
 	// The sample rate for the APM cross-product retention filter, between 0 and 100.
@@ -19,25 +19,25 @@ type RumCrossProductSamplingUpdate struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumCrossProductSamplingUpdate instantiates a new RumCrossProductSamplingUpdate object.
+// NewRUMCrossProductSamplingUpdate instantiates a new RUMCrossProductSamplingUpdate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumCrossProductSamplingUpdate() *RumCrossProductSamplingUpdate {
-	this := RumCrossProductSamplingUpdate{}
+func NewRUMCrossProductSamplingUpdate() *RUMCrossProductSamplingUpdate {
+	this := RUMCrossProductSamplingUpdate{}
 	return &this
 }
 
-// NewRumCrossProductSamplingUpdateWithDefaults instantiates a new RumCrossProductSamplingUpdate object.
+// NewRUMCrossProductSamplingUpdateWithDefaults instantiates a new RUMCrossProductSamplingUpdate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumCrossProductSamplingUpdateWithDefaults() *RumCrossProductSamplingUpdate {
-	this := RumCrossProductSamplingUpdate{}
+func NewRUMCrossProductSamplingUpdateWithDefaults() *RUMCrossProductSamplingUpdate {
+	this := RUMCrossProductSamplingUpdate{}
 	return &this
 }
 
 // GetTraceEnabled returns the TraceEnabled field value if set, zero value otherwise.
-func (o *RumCrossProductSamplingUpdate) GetTraceEnabled() bool {
+func (o *RUMCrossProductSamplingUpdate) GetTraceEnabled() bool {
 	if o == nil || o.TraceEnabled == nil {
 		var ret bool
 		return ret
@@ -47,7 +47,7 @@ func (o *RumCrossProductSamplingUpdate) GetTraceEnabled() bool {
 
 // GetTraceEnabledOk returns a tuple with the TraceEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSamplingUpdate) GetTraceEnabledOk() (*bool, bool) {
+func (o *RUMCrossProductSamplingUpdate) GetTraceEnabledOk() (*bool, bool) {
 	if o == nil || o.TraceEnabled == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *RumCrossProductSamplingUpdate) GetTraceEnabledOk() (*bool, bool) {
 }
 
 // HasTraceEnabled returns a boolean if a field has been set.
-func (o *RumCrossProductSamplingUpdate) HasTraceEnabled() bool {
+func (o *RUMCrossProductSamplingUpdate) HasTraceEnabled() bool {
 	return o != nil && o.TraceEnabled != nil
 }
 
 // SetTraceEnabled gets a reference to the given bool and assigns it to the TraceEnabled field.
-func (o *RumCrossProductSamplingUpdate) SetTraceEnabled(v bool) {
+func (o *RUMCrossProductSamplingUpdate) SetTraceEnabled(v bool) {
 	o.TraceEnabled = &v
 }
 
 // GetTraceSampleRate returns the TraceSampleRate field value if set, zero value otherwise.
-func (o *RumCrossProductSamplingUpdate) GetTraceSampleRate() float64 {
+func (o *RUMCrossProductSamplingUpdate) GetTraceSampleRate() float64 {
 	if o == nil || o.TraceSampleRate == nil {
 		var ret float64
 		return ret
@@ -75,7 +75,7 @@ func (o *RumCrossProductSamplingUpdate) GetTraceSampleRate() float64 {
 
 // GetTraceSampleRateOk returns a tuple with the TraceSampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSamplingUpdate) GetTraceSampleRateOk() (*float64, bool) {
+func (o *RUMCrossProductSamplingUpdate) GetTraceSampleRateOk() (*float64, bool) {
 	if o == nil || o.TraceSampleRate == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *RumCrossProductSamplingUpdate) GetTraceSampleRateOk() (*float64, bool) 
 }
 
 // HasTraceSampleRate returns a boolean if a field has been set.
-func (o *RumCrossProductSamplingUpdate) HasTraceSampleRate() bool {
+func (o *RUMCrossProductSamplingUpdate) HasTraceSampleRate() bool {
 	return o != nil && o.TraceSampleRate != nil
 }
 
 // SetTraceSampleRate gets a reference to the given float64 and assigns it to the TraceSampleRate field.
-func (o *RumCrossProductSamplingUpdate) SetTraceSampleRate(v float64) {
+func (o *RUMCrossProductSamplingUpdate) SetTraceSampleRate(v float64) {
 	o.TraceSampleRate = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumCrossProductSamplingUpdate) MarshalJSON() ([]byte, error) {
+func (o RUMCrossProductSamplingUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,7 +112,7 @@ func (o RumCrossProductSamplingUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumCrossProductSamplingUpdate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMCrossProductSamplingUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TraceEnabled    *bool    `json:"trace_enabled,omitempty"`
 		TraceSampleRate *float64 `json:"trace_sample_rate,omitempty"`

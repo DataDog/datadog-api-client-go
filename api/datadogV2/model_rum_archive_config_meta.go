@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigMeta Pagination metadata.
-type RumArchiveConfigMeta struct {
+// RUMArchiveConfigMeta Pagination metadata.
+type RUMArchiveConfigMeta struct {
 	// Page information.
-	Page RumArchiveConfigPage `json:"page"`
+	Page RUMArchiveConfigPage `json:"page"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigMeta instantiates a new RumArchiveConfigMeta object.
+// NewRUMArchiveConfigMeta instantiates a new RUMArchiveConfigMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigMeta(page RumArchiveConfigPage) *RumArchiveConfigMeta {
-	this := RumArchiveConfigMeta{}
+func NewRUMArchiveConfigMeta(page RUMArchiveConfigPage) *RUMArchiveConfigMeta {
+	this := RUMArchiveConfigMeta{}
 	this.Page = page
 	return &this
 }
 
-// NewRumArchiveConfigMetaWithDefaults instantiates a new RumArchiveConfigMeta object.
+// NewRUMArchiveConfigMetaWithDefaults instantiates a new RUMArchiveConfigMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigMetaWithDefaults() *RumArchiveConfigMeta {
-	this := RumArchiveConfigMeta{}
+func NewRUMArchiveConfigMetaWithDefaults() *RUMArchiveConfigMeta {
+	this := RUMArchiveConfigMeta{}
 	return &this
 }
 
 // GetPage returns the Page field value.
-func (o *RumArchiveConfigMeta) GetPage() RumArchiveConfigPage {
+func (o *RUMArchiveConfigMeta) GetPage() RUMArchiveConfigPage {
 	if o == nil {
-		var ret RumArchiveConfigPage
+		var ret RUMArchiveConfigPage
 		return ret
 	}
 	return o.Page
@@ -48,7 +48,7 @@ func (o *RumArchiveConfigMeta) GetPage() RumArchiveConfigPage {
 
 // GetPageOk returns a tuple with the Page field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigMeta) GetPageOk() (*RumArchiveConfigPage, bool) {
+func (o *RUMArchiveConfigMeta) GetPageOk() (*RUMArchiveConfigPage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumArchiveConfigMeta) GetPageOk() (*RumArchiveConfigPage, bool) {
 }
 
 // SetPage sets field value.
-func (o *RumArchiveConfigMeta) SetPage(v RumArchiveConfigPage) {
+func (o *RUMArchiveConfigMeta) SetPage(v RUMArchiveConfigPage) {
 	o.Page = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigMeta) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumArchiveConfigMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Page *RumArchiveConfigPage `json:"page"`
+		Page *RUMArchiveConfigPage `json:"page"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

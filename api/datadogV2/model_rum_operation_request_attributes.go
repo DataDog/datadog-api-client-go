@@ -25,7 +25,7 @@ type RUMOperationRequestAttributes struct {
 	// The list of journey IDs associated with the RUM operation.
 	FeatureIds []string `json:"feature_ids,omitempty"`
 	// The definition of a RUM operation's journey, used to detect it from RUM events.
-	JourneyRum RUMOperationJourneyRum `json:"journey_rum"`
+	JourneyRum RUMOperationJourneyRUM `json:"journey_rum"`
 	// The unique name of the RUM operation. Must not contain spaces.
 	Name string `json:"name"`
 	// A list of tags associated with the RUM operation.
@@ -39,7 +39,7 @@ type RUMOperationRequestAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRUMOperationRequestAttributes(journeyRum RUMOperationJourneyRum, name string, tags []string) *RUMOperationRequestAttributes {
+func NewRUMOperationRequestAttributes(journeyRum RUMOperationJourneyRUM, name string, tags []string) *RUMOperationRequestAttributes {
 	this := RUMOperationRequestAttributes{}
 	this.JourneyRum = journeyRum
 	this.Name = name
@@ -218,9 +218,9 @@ func (o *RUMOperationRequestAttributes) SetFeatureIds(v []string) {
 }
 
 // GetJourneyRum returns the JourneyRum field value.
-func (o *RUMOperationRequestAttributes) GetJourneyRum() RUMOperationJourneyRum {
+func (o *RUMOperationRequestAttributes) GetJourneyRum() RUMOperationJourneyRUM {
 	if o == nil {
-		var ret RUMOperationJourneyRum
+		var ret RUMOperationJourneyRUM
 		return ret
 	}
 	return o.JourneyRum
@@ -228,7 +228,7 @@ func (o *RUMOperationRequestAttributes) GetJourneyRum() RUMOperationJourneyRum {
 
 // GetJourneyRumOk returns a tuple with the JourneyRum field value
 // and a boolean to check if the value has been set.
-func (o *RUMOperationRequestAttributes) GetJourneyRumOk() (*RUMOperationJourneyRum, bool) {
+func (o *RUMOperationRequestAttributes) GetJourneyRumOk() (*RUMOperationJourneyRUM, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -236,7 +236,7 @@ func (o *RUMOperationRequestAttributes) GetJourneyRumOk() (*RUMOperationJourneyR
 }
 
 // SetJourneyRum sets field value.
-func (o *RUMOperationRequestAttributes) SetJourneyRum(v RUMOperationJourneyRum) {
+func (o *RUMOperationRequestAttributes) SetJourneyRum(v RUMOperationJourneyRUM) {
 	o.JourneyRum = v
 }
 
@@ -325,7 +325,7 @@ func (o *RUMOperationRequestAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		Description   datadog.NullableString  `json:"description,omitempty"`
 		DisplayName   *string                 `json:"display_name,omitempty"`
 		FeatureIds    []string                `json:"feature_ids,omitempty"`
-		JourneyRum    *RUMOperationJourneyRum `json:"journey_rum"`
+		JourneyRum    *RUMOperationJourneyRUM `json:"journey_rum"`
 		Name          *string                 `json:"name"`
 		Tags          *[]string               `json:"tags"`
 	}{}

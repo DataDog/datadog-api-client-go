@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricType The type of the resource. The value must be `rum_metrics`.
-type RumMetricType string
+// RUMMetricType The type of the resource. The value must be `rum_metrics`.
+type RUMMetricType string
 
-// List of RumMetricType.
+// List of RUMMetricType.
 const (
-	RUMMETRICTYPE_RUM_METRICS RumMetricType = "rum_metrics"
+	RUMMETRICTYPE_RUM_METRICS RUMMetricType = "rum_metrics"
 )
 
-var allowedRumMetricTypeEnumValues = []RumMetricType{
+var allowedRUMMetricTypeEnumValues = []RUMMetricType{
 	RUMMETRICTYPE_RUM_METRICS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumMetricType) GetAllowedValues() []RumMetricType {
-	return allowedRumMetricTypeEnumValues
+func (v *RUMMetricType) GetAllowedValues() []RUMMetricType {
+	return allowedRUMMetricTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumMetricType) UnmarshalJSON(src []byte) error {
+func (v *RUMMetricType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumMetricType(value)
+	*v = RUMMetricType(value)
 	return nil
 }
 
-// NewRumMetricTypeFromValue returns a pointer to a valid RumMetricType
+// NewRUMMetricTypeFromValue returns a pointer to a valid RUMMetricType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumMetricTypeFromValue(v string) (*RumMetricType, error) {
-	ev := RumMetricType(v)
+func NewRUMMetricTypeFromValue(v string) (*RUMMetricType, error) {
+	ev := RUMMetricType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumMetricType: valid values are %v", v, allowedRumMetricTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMMetricType: valid values are %v", v, allowedRUMMetricTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumMetricType) IsValid() bool {
-	for _, existing := range allowedRumMetricTypeEnumValues {
+func (v RUMMetricType) IsValid() bool {
+	for _, existing := range allowedRUMMetricTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumMetricType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumMetricType value.
-func (v RumMetricType) Ptr() *RumMetricType {
+// Ptr returns reference to RUMMetricType value.
+func (v RUMMetricType) Ptr() *RUMMetricType {
 	return &v
 }

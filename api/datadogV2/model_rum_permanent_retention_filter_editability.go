@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumPermanentRetentionFilterEditability Indicates which cross-product fields of a permanent RUM retention filter can be updated.
-type RumPermanentRetentionFilterEditability struct {
+// RUMPermanentRetentionFilterEditability Indicates which cross-product fields of a permanent RUM retention filter can be updated.
+type RUMPermanentRetentionFilterEditability struct {
 	// Whether the APM trace cross-product configuration of the filter can be updated.
 	TraceEditable *bool `json:"trace_editable,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -17,25 +17,25 @@ type RumPermanentRetentionFilterEditability struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumPermanentRetentionFilterEditability instantiates a new RumPermanentRetentionFilterEditability object.
+// NewRUMPermanentRetentionFilterEditability instantiates a new RUMPermanentRetentionFilterEditability object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumPermanentRetentionFilterEditability() *RumPermanentRetentionFilterEditability {
-	this := RumPermanentRetentionFilterEditability{}
+func NewRUMPermanentRetentionFilterEditability() *RUMPermanentRetentionFilterEditability {
+	this := RUMPermanentRetentionFilterEditability{}
 	return &this
 }
 
-// NewRumPermanentRetentionFilterEditabilityWithDefaults instantiates a new RumPermanentRetentionFilterEditability object.
+// NewRUMPermanentRetentionFilterEditabilityWithDefaults instantiates a new RUMPermanentRetentionFilterEditability object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumPermanentRetentionFilterEditabilityWithDefaults() *RumPermanentRetentionFilterEditability {
-	this := RumPermanentRetentionFilterEditability{}
+func NewRUMPermanentRetentionFilterEditabilityWithDefaults() *RUMPermanentRetentionFilterEditability {
+	this := RUMPermanentRetentionFilterEditability{}
 	return &this
 }
 
 // GetTraceEditable returns the TraceEditable field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFilterEditability) GetTraceEditable() bool {
+func (o *RUMPermanentRetentionFilterEditability) GetTraceEditable() bool {
 	if o == nil || o.TraceEditable == nil {
 		var ret bool
 		return ret
@@ -45,7 +45,7 @@ func (o *RumPermanentRetentionFilterEditability) GetTraceEditable() bool {
 
 // GetTraceEditableOk returns a tuple with the TraceEditable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFilterEditability) GetTraceEditableOk() (*bool, bool) {
+func (o *RUMPermanentRetentionFilterEditability) GetTraceEditableOk() (*bool, bool) {
 	if o == nil || o.TraceEditable == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumPermanentRetentionFilterEditability) GetTraceEditableOk() (*bool, bo
 }
 
 // HasTraceEditable returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFilterEditability) HasTraceEditable() bool {
+func (o *RUMPermanentRetentionFilterEditability) HasTraceEditable() bool {
 	return o != nil && o.TraceEditable != nil
 }
 
 // SetTraceEditable gets a reference to the given bool and assigns it to the TraceEditable field.
-func (o *RumPermanentRetentionFilterEditability) SetTraceEditable(v bool) {
+func (o *RUMPermanentRetentionFilterEditability) SetTraceEditable(v bool) {
 	o.TraceEditable = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumPermanentRetentionFilterEditability) MarshalJSON() ([]byte, error) {
+func (o RUMPermanentRetentionFilterEditability) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,7 +79,7 @@ func (o RumPermanentRetentionFilterEditability) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumPermanentRetentionFilterEditability) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMPermanentRetentionFilterEditability) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TraceEditable *bool `json:"trace_editable,omitempty"`
 	}{}
