@@ -12,6 +12,8 @@ import (
 type CostRecommendationDataAttributes struct {
 	// Datadog resource key identifying the recommended resource.
 	DdResourceKey *string `json:"dd_resource_key,omitempty"`
+	// Selected recommendation fields. Omitted when no requested fields match.
+	ExtraFields []CostRecommendationExtraField `json:"extra_fields,omitempty"`
 	// Estimated daily savings if the recommendation is applied.
 	PotentialDailySavings *CostRecommendationDataAttributesPotentialDailySavings `json:"potential_daily_savings,omitempty"`
 	// The kind of recommendation (for example, `terminate` or `rightsize`).
@@ -73,6 +75,34 @@ func (o *CostRecommendationDataAttributes) HasDdResourceKey() bool {
 // SetDdResourceKey gets a reference to the given string and assigns it to the DdResourceKey field.
 func (o *CostRecommendationDataAttributes) SetDdResourceKey(v string) {
 	o.DdResourceKey = &v
+}
+
+// GetExtraFields returns the ExtraFields field value if set, zero value otherwise.
+func (o *CostRecommendationDataAttributes) GetExtraFields() []CostRecommendationExtraField {
+	if o == nil || o.ExtraFields == nil {
+		var ret []CostRecommendationExtraField
+		return ret
+	}
+	return o.ExtraFields
+}
+
+// GetExtraFieldsOk returns a tuple with the ExtraFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CostRecommendationDataAttributes) GetExtraFieldsOk() (*[]CostRecommendationExtraField, bool) {
+	if o == nil || o.ExtraFields == nil {
+		return nil, false
+	}
+	return &o.ExtraFields, true
+}
+
+// HasExtraFields returns a boolean if a field has been set.
+func (o *CostRecommendationDataAttributes) HasExtraFields() bool {
+	return o != nil && o.ExtraFields != nil
+}
+
+// SetExtraFields gets a reference to the given []CostRecommendationExtraField and assigns it to the ExtraFields field.
+func (o *CostRecommendationDataAttributes) SetExtraFields(v []CostRecommendationExtraField) {
+	o.ExtraFields = v
 }
 
 // GetPotentialDailySavings returns the PotentialDailySavings field value if set, zero value otherwise.
@@ -252,6 +282,9 @@ func (o CostRecommendationDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.DdResourceKey != nil {
 		toSerialize["dd_resource_key"] = o.DdResourceKey
 	}
+	if o.ExtraFields != nil {
+		toSerialize["extra_fields"] = o.ExtraFields
+	}
 	if o.PotentialDailySavings != nil {
 		toSerialize["potential_daily_savings"] = o.PotentialDailySavings
 	}
@@ -281,6 +314,7 @@ func (o CostRecommendationDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *CostRecommendationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DdResourceKey         *string                                                `json:"dd_resource_key,omitempty"`
+		ExtraFields           []CostRecommendationExtraField                         `json:"extra_fields,omitempty"`
 		PotentialDailySavings *CostRecommendationDataAttributesPotentialDailySavings `json:"potential_daily_savings,omitempty"`
 		RecommendationType    *string                                                `json:"recommendation_type,omitempty"`
 		RecommenderId         *string                                                `json:"recommender_id,omitempty"`
@@ -293,13 +327,14 @@ func (o *CostRecommendationDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dd_resource_key", "potential_daily_savings", "recommendation_type", "recommender_id", "resource_id", "resource_type", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"dd_resource_key", "extra_fields", "potential_daily_savings", "recommendation_type", "recommender_id", "resource_id", "resource_type", "tags"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DdResourceKey = all.DdResourceKey
+	o.ExtraFields = all.ExtraFields
 	if all.PotentialDailySavings != nil && all.PotentialDailySavings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
