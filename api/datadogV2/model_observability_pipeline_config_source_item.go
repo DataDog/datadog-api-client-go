@@ -14,6 +14,7 @@ type ObservabilityPipelineConfigSourceItem struct {
 	ObservabilityPipelineOpentelemetrySource         *ObservabilityPipelineOpentelemetrySource
 	ObservabilityPipelineAmazonDataFirehoseSource    *ObservabilityPipelineAmazonDataFirehoseSource
 	ObservabilityPipelineAmazonS3Source              *ObservabilityPipelineAmazonS3Source
+	ObservabilityPipelineCrowdStrikeFdrSource        *ObservabilityPipelineCrowdStrikeFdrSource
 	ObservabilityPipelineFluentBitSource             *ObservabilityPipelineFluentBitSource
 	ObservabilityPipelineFluentdSource               *ObservabilityPipelineFluentdSource
 	ObservabilityPipelineGooglePubSubSource          *ObservabilityPipelineGooglePubSubSource
@@ -52,6 +53,11 @@ func ObservabilityPipelineAmazonDataFirehoseSourceAsObservabilityPipelineConfigS
 // ObservabilityPipelineAmazonS3SourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineAmazonS3Source wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelineAmazonS3SourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineAmazonS3Source) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineAmazonS3Source: v}
+}
+
+// ObservabilityPipelineCrowdStrikeFdrSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineCrowdStrikeFdrSource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelineCrowdStrikeFdrSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineCrowdStrikeFdrSource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineCrowdStrikeFdrSource: v}
 }
 
 // ObservabilityPipelineFluentBitSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineFluentBitSource wrapped in ObservabilityPipelineConfigSourceItem.
@@ -199,6 +205,23 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		}
 	} else {
 		obj.ObservabilityPipelineAmazonS3Source = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineCrowdStrikeFdrSource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineCrowdStrikeFdrSource)
+	if err == nil {
+		if obj.ObservabilityPipelineCrowdStrikeFdrSource != nil && obj.ObservabilityPipelineCrowdStrikeFdrSource.UnparsedObject == nil {
+			jsonObservabilityPipelineCrowdStrikeFdrSource, _ := datadog.Marshal(obj.ObservabilityPipelineCrowdStrikeFdrSource)
+			if string(jsonObservabilityPipelineCrowdStrikeFdrSource) == "{}" { // empty struct
+				obj.ObservabilityPipelineCrowdStrikeFdrSource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineCrowdStrikeFdrSource = nil
+		}
+	} else {
+		obj.ObservabilityPipelineCrowdStrikeFdrSource = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineFluentBitSource
@@ -462,6 +485,7 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineOpentelemetrySource = nil
 		obj.ObservabilityPipelineAmazonDataFirehoseSource = nil
 		obj.ObservabilityPipelineAmazonS3Source = nil
+		obj.ObservabilityPipelineCrowdStrikeFdrSource = nil
 		obj.ObservabilityPipelineFluentBitSource = nil
 		obj.ObservabilityPipelineFluentdSource = nil
 		obj.ObservabilityPipelineGooglePubSubSource = nil
@@ -498,6 +522,10 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 
 	if obj.ObservabilityPipelineAmazonS3Source != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonS3Source)
+	}
+
+	if obj.ObservabilityPipelineCrowdStrikeFdrSource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineCrowdStrikeFdrSource)
 	}
 
 	if obj.ObservabilityPipelineFluentBitSource != nil {
@@ -582,6 +610,10 @@ func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{
 
 	if obj.ObservabilityPipelineAmazonS3Source != nil {
 		return obj.ObservabilityPipelineAmazonS3Source
+	}
+
+	if obj.ObservabilityPipelineCrowdStrikeFdrSource != nil {
+		return obj.ObservabilityPipelineCrowdStrikeFdrSource
 	}
 
 	if obj.ObservabilityPipelineFluentBitSource != nil {
