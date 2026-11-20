@@ -10,13 +10,13 @@ import (
 
 // MetricIngestedIndexedVolumeAttributes Object containing the definition of a metric's ingested and indexed volume.
 type MetricIngestedIndexedVolumeAttributes struct {
-	// Estimated average hourly number of indexed time series for the given metric over the last hour. For organizations on Metric Name Pricing, this represents the estimated sum of indexed data points over the last hour.
-	IndexedVolume *int64 `json:"indexed_volume,omitempty"`
+	// Estimated average hourly number of indexed time series for the given metric over the last hour. For organizations on Metric Name Pricing, this represents the estimated sum of indexed data points over the last hour. This value is `null` when no estimated usage data is available for the metric.
+	IndexedVolume datadog.NullableInt64 `json:"indexed_volume,omitempty"`
 	// Change in `indexed_volume` compared with the previous hour: the last hour's value minus the value for
 	// the hour before. Negative when volume decreased.
 	IndexedVolumeDelta *int64 `json:"indexed_volume_delta,omitempty"`
-	// Estimated average hourly number of ingested time series for the given metric over the last hour. This value is `0` for metrics not configured with Metrics Without Limits. For organizations on Metric Name Pricing, this represents the estimated sum of ingested data points over the last hour.
-	IngestedVolume *int64 `json:"ingested_volume,omitempty"`
+	// Estimated average hourly number of ingested time series for the given metric over the last hour. This value is `0` for metrics not configured with Metrics Without Limits. For organizations on Metric Name Pricing, this represents the estimated sum of ingested data points over the last hour. This value can be `null` when ingested volume is not available for the metric.
+	IngestedVolume datadog.NullableInt64 `json:"ingested_volume,omitempty"`
 	// Change in `ingested_volume` compared with the previous hour: the last hour's value minus the value for
 	// the hour before. Negative when volume decreased.
 	IngestedVolumeDelta *int64 `json:"ingested_volume_delta,omitempty"`
@@ -42,32 +42,43 @@ func NewMetricIngestedIndexedVolumeAttributesWithDefaults() *MetricIngestedIndex
 	return &this
 }
 
-// GetIndexedVolume returns the IndexedVolume field value if set, zero value otherwise.
+// GetIndexedVolume returns the IndexedVolume field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricIngestedIndexedVolumeAttributes) GetIndexedVolume() int64 {
-	if o == nil || o.IndexedVolume == nil {
+	if o == nil || o.IndexedVolume.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IndexedVolume
+	return *o.IndexedVolume.Get()
 }
 
 // GetIndexedVolumeOk returns a tuple with the IndexedVolume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MetricIngestedIndexedVolumeAttributes) GetIndexedVolumeOk() (*int64, bool) {
-	if o == nil || o.IndexedVolume == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.IndexedVolume, true
+	return o.IndexedVolume.Get(), o.IndexedVolume.IsSet()
 }
 
 // HasIndexedVolume returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolumeAttributes) HasIndexedVolume() bool {
-	return o != nil && o.IndexedVolume != nil
+	return o != nil && o.IndexedVolume.IsSet()
 }
 
-// SetIndexedVolume gets a reference to the given int64 and assigns it to the IndexedVolume field.
+// SetIndexedVolume gets a reference to the given datadog.NullableInt64 and assigns it to the IndexedVolume field.
 func (o *MetricIngestedIndexedVolumeAttributes) SetIndexedVolume(v int64) {
-	o.IndexedVolume = &v
+	o.IndexedVolume.Set(&v)
+}
+
+// SetIndexedVolumeNil sets the value for IndexedVolume to be an explicit nil.
+func (o *MetricIngestedIndexedVolumeAttributes) SetIndexedVolumeNil() {
+	o.IndexedVolume.Set(nil)
+}
+
+// UnsetIndexedVolume ensures that no value is present for IndexedVolume, not even an explicit nil.
+func (o *MetricIngestedIndexedVolumeAttributes) UnsetIndexedVolume() {
+	o.IndexedVolume.Unset()
 }
 
 // GetIndexedVolumeDelta returns the IndexedVolumeDelta field value if set, zero value otherwise.
@@ -98,32 +109,43 @@ func (o *MetricIngestedIndexedVolumeAttributes) SetIndexedVolumeDelta(v int64) {
 	o.IndexedVolumeDelta = &v
 }
 
-// GetIngestedVolume returns the IngestedVolume field value if set, zero value otherwise.
+// GetIngestedVolume returns the IngestedVolume field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricIngestedIndexedVolumeAttributes) GetIngestedVolume() int64 {
-	if o == nil || o.IngestedVolume == nil {
+	if o == nil || o.IngestedVolume.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IngestedVolume
+	return *o.IngestedVolume.Get()
 }
 
 // GetIngestedVolumeOk returns a tuple with the IngestedVolume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MetricIngestedIndexedVolumeAttributes) GetIngestedVolumeOk() (*int64, bool) {
-	if o == nil || o.IngestedVolume == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.IngestedVolume, true
+	return o.IngestedVolume.Get(), o.IngestedVolume.IsSet()
 }
 
 // HasIngestedVolume returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolumeAttributes) HasIngestedVolume() bool {
-	return o != nil && o.IngestedVolume != nil
+	return o != nil && o.IngestedVolume.IsSet()
 }
 
-// SetIngestedVolume gets a reference to the given int64 and assigns it to the IngestedVolume field.
+// SetIngestedVolume gets a reference to the given datadog.NullableInt64 and assigns it to the IngestedVolume field.
 func (o *MetricIngestedIndexedVolumeAttributes) SetIngestedVolume(v int64) {
-	o.IngestedVolume = &v
+	o.IngestedVolume.Set(&v)
+}
+
+// SetIngestedVolumeNil sets the value for IngestedVolume to be an explicit nil.
+func (o *MetricIngestedIndexedVolumeAttributes) SetIngestedVolumeNil() {
+	o.IngestedVolume.Set(nil)
+}
+
+// UnsetIngestedVolume ensures that no value is present for IngestedVolume, not even an explicit nil.
+func (o *MetricIngestedIndexedVolumeAttributes) UnsetIngestedVolume() {
+	o.IngestedVolume.Unset()
 }
 
 // GetIngestedVolumeDelta returns the IngestedVolumeDelta field value if set, zero value otherwise.
@@ -160,14 +182,14 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.IndexedVolume != nil {
-		toSerialize["indexed_volume"] = o.IndexedVolume
+	if o.IndexedVolume.IsSet() {
+		toSerialize["indexed_volume"] = o.IndexedVolume.Get()
 	}
 	if o.IndexedVolumeDelta != nil {
 		toSerialize["indexed_volume_delta"] = o.IndexedVolumeDelta
 	}
-	if o.IngestedVolume != nil {
-		toSerialize["ingested_volume"] = o.IngestedVolume
+	if o.IngestedVolume.IsSet() {
+		toSerialize["ingested_volume"] = o.IngestedVolume.Get()
 	}
 	if o.IngestedVolumeDelta != nil {
 		toSerialize["ingested_volume_delta"] = o.IngestedVolumeDelta
@@ -182,10 +204,10 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IndexedVolume       *int64 `json:"indexed_volume,omitempty"`
-		IndexedVolumeDelta  *int64 `json:"indexed_volume_delta,omitempty"`
-		IngestedVolume      *int64 `json:"ingested_volume,omitempty"`
-		IngestedVolumeDelta *int64 `json:"ingested_volume_delta,omitempty"`
+		IndexedVolume       datadog.NullableInt64 `json:"indexed_volume,omitempty"`
+		IndexedVolumeDelta  *int64                `json:"indexed_volume_delta,omitempty"`
+		IngestedVolume      datadog.NullableInt64 `json:"ingested_volume,omitempty"`
+		IngestedVolumeDelta *int64                `json:"ingested_volume_delta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
