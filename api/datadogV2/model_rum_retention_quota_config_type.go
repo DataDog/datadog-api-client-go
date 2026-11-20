@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaConfigType The type of the resource, always `rum_quota_config`.
-type RumRetentionQuotaConfigType string
+// RUMRetentionQuotaConfigType The type of the resource, always `rum_quota_config`.
+type RUMRetentionQuotaConfigType string
 
-// List of RumRetentionQuotaConfigType.
+// List of RUMRetentionQuotaConfigType.
 const (
-	RUMRETENTIONQUOTACONFIGTYPE_RUM_QUOTA_CONFIG RumRetentionQuotaConfigType = "rum_quota_config"
+	RUMRETENTIONQUOTACONFIGTYPE_RUM_QUOTA_CONFIG RUMRetentionQuotaConfigType = "rum_quota_config"
 )
 
-var allowedRumRetentionQuotaConfigTypeEnumValues = []RumRetentionQuotaConfigType{
+var allowedRUMRetentionQuotaConfigTypeEnumValues = []RUMRetentionQuotaConfigType{
 	RUMRETENTIONQUOTACONFIGTYPE_RUM_QUOTA_CONFIG,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionQuotaConfigType) GetAllowedValues() []RumRetentionQuotaConfigType {
-	return allowedRumRetentionQuotaConfigTypeEnumValues
+func (v *RUMRetentionQuotaConfigType) GetAllowedValues() []RUMRetentionQuotaConfigType {
+	return allowedRUMRetentionQuotaConfigTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionQuotaConfigType) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionQuotaConfigType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionQuotaConfigType(value)
+	*v = RUMRetentionQuotaConfigType(value)
 	return nil
 }
 
-// NewRumRetentionQuotaConfigTypeFromValue returns a pointer to a valid RumRetentionQuotaConfigType
+// NewRUMRetentionQuotaConfigTypeFromValue returns a pointer to a valid RUMRetentionQuotaConfigType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionQuotaConfigTypeFromValue(v string) (*RumRetentionQuotaConfigType, error) {
-	ev := RumRetentionQuotaConfigType(v)
+func NewRUMRetentionQuotaConfigTypeFromValue(v string) (*RUMRetentionQuotaConfigType, error) {
+	ev := RUMRetentionQuotaConfigType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionQuotaConfigType: valid values are %v", v, allowedRumRetentionQuotaConfigTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionQuotaConfigType: valid values are %v", v, allowedRUMRetentionQuotaConfigTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionQuotaConfigType) IsValid() bool {
-	for _, existing := range allowedRumRetentionQuotaConfigTypeEnumValues {
+func (v RUMRetentionQuotaConfigType) IsValid() bool {
+	for _, existing := range allowedRUMRetentionQuotaConfigTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRetentionQuotaConfigType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionQuotaConfigType value.
-func (v RumRetentionQuotaConfigType) Ptr() *RumRetentionQuotaConfigType {
+// Ptr returns reference to RUMRetentionQuotaConfigType value.
+func (v RUMRetentionQuotaConfigType) Ptr() *RUMRetentionQuotaConfigType {
 	return &v
 }

@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSession JSON:API resource.
-type RumArchiveSession struct {
+// RUMArchiveSession JSON:API resource.
+type RUMArchiveSession struct {
 	// Archived session metadata.
-	Attributes RumArchiveSessionAttributes `json:"attributes"`
+	Attributes RUMArchiveSessionAttributes `json:"attributes"`
 	// Resource identifier.
 	Id string `json:"id"`
 	// JSON:API resource type.
-	Type RumArchiveSessionType `json:"type"`
+	Type RUMArchiveSessionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSession instantiates a new RumArchiveSession object.
+// NewRUMArchiveSession instantiates a new RUMArchiveSession object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSession(attributes RumArchiveSessionAttributes, id string, typeVar RumArchiveSessionType) *RumArchiveSession {
-	this := RumArchiveSession{}
+func NewRUMArchiveSession(attributes RUMArchiveSessionAttributes, id string, typeVar RUMArchiveSessionType) *RUMArchiveSession {
+	this := RUMArchiveSession{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumArchiveSessionWithDefaults instantiates a new RumArchiveSession object.
+// NewRUMArchiveSessionWithDefaults instantiates a new RUMArchiveSession object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionWithDefaults() *RumArchiveSession {
-	this := RumArchiveSession{}
+func NewRUMArchiveSessionWithDefaults() *RUMArchiveSession {
+	this := RUMArchiveSession{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumArchiveSession) GetAttributes() RumArchiveSessionAttributes {
+func (o *RUMArchiveSession) GetAttributes() RUMArchiveSessionAttributes {
 	if o == nil {
-		var ret RumArchiveSessionAttributes
+		var ret RUMArchiveSessionAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *RumArchiveSession) GetAttributes() RumArchiveSessionAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSession) GetAttributesOk() (*RumArchiveSessionAttributes, bool) {
+func (o *RUMArchiveSession) GetAttributesOk() (*RUMArchiveSessionAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *RumArchiveSession) GetAttributesOk() (*RumArchiveSessionAttributes, boo
 }
 
 // SetAttributes sets field value.
-func (o *RumArchiveSession) SetAttributes(v RumArchiveSessionAttributes) {
+func (o *RUMArchiveSession) SetAttributes(v RUMArchiveSessionAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumArchiveSession) GetId() string {
+func (o *RUMArchiveSession) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RumArchiveSession) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSession) GetIdOk() (*string, bool) {
+func (o *RUMArchiveSession) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *RumArchiveSession) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumArchiveSession) SetId(v string) {
+func (o *RUMArchiveSession) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumArchiveSession) GetType() RumArchiveSessionType {
+func (o *RUMArchiveSession) GetType() RUMArchiveSessionType {
 	if o == nil {
-		var ret RumArchiveSessionType
+		var ret RUMArchiveSessionType
 		return ret
 	}
 	return o.Type
@@ -100,7 +100,7 @@ func (o *RumArchiveSession) GetType() RumArchiveSessionType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSession) GetTypeOk() (*RumArchiveSessionType, bool) {
+func (o *RUMArchiveSession) GetTypeOk() (*RUMArchiveSessionType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *RumArchiveSession) GetTypeOk() (*RumArchiveSessionType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumArchiveSession) SetType(v RumArchiveSessionType) {
+func (o *RUMArchiveSession) SetType(v RUMArchiveSessionType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSession) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSession) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +129,11 @@ func (o RumArchiveSession) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSession) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSession) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumArchiveSessionAttributes `json:"attributes"`
+		Attributes *RUMArchiveSessionAttributes `json:"attributes"`
 		Id         *string                      `json:"id"`
-		Type       *RumArchiveSessionType       `json:"type"`
+		Type       *RUMArchiveSessionType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

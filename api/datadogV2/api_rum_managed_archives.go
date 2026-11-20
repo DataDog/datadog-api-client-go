@@ -80,7 +80,7 @@ func (a *RUMManagedArchivesApi) DeleteRUMArchiveConfig(ctx _context.Context, app
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
@@ -95,11 +95,11 @@ func (a *RUMManagedArchivesApi) DeleteRUMArchiveConfig(ctx _context.Context, app
 
 // GetRUMArchiveConfig Get an archive configuration.
 // Get the archive configuration for a RUM application.
-func (a *RUMManagedArchivesApi) GetRUMArchiveConfig(ctx _context.Context, appId uuid.UUID) (RumArchiveConfigResponse, *_nethttp.Response, error) {
+func (a *RUMManagedArchivesApi) GetRUMArchiveConfig(ctx _context.Context, appId uuid.UUID) (RUMArchiveConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumArchiveConfigResponse
+		localVarReturnValue RUMArchiveConfigResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMManagedArchivesApi.GetRUMArchiveConfig")
@@ -158,7 +158,7 @@ func (a *RUMManagedArchivesApi) GetRUMArchiveConfig(ctx _context.Context, appId 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -206,11 +206,11 @@ func (r *ListRUMArchiveConfigsOptionalParameters) WithPageSize(pageSize int32) *
 
 // ListRUMArchiveConfigs List archive configurations.
 // Get the list of archive configurations for your organization.
-func (a *RUMManagedArchivesApi) ListRUMArchiveConfigs(ctx _context.Context, o ...ListRUMArchiveConfigsOptionalParameters) (RumArchiveConfigListResponse, *_nethttp.Response, error) {
+func (a *RUMManagedArchivesApi) ListRUMArchiveConfigs(ctx _context.Context, o ...ListRUMArchiveConfigsOptionalParameters) (RUMArchiveConfigListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumArchiveConfigListResponse
+		localVarReturnValue RUMArchiveConfigListResponse
 		optionalParams      ListRUMArchiveConfigsOptionalParameters
 	)
 
@@ -282,7 +282,7 @@ func (a *RUMManagedArchivesApi) ListRUMArchiveConfigs(ctx _context.Context, o ..
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -306,11 +306,11 @@ func (a *RUMManagedArchivesApi) ListRUMArchiveConfigs(ctx _context.Context, o ..
 
 // UpdateRUMArchiveConfig Create or update an archive configuration.
 // Create or update the archive configuration for a RUM application. The application ID in the path must match `data.id`. Disabling archiving does not delete archived sessions.
-func (a *RUMManagedArchivesApi) UpdateRUMArchiveConfig(ctx _context.Context, appId uuid.UUID, body RumArchiveConfigUpsertRequest) (RumArchiveConfigResponse, *_nethttp.Response, error) {
+func (a *RUMManagedArchivesApi) UpdateRUMArchiveConfig(ctx _context.Context, appId uuid.UUID, body RUMArchiveConfigUpsertRequest) (RUMArchiveConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
-		localVarReturnValue RumArchiveConfigResponse
+		localVarReturnValue RUMArchiveConfigResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMManagedArchivesApi.UpdateRUMArchiveConfig")
@@ -372,7 +372,7 @@ func (a *RUMManagedArchivesApi) UpdateRUMArchiveConfig(ctx _context.Context, app
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr

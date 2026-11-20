@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumArchiveSessionsSearchRequest{
-		Data: datadogV2.RumArchiveSessionsSearchData{
+	body := datadogV2.RUMArchiveSessionsSearchRequest{
+		Data: datadogV2.RUMArchiveSessionsSearchData{
 			Type: datadog.PtrString("rum_archive_sessions_request"),
-			Attributes: datadogV2.RumArchiveSessionsSearchAttributes{
+			Attributes: datadogV2.RUMArchiveSessionsSearchAttributes{
 				Query: "service:rum18600-fixture",
 				From:  1636024271000,
 				To:    1636629071000,

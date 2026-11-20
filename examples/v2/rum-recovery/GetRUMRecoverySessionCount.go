@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRecoveryCountRequest{
-		Data: datadogV2.RumRecoveryCountRequestData{
-			Attributes: datadogV2.RumRecoveryCountAttributes{
+	body := datadogV2.RUMRecoveryCountRequest{
+		Data: datadogV2.RUMRecoveryCountRequestData{
+			Attributes: datadogV2.RUMRecoveryCountAttributes{
 				From:  1789905600000,
 				Query: "service:web",
 				To:    1789992000000,

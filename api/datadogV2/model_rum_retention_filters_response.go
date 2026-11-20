@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFiltersResponse All RUM retention filters for a RUM application.
-type RumRetentionFiltersResponse struct {
+// RUMRetentionFiltersResponse All RUM retention filters for a RUM application.
+type RUMRetentionFiltersResponse struct {
 	// A list of RUM retention filters.
-	Data []RumRetentionFilterData `json:"data,omitempty"`
+	Data []RUMRetentionFilterData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionFiltersResponse instantiates a new RumRetentionFiltersResponse object.
+// NewRUMRetentionFiltersResponse instantiates a new RUMRetentionFiltersResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionFiltersResponse() *RumRetentionFiltersResponse {
-	this := RumRetentionFiltersResponse{}
+func NewRUMRetentionFiltersResponse() *RUMRetentionFiltersResponse {
+	this := RUMRetentionFiltersResponse{}
 	return &this
 }
 
-// NewRumRetentionFiltersResponseWithDefaults instantiates a new RumRetentionFiltersResponse object.
+// NewRUMRetentionFiltersResponseWithDefaults instantiates a new RUMRetentionFiltersResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionFiltersResponseWithDefaults() *RumRetentionFiltersResponse {
-	this := RumRetentionFiltersResponse{}
+func NewRUMRetentionFiltersResponseWithDefaults() *RUMRetentionFiltersResponse {
+	this := RUMRetentionFiltersResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RumRetentionFiltersResponse) GetData() []RumRetentionFilterData {
+func (o *RUMRetentionFiltersResponse) GetData() []RUMRetentionFilterData {
 	if o == nil || o.Data == nil {
-		var ret []RumRetentionFilterData
+		var ret []RUMRetentionFilterData
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *RumRetentionFiltersResponse) GetData() []RumRetentionFilterData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFiltersResponse) GetDataOk() (*[]RumRetentionFilterData, bool) {
+func (o *RUMRetentionFiltersResponse) GetDataOk() (*[]RUMRetentionFilterData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumRetentionFiltersResponse) GetDataOk() (*[]RumRetentionFilterData, bo
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RumRetentionFiltersResponse) HasData() bool {
+func (o *RUMRetentionFiltersResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []RumRetentionFilterData and assigns it to the Data field.
-func (o *RumRetentionFiltersResponse) SetData(v []RumRetentionFilterData) {
+// SetData gets a reference to the given []RUMRetentionFilterData and assigns it to the Data field.
+func (o *RUMRetentionFiltersResponse) SetData(v []RUMRetentionFilterData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RumRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []RumRetentionFilterData `json:"data,omitempty"`
+		Data []RUMRetentionFilterData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

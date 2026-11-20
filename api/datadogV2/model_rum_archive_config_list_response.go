@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigListResponse JSON:API document.
-type RumArchiveConfigListResponse struct {
+// RUMArchiveConfigListResponse JSON:API document.
+type RUMArchiveConfigListResponse struct {
 	// Configurations in page order.
-	Data []RumArchiveConfig `json:"data"`
+	Data []RUMArchiveConfig `json:"data"`
 	// Pagination metadata.
-	Meta RumArchiveConfigMeta `json:"meta"`
+	Meta RUMArchiveConfigMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigListResponse instantiates a new RumArchiveConfigListResponse object.
+// NewRUMArchiveConfigListResponse instantiates a new RUMArchiveConfigListResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigListResponse(data []RumArchiveConfig, meta RumArchiveConfigMeta) *RumArchiveConfigListResponse {
-	this := RumArchiveConfigListResponse{}
+func NewRUMArchiveConfigListResponse(data []RUMArchiveConfig, meta RUMArchiveConfigMeta) *RUMArchiveConfigListResponse {
+	this := RUMArchiveConfigListResponse{}
 	this.Data = data
 	this.Meta = meta
 	return &this
 }
 
-// NewRumArchiveConfigListResponseWithDefaults instantiates a new RumArchiveConfigListResponse object.
+// NewRUMArchiveConfigListResponseWithDefaults instantiates a new RUMArchiveConfigListResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigListResponseWithDefaults() *RumArchiveConfigListResponse {
-	this := RumArchiveConfigListResponse{}
+func NewRUMArchiveConfigListResponseWithDefaults() *RUMArchiveConfigListResponse {
+	this := RUMArchiveConfigListResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumArchiveConfigListResponse) GetData() []RumArchiveConfig {
+func (o *RUMArchiveConfigListResponse) GetData() []RUMArchiveConfig {
 	if o == nil {
-		var ret []RumArchiveConfig
+		var ret []RUMArchiveConfig
 		return ret
 	}
 	return o.Data
@@ -51,7 +51,7 @@ func (o *RumArchiveConfigListResponse) GetData() []RumArchiveConfig {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigListResponse) GetDataOk() (*[]RumArchiveConfig, bool) {
+func (o *RUMArchiveConfigListResponse) GetDataOk() (*[]RUMArchiveConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +59,14 @@ func (o *RumArchiveConfigListResponse) GetDataOk() (*[]RumArchiveConfig, bool) {
 }
 
 // SetData sets field value.
-func (o *RumArchiveConfigListResponse) SetData(v []RumArchiveConfig) {
+func (o *RUMArchiveConfigListResponse) SetData(v []RUMArchiveConfig) {
 	o.Data = v
 }
 
 // GetMeta returns the Meta field value.
-func (o *RumArchiveConfigListResponse) GetMeta() RumArchiveConfigMeta {
+func (o *RUMArchiveConfigListResponse) GetMeta() RUMArchiveConfigMeta {
 	if o == nil {
-		var ret RumArchiveConfigMeta
+		var ret RUMArchiveConfigMeta
 		return ret
 	}
 	return o.Meta
@@ -74,7 +74,7 @@ func (o *RumArchiveConfigListResponse) GetMeta() RumArchiveConfigMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigListResponse) GetMetaOk() (*RumArchiveConfigMeta, bool) {
+func (o *RUMArchiveConfigListResponse) GetMetaOk() (*RUMArchiveConfigMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumArchiveConfigListResponse) GetMetaOk() (*RumArchiveConfigMeta, bool)
 }
 
 // SetMeta sets field value.
-func (o *RumArchiveConfigListResponse) SetMeta(v RumArchiveConfigMeta) {
+func (o *RUMArchiveConfigListResponse) SetMeta(v RUMArchiveConfigMeta) {
 	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigListResponse) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,10 +102,10 @@ func (o RumArchiveConfigListResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigListResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]RumArchiveConfig   `json:"data"`
-		Meta *RumArchiveConfigMeta `json:"meta"`
+		Data *[]RUMArchiveConfig   `json:"data"`
+		Meta *RUMArchiveConfigMeta `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

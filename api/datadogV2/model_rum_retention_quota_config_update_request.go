@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaConfigUpdateRequest The body of a request to create or update a RUM retention quota configuration.
-type RumRetentionQuotaConfigUpdateRequest struct {
+// RUMRetentionQuotaConfigUpdateRequest The body of a request to create or update a RUM retention quota configuration.
+type RUMRetentionQuotaConfigUpdateRequest struct {
 	// The RUM retention quota configuration to create or update.
-	Data RumRetentionQuotaConfigUpdateData `json:"data"`
+	Data RUMRetentionQuotaConfigUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionQuotaConfigUpdateRequest instantiates a new RumRetentionQuotaConfigUpdateRequest object.
+// NewRUMRetentionQuotaConfigUpdateRequest instantiates a new RUMRetentionQuotaConfigUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionQuotaConfigUpdateRequest(data RumRetentionQuotaConfigUpdateData) *RumRetentionQuotaConfigUpdateRequest {
-	this := RumRetentionQuotaConfigUpdateRequest{}
+func NewRUMRetentionQuotaConfigUpdateRequest(data RUMRetentionQuotaConfigUpdateData) *RUMRetentionQuotaConfigUpdateRequest {
+	this := RUMRetentionQuotaConfigUpdateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumRetentionQuotaConfigUpdateRequestWithDefaults instantiates a new RumRetentionQuotaConfigUpdateRequest object.
+// NewRUMRetentionQuotaConfigUpdateRequestWithDefaults instantiates a new RUMRetentionQuotaConfigUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionQuotaConfigUpdateRequestWithDefaults() *RumRetentionQuotaConfigUpdateRequest {
-	this := RumRetentionQuotaConfigUpdateRequest{}
+func NewRUMRetentionQuotaConfigUpdateRequestWithDefaults() *RUMRetentionQuotaConfigUpdateRequest {
+	this := RUMRetentionQuotaConfigUpdateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumRetentionQuotaConfigUpdateRequest) GetData() RumRetentionQuotaConfigUpdateData {
+func (o *RUMRetentionQuotaConfigUpdateRequest) GetData() RUMRetentionQuotaConfigUpdateData {
 	if o == nil {
-		var ret RumRetentionQuotaConfigUpdateData
+		var ret RUMRetentionQuotaConfigUpdateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumRetentionQuotaConfigUpdateRequest) GetData() RumRetentionQuotaConfig
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateRequest) GetDataOk() (*RumRetentionQuotaConfigUpdateData, bool) {
+func (o *RUMRetentionQuotaConfigUpdateRequest) GetDataOk() (*RUMRetentionQuotaConfigUpdateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumRetentionQuotaConfigUpdateRequest) GetDataOk() (*RumRetentionQuotaCo
 }
 
 // SetData sets field value.
-func (o *RumRetentionQuotaConfigUpdateRequest) SetData(v RumRetentionQuotaConfigUpdateData) {
+func (o *RUMRetentionQuotaConfigUpdateRequest) SetData(v RUMRetentionQuotaConfigUpdateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionQuotaConfigUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionQuotaConfigUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumRetentionQuotaConfigUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionQuotaConfigUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionQuotaConfigUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumRetentionQuotaConfigUpdateData `json:"data"`
+		Data *RUMRetentionQuotaConfigUpdateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

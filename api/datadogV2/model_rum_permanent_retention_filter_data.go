@@ -8,44 +8,44 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumPermanentRetentionFilterData A permanent RUM retention filter.
-type RumPermanentRetentionFilterData struct {
+// RUMPermanentRetentionFilterData A permanent RUM retention filter.
+type RUMPermanentRetentionFilterData struct {
 	// The attributes of a permanent RUM retention filter.
-	Attributes *RumPermanentRetentionFilterAttributes `json:"attributes,omitempty"`
+	Attributes *RUMPermanentRetentionFilterAttributes `json:"attributes,omitempty"`
 	// The identifier of a permanent RUM retention filter.
-	Id *RumPermanentRetentionFilterID `json:"id,omitempty"`
+	Id *RUMPermanentRetentionFilterID `json:"id,omitempty"`
 	// The type of the resource. The value should always be `permanent_retention_filters`.
-	Type *RumPermanentRetentionFilterType `json:"type,omitempty"`
+	Type *RUMPermanentRetentionFilterType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumPermanentRetentionFilterData instantiates a new RumPermanentRetentionFilterData object.
+// NewRUMPermanentRetentionFilterData instantiates a new RUMPermanentRetentionFilterData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumPermanentRetentionFilterData() *RumPermanentRetentionFilterData {
-	this := RumPermanentRetentionFilterData{}
-	var typeVar RumPermanentRetentionFilterType = RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS
+func NewRUMPermanentRetentionFilterData() *RUMPermanentRetentionFilterData {
+	this := RUMPermanentRetentionFilterData{}
+	var typeVar RUMPermanentRetentionFilterType = RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS
 	this.Type = &typeVar
 	return &this
 }
 
-// NewRumPermanentRetentionFilterDataWithDefaults instantiates a new RumPermanentRetentionFilterData object.
+// NewRUMPermanentRetentionFilterDataWithDefaults instantiates a new RUMPermanentRetentionFilterData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumPermanentRetentionFilterDataWithDefaults() *RumPermanentRetentionFilterData {
-	this := RumPermanentRetentionFilterData{}
-	var typeVar RumPermanentRetentionFilterType = RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS
+func NewRUMPermanentRetentionFilterDataWithDefaults() *RUMPermanentRetentionFilterData {
+	this := RUMPermanentRetentionFilterData{}
+	var typeVar RUMPermanentRetentionFilterType = RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS
 	this.Type = &typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFilterData) GetAttributes() RumPermanentRetentionFilterAttributes {
+func (o *RUMPermanentRetentionFilterData) GetAttributes() RUMPermanentRetentionFilterAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret RumPermanentRetentionFilterAttributes
+		var ret RUMPermanentRetentionFilterAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -53,7 +53,7 @@ func (o *RumPermanentRetentionFilterData) GetAttributes() RumPermanentRetentionF
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFilterData) GetAttributesOk() (*RumPermanentRetentionFilterAttributes, bool) {
+func (o *RUMPermanentRetentionFilterData) GetAttributesOk() (*RUMPermanentRetentionFilterAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -61,19 +61,19 @@ func (o *RumPermanentRetentionFilterData) GetAttributesOk() (*RumPermanentRetent
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFilterData) HasAttributes() bool {
+func (o *RUMPermanentRetentionFilterData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given RumPermanentRetentionFilterAttributes and assigns it to the Attributes field.
-func (o *RumPermanentRetentionFilterData) SetAttributes(v RumPermanentRetentionFilterAttributes) {
+// SetAttributes gets a reference to the given RUMPermanentRetentionFilterAttributes and assigns it to the Attributes field.
+func (o *RUMPermanentRetentionFilterData) SetAttributes(v RUMPermanentRetentionFilterAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFilterData) GetId() RumPermanentRetentionFilterID {
+func (o *RUMPermanentRetentionFilterData) GetId() RUMPermanentRetentionFilterID {
 	if o == nil || o.Id == nil {
-		var ret RumPermanentRetentionFilterID
+		var ret RUMPermanentRetentionFilterID
 		return ret
 	}
 	return *o.Id
@@ -81,7 +81,7 @@ func (o *RumPermanentRetentionFilterData) GetId() RumPermanentRetentionFilterID 
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFilterData) GetIdOk() (*RumPermanentRetentionFilterID, bool) {
+func (o *RUMPermanentRetentionFilterData) GetIdOk() (*RUMPermanentRetentionFilterID, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -89,19 +89,19 @@ func (o *RumPermanentRetentionFilterData) GetIdOk() (*RumPermanentRetentionFilte
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFilterData) HasId() bool {
+func (o *RUMPermanentRetentionFilterData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given RumPermanentRetentionFilterID and assigns it to the Id field.
-func (o *RumPermanentRetentionFilterData) SetId(v RumPermanentRetentionFilterID) {
+// SetId gets a reference to the given RUMPermanentRetentionFilterID and assigns it to the Id field.
+func (o *RUMPermanentRetentionFilterData) SetId(v RUMPermanentRetentionFilterID) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFilterData) GetType() RumPermanentRetentionFilterType {
+func (o *RUMPermanentRetentionFilterData) GetType() RUMPermanentRetentionFilterType {
 	if o == nil || o.Type == nil {
-		var ret RumPermanentRetentionFilterType
+		var ret RUMPermanentRetentionFilterType
 		return ret
 	}
 	return *o.Type
@@ -109,7 +109,7 @@ func (o *RumPermanentRetentionFilterData) GetType() RumPermanentRetentionFilterT
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFilterData) GetTypeOk() (*RumPermanentRetentionFilterType, bool) {
+func (o *RUMPermanentRetentionFilterData) GetTypeOk() (*RUMPermanentRetentionFilterType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -117,17 +117,17 @@ func (o *RumPermanentRetentionFilterData) GetTypeOk() (*RumPermanentRetentionFil
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFilterData) HasType() bool {
+func (o *RUMPermanentRetentionFilterData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given RumPermanentRetentionFilterType and assigns it to the Type field.
-func (o *RumPermanentRetentionFilterData) SetType(v RumPermanentRetentionFilterType) {
+// SetType gets a reference to the given RUMPermanentRetentionFilterType and assigns it to the Type field.
+func (o *RUMPermanentRetentionFilterData) SetType(v RUMPermanentRetentionFilterType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumPermanentRetentionFilterData) MarshalJSON() ([]byte, error) {
+func (o RUMPermanentRetentionFilterData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -149,11 +149,11 @@ func (o RumPermanentRetentionFilterData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumPermanentRetentionFilterData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMPermanentRetentionFilterData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumPermanentRetentionFilterAttributes `json:"attributes,omitempty"`
-		Id         *RumPermanentRetentionFilterID         `json:"id,omitempty"`
-		Type       *RumPermanentRetentionFilterType       `json:"type,omitempty"`
+		Attributes *RUMPermanentRetentionFilterAttributes `json:"attributes,omitempty"`
+		Id         *RUMPermanentRetentionFilterID         `json:"id,omitempty"`
+		Type       *RUMPermanentRetentionFilterType       `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

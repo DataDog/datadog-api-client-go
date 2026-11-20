@@ -16,11 +16,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayHeatmapsApi(apiClient)
+	api := datadogV2.NewRUMReplayHeatmapsApi(apiClient)
 	r, err := api.DeleteReplayHeatmapSnapshot(ctx, "00000000-0000-0000-0000-000000000001")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayHeatmapsApi.DeleteReplayHeatmapSnapshot`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayHeatmapsApi.DeleteReplayHeatmapSnapshot`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

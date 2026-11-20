@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigResponse JSON:API document.
-type RumArchiveConfigResponse struct {
+// RUMArchiveConfigResponse JSON:API document.
+type RUMArchiveConfigResponse struct {
 	// JSON:API resource.
-	Data RumArchiveConfig `json:"data"`
+	Data RUMArchiveConfig `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigResponse instantiates a new RumArchiveConfigResponse object.
+// NewRUMArchiveConfigResponse instantiates a new RUMArchiveConfigResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigResponse(data RumArchiveConfig) *RumArchiveConfigResponse {
-	this := RumArchiveConfigResponse{}
+func NewRUMArchiveConfigResponse(data RUMArchiveConfig) *RUMArchiveConfigResponse {
+	this := RUMArchiveConfigResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewRumArchiveConfigResponseWithDefaults instantiates a new RumArchiveConfigResponse object.
+// NewRUMArchiveConfigResponseWithDefaults instantiates a new RUMArchiveConfigResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigResponseWithDefaults() *RumArchiveConfigResponse {
-	this := RumArchiveConfigResponse{}
+func NewRUMArchiveConfigResponseWithDefaults() *RUMArchiveConfigResponse {
+	this := RUMArchiveConfigResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumArchiveConfigResponse) GetData() RumArchiveConfig {
+func (o *RUMArchiveConfigResponse) GetData() RUMArchiveConfig {
 	if o == nil {
-		var ret RumArchiveConfig
+		var ret RUMArchiveConfig
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumArchiveConfigResponse) GetData() RumArchiveConfig {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigResponse) GetDataOk() (*RumArchiveConfig, bool) {
+func (o *RUMArchiveConfigResponse) GetDataOk() (*RUMArchiveConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumArchiveConfigResponse) GetDataOk() (*RumArchiveConfig, bool) {
 }
 
 // SetData sets field value.
-func (o *RumArchiveConfigResponse) SetData(v RumArchiveConfig) {
+func (o *RUMArchiveConfigResponse) SetData(v RUMArchiveConfig) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigResponse) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumArchiveConfigResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumArchiveConfig `json:"data"`
+		Data *RUMArchiveConfig `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

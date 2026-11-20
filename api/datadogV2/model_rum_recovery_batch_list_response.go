@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchListResponse JSON:API document.
-type RumRecoveryBatchListResponse struct {
+// RUMRecoveryBatchListResponse JSON:API document.
+type RUMRecoveryBatchListResponse struct {
 	// Batch requests ordered newest first. A filtered page can be empty while meta.next_cursor is present.
-	Data []RumRecoveryBatchListData `json:"data"`
+	Data []RUMRecoveryBatchListData `json:"data"`
 	// Batch-list pagination metadata.
-	Meta RumRecoveryBatchListMeta `json:"meta"`
+	Meta RUMRecoveryBatchListMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryBatchListResponse instantiates a new RumRecoveryBatchListResponse object.
+// NewRUMRecoveryBatchListResponse instantiates a new RUMRecoveryBatchListResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryBatchListResponse(data []RumRecoveryBatchListData, meta RumRecoveryBatchListMeta) *RumRecoveryBatchListResponse {
-	this := RumRecoveryBatchListResponse{}
+func NewRUMRecoveryBatchListResponse(data []RUMRecoveryBatchListData, meta RUMRecoveryBatchListMeta) *RUMRecoveryBatchListResponse {
+	this := RUMRecoveryBatchListResponse{}
 	this.Data = data
 	this.Meta = meta
 	return &this
 }
 
-// NewRumRecoveryBatchListResponseWithDefaults instantiates a new RumRecoveryBatchListResponse object.
+// NewRUMRecoveryBatchListResponseWithDefaults instantiates a new RUMRecoveryBatchListResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryBatchListResponseWithDefaults() *RumRecoveryBatchListResponse {
-	this := RumRecoveryBatchListResponse{}
+func NewRUMRecoveryBatchListResponseWithDefaults() *RUMRecoveryBatchListResponse {
+	this := RUMRecoveryBatchListResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumRecoveryBatchListResponse) GetData() []RumRecoveryBatchListData {
+func (o *RUMRecoveryBatchListResponse) GetData() []RUMRecoveryBatchListData {
 	if o == nil {
-		var ret []RumRecoveryBatchListData
+		var ret []RUMRecoveryBatchListData
 		return ret
 	}
 	return o.Data
@@ -51,7 +51,7 @@ func (o *RumRecoveryBatchListResponse) GetData() []RumRecoveryBatchListData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListResponse) GetDataOk() (*[]RumRecoveryBatchListData, bool) {
+func (o *RUMRecoveryBatchListResponse) GetDataOk() (*[]RUMRecoveryBatchListData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +59,14 @@ func (o *RumRecoveryBatchListResponse) GetDataOk() (*[]RumRecoveryBatchListData,
 }
 
 // SetData sets field value.
-func (o *RumRecoveryBatchListResponse) SetData(v []RumRecoveryBatchListData) {
+func (o *RUMRecoveryBatchListResponse) SetData(v []RUMRecoveryBatchListData) {
 	o.Data = v
 }
 
 // GetMeta returns the Meta field value.
-func (o *RumRecoveryBatchListResponse) GetMeta() RumRecoveryBatchListMeta {
+func (o *RUMRecoveryBatchListResponse) GetMeta() RUMRecoveryBatchListMeta {
 	if o == nil {
-		var ret RumRecoveryBatchListMeta
+		var ret RUMRecoveryBatchListMeta
 		return ret
 	}
 	return o.Meta
@@ -74,7 +74,7 @@ func (o *RumRecoveryBatchListResponse) GetMeta() RumRecoveryBatchListMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListResponse) GetMetaOk() (*RumRecoveryBatchListMeta, bool) {
+func (o *RUMRecoveryBatchListResponse) GetMetaOk() (*RUMRecoveryBatchListMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumRecoveryBatchListResponse) GetMetaOk() (*RumRecoveryBatchListMeta, b
 }
 
 // SetMeta sets field value.
-func (o *RumRecoveryBatchListResponse) SetMeta(v RumRecoveryBatchListMeta) {
+func (o *RUMRecoveryBatchListResponse) SetMeta(v RUMRecoveryBatchListMeta) {
 	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryBatchListResponse) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryBatchListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,10 +102,10 @@ func (o RumRecoveryBatchListResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryBatchListResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryBatchListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]RumRecoveryBatchListData `json:"data"`
-		Meta *RumRecoveryBatchListMeta   `json:"meta"`
+		Data *[]RUMRecoveryBatchListData `json:"data"`
+		Meta *RUMRecoveryBatchListMeta   `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

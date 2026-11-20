@@ -12,8 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveredSession Progress for one targeted session.
-type RumRecoveredSession struct {
+// RUMRecoveredSession Progress for one targeted session.
+type RUMRecoveredSession struct {
 	// Application UUID.
 	ApplicationId uuid.UUID `json:"application_id"`
 	// Failure details, if present.
@@ -23,18 +23,18 @@ type RumRecoveredSession struct {
 	// Session identifier.
 	SessionId uuid.UUID `json:"session_id"`
 	// Session availability or recovery state. `RECOVERED` indicates that the session is ready to query.
-	Status RumRecoverySessionStatus `json:"status"`
+	Status RUMRecoverySessionStatus `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveredSession instantiates a new RumRecoveredSession object.
+// NewRUMRecoveredSession instantiates a new RUMRecoveredSession object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveredSession(applicationId uuid.UUID, eventsRecovered int64, sessionId uuid.UUID, status RumRecoverySessionStatus) *RumRecoveredSession {
-	this := RumRecoveredSession{}
+func NewRUMRecoveredSession(applicationId uuid.UUID, eventsRecovered int64, sessionId uuid.UUID, status RUMRecoverySessionStatus) *RUMRecoveredSession {
+	this := RUMRecoveredSession{}
 	this.ApplicationId = applicationId
 	this.EventsRecovered = eventsRecovered
 	this.SessionId = sessionId
@@ -42,16 +42,16 @@ func NewRumRecoveredSession(applicationId uuid.UUID, eventsRecovered int64, sess
 	return &this
 }
 
-// NewRumRecoveredSessionWithDefaults instantiates a new RumRecoveredSession object.
+// NewRUMRecoveredSessionWithDefaults instantiates a new RUMRecoveredSession object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveredSessionWithDefaults() *RumRecoveredSession {
-	this := RumRecoveredSession{}
+func NewRUMRecoveredSessionWithDefaults() *RUMRecoveredSession {
+	this := RUMRecoveredSession{}
 	return &this
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *RumRecoveredSession) GetApplicationId() uuid.UUID {
+func (o *RUMRecoveredSession) GetApplicationId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -61,7 +61,7 @@ func (o *RumRecoveredSession) GetApplicationId() uuid.UUID {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveredSession) GetApplicationIdOk() (*uuid.UUID, bool) {
+func (o *RUMRecoveredSession) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,12 +69,12 @@ func (o *RumRecoveredSession) GetApplicationIdOk() (*uuid.UUID, bool) {
 }
 
 // SetApplicationId sets field value.
-func (o *RumRecoveredSession) SetApplicationId(v uuid.UUID) {
+func (o *RUMRecoveredSession) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *RumRecoveredSession) GetErrorMessage() string {
+func (o *RUMRecoveredSession) GetErrorMessage() string {
 	if o == nil || o.ErrorMessage == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *RumRecoveredSession) GetErrorMessage() string {
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveredSession) GetErrorMessageOk() (*string, bool) {
+func (o *RUMRecoveredSession) GetErrorMessageOk() (*string, bool) {
 	if o == nil || o.ErrorMessage == nil {
 		return nil, false
 	}
@@ -92,17 +92,17 @@ func (o *RumRecoveredSession) GetErrorMessageOk() (*string, bool) {
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
-func (o *RumRecoveredSession) HasErrorMessage() bool {
+func (o *RUMRecoveredSession) HasErrorMessage() bool {
 	return o != nil && o.ErrorMessage != nil
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *RumRecoveredSession) SetErrorMessage(v string) {
+func (o *RUMRecoveredSession) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
 // GetEventsRecovered returns the EventsRecovered field value.
-func (o *RumRecoveredSession) GetEventsRecovered() int64 {
+func (o *RUMRecoveredSession) GetEventsRecovered() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -112,7 +112,7 @@ func (o *RumRecoveredSession) GetEventsRecovered() int64 {
 
 // GetEventsRecoveredOk returns a tuple with the EventsRecovered field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveredSession) GetEventsRecoveredOk() (*int64, bool) {
+func (o *RUMRecoveredSession) GetEventsRecoveredOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,12 +120,12 @@ func (o *RumRecoveredSession) GetEventsRecoveredOk() (*int64, bool) {
 }
 
 // SetEventsRecovered sets field value.
-func (o *RumRecoveredSession) SetEventsRecovered(v int64) {
+func (o *RUMRecoveredSession) SetEventsRecovered(v int64) {
 	o.EventsRecovered = v
 }
 
 // GetSessionId returns the SessionId field value.
-func (o *RumRecoveredSession) GetSessionId() uuid.UUID {
+func (o *RUMRecoveredSession) GetSessionId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -135,7 +135,7 @@ func (o *RumRecoveredSession) GetSessionId() uuid.UUID {
 
 // GetSessionIdOk returns a tuple with the SessionId field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveredSession) GetSessionIdOk() (*uuid.UUID, bool) {
+func (o *RUMRecoveredSession) GetSessionIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,14 +143,14 @@ func (o *RumRecoveredSession) GetSessionIdOk() (*uuid.UUID, bool) {
 }
 
 // SetSessionId sets field value.
-func (o *RumRecoveredSession) SetSessionId(v uuid.UUID) {
+func (o *RUMRecoveredSession) SetSessionId(v uuid.UUID) {
 	o.SessionId = v
 }
 
 // GetStatus returns the Status field value.
-func (o *RumRecoveredSession) GetStatus() RumRecoverySessionStatus {
+func (o *RUMRecoveredSession) GetStatus() RUMRecoverySessionStatus {
 	if o == nil {
-		var ret RumRecoverySessionStatus
+		var ret RUMRecoverySessionStatus
 		return ret
 	}
 	return o.Status
@@ -158,7 +158,7 @@ func (o *RumRecoveredSession) GetStatus() RumRecoverySessionStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveredSession) GetStatusOk() (*RumRecoverySessionStatus, bool) {
+func (o *RUMRecoveredSession) GetStatusOk() (*RUMRecoverySessionStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -166,12 +166,12 @@ func (o *RumRecoveredSession) GetStatusOk() (*RumRecoverySessionStatus, bool) {
 }
 
 // SetStatus sets field value.
-func (o *RumRecoveredSession) SetStatus(v RumRecoverySessionStatus) {
+func (o *RUMRecoveredSession) SetStatus(v RUMRecoverySessionStatus) {
 	o.Status = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveredSession) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveredSession) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -191,13 +191,13 @@ func (o RumRecoveredSession) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveredSession) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveredSession) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApplicationId   *uuid.UUID                `json:"application_id"`
 		ErrorMessage    *string                   `json:"error_message,omitempty"`
 		EventsRecovered *int64                    `json:"events_recovered"`
 		SessionId       *uuid.UUID                `json:"session_id"`
-		Status          *RumRecoverySessionStatus `json:"status"`
+		Status          *RUMRecoverySessionStatus `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

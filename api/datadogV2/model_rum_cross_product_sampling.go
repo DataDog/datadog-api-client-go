@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumCrossProductSampling The configuration for cross-product retention filters.
-type RumCrossProductSampling struct {
+// RUMCrossProductSampling The configuration for cross-product retention filters.
+type RUMCrossProductSampling struct {
 	// Whether the cross-product retention filter for Session Replay is enabled.
 	SessionReplayEnabled *bool `json:"session_replay_enabled,omitempty"`
 	// The percentage (0-100) of retained sessions with an ingested replay that keep their replay data.
@@ -24,25 +24,25 @@ type RumCrossProductSampling struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumCrossProductSampling instantiates a new RumCrossProductSampling object.
+// NewRUMCrossProductSampling instantiates a new RUMCrossProductSampling object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumCrossProductSampling() *RumCrossProductSampling {
-	this := RumCrossProductSampling{}
+func NewRUMCrossProductSampling() *RUMCrossProductSampling {
+	this := RUMCrossProductSampling{}
 	return &this
 }
 
-// NewRumCrossProductSamplingWithDefaults instantiates a new RumCrossProductSampling object.
+// NewRUMCrossProductSamplingWithDefaults instantiates a new RUMCrossProductSampling object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumCrossProductSamplingWithDefaults() *RumCrossProductSampling {
-	this := RumCrossProductSampling{}
+func NewRUMCrossProductSamplingWithDefaults() *RUMCrossProductSampling {
+	this := RUMCrossProductSampling{}
 	return &this
 }
 
 // GetSessionReplayEnabled returns the SessionReplayEnabled field value if set, zero value otherwise.
-func (o *RumCrossProductSampling) GetSessionReplayEnabled() bool {
+func (o *RUMCrossProductSampling) GetSessionReplayEnabled() bool {
 	if o == nil || o.SessionReplayEnabled == nil {
 		var ret bool
 		return ret
@@ -52,7 +52,7 @@ func (o *RumCrossProductSampling) GetSessionReplayEnabled() bool {
 
 // GetSessionReplayEnabledOk returns a tuple with the SessionReplayEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSampling) GetSessionReplayEnabledOk() (*bool, bool) {
+func (o *RUMCrossProductSampling) GetSessionReplayEnabledOk() (*bool, bool) {
 	if o == nil || o.SessionReplayEnabled == nil {
 		return nil, false
 	}
@@ -60,17 +60,17 @@ func (o *RumCrossProductSampling) GetSessionReplayEnabledOk() (*bool, bool) {
 }
 
 // HasSessionReplayEnabled returns a boolean if a field has been set.
-func (o *RumCrossProductSampling) HasSessionReplayEnabled() bool {
+func (o *RUMCrossProductSampling) HasSessionReplayEnabled() bool {
 	return o != nil && o.SessionReplayEnabled != nil
 }
 
 // SetSessionReplayEnabled gets a reference to the given bool and assigns it to the SessionReplayEnabled field.
-func (o *RumCrossProductSampling) SetSessionReplayEnabled(v bool) {
+func (o *RUMCrossProductSampling) SetSessionReplayEnabled(v bool) {
 	o.SessionReplayEnabled = &v
 }
 
 // GetSessionReplaySampleRate returns the SessionReplaySampleRate field value if set, zero value otherwise.
-func (o *RumCrossProductSampling) GetSessionReplaySampleRate() float64 {
+func (o *RUMCrossProductSampling) GetSessionReplaySampleRate() float64 {
 	if o == nil || o.SessionReplaySampleRate == nil {
 		var ret float64
 		return ret
@@ -80,7 +80,7 @@ func (o *RumCrossProductSampling) GetSessionReplaySampleRate() float64 {
 
 // GetSessionReplaySampleRateOk returns a tuple with the SessionReplaySampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSampling) GetSessionReplaySampleRateOk() (*float64, bool) {
+func (o *RUMCrossProductSampling) GetSessionReplaySampleRateOk() (*float64, bool) {
 	if o == nil || o.SessionReplaySampleRate == nil {
 		return nil, false
 	}
@@ -88,17 +88,17 @@ func (o *RumCrossProductSampling) GetSessionReplaySampleRateOk() (*float64, bool
 }
 
 // HasSessionReplaySampleRate returns a boolean if a field has been set.
-func (o *RumCrossProductSampling) HasSessionReplaySampleRate() bool {
+func (o *RUMCrossProductSampling) HasSessionReplaySampleRate() bool {
 	return o != nil && o.SessionReplaySampleRate != nil
 }
 
 // SetSessionReplaySampleRate gets a reference to the given float64 and assigns it to the SessionReplaySampleRate field.
-func (o *RumCrossProductSampling) SetSessionReplaySampleRate(v float64) {
+func (o *RUMCrossProductSampling) SetSessionReplaySampleRate(v float64) {
 	o.SessionReplaySampleRate = &v
 }
 
 // GetTraceEnabled returns the TraceEnabled field value if set, zero value otherwise.
-func (o *RumCrossProductSampling) GetTraceEnabled() bool {
+func (o *RUMCrossProductSampling) GetTraceEnabled() bool {
 	if o == nil || o.TraceEnabled == nil {
 		var ret bool
 		return ret
@@ -108,7 +108,7 @@ func (o *RumCrossProductSampling) GetTraceEnabled() bool {
 
 // GetTraceEnabledOk returns a tuple with the TraceEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSampling) GetTraceEnabledOk() (*bool, bool) {
+func (o *RUMCrossProductSampling) GetTraceEnabledOk() (*bool, bool) {
 	if o == nil || o.TraceEnabled == nil {
 		return nil, false
 	}
@@ -116,17 +116,17 @@ func (o *RumCrossProductSampling) GetTraceEnabledOk() (*bool, bool) {
 }
 
 // HasTraceEnabled returns a boolean if a field has been set.
-func (o *RumCrossProductSampling) HasTraceEnabled() bool {
+func (o *RUMCrossProductSampling) HasTraceEnabled() bool {
 	return o != nil && o.TraceEnabled != nil
 }
 
 // SetTraceEnabled gets a reference to the given bool and assigns it to the TraceEnabled field.
-func (o *RumCrossProductSampling) SetTraceEnabled(v bool) {
+func (o *RUMCrossProductSampling) SetTraceEnabled(v bool) {
 	o.TraceEnabled = &v
 }
 
 // GetTraceSampleRate returns the TraceSampleRate field value if set, zero value otherwise.
-func (o *RumCrossProductSampling) GetTraceSampleRate() float64 {
+func (o *RUMCrossProductSampling) GetTraceSampleRate() float64 {
 	if o == nil || o.TraceSampleRate == nil {
 		var ret float64
 		return ret
@@ -136,7 +136,7 @@ func (o *RumCrossProductSampling) GetTraceSampleRate() float64 {
 
 // GetTraceSampleRateOk returns a tuple with the TraceSampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumCrossProductSampling) GetTraceSampleRateOk() (*float64, bool) {
+func (o *RUMCrossProductSampling) GetTraceSampleRateOk() (*float64, bool) {
 	if o == nil || o.TraceSampleRate == nil {
 		return nil, false
 	}
@@ -144,17 +144,17 @@ func (o *RumCrossProductSampling) GetTraceSampleRateOk() (*float64, bool) {
 }
 
 // HasTraceSampleRate returns a boolean if a field has been set.
-func (o *RumCrossProductSampling) HasTraceSampleRate() bool {
+func (o *RUMCrossProductSampling) HasTraceSampleRate() bool {
 	return o != nil && o.TraceSampleRate != nil
 }
 
 // SetTraceSampleRate gets a reference to the given float64 and assigns it to the TraceSampleRate field.
-func (o *RumCrossProductSampling) SetTraceSampleRate(v float64) {
+func (o *RUMCrossProductSampling) SetTraceSampleRate(v float64) {
 	o.TraceSampleRate = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumCrossProductSampling) MarshalJSON() ([]byte, error) {
+func (o RUMCrossProductSampling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -179,7 +179,7 @@ func (o RumCrossProductSampling) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumCrossProductSampling) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMCrossProductSampling) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		SessionReplayEnabled    *bool    `json:"session_replay_enabled,omitempty"`
 		SessionReplaySampleRate *float64 `json:"session_replay_sample_rate,omitempty"`

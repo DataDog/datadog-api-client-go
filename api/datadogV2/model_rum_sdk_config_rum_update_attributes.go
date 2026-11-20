@@ -10,14 +10,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigRumUpdateAttributes The RUM SDK settings to apply when updating a configuration.
-type RumSdkConfigRumUpdateAttributes struct {
+// RUMSdkConfigRUMUpdateAttributes The RUM SDK settings to apply when updating a configuration.
+type RUMSdkConfigRUMUpdateAttributes struct {
 	// A list of URL configurations for distributed tracing.
-	AllowedTracingUrls []RumSdkConfigTracingUrlConfig `json:"allowed_tracing_urls,omitempty"`
+	AllowedTracingUrls []RUMSdkConfigTracingUrlConfig `json:"allowed_tracing_urls,omitempty"`
 	// A list of origin patterns allowed for cross-origin session tracking.
-	AllowedTrackingOrigins []RumSdkConfigMatchOption `json:"allowed_tracking_origins,omitempty"`
+	AllowedTrackingOrigins []RUMSdkConfigMatchOption `json:"allowed_tracking_origins,omitempty"`
 	// A list of dynamic option key-value pairs.
-	Context []RumSdkConfigDynamicOptionPair `json:"context,omitempty"`
+	Context []RUMSdkConfigDynamicOptionPair `json:"context,omitempty"`
 	// The default privacy masking level applied to all RUM data.
 	DefaultPrivacyLevel string `json:"default_privacy_level"`
 	// Whether to mask user-interaction action names for privacy.
@@ -35,20 +35,20 @@ type RumSdkConfigRumUpdateAttributes struct {
 	// Whether to share a session across subdomains of the same site.
 	TrackSessionAcrossSubdomains *bool `json:"track_session_across_subdomains,omitempty"`
 	// A list of dynamic option key-value pairs.
-	User []RumSdkConfigDynamicOptionPair `json:"user,omitempty"`
+	User []RUMSdkConfigDynamicOptionPair `json:"user,omitempty"`
 	// A dynamic configuration option that extracts a value at runtime using a specified strategy.
-	Version *RumSdkConfigDynamicOption `json:"version,omitempty"`
+	Version *RUMSdkConfigDynamicOption `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigRumUpdateAttributes instantiates a new RumSdkConfigRumUpdateAttributes object.
+// NewRUMSdkConfigRUMUpdateAttributes instantiates a new RUMSdkConfigRUMUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigRumUpdateAttributes(defaultPrivacyLevel string, enablePrivacyForActionName bool, sessionReplaySampleRate int64, sessionSampleRate int64) *RumSdkConfigRumUpdateAttributes {
-	this := RumSdkConfigRumUpdateAttributes{}
+func NewRUMSdkConfigRUMUpdateAttributes(defaultPrivacyLevel string, enablePrivacyForActionName bool, sessionReplaySampleRate int64, sessionSampleRate int64) *RUMSdkConfigRUMUpdateAttributes {
+	this := RUMSdkConfigRUMUpdateAttributes{}
 	this.DefaultPrivacyLevel = defaultPrivacyLevel
 	this.EnablePrivacyForActionName = enablePrivacyForActionName
 	this.SessionReplaySampleRate = sessionReplaySampleRate
@@ -56,18 +56,18 @@ func NewRumSdkConfigRumUpdateAttributes(defaultPrivacyLevel string, enablePrivac
 	return &this
 }
 
-// NewRumSdkConfigRumUpdateAttributesWithDefaults instantiates a new RumSdkConfigRumUpdateAttributes object.
+// NewRUMSdkConfigRUMUpdateAttributesWithDefaults instantiates a new RUMSdkConfigRUMUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigRumUpdateAttributesWithDefaults() *RumSdkConfigRumUpdateAttributes {
-	this := RumSdkConfigRumUpdateAttributes{}
+func NewRUMSdkConfigRUMUpdateAttributesWithDefaults() *RUMSdkConfigRUMUpdateAttributes {
+	this := RUMSdkConfigRUMUpdateAttributes{}
 	return &this
 }
 
 // GetAllowedTracingUrls returns the AllowedTracingUrls field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTracingUrls() []RumSdkConfigTracingUrlConfig {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetAllowedTracingUrls() []RUMSdkConfigTracingUrlConfig {
 	if o == nil || o.AllowedTracingUrls == nil {
-		var ret []RumSdkConfigTracingUrlConfig
+		var ret []RUMSdkConfigTracingUrlConfig
 		return ret
 	}
 	return o.AllowedTracingUrls
@@ -75,7 +75,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTracingUrls() []RumSdkConfig
 
 // GetAllowedTracingUrlsOk returns a tuple with the AllowedTracingUrls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTracingUrlsOk() (*[]RumSdkConfigTracingUrlConfig, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetAllowedTracingUrlsOk() (*[]RUMSdkConfigTracingUrlConfig, bool) {
 	if o == nil || o.AllowedTracingUrls == nil {
 		return nil, false
 	}
@@ -83,19 +83,19 @@ func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTracingUrlsOk() (*[]RumSdkCo
 }
 
 // HasAllowedTracingUrls returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasAllowedTracingUrls() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasAllowedTracingUrls() bool {
 	return o != nil && o.AllowedTracingUrls != nil
 }
 
-// SetAllowedTracingUrls gets a reference to the given []RumSdkConfigTracingUrlConfig and assigns it to the AllowedTracingUrls field.
-func (o *RumSdkConfigRumUpdateAttributes) SetAllowedTracingUrls(v []RumSdkConfigTracingUrlConfig) {
+// SetAllowedTracingUrls gets a reference to the given []RUMSdkConfigTracingUrlConfig and assigns it to the AllowedTracingUrls field.
+func (o *RUMSdkConfigRUMUpdateAttributes) SetAllowedTracingUrls(v []RUMSdkConfigTracingUrlConfig) {
 	o.AllowedTracingUrls = v
 }
 
 // GetAllowedTrackingOrigins returns the AllowedTrackingOrigins field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTrackingOrigins() []RumSdkConfigMatchOption {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetAllowedTrackingOrigins() []RUMSdkConfigMatchOption {
 	if o == nil || o.AllowedTrackingOrigins == nil {
-		var ret []RumSdkConfigMatchOption
+		var ret []RUMSdkConfigMatchOption
 		return ret
 	}
 	return o.AllowedTrackingOrigins
@@ -103,7 +103,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTrackingOrigins() []RumSdkCo
 
 // GetAllowedTrackingOriginsOk returns a tuple with the AllowedTrackingOrigins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTrackingOriginsOk() (*[]RumSdkConfigMatchOption, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetAllowedTrackingOriginsOk() (*[]RUMSdkConfigMatchOption, bool) {
 	if o == nil || o.AllowedTrackingOrigins == nil {
 		return nil, false
 	}
@@ -111,19 +111,19 @@ func (o *RumSdkConfigRumUpdateAttributes) GetAllowedTrackingOriginsOk() (*[]RumS
 }
 
 // HasAllowedTrackingOrigins returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasAllowedTrackingOrigins() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasAllowedTrackingOrigins() bool {
 	return o != nil && o.AllowedTrackingOrigins != nil
 }
 
-// SetAllowedTrackingOrigins gets a reference to the given []RumSdkConfigMatchOption and assigns it to the AllowedTrackingOrigins field.
-func (o *RumSdkConfigRumUpdateAttributes) SetAllowedTrackingOrigins(v []RumSdkConfigMatchOption) {
+// SetAllowedTrackingOrigins gets a reference to the given []RUMSdkConfigMatchOption and assigns it to the AllowedTrackingOrigins field.
+func (o *RUMSdkConfigRUMUpdateAttributes) SetAllowedTrackingOrigins(v []RUMSdkConfigMatchOption) {
 	o.AllowedTrackingOrigins = v
 }
 
 // GetContext returns the Context field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetContext() []RumSdkConfigDynamicOptionPair {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetContext() []RUMSdkConfigDynamicOptionPair {
 	if o == nil || o.Context == nil {
-		var ret []RumSdkConfigDynamicOptionPair
+		var ret []RUMSdkConfigDynamicOptionPair
 		return ret
 	}
 	return o.Context
@@ -131,7 +131,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetContext() []RumSdkConfigDynamicOpti
 
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetContextOk() (*[]RumSdkConfigDynamicOptionPair, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetContextOk() (*[]RUMSdkConfigDynamicOptionPair, bool) {
 	if o == nil || o.Context == nil {
 		return nil, false
 	}
@@ -139,17 +139,17 @@ func (o *RumSdkConfigRumUpdateAttributes) GetContextOk() (*[]RumSdkConfigDynamic
 }
 
 // HasContext returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasContext() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasContext() bool {
 	return o != nil && o.Context != nil
 }
 
-// SetContext gets a reference to the given []RumSdkConfigDynamicOptionPair and assigns it to the Context field.
-func (o *RumSdkConfigRumUpdateAttributes) SetContext(v []RumSdkConfigDynamicOptionPair) {
+// SetContext gets a reference to the given []RUMSdkConfigDynamicOptionPair and assigns it to the Context field.
+func (o *RUMSdkConfigRUMUpdateAttributes) SetContext(v []RUMSdkConfigDynamicOptionPair) {
 	o.Context = v
 }
 
 // GetDefaultPrivacyLevel returns the DefaultPrivacyLevel field value.
-func (o *RumSdkConfigRumUpdateAttributes) GetDefaultPrivacyLevel() string {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetDefaultPrivacyLevel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -159,7 +159,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetDefaultPrivacyLevel() string {
 
 // GetDefaultPrivacyLevelOk returns a tuple with the DefaultPrivacyLevel field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetDefaultPrivacyLevelOk() (*string, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetDefaultPrivacyLevelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -167,12 +167,12 @@ func (o *RumSdkConfigRumUpdateAttributes) GetDefaultPrivacyLevelOk() (*string, b
 }
 
 // SetDefaultPrivacyLevel sets field value.
-func (o *RumSdkConfigRumUpdateAttributes) SetDefaultPrivacyLevel(v string) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetDefaultPrivacyLevel(v string) {
 	o.DefaultPrivacyLevel = v
 }
 
 // GetEnablePrivacyForActionName returns the EnablePrivacyForActionName field value.
-func (o *RumSdkConfigRumUpdateAttributes) GetEnablePrivacyForActionName() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetEnablePrivacyForActionName() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -182,7 +182,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetEnablePrivacyForActionName() bool {
 
 // GetEnablePrivacyForActionNameOk returns a tuple with the EnablePrivacyForActionName field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetEnablePrivacyForActionNameOk() (*bool, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetEnablePrivacyForActionNameOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,12 +190,12 @@ func (o *RumSdkConfigRumUpdateAttributes) GetEnablePrivacyForActionNameOk() (*bo
 }
 
 // SetEnablePrivacyForActionName sets field value.
-func (o *RumSdkConfigRumUpdateAttributes) SetEnablePrivacyForActionName(v bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetEnablePrivacyForActionName(v bool) {
 	o.EnablePrivacyForActionName = v
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetEnv() string {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetEnv() string {
 	if o == nil || o.Env == nil {
 		var ret string
 		return ret
@@ -205,7 +205,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetEnv() string {
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetEnvOk() (*string, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetEnvOk() (*string, bool) {
 	if o == nil || o.Env == nil {
 		return nil, false
 	}
@@ -213,17 +213,17 @@ func (o *RumSdkConfigRumUpdateAttributes) GetEnvOk() (*string, bool) {
 }
 
 // HasEnv returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasEnv() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasEnv() bool {
 	return o != nil && o.Env != nil
 }
 
 // SetEnv gets a reference to the given string and assigns it to the Env field.
-func (o *RumSdkConfigRumUpdateAttributes) SetEnv(v string) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetEnv(v string) {
 	o.Env = &v
 }
 
 // GetService returns the Service field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetService() string {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetService() string {
 	if o == nil || o.Service == nil {
 		var ret string
 		return ret
@@ -233,7 +233,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetService() string {
 
 // GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetServiceOk() (*string, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetServiceOk() (*string, bool) {
 	if o == nil || o.Service == nil {
 		return nil, false
 	}
@@ -241,17 +241,17 @@ func (o *RumSdkConfigRumUpdateAttributes) GetServiceOk() (*string, bool) {
 }
 
 // HasService returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasService() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasService() bool {
 	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.
-func (o *RumSdkConfigRumUpdateAttributes) SetService(v string) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetService(v string) {
 	o.Service = &v
 }
 
 // GetSessionReplaySampleRate returns the SessionReplaySampleRate field value.
-func (o *RumSdkConfigRumUpdateAttributes) GetSessionReplaySampleRate() int64 {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetSessionReplaySampleRate() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -261,7 +261,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetSessionReplaySampleRate() int64 {
 
 // GetSessionReplaySampleRateOk returns a tuple with the SessionReplaySampleRate field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetSessionReplaySampleRateOk() (*int64, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetSessionReplaySampleRateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -269,12 +269,12 @@ func (o *RumSdkConfigRumUpdateAttributes) GetSessionReplaySampleRateOk() (*int64
 }
 
 // SetSessionReplaySampleRate sets field value.
-func (o *RumSdkConfigRumUpdateAttributes) SetSessionReplaySampleRate(v int64) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetSessionReplaySampleRate(v int64) {
 	o.SessionReplaySampleRate = v
 }
 
 // GetSessionSampleRate returns the SessionSampleRate field value.
-func (o *RumSdkConfigRumUpdateAttributes) GetSessionSampleRate() int64 {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetSessionSampleRate() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -284,7 +284,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetSessionSampleRate() int64 {
 
 // GetSessionSampleRateOk returns a tuple with the SessionSampleRate field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetSessionSampleRateOk() (*int64, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetSessionSampleRateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -292,12 +292,12 @@ func (o *RumSdkConfigRumUpdateAttributes) GetSessionSampleRateOk() (*int64, bool
 }
 
 // SetSessionSampleRate sets field value.
-func (o *RumSdkConfigRumUpdateAttributes) SetSessionSampleRate(v int64) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetSessionSampleRate(v int64) {
 	o.SessionSampleRate = v
 }
 
 // GetTraceSampleRate returns the TraceSampleRate field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetTraceSampleRate() int64 {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetTraceSampleRate() int64 {
 	if o == nil || o.TraceSampleRate == nil {
 		var ret int64
 		return ret
@@ -307,7 +307,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetTraceSampleRate() int64 {
 
 // GetTraceSampleRateOk returns a tuple with the TraceSampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetTraceSampleRateOk() (*int64, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetTraceSampleRateOk() (*int64, bool) {
 	if o == nil || o.TraceSampleRate == nil {
 		return nil, false
 	}
@@ -315,17 +315,17 @@ func (o *RumSdkConfigRumUpdateAttributes) GetTraceSampleRateOk() (*int64, bool) 
 }
 
 // HasTraceSampleRate returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasTraceSampleRate() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasTraceSampleRate() bool {
 	return o != nil && o.TraceSampleRate != nil
 }
 
 // SetTraceSampleRate gets a reference to the given int64 and assigns it to the TraceSampleRate field.
-func (o *RumSdkConfigRumUpdateAttributes) SetTraceSampleRate(v int64) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetTraceSampleRate(v int64) {
 	o.TraceSampleRate = &v
 }
 
 // GetTrackSessionAcrossSubdomains returns the TrackSessionAcrossSubdomains field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetTrackSessionAcrossSubdomains() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetTrackSessionAcrossSubdomains() bool {
 	if o == nil || o.TrackSessionAcrossSubdomains == nil {
 		var ret bool
 		return ret
@@ -335,7 +335,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetTrackSessionAcrossSubdomains() bool
 
 // GetTrackSessionAcrossSubdomainsOk returns a tuple with the TrackSessionAcrossSubdomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetTrackSessionAcrossSubdomainsOk() (*bool, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetTrackSessionAcrossSubdomainsOk() (*bool, bool) {
 	if o == nil || o.TrackSessionAcrossSubdomains == nil {
 		return nil, false
 	}
@@ -343,19 +343,19 @@ func (o *RumSdkConfigRumUpdateAttributes) GetTrackSessionAcrossSubdomainsOk() (*
 }
 
 // HasTrackSessionAcrossSubdomains returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasTrackSessionAcrossSubdomains() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasTrackSessionAcrossSubdomains() bool {
 	return o != nil && o.TrackSessionAcrossSubdomains != nil
 }
 
 // SetTrackSessionAcrossSubdomains gets a reference to the given bool and assigns it to the TrackSessionAcrossSubdomains field.
-func (o *RumSdkConfigRumUpdateAttributes) SetTrackSessionAcrossSubdomains(v bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) SetTrackSessionAcrossSubdomains(v bool) {
 	o.TrackSessionAcrossSubdomains = &v
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetUser() []RumSdkConfigDynamicOptionPair {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetUser() []RUMSdkConfigDynamicOptionPair {
 	if o == nil || o.User == nil {
-		var ret []RumSdkConfigDynamicOptionPair
+		var ret []RUMSdkConfigDynamicOptionPair
 		return ret
 	}
 	return o.User
@@ -363,7 +363,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetUser() []RumSdkConfigDynamicOptionP
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetUserOk() (*[]RumSdkConfigDynamicOptionPair, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetUserOk() (*[]RUMSdkConfigDynamicOptionPair, bool) {
 	if o == nil || o.User == nil {
 		return nil, false
 	}
@@ -371,19 +371,19 @@ func (o *RumSdkConfigRumUpdateAttributes) GetUserOk() (*[]RumSdkConfigDynamicOpt
 }
 
 // HasUser returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasUser() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasUser() bool {
 	return o != nil && o.User != nil
 }
 
-// SetUser gets a reference to the given []RumSdkConfigDynamicOptionPair and assigns it to the User field.
-func (o *RumSdkConfigRumUpdateAttributes) SetUser(v []RumSdkConfigDynamicOptionPair) {
+// SetUser gets a reference to the given []RUMSdkConfigDynamicOptionPair and assigns it to the User field.
+func (o *RUMSdkConfigRUMUpdateAttributes) SetUser(v []RUMSdkConfigDynamicOptionPair) {
 	o.User = v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *RumSdkConfigRumUpdateAttributes) GetVersion() RumSdkConfigDynamicOption {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetVersion() RUMSdkConfigDynamicOption {
 	if o == nil || o.Version == nil {
-		var ret RumSdkConfigDynamicOption
+		var ret RUMSdkConfigDynamicOption
 		return ret
 	}
 	return *o.Version
@@ -391,7 +391,7 @@ func (o *RumSdkConfigRumUpdateAttributes) GetVersion() RumSdkConfigDynamicOption
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigRumUpdateAttributes) GetVersionOk() (*RumSdkConfigDynamicOption, bool) {
+func (o *RUMSdkConfigRUMUpdateAttributes) GetVersionOk() (*RUMSdkConfigDynamicOption, bool) {
 	if o == nil || o.Version == nil {
 		return nil, false
 	}
@@ -399,17 +399,17 @@ func (o *RumSdkConfigRumUpdateAttributes) GetVersionOk() (*RumSdkConfigDynamicOp
 }
 
 // HasVersion returns a boolean if a field has been set.
-func (o *RumSdkConfigRumUpdateAttributes) HasVersion() bool {
+func (o *RUMSdkConfigRUMUpdateAttributes) HasVersion() bool {
 	return o != nil && o.Version != nil
 }
 
-// SetVersion gets a reference to the given RumSdkConfigDynamicOption and assigns it to the Version field.
-func (o *RumSdkConfigRumUpdateAttributes) SetVersion(v RumSdkConfigDynamicOption) {
+// SetVersion gets a reference to the given RUMSdkConfigDynamicOption and assigns it to the Version field.
+func (o *RUMSdkConfigRUMUpdateAttributes) SetVersion(v RUMSdkConfigDynamicOption) {
 	o.Version = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigRumUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigRUMUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -453,11 +453,11 @@ func (o RumSdkConfigRumUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigRumUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigRUMUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowedTracingUrls           []RumSdkConfigTracingUrlConfig  `json:"allowed_tracing_urls,omitempty"`
-		AllowedTrackingOrigins       []RumSdkConfigMatchOption       `json:"allowed_tracking_origins,omitempty"`
-		Context                      []RumSdkConfigDynamicOptionPair `json:"context,omitempty"`
+		AllowedTracingUrls           []RUMSdkConfigTracingUrlConfig  `json:"allowed_tracing_urls,omitempty"`
+		AllowedTrackingOrigins       []RUMSdkConfigMatchOption       `json:"allowed_tracking_origins,omitempty"`
+		Context                      []RUMSdkConfigDynamicOptionPair `json:"context,omitempty"`
 		DefaultPrivacyLevel          *string                         `json:"default_privacy_level"`
 		EnablePrivacyForActionName   *bool                           `json:"enable_privacy_for_action_name"`
 		Env                          *string                         `json:"env,omitempty"`
@@ -466,8 +466,8 @@ func (o *RumSdkConfigRumUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 		SessionSampleRate            *int64                          `json:"session_sample_rate"`
 		TraceSampleRate              *int64                          `json:"trace_sample_rate,omitempty"`
 		TrackSessionAcrossSubdomains *bool                           `json:"track_session_across_subdomains,omitempty"`
-		User                         []RumSdkConfigDynamicOptionPair `json:"user,omitempty"`
-		Version                      *RumSdkConfigDynamicOption      `json:"version,omitempty"`
+		User                         []RUMSdkConfigDynamicOptionPair `json:"user,omitempty"`
+		Version                      *RUMSdkConfigDynamicOption      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

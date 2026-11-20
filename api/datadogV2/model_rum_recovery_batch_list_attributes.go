@@ -11,12 +11,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchListAttributes Batch recovery progress. Status updates can appear here before they appear in request details.
-type RumRecoveryBatchListAttributes struct {
+// RUMRecoveryBatchListAttributes Batch recovery progress. Status updates can appear here before they appear in request details.
+type RUMRecoveryBatchListAttributes struct {
 	// Creation time.
 	CreatedAt time.Time `json:"created_at"`
 	// Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
-	DiscoveryStatus RumRecoveryDiscoveryStatus `json:"discovery_status"`
+	DiscoveryStatus RUMRecoveryDiscoveryStatus `json:"discovery_status"`
 	// Batch estimate stored at creation, when present. New batches use a fresh server estimate; older batches may contain a client-supplied estimate.
 	EstimatedCount *int64 `json:"estimated_count,omitempty"`
 	// Start of the range in Unix milliseconds. Must be positive and earlier than to.
@@ -34,7 +34,7 @@ type RumRecoveryBatchListAttributes struct {
 	// Failed slices.
 	SlicesFailed int64 `json:"slices_failed"`
 	// Recovery request state.
-	Status RumRecoveryRequestStatus `json:"status"`
+	Status RUMRecoveryRequestStatus `json:"status"`
 	// End of the range in Unix milliseconds.
 	To int64 `json:"to"`
 	// Total discovery slices.
@@ -46,12 +46,12 @@ type RumRecoveryBatchListAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryBatchListAttributes instantiates a new RumRecoveryBatchListAttributes object.
+// NewRUMRecoveryBatchListAttributes instantiates a new RUMRecoveryBatchListAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryBatchListAttributes(createdAt time.Time, discoveryStatus RumRecoveryDiscoveryStatus, from int64, query string, sessionsDiscovered int64, sessionsFailed int64, sessionsProcessed int64, slicesCompleted int64, slicesFailed int64, status RumRecoveryRequestStatus, to int64, totalSlices int64, updatedAt time.Time) *RumRecoveryBatchListAttributes {
-	this := RumRecoveryBatchListAttributes{}
+func NewRUMRecoveryBatchListAttributes(createdAt time.Time, discoveryStatus RUMRecoveryDiscoveryStatus, from int64, query string, sessionsDiscovered int64, sessionsFailed int64, sessionsProcessed int64, slicesCompleted int64, slicesFailed int64, status RUMRecoveryRequestStatus, to int64, totalSlices int64, updatedAt time.Time) *RUMRecoveryBatchListAttributes {
+	this := RUMRecoveryBatchListAttributes{}
 	this.CreatedAt = createdAt
 	this.DiscoveryStatus = discoveryStatus
 	this.From = from
@@ -68,16 +68,16 @@ func NewRumRecoveryBatchListAttributes(createdAt time.Time, discoveryStatus RumR
 	return &this
 }
 
-// NewRumRecoveryBatchListAttributesWithDefaults instantiates a new RumRecoveryBatchListAttributes object.
+// NewRUMRecoveryBatchListAttributesWithDefaults instantiates a new RUMRecoveryBatchListAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryBatchListAttributesWithDefaults() *RumRecoveryBatchListAttributes {
-	this := RumRecoveryBatchListAttributes{}
+func NewRUMRecoveryBatchListAttributesWithDefaults() *RUMRecoveryBatchListAttributes {
+	this := RUMRecoveryBatchListAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value.
-func (o *RumRecoveryBatchListAttributes) GetCreatedAt() time.Time {
+func (o *RUMRecoveryBatchListAttributes) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -87,7 +87,7 @@ func (o *RumRecoveryBatchListAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,14 +95,14 @@ func (o *RumRecoveryBatchListAttributes) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value.
-func (o *RumRecoveryBatchListAttributes) SetCreatedAt(v time.Time) {
+func (o *RUMRecoveryBatchListAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetDiscoveryStatus returns the DiscoveryStatus field value.
-func (o *RumRecoveryBatchListAttributes) GetDiscoveryStatus() RumRecoveryDiscoveryStatus {
+func (o *RUMRecoveryBatchListAttributes) GetDiscoveryStatus() RUMRecoveryDiscoveryStatus {
 	if o == nil {
-		var ret RumRecoveryDiscoveryStatus
+		var ret RUMRecoveryDiscoveryStatus
 		return ret
 	}
 	return o.DiscoveryStatus
@@ -110,7 +110,7 @@ func (o *RumRecoveryBatchListAttributes) GetDiscoveryStatus() RumRecoveryDiscove
 
 // GetDiscoveryStatusOk returns a tuple with the DiscoveryStatus field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetDiscoveryStatusOk() (*RumRecoveryDiscoveryStatus, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetDiscoveryStatusOk() (*RUMRecoveryDiscoveryStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,12 +118,12 @@ func (o *RumRecoveryBatchListAttributes) GetDiscoveryStatusOk() (*RumRecoveryDis
 }
 
 // SetDiscoveryStatus sets field value.
-func (o *RumRecoveryBatchListAttributes) SetDiscoveryStatus(v RumRecoveryDiscoveryStatus) {
+func (o *RUMRecoveryBatchListAttributes) SetDiscoveryStatus(v RUMRecoveryDiscoveryStatus) {
 	o.DiscoveryStatus = v
 }
 
 // GetEstimatedCount returns the EstimatedCount field value if set, zero value otherwise.
-func (o *RumRecoveryBatchListAttributes) GetEstimatedCount() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetEstimatedCount() int64 {
 	if o == nil || o.EstimatedCount == nil {
 		var ret int64
 		return ret
@@ -133,7 +133,7 @@ func (o *RumRecoveryBatchListAttributes) GetEstimatedCount() int64 {
 
 // GetEstimatedCountOk returns a tuple with the EstimatedCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetEstimatedCountOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetEstimatedCountOk() (*int64, bool) {
 	if o == nil || o.EstimatedCount == nil {
 		return nil, false
 	}
@@ -141,17 +141,17 @@ func (o *RumRecoveryBatchListAttributes) GetEstimatedCountOk() (*int64, bool) {
 }
 
 // HasEstimatedCount returns a boolean if a field has been set.
-func (o *RumRecoveryBatchListAttributes) HasEstimatedCount() bool {
+func (o *RUMRecoveryBatchListAttributes) HasEstimatedCount() bool {
 	return o != nil && o.EstimatedCount != nil
 }
 
 // SetEstimatedCount gets a reference to the given int64 and assigns it to the EstimatedCount field.
-func (o *RumRecoveryBatchListAttributes) SetEstimatedCount(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetEstimatedCount(v int64) {
 	o.EstimatedCount = &v
 }
 
 // GetFrom returns the From field value.
-func (o *RumRecoveryBatchListAttributes) GetFrom() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetFrom() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -161,7 +161,7 @@ func (o *RumRecoveryBatchListAttributes) GetFrom() int64 {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetFromOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetFromOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -169,12 +169,12 @@ func (o *RumRecoveryBatchListAttributes) GetFromOk() (*int64, bool) {
 }
 
 // SetFrom sets field value.
-func (o *RumRecoveryBatchListAttributes) SetFrom(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetFrom(v int64) {
 	o.From = v
 }
 
 // GetQuery returns the Query field value.
-func (o *RumRecoveryBatchListAttributes) GetQuery() string {
+func (o *RUMRecoveryBatchListAttributes) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -184,7 +184,7 @@ func (o *RumRecoveryBatchListAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -192,12 +192,12 @@ func (o *RumRecoveryBatchListAttributes) GetQueryOk() (*string, bool) {
 }
 
 // SetQuery sets field value.
-func (o *RumRecoveryBatchListAttributes) SetQuery(v string) {
+func (o *RUMRecoveryBatchListAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
 // GetSessionsDiscovered returns the SessionsDiscovered field value.
-func (o *RumRecoveryBatchListAttributes) GetSessionsDiscovered() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsDiscovered() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -207,7 +207,7 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsDiscovered() int64 {
 
 // GetSessionsDiscoveredOk returns a tuple with the SessionsDiscovered field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetSessionsDiscoveredOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsDiscoveredOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -215,12 +215,12 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsDiscoveredOk() (*int64, bool
 }
 
 // SetSessionsDiscovered sets field value.
-func (o *RumRecoveryBatchListAttributes) SetSessionsDiscovered(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetSessionsDiscovered(v int64) {
 	o.SessionsDiscovered = v
 }
 
 // GetSessionsFailed returns the SessionsFailed field value.
-func (o *RumRecoveryBatchListAttributes) GetSessionsFailed() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsFailed() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -230,7 +230,7 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsFailed() int64 {
 
 // GetSessionsFailedOk returns a tuple with the SessionsFailed field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetSessionsFailedOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsFailedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -238,12 +238,12 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsFailedOk() (*int64, bool) {
 }
 
 // SetSessionsFailed sets field value.
-func (o *RumRecoveryBatchListAttributes) SetSessionsFailed(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetSessionsFailed(v int64) {
 	o.SessionsFailed = v
 }
 
 // GetSessionsProcessed returns the SessionsProcessed field value.
-func (o *RumRecoveryBatchListAttributes) GetSessionsProcessed() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsProcessed() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -253,7 +253,7 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsProcessed() int64 {
 
 // GetSessionsProcessedOk returns a tuple with the SessionsProcessed field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetSessionsProcessedOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetSessionsProcessedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -261,12 +261,12 @@ func (o *RumRecoveryBatchListAttributes) GetSessionsProcessedOk() (*int64, bool)
 }
 
 // SetSessionsProcessed sets field value.
-func (o *RumRecoveryBatchListAttributes) SetSessionsProcessed(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetSessionsProcessed(v int64) {
 	o.SessionsProcessed = v
 }
 
 // GetSlicesCompleted returns the SlicesCompleted field value.
-func (o *RumRecoveryBatchListAttributes) GetSlicesCompleted() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetSlicesCompleted() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -276,7 +276,7 @@ func (o *RumRecoveryBatchListAttributes) GetSlicesCompleted() int64 {
 
 // GetSlicesCompletedOk returns a tuple with the SlicesCompleted field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetSlicesCompletedOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetSlicesCompletedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -284,12 +284,12 @@ func (o *RumRecoveryBatchListAttributes) GetSlicesCompletedOk() (*int64, bool) {
 }
 
 // SetSlicesCompleted sets field value.
-func (o *RumRecoveryBatchListAttributes) SetSlicesCompleted(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetSlicesCompleted(v int64) {
 	o.SlicesCompleted = v
 }
 
 // GetSlicesFailed returns the SlicesFailed field value.
-func (o *RumRecoveryBatchListAttributes) GetSlicesFailed() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetSlicesFailed() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -299,7 +299,7 @@ func (o *RumRecoveryBatchListAttributes) GetSlicesFailed() int64 {
 
 // GetSlicesFailedOk returns a tuple with the SlicesFailed field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetSlicesFailedOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetSlicesFailedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -307,14 +307,14 @@ func (o *RumRecoveryBatchListAttributes) GetSlicesFailedOk() (*int64, bool) {
 }
 
 // SetSlicesFailed sets field value.
-func (o *RumRecoveryBatchListAttributes) SetSlicesFailed(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetSlicesFailed(v int64) {
 	o.SlicesFailed = v
 }
 
 // GetStatus returns the Status field value.
-func (o *RumRecoveryBatchListAttributes) GetStatus() RumRecoveryRequestStatus {
+func (o *RUMRecoveryBatchListAttributes) GetStatus() RUMRecoveryRequestStatus {
 	if o == nil {
-		var ret RumRecoveryRequestStatus
+		var ret RUMRecoveryRequestStatus
 		return ret
 	}
 	return o.Status
@@ -322,7 +322,7 @@ func (o *RumRecoveryBatchListAttributes) GetStatus() RumRecoveryRequestStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetStatusOk() (*RumRecoveryRequestStatus, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetStatusOk() (*RUMRecoveryRequestStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -330,12 +330,12 @@ func (o *RumRecoveryBatchListAttributes) GetStatusOk() (*RumRecoveryRequestStatu
 }
 
 // SetStatus sets field value.
-func (o *RumRecoveryBatchListAttributes) SetStatus(v RumRecoveryRequestStatus) {
+func (o *RUMRecoveryBatchListAttributes) SetStatus(v RUMRecoveryRequestStatus) {
 	o.Status = v
 }
 
 // GetTo returns the To field value.
-func (o *RumRecoveryBatchListAttributes) GetTo() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetTo() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -345,7 +345,7 @@ func (o *RumRecoveryBatchListAttributes) GetTo() int64 {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetToOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetToOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -353,12 +353,12 @@ func (o *RumRecoveryBatchListAttributes) GetToOk() (*int64, bool) {
 }
 
 // SetTo sets field value.
-func (o *RumRecoveryBatchListAttributes) SetTo(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetTo(v int64) {
 	o.To = v
 }
 
 // GetTotalSlices returns the TotalSlices field value.
-func (o *RumRecoveryBatchListAttributes) GetTotalSlices() int64 {
+func (o *RUMRecoveryBatchListAttributes) GetTotalSlices() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -368,7 +368,7 @@ func (o *RumRecoveryBatchListAttributes) GetTotalSlices() int64 {
 
 // GetTotalSlicesOk returns a tuple with the TotalSlices field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetTotalSlicesOk() (*int64, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetTotalSlicesOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -376,12 +376,12 @@ func (o *RumRecoveryBatchListAttributes) GetTotalSlicesOk() (*int64, bool) {
 }
 
 // SetTotalSlices sets field value.
-func (o *RumRecoveryBatchListAttributes) SetTotalSlices(v int64) {
+func (o *RUMRecoveryBatchListAttributes) SetTotalSlices(v int64) {
 	o.TotalSlices = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value.
-func (o *RumRecoveryBatchListAttributes) GetUpdatedAt() time.Time {
+func (o *RUMRecoveryBatchListAttributes) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -391,7 +391,7 @@ func (o *RumRecoveryBatchListAttributes) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListAttributes) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryBatchListAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -399,12 +399,12 @@ func (o *RumRecoveryBatchListAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // SetUpdatedAt sets field value.
-func (o *RumRecoveryBatchListAttributes) SetUpdatedAt(v time.Time) {
+func (o *RUMRecoveryBatchListAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryBatchListAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryBatchListAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -441,10 +441,10 @@ func (o RumRecoveryBatchListAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryBatchListAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryBatchListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt          *time.Time                  `json:"created_at"`
-		DiscoveryStatus    *RumRecoveryDiscoveryStatus `json:"discovery_status"`
+		DiscoveryStatus    *RUMRecoveryDiscoveryStatus `json:"discovery_status"`
 		EstimatedCount     *int64                      `json:"estimated_count,omitempty"`
 		From               *int64                      `json:"from"`
 		Query              *string                     `json:"query"`
@@ -453,7 +453,7 @@ func (o *RumRecoveryBatchListAttributes) UnmarshalJSON(bytes []byte) (err error)
 		SessionsProcessed  *int64                      `json:"sessions_processed"`
 		SlicesCompleted    *int64                      `json:"slices_completed"`
 		SlicesFailed       *int64                      `json:"slices_failed"`
-		Status             *RumRecoveryRequestStatus   `json:"status"`
+		Status             *RUMRecoveryRequestStatus   `json:"status"`
 		To                 *int64                      `json:"to"`
 		TotalSlices        *int64                      `json:"total_slices"`
 		UpdatedAt          *time.Time                  `json:"updated_at"`

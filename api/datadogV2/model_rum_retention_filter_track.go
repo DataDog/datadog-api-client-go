@@ -10,49 +10,49 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterTrack The product whose events the retention filter applies to.
-type RumRetentionFilterTrack string
+// RUMRetentionFilterTrack The product whose events the retention filter applies to.
+type RUMRetentionFilterTrack string
 
-// List of RumRetentionFilterTrack.
+// List of RUMRetentionFilterTrack.
 const (
-	RUMRETENTIONFILTERTRACK_RUM               RumRetentionFilterTrack = "rum"
-	RUMRETENTIONFILTERTRACK_PRODUCT_ANALYTICS RumRetentionFilterTrack = "product_analytics"
+	RUMRETENTIONFILTERTRACK_RUM               RUMRetentionFilterTrack = "rum"
+	RUMRETENTIONFILTERTRACK_PRODUCT_ANALYTICS RUMRetentionFilterTrack = "product_analytics"
 )
 
-var allowedRumRetentionFilterTrackEnumValues = []RumRetentionFilterTrack{
+var allowedRUMRetentionFilterTrackEnumValues = []RUMRetentionFilterTrack{
 	RUMRETENTIONFILTERTRACK_RUM,
 	RUMRETENTIONFILTERTRACK_PRODUCT_ANALYTICS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionFilterTrack) GetAllowedValues() []RumRetentionFilterTrack {
-	return allowedRumRetentionFilterTrackEnumValues
+func (v *RUMRetentionFilterTrack) GetAllowedValues() []RUMRetentionFilterTrack {
+	return allowedRUMRetentionFilterTrackEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionFilterTrack) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionFilterTrack) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionFilterTrack(value)
+	*v = RUMRetentionFilterTrack(value)
 	return nil
 }
 
-// NewRumRetentionFilterTrackFromValue returns a pointer to a valid RumRetentionFilterTrack
+// NewRUMRetentionFilterTrackFromValue returns a pointer to a valid RUMRetentionFilterTrack
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionFilterTrackFromValue(v string) (*RumRetentionFilterTrack, error) {
-	ev := RumRetentionFilterTrack(v)
+func NewRUMRetentionFilterTrackFromValue(v string) (*RUMRetentionFilterTrack, error) {
+	ev := RUMRetentionFilterTrack(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionFilterTrack: valid values are %v", v, allowedRumRetentionFilterTrackEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionFilterTrack: valid values are %v", v, allowedRUMRetentionFilterTrackEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionFilterTrack) IsValid() bool {
-	for _, existing := range allowedRumRetentionFilterTrackEnumValues {
+func (v RUMRetentionFilterTrack) IsValid() bool {
+	for _, existing := range allowedRUMRetentionFilterTrackEnumValues {
 		if existing == v {
 			return true
 		}
@@ -60,7 +60,7 @@ func (v RumRetentionFilterTrack) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionFilterTrack value.
-func (v RumRetentionFilterTrack) Ptr() *RumRetentionFilterTrack {
+// Ptr returns reference to RUMRetentionFilterTrack value.
+func (v RUMRetentionFilterTrack) Ptr() *RUMRetentionFilterTrack {
 	return &v
 }

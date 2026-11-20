@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchListData JSON:API resource.
-type RumRecoveryBatchListData struct {
+// RUMRecoveryBatchListData JSON:API resource.
+type RUMRecoveryBatchListData struct {
 	// Batch recovery progress. Status updates can appear here before they appear in request details.
-	Attributes RumRecoveryBatchListAttributes `json:"attributes"`
+	Attributes RUMRecoveryBatchListAttributes `json:"attributes"`
 	// Resource identifier.
 	Id string `json:"id"`
 	// JSON:API resource type.
-	Type RumRecoveryBatchListDataType `json:"type"`
+	Type RUMRecoveryBatchListDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryBatchListData instantiates a new RumRecoveryBatchListData object.
+// NewRUMRecoveryBatchListData instantiates a new RUMRecoveryBatchListData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryBatchListData(attributes RumRecoveryBatchListAttributes, id string, typeVar RumRecoveryBatchListDataType) *RumRecoveryBatchListData {
-	this := RumRecoveryBatchListData{}
+func NewRUMRecoveryBatchListData(attributes RUMRecoveryBatchListAttributes, id string, typeVar RUMRecoveryBatchListDataType) *RUMRecoveryBatchListData {
+	this := RUMRecoveryBatchListData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumRecoveryBatchListDataWithDefaults instantiates a new RumRecoveryBatchListData object.
+// NewRUMRecoveryBatchListDataWithDefaults instantiates a new RUMRecoveryBatchListData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryBatchListDataWithDefaults() *RumRecoveryBatchListData {
-	this := RumRecoveryBatchListData{}
+func NewRUMRecoveryBatchListDataWithDefaults() *RUMRecoveryBatchListData {
+	this := RUMRecoveryBatchListData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumRecoveryBatchListData) GetAttributes() RumRecoveryBatchListAttributes {
+func (o *RUMRecoveryBatchListData) GetAttributes() RUMRecoveryBatchListAttributes {
 	if o == nil {
-		var ret RumRecoveryBatchListAttributes
+		var ret RUMRecoveryBatchListAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *RumRecoveryBatchListData) GetAttributes() RumRecoveryBatchListAttribute
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListData) GetAttributesOk() (*RumRecoveryBatchListAttributes, bool) {
+func (o *RUMRecoveryBatchListData) GetAttributesOk() (*RUMRecoveryBatchListAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *RumRecoveryBatchListData) GetAttributesOk() (*RumRecoveryBatchListAttri
 }
 
 // SetAttributes sets field value.
-func (o *RumRecoveryBatchListData) SetAttributes(v RumRecoveryBatchListAttributes) {
+func (o *RUMRecoveryBatchListData) SetAttributes(v RUMRecoveryBatchListAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumRecoveryBatchListData) GetId() string {
+func (o *RUMRecoveryBatchListData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RumRecoveryBatchListData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListData) GetIdOk() (*string, bool) {
+func (o *RUMRecoveryBatchListData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *RumRecoveryBatchListData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumRecoveryBatchListData) SetId(v string) {
+func (o *RUMRecoveryBatchListData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumRecoveryBatchListData) GetType() RumRecoveryBatchListDataType {
+func (o *RUMRecoveryBatchListData) GetType() RUMRecoveryBatchListDataType {
 	if o == nil {
-		var ret RumRecoveryBatchListDataType
+		var ret RUMRecoveryBatchListDataType
 		return ret
 	}
 	return o.Type
@@ -100,7 +100,7 @@ func (o *RumRecoveryBatchListData) GetType() RumRecoveryBatchListDataType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListData) GetTypeOk() (*RumRecoveryBatchListDataType, bool) {
+func (o *RUMRecoveryBatchListData) GetTypeOk() (*RUMRecoveryBatchListDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *RumRecoveryBatchListData) GetTypeOk() (*RumRecoveryBatchListDataType, b
 }
 
 // SetType sets field value.
-func (o *RumRecoveryBatchListData) SetType(v RumRecoveryBatchListDataType) {
+func (o *RUMRecoveryBatchListData) SetType(v RUMRecoveryBatchListDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryBatchListData) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryBatchListData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +129,11 @@ func (o RumRecoveryBatchListData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryBatchListData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryBatchListData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumRecoveryBatchListAttributes `json:"attributes"`
+		Attributes *RUMRecoveryBatchListAttributes `json:"attributes"`
 		Id         *string                         `json:"id"`
-		Type       *RumRecoveryBatchListDataType   `json:"type"`
+		Type       *RUMRecoveryBatchListDataType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

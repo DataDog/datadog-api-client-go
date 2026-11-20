@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigDynamicOption A dynamic configuration option that extracts a value at runtime using a specified strategy.
-type RumSdkConfigDynamicOption struct {
+// RUMSdkConfigDynamicOption A dynamic configuration option that extracts a value at runtime using a specified strategy.
+type RUMSdkConfigDynamicOption struct {
 	// The element attribute to read. Used when `strategy` is `dom`.
 	Attribute *string `json:"attribute,omitempty"`
 	// A serialized regex used as an extractor in dynamic options.
-	Extractor *RumSdkConfigSerializedRegex `json:"extractor,omitempty"`
+	Extractor *RUMSdkConfigSerializedRegex `json:"extractor,omitempty"`
 	// The `localStorage` key to read. Required when `strategy` is `localStorage`.
 	Key *string `json:"key,omitempty"`
 	// The cookie name to read. Required when `strategy` is `cookie`.
@@ -23,37 +23,37 @@ type RumSdkConfigDynamicOption struct {
 	// The JavaScript path used to extract the value. Required when `strategy` is `js`.
 	Path *string `json:"path,omitempty"`
 	// The type identifier for a dynamic option. Always `dynamic`.
-	RcSerializedType RumSdkConfigDynamicOptionSerializedType `json:"rc_serialized_type"`
+	RcSerializedType RUMSdkConfigDynamicOptionSerializedType `json:"rc_serialized_type"`
 	// The CSS selector to read from the page. Required when `strategy` is `dom`.
 	Selector *string `json:"selector,omitempty"`
 	// The strategy used to extract the dynamic value.
-	Strategy RumSdkConfigDynamicOptionStrategy `json:"strategy"`
+	Strategy RUMSdkConfigDynamicOptionStrategy `json:"strategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigDynamicOption instantiates a new RumSdkConfigDynamicOption object.
+// NewRUMSdkConfigDynamicOption instantiates a new RUMSdkConfigDynamicOption object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigDynamicOption(rcSerializedType RumSdkConfigDynamicOptionSerializedType, strategy RumSdkConfigDynamicOptionStrategy) *RumSdkConfigDynamicOption {
-	this := RumSdkConfigDynamicOption{}
+func NewRUMSdkConfigDynamicOption(rcSerializedType RUMSdkConfigDynamicOptionSerializedType, strategy RUMSdkConfigDynamicOptionStrategy) *RUMSdkConfigDynamicOption {
+	this := RUMSdkConfigDynamicOption{}
 	this.RcSerializedType = rcSerializedType
 	this.Strategy = strategy
 	return &this
 }
 
-// NewRumSdkConfigDynamicOptionWithDefaults instantiates a new RumSdkConfigDynamicOption object.
+// NewRUMSdkConfigDynamicOptionWithDefaults instantiates a new RUMSdkConfigDynamicOption object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigDynamicOptionWithDefaults() *RumSdkConfigDynamicOption {
-	this := RumSdkConfigDynamicOption{}
+func NewRUMSdkConfigDynamicOptionWithDefaults() *RUMSdkConfigDynamicOption {
+	this := RUMSdkConfigDynamicOption{}
 	return &this
 }
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetAttribute() string {
+func (o *RUMSdkConfigDynamicOption) GetAttribute() string {
 	if o == nil || o.Attribute == nil {
 		var ret string
 		return ret
@@ -63,7 +63,7 @@ func (o *RumSdkConfigDynamicOption) GetAttribute() string {
 
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetAttributeOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOption) GetAttributeOk() (*string, bool) {
 	if o == nil || o.Attribute == nil {
 		return nil, false
 	}
@@ -71,19 +71,19 @@ func (o *RumSdkConfigDynamicOption) GetAttributeOk() (*string, bool) {
 }
 
 // HasAttribute returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasAttribute() bool {
+func (o *RUMSdkConfigDynamicOption) HasAttribute() bool {
 	return o != nil && o.Attribute != nil
 }
 
 // SetAttribute gets a reference to the given string and assigns it to the Attribute field.
-func (o *RumSdkConfigDynamicOption) SetAttribute(v string) {
+func (o *RUMSdkConfigDynamicOption) SetAttribute(v string) {
 	o.Attribute = &v
 }
 
 // GetExtractor returns the Extractor field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetExtractor() RumSdkConfigSerializedRegex {
+func (o *RUMSdkConfigDynamicOption) GetExtractor() RUMSdkConfigSerializedRegex {
 	if o == nil || o.Extractor == nil {
-		var ret RumSdkConfigSerializedRegex
+		var ret RUMSdkConfigSerializedRegex
 		return ret
 	}
 	return *o.Extractor
@@ -91,7 +91,7 @@ func (o *RumSdkConfigDynamicOption) GetExtractor() RumSdkConfigSerializedRegex {
 
 // GetExtractorOk returns a tuple with the Extractor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetExtractorOk() (*RumSdkConfigSerializedRegex, bool) {
+func (o *RUMSdkConfigDynamicOption) GetExtractorOk() (*RUMSdkConfigSerializedRegex, bool) {
 	if o == nil || o.Extractor == nil {
 		return nil, false
 	}
@@ -99,17 +99,17 @@ func (o *RumSdkConfigDynamicOption) GetExtractorOk() (*RumSdkConfigSerializedReg
 }
 
 // HasExtractor returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasExtractor() bool {
+func (o *RUMSdkConfigDynamicOption) HasExtractor() bool {
 	return o != nil && o.Extractor != nil
 }
 
-// SetExtractor gets a reference to the given RumSdkConfigSerializedRegex and assigns it to the Extractor field.
-func (o *RumSdkConfigDynamicOption) SetExtractor(v RumSdkConfigSerializedRegex) {
+// SetExtractor gets a reference to the given RUMSdkConfigSerializedRegex and assigns it to the Extractor field.
+func (o *RUMSdkConfigDynamicOption) SetExtractor(v RUMSdkConfigSerializedRegex) {
 	o.Extractor = &v
 }
 
 // GetKey returns the Key field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetKey() string {
+func (o *RUMSdkConfigDynamicOption) GetKey() string {
 	if o == nil || o.Key == nil {
 		var ret string
 		return ret
@@ -119,7 +119,7 @@ func (o *RumSdkConfigDynamicOption) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetKeyOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOption) GetKeyOk() (*string, bool) {
 	if o == nil || o.Key == nil {
 		return nil, false
 	}
@@ -127,17 +127,17 @@ func (o *RumSdkConfigDynamicOption) GetKeyOk() (*string, bool) {
 }
 
 // HasKey returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasKey() bool {
+func (o *RUMSdkConfigDynamicOption) HasKey() bool {
 	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *RumSdkConfigDynamicOption) SetKey(v string) {
+func (o *RUMSdkConfigDynamicOption) SetKey(v string) {
 	o.Key = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetName() string {
+func (o *RUMSdkConfigDynamicOption) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -147,7 +147,7 @@ func (o *RumSdkConfigDynamicOption) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetNameOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOption) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -155,17 +155,17 @@ func (o *RumSdkConfigDynamicOption) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasName() bool {
+func (o *RUMSdkConfigDynamicOption) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *RumSdkConfigDynamicOption) SetName(v string) {
+func (o *RUMSdkConfigDynamicOption) SetName(v string) {
 	o.Name = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetPath() string {
+func (o *RUMSdkConfigDynamicOption) GetPath() string {
 	if o == nil || o.Path == nil {
 		var ret string
 		return ret
@@ -175,7 +175,7 @@ func (o *RumSdkConfigDynamicOption) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetPathOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOption) GetPathOk() (*string, bool) {
 	if o == nil || o.Path == nil {
 		return nil, false
 	}
@@ -183,19 +183,19 @@ func (o *RumSdkConfigDynamicOption) GetPathOk() (*string, bool) {
 }
 
 // HasPath returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasPath() bool {
+func (o *RUMSdkConfigDynamicOption) HasPath() bool {
 	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
-func (o *RumSdkConfigDynamicOption) SetPath(v string) {
+func (o *RUMSdkConfigDynamicOption) SetPath(v string) {
 	o.Path = &v
 }
 
 // GetRcSerializedType returns the RcSerializedType field value.
-func (o *RumSdkConfigDynamicOption) GetRcSerializedType() RumSdkConfigDynamicOptionSerializedType {
+func (o *RUMSdkConfigDynamicOption) GetRcSerializedType() RUMSdkConfigDynamicOptionSerializedType {
 	if o == nil {
-		var ret RumSdkConfigDynamicOptionSerializedType
+		var ret RUMSdkConfigDynamicOptionSerializedType
 		return ret
 	}
 	return o.RcSerializedType
@@ -203,7 +203,7 @@ func (o *RumSdkConfigDynamicOption) GetRcSerializedType() RumSdkConfigDynamicOpt
 
 // GetRcSerializedTypeOk returns a tuple with the RcSerializedType field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetRcSerializedTypeOk() (*RumSdkConfigDynamicOptionSerializedType, bool) {
+func (o *RUMSdkConfigDynamicOption) GetRcSerializedTypeOk() (*RUMSdkConfigDynamicOptionSerializedType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,12 +211,12 @@ func (o *RumSdkConfigDynamicOption) GetRcSerializedTypeOk() (*RumSdkConfigDynami
 }
 
 // SetRcSerializedType sets field value.
-func (o *RumSdkConfigDynamicOption) SetRcSerializedType(v RumSdkConfigDynamicOptionSerializedType) {
+func (o *RUMSdkConfigDynamicOption) SetRcSerializedType(v RUMSdkConfigDynamicOptionSerializedType) {
 	o.RcSerializedType = v
 }
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
-func (o *RumSdkConfigDynamicOption) GetSelector() string {
+func (o *RUMSdkConfigDynamicOption) GetSelector() string {
 	if o == nil || o.Selector == nil {
 		var ret string
 		return ret
@@ -226,7 +226,7 @@ func (o *RumSdkConfigDynamicOption) GetSelector() string {
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetSelectorOk() (*string, bool) {
+func (o *RUMSdkConfigDynamicOption) GetSelectorOk() (*string, bool) {
 	if o == nil || o.Selector == nil {
 		return nil, false
 	}
@@ -234,19 +234,19 @@ func (o *RumSdkConfigDynamicOption) GetSelectorOk() (*string, bool) {
 }
 
 // HasSelector returns a boolean if a field has been set.
-func (o *RumSdkConfigDynamicOption) HasSelector() bool {
+func (o *RUMSdkConfigDynamicOption) HasSelector() bool {
 	return o != nil && o.Selector != nil
 }
 
 // SetSelector gets a reference to the given string and assigns it to the Selector field.
-func (o *RumSdkConfigDynamicOption) SetSelector(v string) {
+func (o *RUMSdkConfigDynamicOption) SetSelector(v string) {
 	o.Selector = &v
 }
 
 // GetStrategy returns the Strategy field value.
-func (o *RumSdkConfigDynamicOption) GetStrategy() RumSdkConfigDynamicOptionStrategy {
+func (o *RUMSdkConfigDynamicOption) GetStrategy() RUMSdkConfigDynamicOptionStrategy {
 	if o == nil {
-		var ret RumSdkConfigDynamicOptionStrategy
+		var ret RUMSdkConfigDynamicOptionStrategy
 		return ret
 	}
 	return o.Strategy
@@ -254,7 +254,7 @@ func (o *RumSdkConfigDynamicOption) GetStrategy() RumSdkConfigDynamicOptionStrat
 
 // GetStrategyOk returns a tuple with the Strategy field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigDynamicOption) GetStrategyOk() (*RumSdkConfigDynamicOptionStrategy, bool) {
+func (o *RUMSdkConfigDynamicOption) GetStrategyOk() (*RUMSdkConfigDynamicOptionStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -262,12 +262,12 @@ func (o *RumSdkConfigDynamicOption) GetStrategyOk() (*RumSdkConfigDynamicOptionS
 }
 
 // SetStrategy sets field value.
-func (o *RumSdkConfigDynamicOption) SetStrategy(v RumSdkConfigDynamicOptionStrategy) {
+func (o *RUMSdkConfigDynamicOption) SetStrategy(v RUMSdkConfigDynamicOptionStrategy) {
 	o.Strategy = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigDynamicOption) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigDynamicOption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -300,16 +300,16 @@ func (o RumSdkConfigDynamicOption) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigDynamicOption) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigDynamicOption) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attribute        *string                                  `json:"attribute,omitempty"`
-		Extractor        *RumSdkConfigSerializedRegex             `json:"extractor,omitempty"`
+		Extractor        *RUMSdkConfigSerializedRegex             `json:"extractor,omitempty"`
 		Key              *string                                  `json:"key,omitempty"`
 		Name             *string                                  `json:"name,omitempty"`
 		Path             *string                                  `json:"path,omitempty"`
-		RcSerializedType *RumSdkConfigDynamicOptionSerializedType `json:"rc_serialized_type"`
+		RcSerializedType *RUMSdkConfigDynamicOptionSerializedType `json:"rc_serialized_type"`
 		Selector         *string                                  `json:"selector,omitempty"`
-		Strategy         *RumSdkConfigDynamicOptionStrategy       `json:"strategy"`
+		Strategy         *RUMSdkConfigDynamicOptionStrategy       `json:"strategy"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -8,40 +8,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUpdateAttributes The RUM-based metric properties to update. Omitted properties keep their current value.
-type RumMetricUpdateAttributes struct {
+// RUMMetricUpdateAttributes The RUM-based metric properties to update. Omitted properties keep their current value.
+type RUMMetricUpdateAttributes struct {
 	// The compute rule properties that can be updated. Only valid for metrics whose `aggregation_type` is `distribution`.
-	Compute *RumMetricUpdateCompute `json:"compute,omitempty"`
+	Compute *RUMMetricUpdateCompute `json:"compute,omitempty"`
 	// The RUM-based metric filter. Events matching this filter are aggregated in this metric. The `event_type` filter is added automatically.
-	Filter *RumMetricFilter `json:"filter,omitempty"`
+	Filter *RUMMetricFilter `json:"filter,omitempty"`
 	// The rules to group the metric by. When provided, replaces all the existing group by rules.
-	GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`
+	GroupBy []RUMMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricUpdateAttributes instantiates a new RumMetricUpdateAttributes object.
+// NewRUMMetricUpdateAttributes instantiates a new RUMMetricUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricUpdateAttributes() *RumMetricUpdateAttributes {
-	this := RumMetricUpdateAttributes{}
+func NewRUMMetricUpdateAttributes() *RUMMetricUpdateAttributes {
+	this := RUMMetricUpdateAttributes{}
 	return &this
 }
 
-// NewRumMetricUpdateAttributesWithDefaults instantiates a new RumMetricUpdateAttributes object.
+// NewRUMMetricUpdateAttributesWithDefaults instantiates a new RUMMetricUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricUpdateAttributesWithDefaults() *RumMetricUpdateAttributes {
-	this := RumMetricUpdateAttributes{}
+func NewRUMMetricUpdateAttributesWithDefaults() *RUMMetricUpdateAttributes {
+	this := RUMMetricUpdateAttributes{}
 	return &this
 }
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
-func (o *RumMetricUpdateAttributes) GetCompute() RumMetricUpdateCompute {
+func (o *RUMMetricUpdateAttributes) GetCompute() RUMMetricUpdateCompute {
 	if o == nil || o.Compute == nil {
-		var ret RumMetricUpdateCompute
+		var ret RUMMetricUpdateCompute
 		return ret
 	}
 	return *o.Compute
@@ -49,7 +49,7 @@ func (o *RumMetricUpdateAttributes) GetCompute() RumMetricUpdateCompute {
 
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricUpdateAttributes) GetComputeOk() (*RumMetricUpdateCompute, bool) {
+func (o *RUMMetricUpdateAttributes) GetComputeOk() (*RUMMetricUpdateCompute, bool) {
 	if o == nil || o.Compute == nil {
 		return nil, false
 	}
@@ -57,19 +57,19 @@ func (o *RumMetricUpdateAttributes) GetComputeOk() (*RumMetricUpdateCompute, boo
 }
 
 // HasCompute returns a boolean if a field has been set.
-func (o *RumMetricUpdateAttributes) HasCompute() bool {
+func (o *RUMMetricUpdateAttributes) HasCompute() bool {
 	return o != nil && o.Compute != nil
 }
 
-// SetCompute gets a reference to the given RumMetricUpdateCompute and assigns it to the Compute field.
-func (o *RumMetricUpdateAttributes) SetCompute(v RumMetricUpdateCompute) {
+// SetCompute gets a reference to the given RUMMetricUpdateCompute and assigns it to the Compute field.
+func (o *RUMMetricUpdateAttributes) SetCompute(v RUMMetricUpdateCompute) {
 	o.Compute = &v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *RumMetricUpdateAttributes) GetFilter() RumMetricFilter {
+func (o *RUMMetricUpdateAttributes) GetFilter() RUMMetricFilter {
 	if o == nil || o.Filter == nil {
-		var ret RumMetricFilter
+		var ret RUMMetricFilter
 		return ret
 	}
 	return *o.Filter
@@ -77,7 +77,7 @@ func (o *RumMetricUpdateAttributes) GetFilter() RumMetricFilter {
 
 // GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricUpdateAttributes) GetFilterOk() (*RumMetricFilter, bool) {
+func (o *RUMMetricUpdateAttributes) GetFilterOk() (*RUMMetricFilter, bool) {
 	if o == nil || o.Filter == nil {
 		return nil, false
 	}
@@ -85,19 +85,19 @@ func (o *RumMetricUpdateAttributes) GetFilterOk() (*RumMetricFilter, bool) {
 }
 
 // HasFilter returns a boolean if a field has been set.
-func (o *RumMetricUpdateAttributes) HasFilter() bool {
+func (o *RUMMetricUpdateAttributes) HasFilter() bool {
 	return o != nil && o.Filter != nil
 }
 
-// SetFilter gets a reference to the given RumMetricFilter and assigns it to the Filter field.
-func (o *RumMetricUpdateAttributes) SetFilter(v RumMetricFilter) {
+// SetFilter gets a reference to the given RUMMetricFilter and assigns it to the Filter field.
+func (o *RUMMetricUpdateAttributes) SetFilter(v RUMMetricFilter) {
 	o.Filter = &v
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *RumMetricUpdateAttributes) GetGroupBy() []RumMetricGroupBy {
+func (o *RUMMetricUpdateAttributes) GetGroupBy() []RUMMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
-		var ret []RumMetricGroupBy
+		var ret []RUMMetricGroupBy
 		return ret
 	}
 	return o.GroupBy
@@ -105,7 +105,7 @@ func (o *RumMetricUpdateAttributes) GetGroupBy() []RumMetricGroupBy {
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricUpdateAttributes) GetGroupByOk() (*[]RumMetricGroupBy, bool) {
+func (o *RUMMetricUpdateAttributes) GetGroupByOk() (*[]RUMMetricGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *RumMetricUpdateAttributes) GetGroupByOk() (*[]RumMetricGroupBy, bool) {
 }
 
 // HasGroupBy returns a boolean if a field has been set.
-func (o *RumMetricUpdateAttributes) HasGroupBy() bool {
+func (o *RUMMetricUpdateAttributes) HasGroupBy() bool {
 	return o != nil && o.GroupBy != nil
 }
 
-// SetGroupBy gets a reference to the given []RumMetricGroupBy and assigns it to the GroupBy field.
-func (o *RumMetricUpdateAttributes) SetGroupBy(v []RumMetricGroupBy) {
+// SetGroupBy gets a reference to the given []RUMMetricGroupBy and assigns it to the GroupBy field.
+func (o *RUMMetricUpdateAttributes) SetGroupBy(v []RUMMetricGroupBy) {
 	o.GroupBy = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,11 +145,11 @@ func (o RumMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute *RumMetricUpdateCompute `json:"compute,omitempty"`
-		Filter  *RumMetricFilter        `json:"filter,omitempty"`
-		GroupBy []RumMetricGroupBy      `json:"group_by,omitempty"`
+		Compute *RUMMetricUpdateCompute `json:"compute,omitempty"`
+		Filter  *RUMMetricFilter        `json:"filter,omitempty"`
+		GroupBy []RUMMetricGroupBy      `json:"group_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -11,8 +11,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigMeta Metadata associated with a RUM SDK configuration.
-type RumSdkConfigMeta struct {
+// RUMSdkConfigMeta Metadata associated with a RUM SDK configuration.
+type RUMSdkConfigMeta struct {
 	// The timestamp of the last update to this configuration.
 	UpdatedAt time.Time `json:"updated_at"`
 	// The handle of the user who last updated this configuration.
@@ -22,27 +22,27 @@ type RumSdkConfigMeta struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigMeta instantiates a new RumSdkConfigMeta object.
+// NewRUMSdkConfigMeta instantiates a new RUMSdkConfigMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigMeta(updatedAt time.Time, updatedBy string) *RumSdkConfigMeta {
-	this := RumSdkConfigMeta{}
+func NewRUMSdkConfigMeta(updatedAt time.Time, updatedBy string) *RUMSdkConfigMeta {
+	this := RUMSdkConfigMeta{}
 	this.UpdatedAt = updatedAt
 	this.UpdatedBy = updatedBy
 	return &this
 }
 
-// NewRumSdkConfigMetaWithDefaults instantiates a new RumSdkConfigMeta object.
+// NewRUMSdkConfigMetaWithDefaults instantiates a new RUMSdkConfigMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigMetaWithDefaults() *RumSdkConfigMeta {
-	this := RumSdkConfigMeta{}
+func NewRUMSdkConfigMetaWithDefaults() *RUMSdkConfigMeta {
+	this := RUMSdkConfigMeta{}
 	return &this
 }
 
 // GetUpdatedAt returns the UpdatedAt field value.
-func (o *RumSdkConfigMeta) GetUpdatedAt() time.Time {
+func (o *RUMSdkConfigMeta) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -52,7 +52,7 @@ func (o *RumSdkConfigMeta) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigMeta) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMSdkConfigMeta) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -60,12 +60,12 @@ func (o *RumSdkConfigMeta) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // SetUpdatedAt sets field value.
-func (o *RumSdkConfigMeta) SetUpdatedAt(v time.Time) {
+func (o *RUMSdkConfigMeta) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value.
-func (o *RumSdkConfigMeta) GetUpdatedBy() string {
+func (o *RUMSdkConfigMeta) GetUpdatedBy() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *RumSdkConfigMeta) GetUpdatedBy() string {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigMeta) GetUpdatedByOk() (*string, bool) {
+func (o *RUMSdkConfigMeta) GetUpdatedByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,12 +83,12 @@ func (o *RumSdkConfigMeta) GetUpdatedByOk() (*string, bool) {
 }
 
 // SetUpdatedBy sets field value.
-func (o *RumSdkConfigMeta) SetUpdatedBy(v string) {
+func (o *RUMSdkConfigMeta) SetUpdatedBy(v string) {
 	o.UpdatedBy = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigMeta) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -107,7 +107,7 @@ func (o RumSdkConfigMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		UpdatedAt *time.Time `json:"updated_at"`
 		UpdatedBy *string    `json:"updated_by"`

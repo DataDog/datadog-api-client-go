@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigType The type of the resource. The value should always be `rum_sdk_config`.
-type RumSdkConfigType string
+// RUMSdkConfigType The type of the resource. The value should always be `rum_sdk_config`.
+type RUMSdkConfigType string
 
-// List of RumSdkConfigType.
+// List of RUMSdkConfigType.
 const (
-	RUMSDKCONFIGTYPE_RUM_SDK_CONFIG RumSdkConfigType = "rum_sdk_config"
+	RUMSDKCONFIGTYPE_RUM_SDK_CONFIG RUMSdkConfigType = "rum_sdk_config"
 )
 
-var allowedRumSdkConfigTypeEnumValues = []RumSdkConfigType{
+var allowedRUMSdkConfigTypeEnumValues = []RUMSdkConfigType{
 	RUMSDKCONFIGTYPE_RUM_SDK_CONFIG,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigType) GetAllowedValues() []RumSdkConfigType {
-	return allowedRumSdkConfigTypeEnumValues
+func (v *RUMSdkConfigType) GetAllowedValues() []RUMSdkConfigType {
+	return allowedRUMSdkConfigTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigType) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigType(value)
+	*v = RUMSdkConfigType(value)
 	return nil
 }
 
-// NewRumSdkConfigTypeFromValue returns a pointer to a valid RumSdkConfigType
+// NewRUMSdkConfigTypeFromValue returns a pointer to a valid RUMSdkConfigType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigTypeFromValue(v string) (*RumSdkConfigType, error) {
-	ev := RumSdkConfigType(v)
+func NewRUMSdkConfigTypeFromValue(v string) (*RUMSdkConfigType, error) {
+	ev := RUMSdkConfigType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigType: valid values are %v", v, allowedRumSdkConfigTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigType: valid values are %v", v, allowedRUMSdkConfigTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigType) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigTypeEnumValues {
+func (v RUMSdkConfigType) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumSdkConfigType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigType value.
-func (v RumSdkConfigType) Ptr() *RumSdkConfigType {
+// Ptr returns reference to RUMSdkConfigType value.
+func (v RUMSdkConfigType) Ptr() *RUMSdkConfigType {
 	return &v
 }

@@ -16,7 +16,7 @@ type ViewershipHistorySessionData struct {
 	Attributes *ViewershipHistorySessionDataAttributes `json:"attributes,omitempty"`
 	// Unique identifier of the RUM replay session.
 	Id *string `json:"id,omitempty"`
-	// Rum replay session resource type.
+	// RUM replay session resource type.
 	Type ViewershipHistorySessionDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

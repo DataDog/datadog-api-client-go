@@ -1,0 +1,34 @@
+// Bulk remove RUM replay playlist sessions returns "No Content" response
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+)
+
+func main() {
+	body := datadogV2.SessionIdArray{
+		Data: []datadogV2.SessionIdData{
+			{
+				Id:   datadog.PtrString("00000000-0000-0000-0000-000000000001"),
+				Type: datadogV2.VIEWERSHIPHISTORYSESSIONDATATYPE_RUM_REPLAY_SESSION,
+			},
+		},
+	}
+	ctx := datadog.NewDefaultContext(context.Background())
+	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewRUMReplayPlaylistsApi(apiClient)
+	r, err := api.BulkRemoveRUMReplayPlaylistSessions(ctx, 1234567, body)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayPlaylistsApi.BulkRemoveRUMReplayPlaylistSessions`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}

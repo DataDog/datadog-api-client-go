@@ -8,44 +8,44 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponseAttributes The object describing a Datadog RUM-based metric.
-type RumMetricResponseAttributes struct {
+// RUMMetricResponseAttributes The object describing a Datadog RUM-based metric.
+type RUMMetricResponseAttributes struct {
 	// The compute rule of the RUM-based metric.
-	Compute *RumMetricResponseCompute `json:"compute,omitempty"`
+	Compute *RUMMetricResponseCompute `json:"compute,omitempty"`
 	// The type of RUM events the metric is generated from. It is set at creation and cannot be changed.
-	EventType *RumMetricEventType `json:"event_type,omitempty"`
+	EventType *RUMMetricEventType `json:"event_type,omitempty"`
 	// The RUM-based metric filter. RUM events matching this filter are aggregated in this metric. Omitted if the metric only filters on the event type.
-	Filter *RumMetricResponseFilter `json:"filter,omitempty"`
+	Filter *RUMMetricResponseFilter `json:"filter,omitempty"`
 	// The rules the metric is grouped by. An empty array is returned if the metric is not grouped.
-	GroupBy []RumMetricResponseGroupBy `json:"group_by,omitempty"`
+	GroupBy []RUMMetricResponseGroupBy `json:"group_by,omitempty"`
 	// The rule to count updatable events. Only present if `event_type` is `session` or `view`, and absent on older metrics created before this setting existed.
-	Uniqueness *RumMetricResponseUniqueness `json:"uniqueness,omitempty"`
+	Uniqueness *RUMMetricResponseUniqueness `json:"uniqueness,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricResponseAttributes instantiates a new RumMetricResponseAttributes object.
+// NewRUMMetricResponseAttributes instantiates a new RUMMetricResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricResponseAttributes() *RumMetricResponseAttributes {
-	this := RumMetricResponseAttributes{}
+func NewRUMMetricResponseAttributes() *RUMMetricResponseAttributes {
+	this := RUMMetricResponseAttributes{}
 	return &this
 }
 
-// NewRumMetricResponseAttributesWithDefaults instantiates a new RumMetricResponseAttributes object.
+// NewRUMMetricResponseAttributesWithDefaults instantiates a new RUMMetricResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricResponseAttributesWithDefaults() *RumMetricResponseAttributes {
-	this := RumMetricResponseAttributes{}
+func NewRUMMetricResponseAttributesWithDefaults() *RUMMetricResponseAttributes {
+	this := RUMMetricResponseAttributes{}
 	return &this
 }
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
-func (o *RumMetricResponseAttributes) GetCompute() RumMetricResponseCompute {
+func (o *RUMMetricResponseAttributes) GetCompute() RUMMetricResponseCompute {
 	if o == nil || o.Compute == nil {
-		var ret RumMetricResponseCompute
+		var ret RUMMetricResponseCompute
 		return ret
 	}
 	return *o.Compute
@@ -53,7 +53,7 @@ func (o *RumMetricResponseAttributes) GetCompute() RumMetricResponseCompute {
 
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseAttributes) GetComputeOk() (*RumMetricResponseCompute, bool) {
+func (o *RUMMetricResponseAttributes) GetComputeOk() (*RUMMetricResponseCompute, bool) {
 	if o == nil || o.Compute == nil {
 		return nil, false
 	}
@@ -61,19 +61,19 @@ func (o *RumMetricResponseAttributes) GetComputeOk() (*RumMetricResponseCompute,
 }
 
 // HasCompute returns a boolean if a field has been set.
-func (o *RumMetricResponseAttributes) HasCompute() bool {
+func (o *RUMMetricResponseAttributes) HasCompute() bool {
 	return o != nil && o.Compute != nil
 }
 
-// SetCompute gets a reference to the given RumMetricResponseCompute and assigns it to the Compute field.
-func (o *RumMetricResponseAttributes) SetCompute(v RumMetricResponseCompute) {
+// SetCompute gets a reference to the given RUMMetricResponseCompute and assigns it to the Compute field.
+func (o *RUMMetricResponseAttributes) SetCompute(v RUMMetricResponseCompute) {
 	o.Compute = &v
 }
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
-func (o *RumMetricResponseAttributes) GetEventType() RumMetricEventType {
+func (o *RUMMetricResponseAttributes) GetEventType() RUMMetricEventType {
 	if o == nil || o.EventType == nil {
-		var ret RumMetricEventType
+		var ret RUMMetricEventType
 		return ret
 	}
 	return *o.EventType
@@ -81,7 +81,7 @@ func (o *RumMetricResponseAttributes) GetEventType() RumMetricEventType {
 
 // GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseAttributes) GetEventTypeOk() (*RumMetricEventType, bool) {
+func (o *RUMMetricResponseAttributes) GetEventTypeOk() (*RUMMetricEventType, bool) {
 	if o == nil || o.EventType == nil {
 		return nil, false
 	}
@@ -89,19 +89,19 @@ func (o *RumMetricResponseAttributes) GetEventTypeOk() (*RumMetricEventType, boo
 }
 
 // HasEventType returns a boolean if a field has been set.
-func (o *RumMetricResponseAttributes) HasEventType() bool {
+func (o *RUMMetricResponseAttributes) HasEventType() bool {
 	return o != nil && o.EventType != nil
 }
 
-// SetEventType gets a reference to the given RumMetricEventType and assigns it to the EventType field.
-func (o *RumMetricResponseAttributes) SetEventType(v RumMetricEventType) {
+// SetEventType gets a reference to the given RUMMetricEventType and assigns it to the EventType field.
+func (o *RUMMetricResponseAttributes) SetEventType(v RUMMetricEventType) {
 	o.EventType = &v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *RumMetricResponseAttributes) GetFilter() RumMetricResponseFilter {
+func (o *RUMMetricResponseAttributes) GetFilter() RUMMetricResponseFilter {
 	if o == nil || o.Filter == nil {
-		var ret RumMetricResponseFilter
+		var ret RUMMetricResponseFilter
 		return ret
 	}
 	return *o.Filter
@@ -109,7 +109,7 @@ func (o *RumMetricResponseAttributes) GetFilter() RumMetricResponseFilter {
 
 // GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseAttributes) GetFilterOk() (*RumMetricResponseFilter, bool) {
+func (o *RUMMetricResponseAttributes) GetFilterOk() (*RUMMetricResponseFilter, bool) {
 	if o == nil || o.Filter == nil {
 		return nil, false
 	}
@@ -117,19 +117,19 @@ func (o *RumMetricResponseAttributes) GetFilterOk() (*RumMetricResponseFilter, b
 }
 
 // HasFilter returns a boolean if a field has been set.
-func (o *RumMetricResponseAttributes) HasFilter() bool {
+func (o *RUMMetricResponseAttributes) HasFilter() bool {
 	return o != nil && o.Filter != nil
 }
 
-// SetFilter gets a reference to the given RumMetricResponseFilter and assigns it to the Filter field.
-func (o *RumMetricResponseAttributes) SetFilter(v RumMetricResponseFilter) {
+// SetFilter gets a reference to the given RUMMetricResponseFilter and assigns it to the Filter field.
+func (o *RUMMetricResponseAttributes) SetFilter(v RUMMetricResponseFilter) {
 	o.Filter = &v
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *RumMetricResponseAttributes) GetGroupBy() []RumMetricResponseGroupBy {
+func (o *RUMMetricResponseAttributes) GetGroupBy() []RUMMetricResponseGroupBy {
 	if o == nil || o.GroupBy == nil {
-		var ret []RumMetricResponseGroupBy
+		var ret []RUMMetricResponseGroupBy
 		return ret
 	}
 	return o.GroupBy
@@ -137,7 +137,7 @@ func (o *RumMetricResponseAttributes) GetGroupBy() []RumMetricResponseGroupBy {
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseAttributes) GetGroupByOk() (*[]RumMetricResponseGroupBy, bool) {
+func (o *RUMMetricResponseAttributes) GetGroupByOk() (*[]RUMMetricResponseGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
@@ -145,19 +145,19 @@ func (o *RumMetricResponseAttributes) GetGroupByOk() (*[]RumMetricResponseGroupB
 }
 
 // HasGroupBy returns a boolean if a field has been set.
-func (o *RumMetricResponseAttributes) HasGroupBy() bool {
+func (o *RUMMetricResponseAttributes) HasGroupBy() bool {
 	return o != nil && o.GroupBy != nil
 }
 
-// SetGroupBy gets a reference to the given []RumMetricResponseGroupBy and assigns it to the GroupBy field.
-func (o *RumMetricResponseAttributes) SetGroupBy(v []RumMetricResponseGroupBy) {
+// SetGroupBy gets a reference to the given []RUMMetricResponseGroupBy and assigns it to the GroupBy field.
+func (o *RUMMetricResponseAttributes) SetGroupBy(v []RUMMetricResponseGroupBy) {
 	o.GroupBy = v
 }
 
 // GetUniqueness returns the Uniqueness field value if set, zero value otherwise.
-func (o *RumMetricResponseAttributes) GetUniqueness() RumMetricResponseUniqueness {
+func (o *RUMMetricResponseAttributes) GetUniqueness() RUMMetricResponseUniqueness {
 	if o == nil || o.Uniqueness == nil {
-		var ret RumMetricResponseUniqueness
+		var ret RUMMetricResponseUniqueness
 		return ret
 	}
 	return *o.Uniqueness
@@ -165,7 +165,7 @@ func (o *RumMetricResponseAttributes) GetUniqueness() RumMetricResponseUniquenes
 
 // GetUniquenessOk returns a tuple with the Uniqueness field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricResponseAttributes) GetUniquenessOk() (*RumMetricResponseUniqueness, bool) {
+func (o *RUMMetricResponseAttributes) GetUniquenessOk() (*RUMMetricResponseUniqueness, bool) {
 	if o == nil || o.Uniqueness == nil {
 		return nil, false
 	}
@@ -173,17 +173,17 @@ func (o *RumMetricResponseAttributes) GetUniquenessOk() (*RumMetricResponseUniqu
 }
 
 // HasUniqueness returns a boolean if a field has been set.
-func (o *RumMetricResponseAttributes) HasUniqueness() bool {
+func (o *RUMMetricResponseAttributes) HasUniqueness() bool {
 	return o != nil && o.Uniqueness != nil
 }
 
-// SetUniqueness gets a reference to the given RumMetricResponseUniqueness and assigns it to the Uniqueness field.
-func (o *RumMetricResponseAttributes) SetUniqueness(v RumMetricResponseUniqueness) {
+// SetUniqueness gets a reference to the given RUMMetricResponseUniqueness and assigns it to the Uniqueness field.
+func (o *RUMMetricResponseAttributes) SetUniqueness(v RUMMetricResponseUniqueness) {
 	o.Uniqueness = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMMetricResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -211,13 +211,13 @@ func (o RumMetricResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute    *RumMetricResponseCompute    `json:"compute,omitempty"`
-		EventType  *RumMetricEventType          `json:"event_type,omitempty"`
-		Filter     *RumMetricResponseFilter     `json:"filter,omitempty"`
-		GroupBy    []RumMetricResponseGroupBy   `json:"group_by,omitempty"`
-		Uniqueness *RumMetricResponseUniqueness `json:"uniqueness,omitempty"`
+		Compute    *RUMMetricResponseCompute    `json:"compute,omitempty"`
+		EventType  *RUMMetricEventType          `json:"event_type,omitempty"`
+		Filter     *RUMMetricResponseFilter     `json:"filter,omitempty"`
+		GroupBy    []RUMMetricResponseGroupBy   `json:"group_by,omitempty"`
+		Uniqueness *RUMMetricResponseUniqueness `json:"uniqueness,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
