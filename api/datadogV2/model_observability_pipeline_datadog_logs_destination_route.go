@@ -14,6 +14,8 @@ type ObservabilityPipelineDatadogLogsDestinationRoute struct {
 	ApiKeyKey *string `json:"api_key_key,omitempty"`
 	// A Datadog search query that determines which logs are forwarded using this route.
 	Include *string `json:"include,omitempty"`
+	// A human-readable name for this route.
+	Name *string `json:"name,omitempty"`
 	// Unique identifier for this route within the destination.
 	RouteId *string `json:"route_id,omitempty"`
 	// Datadog site where matching logs are sent (for example, `us1`).
@@ -96,6 +98,34 @@ func (o *ObservabilityPipelineDatadogLogsDestinationRoute) SetInclude(v string) 
 	o.Include = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatadogLogsDestinationRoute) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDatadogLogsDestinationRoute) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatadogLogsDestinationRoute) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ObservabilityPipelineDatadogLogsDestinationRoute) SetName(v string) {
+	o.Name = &v
+}
+
 // GetRouteId returns the RouteId field value if set, zero value otherwise.
 func (o *ObservabilityPipelineDatadogLogsDestinationRoute) GetRouteId() string {
 	if o == nil || o.RouteId == nil {
@@ -164,6 +194,9 @@ func (o ObservabilityPipelineDatadogLogsDestinationRoute) MarshalJSON() ([]byte,
 	if o.Include != nil {
 		toSerialize["include"] = o.Include
 	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
 	if o.RouteId != nil {
 		toSerialize["route_id"] = o.RouteId
 	}
@@ -182,6 +215,7 @@ func (o *ObservabilityPipelineDatadogLogsDestinationRoute) UnmarshalJSON(bytes [
 	all := struct {
 		ApiKeyKey *string `json:"api_key_key,omitempty"`
 		Include   *string `json:"include,omitempty"`
+		Name      *string `json:"name,omitempty"`
 		RouteId   *string `json:"route_id,omitempty"`
 		Site      *string `json:"site,omitempty"`
 	}{}
@@ -190,12 +224,13 @@ func (o *ObservabilityPipelineDatadogLogsDestinationRoute) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key_key", "include", "route_id", "site"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key_key", "include", "name", "route_id", "site"})
 	} else {
 		return err
 	}
 	o.ApiKeyKey = all.ApiKeyKey
 	o.Include = all.Include
+	o.Name = all.Name
 	o.RouteId = all.RouteId
 	o.Site = all.Site
 
