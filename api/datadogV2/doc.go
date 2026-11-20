@@ -1511,6 +1511,7 @@
 //   - [SecurityMonitoringApi.ReorderSecurityFindingsAutomationTicketCreationRules]
 //   - [SecurityMonitoringApi.RestoreSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.RunHistoricalJob]
+//   - [SecurityMonitoringApi.SearchRemediationGroups]
 //   - [SecurityMonitoringApi.SearchSecurityFindings]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringHistsignals]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringSignals]
