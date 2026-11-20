@@ -1,0 +1,64 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV1_20270101
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 Test-only generated schema for the dashboard versioning proof of concept.
+type HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 string
+
+// List of HeatgridGradientConfigAnyOfAnyOfItemMode4447621888.
+const (
+	HEATGRIDGRADIENTCONFIGANYOFANYOFITEMMODE4447621888_GRADIENT HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 = "gradient"
+)
+
+var allowedHeatgridGradientConfigAnyOfAnyOfItemMode4447621888EnumValues = []HeatgridGradientConfigAnyOfAnyOfItemMode4447621888{
+	HEATGRIDGRADIENTCONFIGANYOFANYOFITEMMODE4447621888_GRADIENT,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *HeatgridGradientConfigAnyOfAnyOfItemMode4447621888) GetAllowedValues() []HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 {
+	return allowedHeatgridGradientConfigAnyOfAnyOfItemMode4447621888EnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *HeatgridGradientConfigAnyOfAnyOfItemMode4447621888) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = HeatgridGradientConfigAnyOfAnyOfItemMode4447621888(value)
+	return nil
+}
+
+// NewHeatgridGradientConfigAnyOfAnyOfItemMode4447621888FromValue returns a pointer to a valid HeatgridGradientConfigAnyOfAnyOfItemMode4447621888
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewHeatgridGradientConfigAnyOfAnyOfItemMode4447621888FromValue(v string) (*HeatgridGradientConfigAnyOfAnyOfItemMode4447621888, error) {
+	ev := HeatgridGradientConfigAnyOfAnyOfItemMode4447621888(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for HeatgridGradientConfigAnyOfAnyOfItemMode4447621888: valid values are %v", v, allowedHeatgridGradientConfigAnyOfAnyOfItemMode4447621888EnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v HeatgridGradientConfigAnyOfAnyOfItemMode4447621888) IsValid() bool {
+	for _, existing := range allowedHeatgridGradientConfigAnyOfAnyOfItemMode4447621888EnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 value.
+func (v HeatgridGradientConfigAnyOfAnyOfItemMode4447621888) Ptr() *HeatgridGradientConfigAnyOfAnyOfItemMode4447621888 {
+	return &v
+}

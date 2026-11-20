@@ -1,0 +1,64 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV1_20270101
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 Test-only generated schema for the dashboard versioning proof of concept.
+type TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 string
+
+// List of TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088.
+const (
+	TREEMAPBACKENDREQUESTANYOFANYOFITEMRESPONSEFORMAT4453529088_SCALAR TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 = "scalar"
+)
+
+var allowedTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088EnumValues = []TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088{
+	TREEMAPBACKENDREQUESTANYOFANYOFITEMRESPONSEFORMAT4453529088_SCALAR,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088) GetAllowedValues() []TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 {
+	return allowedTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088EnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088(value)
+	return nil
+}
+
+// NewTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088FromValue returns a pointer to a valid TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088FromValue(v string) (*TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088, error) {
+	ev := TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088: valid values are %v", v, allowedTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088EnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088) IsValid() bool {
+	for _, existing := range allowedTreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088EnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 value.
+func (v TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088) Ptr() *TreemapBackendRequestAnyOfAnyOfItemResponseFormat4453529088 {
+	return &v
+}

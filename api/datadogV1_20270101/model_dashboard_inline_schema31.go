@@ -1,0 +1,70 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV1_20270101
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// DashboardInlineSchema31 Test-only generated schema for the dashboard versioning proof of concept.
+type DashboardInlineSchema31 string
+
+// List of DashboardInlineSchema31.
+const (
+	DASHBOARDINLINESCHEMA31_AUTO        DashboardInlineSchema31 = "auto"
+	DASHBOARDINLINESCHEMA31_COMPACT     DashboardInlineSchema31 = "compact"
+	DASHBOARDINLINESCHEMA31_FULL        DashboardInlineSchema31 = "full"
+	DASHBOARDINLINESCHEMA31_FIT_CONTENT DashboardInlineSchema31 = "fit-content"
+)
+
+var allowedDashboardInlineSchema31EnumValues = []DashboardInlineSchema31{
+	DASHBOARDINLINESCHEMA31_AUTO,
+	DASHBOARDINLINESCHEMA31_COMPACT,
+	DASHBOARDINLINESCHEMA31_FULL,
+	DASHBOARDINLINESCHEMA31_FIT_CONTENT,
+}
+
+// GetAllowedValues reeturns the list of possible values.
+func (v *DashboardInlineSchema31) GetAllowedValues() []DashboardInlineSchema31 {
+	return allowedDashboardInlineSchema31EnumValues
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (v *DashboardInlineSchema31) UnmarshalJSON(src []byte) error {
+	var value string
+	err := datadog.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = DashboardInlineSchema31(value)
+	return nil
+}
+
+// NewDashboardInlineSchema31FromValue returns a pointer to a valid DashboardInlineSchema31
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
+func NewDashboardInlineSchema31FromValue(v string) (*DashboardInlineSchema31, error) {
+	ev := DashboardInlineSchema31(v)
+	if ev.IsValid() {
+		return &ev, nil
+	}
+	return nil, fmt.Errorf("invalid value '%v' for DashboardInlineSchema31: valid values are %v", v, allowedDashboardInlineSchema31EnumValues)
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise.
+func (v DashboardInlineSchema31) IsValid() bool {
+	for _, existing := range allowedDashboardInlineSchema31EnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to DashboardInlineSchema31 value.
+func (v DashboardInlineSchema31) Ptr() *DashboardInlineSchema31 {
+	return &v
+}
