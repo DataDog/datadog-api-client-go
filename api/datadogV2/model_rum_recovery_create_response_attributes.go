@@ -11,12 +11,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCreateResponseAttributes Accepted recovery request.
-type RumRecoveryCreateResponseAttributes struct {
+// RUMRecoveryCreateResponseAttributes Accepted recovery request.
+type RUMRecoveryCreateResponseAttributes struct {
 	// Creation time.
 	CreatedAt time.Time `json:"created_at"`
 	// Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
-	DiscoveryStatus *RumRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
+	DiscoveryStatus *RUMRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
 	// Batch estimate stored at creation, when present. New batches use a fresh server estimate; older batches may contain a client-supplied estimate.
 	EstimatedCount *int64 `json:"estimated_count,omitempty"`
 	// Failed session count.
@@ -24,7 +24,7 @@ type RumRecoveryCreateResponseAttributes struct {
 	// Processed session count.
 	ProcessedSessions int64 `json:"processed_sessions"`
 	// Recovery request state.
-	Status RumRecoveryRequestStatus `json:"status"`
+	Status RUMRecoveryRequestStatus `json:"status"`
 	// Total targeted sessions. Omitted while a batch total is unknown.
 	TotalSessions *int64 `json:"total_sessions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,12 +32,12 @@ type RumRecoveryCreateResponseAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCreateResponseAttributes instantiates a new RumRecoveryCreateResponseAttributes object.
+// NewRUMRecoveryCreateResponseAttributes instantiates a new RUMRecoveryCreateResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCreateResponseAttributes(createdAt time.Time, failedSessions int64, processedSessions int64, status RumRecoveryRequestStatus) *RumRecoveryCreateResponseAttributes {
-	this := RumRecoveryCreateResponseAttributes{}
+func NewRUMRecoveryCreateResponseAttributes(createdAt time.Time, failedSessions int64, processedSessions int64, status RUMRecoveryRequestStatus) *RUMRecoveryCreateResponseAttributes {
+	this := RUMRecoveryCreateResponseAttributes{}
 	this.CreatedAt = createdAt
 	this.FailedSessions = failedSessions
 	this.ProcessedSessions = processedSessions
@@ -45,16 +45,16 @@ func NewRumRecoveryCreateResponseAttributes(createdAt time.Time, failedSessions 
 	return &this
 }
 
-// NewRumRecoveryCreateResponseAttributesWithDefaults instantiates a new RumRecoveryCreateResponseAttributes object.
+// NewRUMRecoveryCreateResponseAttributesWithDefaults instantiates a new RUMRecoveryCreateResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCreateResponseAttributesWithDefaults() *RumRecoveryCreateResponseAttributes {
-	this := RumRecoveryCreateResponseAttributes{}
+func NewRUMRecoveryCreateResponseAttributesWithDefaults() *RUMRecoveryCreateResponseAttributes {
+	this := RUMRecoveryCreateResponseAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value.
-func (o *RumRecoveryCreateResponseAttributes) GetCreatedAt() time.Time {
+func (o *RUMRecoveryCreateResponseAttributes) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -64,7 +64,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,14 +72,14 @@ func (o *RumRecoveryCreateResponseAttributes) GetCreatedAtOk() (*time.Time, bool
 }
 
 // SetCreatedAt sets field value.
-func (o *RumRecoveryCreateResponseAttributes) SetCreatedAt(v time.Time) {
+func (o *RUMRecoveryCreateResponseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetDiscoveryStatus returns the DiscoveryStatus field value if set, zero value otherwise.
-func (o *RumRecoveryCreateResponseAttributes) GetDiscoveryStatus() RumRecoveryDiscoveryStatus {
+func (o *RUMRecoveryCreateResponseAttributes) GetDiscoveryStatus() RUMRecoveryDiscoveryStatus {
 	if o == nil || o.DiscoveryStatus == nil {
-		var ret RumRecoveryDiscoveryStatus
+		var ret RUMRecoveryDiscoveryStatus
 		return ret
 	}
 	return *o.DiscoveryStatus
@@ -87,7 +87,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetDiscoveryStatus() RumRecoveryDi
 
 // GetDiscoveryStatusOk returns a tuple with the DiscoveryStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetDiscoveryStatusOk() (*RumRecoveryDiscoveryStatus, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetDiscoveryStatusOk() (*RUMRecoveryDiscoveryStatus, bool) {
 	if o == nil || o.DiscoveryStatus == nil {
 		return nil, false
 	}
@@ -95,17 +95,17 @@ func (o *RumRecoveryCreateResponseAttributes) GetDiscoveryStatusOk() (*RumRecove
 }
 
 // HasDiscoveryStatus returns a boolean if a field has been set.
-func (o *RumRecoveryCreateResponseAttributes) HasDiscoveryStatus() bool {
+func (o *RUMRecoveryCreateResponseAttributes) HasDiscoveryStatus() bool {
 	return o != nil && o.DiscoveryStatus != nil
 }
 
-// SetDiscoveryStatus gets a reference to the given RumRecoveryDiscoveryStatus and assigns it to the DiscoveryStatus field.
-func (o *RumRecoveryCreateResponseAttributes) SetDiscoveryStatus(v RumRecoveryDiscoveryStatus) {
+// SetDiscoveryStatus gets a reference to the given RUMRecoveryDiscoveryStatus and assigns it to the DiscoveryStatus field.
+func (o *RUMRecoveryCreateResponseAttributes) SetDiscoveryStatus(v RUMRecoveryDiscoveryStatus) {
 	o.DiscoveryStatus = &v
 }
 
 // GetEstimatedCount returns the EstimatedCount field value if set, zero value otherwise.
-func (o *RumRecoveryCreateResponseAttributes) GetEstimatedCount() int64 {
+func (o *RUMRecoveryCreateResponseAttributes) GetEstimatedCount() int64 {
 	if o == nil || o.EstimatedCount == nil {
 		var ret int64
 		return ret
@@ -115,7 +115,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetEstimatedCount() int64 {
 
 // GetEstimatedCountOk returns a tuple with the EstimatedCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetEstimatedCountOk() (*int64, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetEstimatedCountOk() (*int64, bool) {
 	if o == nil || o.EstimatedCount == nil {
 		return nil, false
 	}
@@ -123,17 +123,17 @@ func (o *RumRecoveryCreateResponseAttributes) GetEstimatedCountOk() (*int64, boo
 }
 
 // HasEstimatedCount returns a boolean if a field has been set.
-func (o *RumRecoveryCreateResponseAttributes) HasEstimatedCount() bool {
+func (o *RUMRecoveryCreateResponseAttributes) HasEstimatedCount() bool {
 	return o != nil && o.EstimatedCount != nil
 }
 
 // SetEstimatedCount gets a reference to the given int64 and assigns it to the EstimatedCount field.
-func (o *RumRecoveryCreateResponseAttributes) SetEstimatedCount(v int64) {
+func (o *RUMRecoveryCreateResponseAttributes) SetEstimatedCount(v int64) {
 	o.EstimatedCount = &v
 }
 
 // GetFailedSessions returns the FailedSessions field value.
-func (o *RumRecoveryCreateResponseAttributes) GetFailedSessions() int64 {
+func (o *RUMRecoveryCreateResponseAttributes) GetFailedSessions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -143,7 +143,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetFailedSessions() int64 {
 
 // GetFailedSessionsOk returns a tuple with the FailedSessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetFailedSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetFailedSessionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,12 +151,12 @@ func (o *RumRecoveryCreateResponseAttributes) GetFailedSessionsOk() (*int64, boo
 }
 
 // SetFailedSessions sets field value.
-func (o *RumRecoveryCreateResponseAttributes) SetFailedSessions(v int64) {
+func (o *RUMRecoveryCreateResponseAttributes) SetFailedSessions(v int64) {
 	o.FailedSessions = v
 }
 
 // GetProcessedSessions returns the ProcessedSessions field value.
-func (o *RumRecoveryCreateResponseAttributes) GetProcessedSessions() int64 {
+func (o *RUMRecoveryCreateResponseAttributes) GetProcessedSessions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -166,7 +166,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetProcessedSessions() int64 {
 
 // GetProcessedSessionsOk returns a tuple with the ProcessedSessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetProcessedSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetProcessedSessionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -174,14 +174,14 @@ func (o *RumRecoveryCreateResponseAttributes) GetProcessedSessionsOk() (*int64, 
 }
 
 // SetProcessedSessions sets field value.
-func (o *RumRecoveryCreateResponseAttributes) SetProcessedSessions(v int64) {
+func (o *RUMRecoveryCreateResponseAttributes) SetProcessedSessions(v int64) {
 	o.ProcessedSessions = v
 }
 
 // GetStatus returns the Status field value.
-func (o *RumRecoveryCreateResponseAttributes) GetStatus() RumRecoveryRequestStatus {
+func (o *RUMRecoveryCreateResponseAttributes) GetStatus() RUMRecoveryRequestStatus {
 	if o == nil {
-		var ret RumRecoveryRequestStatus
+		var ret RUMRecoveryRequestStatus
 		return ret
 	}
 	return o.Status
@@ -189,7 +189,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetStatus() RumRecoveryRequestStat
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetStatusOk() (*RumRecoveryRequestStatus, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetStatusOk() (*RUMRecoveryRequestStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,12 +197,12 @@ func (o *RumRecoveryCreateResponseAttributes) GetStatusOk() (*RumRecoveryRequest
 }
 
 // SetStatus sets field value.
-func (o *RumRecoveryCreateResponseAttributes) SetStatus(v RumRecoveryRequestStatus) {
+func (o *RUMRecoveryCreateResponseAttributes) SetStatus(v RUMRecoveryRequestStatus) {
 	o.Status = v
 }
 
 // GetTotalSessions returns the TotalSessions field value if set, zero value otherwise.
-func (o *RumRecoveryCreateResponseAttributes) GetTotalSessions() int64 {
+func (o *RUMRecoveryCreateResponseAttributes) GetTotalSessions() int64 {
 	if o == nil || o.TotalSessions == nil {
 		var ret int64
 		return ret
@@ -212,7 +212,7 @@ func (o *RumRecoveryCreateResponseAttributes) GetTotalSessions() int64 {
 
 // GetTotalSessionsOk returns a tuple with the TotalSessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateResponseAttributes) GetTotalSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryCreateResponseAttributes) GetTotalSessionsOk() (*int64, bool) {
 	if o == nil || o.TotalSessions == nil {
 		return nil, false
 	}
@@ -220,17 +220,17 @@ func (o *RumRecoveryCreateResponseAttributes) GetTotalSessionsOk() (*int64, bool
 }
 
 // HasTotalSessions returns a boolean if a field has been set.
-func (o *RumRecoveryCreateResponseAttributes) HasTotalSessions() bool {
+func (o *RUMRecoveryCreateResponseAttributes) HasTotalSessions() bool {
 	return o != nil && o.TotalSessions != nil
 }
 
 // SetTotalSessions gets a reference to the given int64 and assigns it to the TotalSessions field.
-func (o *RumRecoveryCreateResponseAttributes) SetTotalSessions(v int64) {
+func (o *RUMRecoveryCreateResponseAttributes) SetTotalSessions(v int64) {
 	o.TotalSessions = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCreateResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCreateResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -260,14 +260,14 @@ func (o RumRecoveryCreateResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCreateResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCreateResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt         *time.Time                  `json:"created_at"`
-		DiscoveryStatus   *RumRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
+		DiscoveryStatus   *RUMRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
 		EstimatedCount    *int64                      `json:"estimated_count,omitempty"`
 		FailedSessions    *int64                      `json:"failed_sessions"`
 		ProcessedSessions *int64                      `json:"processed_sessions"`
-		Status            *RumRecoveryRequestStatus   `json:"status"`
+		Status            *RUMRecoveryRequestStatus   `json:"status"`
 		TotalSessions     *int64                      `json:"total_sessions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

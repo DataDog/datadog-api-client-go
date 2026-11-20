@@ -16,11 +16,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
+	api := datadogV2.NewRUMRetentionFiltersApi(apiClient)
 	r, err := api.DeleteExclusionFilter(ctx, "app_id", "ef_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.DeleteExclusionFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionFiltersApi.DeleteExclusionFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

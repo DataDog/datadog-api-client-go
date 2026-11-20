@@ -17,16 +17,16 @@ import (
 // RUMRemoteConfigApi service type
 type RUMRemoteConfigApi datadog.Service
 
-// GetRumSdkConfig Get a RUM SDK configuration.
+// GetRUMSdkConfig Get a RUM SDK configuration.
 // Retrieve a RUM SDK configuration by its identifier.
-func (a *RUMRemoteConfigApi) GetRumSdkConfig(ctx _context.Context, configId string) (RumSdkConfigResponse, *_nethttp.Response, error) {
+func (a *RUMRemoteConfigApi) GetRUMSdkConfig(ctx _context.Context, configId string) (RUMSdkConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumSdkConfigResponse
+		localVarReturnValue RUMSdkConfigResponse
 	)
 
-	operationId := "v2.GetRumSdkConfig"
+	operationId := "v2.GetRUMSdkConfig"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -35,7 +35,7 @@ func (a *RUMRemoteConfigApi) GetRumSdkConfig(ctx _context.Context, configId stri
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRemoteConfigApi.GetRumSdkConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRemoteConfigApi.GetRUMSdkConfig")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -113,17 +113,17 @@ func (a *RUMRemoteConfigApi) GetRumSdkConfig(ctx _context.Context, configId stri
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateRumSdkConfig Update a RUM SDK configuration.
+// UpdateRUMSdkConfig Update a RUM SDK configuration.
 // Update an existing RUM SDK configuration by its identifier.
 // Returns the updated configuration when successful.
-func (a *RUMRemoteConfigApi) UpdateRumSdkConfig(ctx _context.Context, configId string, body RumSdkConfigUpdateRequest) (RumSdkConfigResponse, *_nethttp.Response, error) {
+func (a *RUMRemoteConfigApi) UpdateRUMSdkConfig(ctx _context.Context, configId string, body RUMSdkConfigUpdateRequest) (RUMSdkConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
-		localVarReturnValue RumSdkConfigResponse
+		localVarReturnValue RUMSdkConfigResponse
 	)
 
-	operationId := "v2.UpdateRumSdkConfig"
+	operationId := "v2.UpdateRUMSdkConfig"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -132,7 +132,7 @@ func (a *RUMRemoteConfigApi) UpdateRumSdkConfig(ctx _context.Context, configId s
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRemoteConfigApi.UpdateRumSdkConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRemoteConfigApi.UpdateRUMSdkConfig")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

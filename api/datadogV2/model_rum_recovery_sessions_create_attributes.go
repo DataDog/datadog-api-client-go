@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoverySessionsCreateAttributes Recover 1 to 100 explicit archived sessions. Session IDs must be unique within the request.
-type RumRecoverySessionsCreateAttributes struct {
+// RUMRecoverySessionsCreateAttributes Recover 1 to 100 explicit archived sessions. Session IDs must be unique within the request.
+type RUMRecoverySessionsCreateAttributes struct {
 	// Targeted recovery. Omitted request_type defaults to sessions.
-	RequestType *RumRecoverySessionsRequestType `json:"request_type,omitempty"`
+	RequestType *RUMRecoverySessionsRequestType `json:"request_type,omitempty"`
 	// Sessions to recover.
-	Sessions []RumRecoverySessionInput `json:"sessions"`
+	Sessions []RUMRecoverySessionInput `json:"sessions"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoverySessionsCreateAttributes instantiates a new RumRecoverySessionsCreateAttributes object.
+// NewRUMRecoverySessionsCreateAttributes instantiates a new RUMRecoverySessionsCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoverySessionsCreateAttributes(sessions []RumRecoverySessionInput) *RumRecoverySessionsCreateAttributes {
-	this := RumRecoverySessionsCreateAttributes{}
-	var requestType RumRecoverySessionsRequestType = RUMRECOVERYSESSIONSREQUESTTYPE_SESSIONS
+func NewRUMRecoverySessionsCreateAttributes(sessions []RUMRecoverySessionInput) *RUMRecoverySessionsCreateAttributes {
+	this := RUMRecoverySessionsCreateAttributes{}
+	var requestType RUMRecoverySessionsRequestType = RUMRECOVERYSESSIONSREQUESTTYPE_SESSIONS
 	this.RequestType = &requestType
 	this.Sessions = sessions
 	return &this
 }
 
-// NewRumRecoverySessionsCreateAttributesWithDefaults instantiates a new RumRecoverySessionsCreateAttributes object.
+// NewRUMRecoverySessionsCreateAttributesWithDefaults instantiates a new RUMRecoverySessionsCreateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoverySessionsCreateAttributesWithDefaults() *RumRecoverySessionsCreateAttributes {
-	this := RumRecoverySessionsCreateAttributes{}
-	var requestType RumRecoverySessionsRequestType = RUMRECOVERYSESSIONSREQUESTTYPE_SESSIONS
+func NewRUMRecoverySessionsCreateAttributesWithDefaults() *RUMRecoverySessionsCreateAttributes {
+	this := RUMRecoverySessionsCreateAttributes{}
+	var requestType RUMRecoverySessionsRequestType = RUMRECOVERYSESSIONSREQUESTTYPE_SESSIONS
 	this.RequestType = &requestType
 	return &this
 }
 
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
-func (o *RumRecoverySessionsCreateAttributes) GetRequestType() RumRecoverySessionsRequestType {
+func (o *RUMRecoverySessionsCreateAttributes) GetRequestType() RUMRecoverySessionsRequestType {
 	if o == nil || o.RequestType == nil {
-		var ret RumRecoverySessionsRequestType
+		var ret RUMRecoverySessionsRequestType
 		return ret
 	}
 	return *o.RequestType
@@ -54,7 +54,7 @@ func (o *RumRecoverySessionsCreateAttributes) GetRequestType() RumRecoverySessio
 
 // GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoverySessionsCreateAttributes) GetRequestTypeOk() (*RumRecoverySessionsRequestType, bool) {
+func (o *RUMRecoverySessionsCreateAttributes) GetRequestTypeOk() (*RUMRecoverySessionsRequestType, bool) {
 	if o == nil || o.RequestType == nil {
 		return nil, false
 	}
@@ -62,19 +62,19 @@ func (o *RumRecoverySessionsCreateAttributes) GetRequestTypeOk() (*RumRecoverySe
 }
 
 // HasRequestType returns a boolean if a field has been set.
-func (o *RumRecoverySessionsCreateAttributes) HasRequestType() bool {
+func (o *RUMRecoverySessionsCreateAttributes) HasRequestType() bool {
 	return o != nil && o.RequestType != nil
 }
 
-// SetRequestType gets a reference to the given RumRecoverySessionsRequestType and assigns it to the RequestType field.
-func (o *RumRecoverySessionsCreateAttributes) SetRequestType(v RumRecoverySessionsRequestType) {
+// SetRequestType gets a reference to the given RUMRecoverySessionsRequestType and assigns it to the RequestType field.
+func (o *RUMRecoverySessionsCreateAttributes) SetRequestType(v RUMRecoverySessionsRequestType) {
 	o.RequestType = &v
 }
 
 // GetSessions returns the Sessions field value.
-func (o *RumRecoverySessionsCreateAttributes) GetSessions() []RumRecoverySessionInput {
+func (o *RUMRecoverySessionsCreateAttributes) GetSessions() []RUMRecoverySessionInput {
 	if o == nil {
-		var ret []RumRecoverySessionInput
+		var ret []RUMRecoverySessionInput
 		return ret
 	}
 	return o.Sessions
@@ -82,7 +82,7 @@ func (o *RumRecoverySessionsCreateAttributes) GetSessions() []RumRecoverySession
 
 // GetSessionsOk returns a tuple with the Sessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoverySessionsCreateAttributes) GetSessionsOk() (*[]RumRecoverySessionInput, bool) {
+func (o *RUMRecoverySessionsCreateAttributes) GetSessionsOk() (*[]RUMRecoverySessionInput, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,12 +90,12 @@ func (o *RumRecoverySessionsCreateAttributes) GetSessionsOk() (*[]RumRecoverySes
 }
 
 // SetSessions sets field value.
-func (o *RumRecoverySessionsCreateAttributes) SetSessions(v []RumRecoverySessionInput) {
+func (o *RUMRecoverySessionsCreateAttributes) SetSessions(v []RUMRecoverySessionInput) {
 	o.Sessions = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoverySessionsCreateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoverySessionsCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o RumRecoverySessionsCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoverySessionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoverySessionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RequestType *RumRecoverySessionsRequestType `json:"request_type,omitempty"`
-		Sessions    *[]RumRecoverySessionInput      `json:"sessions"`
+		RequestType *RUMRecoverySessionsRequestType `json:"request_type,omitempty"`
+		Sessions    *[]RUMRecoverySessionInput      `json:"sessions"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -17,11 +17,11 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteConnection", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumAudienceManagementApi(apiClient)
+	api := datadogV2.NewRUMAudienceManagementApi(apiClient)
 	r, err := api.DeleteConnection(ctx, "connection-id-123", "users")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumAudienceManagementApi.DeleteConnection`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMAudienceManagementApi.DeleteConnection`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

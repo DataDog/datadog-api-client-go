@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFiltersResponse All exclusion filters for a RUM application.
-type RumExclusionFiltersResponse struct {
+// RUMExclusionFiltersResponse All exclusion filters for a RUM application.
+type RUMExclusionFiltersResponse struct {
 	// A list of exclusion filters.
-	Data []RumExclusionFilterData `json:"data,omitempty"`
+	Data []RUMExclusionFilterData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFiltersResponse instantiates a new RumExclusionFiltersResponse object.
+// NewRUMExclusionFiltersResponse instantiates a new RUMExclusionFiltersResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFiltersResponse() *RumExclusionFiltersResponse {
-	this := RumExclusionFiltersResponse{}
+func NewRUMExclusionFiltersResponse() *RUMExclusionFiltersResponse {
+	this := RUMExclusionFiltersResponse{}
 	return &this
 }
 
-// NewRumExclusionFiltersResponseWithDefaults instantiates a new RumExclusionFiltersResponse object.
+// NewRUMExclusionFiltersResponseWithDefaults instantiates a new RUMExclusionFiltersResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFiltersResponseWithDefaults() *RumExclusionFiltersResponse {
-	this := RumExclusionFiltersResponse{}
+func NewRUMExclusionFiltersResponseWithDefaults() *RUMExclusionFiltersResponse {
+	this := RUMExclusionFiltersResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RumExclusionFiltersResponse) GetData() []RumExclusionFilterData {
+func (o *RUMExclusionFiltersResponse) GetData() []RUMExclusionFilterData {
 	if o == nil || o.Data == nil {
-		var ret []RumExclusionFilterData
+		var ret []RUMExclusionFilterData
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *RumExclusionFiltersResponse) GetData() []RumExclusionFilterData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFiltersResponse) GetDataOk() (*[]RumExclusionFilterData, bool) {
+func (o *RUMExclusionFiltersResponse) GetDataOk() (*[]RUMExclusionFilterData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumExclusionFiltersResponse) GetDataOk() (*[]RumExclusionFilterData, bo
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RumExclusionFiltersResponse) HasData() bool {
+func (o *RUMExclusionFiltersResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []RumExclusionFilterData and assigns it to the Data field.
-func (o *RumExclusionFiltersResponse) SetData(v []RumExclusionFilterData) {
+// SetData gets a reference to the given []RUMExclusionFilterData and assigns it to the Data field.
+func (o *RUMExclusionFiltersResponse) SetData(v []RUMExclusionFilterData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFiltersResponse) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFiltersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RumExclusionFiltersResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []RumExclusionFilterData `json:"data,omitempty"`
+		Data []RUMExclusionFilterData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

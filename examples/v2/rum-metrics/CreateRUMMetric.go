@@ -13,25 +13,25 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumMetricCreateRequest{
-		Data: datadogV2.RumMetricCreateData{
-			Attributes: datadogV2.RumMetricCreateAttributes{
-				Compute: datadogV2.RumMetricCompute{
+	body := datadogV2.RUMMetricCreateRequest{
+		Data: datadogV2.RUMMetricCreateData{
+			Attributes: datadogV2.RUMMetricCreateAttributes{
+				Compute: datadogV2.RUMMetricCompute{
 					AggregationType:    datadogV2.RUMMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
 					IncludePercentiles: datadog.PtrBool(true),
 					Path:               datadog.PtrString("@duration"),
 				},
 				EventType: datadogV2.RUMMETRICEVENTTYPE_SESSION,
-				Filter: &datadogV2.RumMetricFilter{
+				Filter: &datadogV2.RUMMetricFilter{
 					Query: "@service:web-ui",
 				},
-				GroupBy: []datadogV2.RumMetricGroupBy{
+				GroupBy: []datadogV2.RUMMetricGroupBy{
 					{
 						Path:    "@browser.name",
 						TagName: datadog.PtrString("browser_name"),
 					},
 				},
-				Uniqueness: &datadogV2.RumMetricUniqueness{
+				Uniqueness: &datadogV2.RUMMetricUniqueness{
 					When: datadogV2.RUMMETRICUNIQUENESSWHEN_WHEN_MATCH,
 				},
 			},
@@ -43,14 +43,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumMetricsApi(apiClient)
-	resp, r, err := api.CreateRumMetric(ctx, body)
+	api := datadogV2.NewRUMMetricsApi(apiClient)
+	resp, r, err := api.CreateRUMMetric(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumMetricsApi.CreateRumMetric`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMMetricsApi.CreateRUMMetric`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumMetricsApi.CreateRumMetric`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMMetricsApi.CreateRUMMetric`:\n%s\n", responseContent)
 }

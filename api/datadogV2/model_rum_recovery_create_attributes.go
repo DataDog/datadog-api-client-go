@@ -8,80 +8,80 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCreateAttributes - Targeted recovery (the default) or query-based batch recovery.
-type RumRecoveryCreateAttributes struct {
-	RumRecoverySessionsCreateAttributes *RumRecoverySessionsCreateAttributes
-	RumRecoveryBatchCreateAttributes    *RumRecoveryBatchCreateAttributes
+// RUMRecoveryCreateAttributes - Targeted recovery (the default) or query-based batch recovery.
+type RUMRecoveryCreateAttributes struct {
+	RUMRecoverySessionsCreateAttributes *RUMRecoverySessionsCreateAttributes
+	RUMRecoveryBatchCreateAttributes    *RUMRecoveryBatchCreateAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// RumRecoverySessionsCreateAttributesAsRumRecoveryCreateAttributes is a convenience function that returns RumRecoverySessionsCreateAttributes wrapped in RumRecoveryCreateAttributes.
-func RumRecoverySessionsCreateAttributesAsRumRecoveryCreateAttributes(v *RumRecoverySessionsCreateAttributes) RumRecoveryCreateAttributes {
-	return RumRecoveryCreateAttributes{RumRecoverySessionsCreateAttributes: v}
+// RUMRecoverySessionsCreateAttributesAsRUMRecoveryCreateAttributes is a convenience function that returns RUMRecoverySessionsCreateAttributes wrapped in RUMRecoveryCreateAttributes.
+func RUMRecoverySessionsCreateAttributesAsRUMRecoveryCreateAttributes(v *RUMRecoverySessionsCreateAttributes) RUMRecoveryCreateAttributes {
+	return RUMRecoveryCreateAttributes{RUMRecoverySessionsCreateAttributes: v}
 }
 
-// RumRecoveryBatchCreateAttributesAsRumRecoveryCreateAttributes is a convenience function that returns RumRecoveryBatchCreateAttributes wrapped in RumRecoveryCreateAttributes.
-func RumRecoveryBatchCreateAttributesAsRumRecoveryCreateAttributes(v *RumRecoveryBatchCreateAttributes) RumRecoveryCreateAttributes {
-	return RumRecoveryCreateAttributes{RumRecoveryBatchCreateAttributes: v}
+// RUMRecoveryBatchCreateAttributesAsRUMRecoveryCreateAttributes is a convenience function that returns RUMRecoveryBatchCreateAttributes wrapped in RUMRecoveryCreateAttributes.
+func RUMRecoveryBatchCreateAttributesAsRUMRecoveryCreateAttributes(v *RUMRecoveryBatchCreateAttributes) RUMRecoveryCreateAttributes {
+	return RUMRecoveryCreateAttributes{RUMRecoveryBatchCreateAttributes: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *RumRecoveryCreateAttributes) UnmarshalJSON(data []byte) error {
+func (obj *RUMRecoveryCreateAttributes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into RumRecoverySessionsCreateAttributes
-	err = datadog.Unmarshal(data, &obj.RumRecoverySessionsCreateAttributes)
+	// try to unmarshal data into RUMRecoverySessionsCreateAttributes
+	err = datadog.Unmarshal(data, &obj.RUMRecoverySessionsCreateAttributes)
 	if err == nil {
-		if obj.RumRecoverySessionsCreateAttributes != nil && obj.RumRecoverySessionsCreateAttributes.UnparsedObject == nil {
-			jsonRumRecoverySessionsCreateAttributes, _ := datadog.Marshal(obj.RumRecoverySessionsCreateAttributes)
-			if string(jsonRumRecoverySessionsCreateAttributes) == "{}" { // empty struct
-				obj.RumRecoverySessionsCreateAttributes = nil
+		if obj.RUMRecoverySessionsCreateAttributes != nil && obj.RUMRecoverySessionsCreateAttributes.UnparsedObject == nil {
+			jsonRUMRecoverySessionsCreateAttributes, _ := datadog.Marshal(obj.RUMRecoverySessionsCreateAttributes)
+			if string(jsonRUMRecoverySessionsCreateAttributes) == "{}" { // empty struct
+				obj.RUMRecoverySessionsCreateAttributes = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.RumRecoverySessionsCreateAttributes = nil
+			obj.RUMRecoverySessionsCreateAttributes = nil
 		}
 	} else {
-		obj.RumRecoverySessionsCreateAttributes = nil
+		obj.RUMRecoverySessionsCreateAttributes = nil
 	}
 
-	// try to unmarshal data into RumRecoveryBatchCreateAttributes
-	err = datadog.Unmarshal(data, &obj.RumRecoveryBatchCreateAttributes)
+	// try to unmarshal data into RUMRecoveryBatchCreateAttributes
+	err = datadog.Unmarshal(data, &obj.RUMRecoveryBatchCreateAttributes)
 	if err == nil {
-		if obj.RumRecoveryBatchCreateAttributes != nil && obj.RumRecoveryBatchCreateAttributes.UnparsedObject == nil {
-			jsonRumRecoveryBatchCreateAttributes, _ := datadog.Marshal(obj.RumRecoveryBatchCreateAttributes)
-			if string(jsonRumRecoveryBatchCreateAttributes) == "{}" { // empty struct
-				obj.RumRecoveryBatchCreateAttributes = nil
+		if obj.RUMRecoveryBatchCreateAttributes != nil && obj.RUMRecoveryBatchCreateAttributes.UnparsedObject == nil {
+			jsonRUMRecoveryBatchCreateAttributes, _ := datadog.Marshal(obj.RUMRecoveryBatchCreateAttributes)
+			if string(jsonRUMRecoveryBatchCreateAttributes) == "{}" { // empty struct
+				obj.RUMRecoveryBatchCreateAttributes = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.RumRecoveryBatchCreateAttributes = nil
+			obj.RUMRecoveryBatchCreateAttributes = nil
 		}
 	} else {
-		obj.RumRecoveryBatchCreateAttributes = nil
+		obj.RUMRecoveryBatchCreateAttributes = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.RumRecoverySessionsCreateAttributes = nil
-		obj.RumRecoveryBatchCreateAttributes = nil
+		obj.RUMRecoverySessionsCreateAttributes = nil
+		obj.RUMRecoveryBatchCreateAttributes = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj RumRecoveryCreateAttributes) MarshalJSON() ([]byte, error) {
-	if obj.RumRecoverySessionsCreateAttributes != nil {
-		return datadog.Marshal(&obj.RumRecoverySessionsCreateAttributes)
+func (obj RUMRecoveryCreateAttributes) MarshalJSON() ([]byte, error) {
+	if obj.RUMRecoverySessionsCreateAttributes != nil {
+		return datadog.Marshal(&obj.RUMRecoverySessionsCreateAttributes)
 	}
 
-	if obj.RumRecoveryBatchCreateAttributes != nil {
-		return datadog.Marshal(&obj.RumRecoveryBatchCreateAttributes)
+	if obj.RUMRecoveryBatchCreateAttributes != nil {
+		return datadog.Marshal(&obj.RUMRecoveryBatchCreateAttributes)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -91,13 +91,13 @@ func (obj RumRecoveryCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *RumRecoveryCreateAttributes) GetActualInstance() interface{} {
-	if obj.RumRecoverySessionsCreateAttributes != nil {
-		return obj.RumRecoverySessionsCreateAttributes
+func (obj *RUMRecoveryCreateAttributes) GetActualInstance() interface{} {
+	if obj.RUMRecoverySessionsCreateAttributes != nil {
+		return obj.RUMRecoverySessionsCreateAttributes
 	}
 
-	if obj.RumRecoveryBatchCreateAttributes != nil {
-		return obj.RumRecoveryBatchCreateAttributes
+	if obj.RUMRecoveryBatchCreateAttributes != nil {
+		return obj.RUMRecoveryBatchCreateAttributes
 	}
 
 	// all schemas are nil

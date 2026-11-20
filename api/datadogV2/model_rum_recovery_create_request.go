@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCreateRequest JSON:API document.
-type RumRecoveryCreateRequest struct {
+// RUMRecoveryCreateRequest JSON:API document.
+type RUMRecoveryCreateRequest struct {
 	// JSON:API resource.
-	Data RumRecoveryCreateData `json:"data"`
+	Data RUMRecoveryCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCreateRequest instantiates a new RumRecoveryCreateRequest object.
+// NewRUMRecoveryCreateRequest instantiates a new RUMRecoveryCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCreateRequest(data RumRecoveryCreateData) *RumRecoveryCreateRequest {
-	this := RumRecoveryCreateRequest{}
+func NewRUMRecoveryCreateRequest(data RUMRecoveryCreateData) *RUMRecoveryCreateRequest {
+	this := RUMRecoveryCreateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumRecoveryCreateRequestWithDefaults instantiates a new RumRecoveryCreateRequest object.
+// NewRUMRecoveryCreateRequestWithDefaults instantiates a new RUMRecoveryCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCreateRequestWithDefaults() *RumRecoveryCreateRequest {
-	this := RumRecoveryCreateRequest{}
+func NewRUMRecoveryCreateRequestWithDefaults() *RUMRecoveryCreateRequest {
+	this := RUMRecoveryCreateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumRecoveryCreateRequest) GetData() RumRecoveryCreateData {
+func (o *RUMRecoveryCreateRequest) GetData() RUMRecoveryCreateData {
 	if o == nil {
-		var ret RumRecoveryCreateData
+		var ret RUMRecoveryCreateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumRecoveryCreateRequest) GetData() RumRecoveryCreateData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateRequest) GetDataOk() (*RumRecoveryCreateData, bool) {
+func (o *RUMRecoveryCreateRequest) GetDataOk() (*RUMRecoveryCreateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumRecoveryCreateRequest) GetDataOk() (*RumRecoveryCreateData, bool) {
 }
 
 // SetData sets field value.
-func (o *RumRecoveryCreateRequest) SetData(v RumRecoveryCreateData) {
+func (o *RUMRecoveryCreateRequest) SetData(v RUMRecoveryCreateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCreateRequest) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumRecoveryCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumRecoveryCreateData `json:"data"`
+		Data *RUMRecoveryCreateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

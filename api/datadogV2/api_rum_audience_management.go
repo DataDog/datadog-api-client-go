@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumAudienceManagementApi service type
-type RumAudienceManagementApi datadog.Service
+// RUMAudienceManagementApi service type
+type RUMAudienceManagementApi datadog.Service
 
 // CreateConnection Create connection.
 // Create a new data connection and its fields for an entity
-func (a *RumAudienceManagementApi) CreateConnection(ctx _context.Context, entity string, body CreateConnectionRequest) (*_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) CreateConnection(ctx _context.Context, entity string, body CreateConnectionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
@@ -34,7 +34,7 @@ func (a *RumAudienceManagementApi) CreateConnection(ctx _context.Context, entity
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.CreateConnection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.CreateConnection")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -99,7 +99,7 @@ func (a *RumAudienceManagementApi) CreateConnection(ctx _context.Context, entity
 
 // DeleteConnection Delete connection.
 // Delete an existing data connection for an entity
-func (a *RumAudienceManagementApi) DeleteConnection(ctx _context.Context, id string, entity string) (*_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) DeleteConnection(ctx _context.Context, id string, entity string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -114,7 +114,7 @@ func (a *RumAudienceManagementApi) DeleteConnection(ctx _context.Context, id str
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.DeleteConnection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.DeleteConnection")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -179,7 +179,7 @@ func (a *RumAudienceManagementApi) DeleteConnection(ctx _context.Context, id str
 // Delete a Product Analytics user profile.
 // Deletion is asynchronous: the request is accepted and the profile is removed shortly after, usually within a few minutes.
 // This only deletes the user profile. To delete the RUM events of the user, use the RUM data deletion API.
-func (a *RumAudienceManagementApi) DeleteUserProfile(ctx _context.Context, userId string) (*_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) DeleteUserProfile(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -194,7 +194,7 @@ func (a *RumAudienceManagementApi) DeleteUserProfile(ctx _context.Context, userI
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.DeleteUserProfile")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.DeleteUserProfile")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -265,7 +265,7 @@ func (a *RumAudienceManagementApi) DeleteUserProfile(ctx _context.Context, userI
 
 // GetAccountFacetInfo Get account facet info.
 // Get facet information for account attributes including possible values and counts
-func (a *RumAudienceManagementApi) GetAccountFacetInfo(ctx _context.Context, body FacetInfoRequest) (FacetInfoResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) GetAccountFacetInfo(ctx _context.Context, body FacetInfoRequest) (FacetInfoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -281,7 +281,7 @@ func (a *RumAudienceManagementApi) GetAccountFacetInfo(ctx _context.Context, bod
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.GetAccountFacetInfo")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.GetAccountFacetInfo")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -354,7 +354,7 @@ func (a *RumAudienceManagementApi) GetAccountFacetInfo(ctx _context.Context, bod
 
 // GetMapping Get mapping.
 // Get entity mapping configuration including all available attributes and their properties
-func (a *RumAudienceManagementApi) GetMapping(ctx _context.Context, entity string) (GetMappingResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) GetMapping(ctx _context.Context, entity string) (GetMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -370,7 +370,7 @@ func (a *RumAudienceManagementApi) GetMapping(ctx _context.Context, entity strin
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.GetMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.GetMapping")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -441,7 +441,7 @@ func (a *RumAudienceManagementApi) GetMapping(ctx _context.Context, entity strin
 
 // GetUserFacetInfo Get user facet info.
 // Get facet information for user attributes including possible values and counts
-func (a *RumAudienceManagementApi) GetUserFacetInfo(ctx _context.Context, body FacetInfoRequest) (FacetInfoResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) GetUserFacetInfo(ctx _context.Context, body FacetInfoRequest) (FacetInfoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -457,7 +457,7 @@ func (a *RumAudienceManagementApi) GetUserFacetInfo(ctx _context.Context, body F
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.GetUserFacetInfo")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.GetUserFacetInfo")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -530,7 +530,7 @@ func (a *RumAudienceManagementApi) GetUserFacetInfo(ctx _context.Context, body F
 
 // ListConnections List connections.
 // List all data connections for an entity
-func (a *RumAudienceManagementApi) ListConnections(ctx _context.Context, entity string) (ListConnectionsResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) ListConnections(ctx _context.Context, entity string) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -546,7 +546,7 @@ func (a *RumAudienceManagementApi) ListConnections(ctx _context.Context, entity 
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.ListConnections")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.ListConnections")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -617,7 +617,7 @@ func (a *RumAudienceManagementApi) ListConnections(ctx _context.Context, entity 
 
 // QueryAccounts Query accounts.
 // Query accounts with flexible filtering by account properties
-func (a *RumAudienceManagementApi) QueryAccounts(ctx _context.Context, body QueryAccountRequest) (QueryResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) QueryAccounts(ctx _context.Context, body QueryAccountRequest) (QueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -633,7 +633,7 @@ func (a *RumAudienceManagementApi) QueryAccounts(ctx _context.Context, body Quer
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.QueryAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.QueryAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -706,7 +706,7 @@ func (a *RumAudienceManagementApi) QueryAccounts(ctx _context.Context, body Quer
 
 // QueryEventFilteredUsers Query event filtered users.
 // Query users filtered by both user properties and event platform data
-func (a *RumAudienceManagementApi) QueryEventFilteredUsers(ctx _context.Context, body QueryEventFilteredUsersRequest) (QueryResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) QueryEventFilteredUsers(ctx _context.Context, body QueryEventFilteredUsersRequest) (QueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -722,7 +722,7 @@ func (a *RumAudienceManagementApi) QueryEventFilteredUsers(ctx _context.Context,
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.QueryEventFilteredUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.QueryEventFilteredUsers")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -795,7 +795,7 @@ func (a *RumAudienceManagementApi) QueryEventFilteredUsers(ctx _context.Context,
 
 // QueryUsers Query users.
 // Query users with flexible filtering by user properties, with optional wildcard search
-func (a *RumAudienceManagementApi) QueryUsers(ctx _context.Context, body QueryUsersRequest) (QueryResponse, *_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) QueryUsers(ctx _context.Context, body QueryUsersRequest) (QueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -811,7 +811,7 @@ func (a *RumAudienceManagementApi) QueryUsers(ctx _context.Context, body QueryUs
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.QueryUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.QueryUsers")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -884,7 +884,7 @@ func (a *RumAudienceManagementApi) QueryUsers(ctx _context.Context, body QueryUs
 
 // UpdateConnection Update connection.
 // Update an existing data connection by adding, updating, or deleting fields
-func (a *RumAudienceManagementApi) UpdateConnection(ctx _context.Context, entity string, body UpdateConnectionRequest) (*_nethttp.Response, error) {
+func (a *RUMAudienceManagementApi) UpdateConnection(ctx _context.Context, entity string, body UpdateConnectionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
 		localVarPostBody   interface{}
@@ -899,7 +899,7 @@ func (a *RumAudienceManagementApi) UpdateConnection(ctx _context.Context, entity
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumAudienceManagementApi.UpdateConnection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMAudienceManagementApi.UpdateConnection")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -962,9 +962,9 @@ func (a *RumAudienceManagementApi) UpdateConnection(ctx _context.Context, entity
 	return localVarHTTPResponse, nil
 }
 
-// NewRumAudienceManagementApi Returns NewRumAudienceManagementApi.
-func NewRumAudienceManagementApi(client *datadog.APIClient) *RumAudienceManagementApi {
-	return &RumAudienceManagementApi{
+// NewRUMAudienceManagementApi Returns NewRUMAudienceManagementApi.
+func NewRUMAudienceManagementApi(client *datadog.APIClient) *RUMAudienceManagementApi {
+	return &RUMAudienceManagementApi{
 		Client: client,
 	}
 }

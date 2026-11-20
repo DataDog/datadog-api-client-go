@@ -10,52 +10,52 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterEditionMode The types of changes the retention filter accepts. `complete` filters can be updated and deleted.
+// RUMRetentionFilterEditionMode The types of changes the retention filter accepts. `complete` filters can be updated and deleted.
 // `limited` filters are default retention filters that can't be deleted.
-type RumRetentionFilterEditionMode string
+type RUMRetentionFilterEditionMode string
 
-// List of RumRetentionFilterEditionMode.
+// List of RUMRetentionFilterEditionMode.
 const (
-	RUMRETENTIONFILTEREDITIONMODE_UNKNOWN  RumRetentionFilterEditionMode = "unknown"
-	RUMRETENTIONFILTEREDITIONMODE_COMPLETE RumRetentionFilterEditionMode = "complete"
-	RUMRETENTIONFILTEREDITIONMODE_LIMITED  RumRetentionFilterEditionMode = "limited"
+	RUMRETENTIONFILTEREDITIONMODE_UNKNOWN  RUMRetentionFilterEditionMode = "unknown"
+	RUMRETENTIONFILTEREDITIONMODE_COMPLETE RUMRetentionFilterEditionMode = "complete"
+	RUMRETENTIONFILTEREDITIONMODE_LIMITED  RUMRetentionFilterEditionMode = "limited"
 )
 
-var allowedRumRetentionFilterEditionModeEnumValues = []RumRetentionFilterEditionMode{
+var allowedRUMRetentionFilterEditionModeEnumValues = []RUMRetentionFilterEditionMode{
 	RUMRETENTIONFILTEREDITIONMODE_UNKNOWN,
 	RUMRETENTIONFILTEREDITIONMODE_COMPLETE,
 	RUMRETENTIONFILTEREDITIONMODE_LIMITED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionFilterEditionMode) GetAllowedValues() []RumRetentionFilterEditionMode {
-	return allowedRumRetentionFilterEditionModeEnumValues
+func (v *RUMRetentionFilterEditionMode) GetAllowedValues() []RUMRetentionFilterEditionMode {
+	return allowedRUMRetentionFilterEditionModeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionFilterEditionMode) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionFilterEditionMode) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionFilterEditionMode(value)
+	*v = RUMRetentionFilterEditionMode(value)
 	return nil
 }
 
-// NewRumRetentionFilterEditionModeFromValue returns a pointer to a valid RumRetentionFilterEditionMode
+// NewRUMRetentionFilterEditionModeFromValue returns a pointer to a valid RUMRetentionFilterEditionMode
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionFilterEditionModeFromValue(v string) (*RumRetentionFilterEditionMode, error) {
-	ev := RumRetentionFilterEditionMode(v)
+func NewRUMRetentionFilterEditionModeFromValue(v string) (*RUMRetentionFilterEditionMode, error) {
+	ev := RUMRetentionFilterEditionMode(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionFilterEditionMode: valid values are %v", v, allowedRumRetentionFilterEditionModeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionFilterEditionMode: valid values are %v", v, allowedRUMRetentionFilterEditionModeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionFilterEditionMode) IsValid() bool {
-	for _, existing := range allowedRumRetentionFilterEditionModeEnumValues {
+func (v RUMRetentionFilterEditionMode) IsValid() bool {
+	for _, existing := range allowedRUMRetentionFilterEditionModeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -63,7 +63,7 @@ func (v RumRetentionFilterEditionMode) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionFilterEditionMode value.
-func (v RumRetentionFilterEditionMode) Ptr() *RumRetentionFilterEditionMode {
+// Ptr returns reference to RUMRetentionFilterEditionMode value.
+func (v RUMRetentionFilterEditionMode) Ptr() *RUMRetentionFilterEditionMode {
 	return &v
 }

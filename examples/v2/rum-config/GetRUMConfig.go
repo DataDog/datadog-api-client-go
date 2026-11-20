@@ -1,9 +1,10 @@
-// Delete RUM replay playlist returns "No Content" response
+// Get the RUM configuration returns "OK" response
 
 package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,12 +16,16 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetRUMConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	r, err := api.DeleteRumReplayPlaylist(ctx, 1234567)
+	api := datadogV2.NewRUMConfigApi(apiClient)
+	resp, r, err := api.GetRUMConfig(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.DeleteRumReplayPlaylist`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMConfigApi.GetRUMConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `RUMConfigApi.GetRUMConfig`:\n%s\n", responseContent)
 }

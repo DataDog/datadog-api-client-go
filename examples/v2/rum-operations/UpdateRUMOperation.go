@@ -22,7 +22,7 @@ func main() {
 				Description:   *datadog.NewNullableString(nil),
 				DisplayName:   datadog.PtrString("Checkout completed"),
 				FeatureIds:    []string{},
-				JourneyRum: datadogV2.RUMOperationJourneyRum{
+				JourneyRum: datadogV2.RUMOperationJourneyRUM{
 					RumSteps: *datadog.NewNullableList(&[]datadogV2.RUMOperationJourneyStep{
 						{
 							Composite: &datadogV2.RUMOperationJourneyCompositeRule{

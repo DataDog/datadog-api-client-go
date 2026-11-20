@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigUpsertAttributes Archive configuration to save. When enabled is true, retention_days is required and must be 30, 90, or 180. When disabled, retention_days can be omitted.
-type RumArchiveConfigUpsertAttributes struct {
+// RUMArchiveConfigUpsertAttributes Archive configuration to save. When enabled is true, retention_days is required and must be 30, 90, or 180. When disabled, retention_days can be omitted.
+type RUMArchiveConfigUpsertAttributes struct {
 	// Whether archiving is enabled.
 	Enabled bool `json:"enabled"`
 	// Retention in days. When enabled is true, required and restricted to 30, 90, or 180. When enabled is false, this field can be omitted.
@@ -21,26 +21,26 @@ type RumArchiveConfigUpsertAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigUpsertAttributes instantiates a new RumArchiveConfigUpsertAttributes object.
+// NewRUMArchiveConfigUpsertAttributes instantiates a new RUMArchiveConfigUpsertAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigUpsertAttributes(enabled bool) *RumArchiveConfigUpsertAttributes {
-	this := RumArchiveConfigUpsertAttributes{}
+func NewRUMArchiveConfigUpsertAttributes(enabled bool) *RUMArchiveConfigUpsertAttributes {
+	this := RUMArchiveConfigUpsertAttributes{}
 	this.Enabled = enabled
 	return &this
 }
 
-// NewRumArchiveConfigUpsertAttributesWithDefaults instantiates a new RumArchiveConfigUpsertAttributes object.
+// NewRUMArchiveConfigUpsertAttributesWithDefaults instantiates a new RUMArchiveConfigUpsertAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigUpsertAttributesWithDefaults() *RumArchiveConfigUpsertAttributes {
-	this := RumArchiveConfigUpsertAttributes{}
+func NewRUMArchiveConfigUpsertAttributesWithDefaults() *RUMArchiveConfigUpsertAttributes {
+	this := RUMArchiveConfigUpsertAttributes{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value.
-func (o *RumArchiveConfigUpsertAttributes) GetEnabled() bool {
+func (o *RUMArchiveConfigUpsertAttributes) GetEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -50,7 +50,7 @@ func (o *RumArchiveConfigUpsertAttributes) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertAttributes) GetEnabledOk() (*bool, bool) {
+func (o *RUMArchiveConfigUpsertAttributes) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,12 +58,12 @@ func (o *RumArchiveConfigUpsertAttributes) GetEnabledOk() (*bool, bool) {
 }
 
 // SetEnabled sets field value.
-func (o *RumArchiveConfigUpsertAttributes) SetEnabled(v bool) {
+func (o *RUMArchiveConfigUpsertAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
-func (o *RumArchiveConfigUpsertAttributes) GetRetentionDays() int32 {
+func (o *RUMArchiveConfigUpsertAttributes) GetRetentionDays() int32 {
 	if o == nil || o.RetentionDays == nil {
 		var ret int32
 		return ret
@@ -73,7 +73,7 @@ func (o *RumArchiveConfigUpsertAttributes) GetRetentionDays() int32 {
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertAttributes) GetRetentionDaysOk() (*int32, bool) {
+func (o *RUMArchiveConfigUpsertAttributes) GetRetentionDaysOk() (*int32, bool) {
 	if o == nil || o.RetentionDays == nil {
 		return nil, false
 	}
@@ -81,17 +81,17 @@ func (o *RumArchiveConfigUpsertAttributes) GetRetentionDaysOk() (*int32, bool) {
 }
 
 // HasRetentionDays returns a boolean if a field has been set.
-func (o *RumArchiveConfigUpsertAttributes) HasRetentionDays() bool {
+func (o *RUMArchiveConfigUpsertAttributes) HasRetentionDays() bool {
 	return o != nil && o.RetentionDays != nil
 }
 
 // SetRetentionDays gets a reference to the given int32 and assigns it to the RetentionDays field.
-func (o *RumArchiveConfigUpsertAttributes) SetRetentionDays(v int32) {
+func (o *RUMArchiveConfigUpsertAttributes) SetRetentionDays(v int32) {
 	o.RetentionDays = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigUpsertAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigUpsertAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,7 +108,7 @@ func (o RumArchiveConfigUpsertAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigUpsertAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigUpsertAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enabled       *bool  `json:"enabled"`
 		RetentionDays *int32 `json:"retention_days,omitempty"`

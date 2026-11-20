@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCancelResponse JSON:API document.
-type RumRecoveryCancelResponse struct {
+// RUMRecoveryCancelResponse JSON:API document.
+type RUMRecoveryCancelResponse struct {
 	// JSON:API resource.
-	Data RumRecoveryCancelResponseData `json:"data"`
+	Data RUMRecoveryCancelResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCancelResponse instantiates a new RumRecoveryCancelResponse object.
+// NewRUMRecoveryCancelResponse instantiates a new RUMRecoveryCancelResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCancelResponse(data RumRecoveryCancelResponseData) *RumRecoveryCancelResponse {
-	this := RumRecoveryCancelResponse{}
+func NewRUMRecoveryCancelResponse(data RUMRecoveryCancelResponseData) *RUMRecoveryCancelResponse {
+	this := RUMRecoveryCancelResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewRumRecoveryCancelResponseWithDefaults instantiates a new RumRecoveryCancelResponse object.
+// NewRUMRecoveryCancelResponseWithDefaults instantiates a new RUMRecoveryCancelResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCancelResponseWithDefaults() *RumRecoveryCancelResponse {
-	this := RumRecoveryCancelResponse{}
+func NewRUMRecoveryCancelResponseWithDefaults() *RUMRecoveryCancelResponse {
+	this := RUMRecoveryCancelResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumRecoveryCancelResponse) GetData() RumRecoveryCancelResponseData {
+func (o *RUMRecoveryCancelResponse) GetData() RUMRecoveryCancelResponseData {
 	if o == nil {
-		var ret RumRecoveryCancelResponseData
+		var ret RUMRecoveryCancelResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumRecoveryCancelResponse) GetData() RumRecoveryCancelResponseData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCancelResponse) GetDataOk() (*RumRecoveryCancelResponseData, bool) {
+func (o *RUMRecoveryCancelResponse) GetDataOk() (*RUMRecoveryCancelResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumRecoveryCancelResponse) GetDataOk() (*RumRecoveryCancelResponseData,
 }
 
 // SetData sets field value.
-func (o *RumRecoveryCancelResponse) SetData(v RumRecoveryCancelResponseData) {
+func (o *RUMRecoveryCancelResponse) SetData(v RUMRecoveryCancelResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCancelResponse) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCancelResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumRecoveryCancelResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCancelResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCancelResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumRecoveryCancelResponseData `json:"data"`
+		Data *RUMRecoveryCancelResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

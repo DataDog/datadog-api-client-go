@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionsResponse JSON:API document.
-type RumArchiveSessionsResponse struct {
+// RUMArchiveSessionsResponse JSON:API document.
+type RUMArchiveSessionsResponse struct {
 	// Archived sessions.
-	Data []RumArchiveSession `json:"data"`
+	Data []RUMArchiveSession `json:"data"`
 	// Search metadata.
-	Meta RumArchiveSessionsMeta `json:"meta"`
+	Meta RUMArchiveSessionsMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionsResponse instantiates a new RumArchiveSessionsResponse object.
+// NewRUMArchiveSessionsResponse instantiates a new RUMArchiveSessionsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionsResponse(data []RumArchiveSession, meta RumArchiveSessionsMeta) *RumArchiveSessionsResponse {
-	this := RumArchiveSessionsResponse{}
+func NewRUMArchiveSessionsResponse(data []RUMArchiveSession, meta RUMArchiveSessionsMeta) *RUMArchiveSessionsResponse {
+	this := RUMArchiveSessionsResponse{}
 	this.Data = data
 	this.Meta = meta
 	return &this
 }
 
-// NewRumArchiveSessionsResponseWithDefaults instantiates a new RumArchiveSessionsResponse object.
+// NewRUMArchiveSessionsResponseWithDefaults instantiates a new RUMArchiveSessionsResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionsResponseWithDefaults() *RumArchiveSessionsResponse {
-	this := RumArchiveSessionsResponse{}
+func NewRUMArchiveSessionsResponseWithDefaults() *RUMArchiveSessionsResponse {
+	this := RUMArchiveSessionsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumArchiveSessionsResponse) GetData() []RumArchiveSession {
+func (o *RUMArchiveSessionsResponse) GetData() []RUMArchiveSession {
 	if o == nil {
-		var ret []RumArchiveSession
+		var ret []RUMArchiveSession
 		return ret
 	}
 	return o.Data
@@ -51,7 +51,7 @@ func (o *RumArchiveSessionsResponse) GetData() []RumArchiveSession {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsResponse) GetDataOk() (*[]RumArchiveSession, bool) {
+func (o *RUMArchiveSessionsResponse) GetDataOk() (*[]RUMArchiveSession, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +59,14 @@ func (o *RumArchiveSessionsResponse) GetDataOk() (*[]RumArchiveSession, bool) {
 }
 
 // SetData sets field value.
-func (o *RumArchiveSessionsResponse) SetData(v []RumArchiveSession) {
+func (o *RUMArchiveSessionsResponse) SetData(v []RUMArchiveSession) {
 	o.Data = v
 }
 
 // GetMeta returns the Meta field value.
-func (o *RumArchiveSessionsResponse) GetMeta() RumArchiveSessionsMeta {
+func (o *RUMArchiveSessionsResponse) GetMeta() RUMArchiveSessionsMeta {
 	if o == nil {
-		var ret RumArchiveSessionsMeta
+		var ret RUMArchiveSessionsMeta
 		return ret
 	}
 	return o.Meta
@@ -74,7 +74,7 @@ func (o *RumArchiveSessionsResponse) GetMeta() RumArchiveSessionsMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsResponse) GetMetaOk() (*RumArchiveSessionsMeta, bool) {
+func (o *RUMArchiveSessionsResponse) GetMetaOk() (*RUMArchiveSessionsMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumArchiveSessionsResponse) GetMetaOk() (*RumArchiveSessionsMeta, bool)
 }
 
 // SetMeta sets field value.
-func (o *RumArchiveSessionsResponse) SetMeta(v RumArchiveSessionsMeta) {
+func (o *RUMArchiveSessionsResponse) SetMeta(v RUMArchiveSessionsMeta) {
 	o.Meta = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionsResponse) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,10 +102,10 @@ func (o RumArchiveSessionsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionsResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]RumArchiveSession    `json:"data"`
-		Meta *RumArchiveSessionsMeta `json:"meta"`
+		Data *[]RUMArchiveSession    `json:"data"`
+		Meta *RUMArchiveSessionsMeta `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

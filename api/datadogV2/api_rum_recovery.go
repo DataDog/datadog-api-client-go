@@ -20,11 +20,11 @@ type RUMRecoveryApi datadog.Service
 // Start targeted or query-based batch recovery. Use the returned `data.id` to poll the recovery request for progress. Batch creation checks a fresh recoverable-session estimate against the configured maximum (100,000 by default), accepting estimates equal to the maximum. Use the count operation to check the current maximum; creation can still reject a changed estimate. Narrow the query or time range if the maximum is exceeded.
 //
 // Creation is not idempotent. After an uncertain response, check session search or batch listing before retrying.
-func (a *RUMRecoveryApi) CreateRUMRecoveryRequest(ctx _context.Context, body RumRecoveryCreateRequest) (RumRecoveryCreateResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) CreateRUMRecoveryRequest(ctx _context.Context, body RUMRecoveryCreateRequest) (RUMRecoveryCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RumRecoveryCreateResponse
+		localVarReturnValue RUMRecoveryCreateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRecoveryApi.CreateRUMRecoveryRequest")
@@ -85,7 +85,7 @@ func (a *RUMRecoveryApi) CreateRUMRecoveryRequest(ctx _context.Context, body Rum
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -109,11 +109,11 @@ func (a *RUMRecoveryApi) CreateRUMRecoveryRequest(ctx _context.Context, body Rum
 
 // GetRUMRecoveryRequest Get recovery request progress.
 // Get progress for a targeted or batch recovery request. A `COMPLETED` request can include failed sessions; check individual session statuses for targeted recovery.
-func (a *RUMRecoveryApi) GetRUMRecoveryRequest(ctx _context.Context, requestId uuid.UUID) (RumRecoveryRequestResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) GetRUMRecoveryRequest(ctx _context.Context, requestId uuid.UUID) (RUMRecoveryRequestResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumRecoveryRequestResponse
+		localVarReturnValue RUMRecoveryRequestResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRecoveryApi.GetRUMRecoveryRequest")
@@ -172,7 +172,7 @@ func (a *RUMRecoveryApi) GetRUMRecoveryRequest(ctx _context.Context, requestId u
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -196,11 +196,11 @@ func (a *RUMRecoveryApi) GetRUMRecoveryRequest(ctx _context.Context, requestId u
 
 // GetRUMRecoverySessionCount Estimate recoverable sessions.
 // Return the full estimated number of recoverable sessions and the configured maximum per batch. The estimate is not capped at that maximum. This endpoint does not create a recovery request. Narrow the query or time range if the estimate exceeds max_recoverable_sessions. Creation checks a fresh estimate and returns 400 if it exceeds the configured maximum.
-func (a *RUMRecoveryApi) GetRUMRecoverySessionCount(ctx _context.Context, body RumRecoveryCountRequest) (RumRecoveryCountResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) GetRUMRecoverySessionCount(ctx _context.Context, body RUMRecoveryCountRequest) (RUMRecoveryCountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RumRecoveryCountResponse
+		localVarReturnValue RUMRecoveryCountResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRecoveryApi.GetRUMRecoverySessionCount")
@@ -261,7 +261,7 @@ func (a *RUMRecoveryApi) GetRUMRecoverySessionCount(ctx _context.Context, body R
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -331,11 +331,11 @@ func (r *ListRUMRecoveryBatchRequestsOptionalParameters) WithQuery(query string)
 // ListRUMRecoveryBatchRequests List batch recovery requests.
 // List batch recovery requests for your organization. Set `type=batch`. Optional `from` and `to` bounds filter request creation time; `query` filters the queries stored on recovery requests.
 // A filtered page can be empty or contain fewer than `limit` results and still include `meta.next_cursor`. Continue until the cursor is absent, keeping the filters unchanged between pages.
-func (a *RUMRecoveryApi) ListRUMRecoveryBatchRequests(ctx _context.Context, typeVar RumRecoveryBatchRequestType, o ...ListRUMRecoveryBatchRequestsOptionalParameters) (RumRecoveryBatchListResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) ListRUMRecoveryBatchRequests(ctx _context.Context, typeVar RUMRecoveryBatchRequestType, o ...ListRUMRecoveryBatchRequestsOptionalParameters) (RUMRecoveryBatchListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumRecoveryBatchListResponse
+		localVarReturnValue RUMRecoveryBatchListResponse
 		optionalParams      ListRUMRecoveryBatchRequestsOptionalParameters
 	)
 
@@ -417,7 +417,7 @@ func (a *RUMRecoveryApi) ListRUMRecoveryBatchRequests(ctx _context.Context, type
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -441,11 +441,11 @@ func (a *RUMRecoveryApi) ListRUMRecoveryBatchRequests(ctx _context.Context, type
 
 // SearchRUMArchiveSessions Search archived sessions.
 // Search archived RUM sessions. Use `meta.page.next_cursor` to retrieve the next page.
-func (a *RUMRecoveryApi) SearchRUMArchiveSessions(ctx _context.Context, body RumArchiveSessionsSearchRequest) (RumArchiveSessionsResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) SearchRUMArchiveSessions(ctx _context.Context, body RUMArchiveSessionsSearchRequest) (RUMArchiveSessionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RumArchiveSessionsResponse
+		localVarReturnValue RUMArchiveSessionsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRecoveryApi.SearchRUMArchiveSessions")
@@ -506,7 +506,7 @@ func (a *RUMRecoveryApi) SearchRUMArchiveSessions(ctx _context.Context, body Rum
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -530,11 +530,11 @@ func (a *RUMRecoveryApi) SearchRUMArchiveSessions(ctx _context.Context, body Rum
 
 // UpdateRUMRecoveryBatchRequest Cancel a batch recovery request.
 // Cancel pending work for a batch recovery request. Work already in progress can finish, and recovered data is not removed. Requests in a terminal state return `409`.
-func (a *RUMRecoveryApi) UpdateRUMRecoveryBatchRequest(ctx _context.Context, requestId uuid.UUID, body RumRecoveryCancelRequest) (RumRecoveryCancelResponse, *_nethttp.Response, error) {
+func (a *RUMRecoveryApi) UpdateRUMRecoveryBatchRequest(ctx _context.Context, requestId uuid.UUID, body RUMRecoveryCancelRequest) (RUMRecoveryCancelResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue RumRecoveryCancelResponse
+		localVarReturnValue RUMRecoveryCancelResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRecoveryApi.UpdateRUMRecoveryBatchRequest")
@@ -596,7 +596,7 @@ func (a *RUMRecoveryApi) UpdateRUMRecoveryBatchRequest(ctx _context.Context, req
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v RumManagedArchiveErrorResponse
+			var v RUMManagedArchiveErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr

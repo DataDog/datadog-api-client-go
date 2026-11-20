@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigUpdateAttributes Attributes of the RUM SDK configuration to update.
-type RumSdkConfigUpdateAttributes struct {
+// RUMSdkConfigUpdateAttributes Attributes of the RUM SDK configuration to update.
+type RUMSdkConfigUpdateAttributes struct {
 	// The RUM SDK settings to apply when updating a configuration.
-	Rum RumSdkConfigRumUpdateAttributes `json:"rum"`
+	Rum RUMSdkConfigRUMUpdateAttributes `json:"rum"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigUpdateAttributes instantiates a new RumSdkConfigUpdateAttributes object.
+// NewRUMSdkConfigUpdateAttributes instantiates a new RUMSdkConfigUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigUpdateAttributes(rum RumSdkConfigRumUpdateAttributes) *RumSdkConfigUpdateAttributes {
-	this := RumSdkConfigUpdateAttributes{}
+func NewRUMSdkConfigUpdateAttributes(rum RUMSdkConfigRUMUpdateAttributes) *RUMSdkConfigUpdateAttributes {
+	this := RUMSdkConfigUpdateAttributes{}
 	this.Rum = rum
 	return &this
 }
 
-// NewRumSdkConfigUpdateAttributesWithDefaults instantiates a new RumSdkConfigUpdateAttributes object.
+// NewRUMSdkConfigUpdateAttributesWithDefaults instantiates a new RUMSdkConfigUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigUpdateAttributesWithDefaults() *RumSdkConfigUpdateAttributes {
-	this := RumSdkConfigUpdateAttributes{}
+func NewRUMSdkConfigUpdateAttributesWithDefaults() *RUMSdkConfigUpdateAttributes {
+	this := RUMSdkConfigUpdateAttributes{}
 	return &this
 }
 
 // GetRum returns the Rum field value.
-func (o *RumSdkConfigUpdateAttributes) GetRum() RumSdkConfigRumUpdateAttributes {
+func (o *RUMSdkConfigUpdateAttributes) GetRum() RUMSdkConfigRUMUpdateAttributes {
 	if o == nil {
-		var ret RumSdkConfigRumUpdateAttributes
+		var ret RUMSdkConfigRUMUpdateAttributes
 		return ret
 	}
 	return o.Rum
@@ -48,7 +48,7 @@ func (o *RumSdkConfigUpdateAttributes) GetRum() RumSdkConfigRumUpdateAttributes 
 
 // GetRumOk returns a tuple with the Rum field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigUpdateAttributes) GetRumOk() (*RumSdkConfigRumUpdateAttributes, bool) {
+func (o *RUMSdkConfigUpdateAttributes) GetRumOk() (*RUMSdkConfigRUMUpdateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumSdkConfigUpdateAttributes) GetRumOk() (*RumSdkConfigRumUpdateAttribu
 }
 
 // SetRum sets field value.
-func (o *RumSdkConfigUpdateAttributes) SetRum(v RumSdkConfigRumUpdateAttributes) {
+func (o *RUMSdkConfigUpdateAttributes) SetRum(v RUMSdkConfigRUMUpdateAttributes) {
 	o.Rum = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumSdkConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Rum *RumSdkConfigRumUpdateAttributes `json:"rum"`
+		Rum *RUMSdkConfigRUMUpdateAttributes `json:"rum"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

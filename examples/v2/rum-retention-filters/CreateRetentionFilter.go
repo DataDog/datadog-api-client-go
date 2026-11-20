@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRetentionFilterCreateRequest{
-		Data: datadogV2.RumRetentionFilterCreateData{
+	body := datadogV2.RUMRetentionFilterCreateRequest{
+		Data: datadogV2.RUMRetentionFilterCreateData{
 			Type: datadogV2.RUMRETENTIONFILTERTYPE_RETENTION_FILTERS,
-			Attributes: datadogV2.RumRetentionFilterCreateAttributes{
+			Attributes: datadogV2.RUMRetentionFilterCreateAttributes{
 				Name:       "Test creating retention filter",
 				EventType:  datadogV2.RUMRETENTIONFILTEREVENTTYPE_SESSION,
 				Query:      datadog.PtrString("custom_query"),
@@ -29,14 +29,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
+	api := datadogV2.NewRUMRetentionFiltersApi(apiClient)
 	resp, r, err := api.CreateRetentionFilter(ctx, "a33671aa-24fd-4dcd-ba4b-5bbdbafe7690", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.CreateRetentionFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionFiltersApi.CreateRetentionFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumRetentionFiltersApi.CreateRetentionFilter`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionFiltersApi.CreateRetentionFilter`:\n%s\n", responseContent)
 }

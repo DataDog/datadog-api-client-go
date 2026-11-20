@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCountResponse JSON:API document.
-type RumRecoveryCountResponse struct {
+// RUMRecoveryCountResponse JSON:API document.
+type RUMRecoveryCountResponse struct {
 	// JSON:API resource.
-	Data RumRecoveryCountResponseData `json:"data"`
+	Data RUMRecoveryCountResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCountResponse instantiates a new RumRecoveryCountResponse object.
+// NewRUMRecoveryCountResponse instantiates a new RUMRecoveryCountResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCountResponse(data RumRecoveryCountResponseData) *RumRecoveryCountResponse {
-	this := RumRecoveryCountResponse{}
+func NewRUMRecoveryCountResponse(data RUMRecoveryCountResponseData) *RUMRecoveryCountResponse {
+	this := RUMRecoveryCountResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewRumRecoveryCountResponseWithDefaults instantiates a new RumRecoveryCountResponse object.
+// NewRUMRecoveryCountResponseWithDefaults instantiates a new RUMRecoveryCountResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCountResponseWithDefaults() *RumRecoveryCountResponse {
-	this := RumRecoveryCountResponse{}
+func NewRUMRecoveryCountResponseWithDefaults() *RUMRecoveryCountResponse {
+	this := RUMRecoveryCountResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumRecoveryCountResponse) GetData() RumRecoveryCountResponseData {
+func (o *RUMRecoveryCountResponse) GetData() RUMRecoveryCountResponseData {
 	if o == nil {
-		var ret RumRecoveryCountResponseData
+		var ret RUMRecoveryCountResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumRecoveryCountResponse) GetData() RumRecoveryCountResponseData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountResponse) GetDataOk() (*RumRecoveryCountResponseData, bool) {
+func (o *RUMRecoveryCountResponse) GetDataOk() (*RUMRecoveryCountResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumRecoveryCountResponse) GetDataOk() (*RumRecoveryCountResponseData, b
 }
 
 // SetData sets field value.
-func (o *RumRecoveryCountResponse) SetData(v RumRecoveryCountResponseData) {
+func (o *RUMRecoveryCountResponse) SetData(v RUMRecoveryCountResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCountResponse) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCountResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumRecoveryCountResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCountResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCountResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumRecoveryCountResponseData `json:"data"`
+		Data *RUMRecoveryCountResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

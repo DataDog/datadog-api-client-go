@@ -10,22 +10,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoverySessionStatus Session availability or recovery state. `RECOVERED` indicates that the session is ready to query.
-type RumRecoverySessionStatus string
+// RUMRecoverySessionStatus Session availability or recovery state. `RECOVERED` indicates that the session is ready to query.
+type RUMRecoverySessionStatus string
 
-// List of RumRecoverySessionStatus.
+// List of RUMRecoverySessionStatus.
 const (
-	RUMRECOVERYSESSIONSTATUS_AVAILABLE  RumRecoverySessionStatus = "AVAILABLE"
-	RUMRECOVERYSESSIONSTATUS_PENDING    RumRecoverySessionStatus = "PENDING"
-	RUMRECOVERYSESSIONSTATUS_PROCESSING RumRecoverySessionStatus = "PROCESSING"
-	RUMRECOVERYSESSIONSTATUS_RECOVERED  RumRecoverySessionStatus = "RECOVERED"
-	RUMRECOVERYSESSIONSTATUS_FAILED     RumRecoverySessionStatus = "FAILED"
-	RUMRECOVERYSESSIONSTATUS_RETAINED   RumRecoverySessionStatus = "RETAINED"
-	RUMRECOVERYSESSIONSTATUS_EXPIRED    RumRecoverySessionStatus = "EXPIRED"
-	RUMRECOVERYSESSIONSTATUS_CANCELLED  RumRecoverySessionStatus = "CANCELLED"
+	RUMRECOVERYSESSIONSTATUS_AVAILABLE  RUMRecoverySessionStatus = "AVAILABLE"
+	RUMRECOVERYSESSIONSTATUS_PENDING    RUMRecoverySessionStatus = "PENDING"
+	RUMRECOVERYSESSIONSTATUS_PROCESSING RUMRecoverySessionStatus = "PROCESSING"
+	RUMRECOVERYSESSIONSTATUS_RECOVERED  RUMRecoverySessionStatus = "RECOVERED"
+	RUMRECOVERYSESSIONSTATUS_FAILED     RUMRecoverySessionStatus = "FAILED"
+	RUMRECOVERYSESSIONSTATUS_RETAINED   RUMRecoverySessionStatus = "RETAINED"
+	RUMRECOVERYSESSIONSTATUS_EXPIRED    RUMRecoverySessionStatus = "EXPIRED"
+	RUMRECOVERYSESSIONSTATUS_CANCELLED  RUMRecoverySessionStatus = "CANCELLED"
 )
 
-var allowedRumRecoverySessionStatusEnumValues = []RumRecoverySessionStatus{
+var allowedRUMRecoverySessionStatusEnumValues = []RUMRecoverySessionStatus{
 	RUMRECOVERYSESSIONSTATUS_AVAILABLE,
 	RUMRECOVERYSESSIONSTATUS_PENDING,
 	RUMRECOVERYSESSIONSTATUS_PROCESSING,
@@ -37,34 +37,34 @@ var allowedRumRecoverySessionStatusEnumValues = []RumRecoverySessionStatus{
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoverySessionStatus) GetAllowedValues() []RumRecoverySessionStatus {
-	return allowedRumRecoverySessionStatusEnumValues
+func (v *RUMRecoverySessionStatus) GetAllowedValues() []RUMRecoverySessionStatus {
+	return allowedRUMRecoverySessionStatusEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoverySessionStatus) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoverySessionStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoverySessionStatus(value)
+	*v = RUMRecoverySessionStatus(value)
 	return nil
 }
 
-// NewRumRecoverySessionStatusFromValue returns a pointer to a valid RumRecoverySessionStatus
+// NewRUMRecoverySessionStatusFromValue returns a pointer to a valid RUMRecoverySessionStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoverySessionStatusFromValue(v string) (*RumRecoverySessionStatus, error) {
-	ev := RumRecoverySessionStatus(v)
+func NewRUMRecoverySessionStatusFromValue(v string) (*RUMRecoverySessionStatus, error) {
+	ev := RUMRecoverySessionStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoverySessionStatus: valid values are %v", v, allowedRumRecoverySessionStatusEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoverySessionStatus: valid values are %v", v, allowedRUMRecoverySessionStatusEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoverySessionStatus) IsValid() bool {
-	for _, existing := range allowedRumRecoverySessionStatusEnumValues {
+func (v RUMRecoverySessionStatus) IsValid() bool {
+	for _, existing := range allowedRUMRecoverySessionStatusEnumValues {
 		if existing == v {
 			return true
 		}
@@ -72,7 +72,7 @@ func (v RumRecoverySessionStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoverySessionStatus value.
-func (v RumRecoverySessionStatus) Ptr() *RumRecoverySessionStatus {
+// Ptr returns reference to RUMRecoverySessionStatus value.
+func (v RUMRecoverySessionStatus) Ptr() *RUMRecoverySessionStatus {
 	return &v
 }

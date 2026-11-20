@@ -19,11 +19,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumTeamsOwnershipApi(apiClient)
+	api := datadogV2.NewRUMTeamsOwnershipApi(apiClient)
 	r, err := api.DeleteTeamsOwnershipMapping(ctx, TeamsOwnershipMappingDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumTeamsOwnershipApi.DeleteTeamsOwnershipMapping`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMTeamsOwnershipApi.DeleteTeamsOwnershipMapping`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

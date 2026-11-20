@@ -28,14 +28,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayViewershipApi(apiClient)
-	resp, r, err := api.CreateRumReplaySessionWatch(ctx, "00000000-0000-0000-0000-000000000001", body)
+	api := datadogV2.NewRUMReplayViewershipApi(apiClient)
+	resp, r, err := api.CreateRUMReplaySessionWatch(ctx, "00000000-0000-0000-0000-000000000001", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayViewershipApi.CreateRumReplaySessionWatch`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayViewershipApi.CreateRUMReplaySessionWatch`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayViewershipApi.CreateRumReplaySessionWatch`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMReplayViewershipApi.CreateRUMReplaySessionWatch`:\n%s\n", responseContent)
 }

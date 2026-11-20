@@ -12,19 +12,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumReplayHeatmapsApi service type
-type RumReplayHeatmapsApi datadog.Service
+// RUMReplayHeatmapsApi service type
+type RUMReplayHeatmapsApi datadog.Service
 
 // CreateReplayHeatmapSnapshot Create replay heatmap snapshot.
 // Create a heatmap snapshot.
-func (a *RumReplayHeatmapsApi) CreateReplayHeatmapSnapshot(ctx _context.Context, body SnapshotCreateRequest) (Snapshot, *_nethttp.Response, error) {
+func (a *RUMReplayHeatmapsApi) CreateReplayHeatmapSnapshot(ctx _context.Context, body SnapshotCreateRequest) (Snapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue Snapshot
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayHeatmapsApi.CreateReplayHeatmapSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayHeatmapsApi.CreateReplayHeatmapSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -97,13 +97,13 @@ func (a *RumReplayHeatmapsApi) CreateReplayHeatmapSnapshot(ctx _context.Context,
 
 // DeleteReplayHeatmapSnapshot Delete replay heatmap snapshot.
 // Delete a heatmap snapshot.
-func (a *RumReplayHeatmapsApi) DeleteReplayHeatmapSnapshot(ctx _context.Context, snapshotId string) (*_nethttp.Response, error) {
+func (a *RUMReplayHeatmapsApi) DeleteReplayHeatmapSnapshot(ctx _context.Context, snapshotId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayHeatmapsApi.DeleteReplayHeatmapSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayHeatmapsApi.DeleteReplayHeatmapSnapshot")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -196,7 +196,7 @@ func (r *ListReplayHeatmapSnapshotsOptionalParameters) WithFilterApplicationId(f
 
 // ListReplayHeatmapSnapshots List replay heatmap snapshots.
 // List heatmap snapshots.
-func (a *RumReplayHeatmapsApi) ListReplayHeatmapSnapshots(ctx _context.Context, filterViewName string, o ...ListReplayHeatmapSnapshotsOptionalParameters) (SnapshotArray, *_nethttp.Response, error) {
+func (a *RUMReplayHeatmapsApi) ListReplayHeatmapSnapshots(ctx _context.Context, filterViewName string, o ...ListReplayHeatmapSnapshotsOptionalParameters) (SnapshotArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -211,7 +211,7 @@ func (a *RumReplayHeatmapsApi) ListReplayHeatmapSnapshots(ctx _context.Context, 
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayHeatmapsApi.ListReplayHeatmapSnapshots")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayHeatmapsApi.ListReplayHeatmapSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -291,14 +291,14 @@ func (a *RumReplayHeatmapsApi) ListReplayHeatmapSnapshots(ctx _context.Context, 
 
 // UpdateReplayHeatmapSnapshot Update replay heatmap snapshot.
 // Update a heatmap snapshot.
-func (a *RumReplayHeatmapsApi) UpdateReplayHeatmapSnapshot(ctx _context.Context, snapshotId string, body SnapshotUpdateRequest) (Snapshot, *_nethttp.Response, error) {
+func (a *RUMReplayHeatmapsApi) UpdateReplayHeatmapSnapshot(ctx _context.Context, snapshotId string, body SnapshotUpdateRequest) (Snapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue Snapshot
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplayHeatmapsApi.UpdateReplayHeatmapSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplayHeatmapsApi.UpdateReplayHeatmapSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -370,9 +370,9 @@ func (a *RumReplayHeatmapsApi) UpdateReplayHeatmapSnapshot(ctx _context.Context,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewRumReplayHeatmapsApi Returns NewRumReplayHeatmapsApi.
-func NewRumReplayHeatmapsApi(client *datadog.APIClient) *RumReplayHeatmapsApi {
-	return &RumReplayHeatmapsApi{
+// NewRUMReplayHeatmapsApi Returns NewRUMReplayHeatmapsApi.
+func NewRUMReplayHeatmapsApi(client *datadog.APIClient) *RUMReplayHeatmapsApi {
+	return &RUMReplayHeatmapsApi{
 		Client: client,
 	}
 }

@@ -11,8 +11,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigAttributes Archive configuration.
-type RumArchiveConfigAttributes struct {
+// RUMArchiveConfigAttributes Archive configuration.
+type RUMArchiveConfigAttributes struct {
 	// Whether archiving is enabled.
 	Enabled bool `json:"enabled"`
 	// Organization ID.
@@ -28,27 +28,27 @@ type RumArchiveConfigAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigAttributes instantiates a new RumArchiveConfigAttributes object.
+// NewRUMArchiveConfigAttributes instantiates a new RUMArchiveConfigAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigAttributes(enabled bool, orgId int64) *RumArchiveConfigAttributes {
-	this := RumArchiveConfigAttributes{}
+func NewRUMArchiveConfigAttributes(enabled bool, orgId int64) *RUMArchiveConfigAttributes {
+	this := RUMArchiveConfigAttributes{}
 	this.Enabled = enabled
 	this.OrgId = orgId
 	return &this
 }
 
-// NewRumArchiveConfigAttributesWithDefaults instantiates a new RumArchiveConfigAttributes object.
+// NewRUMArchiveConfigAttributesWithDefaults instantiates a new RUMArchiveConfigAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigAttributesWithDefaults() *RumArchiveConfigAttributes {
-	this := RumArchiveConfigAttributes{}
+func NewRUMArchiveConfigAttributesWithDefaults() *RUMArchiveConfigAttributes {
+	this := RUMArchiveConfigAttributes{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value.
-func (o *RumArchiveConfigAttributes) GetEnabled() bool {
+func (o *RUMArchiveConfigAttributes) GetEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -58,7 +58,7 @@ func (o *RumArchiveConfigAttributes) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigAttributes) GetEnabledOk() (*bool, bool) {
+func (o *RUMArchiveConfigAttributes) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *RumArchiveConfigAttributes) GetEnabledOk() (*bool, bool) {
 }
 
 // SetEnabled sets field value.
-func (o *RumArchiveConfigAttributes) SetEnabled(v bool) {
+func (o *RUMArchiveConfigAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
 // GetOrgId returns the OrgId field value.
-func (o *RumArchiveConfigAttributes) GetOrgId() int64 {
+func (o *RUMArchiveConfigAttributes) GetOrgId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -81,7 +81,7 @@ func (o *RumArchiveConfigAttributes) GetOrgId() int64 {
 
 // GetOrgIdOk returns a tuple with the OrgId field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigAttributes) GetOrgIdOk() (*int64, bool) {
+func (o *RUMArchiveConfigAttributes) GetOrgIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,12 +89,12 @@ func (o *RumArchiveConfigAttributes) GetOrgIdOk() (*int64, bool) {
 }
 
 // SetOrgId sets field value.
-func (o *RumArchiveConfigAttributes) SetOrgId(v int64) {
+func (o *RUMArchiveConfigAttributes) SetOrgId(v int64) {
 	o.OrgId = v
 }
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
-func (o *RumArchiveConfigAttributes) GetRetentionDays() int32 {
+func (o *RUMArchiveConfigAttributes) GetRetentionDays() int32 {
 	if o == nil || o.RetentionDays == nil {
 		var ret int32
 		return ret
@@ -104,7 +104,7 @@ func (o *RumArchiveConfigAttributes) GetRetentionDays() int32 {
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigAttributes) GetRetentionDaysOk() (*int32, bool) {
+func (o *RUMArchiveConfigAttributes) GetRetentionDaysOk() (*int32, bool) {
 	if o == nil || o.RetentionDays == nil {
 		return nil, false
 	}
@@ -112,17 +112,17 @@ func (o *RumArchiveConfigAttributes) GetRetentionDaysOk() (*int32, bool) {
 }
 
 // HasRetentionDays returns a boolean if a field has been set.
-func (o *RumArchiveConfigAttributes) HasRetentionDays() bool {
+func (o *RUMArchiveConfigAttributes) HasRetentionDays() bool {
 	return o != nil && o.RetentionDays != nil
 }
 
 // SetRetentionDays gets a reference to the given int32 and assigns it to the RetentionDays field.
-func (o *RumArchiveConfigAttributes) SetRetentionDays(v int32) {
+func (o *RUMArchiveConfigAttributes) SetRetentionDays(v int32) {
 	o.RetentionDays = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *RumArchiveConfigAttributes) GetUpdatedAt() time.Time {
+func (o *RUMArchiveConfigAttributes) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -132,7 +132,7 @@ func (o *RumArchiveConfigAttributes) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMArchiveConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -140,17 +140,17 @@ func (o *RumArchiveConfigAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *RumArchiveConfigAttributes) HasUpdatedAt() bool {
+func (o *RUMArchiveConfigAttributes) HasUpdatedAt() bool {
 	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *RumArchiveConfigAttributes) SetUpdatedAt(v time.Time) {
+func (o *RUMArchiveConfigAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *RumArchiveConfigAttributes) GetUpdatedBy() string {
+func (o *RUMArchiveConfigAttributes) GetUpdatedBy() string {
 	if o == nil || o.UpdatedBy == nil {
 		var ret string
 		return ret
@@ -160,7 +160,7 @@ func (o *RumArchiveConfigAttributes) GetUpdatedBy() string {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigAttributes) GetUpdatedByOk() (*string, bool) {
+func (o *RUMArchiveConfigAttributes) GetUpdatedByOk() (*string, bool) {
 	if o == nil || o.UpdatedBy == nil {
 		return nil, false
 	}
@@ -168,17 +168,17 @@ func (o *RumArchiveConfigAttributes) GetUpdatedByOk() (*string, bool) {
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
-func (o *RumArchiveConfigAttributes) HasUpdatedBy() bool {
+func (o *RUMArchiveConfigAttributes) HasUpdatedBy() bool {
 	return o != nil && o.UpdatedBy != nil
 }
 
 // SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
-func (o *RumArchiveConfigAttributes) SetUpdatedBy(v string) {
+func (o *RUMArchiveConfigAttributes) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -206,7 +206,7 @@ func (o RumArchiveConfigAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enabled       *bool      `json:"enabled"`
 		OrgId         *int64     `json:"org_id"`

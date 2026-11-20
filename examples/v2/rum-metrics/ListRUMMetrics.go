@@ -1,9 +1,10 @@
-// Delete RUM replay session watch returns "No Content" response
+// Get all RUM-based metrics returns "OK" response
 
 package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,11 +17,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayViewershipApi(apiClient)
-	r, err := api.DeleteRumReplaySessionWatch(ctx, "00000000-0000-0000-0000-000000000001")
+	api := datadogV2.NewRUMMetricsApi(apiClient)
+	resp, r, err := api.ListRUMMetrics(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayViewershipApi.DeleteRumReplaySessionWatch`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMMetricsApi.ListRUMMetrics`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `RUMMetricsApi.ListRUMMetrics`:\n%s\n", responseContent)
 }

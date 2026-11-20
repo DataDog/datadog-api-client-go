@@ -10,29 +10,29 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaCustomConfig The configuration used when `mode` is `custom`.
-type RumRetentionQuotaCustomConfig struct {
+// RUMRetentionQuotaCustomConfig The configuration used when `mode` is `custom`.
+type RUMRetentionQuotaCustomConfig struct {
 	// The time of day when the daily quota resets, in `HH:MM` 24-hour format.
 	DailyResetTime string `json:"daily_reset_time"`
 	// The timezone offset used for the daily reset time, in `±HH:MM` format.
 	DailyResetTimezone string `json:"daily_reset_timezone"`
 	// The action to take when the session quota is reached.
-	QuotaReachedAction RumRetentionQuotaReachedAction `json:"quota_reached_action"`
+	QuotaReachedAction RUMRetentionQuotaReachedAction `json:"quota_reached_action"`
 	// The maximum number of sessions allowed within the window. Must be at least `1000`.
 	SessionLimit int64 `json:"session_limit"`
 	// The window type over which the session limit is enforced.
-	WindowType RumRetentionQuotaWindowType `json:"window_type"`
+	WindowType RUMRetentionQuotaWindowType `json:"window_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionQuotaCustomConfig instantiates a new RumRetentionQuotaCustomConfig object.
+// NewRUMRetentionQuotaCustomConfig instantiates a new RUMRetentionQuotaCustomConfig object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionQuotaCustomConfig(dailyResetTime string, dailyResetTimezone string, quotaReachedAction RumRetentionQuotaReachedAction, sessionLimit int64, windowType RumRetentionQuotaWindowType) *RumRetentionQuotaCustomConfig {
-	this := RumRetentionQuotaCustomConfig{}
+func NewRUMRetentionQuotaCustomConfig(dailyResetTime string, dailyResetTimezone string, quotaReachedAction RUMRetentionQuotaReachedAction, sessionLimit int64, windowType RUMRetentionQuotaWindowType) *RUMRetentionQuotaCustomConfig {
+	this := RUMRetentionQuotaCustomConfig{}
 	this.DailyResetTime = dailyResetTime
 	this.DailyResetTimezone = dailyResetTimezone
 	this.QuotaReachedAction = quotaReachedAction
@@ -41,16 +41,16 @@ func NewRumRetentionQuotaCustomConfig(dailyResetTime string, dailyResetTimezone 
 	return &this
 }
 
-// NewRumRetentionQuotaCustomConfigWithDefaults instantiates a new RumRetentionQuotaCustomConfig object.
+// NewRUMRetentionQuotaCustomConfigWithDefaults instantiates a new RUMRetentionQuotaCustomConfig object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionQuotaCustomConfigWithDefaults() *RumRetentionQuotaCustomConfig {
-	this := RumRetentionQuotaCustomConfig{}
+func NewRUMRetentionQuotaCustomConfigWithDefaults() *RUMRetentionQuotaCustomConfig {
+	this := RUMRetentionQuotaCustomConfig{}
 	return &this
 }
 
 // GetDailyResetTime returns the DailyResetTime field value.
-func (o *RumRetentionQuotaCustomConfig) GetDailyResetTime() string {
+func (o *RUMRetentionQuotaCustomConfig) GetDailyResetTime() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *RumRetentionQuotaCustomConfig) GetDailyResetTime() string {
 
 // GetDailyResetTimeOk returns a tuple with the DailyResetTime field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimeOk() (*string, bool) {
+func (o *RUMRetentionQuotaCustomConfig) GetDailyResetTimeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimeOk() (*string, bool) {
 }
 
 // SetDailyResetTime sets field value.
-func (o *RumRetentionQuotaCustomConfig) SetDailyResetTime(v string) {
+func (o *RUMRetentionQuotaCustomConfig) SetDailyResetTime(v string) {
 	o.DailyResetTime = v
 }
 
 // GetDailyResetTimezone returns the DailyResetTimezone field value.
-func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimezone() string {
+func (o *RUMRetentionQuotaCustomConfig) GetDailyResetTimezone() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimezone() string {
 
 // GetDailyResetTimezoneOk returns a tuple with the DailyResetTimezone field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimezoneOk() (*string, bool) {
+func (o *RUMRetentionQuotaCustomConfig) GetDailyResetTimezoneOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,14 +91,14 @@ func (o *RumRetentionQuotaCustomConfig) GetDailyResetTimezoneOk() (*string, bool
 }
 
 // SetDailyResetTimezone sets field value.
-func (o *RumRetentionQuotaCustomConfig) SetDailyResetTimezone(v string) {
+func (o *RUMRetentionQuotaCustomConfig) SetDailyResetTimezone(v string) {
 	o.DailyResetTimezone = v
 }
 
 // GetQuotaReachedAction returns the QuotaReachedAction field value.
-func (o *RumRetentionQuotaCustomConfig) GetQuotaReachedAction() RumRetentionQuotaReachedAction {
+func (o *RUMRetentionQuotaCustomConfig) GetQuotaReachedAction() RUMRetentionQuotaReachedAction {
 	if o == nil {
-		var ret RumRetentionQuotaReachedAction
+		var ret RUMRetentionQuotaReachedAction
 		return ret
 	}
 	return o.QuotaReachedAction
@@ -106,7 +106,7 @@ func (o *RumRetentionQuotaCustomConfig) GetQuotaReachedAction() RumRetentionQuot
 
 // GetQuotaReachedActionOk returns a tuple with the QuotaReachedAction field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaCustomConfig) GetQuotaReachedActionOk() (*RumRetentionQuotaReachedAction, bool) {
+func (o *RUMRetentionQuotaCustomConfig) GetQuotaReachedActionOk() (*RUMRetentionQuotaReachedAction, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +114,12 @@ func (o *RumRetentionQuotaCustomConfig) GetQuotaReachedActionOk() (*RumRetention
 }
 
 // SetQuotaReachedAction sets field value.
-func (o *RumRetentionQuotaCustomConfig) SetQuotaReachedAction(v RumRetentionQuotaReachedAction) {
+func (o *RUMRetentionQuotaCustomConfig) SetQuotaReachedAction(v RUMRetentionQuotaReachedAction) {
 	o.QuotaReachedAction = v
 }
 
 // GetSessionLimit returns the SessionLimit field value.
-func (o *RumRetentionQuotaCustomConfig) GetSessionLimit() int64 {
+func (o *RUMRetentionQuotaCustomConfig) GetSessionLimit() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -129,7 +129,7 @@ func (o *RumRetentionQuotaCustomConfig) GetSessionLimit() int64 {
 
 // GetSessionLimitOk returns a tuple with the SessionLimit field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaCustomConfig) GetSessionLimitOk() (*int64, bool) {
+func (o *RUMRetentionQuotaCustomConfig) GetSessionLimitOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,14 +137,14 @@ func (o *RumRetentionQuotaCustomConfig) GetSessionLimitOk() (*int64, bool) {
 }
 
 // SetSessionLimit sets field value.
-func (o *RumRetentionQuotaCustomConfig) SetSessionLimit(v int64) {
+func (o *RUMRetentionQuotaCustomConfig) SetSessionLimit(v int64) {
 	o.SessionLimit = v
 }
 
 // GetWindowType returns the WindowType field value.
-func (o *RumRetentionQuotaCustomConfig) GetWindowType() RumRetentionQuotaWindowType {
+func (o *RUMRetentionQuotaCustomConfig) GetWindowType() RUMRetentionQuotaWindowType {
 	if o == nil {
-		var ret RumRetentionQuotaWindowType
+		var ret RUMRetentionQuotaWindowType
 		return ret
 	}
 	return o.WindowType
@@ -152,7 +152,7 @@ func (o *RumRetentionQuotaCustomConfig) GetWindowType() RumRetentionQuotaWindowT
 
 // GetWindowTypeOk returns a tuple with the WindowType field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaCustomConfig) GetWindowTypeOk() (*RumRetentionQuotaWindowType, bool) {
+func (o *RUMRetentionQuotaCustomConfig) GetWindowTypeOk() (*RUMRetentionQuotaWindowType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,12 +160,12 @@ func (o *RumRetentionQuotaCustomConfig) GetWindowTypeOk() (*RumRetentionQuotaWin
 }
 
 // SetWindowType sets field value.
-func (o *RumRetentionQuotaCustomConfig) SetWindowType(v RumRetentionQuotaWindowType) {
+func (o *RUMRetentionQuotaCustomConfig) SetWindowType(v RUMRetentionQuotaWindowType) {
 	o.WindowType = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionQuotaCustomConfig) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionQuotaCustomConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -183,13 +183,13 @@ func (o RumRetentionQuotaCustomConfig) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionQuotaCustomConfig) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionQuotaCustomConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DailyResetTime     *string                         `json:"daily_reset_time"`
 		DailyResetTimezone *string                         `json:"daily_reset_timezone"`
-		QuotaReachedAction *RumRetentionQuotaReachedAction `json:"quota_reached_action"`
+		QuotaReachedAction *RUMRetentionQuotaReachedAction `json:"quota_reached_action"`
 		SessionLimit       *int64                          `json:"session_limit"`
-		WindowType         *RumRetentionQuotaWindowType    `json:"window_type"`
+		WindowType         *RUMRetentionQuotaWindowType    `json:"window_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

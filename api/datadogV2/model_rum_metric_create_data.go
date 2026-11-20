@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricCreateData The new RUM-based metric properties.
-type RumMetricCreateData struct {
+// RUMMetricCreateData The new RUM-based metric properties.
+type RUMMetricCreateData struct {
 	// The object describing the Datadog RUM-based metric to create.
-	Attributes RumMetricCreateAttributes `json:"attributes"`
+	Attributes RUMMetricCreateAttributes `json:"attributes"`
 	// The name of the RUM-based metric.
 	// On creation, it must be 1 to 200 characters long, contain only ASCII letters, digits, underscores, and periods, start with a letter, and not start with `rum.measure` or `rum.investigate`.
 	// It cannot be changed after creation.
 	Id string `json:"id"`
 	// The type of the resource. The value must be `rum_metrics`.
-	Type RumMetricType `json:"type"`
+	Type RUMMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricCreateData instantiates a new RumMetricCreateData object.
+// NewRUMMetricCreateData instantiates a new RUMMetricCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricCreateData(attributes RumMetricCreateAttributes, id string, typeVar RumMetricType) *RumMetricCreateData {
-	this := RumMetricCreateData{}
+func NewRUMMetricCreateData(attributes RUMMetricCreateAttributes, id string, typeVar RUMMetricType) *RUMMetricCreateData {
+	this := RUMMetricCreateData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumMetricCreateDataWithDefaults instantiates a new RumMetricCreateData object.
+// NewRUMMetricCreateDataWithDefaults instantiates a new RUMMetricCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricCreateDataWithDefaults() *RumMetricCreateData {
-	this := RumMetricCreateData{}
-	var typeVar RumMetricType = RUMMETRICTYPE_RUM_METRICS
+func NewRUMMetricCreateDataWithDefaults() *RUMMetricCreateData {
+	this := RUMMetricCreateData{}
+	var typeVar RUMMetricType = RUMMETRICTYPE_RUM_METRICS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumMetricCreateData) GetAttributes() RumMetricCreateAttributes {
+func (o *RUMMetricCreateData) GetAttributes() RUMMetricCreateAttributes {
 	if o == nil {
-		var ret RumMetricCreateAttributes
+		var ret RUMMetricCreateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -58,7 +58,7 @@ func (o *RumMetricCreateData) GetAttributes() RumMetricCreateAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricCreateData) GetAttributesOk() (*RumMetricCreateAttributes, bool) {
+func (o *RUMMetricCreateData) GetAttributesOk() (*RUMMetricCreateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *RumMetricCreateData) GetAttributesOk() (*RumMetricCreateAttributes, boo
 }
 
 // SetAttributes sets field value.
-func (o *RumMetricCreateData) SetAttributes(v RumMetricCreateAttributes) {
+func (o *RUMMetricCreateData) SetAttributes(v RUMMetricCreateAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumMetricCreateData) GetId() string {
+func (o *RUMMetricCreateData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *RumMetricCreateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricCreateData) GetIdOk() (*string, bool) {
+func (o *RUMMetricCreateData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,14 +89,14 @@ func (o *RumMetricCreateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumMetricCreateData) SetId(v string) {
+func (o *RUMMetricCreateData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumMetricCreateData) GetType() RumMetricType {
+func (o *RUMMetricCreateData) GetType() RUMMetricType {
 	if o == nil {
-		var ret RumMetricType
+		var ret RUMMetricType
 		return ret
 	}
 	return o.Type
@@ -104,7 +104,7 @@ func (o *RumMetricCreateData) GetType() RumMetricType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricCreateData) GetTypeOk() (*RumMetricType, bool) {
+func (o *RUMMetricCreateData) GetTypeOk() (*RUMMetricType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,12 +112,12 @@ func (o *RumMetricCreateData) GetTypeOk() (*RumMetricType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumMetricCreateData) SetType(v RumMetricType) {
+func (o *RUMMetricCreateData) SetType(v RUMMetricType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricCreateData) MarshalJSON() ([]byte, error) {
+func (o RUMMetricCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -133,11 +133,11 @@ func (o RumMetricCreateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumMetricCreateAttributes `json:"attributes"`
+		Attributes *RUMMetricCreateAttributes `json:"attributes"`
 		Id         *string                    `json:"id"`
-		Type       *RumMetricType             `json:"type"`
+		Type       *RUMMetricType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -15,15 +15,15 @@ import (
 // RUMRetentionQuotasApi service type
 type RUMRetentionQuotasApi datadog.Service
 
-// DeleteRumQuotaConfig Delete a RUM retention quota configuration.
+// DeleteRUMQuotaConfig Delete a RUM retention quota configuration.
 // Delete the RUM retention quota configuration for a given scope.
-func (a *RUMRetentionQuotasApi) DeleteRumQuotaConfig(ctx _context.Context, scopeType RumRetentionQuotaScopeType, scopeId string) (*_nethttp.Response, error) {
+func (a *RUMRetentionQuotasApi) DeleteRUMQuotaConfig(ctx _context.Context, scopeType RUMRetentionQuotaScopeType, scopeId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.DeleteRumQuotaConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.DeleteRUMQuotaConfig")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -93,16 +93,16 @@ func (a *RUMRetentionQuotasApi) DeleteRumQuotaConfig(ctx _context.Context, scope
 	return localVarHTTPResponse, nil
 }
 
-// GetRumQuotaConfig Get a RUM retention quota configuration.
+// GetRUMQuotaConfig Get a RUM retention quota configuration.
 // Get the RUM retention quota configuration for a given scope.
-func (a *RUMRetentionQuotasApi) GetRumQuotaConfig(ctx _context.Context, scopeType RumRetentionQuotaScopeType, scopeId string) (RumRetentionQuotaConfigResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionQuotasApi) GetRUMQuotaConfig(ctx _context.Context, scopeType RUMRetentionQuotaScopeType, scopeId string) (RUMRetentionQuotaConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionQuotaConfigResponse
+		localVarReturnValue RUMRetentionQuotaConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.GetRumQuotaConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.GetRUMQuotaConfig")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -181,17 +181,17 @@ func (a *RUMRetentionQuotasApi) GetRumQuotaConfig(ctx _context.Context, scopeTyp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpsertRumQuotaConfig Create or update a RUM retention quota config.
+// UpsertRUMQuotaConfig Create or update a RUM retention quota config.
 // Create or update the RUM retention quota configuration for a given scope.
 // Returns the retention quota configuration object when the request is successful.
-func (a *RUMRetentionQuotasApi) UpsertRumQuotaConfig(ctx _context.Context, scopeType RumRetentionQuotaScopeType, scopeId string, body RumRetentionQuotaConfigUpdateRequest) (RumRetentionQuotaConfigResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionQuotasApi) UpsertRUMQuotaConfig(ctx _context.Context, scopeType RUMRetentionQuotaScopeType, scopeId string, body RUMRetentionQuotaConfigUpdateRequest) (RUMRetentionQuotaConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionQuotaConfigResponse
+		localVarReturnValue RUMRetentionQuotaConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.UpsertRumQuotaConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionQuotasApi.UpsertRUMQuotaConfig")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

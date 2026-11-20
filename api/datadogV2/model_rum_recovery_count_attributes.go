@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCountAttributes Query for a recovery estimate. The range cannot exceed 180 days; from cannot be more than 4 years ago and to cannot be more than 1 hour in the future. Session availability depends on the configured archive retention.
-type RumRecoveryCountAttributes struct {
+// RUMRecoveryCountAttributes Query for a recovery estimate. The range cannot exceed 180 days; from cannot be more than 4 years ago and to cannot be more than 1 hour in the future. Session availability depends on the configured archive retention.
+type RUMRecoveryCountAttributes struct {
 	// Start of the range in Unix milliseconds. Must be positive and earlier than to.
 	From int64 `json:"from"`
 	// RUM search query. Not blank, at most 4096 bytes for batch creation and count.
@@ -23,28 +23,28 @@ type RumRecoveryCountAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCountAttributes instantiates a new RumRecoveryCountAttributes object.
+// NewRUMRecoveryCountAttributes instantiates a new RUMRecoveryCountAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCountAttributes(from int64, query string, to int64) *RumRecoveryCountAttributes {
-	this := RumRecoveryCountAttributes{}
+func NewRUMRecoveryCountAttributes(from int64, query string, to int64) *RUMRecoveryCountAttributes {
+	this := RUMRecoveryCountAttributes{}
 	this.From = from
 	this.Query = query
 	this.To = to
 	return &this
 }
 
-// NewRumRecoveryCountAttributesWithDefaults instantiates a new RumRecoveryCountAttributes object.
+// NewRUMRecoveryCountAttributesWithDefaults instantiates a new RUMRecoveryCountAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCountAttributesWithDefaults() *RumRecoveryCountAttributes {
-	this := RumRecoveryCountAttributes{}
+func NewRUMRecoveryCountAttributesWithDefaults() *RUMRecoveryCountAttributes {
+	this := RUMRecoveryCountAttributes{}
 	return &this
 }
 
 // GetFrom returns the From field value.
-func (o *RumRecoveryCountAttributes) GetFrom() int64 {
+func (o *RUMRecoveryCountAttributes) GetFrom() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -54,7 +54,7 @@ func (o *RumRecoveryCountAttributes) GetFrom() int64 {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountAttributes) GetFromOk() (*int64, bool) {
+func (o *RUMRecoveryCountAttributes) GetFromOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *RumRecoveryCountAttributes) GetFromOk() (*int64, bool) {
 }
 
 // SetFrom sets field value.
-func (o *RumRecoveryCountAttributes) SetFrom(v int64) {
+func (o *RUMRecoveryCountAttributes) SetFrom(v int64) {
 	o.From = v
 }
 
 // GetQuery returns the Query field value.
-func (o *RumRecoveryCountAttributes) GetQuery() string {
+func (o *RUMRecoveryCountAttributes) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RumRecoveryCountAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMRecoveryCountAttributes) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *RumRecoveryCountAttributes) GetQueryOk() (*string, bool) {
 }
 
 // SetQuery sets field value.
-func (o *RumRecoveryCountAttributes) SetQuery(v string) {
+func (o *RUMRecoveryCountAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
 // GetTo returns the To field value.
-func (o *RumRecoveryCountAttributes) GetTo() int64 {
+func (o *RUMRecoveryCountAttributes) GetTo() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -100,7 +100,7 @@ func (o *RumRecoveryCountAttributes) GetTo() int64 {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCountAttributes) GetToOk() (*int64, bool) {
+func (o *RUMRecoveryCountAttributes) GetToOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *RumRecoveryCountAttributes) GetToOk() (*int64, bool) {
 }
 
 // SetTo sets field value.
-func (o *RumRecoveryCountAttributes) SetTo(v int64) {
+func (o *RUMRecoveryCountAttributes) SetTo(v int64) {
 	o.To = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCountAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCountAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,7 +129,7 @@ func (o RumRecoveryCountAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCountAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCountAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		From  *int64  `json:"from"`
 		Query *string `json:"query"`

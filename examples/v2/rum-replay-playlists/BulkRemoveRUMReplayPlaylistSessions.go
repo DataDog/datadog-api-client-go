@@ -24,11 +24,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	r, err := api.BulkRemoveRumReplayPlaylistSessions(ctx, 1234567, body)
+	api := datadogV2.NewRUMReplayPlaylistsApi(apiClient)
+	r, err := api.BulkRemoveRUMReplayPlaylistSessions(ctx, 1234567, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.BulkRemoveRumReplayPlaylistSessions`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayPlaylistsApi.BulkRemoveRUMReplayPlaylistSessions`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
