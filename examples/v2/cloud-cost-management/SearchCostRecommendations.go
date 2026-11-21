@@ -16,6 +16,9 @@ func main() {
 	body := datadogV2.RecommendationsFilterRequest{
 		Data: datadogV2.RecommendationsFilterRequestData{
 			Attributes: &datadogV2.RecommendationsFilterRequestDataAttributes{
+				ExtraFields: []string{
+					"tags.env",
+				},
 				Scope: datadogV2.RECOMMENDATIONSFILTERREQUESTSCOPE_CCM.Ptr(),
 				Sort: []datadogV2.RecommendationsFilterRequestSortItems{
 					{

@@ -10,6 +10,11 @@ import (
 
 // RecommendationsFilterRequestDataAttributes Attributes used to filter and sort cost recommendations.
 type RecommendationsFilterRequestDataAttributes struct {
+	// Additional fields to return from the recommendation event's custom attributes, selected
+	// by dotted paths such as `tags.env` or wildcard patterns such as `*target*`.
+	// Arrays are traversed without indexes. Matched objects and arrays are returned whole.
+	// A maximum of 256 selectors can be requested. Selectors that match nothing return no field.
+	ExtraFields []string `json:"extra_fields,omitempty"`
 	// Filter expression applied to the recommendations. When supplied, this attribute overrides
 	// `data.id`, including when empty. When omitted, `data.id` is used. If the resulting filter
 	// is empty, it defaults to `*`. Scope, view, and pagination still apply.
@@ -42,6 +47,34 @@ func NewRecommendationsFilterRequestDataAttributes() *RecommendationsFilterReque
 func NewRecommendationsFilterRequestDataAttributesWithDefaults() *RecommendationsFilterRequestDataAttributes {
 	this := RecommendationsFilterRequestDataAttributes{}
 	return &this
+}
+
+// GetExtraFields returns the ExtraFields field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequestDataAttributes) GetExtraFields() []string {
+	if o == nil || o.ExtraFields == nil {
+		var ret []string
+		return ret
+	}
+	return o.ExtraFields
+}
+
+// GetExtraFieldsOk returns a tuple with the ExtraFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequestDataAttributes) GetExtraFieldsOk() (*[]string, bool) {
+	if o == nil || o.ExtraFields == nil {
+		return nil, false
+	}
+	return &o.ExtraFields, true
+}
+
+// HasExtraFields returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequestDataAttributes) HasExtraFields() bool {
+	return o != nil && o.ExtraFields != nil
+}
+
+// SetExtraFields gets a reference to the given []string and assigns it to the ExtraFields field.
+func (o *RecommendationsFilterRequestDataAttributes) SetExtraFields(v []string) {
+	o.ExtraFields = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -162,6 +195,9 @@ func (o RecommendationsFilterRequestDataAttributes) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ExtraFields != nil {
+		toSerialize["extra_fields"] = o.ExtraFields
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -184,22 +220,24 @@ func (o RecommendationsFilterRequestDataAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *RecommendationsFilterRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *string                                 `json:"filter,omitempty"`
-		Scope  *RecommendationsFilterRequestScope      `json:"scope,omitempty"`
-		Sort   []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
-		View   *string                                 `json:"view,omitempty"`
+		ExtraFields []string                                `json:"extra_fields,omitempty"`
+		Filter      *string                                 `json:"filter,omitempty"`
+		Scope       *RecommendationsFilterRequestScope      `json:"scope,omitempty"`
+		Sort        []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
+		View        *string                                 `json:"view,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "scope", "sort", "view"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"extra_fields", "filter", "scope", "sort", "view"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.ExtraFields = all.ExtraFields
 	o.Filter = all.Filter
 	if all.Scope != nil && !all.Scope.IsValid() {
 		hasInvalidField = true
