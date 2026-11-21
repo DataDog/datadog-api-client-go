@@ -794,8 +794,8 @@ func (a *SyntheticsApi) FetchUptimes(ctx _context.Context, body SyntheticsFetchU
 }
 
 // GetAPITest Get an API test.
-// Get the detailed configuration associated with
-// a Synthetic API test.
+// Get the detailed configuration of one Synthetic API test.
+// For bulk configuration reads, prefer paginated `SearchTests` requests with `include_full_config=true`.
 func (a *SyntheticsApi) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -905,6 +905,8 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 
 // GetAPITestLatestResults Get an API test's latest results summaries.
 // Get the last 150 test results summaries for a given Synthetic API test.
+// To filter tests across your organization by monitor status, state, or tags, use
+// the Search Synthetic tests with filters endpoint.
 func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1197,6 +1199,8 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 
 // GetBrowserTestLatestResults Get a browser test's latest results summaries.
 // Get the last 150 test results summaries for a given Synthetic browser test.
+// To filter tests across your organization by monitor status, state, or tags, use
+// the Search Synthetic tests with filters endpoint.
 func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2025,7 +2029,8 @@ func (r *ListTestsOptionalParameters) WithPageNumber(pageNumber int64) *ListTest
 }
 
 // ListTests Get the list of all Synthetic tests.
-// Get the list of all Synthetic tests.
+// Get the list of all Synthetic tests. To use query filters or get monitor-health metadata, use
+// the Search Synthetic tests with filters endpoint.
 func (a *SyntheticsApi) ListTests(ctx _context.Context, o ...ListTestsOptionalParameters) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2296,8 +2301,13 @@ func (r *SearchTestsOptionalParameters) WithSort(sort string) *SearchTestsOption
 	return r
 }
 
-// SearchTests Search Synthetic tests.
-// Search for Synthetic tests.
+// SearchTests Search Synthetic tests with filters.
+// Search for Synthetic tests that match the `text` query. The response includes monitor health, facet counts,
+// and pagination metadata. `total` can report 10,000 even when more tests match.
+// Do not treat that value as an exact total. Access restrictions can return fewer tests than `count`, or none.
+// Increase `start` by `count` for each page.
+// In TypeScript, response-level `total` and `facets`, and test-level `monitor_status`
+// (known values: `OK`, `Alert`, `No Data`), are available through `additionalProperties`.
 func (a *SyntheticsApi) SearchTests(ctx _context.Context, o ...SearchTestsOptionalParameters) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

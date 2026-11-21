@@ -8,7 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.
+// SyntheticsListTestsResponse Synthetic test configurations.
+// Search responses also include `total` (matches before per-test access filtering) and `facets` (value counts).
+// `total` can report 10,000 even when more tests match. Do not treat that value as an exact total.
+// In TypeScript, these are available as `response.additionalProperties?.total` and
+// `response.additionalProperties?.facets`.
 type SyntheticsListTestsResponse struct {
 	// Array of Synthetic tests configuration.
 	Tests []SyntheticsTestDetailsWithoutSteps `json:"tests,omitempty"`
