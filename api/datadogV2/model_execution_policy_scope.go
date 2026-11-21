@@ -14,7 +14,7 @@ import (
 type ExecutionPolicyScope struct {
 	// Restricts the policy to specific Kubernetes namespaces.
 	Kubernetes *ExecutionPolicyKubernetesScope `json:"kubernetes,omitempty"`
-	// Restricts the policy to specific remote shell paths.
+	// Restricts the policy to specific remote shell paths and commands.
 	RemoteActionRshell *ExecutionPolicyRemoteActionRshellScope `json:"remote_action_rshell,omitempty"`
 	// Restricts the policy to specific scripts.
 	Scripts *ExecutionPolicyScriptScope `json:"scripts,omitempty"`
