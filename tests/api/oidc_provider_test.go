@@ -188,16 +188,16 @@ func TestOIDCAuthenticateRefusesTokensNotScopedToDatadog(t *testing.T) {
 		token  string
 		reason string
 	}{
-		{"wrong audience", oidcTestToken(t, map[string]any{"aud": "https://internal-api.example", "exp": future}), `aud is "https://internal-api.example"`},
-		{"other organization", oidcTestToken(t, map[string]any{"aud": "datadog/other-org", "exp": future}), `aud is "datadog/other-org"`},
+		{"wrong audience", oidcTestToken(t, map[string]any{"aud": "https://internal-api.example", "exp": future}), "aud is not a Datadog audience"},
+		{"other organization", oidcTestToken(t, map[string]any{"aud": "datadog/other-org", "exp": future}), "datadog/ audience that does not match"},
 		{"multiple audiences", oidcTestToken(t, map[string]any{"aud": []string{"datadog/" + testOrgUUID, "other-api"}, "exp": future}), "aud has 2 values"},
 		{"no audience", oidcTestToken(t, map[string]any{"exp": future}), "no aud claim"},
-		{"mismatched dd_org_uuid", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID, "dd_org_uuid": "other-org", "exp": future}), "dd_org_uuid"},
+		{"mismatched dd_org_uuid", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID, "dd_org_uuid": "other-org", "exp": future}), "dd_org_uuid does not match"},
 		{"no expiry", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID}), "no exp claim"},
 		{"expired", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID, "exp": time.Now().Add(-time.Minute).Unix()}), "expired"},
 		{"opaque token", "opaque-access-token", "not a JWT"},
 		{"numeric audience", oidcTestToken(t, map[string]any{"aud": 7, "exp": future}), "neither a string"},
-		{"case-variant audience claim", oidcRawToken(fmt.Sprintf(`{"aud":"another-service","AUD":"datadog/%s","exp":%d}`, testOrgUUID, future)), `aud is "another-service"`},
+		{"case-variant audience claim", oidcRawToken(fmt.Sprintf(`{"aud":"another-service","AUD":"datadog/%s","exp":%d}`, testOrgUUID, future)), "aud is not a Datadog audience"},
 		{"case-variant claims only", oidcRawToken(fmt.Sprintf(`{"AUD":"datadog/%s","EXP":%d}`, testOrgUUID, future)), "no aud claim"},
 		{"non-numeric expiry", oidcRawToken(fmt.Sprintf(`{"aud":"datadog/%s","exp":"soon"}`, testOrgUUID)), "exp is not a number"},
 		{"payload is not an object", oidcRawToken(`["aud"]`), "not a JSON object"},
@@ -220,6 +220,11 @@ func TestOIDCAuthenticateRefusesTokensNotScopedToDatadog(t *testing.T) {
 			var scopeError *oidcauth.TokenScopeError
 			if !errors.As(err, &scopeError) || !strings.Contains(scopeError.Reason, test.reason) {
 				t.Fatalf("error = %v, want TokenScopeError containing %q", err, test.reason)
+			}
+			for _, value := range []string{testOrgUUID, "other-org", "internal-api.example", "another-service", "other-api"} {
+				if strings.Contains(scopeError.Reason, value) {
+					t.Errorf("reason %q leaks %q", scopeError.Reason, value)
+				}
 			}
 		})
 	}
