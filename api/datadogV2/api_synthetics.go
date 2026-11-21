@@ -2018,6 +2018,8 @@ func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithDeviceId(
 
 // ListSyntheticsBrowserTestLatestResults Get a browser test's latest results.
 // Get the latest result summaries for a given Synthetic browser test.
+// To filter tests across your organization by monitor status, state, or tags, use
+// the Search Synthetic tests with filters endpoint.
 func (a *SyntheticsApi) ListSyntheticsBrowserTestLatestResults(ctx _context.Context, publicId string, o ...ListSyntheticsBrowserTestLatestResultsOptionalParameters) (SyntheticsTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2314,6 +2316,8 @@ func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithDeviceId(deviceI
 
 // ListSyntheticsTestLatestResults Get a test's latest results.
 // Get the latest result summaries for a given Synthetic test.
+// To filter tests across your organization by monitor status, state, or tags, use
+// the Search Synthetic tests with filters endpoint.
 func (a *SyntheticsApi) ListSyntheticsTestLatestResults(ctx _context.Context, publicId string, o ...ListSyntheticsTestLatestResultsOptionalParameters) (SyntheticsTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
