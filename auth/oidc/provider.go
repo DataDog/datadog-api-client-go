@@ -231,16 +231,19 @@ func CheckDatadogScoped(token, orgUUID string, now time.Time) error {
 		return &TokenScopeError{Reason: err.Error()}
 	}
 	want := audiencePrefix + orgUUID
+	// Reasons omit claim and org values because they reach logs and support flares.
 	switch {
 	case len(claims.Audience) == 0:
 		return &TokenScopeError{Reason: "no aud claim"}
 	case len(claims.Audience) > 1:
-		return &TokenScopeError{Reason: fmt.Sprintf("aud has %d values; only a single %q is accepted", len(claims.Audience), want)}
+		return &TokenScopeError{Reason: fmt.Sprintf("aud has %d values; only a single Datadog audience for the configured org is accepted", len(claims.Audience))}
+	case claims.Audience[0] != want && strings.HasPrefix(claims.Audience[0], audiencePrefix):
+		return &TokenScopeError{Reason: "aud is a datadog/ audience that does not match the configured org UUID"}
 	case claims.Audience[0] != want:
-		return &TokenScopeError{Reason: fmt.Sprintf("aud is %q, want %q", claims.Audience[0], want)}
+		return &TokenScopeError{Reason: "aud is not a Datadog audience"}
 	}
 	if claims.OrgUUID != "" && claims.OrgUUID != orgUUID {
-		return &TokenScopeError{Reason: fmt.Sprintf("dd_org_uuid is %q, want %q", claims.OrgUUID, orgUUID)}
+		return &TokenScopeError{Reason: "dd_org_uuid does not match the configured org UUID"}
 	}
 	if claims.Expiry == nil {
 		return &TokenScopeError{Reason: "no exp claim"}
