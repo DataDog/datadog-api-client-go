@@ -189,7 +189,7 @@ func TestOIDCAuthenticateRefusesTokensNotScopedToDatadog(t *testing.T) {
 		reason string
 	}{
 		{"wrong audience", oidcTestToken(t, map[string]any{"aud": "https://internal-api.example", "exp": future}), "aud is not a Datadog audience"},
-		{"other organization", oidcTestToken(t, map[string]any{"aud": "datadog/other-org", "exp": future}), "aud names a different Datadog org"},
+		{"other organization", oidcTestToken(t, map[string]any{"aud": "datadog/other-org", "exp": future}), "datadog/ audience that does not match"},
 		{"multiple audiences", oidcTestToken(t, map[string]any{"aud": []string{"datadog/" + testOrgUUID, "other-api"}, "exp": future}), "aud has 2 values"},
 		{"no audience", oidcTestToken(t, map[string]any{"exp": future}), "no aud claim"},
 		{"mismatched dd_org_uuid", oidcTestToken(t, map[string]any{"aud": "datadog/" + testOrgUUID, "dd_org_uuid": "other-org", "exp": future}), "dd_org_uuid does not match"},
