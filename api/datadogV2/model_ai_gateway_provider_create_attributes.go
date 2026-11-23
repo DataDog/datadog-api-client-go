@@ -28,7 +28,7 @@ type AiGatewayProviderCreateAttributes struct {
 	// Provider-specific integration configuration.
 	IntegrationConfig *AiGatewayProviderIntegrationConfig `json:"integration_config,omitempty"`
 	// Known provider implementation.
-	KnownProvider *AiGatewayKnownProvider `json:"known_provider,omitempty"`
+	KnownProvider AiGatewayKnownProvider `json:"known_provider"`
 	// Manually managed models to add alongside models discovered from the provider integration.
 	Models []AiGatewayModelInput `json:"models,omitempty"`
 	// Human-readable resource name.
@@ -48,12 +48,13 @@ type AiGatewayProviderCreateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAiGatewayProviderCreateAttributes(name string, slug string) *AiGatewayProviderCreateAttributes {
+func NewAiGatewayProviderCreateAttributes(knownProvider AiGatewayKnownProvider, name string, slug string) *AiGatewayProviderCreateAttributes {
 	this := AiGatewayProviderCreateAttributes{}
 	var costMultiplier float64 = 1.0
 	this.CostMultiplier = &costMultiplier
 	var credentialSource AiGatewayProviderCreateCredentialSource = AIGATEWAYPROVIDERCREATECREDENTIALSOURCE_INTEGRATION_ACCOUNT
 	this.CredentialSource = &credentialSource
+	this.KnownProvider = knownProvider
 	this.Name = name
 	this.Slug = slug
 	return &this
@@ -211,32 +212,27 @@ func (o *AiGatewayProviderCreateAttributes) SetIntegrationConfig(v AiGatewayProv
 	o.IntegrationConfig = &v
 }
 
-// GetKnownProvider returns the KnownProvider field value if set, zero value otherwise.
+// GetKnownProvider returns the KnownProvider field value.
 func (o *AiGatewayProviderCreateAttributes) GetKnownProvider() AiGatewayKnownProvider {
-	if o == nil || o.KnownProvider == nil {
+	if o == nil {
 		var ret AiGatewayKnownProvider
 		return ret
 	}
-	return *o.KnownProvider
+	return o.KnownProvider
 }
 
-// GetKnownProviderOk returns a tuple with the KnownProvider field value if set, nil otherwise
+// GetKnownProviderOk returns a tuple with the KnownProvider field value
 // and a boolean to check if the value has been set.
 func (o *AiGatewayProviderCreateAttributes) GetKnownProviderOk() (*AiGatewayKnownProvider, bool) {
-	if o == nil || o.KnownProvider == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.KnownProvider, true
+	return &o.KnownProvider, true
 }
 
-// HasKnownProvider returns a boolean if a field has been set.
-func (o *AiGatewayProviderCreateAttributes) HasKnownProvider() bool {
-	return o != nil && o.KnownProvider != nil
-}
-
-// SetKnownProvider gets a reference to the given AiGatewayKnownProvider and assigns it to the KnownProvider field.
+// SetKnownProvider sets field value.
 func (o *AiGatewayProviderCreateAttributes) SetKnownProvider(v AiGatewayKnownProvider) {
-	o.KnownProvider = &v
+	o.KnownProvider = v
 }
 
 // GetModels returns the Models field value if set, zero value otherwise.
@@ -362,9 +358,7 @@ func (o AiGatewayProviderCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.IntegrationConfig != nil {
 		toSerialize["integration_config"] = o.IntegrationConfig
 	}
-	if o.KnownProvider != nil {
-		toSerialize["known_provider"] = o.KnownProvider
-	}
+	toSerialize["known_provider"] = o.KnownProvider
 	if o.Models != nil {
 		toSerialize["models"] = o.Models
 	}
@@ -388,7 +382,7 @@ func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 		InitialBindings      []AiGatewayProviderInitialBinding        `json:"initial_bindings,omitempty"`
 		IntegrationAccountId *string                                  `json:"integration_account_id,omitempty"`
 		IntegrationConfig    *AiGatewayProviderIntegrationConfig      `json:"integration_config,omitempty"`
-		KnownProvider        *AiGatewayKnownProvider                  `json:"known_provider,omitempty"`
+		KnownProvider        *AiGatewayKnownProvider                  `json:"known_provider"`
 		Models               []AiGatewayModelInput                    `json:"models,omitempty"`
 		Name                 *string                                  `json:"name"`
 		Slug                 *string                                  `json:"slug"`
@@ -396,6 +390,9 @@ func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.KnownProvider == nil {
+		return fmt.Errorf("required field known_provider missing")
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -423,10 +420,10 @@ func (o *AiGatewayProviderCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 		hasInvalidField = true
 	}
 	o.IntegrationConfig = all.IntegrationConfig
-	if all.KnownProvider != nil && !all.KnownProvider.IsValid() {
+	if !all.KnownProvider.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.KnownProvider = all.KnownProvider
+		o.KnownProvider = *all.KnownProvider
 	}
 	o.Models = all.Models
 	o.Name = *all.Name

@@ -18,6 +18,9 @@ type AiGatewayModelPricingConfig struct {
 	Rates *AiGatewayModelPricingRates `json:"rates,omitempty"`
 	// Source information for a model's pricing.
 	Source AiGatewayModelPricingSource `json:"source"`
+	// Custom prices that replace the base rates for the requests they select. Only valid for custom pricing.
+	// At most 16 tiers, and no two may share the same `service_tier` and `context_min_tokens`.
+	Tiers []AiGatewayModelPricingTier `json:"tiers,omitempty"`
 	// Pricing configuration version. The only supported version is `1`.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -123,6 +126,34 @@ func (o *AiGatewayModelPricingConfig) SetSource(v AiGatewayModelPricingSource) {
 	o.Source = v
 }
 
+// GetTiers returns the Tiers field value if set, zero value otherwise.
+func (o *AiGatewayModelPricingConfig) GetTiers() []AiGatewayModelPricingTier {
+	if o == nil || o.Tiers == nil {
+		var ret []AiGatewayModelPricingTier
+		return ret
+	}
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayModelPricingConfig) GetTiersOk() (*[]AiGatewayModelPricingTier, bool) {
+	if o == nil || o.Tiers == nil {
+		return nil, false
+	}
+	return &o.Tiers, true
+}
+
+// HasTiers returns a boolean if a field has been set.
+func (o *AiGatewayModelPricingConfig) HasTiers() bool {
+	return o != nil && o.Tiers != nil
+}
+
+// SetTiers gets a reference to the given []AiGatewayModelPricingTier and assigns it to the Tiers field.
+func (o *AiGatewayModelPricingConfig) SetTiers(v []AiGatewayModelPricingTier) {
+	o.Tiers = v
+}
+
 // GetVersion returns the Version field value.
 func (o *AiGatewayModelPricingConfig) GetVersion() int64 {
 	if o == nil {
@@ -159,6 +190,9 @@ func (o AiGatewayModelPricingConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["rates"] = o.Rates
 	}
 	toSerialize["source"] = o.Source
+	if o.Tiers != nil {
+		toSerialize["tiers"] = o.Tiers
+	}
 	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
@@ -173,6 +207,7 @@ func (o *AiGatewayModelPricingConfig) UnmarshalJSON(bytes []byte) (err error) {
 		Overrides *AiGatewayModelPricingRates  `json:"overrides,omitempty"`
 		Rates     *AiGatewayModelPricingRates  `json:"rates,omitempty"`
 		Source    *AiGatewayModelPricingSource `json:"source"`
+		Tiers     []AiGatewayModelPricingTier  `json:"tiers,omitempty"`
 		Version   *int64                       `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -186,7 +221,7 @@ func (o *AiGatewayModelPricingConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"overrides", "rates", "source", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"overrides", "rates", "source", "tiers", "version"})
 	} else {
 		return err
 	}
@@ -204,6 +239,7 @@ func (o *AiGatewayModelPricingConfig) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Source = *all.Source
+	o.Tiers = all.Tiers
 	o.Version = *all.Version
 
 	if len(additionalProperties) > 0 {

@@ -37,7 +37,7 @@ func main() {
 						datadogV2.AIGATEWAYCUSTOMPROVIDERSUPPORTEDOPERATION_OPENAI_CHAT_COMPLETIONS,
 					},
 				},
-				KnownProvider: datadogV2.AIGATEWAYKNOWNPROVIDER_OPENAI.Ptr(),
+				KnownProvider: datadogV2.AIGATEWAYKNOWNPROVIDER_OPENAI,
 				Models: []datadogV2.AiGatewayModelInput{
 					{
 						ModelIdCanonical: "gpt-5.2-codex",

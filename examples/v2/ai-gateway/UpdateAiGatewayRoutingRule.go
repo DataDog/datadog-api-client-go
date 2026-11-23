@@ -17,6 +17,8 @@ func main() {
 	body := datadogV2.AiGatewayRoutingRuleReplaceRequest{
 		Data: datadogV2.AiGatewayRoutingRuleReplaceData{
 			Attributes: datadogV2.AiGatewayRoutingRuleReplaceAttributes{
+				Description:       *datadog.NewNullableString(datadog.PtrString("Routes coding traffic to the fastest available model.")),
+				DisplayName:       *datadog.NewNullableString(datadog.PtrString("Coding fallback")),
 				ExpectedUpdatedAt: datadog.PtrTime(time.Date(2026, 8, 24, 12, 0, 0, 0, time.UTC)),
 				RemovedTargetIds: []int64{
 					901,
