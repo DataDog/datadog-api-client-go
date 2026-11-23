@@ -24,7 +24,7 @@ type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
 	Disabled []string `json:"disabled,omitempty"`
 	// Whether the Agent rule is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	// The SECL expression of the Agent rule.
+	// The SECL expression of the Agent rule. See [Agent expressions](https://docs.datadoghq.com/security/workload_protection/agent_expressions/).
 	Expression string `json:"expression"`
 	// The platforms the Agent rule is supported on.
 	Filters []string `json:"filters,omitempty"`

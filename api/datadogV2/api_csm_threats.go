@@ -101,6 +101,15 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentPolicy(ctx _context.Context, body C
 // CreateCSMThreatsAgentRule Create a Workload Protection agent rule.
 // Create a new Workload Protection agent rule with the given parameters.
 //
+// The `expression` attribute is written in the Security Agent Expression Language (SECL),
+// for example `exec.file.name == "sh"`. See [Agent expressions](https://docs.datadoghq.com/security/workload_protection/agent_expressions/)
+// for the syntax and the list of available event types and fields.
+//
+// If `policy_id` is not set, the rule is added to the `CWS_CUSTOM-canary` policy. This policy is created if it does not exist yet.
+// To add the rule to another policy, set `policy_id` to the ID of that policy, as returned by `ListCSMThreatsAgentPolicies`.
+//
+// This endpoint does not accept `kill` or `network_filter` actions, or `blocking` policies. A request that contains them returns a `400` error.
+//
 // **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -192,6 +201,8 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 // DeleteCSMThreatsAgentPolicy Delete a Workload Protection policy.
 // Delete a specific Workload Protection policy.
 //
+// Datadog-managed policies cannot be deleted. This action cannot be undone.
+//
 // **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) DeleteCSMThreatsAgentPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 	var (
@@ -278,6 +289,9 @@ func (r *DeleteCSMThreatsAgentRuleOptionalParameters) WithPolicyId(policyId stri
 
 // DeleteCSMThreatsAgentRule Delete a Workload Protection agent rule.
 // Delete a specific Workload Protection agent rule.
+//
+// The rule is removed from every policy that contains it. Datadog-managed rules cannot be deleted.
+// This action cannot be undone.
 //
 // **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, o ...DeleteCSMThreatsAgentRuleOptionalParameters) (*_nethttp.Response, error) {
@@ -824,6 +838,8 @@ func (r *ListCSMThreatsAgentRulesOptionalParameters) WithPolicyId(policyId strin
 // ListCSMThreatsAgentRules Get all Workload Protection agent rules.
 // Get the list of Workload Protection agent rules.
 //
+// Set `policy_id` to only return the rules of one policy. Without it, the rules of all policies are returned.
+//
 // **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context, o ...ListCSMThreatsAgentRulesOptionalParameters) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
@@ -1112,6 +1128,11 @@ func (r *UpdateCSMThreatsAgentRuleOptionalParameters) WithPolicyId(policyId stri
 // UpdateCSMThreatsAgentRule Update a Workload Protection agent rule.
 // Update a specific Workload Protection Agent rule.
 // Returns the agent rule object when the request is successful.
+//
+// The `expression` attribute is written in the Security Agent Expression Language (SECL).
+// See [Agent expressions](https://docs.datadoghq.com/security/workload_protection/agent_expressions/) for the syntax.
+//
+// This endpoint does not accept `kill` or `network_filter` actions, or `blocking` policies. A request that contains them returns a `400` error.
 //
 // **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest, o ...UpdateCSMThreatsAgentRuleOptionalParameters) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
