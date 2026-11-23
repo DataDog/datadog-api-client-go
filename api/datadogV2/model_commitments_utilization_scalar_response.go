@@ -12,10 +12,8 @@ import (
 
 // CommitmentsUtilizationScalarResponse Response containing scalar utilization metrics for cloud commitment programs.
 type CommitmentsUtilizationScalarResponse struct {
-	// Array of scalar columns in the response.
-	Columns []CommitmentsScalarColumn `json:"columns"`
-	// Array of per-product utilization breakdown entries.
-	ProductBreakdown []CommitmentsUtilizationScalarProductBreakdownEntry `json:"product_breakdown,omitempty"`
+	// The scalar utilization resource.
+	Data CommitmentsUtilizationScalarResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,9 +23,9 @@ type CommitmentsUtilizationScalarResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCommitmentsUtilizationScalarResponse(columns []CommitmentsScalarColumn) *CommitmentsUtilizationScalarResponse {
+func NewCommitmentsUtilizationScalarResponse(data CommitmentsUtilizationScalarResponseData) *CommitmentsUtilizationScalarResponse {
 	this := CommitmentsUtilizationScalarResponse{}
-	this.Columns = columns
+	this.Data = data
 	return &this
 }
 
@@ -39,55 +37,27 @@ func NewCommitmentsUtilizationScalarResponseWithDefaults() *CommitmentsUtilizati
 	return &this
 }
 
-// GetColumns returns the Columns field value.
-func (o *CommitmentsUtilizationScalarResponse) GetColumns() []CommitmentsScalarColumn {
+// GetData returns the Data field value.
+func (o *CommitmentsUtilizationScalarResponse) GetData() CommitmentsUtilizationScalarResponseData {
 	if o == nil {
-		var ret []CommitmentsScalarColumn
+		var ret CommitmentsUtilizationScalarResponseData
 		return ret
 	}
-	return o.Columns
+	return o.Data
 }
 
-// GetColumnsOk returns a tuple with the Columns field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *CommitmentsUtilizationScalarResponse) GetColumnsOk() (*[]CommitmentsScalarColumn, bool) {
+func (o *CommitmentsUtilizationScalarResponse) GetDataOk() (*CommitmentsUtilizationScalarResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Columns, true
+	return &o.Data, true
 }
 
-// SetColumns sets field value.
-func (o *CommitmentsUtilizationScalarResponse) SetColumns(v []CommitmentsScalarColumn) {
-	o.Columns = v
-}
-
-// GetProductBreakdown returns the ProductBreakdown field value if set, zero value otherwise.
-func (o *CommitmentsUtilizationScalarResponse) GetProductBreakdown() []CommitmentsUtilizationScalarProductBreakdownEntry {
-	if o == nil || o.ProductBreakdown == nil {
-		var ret []CommitmentsUtilizationScalarProductBreakdownEntry
-		return ret
-	}
-	return o.ProductBreakdown
-}
-
-// GetProductBreakdownOk returns a tuple with the ProductBreakdown field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CommitmentsUtilizationScalarResponse) GetProductBreakdownOk() (*[]CommitmentsUtilizationScalarProductBreakdownEntry, bool) {
-	if o == nil || o.ProductBreakdown == nil {
-		return nil, false
-	}
-	return &o.ProductBreakdown, true
-}
-
-// HasProductBreakdown returns a boolean if a field has been set.
-func (o *CommitmentsUtilizationScalarResponse) HasProductBreakdown() bool {
-	return o != nil && o.ProductBreakdown != nil
-}
-
-// SetProductBreakdown gets a reference to the given []CommitmentsUtilizationScalarProductBreakdownEntry and assigns it to the ProductBreakdown field.
-func (o *CommitmentsUtilizationScalarResponse) SetProductBreakdown(v []CommitmentsUtilizationScalarProductBreakdownEntry) {
-	o.ProductBreakdown = v
+// SetData sets field value.
+func (o *CommitmentsUtilizationScalarResponse) SetData(v CommitmentsUtilizationScalarResponseData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -96,10 +66,7 @@ func (o CommitmentsUtilizationScalarResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["columns"] = o.Columns
-	if o.ProductBreakdown != nil {
-		toSerialize["product_breakdown"] = o.ProductBreakdown
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -110,26 +77,33 @@ func (o CommitmentsUtilizationScalarResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsUtilizationScalarResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Columns          *[]CommitmentsScalarColumn                          `json:"columns"`
-		ProductBreakdown []CommitmentsUtilizationScalarProductBreakdownEntry `json:"product_breakdown,omitempty"`
+		Data *CommitmentsUtilizationScalarResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Columns == nil {
-		return fmt.Errorf("required field columns missing")
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "product_breakdown"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.Columns = *all.Columns
-	o.ProductBreakdown = all.ProductBreakdown
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
