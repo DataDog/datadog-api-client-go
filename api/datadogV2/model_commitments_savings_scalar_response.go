@@ -12,8 +12,8 @@ import (
 
 // CommitmentsSavingsScalarResponse Response containing scalar savings metrics for cloud commitment programs.
 type CommitmentsSavingsScalarResponse struct {
-	// Array of scalar columns in the response.
-	Columns []CommitmentsScalarColumn `json:"columns"`
+	// The scalar savings resource.
+	Data CommitmentsSavingsScalarResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,9 +23,9 @@ type CommitmentsSavingsScalarResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCommitmentsSavingsScalarResponse(columns []CommitmentsScalarColumn) *CommitmentsSavingsScalarResponse {
+func NewCommitmentsSavingsScalarResponse(data CommitmentsSavingsScalarResponseData) *CommitmentsSavingsScalarResponse {
 	this := CommitmentsSavingsScalarResponse{}
-	this.Columns = columns
+	this.Data = data
 	return &this
 }
 
@@ -37,27 +37,27 @@ func NewCommitmentsSavingsScalarResponseWithDefaults() *CommitmentsSavingsScalar
 	return &this
 }
 
-// GetColumns returns the Columns field value.
-func (o *CommitmentsSavingsScalarResponse) GetColumns() []CommitmentsScalarColumn {
+// GetData returns the Data field value.
+func (o *CommitmentsSavingsScalarResponse) GetData() CommitmentsSavingsScalarResponseData {
 	if o == nil {
-		var ret []CommitmentsScalarColumn
+		var ret CommitmentsSavingsScalarResponseData
 		return ret
 	}
-	return o.Columns
+	return o.Data
 }
 
-// GetColumnsOk returns a tuple with the Columns field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *CommitmentsSavingsScalarResponse) GetColumnsOk() (*[]CommitmentsScalarColumn, bool) {
+func (o *CommitmentsSavingsScalarResponse) GetDataOk() (*CommitmentsSavingsScalarResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Columns, true
+	return &o.Data, true
 }
 
-// SetColumns sets field value.
-func (o *CommitmentsSavingsScalarResponse) SetColumns(v []CommitmentsScalarColumn) {
-	o.Columns = v
+// SetData sets field value.
+func (o *CommitmentsSavingsScalarResponse) SetData(v CommitmentsSavingsScalarResponseData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -66,7 +66,7 @@ func (o CommitmentsSavingsScalarResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["columns"] = o.Columns
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,24 +77,33 @@ func (o CommitmentsSavingsScalarResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsSavingsScalarResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Columns *[]CommitmentsScalarColumn `json:"columns"`
+		Data *CommitmentsSavingsScalarResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Columns == nil {
-		return fmt.Errorf("required field columns missing")
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.Columns = *all.Columns
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

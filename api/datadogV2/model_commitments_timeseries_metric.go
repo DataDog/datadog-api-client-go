@@ -16,8 +16,8 @@ type CommitmentsTimeseriesMetric struct {
 	Series map[string][]float64 `json:"series"`
 	// Unix timestamps in seconds for the timeseries data points.
 	Times []int64 `json:"times"`
-	// Unit metadata for a numeric metric.
-	Unit *CommitmentsUnit `json:"unit,omitempty"`
+	// Unit metadata for a numeric metric. Unset fields are omitted, and the unit is `null` when it is unknown.
+	Unit NullableCommitmentsUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -88,32 +88,43 @@ func (o *CommitmentsTimeseriesMetric) SetTimes(v []int64) {
 	o.Times = v
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
+// GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CommitmentsTimeseriesMetric) GetUnit() CommitmentsUnit {
-	if o == nil || o.Unit == nil {
+	if o == nil || o.Unit.Get() == nil {
 		var ret CommitmentsUnit
 		return ret
 	}
-	return *o.Unit
+	return *o.Unit.Get()
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CommitmentsTimeseriesMetric) GetUnitOk() (*CommitmentsUnit, bool) {
-	if o == nil || o.Unit == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Unit, true
+	return o.Unit.Get(), o.Unit.IsSet()
 }
 
 // HasUnit returns a boolean if a field has been set.
 func (o *CommitmentsTimeseriesMetric) HasUnit() bool {
-	return o != nil && o.Unit != nil
+	return o != nil && o.Unit.IsSet()
 }
 
-// SetUnit gets a reference to the given CommitmentsUnit and assigns it to the Unit field.
+// SetUnit gets a reference to the given NullableCommitmentsUnit and assigns it to the Unit field.
 func (o *CommitmentsTimeseriesMetric) SetUnit(v CommitmentsUnit) {
-	o.Unit = &v
+	o.Unit.Set(&v)
+}
+
+// SetUnitNil sets the value for Unit to be an explicit nil.
+func (o *CommitmentsTimeseriesMetric) SetUnitNil() {
+	o.Unit.Set(nil)
+}
+
+// UnsetUnit ensures that no value is present for Unit, not even an explicit nil.
+func (o *CommitmentsTimeseriesMetric) UnsetUnit() {
+	o.Unit.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -124,8 +135,8 @@ func (o CommitmentsTimeseriesMetric) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["series"] = o.Series
 	toSerialize["times"] = o.Times
-	if o.Unit != nil {
-		toSerialize["unit"] = o.Unit
+	if o.Unit.IsSet() {
+		toSerialize["unit"] = o.Unit.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -137,9 +148,9 @@ func (o CommitmentsTimeseriesMetric) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsTimeseriesMetric) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Series *map[string][]float64 `json:"series"`
-		Times  *[]int64              `json:"times"`
-		Unit   *CommitmentsUnit      `json:"unit,omitempty"`
+		Series *map[string][]float64   `json:"series"`
+		Times  *[]int64                `json:"times"`
+		Unit   NullableCommitmentsUnit `json:"unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -156,21 +167,12 @@ func (o *CommitmentsTimeseriesMetric) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.Series = *all.Series
 	o.Times = *all.Times
-	if all.Unit != nil && all.Unit.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Unit = all.Unit
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -12,8 +12,8 @@ import (
 
 // CommitmentsScalarColumnMeta Metadata for a scalar column, including unit information.
 type CommitmentsScalarColumnMeta struct {
-	// Unit metadata for a numeric metric.
-	Unit CommitmentsUnit `json:"unit"`
+	// Unit metadata for a numeric metric. Unset fields are omitted, and the unit is `null` when it is unknown.
+	Unit NullableCommitmentsUnit `json:"unit"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type CommitmentsScalarColumnMeta struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCommitmentsScalarColumnMeta(unit CommitmentsUnit) *CommitmentsScalarColumnMeta {
+func NewCommitmentsScalarColumnMeta(unit NullableCommitmentsUnit) *CommitmentsScalarColumnMeta {
 	this := CommitmentsScalarColumnMeta{}
 	this.Unit = unit
 	return &this
@@ -38,26 +38,28 @@ func NewCommitmentsScalarColumnMetaWithDefaults() *CommitmentsScalarColumnMeta {
 }
 
 // GetUnit returns the Unit field value.
+// If the value is explicit nil, the zero value for CommitmentsUnit will be returned.
 func (o *CommitmentsScalarColumnMeta) GetUnit() CommitmentsUnit {
-	if o == nil {
+	if o == nil || o.Unit.Get() == nil {
 		var ret CommitmentsUnit
 		return ret
 	}
-	return o.Unit
+	return *o.Unit.Get()
 }
 
 // GetUnitOk returns a tuple with the Unit field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CommitmentsScalarColumnMeta) GetUnitOk() (*CommitmentsUnit, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Unit, true
+	return o.Unit.Get(), o.Unit.IsSet()
 }
 
 // SetUnit sets field value.
 func (o *CommitmentsScalarColumnMeta) SetUnit(v CommitmentsUnit) {
-	o.Unit = v
+	o.Unit.Set(&v)
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -66,7 +68,7 @@ func (o CommitmentsScalarColumnMeta) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["unit"] = o.Unit
+	toSerialize["unit"] = o.Unit.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,12 +79,12 @@ func (o CommitmentsScalarColumnMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsScalarColumnMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Unit *CommitmentsUnit `json:"unit"`
+		Unit NullableCommitmentsUnit `json:"unit"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Unit == nil {
+	if !all.Unit.IsSet() {
 		return fmt.Errorf("required field unit missing")
 	}
 	additionalProperties := make(map[string]interface{})
@@ -91,19 +93,10 @@ func (o *CommitmentsScalarColumnMeta) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Unit.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Unit = *all.Unit
+	o.Unit = all.Unit
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

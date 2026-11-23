@@ -17,11 +17,13 @@ type CommitmentsProvider string
 const (
 	COMMITMENTSPROVIDER_AWS   CommitmentsProvider = "aws"
 	COMMITMENTSPROVIDER_AZURE CommitmentsProvider = "azure"
+	COMMITMENTSPROVIDER_GCP   CommitmentsProvider = "gcp"
 )
 
 var allowedCommitmentsProviderEnumValues = []CommitmentsProvider{
 	COMMITMENTSPROVIDER_AWS,
 	COMMITMENTSPROVIDER_AZURE,
+	COMMITMENTSPROVIDER_GCP,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -10,8 +10,8 @@ import (
 
 // CommitmentsListMeta Metadata for a commitments list response.
 type CommitmentsListMeta struct {
-	// Unit metadata for a numeric metric.
-	CommittedSpendUnit *CommitmentsUnit `json:"committed_spend_unit,omitempty"`
+	// Unit metadata for a numeric metric. Unset fields are omitted, and the unit is `null` when it is unknown.
+	CommittedSpendUnit NullableCommitmentsUnit `json:"committed_spend_unit,omitempty"`
 	// Whether Azure cost data lacks the unused cost of some commitments, for example when an export is
 	// scoped below the billing profile. When `true`, utilization is overstated.
 	UnusedCostUnavailable *bool `json:"unused_cost_unavailable,omitempty"`
@@ -37,32 +37,43 @@ func NewCommitmentsListMetaWithDefaults() *CommitmentsListMeta {
 	return &this
 }
 
-// GetCommittedSpendUnit returns the CommittedSpendUnit field value if set, zero value otherwise.
+// GetCommittedSpendUnit returns the CommittedSpendUnit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CommitmentsListMeta) GetCommittedSpendUnit() CommitmentsUnit {
-	if o == nil || o.CommittedSpendUnit == nil {
+	if o == nil || o.CommittedSpendUnit.Get() == nil {
 		var ret CommitmentsUnit
 		return ret
 	}
-	return *o.CommittedSpendUnit
+	return *o.CommittedSpendUnit.Get()
 }
 
 // GetCommittedSpendUnitOk returns a tuple with the CommittedSpendUnit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CommitmentsListMeta) GetCommittedSpendUnitOk() (*CommitmentsUnit, bool) {
-	if o == nil || o.CommittedSpendUnit == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CommittedSpendUnit, true
+	return o.CommittedSpendUnit.Get(), o.CommittedSpendUnit.IsSet()
 }
 
 // HasCommittedSpendUnit returns a boolean if a field has been set.
 func (o *CommitmentsListMeta) HasCommittedSpendUnit() bool {
-	return o != nil && o.CommittedSpendUnit != nil
+	return o != nil && o.CommittedSpendUnit.IsSet()
 }
 
-// SetCommittedSpendUnit gets a reference to the given CommitmentsUnit and assigns it to the CommittedSpendUnit field.
+// SetCommittedSpendUnit gets a reference to the given NullableCommitmentsUnit and assigns it to the CommittedSpendUnit field.
 func (o *CommitmentsListMeta) SetCommittedSpendUnit(v CommitmentsUnit) {
-	o.CommittedSpendUnit = &v
+	o.CommittedSpendUnit.Set(&v)
+}
+
+// SetCommittedSpendUnitNil sets the value for CommittedSpendUnit to be an explicit nil.
+func (o *CommitmentsListMeta) SetCommittedSpendUnitNil() {
+	o.CommittedSpendUnit.Set(nil)
+}
+
+// UnsetCommittedSpendUnit ensures that no value is present for CommittedSpendUnit, not even an explicit nil.
+func (o *CommitmentsListMeta) UnsetCommittedSpendUnit() {
+	o.CommittedSpendUnit.Unset()
 }
 
 // GetUnusedCostUnavailable returns the UnusedCostUnavailable field value if set, zero value otherwise.
@@ -99,8 +110,8 @@ func (o CommitmentsListMeta) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.CommittedSpendUnit != nil {
-		toSerialize["committed_spend_unit"] = o.CommittedSpendUnit
+	if o.CommittedSpendUnit.IsSet() {
+		toSerialize["committed_spend_unit"] = o.CommittedSpendUnit.Get()
 	}
 	if o.UnusedCostUnavailable != nil {
 		toSerialize["unused_cost_unavailable"] = o.UnusedCostUnavailable
@@ -115,8 +126,8 @@ func (o CommitmentsListMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CommitmentsListMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommittedSpendUnit    *CommitmentsUnit `json:"committed_spend_unit,omitempty"`
-		UnusedCostUnavailable *bool            `json:"unused_cost_unavailable,omitempty"`
+		CommittedSpendUnit    NullableCommitmentsUnit `json:"committed_spend_unit,omitempty"`
+		UnusedCostUnavailable *bool                   `json:"unused_cost_unavailable,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,20 +138,11 @@ func (o *CommitmentsListMeta) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.CommittedSpendUnit != nil && all.CommittedSpendUnit.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.CommittedSpendUnit = all.CommittedSpendUnit
 	o.UnusedCostUnavailable = all.UnusedCostUnavailable
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
