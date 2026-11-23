@@ -22,12 +22,18 @@ type JobDefinition struct {
 	GroupSignalsBy []string `json:"groupSignalsBy,omitempty"`
 	// Index used to load the data.
 	Index string `json:"index"`
+	// Whether the job was run by Datadog to reprocess past data.
+	IsBackfillJob *bool `json:"isBackfillJob,omitempty"`
+	// Whether the job is a shadow deployment run by Datadog.
+	IsShadowDeployed *bool `json:"isShadowDeployed,omitempty"`
 	// Message for generated results.
 	Message string `json:"message"`
 	// Job name.
 	Name string `json:"name"`
 	// Job options.
 	Options *HistoricalJobOptions `json:"options,omitempty"`
+	// Fields projected for each query, copied from the rule the job was created from.
+	ProjectedPerQuery []string `json:"projectedPerQuery,omitempty"`
 	// Queries for selecting logs analyzed by the job. Up to 10 queries are allowed.
 	Queries []HistoricalJobQuery `json:"queries"`
 	// Reference tables used in the queries.
@@ -194,6 +200,62 @@ func (o *JobDefinition) SetIndex(v string) {
 	o.Index = v
 }
 
+// GetIsBackfillJob returns the IsBackfillJob field value if set, zero value otherwise.
+func (o *JobDefinition) GetIsBackfillJob() bool {
+	if o == nil || o.IsBackfillJob == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsBackfillJob
+}
+
+// GetIsBackfillJobOk returns a tuple with the IsBackfillJob field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JobDefinition) GetIsBackfillJobOk() (*bool, bool) {
+	if o == nil || o.IsBackfillJob == nil {
+		return nil, false
+	}
+	return o.IsBackfillJob, true
+}
+
+// HasIsBackfillJob returns a boolean if a field has been set.
+func (o *JobDefinition) HasIsBackfillJob() bool {
+	return o != nil && o.IsBackfillJob != nil
+}
+
+// SetIsBackfillJob gets a reference to the given bool and assigns it to the IsBackfillJob field.
+func (o *JobDefinition) SetIsBackfillJob(v bool) {
+	o.IsBackfillJob = &v
+}
+
+// GetIsShadowDeployed returns the IsShadowDeployed field value if set, zero value otherwise.
+func (o *JobDefinition) GetIsShadowDeployed() bool {
+	if o == nil || o.IsShadowDeployed == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsShadowDeployed
+}
+
+// GetIsShadowDeployedOk returns a tuple with the IsShadowDeployed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JobDefinition) GetIsShadowDeployedOk() (*bool, bool) {
+	if o == nil || o.IsShadowDeployed == nil {
+		return nil, false
+	}
+	return o.IsShadowDeployed, true
+}
+
+// HasIsShadowDeployed returns a boolean if a field has been set.
+func (o *JobDefinition) HasIsShadowDeployed() bool {
+	return o != nil && o.IsShadowDeployed != nil
+}
+
+// SetIsShadowDeployed gets a reference to the given bool and assigns it to the IsShadowDeployed field.
+func (o *JobDefinition) SetIsShadowDeployed(v bool) {
+	o.IsShadowDeployed = &v
+}
+
 // GetMessage returns the Message field value.
 func (o *JobDefinition) GetMessage() string {
 	if o == nil {
@@ -266,6 +328,34 @@ func (o *JobDefinition) HasOptions() bool {
 // SetOptions gets a reference to the given HistoricalJobOptions and assigns it to the Options field.
 func (o *JobDefinition) SetOptions(v HistoricalJobOptions) {
 	o.Options = &v
+}
+
+// GetProjectedPerQuery returns the ProjectedPerQuery field value if set, zero value otherwise.
+func (o *JobDefinition) GetProjectedPerQuery() []string {
+	if o == nil || o.ProjectedPerQuery == nil {
+		var ret []string
+		return ret
+	}
+	return o.ProjectedPerQuery
+}
+
+// GetProjectedPerQueryOk returns a tuple with the ProjectedPerQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JobDefinition) GetProjectedPerQueryOk() (*[]string, bool) {
+	if o == nil || o.ProjectedPerQuery == nil {
+		return nil, false
+	}
+	return &o.ProjectedPerQuery, true
+}
+
+// HasProjectedPerQuery returns a boolean if a field has been set.
+func (o *JobDefinition) HasProjectedPerQuery() bool {
+	return o != nil && o.ProjectedPerQuery != nil
+}
+
+// SetProjectedPerQuery gets a reference to the given []string and assigns it to the ProjectedPerQuery field.
+func (o *JobDefinition) SetProjectedPerQuery(v []string) {
+	o.ProjectedPerQuery = v
 }
 
 // GetQueries returns the Queries field value.
@@ -441,10 +531,19 @@ func (o JobDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["groupSignalsBy"] = o.GroupSignalsBy
 	}
 	toSerialize["index"] = o.Index
+	if o.IsBackfillJob != nil {
+		toSerialize["isBackfillJob"] = o.IsBackfillJob
+	}
+	if o.IsShadowDeployed != nil {
+		toSerialize["isShadowDeployed"] = o.IsShadowDeployed
+	}
 	toSerialize["message"] = o.Message
 	toSerialize["name"] = o.Name
 	if o.Options != nil {
 		toSerialize["options"] = o.Options
+	}
+	if o.ProjectedPerQuery != nil {
+		toSerialize["projectedPerQuery"] = o.ProjectedPerQuery
 	}
 	toSerialize["queries"] = o.Queries
 	if o.ReferenceTables != nil {
@@ -470,20 +569,23 @@ func (o JobDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CalculatedFields []CalculatedField                            `json:"calculatedFields,omitempty"`
-		Cases            *[]SecurityMonitoringRuleCaseCreate          `json:"cases"`
-		From             *int64                                       `json:"from"`
-		GroupSignalsBy   []string                                     `json:"groupSignalsBy,omitempty"`
-		Index            *string                                      `json:"index"`
-		Message          *string                                      `json:"message"`
-		Name             *string                                      `json:"name"`
-		Options          *HistoricalJobOptions                        `json:"options,omitempty"`
-		Queries          *[]HistoricalJobQuery                        `json:"queries"`
-		ReferenceTables  []SecurityMonitoringReferenceTable           `json:"referenceTables,omitempty"`
-		Tags             []string                                     `json:"tags,omitempty"`
-		ThirdPartyCases  []SecurityMonitoringThirdPartyRuleCaseCreate `json:"thirdPartyCases,omitempty"`
-		To               *int64                                       `json:"to"`
-		Type             *string                                      `json:"type,omitempty"`
+		CalculatedFields  []CalculatedField                            `json:"calculatedFields,omitempty"`
+		Cases             *[]SecurityMonitoringRuleCaseCreate          `json:"cases"`
+		From              *int64                                       `json:"from"`
+		GroupSignalsBy    []string                                     `json:"groupSignalsBy,omitempty"`
+		Index             *string                                      `json:"index"`
+		IsBackfillJob     *bool                                        `json:"isBackfillJob,omitempty"`
+		IsShadowDeployed  *bool                                        `json:"isShadowDeployed,omitempty"`
+		Message           *string                                      `json:"message"`
+		Name              *string                                      `json:"name"`
+		Options           *HistoricalJobOptions                        `json:"options,omitempty"`
+		ProjectedPerQuery []string                                     `json:"projectedPerQuery,omitempty"`
+		Queries           *[]HistoricalJobQuery                        `json:"queries"`
+		ReferenceTables   []SecurityMonitoringReferenceTable           `json:"referenceTables,omitempty"`
+		Tags              []string                                     `json:"tags,omitempty"`
+		ThirdPartyCases   []SecurityMonitoringThirdPartyRuleCaseCreate `json:"thirdPartyCases,omitempty"`
+		To                *int64                                       `json:"to"`
+		Type              *string                                      `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -511,7 +613,7 @@ func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "from", "groupSignalsBy", "index", "message", "name", "options", "queries", "referenceTables", "tags", "thirdPartyCases", "to", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "from", "groupSignalsBy", "index", "isBackfillJob", "isShadowDeployed", "message", "name", "options", "projectedPerQuery", "queries", "referenceTables", "tags", "thirdPartyCases", "to", "type"})
 	} else {
 		return err
 	}
@@ -522,12 +624,15 @@ func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = *all.From
 	o.GroupSignalsBy = all.GroupSignalsBy
 	o.Index = *all.Index
+	o.IsBackfillJob = all.IsBackfillJob
+	o.IsShadowDeployed = all.IsShadowDeployed
 	o.Message = *all.Message
 	o.Name = *all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
+	o.ProjectedPerQuery = all.ProjectedPerQuery
 	o.Queries = *all.Queries
 	o.ReferenceTables = all.ReferenceTables
 	o.Tags = all.Tags

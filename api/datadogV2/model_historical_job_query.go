@@ -24,6 +24,8 @@ type HistoricalJobQuery struct {
 	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
 	// IDs of reference datasets used by this query.
 	DatasetIds []string `json:"datasetIds,omitempty"`
+	// Version of each dataset used by the job, keyed by dataset ID. Pinned when the job is created.
+	DatasetVersions map[string]int64 `json:"datasetVersions,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
@@ -34,6 +36,10 @@ type HistoricalJobQuery struct {
 	Index *string `json:"index,omitempty"`
 	// Indexes used to load the data for this query. Mutually exclusive with `index`.
 	Indexes []string `json:"indexes,omitempty"`
+	// (Deprecated) The target field to aggregate over when using the sum or max
+	// aggregations. Use the `metrics` field instead.
+	// Deprecated
+	Metric *string `json:"metric,omitempty"`
 	// Group of target fields to aggregate over when using the sum, max, geo data, or new value aggregations. The sum, max, and geo data aggregations only accept one value in this list, whereas the new value aggregation accepts up to five values.
 	Metrics []string `json:"metrics,omitempty"`
 	// Name of the query.
@@ -268,6 +274,34 @@ func (o *HistoricalJobQuery) SetDatasetIds(v []string) {
 	o.DatasetIds = v
 }
 
+// GetDatasetVersions returns the DatasetVersions field value if set, zero value otherwise.
+func (o *HistoricalJobQuery) GetDatasetVersions() map[string]int64 {
+	if o == nil || o.DatasetVersions == nil {
+		var ret map[string]int64
+		return ret
+	}
+	return o.DatasetVersions
+}
+
+// GetDatasetVersionsOk returns a tuple with the DatasetVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobQuery) GetDatasetVersionsOk() (*map[string]int64, bool) {
+	if o == nil || o.DatasetVersions == nil {
+		return nil, false
+	}
+	return &o.DatasetVersions, true
+}
+
+// HasDatasetVersions returns a boolean if a field has been set.
+func (o *HistoricalJobQuery) HasDatasetVersions() bool {
+	return o != nil && o.DatasetVersions != nil
+}
+
+// SetDatasetVersions gets a reference to the given map[string]int64 and assigns it to the DatasetVersions field.
+func (o *HistoricalJobQuery) SetDatasetVersions(v map[string]int64) {
+	o.DatasetVersions = v
+}
+
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetDistinctFields() []string {
 	if o == nil || o.DistinctFields == nil {
@@ -406,6 +440,37 @@ func (o *HistoricalJobQuery) HasIndexes() bool {
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *HistoricalJobQuery) SetIndexes(v []string) {
 	o.Indexes = v
+}
+
+// GetMetric returns the Metric field value if set, zero value otherwise.
+// Deprecated
+func (o *HistoricalJobQuery) GetMetric() string {
+	if o == nil || o.Metric == nil {
+		var ret string
+		return ret
+	}
+	return *o.Metric
+}
+
+// GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated
+func (o *HistoricalJobQuery) GetMetricOk() (*string, bool) {
+	if o == nil || o.Metric == nil {
+		return nil, false
+	}
+	return o.Metric, true
+}
+
+// HasMetric returns a boolean if a field has been set.
+func (o *HistoricalJobQuery) HasMetric() bool {
+	return o != nil && o.Metric != nil
+}
+
+// SetMetric gets a reference to the given string and assigns it to the Metric field.
+// Deprecated
+func (o *HistoricalJobQuery) SetMetric(v string) {
+	o.Metric = &v
 }
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
@@ -547,6 +612,9 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 	if o.DatasetIds != nil {
 		toSerialize["datasetIds"] = o.DatasetIds
 	}
+	if o.DatasetVersions != nil {
+		toSerialize["datasetVersions"] = o.DatasetVersions
+	}
 	if o.DistinctFields != nil {
 		toSerialize["distinctFields"] = o.DistinctFields
 	}
@@ -561,6 +629,9 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
+	}
+	if o.Metric != nil {
+		toSerialize["metric"] = o.Metric
 	}
 	if o.Metrics != nil {
 		toSerialize["metrics"] = o.Metrics
@@ -591,11 +662,13 @@ func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 		CustomQueryExtension     *string                                 `json:"customQueryExtension,omitempty"`
 		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
 		DatasetIds               []string                                `json:"datasetIds,omitempty"`
+		DatasetVersions          map[string]int64                        `json:"datasetVersions,omitempty"`
 		DistinctFields           []string                                `json:"distinctFields,omitempty"`
 		GroupByFields            []string                                `json:"groupByFields,omitempty"`
 		HasOptionalGroupByFields *bool                                   `json:"hasOptionalGroupByFields,omitempty"`
 		Index                    *string                                 `json:"index,omitempty"`
 		Indexes                  []string                                `json:"indexes,omitempty"`
+		Metric                   *string                                 `json:"metric,omitempty"`
 		Metrics                  []string                                `json:"metrics,omitempty"`
 		Name                     *string                                 `json:"name,omitempty"`
 		Query                    *string                                 `json:"query,omitempty"`
@@ -606,7 +679,7 @@ func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"additionalFilters", "aggregation", "correlatedByFields", "correlatedQueryIndex", "customQueryExtension", "dataSource", "datasetIds", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metrics", "name", "query", "queryLanguage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"additionalFilters", "aggregation", "correlatedByFields", "correlatedQueryIndex", "customQueryExtension", "dataSource", "datasetIds", "datasetVersions", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metric", "metrics", "name", "query", "queryLanguage"})
 	} else {
 		return err
 	}
@@ -627,11 +700,13 @@ func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.DataSource = all.DataSource
 	}
 	o.DatasetIds = all.DatasetIds
+	o.DatasetVersions = all.DatasetVersions
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields
 	o.HasOptionalGroupByFields = all.HasOptionalGroupByFields
 	o.Index = all.Index
 	o.Indexes = all.Indexes
+	o.Metric = all.Metric
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.Query = all.Query
