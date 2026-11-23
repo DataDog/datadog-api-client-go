@@ -20,11 +20,13 @@ type LLMObsExperimentMetric struct {
 	CategoricalValue *string `json:"categorical_value,omitempty"`
 	// Error details for an experiment metric evaluation.
 	Error *LLMObsExperimentMetricError `json:"error,omitempty"`
+	// Whether a higher numeric score is better. Set to `false` when a lower score is better. If omitted, the comparison uses the boolean value of `metadata.higher_is_better` when present, or the default direction otherwise.
+	HigherIsBetter *bool `json:"higher_is_better,omitempty"`
 	// JSON value. Used when `metric_type` is `json`.
 	JsonValue map[string]interface{} `json:"json_value,omitempty"`
 	// Label or name for the metric.
 	Label string `json:"label"`
-	// Arbitrary metadata associated with the metric.
+	// Arbitrary metadata associated with the metric. For a numeric score, clients can set `higher_is_better` here when they cannot send the top-level field.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Type of metric recorded for an Agent Observability experiment.
 	MetricType LLMObsMetricScoreType `json:"metric_type"`
@@ -174,6 +176,34 @@ func (o *LLMObsExperimentMetric) HasError() bool {
 // SetError gets a reference to the given LLMObsExperimentMetricError and assigns it to the Error field.
 func (o *LLMObsExperimentMetric) SetError(v LLMObsExperimentMetricError) {
 	o.Error = &v
+}
+
+// GetHigherIsBetter returns the HigherIsBetter field value if set, zero value otherwise.
+func (o *LLMObsExperimentMetric) GetHigherIsBetter() bool {
+	if o == nil || o.HigherIsBetter == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HigherIsBetter
+}
+
+// GetHigherIsBetterOk returns a tuple with the HigherIsBetter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsExperimentMetric) GetHigherIsBetterOk() (*bool, bool) {
+	if o == nil || o.HigherIsBetter == nil {
+		return nil, false
+	}
+	return o.HigherIsBetter, true
+}
+
+// HasHigherIsBetter returns a boolean if a field has been set.
+func (o *LLMObsExperimentMetric) HasHigherIsBetter() bool {
+	return o != nil && o.HigherIsBetter != nil
+}
+
+// SetHigherIsBetter gets a reference to the given bool and assigns it to the HigherIsBetter field.
+func (o *LLMObsExperimentMetric) SetHigherIsBetter(v bool) {
+	o.HigherIsBetter = &v
 }
 
 // GetJsonValue returns the JsonValue field value if set, zero value otherwise.
@@ -426,6 +456,9 @@ func (o LLMObsExperimentMetric) MarshalJSON() ([]byte, error) {
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
 	}
+	if o.HigherIsBetter != nil {
+		toSerialize["higher_is_better"] = o.HigherIsBetter
+	}
 	if o.JsonValue != nil {
 		toSerialize["json_value"] = o.JsonValue
 	}
@@ -459,6 +492,7 @@ func (o *LLMObsExperimentMetric) UnmarshalJSON(bytes []byte) (err error) {
 		BooleanValue     *bool                        `json:"boolean_value,omitempty"`
 		CategoricalValue *string                      `json:"categorical_value,omitempty"`
 		Error            *LLMObsExperimentMetricError `json:"error,omitempty"`
+		HigherIsBetter   *bool                        `json:"higher_is_better,omitempty"`
 		JsonValue        map[string]interface{}       `json:"json_value,omitempty"`
 		Label            *string                      `json:"label"`
 		Metadata         map[string]interface{}       `json:"metadata,omitempty"`
@@ -486,7 +520,7 @@ func (o *LLMObsExperimentMetric) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "boolean_value", "categorical_value", "error", "json_value", "label", "metadata", "metric_type", "reasoning", "score_value", "span_id", "tags", "timestamp_ms"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "boolean_value", "categorical_value", "error", "higher_is_better", "json_value", "label", "metadata", "metric_type", "reasoning", "score_value", "span_id", "tags", "timestamp_ms"})
 	} else {
 		return err
 	}
@@ -503,6 +537,7 @@ func (o *LLMObsExperimentMetric) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Error = all.Error
+	o.HigherIsBetter = all.HigherIsBetter
 	o.JsonValue = all.JsonValue
 	o.Label = *all.Label
 	o.Metadata = all.Metadata
