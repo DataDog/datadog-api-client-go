@@ -22,6 +22,10 @@ type SecurityMonitoringSignalTriageAttributes struct {
 	ArchiveReason *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
 	// Object representing a given user entity.
 	Assignee SecurityMonitoringTriageUser `json:"assignee"`
+	// Cases linked to the security signal.
+	Cases []SecurityMonitoringSignalCase `json:"cases,omitempty"`
+	// Whether the signal is linked to at least one case.
+	HasCase *bool `json:"hasCase,omitempty"`
 	// Array of incidents that are associated with this signal.
 	IncidentIds []int64 `json:"incident_ids"`
 	// The new triage state of the signal.
@@ -190,6 +194,62 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetAssignee(v SecurityMonitor
 	o.Assignee = v
 }
 
+// GetCases returns the Cases field value if set, zero value otherwise.
+func (o *SecurityMonitoringSignalTriageAttributes) GetCases() []SecurityMonitoringSignalCase {
+	if o == nil || o.Cases == nil {
+		var ret []SecurityMonitoringSignalCase
+		return ret
+	}
+	return o.Cases
+}
+
+// GetCasesOk returns a tuple with the Cases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringSignalTriageAttributes) GetCasesOk() (*[]SecurityMonitoringSignalCase, bool) {
+	if o == nil || o.Cases == nil {
+		return nil, false
+	}
+	return &o.Cases, true
+}
+
+// HasCases returns a boolean if a field has been set.
+func (o *SecurityMonitoringSignalTriageAttributes) HasCases() bool {
+	return o != nil && o.Cases != nil
+}
+
+// SetCases gets a reference to the given []SecurityMonitoringSignalCase and assigns it to the Cases field.
+func (o *SecurityMonitoringSignalTriageAttributes) SetCases(v []SecurityMonitoringSignalCase) {
+	o.Cases = v
+}
+
+// GetHasCase returns the HasCase field value if set, zero value otherwise.
+func (o *SecurityMonitoringSignalTriageAttributes) GetHasCase() bool {
+	if o == nil || o.HasCase == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasCase
+}
+
+// GetHasCaseOk returns a tuple with the HasCase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringSignalTriageAttributes) GetHasCaseOk() (*bool, bool) {
+	if o == nil || o.HasCase == nil {
+		return nil, false
+	}
+	return o.HasCase, true
+}
+
+// HasHasCase returns a boolean if a field has been set.
+func (o *SecurityMonitoringSignalTriageAttributes) HasHasCase() bool {
+	return o != nil && o.HasCase != nil
+}
+
+// SetHasCase gets a reference to the given bool and assigns it to the HasCase field.
+func (o *SecurityMonitoringSignalTriageAttributes) SetHasCase(v bool) {
+	o.HasCase = &v
+}
+
 // GetIncidentIds returns the IncidentIds field value.
 func (o *SecurityMonitoringSignalTriageAttributes) GetIncidentIds() []int64 {
 	if o == nil {
@@ -311,6 +371,12 @@ func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) 
 		toSerialize["archive_reason"] = o.ArchiveReason
 	}
 	toSerialize["assignee"] = o.Assignee
+	if o.Cases != nil {
+		toSerialize["cases"] = o.Cases
+	}
+	if o.HasCase != nil {
+		toSerialize["hasCase"] = o.HasCase
+	}
 	toSerialize["incident_ids"] = o.IncidentIds
 	toSerialize["state"] = o.State
 	if o.StateUpdateTimestamp != nil {
@@ -334,6 +400,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		ArchiveCommentUser      *SecurityMonitoringTriageUser          `json:"archive_comment_user,omitempty"`
 		ArchiveReason           *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
 		Assignee                *SecurityMonitoringTriageUser          `json:"assignee"`
+		Cases                   []SecurityMonitoringSignalCase         `json:"cases,omitempty"`
+		HasCase                 *bool                                  `json:"hasCase,omitempty"`
 		IncidentIds             *[]int64                               `json:"incident_ids"`
 		State                   *SecurityMonitoringSignalState         `json:"state"`
 		StateUpdateTimestamp    *int64                                 `json:"state_update_timestamp,omitempty"`
@@ -353,7 +421,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "incident_ids", "state", "state_update_timestamp", "state_update_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "cases", "hasCase", "incident_ids", "state", "state_update_timestamp", "state_update_user"})
 	} else {
 		return err
 	}
@@ -374,6 +442,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		hasInvalidField = true
 	}
 	o.Assignee = *all.Assignee
+	o.Cases = all.Cases
+	o.HasCase = all.HasCase
 	o.IncidentIds = *all.IncidentIds
 	if !all.State.IsValid() {
 		hasInvalidField = true
