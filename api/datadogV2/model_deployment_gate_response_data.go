@@ -12,7 +12,7 @@ import (
 
 // DeploymentGateResponseData Data for a deployment gate.
 type DeploymentGateResponseData struct {
-	// Basic information about a deployment gate.
+	// Basic information about a deployment gate. The environment is `*` for a gate that applies to all environments.
 	Attributes DeploymentGateResponseDataAttributes `json:"attributes"`
 	// Unique identifier of the deployment gate.
 	Id string `json:"id"`
