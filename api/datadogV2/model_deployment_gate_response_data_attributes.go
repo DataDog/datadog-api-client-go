@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentGateResponseDataAttributes Basic information about a deployment gate.
+// DeploymentGateResponseDataAttributes Basic information about a deployment gate. The environment is `*` for a gate that applies to all environments.
 type DeploymentGateResponseDataAttributes struct {
 	// The timestamp when the deployment gate was created.
 	CreatedAt time.Time `json:"created_at"`
@@ -19,7 +19,7 @@ type DeploymentGateResponseDataAttributes struct {
 	CreatedBy DeploymentGateResponseDataAttributesCreatedBy `json:"created_by"`
 	// Whether this gate is run in dry-run mode.
 	DryRun bool `json:"dry_run"`
-	// The environment of the deployment gate.
+	// The environment of the deployment gate. `*` means all environments.
 	Env string `json:"env"`
 	// The identifier of the deployment gate.
 	Identifier string `json:"identifier"`

@@ -10,11 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateDeploymentGateParamsDataAttributes Parameters for creating a deployment gate.
+// CreateDeploymentGateParamsDataAttributes Parameters for creating a deployment gate. For the same organization, service, and identifier,
+// a gate for all environments cannot coexist with gates for specific environments.
 type CreateDeploymentGateParamsDataAttributes struct {
 	// Whether this gate is run in dry-run mode.
 	DryRun *bool `json:"dry_run,omitempty"`
-	// The environment of the deployment gate.
+	// Required environment of the deployment gate. Use `*` to apply the gate to all environments.
 	Env string `json:"env"`
 	// The identifier of the deployment gate.
 	Identifier *string `json:"identifier,omitempty"`
