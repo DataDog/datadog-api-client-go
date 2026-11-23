@@ -16,6 +16,8 @@ func main() {
 	body := datadogV2.AiGatewayRoutingRuleCreateRequest{
 		Data: datadogV2.AiGatewayRoutingRuleCreateData{
 			Attributes: datadogV2.AiGatewayRoutingRuleCreateAttributes{
+				Description: *datadog.NewNullableString(datadog.PtrString("Routes coding traffic to the fastest available model.")),
+				DisplayName: *datadog.NewNullableString(datadog.PtrString("Coding fallback")),
 				InitialBindings: []datadogV2.AiGatewayProviderInitialBinding{
 					{
 						Principals: []string{

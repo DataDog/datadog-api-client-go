@@ -15,6 +15,10 @@ import (
 type AiGatewayRoutingRuleAttributes struct {
 	// Time when the resource was created.
 	CreatedAt time.Time `json:"created_at"`
+	// Description of the routing rule. Absent when unset.
+	Description *string `json:"description,omitempty"`
+	// Human-readable name of the routing rule. Absent when unset; show the slug instead.
+	DisplayName *string `json:"display_name,omitempty"`
 	// Stable numeric route identifier used by scoped policies and `ai-gateway-route` restriction policies.
 	RouteId int64 `json:"route_id"`
 	//
@@ -68,6 +72,62 @@ func (o *AiGatewayRoutingRuleAttributes) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value.
 func (o *AiGatewayRoutingRuleAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *AiGatewayRoutingRuleAttributes) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRoutingRuleAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *AiGatewayRoutingRuleAttributes) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *AiGatewayRoutingRuleAttributes) GetDisplayName() string {
+	if o == nil || o.DisplayName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AiGatewayRoutingRuleAttributes) GetDisplayNameOk() (*string, bool) {
+	if o == nil || o.DisplayName == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleAttributes) HasDisplayName() bool {
+	return o != nil && o.DisplayName != nil
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *AiGatewayRoutingRuleAttributes) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetRouteId returns the RouteId field value.
@@ -150,6 +210,12 @@ func (o AiGatewayRoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	toSerialize["route_id"] = o.RouteId
 	toSerialize["tiers"] = o.Tiers
 	if o.UpdatedAt.Nanosecond() == 0 {
@@ -167,10 +233,12 @@ func (o AiGatewayRoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time                  `json:"created_at"`
-		RouteId   *int64                      `json:"route_id"`
-		Tiers     *[]AiGatewayRoutingRuleTier `json:"tiers"`
-		UpdatedAt *time.Time                  `json:"updated_at"`
+		CreatedAt   *time.Time                  `json:"created_at"`
+		Description *string                     `json:"description,omitempty"`
+		DisplayName *string                     `json:"display_name,omitempty"`
+		RouteId     *int64                      `json:"route_id"`
+		Tiers       *[]AiGatewayRoutingRuleTier `json:"tiers"`
+		UpdatedAt   *time.Time                  `json:"updated_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,11 +257,13 @@ func (o *AiGatewayRoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "route_id", "tiers", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "description", "display_name", "route_id", "tiers", "updated_at"})
 	} else {
 		return err
 	}
 	o.CreatedAt = *all.CreatedAt
+	o.Description = all.Description
+	o.DisplayName = all.DisplayName
 	o.RouteId = *all.RouteId
 	o.Tiers = *all.Tiers
 	o.UpdatedAt = *all.UpdatedAt

@@ -27,6 +27,18 @@ func main() {
 						Source: datadogV2.AiGatewayModelPricingCustomRequestSource{
 							Type: datadogV2.AIGATEWAYMODELPRICINGCUSTOMREQUESTSOURCETYPE_CUSTOM,
 						},
+						Tiers: []datadogV2.AiGatewayModelPricingTier{
+							{
+								ContextMinTokens: datadog.PtrInt64(200000),
+								Rates: datadogV2.AiGatewayModelPricingRates{
+									CacheReadCostPerMtok:      datadog.PtrFloat64(0.6),
+									CacheWriteCostPerMtok:     datadog.PtrFloat64(7.5),
+									NonCachedInputCostPerMtok: datadog.PtrFloat64(6.0),
+									OutputCostPerMtok:         datadog.PtrFloat64(22.5),
+								},
+								ServiceTier: datadog.PtrString("priority"),
+							},
+						},
 						Version: 1,
 					}},
 			},

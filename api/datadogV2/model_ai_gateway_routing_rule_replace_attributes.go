@@ -12,6 +12,12 @@ import (
 
 // AiGatewayRoutingRuleReplaceAttributes Partial route update. Omit tiers to preserve the entire graph, including hidden selections. Saved target IDs retain omitted settings. Replacing tiers must explicitly retain or remove every hidden occurrence.
 type AiGatewayRoutingRuleReplaceAttributes struct {
+	// Optional description of what the routing rule is for. Up to 500 characters.
+	// Omit it or send null to keep the saved description. Send an empty string to clear it.
+	Description datadog.NullableString `json:"description,omitempty"`
+	// Optional human-readable name shown in place of the slug. Up to 100 characters on one line.
+	// Omit it or send null to keep the saved display name. Send an empty string to clear it.
+	DisplayName datadog.NullableString `json:"display_name,omitempty"`
 	// Saved route revision. A mismatched value returns 409 without changes.
 	ExpectedUpdatedAt *time.Time `json:"expected_updated_at,omitempty"`
 	// Parent-local saved occurrence IDs explicitly removed from the submitted tiers. IDs must be distinct, belong to this route, and not also be retained.
@@ -38,6 +44,84 @@ func NewAiGatewayRoutingRuleReplaceAttributes() *AiGatewayRoutingRuleReplaceAttr
 func NewAiGatewayRoutingRuleReplaceAttributesWithDefaults() *AiGatewayRoutingRuleReplaceAttributes {
 	this := AiGatewayRoutingRuleReplaceAttributes{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRoutingRuleReplaceAttributes) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRoutingRuleReplaceAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleReplaceAttributes) HasDescription() bool {
+	return o != nil && o.Description.IsSet()
+}
+
+// SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
+func (o *AiGatewayRoutingRuleReplaceAttributes) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+
+// SetDescriptionNil sets the value for Description to be an explicit nil.
+func (o *AiGatewayRoutingRuleReplaceAttributes) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
+func (o *AiGatewayRoutingRuleReplaceAttributes) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AiGatewayRoutingRuleReplaceAttributes) GetDisplayName() string {
+	if o == nil || o.DisplayName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName.Get()
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AiGatewayRoutingRuleReplaceAttributes) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisplayName.Get(), o.DisplayName.IsSet()
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *AiGatewayRoutingRuleReplaceAttributes) HasDisplayName() bool {
+	return o != nil && o.DisplayName.IsSet()
+}
+
+// SetDisplayName gets a reference to the given datadog.NullableString and assigns it to the DisplayName field.
+func (o *AiGatewayRoutingRuleReplaceAttributes) SetDisplayName(v string) {
+	o.DisplayName.Set(&v)
+}
+
+// SetDisplayNameNil sets the value for DisplayName to be an explicit nil.
+func (o *AiGatewayRoutingRuleReplaceAttributes) SetDisplayNameNil() {
+	o.DisplayName.Set(nil)
+}
+
+// UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil.
+func (o *AiGatewayRoutingRuleReplaceAttributes) UnsetDisplayName() {
+	o.DisplayName.Unset()
 }
 
 // GetExpectedUpdatedAt returns the ExpectedUpdatedAt field value if set, zero value otherwise.
@@ -130,6 +214,12 @@ func (o AiGatewayRoutingRuleReplaceAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.DisplayName.IsSet() {
+		toSerialize["display_name"] = o.DisplayName.Get()
+	}
 	if o.ExpectedUpdatedAt != nil {
 		if o.ExpectedUpdatedAt.Nanosecond() == 0 {
 			toSerialize["expected_updated_at"] = o.ExpectedUpdatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -153,6 +243,8 @@ func (o AiGatewayRoutingRuleReplaceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AiGatewayRoutingRuleReplaceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Description       datadog.NullableString            `json:"description,omitempty"`
+		DisplayName       datadog.NullableString            `json:"display_name,omitempty"`
 		ExpectedUpdatedAt *time.Time                        `json:"expected_updated_at,omitempty"`
 		RemovedTargetIds  []int64                           `json:"removed_target_ids,omitempty"`
 		Tiers             []AiGatewayRoutingRuleTierRequest `json:"tiers,omitempty"`
@@ -162,10 +254,12 @@ func (o *AiGatewayRoutingRuleReplaceAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"expected_updated_at", "removed_target_ids", "tiers"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "display_name", "expected_updated_at", "removed_target_ids", "tiers"})
 	} else {
 		return err
 	}
+	o.Description = all.Description
+	o.DisplayName = all.DisplayName
 	o.ExpectedUpdatedAt = all.ExpectedUpdatedAt
 	o.RemovedTargetIds = all.RemovedTargetIds
 	o.Tiers = all.Tiers
