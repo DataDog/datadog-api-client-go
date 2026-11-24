@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AiGatewayModelAutomaticPricing The published models.dev price. Present only when it is the effective price.
+// AiGatewayModelAutomaticPricing The automatically synced published price. Present only when it is the effective price.
 type AiGatewayModelAutomaticPricing struct {
 	// Time the price was last revalidated against the source.
 	LastValidatedAt time.Time `json:"last_validated_at"`

@@ -16,8 +16,6 @@ type AiGatewayModelAutomaticPricingSource struct {
 	MatchMethod string `json:"match_method"`
 	// Model identifier in the source.
 	ModelId string `json:"model_id"`
-	// Pricing source name.
-	Name string `json:"name"`
 	// Provider identifier in the source.
 	ProviderId string `json:"provider_id"`
 	// Source revision the price was read from.
@@ -31,11 +29,10 @@ type AiGatewayModelAutomaticPricingSource struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAiGatewayModelAutomaticPricingSource(matchMethod string, modelId string, name string, providerId string, revision string) *AiGatewayModelAutomaticPricingSource {
+func NewAiGatewayModelAutomaticPricingSource(matchMethod string, modelId string, providerId string, revision string) *AiGatewayModelAutomaticPricingSource {
 	this := AiGatewayModelAutomaticPricingSource{}
 	this.MatchMethod = matchMethod
 	this.ModelId = modelId
-	this.Name = name
 	this.ProviderId = providerId
 	this.Revision = revision
 	return &this
@@ -95,29 +92,6 @@ func (o *AiGatewayModelAutomaticPricingSource) SetModelId(v string) {
 	o.ModelId = v
 }
 
-// GetName returns the Name field value.
-func (o *AiGatewayModelAutomaticPricingSource) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *AiGatewayModelAutomaticPricingSource) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value.
-func (o *AiGatewayModelAutomaticPricingSource) SetName(v string) {
-	o.Name = v
-}
-
 // GetProviderId returns the ProviderId field value.
 func (o *AiGatewayModelAutomaticPricingSource) GetProviderId() string {
 	if o == nil {
@@ -172,7 +146,6 @@ func (o AiGatewayModelAutomaticPricingSource) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["match_method"] = o.MatchMethod
 	toSerialize["model_id"] = o.ModelId
-	toSerialize["name"] = o.Name
 	toSerialize["provider_id"] = o.ProviderId
 	toSerialize["revision"] = o.Revision
 
@@ -187,7 +160,6 @@ func (o *AiGatewayModelAutomaticPricingSource) UnmarshalJSON(bytes []byte) (err 
 	all := struct {
 		MatchMethod *string `json:"match_method"`
 		ModelId     *string `json:"model_id"`
-		Name        *string `json:"name"`
 		ProviderId  *string `json:"provider_id"`
 		Revision    *string `json:"revision"`
 	}{}
@@ -200,9 +172,6 @@ func (o *AiGatewayModelAutomaticPricingSource) UnmarshalJSON(bytes []byte) (err 
 	if all.ModelId == nil {
 		return fmt.Errorf("required field model_id missing")
 	}
-	if all.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
 	if all.ProviderId == nil {
 		return fmt.Errorf("required field provider_id missing")
 	}
@@ -211,13 +180,12 @@ func (o *AiGatewayModelAutomaticPricingSource) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"match_method", "model_id", "name", "provider_id", "revision"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"match_method", "model_id", "provider_id", "revision"})
 	} else {
 		return err
 	}
 	o.MatchMethod = *all.MatchMethod
 	o.ModelId = *all.ModelId
-	o.Name = *all.Name
 	o.ProviderId = *all.ProviderId
 	o.Revision = *all.Revision
 
