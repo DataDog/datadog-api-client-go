@@ -767,7 +767,9 @@ func (r *ExportFeatureFlagHistoryOptionalParameters) WithIncludeSuggestionEvents
 // It accepts the same filters as the List feature flag change history endpoint, and its columns match the CSV export on the flag history page:
 // Flag Version, Flag Name, Flag Key, Flag UUID, Action, User Name, User Email, User Type, Environment, and Timestamp.
 //
-// If an export fails before the file starts, the response is a JSON:API error. Large exports stream as they are read.
+// If the export service has an error before it starts to send the file, for example because a filter is invalid, it returns
+// a JSON:API error.
+// Large exports stream as they are read.
 // If an export fails after streaming starts, the connection closes before the file ends, so the download fails instead of
 // returning a file with missing rows. An export must finish within the 60-second request timeout. If an export times out,
 // narrow the date range.
@@ -868,7 +870,7 @@ func (a *FeatureFlagsApi) ExportFeatureFlagHistory(ctx _context.Context, o ...Ex
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -877,7 +879,7 @@ func (a *FeatureFlagsApi) ExportFeatureFlagHistory(ctx _context.Context, o ...Ex
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1329,7 +1331,7 @@ func (a *FeatureFlagsApi) ListFeatureFlagHistory(ctx _context.Context, o ...List
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1338,7 +1340,7 @@ func (a *FeatureFlagsApi) ListFeatureFlagHistory(ctx _context.Context, o ...List
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
