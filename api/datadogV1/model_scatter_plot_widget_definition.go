@@ -18,6 +18,8 @@ type ScatterPlotWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// The description of the widget.
 	Description *string `json:"description,omitempty"`
+	// Color palette to apply to the widget. Supported values include `datadog16`, `datadog32`, `semantic`, `classic`, and `dog_classic`. A guide to the available color palettes can be found at https://docs.datadoghq.com/dashboards/guide/widget_colors
+	Palette *string `json:"palette,omitempty"`
 	// Widget definition.
 	Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
 	// Time setting for the widget.
@@ -142,6 +144,34 @@ func (o *ScatterPlotWidgetDefinition) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ScatterPlotWidgetDefinition) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetPalette returns the Palette field value if set, zero value otherwise.
+func (o *ScatterPlotWidgetDefinition) GetPalette() string {
+	if o == nil || o.Palette == nil {
+		var ret string
+		return ret
+	}
+	return *o.Palette
+}
+
+// GetPaletteOk returns a tuple with the Palette field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinition) GetPaletteOk() (*string, bool) {
+	if o == nil || o.Palette == nil {
+		return nil, false
+	}
+	return o.Palette, true
+}
+
+// HasPalette returns a boolean if a field has been set.
+func (o *ScatterPlotWidgetDefinition) HasPalette() bool {
+	return o != nil && o.Palette != nil
+}
+
+// SetPalette gets a reference to the given string and assigns it to the Palette field.
+func (o *ScatterPlotWidgetDefinition) SetPalette(v string) {
+	o.Palette = &v
 }
 
 // GetRequests returns the Requests field value.
@@ -373,6 +403,9 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Palette != nil {
+		toSerialize["palette"] = o.Palette
+	}
 	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
@@ -406,6 +439,7 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		ColorByGroups []string                             `json:"color_by_groups,omitempty"`
 		CustomLinks   []WidgetCustomLink                   `json:"custom_links,omitempty"`
 		Description   *string                              `json:"description,omitempty"`
+		Palette       *string                              `json:"palette,omitempty"`
 		Requests      *ScatterPlotWidgetDefinitionRequests `json:"requests"`
 		Time          *WidgetTime                          `json:"time,omitempty"`
 		Title         *string                              `json:"title,omitempty"`
@@ -426,7 +460,7 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"color_by_groups", "custom_links", "description", "requests", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"color_by_groups", "custom_links", "description", "palette", "requests", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
 	} else {
 		return err
 	}
@@ -435,6 +469,7 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ColorByGroups = all.ColorByGroups
 	o.CustomLinks = all.CustomLinks
 	o.Description = all.Description
+	o.Palette = all.Palette
 	if all.Requests.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
