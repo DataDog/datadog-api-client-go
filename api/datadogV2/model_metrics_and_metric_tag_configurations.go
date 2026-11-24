@@ -12,6 +12,7 @@ import (
 type MetricsAndMetricTagConfigurations struct {
 	Metric                 *Metric
 	MetricTagConfiguration *MetricTagConfiguration
+	GeneratedMetric        *GeneratedMetric
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func MetricAsMetricsAndMetricTagConfigurations(v *Metric) MetricsAndMetricTagCon
 // MetricTagConfigurationAsMetricsAndMetricTagConfigurations is a convenience function that returns MetricTagConfiguration wrapped in MetricsAndMetricTagConfigurations.
 func MetricTagConfigurationAsMetricsAndMetricTagConfigurations(v *MetricTagConfiguration) MetricsAndMetricTagConfigurations {
 	return MetricsAndMetricTagConfigurations{MetricTagConfiguration: v}
+}
+
+// GeneratedMetricAsMetricsAndMetricTagConfigurations is a convenience function that returns GeneratedMetric wrapped in MetricsAndMetricTagConfigurations.
+func GeneratedMetricAsMetricsAndMetricTagConfigurations(v *GeneratedMetric) MetricsAndMetricTagConfigurations {
+	return MetricsAndMetricTagConfigurations{GeneratedMetric: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 		obj.MetricTagConfiguration = nil
 	}
 
+	// try to unmarshal data into GeneratedMetric
+	err = datadog.Unmarshal(data, &obj.GeneratedMetric)
+	if err == nil {
+		if obj.GeneratedMetric != nil && obj.GeneratedMetric.UnparsedObject == nil {
+			jsonGeneratedMetric, _ := datadog.Marshal(obj.GeneratedMetric)
+			if string(jsonGeneratedMetric) == "{}" { // empty struct
+				obj.GeneratedMetric = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.GeneratedMetric = nil
+		}
+	} else {
+		obj.GeneratedMetric = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.Metric = nil
 		obj.MetricTagConfiguration = nil
+		obj.GeneratedMetric = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 
 	if obj.MetricTagConfiguration != nil {
 		return datadog.Marshal(&obj.MetricTagConfiguration)
+	}
+
+	if obj.GeneratedMetric != nil {
+		return datadog.Marshal(&obj.GeneratedMetric)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
 
 	if obj.MetricTagConfiguration != nil {
 		return obj.MetricTagConfiguration
+	}
+
+	if obj.GeneratedMetric != nil {
+		return obj.GeneratedMetric
 	}
 
 	// all schemas are nil

@@ -10,7 +10,7 @@ import (
 
 // MetricsAndMetricTagConfigurationsResponse Response object that includes metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurationsResponse struct {
-	// Array of metrics and metric tag configurations.
+	// Array of metrics, metric tag configurations, and generated metrics.
 	Data []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
 	// Array of metric volume resources included when requested with `include=metric_volumes`.
 	Included []MetricIngestedIndexedVolume `json:"included,omitempty"`
