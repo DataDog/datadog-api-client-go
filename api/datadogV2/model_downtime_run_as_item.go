@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DowntimeRunAsItem A set of principals allowed to act on behalf of the downtime.
+// DowntimeRunAsItem A set of principals the downtime runs as.
 type DowntimeRunAsItem struct {
-	// List of principals allowed to act on behalf of the downtime.
-	Principals []DowntimeRunAsPrincipal `json:"principals,omitempty"`
+	// The principal the downtime runs as. Only one user is supported.
+	Principals []string `json:"principals"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type DowntimeRunAsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDowntimeRunAsItem() *DowntimeRunAsItem {
+func NewDowntimeRunAsItem(principals []string) *DowntimeRunAsItem {
 	this := DowntimeRunAsItem{}
+	this.Principals = principals
 	return &this
 }
 
@@ -34,31 +37,26 @@ func NewDowntimeRunAsItemWithDefaults() *DowntimeRunAsItem {
 	return &this
 }
 
-// GetPrincipals returns the Principals field value if set, zero value otherwise.
-func (o *DowntimeRunAsItem) GetPrincipals() []DowntimeRunAsPrincipal {
-	if o == nil || o.Principals == nil {
-		var ret []DowntimeRunAsPrincipal
+// GetPrincipals returns the Principals field value.
+func (o *DowntimeRunAsItem) GetPrincipals() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
 	return o.Principals
 }
 
-// GetPrincipalsOk returns a tuple with the Principals field value if set, nil otherwise
+// GetPrincipalsOk returns a tuple with the Principals field value
 // and a boolean to check if the value has been set.
-func (o *DowntimeRunAsItem) GetPrincipalsOk() (*[]DowntimeRunAsPrincipal, bool) {
-	if o == nil || o.Principals == nil {
+func (o *DowntimeRunAsItem) GetPrincipalsOk() (*[]string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Principals, true
 }
 
-// HasPrincipals returns a boolean if a field has been set.
-func (o *DowntimeRunAsItem) HasPrincipals() bool {
-	return o != nil && o.Principals != nil
-}
-
-// SetPrincipals gets a reference to the given []DowntimeRunAsPrincipal and assigns it to the Principals field.
-func (o *DowntimeRunAsItem) SetPrincipals(v []DowntimeRunAsPrincipal) {
+// SetPrincipals sets field value.
+func (o *DowntimeRunAsItem) SetPrincipals(v []string) {
 	o.Principals = v
 }
 
@@ -68,9 +66,7 @@ func (o DowntimeRunAsItem) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Principals != nil {
-		toSerialize["principals"] = o.Principals
-	}
+	toSerialize["principals"] = o.Principals
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o DowntimeRunAsItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeRunAsItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Principals []DowntimeRunAsPrincipal `json:"principals,omitempty"`
+		Principals *[]string `json:"principals"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Principals == nil {
+		return fmt.Errorf("required field principals missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -92,7 +91,7 @@ func (o *DowntimeRunAsItem) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.Principals = all.Principals
+	o.Principals = *all.Principals
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
