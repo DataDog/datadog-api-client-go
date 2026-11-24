@@ -14,7 +14,7 @@ import (
 type ChatGPTEnterpriseIntegrationAccountBearerTokenAuthRequest struct {
 	// The authentication method type.
 	AuthType ChatGPTEnterpriseIntegrationAccountBearerTokenAuthType `json:"auth_type"`
-	// Secret token used to authenticate with ChatGPT Enterprise.
+	// ChatGPT Enterprise admin API key with the **Costs** permission set to **Read** and every other permission category set to **None**. Create it in the [OpenAI Admin Console](https://admin.openai.com/credentials?tab=admin-keys) of your ChatGPT Enterprise workspace, not in the API Platform admin-key console.
 	Token string `json:"token"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
