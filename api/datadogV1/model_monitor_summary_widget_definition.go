@@ -29,6 +29,8 @@ type MonitorSummaryWidgetDefinition struct {
 	ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
 	// Whether to show the priorities column.
 	ShowPriority *bool `json:"show_priority,omitempty"`
+	// Whether to count and list each monitor's subgroups instead of its notification groups. Only changes monitors that use `notify_by`, and only for the `groups` and `combined` summary types.
+	ShowSubGroups *bool `json:"show_sub_groups,omitempty"`
 	// Widget sorting methods.
 	Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
@@ -58,6 +60,8 @@ func NewMonitorSummaryWidgetDefinition(query string, typeVar MonitorSummaryWidge
 	this.Query = query
 	var showPriority bool = false
 	this.ShowPriority = &showPriority
+	var showSubGroups bool = false
+	this.ShowSubGroups = &showSubGroups
 	this.Type = typeVar
 	return &this
 }
@@ -69,6 +73,8 @@ func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefini
 	this := MonitorSummaryWidgetDefinition{}
 	var showPriority bool = false
 	this.ShowPriority = &showPriority
+	var showSubGroups bool = false
+	this.ShowSubGroups = &showSubGroups
 	var typeVar MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
 	this.Type = typeVar
 	return &this
@@ -296,6 +302,34 @@ func (o *MonitorSummaryWidgetDefinition) SetShowPriority(v bool) {
 	o.ShowPriority = &v
 }
 
+// GetShowSubGroups returns the ShowSubGroups field value if set, zero value otherwise.
+func (o *MonitorSummaryWidgetDefinition) GetShowSubGroups() bool {
+	if o == nil || o.ShowSubGroups == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowSubGroups
+}
+
+// GetShowSubGroupsOk returns a tuple with the ShowSubGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorSummaryWidgetDefinition) GetShowSubGroupsOk() (*bool, bool) {
+	if o == nil || o.ShowSubGroups == nil {
+		return nil, false
+	}
+	return o.ShowSubGroups, true
+}
+
+// HasShowSubGroups returns a boolean if a field has been set.
+func (o *MonitorSummaryWidgetDefinition) HasShowSubGroups() bool {
+	return o != nil && o.ShowSubGroups != nil
+}
+
+// SetShowSubGroups gets a reference to the given bool and assigns it to the ShowSubGroups field.
+func (o *MonitorSummaryWidgetDefinition) SetShowSubGroups(v bool) {
+	o.ShowSubGroups = &v
+}
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetMonitorSummarySort {
 	if o == nil || o.Sort == nil {
@@ -518,6 +552,9 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.ShowPriority != nil {
 		toSerialize["show_priority"] = o.ShowPriority
 	}
+	if o.ShowSubGroups != nil {
+		toSerialize["show_sub_groups"] = o.ShowSubGroups
+	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
 	}
@@ -555,6 +592,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Query             *string                             `json:"query"`
 		ShowLastTriggered *bool                               `json:"show_last_triggered,omitempty"`
 		ShowPriority      *bool                               `json:"show_priority,omitempty"`
+		ShowSubGroups     *bool                               `json:"show_sub_groups,omitempty"`
 		Sort              *WidgetMonitorSummarySort           `json:"sort,omitempty"`
 		Start             *int64                              `json:"start,omitempty"`
 		SummaryType       *WidgetSummaryType                  `json:"summary_type,omitempty"`
@@ -574,7 +612,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"color_preference", "count", "description", "display_format", "hide_zero_counts", "query", "show_last_triggered", "show_priority", "sort", "start", "summary_type", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"color_preference", "count", "description", "display_format", "hide_zero_counts", "query", "show_last_triggered", "show_priority", "show_sub_groups", "sort", "start", "summary_type", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
@@ -596,6 +634,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Query = *all.Query
 	o.ShowLastTriggered = all.ShowLastTriggered
 	o.ShowPriority = all.ShowPriority
+	o.ShowSubGroups = all.ShowSubGroups
 	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
