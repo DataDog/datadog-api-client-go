@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -19,27 +17,17 @@ type AgentHealthApi datadog.Service
 
 // GetAgentHealthIssue Get an Agent Health issue.
 // Get an Agent Health issue and its available remediation in your organization.
-// Only open issues are returned. The `remediation` attribute is omitted when
-// the issue has no remediation.
+// The `remediation` attribute is omitted when the issue has no remediation.
 //
-// Returns `404` if the issue does not exist, is not open, belongs to another
-// organization, or you do not have access to its data. This response does not
-// reveal whether the issue exists. Returns `403` if you lack the `hosts_read` permission.
+// Returns `404` if the issue does not exist, belongs to another organization, or
+// you do not have access to its data. This response does not reveal whether the
+// issue exists. Returns `403` if you lack the `hosts_read` permission.
 func (a *AgentHealthApi) GetAgentHealthIssue(ctx _context.Context, issueId string) (AgentHealthIssueResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AgentHealthIssueResponse
 	)
-
-	operationId := "v2.GetAgentHealthIssue"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AgentHealthApi.GetAgentHealthIssue")
 	if err != nil {
@@ -87,7 +75,7 @@ func (a *AgentHealthApi) GetAgentHealthIssue(ctx _context.Context, issueId strin
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -221,6 +209,8 @@ func (a *AgentHealthApi) ListAgentHealthHostIssues(ctx _context.Context, resourc
 // ListAgentHealthIssuesOptionalParameters holds optional parameters for ListAgentHealthIssues.
 type ListAgentHealthIssuesOptionalParameters struct {
 	CountBy            *AgentHealthIssuesCountBy
+	PageLimit          *int64
+	PageOffset         *int64
 	FilterSeverity     *string
 	FilterCategory     *string
 	FilterIssueType    *string
@@ -237,6 +227,18 @@ func NewListAgentHealthIssuesOptionalParameters() *ListAgentHealthIssuesOptional
 // WithCountBy sets the corresponding parameter name and returns the struct.
 func (r *ListAgentHealthIssuesOptionalParameters) WithCountBy(countBy AgentHealthIssuesCountBy) *ListAgentHealthIssuesOptionalParameters {
 	r.CountBy = &countBy
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListAgentHealthIssuesOptionalParameters) WithPageLimit(pageLimit int64) *ListAgentHealthIssuesOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListAgentHealthIssuesOptionalParameters) WithPageOffset(pageOffset int64) *ListAgentHealthIssuesOptionalParameters {
+	r.PageOffset = &pageOffset
 	return r
 }
 
@@ -279,9 +281,9 @@ func (r *ListAgentHealthIssuesOptionalParameters) WithFilterResourceId(filterRes
 // (`high`, `medium`, `low`, then other values), then `first_seen_at` descending with
 // missing timestamps last, then issue ID ascending.
 //
-// Set `count_by=issue_type` to include `meta.page`, where `total_count` is the number of
-// open issues matching the filters and `counts_by_issue_type` holds the per-type counts.
-// `meta` is omitted when `count_by` is not requested.
+// The response always includes `meta.page` with the applied `limit`, `offset`, and
+// `total_count` (the number of open issues matching the filters). Set `count_by=issue_type`
+// to also include `counts_by_issue_type` with per-issue-type counts.
 //
 // Each filter accepts up to 50 comma-separated exact values of at most 256 characters
 // each, combined with OR within a filter and AND across filters. Blank entries are ignored; an all-blank filter
@@ -301,15 +303,6 @@ func (a *AgentHealthApi) ListAgentHealthIssues(ctx _context.Context, o ...ListAg
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListAgentHealthIssues"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AgentHealthApi.ListAgentHealthIssues")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -322,6 +315,12 @@ func (a *AgentHealthApi) ListAgentHealthIssues(ctx _context.Context, o ...ListAg
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.CountBy != nil {
 		localVarQueryParams.Add("count_by", datadog.ParameterToString(*optionalParams.CountBy, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
 	}
 	if optionalParams.FilterSeverity != nil {
 		localVarQueryParams.Add("filter[severity]", datadog.ParameterToString(*optionalParams.FilterSeverity, ""))
@@ -403,6 +402,56 @@ func (a *AgentHealthApi) ListAgentHealthIssues(ctx _context.Context, o ...ListAg
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListAgentHealthIssuesWithPagination provides a paginated version of ListAgentHealthIssues returning a channel with all items.
+func (a *AgentHealthApi) ListAgentHealthIssuesWithPagination(ctx _context.Context, o ...ListAgentHealthIssuesOptionalParameters) (<-chan datadog.PaginationResult[AgentHealthIssueData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(100)
+	if len(o) == 0 {
+		o = append(o, ListAgentHealthIssuesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[AgentHealthIssueData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListAgentHealthIssues(ctx, o...)
+			if err != nil {
+				var returnItem AgentHealthIssueData
+				items <- datadog.PaginationResult[AgentHealthIssueData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[AgentHealthIssueData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewAgentHealthApi Returns NewAgentHealthApi.

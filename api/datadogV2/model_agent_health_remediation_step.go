@@ -5,15 +5,17 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AgentHealthRemediationStep A step to remediate the issue.
 type AgentHealthRemediationStep struct {
 	// The order in which to perform the step.
-	Order *int64 `json:"order,omitempty"`
+	Order int32 `json:"order"`
 	// The instructions for the step.
-	Text *string `json:"text,omitempty"`
+	Text string `json:"text"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,8 +25,10 @@ type AgentHealthRemediationStep struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthRemediationStep() *AgentHealthRemediationStep {
+func NewAgentHealthRemediationStep(order int32, text string) *AgentHealthRemediationStep {
 	this := AgentHealthRemediationStep{}
+	this.Order = order
+	this.Text = text
 	return &this
 }
 
@@ -36,60 +40,50 @@ func NewAgentHealthRemediationStepWithDefaults() *AgentHealthRemediationStep {
 	return &this
 }
 
-// GetOrder returns the Order field value if set, zero value otherwise.
-func (o *AgentHealthRemediationStep) GetOrder() int64 {
-	if o == nil || o.Order == nil {
-		var ret int64
+// GetOrder returns the Order field value.
+func (o *AgentHealthRemediationStep) GetOrder() int32 {
+	if o == nil {
+		var ret int32
 		return ret
 	}
-	return *o.Order
+	return o.Order
 }
 
-// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
+// GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
-func (o *AgentHealthRemediationStep) GetOrderOk() (*int64, bool) {
-	if o == nil || o.Order == nil {
+func (o *AgentHealthRemediationStep) GetOrderOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Order, true
+	return &o.Order, true
 }
 
-// HasOrder returns a boolean if a field has been set.
-func (o *AgentHealthRemediationStep) HasOrder() bool {
-	return o != nil && o.Order != nil
+// SetOrder sets field value.
+func (o *AgentHealthRemediationStep) SetOrder(v int32) {
+	o.Order = v
 }
 
-// SetOrder gets a reference to the given int64 and assigns it to the Order field.
-func (o *AgentHealthRemediationStep) SetOrder(v int64) {
-	o.Order = &v
-}
-
-// GetText returns the Text field value if set, zero value otherwise.
+// GetText returns the Text field value.
 func (o *AgentHealthRemediationStep) GetText() string {
-	if o == nil || o.Text == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Text
+	return o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value if set, nil otherwise
+// GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
 func (o *AgentHealthRemediationStep) GetTextOk() (*string, bool) {
-	if o == nil || o.Text == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Text, true
+	return &o.Text, true
 }
 
-// HasText returns a boolean if a field has been set.
-func (o *AgentHealthRemediationStep) HasText() bool {
-	return o != nil && o.Text != nil
-}
-
-// SetText gets a reference to the given string and assigns it to the Text field.
+// SetText sets field value.
 func (o *AgentHealthRemediationStep) SetText(v string) {
-	o.Text = &v
+	o.Text = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -98,12 +92,8 @@ func (o AgentHealthRemediationStep) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Order != nil {
-		toSerialize["order"] = o.Order
-	}
-	if o.Text != nil {
-		toSerialize["text"] = o.Text
-	}
+	toSerialize["order"] = o.Order
+	toSerialize["text"] = o.Text
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -114,11 +104,17 @@ func (o AgentHealthRemediationStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthRemediationStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Order *int64  `json:"order,omitempty"`
-		Text  *string `json:"text,omitempty"`
+		Order *int32  `json:"order"`
+		Text  *string `json:"text"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Order == nil {
+		return fmt.Errorf("required field order missing")
+	}
+	if all.Text == nil {
+		return fmt.Errorf("required field text missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -126,8 +122,8 @@ func (o *AgentHealthRemediationStep) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.Order = all.Order
-	o.Text = all.Text
+	o.Order = *all.Order
+	o.Text = *all.Text
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
