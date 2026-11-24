@@ -1520,6 +1520,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateTagIndexingRuleExemption":                         false,
 			"v2.DeleteTagIndexingRuleExemption":                         false,
 			"v2.GetTagIndexingRuleExemption":                            false,
+			"v2.ListMetricMetadata":                                     false,
 			"v2.ListTagIndexingRuleExemptions":                          false,
 			"v2.UpdateTagIndexingRuleExemption":                         false,
 			"v2.AddModelLabProjectOwner":                                false,

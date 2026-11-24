@@ -1005,6 +1005,7 @@
 //   - [MetricsApi.GetTagIndexingRuleExemption]
 //   - [MetricsApi.ListActiveMetricConfigurations]
 //   - [MetricsApi.ListMetricAssets]
+//   - [MetricsApi.ListMetricMetadata]
 //   - [MetricsApi.ListTagConfigurationByName]
 //   - [MetricsApi.ListTagConfigurations]
 //   - [MetricsApi.ListTagIndexingRuleExemptions]
