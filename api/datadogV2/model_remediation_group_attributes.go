@@ -10,18 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RemediationGroupAttributes Attributes of a remediation group. Each group includes one kind object, `package_update` or `image_update`,
-// depending on its grouping definition.
+// RemediationGroupAttributes Attributes of a remediation group. Each group includes one kind object, depending on its grouping definition.
 type RemediationGroupAttributes struct {
 	// Counts of the group's open findings. The counts include every finding in the group, including findings that
 	// don't match `filter[query]`.
 	Findings RemediationGroupFindings `json:"findings"`
-	// Grouping definition that formed the group: `sca.package_update` or `cloudvm.image_update`.
+	// Grouping definition that formed the group, such as `sca.package_update`.
 	GroupingDefinitionId string `json:"grouping_definition_id"`
-	// An image or package to upgrade, for a group of host and container vulnerabilities (`cloudvm.image_update`).
-	// The group gathers the open vulnerabilities of running production images that have a fix available, and groups
-	// them by `grouping_location`, `remediation_kind`, and `action`.
-	ImageUpdate *RemediationGroupImageUpdate `json:"image_update,omitempty"`
+	// Who should fix the group: the code owners of the group's findings, from their `@git.codeowners` attribute,
+	// and their Datadog teams, from their `team` tag. A group with no owners has empty `items` and a `total` of 0.
+	Owners RemediationGroupOwners `json:"owners"`
 	// A package to update in a repository, for a group of library vulnerabilities (`sca.package_update`). The group
 	// gathers the open vulnerabilities of direct dependencies that have a recommended fix, and groups them by
 	// `@git.repository_id`, `@vulnerability.stack.ecosystem`, and `@remediation.recommended.name`.
@@ -37,10 +35,11 @@ type RemediationGroupAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRemediationGroupAttributes(findings RemediationGroupFindings, groupingDefinitionId string, title string) *RemediationGroupAttributes {
+func NewRemediationGroupAttributes(findings RemediationGroupFindings, groupingDefinitionId string, owners RemediationGroupOwners, title string) *RemediationGroupAttributes {
 	this := RemediationGroupAttributes{}
 	this.Findings = findings
 	this.GroupingDefinitionId = groupingDefinitionId
+	this.Owners = owners
 	this.Title = title
 	return &this
 }
@@ -99,32 +98,27 @@ func (o *RemediationGroupAttributes) SetGroupingDefinitionId(v string) {
 	o.GroupingDefinitionId = v
 }
 
-// GetImageUpdate returns the ImageUpdate field value if set, zero value otherwise.
-func (o *RemediationGroupAttributes) GetImageUpdate() RemediationGroupImageUpdate {
-	if o == nil || o.ImageUpdate == nil {
-		var ret RemediationGroupImageUpdate
+// GetOwners returns the Owners field value.
+func (o *RemediationGroupAttributes) GetOwners() RemediationGroupOwners {
+	if o == nil {
+		var ret RemediationGroupOwners
 		return ret
 	}
-	return *o.ImageUpdate
+	return o.Owners
 }
 
-// GetImageUpdateOk returns a tuple with the ImageUpdate field value if set, nil otherwise
+// GetOwnersOk returns a tuple with the Owners field value
 // and a boolean to check if the value has been set.
-func (o *RemediationGroupAttributes) GetImageUpdateOk() (*RemediationGroupImageUpdate, bool) {
-	if o == nil || o.ImageUpdate == nil {
+func (o *RemediationGroupAttributes) GetOwnersOk() (*RemediationGroupOwners, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ImageUpdate, true
+	return &o.Owners, true
 }
 
-// HasImageUpdate returns a boolean if a field has been set.
-func (o *RemediationGroupAttributes) HasImageUpdate() bool {
-	return o != nil && o.ImageUpdate != nil
-}
-
-// SetImageUpdate gets a reference to the given RemediationGroupImageUpdate and assigns it to the ImageUpdate field.
-func (o *RemediationGroupAttributes) SetImageUpdate(v RemediationGroupImageUpdate) {
-	o.ImageUpdate = &v
+// SetOwners sets field value.
+func (o *RemediationGroupAttributes) SetOwners(v RemediationGroupOwners) {
+	o.Owners = v
 }
 
 // GetPackageUpdate returns the PackageUpdate field value if set, zero value otherwise.
@@ -186,9 +180,7 @@ func (o RemediationGroupAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["findings"] = o.Findings
 	toSerialize["grouping_definition_id"] = o.GroupingDefinitionId
-	if o.ImageUpdate != nil {
-		toSerialize["image_update"] = o.ImageUpdate
-	}
+	toSerialize["owners"] = o.Owners
 	if o.PackageUpdate != nil {
 		toSerialize["package_update"] = o.PackageUpdate
 	}
@@ -205,7 +197,7 @@ func (o *RemediationGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Findings             *RemediationGroupFindings      `json:"findings"`
 		GroupingDefinitionId *string                        `json:"grouping_definition_id"`
-		ImageUpdate          *RemediationGroupImageUpdate   `json:"image_update,omitempty"`
+		Owners               *RemediationGroupOwners        `json:"owners"`
 		PackageUpdate        *RemediationGroupPackageUpdate `json:"package_update,omitempty"`
 		Title                *string                        `json:"title"`
 	}{}
@@ -218,12 +210,15 @@ func (o *RemediationGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.GroupingDefinitionId == nil {
 		return fmt.Errorf("required field grouping_definition_id missing")
 	}
+	if all.Owners == nil {
+		return fmt.Errorf("required field owners missing")
+	}
 	if all.Title == nil {
 		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"findings", "grouping_definition_id", "image_update", "package_update", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"findings", "grouping_definition_id", "owners", "package_update", "title"})
 	} else {
 		return err
 	}
@@ -234,10 +229,10 @@ func (o *RemediationGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Findings = *all.Findings
 	o.GroupingDefinitionId = *all.GroupingDefinitionId
-	if all.ImageUpdate != nil && all.ImageUpdate.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Owners.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.ImageUpdate = all.ImageUpdate
+	o.Owners = *all.Owners
 	if all.PackageUpdate != nil && all.PackageUpdate.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

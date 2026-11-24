@@ -15,13 +15,11 @@ type RemediationGroupFindingType string
 
 // List of RemediationGroupFindingType.
 const (
-	REMEDIATIONGROUPFINDINGTYPE_LIBRARY_VULNERABILITY            RemediationGroupFindingType = "library_vulnerability"
-	REMEDIATIONGROUPFINDINGTYPE_HOST_AND_CONTAINER_VULNERABILITY RemediationGroupFindingType = "host_and_container_vulnerability"
+	REMEDIATIONGROUPFINDINGTYPE_LIBRARY_VULNERABILITY RemediationGroupFindingType = "library_vulnerability"
 )
 
 var allowedRemediationGroupFindingTypeEnumValues = []RemediationGroupFindingType{
 	REMEDIATIONGROUPFINDINGTYPE_LIBRARY_VULNERABILITY,
-	REMEDIATIONGROUPFINDINGTYPE_HOST_AND_CONTAINER_VULNERABILITY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
