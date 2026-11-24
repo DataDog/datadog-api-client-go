@@ -14,7 +14,7 @@ import (
 type OpenAICodexIntegrationAccountBearerTokenAuthUpdate struct {
 	// The authentication method type.
 	AuthType OpenAICodexIntegrationAccountBearerTokenAuthType `json:"auth_type"`
-	// Secret token used to authenticate with OpenAI Codex.
+	// Workspace-scoped OpenAI Admin key with the `codex.enterprise.analytics.read` scope. To collect turn metrics, also grant `chatgpt.enterprise.compliance_logs_platform.workspace_analytics.read` to the same key.
 	Token *string `json:"token,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`

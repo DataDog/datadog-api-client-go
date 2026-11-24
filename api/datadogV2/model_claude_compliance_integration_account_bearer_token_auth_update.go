@@ -14,7 +14,7 @@ import (
 type ClaudeComplianceIntegrationAccountBearerTokenAuthUpdate struct {
 	// The authentication method type.
 	AuthType ClaudeComplianceIntegrationAccountBearerTokenAuthType `json:"auth_type"`
-	// Secret token used to authenticate with Claude Compliance.
+	// Anthropic Admin API key (prefix `sk-ant-admin01-`) with the `read:compliance_activities` scope, or a dedicated Compliance Access key (prefix `sk-ant-api01-`). Generate an Admin API key in the Anthropic Console under **Organization settings > API keys**.
 	Token *string `json:"token,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
