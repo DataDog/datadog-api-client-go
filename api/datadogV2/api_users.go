@@ -808,6 +808,7 @@ type ListUsersOptionalParameters struct {
 	SortDir      *QuerySortOrder
 	Filter       *string
 	FilterStatus *string
+	FilterHandle *string
 }
 
 // NewListUsersOptionalParameters creates an empty struct for parameters.
@@ -849,6 +850,12 @@ func (r *ListUsersOptionalParameters) WithFilter(filter string) *ListUsersOption
 // WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *ListUsersOptionalParameters {
 	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithFilterHandle sets the corresponding parameter name and returns the struct.
+func (r *ListUsersOptionalParameters) WithFilterHandle(filterHandle string) *ListUsersOptionalParameters {
+	r.FilterHandle = &filterHandle
 	return r
 }
 
@@ -897,6 +904,9 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 	}
 	if optionalParams.FilterStatus != nil {
 		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.FilterHandle != nil {
+		localVarQueryParams.Add("filter[handle]", datadog.ParameterToString(*optionalParams.FilterHandle, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
