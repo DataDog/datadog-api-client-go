@@ -18,8 +18,6 @@ type CSMThreatsApi datadog.Service
 
 // CreateCSMThreatsAgentPolicy Create a Workload Protection policy.
 // Create a new Workload Protection policy with the given parameters.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) CreateCSMThreatsAgentPolicy(ctx _context.Context, body CloudWorkloadSecurityAgentPolicyCreateRequest) (CloudWorkloadSecurityAgentPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -109,8 +107,6 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentPolicy(ctx _context.Context, body C
 // To add the rule to another policy, set `policy_id` to the ID of that policy, as returned by `ListCSMThreatsAgentPolicies`.
 //
 // This endpoint does not accept `kill` or `network_filter` actions, or `blocking` policies. A request that contains them returns a `400` error.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -202,8 +198,6 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 // Delete a specific Workload Protection policy.
 //
 // Datadog-managed policies cannot be deleted. This action cannot be undone.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) DeleteCSMThreatsAgentPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -292,8 +286,6 @@ func (r *DeleteCSMThreatsAgentRuleOptionalParameters) WithPolicyId(policyId stri
 //
 // The rule is removed from every policy that contains it. Datadog-managed rules cannot be deleted.
 // This action cannot be undone.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, o ...DeleteCSMThreatsAgentRuleOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -384,8 +376,6 @@ func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRul
 // The download endpoint generates a Workload Protection policy file from your currently active
 // Workload Protection agent rules, and downloads them as a `.policy` file. This file can then be deployed to
 // your agents to update the policy running in your environment.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -455,8 +445,6 @@ func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Read
 
 // GetCSMThreatsAgentPolicy Get a Workload Protection policy.
 // Get the details of a specific Workload Protection policy.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) GetCSMThreatsAgentPolicy(ctx _context.Context, policyId string) (CloudWorkloadSecurityAgentPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -552,8 +540,6 @@ func (r *GetCSMThreatsAgentRuleOptionalParameters) WithPolicyId(policyId string)
 
 // GetCSMThreatsAgentRule Get a Workload Protection agent rule.
 // Get the details of a specific Workload Protection agent rule.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, o ...GetCSMThreatsAgentRuleOptionalParameters) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -651,9 +637,12 @@ func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId
 }
 
 // GetCloudWorkloadSecurityAgentRule Get a Workload Protection agent rule (US1-FED).
+// **Note**: This endpoint is deprecated. Use [Get a Workload Protection agent rule](https://docs.datadoghq.com/api/latest/csm-threats/#get-a-workload-protection-agent-rule)
+// instead, on all sites including US1-FED.
+//
 // Get the details of a specific agent rule.
 //
-// **Note**: This endpoint should only be used for the Government (US1-FED) site.
+// Deprecated: This API is deprecated.
 func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -741,8 +730,6 @@ func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, 
 
 // ListCSMThreatsAgentPolicies Get all Workload Protection policies.
 // Get the list of Workload Protection policies.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) ListCSMThreatsAgentPolicies(ctx _context.Context) (CloudWorkloadSecurityAgentPoliciesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -839,8 +826,6 @@ func (r *ListCSMThreatsAgentRulesOptionalParameters) WithPolicyId(policyId strin
 // Get the list of Workload Protection agent rules.
 //
 // Set `policy_id` to only return the rules of one policy. Without it, the rules of all policies are returned.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context, o ...ListCSMThreatsAgentRulesOptionalParameters) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -937,9 +922,12 @@ func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context, o ...List
 }
 
 // ListCloudWorkloadSecurityAgentRules Get all Workload Protection agent rules (US1-FED).
+// **Note**: This endpoint is deprecated. Use [Get all Workload Protection agent rules](https://docs.datadoghq.com/api/latest/csm-threats/#get-all-workload-protection-agent-rules)
+// instead, on all sites including US1-FED.
+//
 // Get the list of agent rules.
 //
-// **Note**: This endpoint should only be used for the Government (US1-FED) site.
+// Deprecated: This API is deprecated.
 func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1027,8 +1015,6 @@ func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context
 // UpdateCSMThreatsAgentPolicy Update a Workload Protection policy.
 // Update a specific Workload Protection policy.
 // Returns the policy object when the request is successful.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) UpdateCSMThreatsAgentPolicy(ctx _context.Context, policyId string, body CloudWorkloadSecurityAgentPolicyUpdateRequest) (CloudWorkloadSecurityAgentPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -1133,8 +1119,6 @@ func (r *UpdateCSMThreatsAgentRuleOptionalParameters) WithPolicyId(policyId stri
 // See [Agent expressions](https://docs.datadoghq.com/security/workload_protection/agent_expressions/) for the syntax.
 //
 // This endpoint does not accept `kill` or `network_filter` actions, or `blocking` policies. A request that contains them returns a `400` error.
-//
-// **Note**: This endpoint is not available for the Government (US1-FED) site. Please reference the (US1-FED) specific resource below.
 func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest, o ...UpdateCSMThreatsAgentRuleOptionalParameters) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
