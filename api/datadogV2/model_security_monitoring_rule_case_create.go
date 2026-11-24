@@ -17,6 +17,8 @@ type SecurityMonitoringRuleCaseCreate struct {
 	// A case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
 	// based on the event counts in the previously defined queries.
 	Condition *string `json:"condition,omitempty"`
+	// Severity of the Security Signal.
+	CustomStatus *SecurityMonitoringRuleSeverity `json:"customStatus,omitempty"`
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
 	// Notification targets.
@@ -100,6 +102,34 @@ func (o *SecurityMonitoringRuleCaseCreate) HasCondition() bool {
 // SetCondition gets a reference to the given string and assigns it to the Condition field.
 func (o *SecurityMonitoringRuleCaseCreate) SetCondition(v string) {
 	o.Condition = &v
+}
+
+// GetCustomStatus returns the CustomStatus field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleCaseCreate) GetCustomStatus() SecurityMonitoringRuleSeverity {
+	if o == nil || o.CustomStatus == nil {
+		var ret SecurityMonitoringRuleSeverity
+		return ret
+	}
+	return *o.CustomStatus
+}
+
+// GetCustomStatusOk returns a tuple with the CustomStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleCaseCreate) GetCustomStatusOk() (*SecurityMonitoringRuleSeverity, bool) {
+	if o == nil || o.CustomStatus == nil {
+		return nil, false
+	}
+	return o.CustomStatus, true
+}
+
+// HasCustomStatus returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleCaseCreate) HasCustomStatus() bool {
+	return o != nil && o.CustomStatus != nil
+}
+
+// SetCustomStatus gets a reference to the given SecurityMonitoringRuleSeverity and assigns it to the CustomStatus field.
+func (o *SecurityMonitoringRuleCaseCreate) SetCustomStatus(v SecurityMonitoringRuleSeverity) {
+	o.CustomStatus = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -193,6 +223,9 @@ func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	if o.Condition != nil {
 		toSerialize["condition"] = o.Condition
 	}
+	if o.CustomStatus != nil {
+		toSerialize["customStatus"] = o.CustomStatus
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -212,6 +245,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		Actions       []SecurityMonitoringRuleCaseAction `json:"actions,omitempty"`
 		Condition     *string                            `json:"condition,omitempty"`
+		CustomStatus  *SecurityMonitoringRuleSeverity    `json:"customStatus,omitempty"`
 		Name          *string                            `json:"name,omitempty"`
 		Notifications []string                           `json:"notifications,omitempty"`
 		Status        *SecurityMonitoringRuleSeverity    `json:"status"`
@@ -224,7 +258,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "condition", "name", "notifications", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "condition", "customStatus", "name", "notifications", "status"})
 	} else {
 		return err
 	}
@@ -232,6 +266,11 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	hasInvalidField := false
 	o.Actions = all.Actions
 	o.Condition = all.Condition
+	if all.CustomStatus != nil && !all.CustomStatus.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CustomStatus = all.CustomStatus
+	}
 	o.Name = all.Name
 	o.Notifications = all.Notifications
 	if !all.Status.IsValid() {

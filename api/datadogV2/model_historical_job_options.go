@@ -12,11 +12,20 @@ import (
 type HistoricalJobOptions struct {
 	// Options on anomaly detection method.
 	AnomalyDetectionOptions *SecurityMonitoringRuleAnomalyDetectionOptions `json:"anomalyDetectionOptions,omitempty"`
+	// Options for cloud_configuration rules.
+	// Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.
+	ComplianceRuleOptions *CloudConfigurationComplianceRuleOptions `json:"complianceRuleOptions,omitempty"`
+	// If true, signals in non-production environments have a lower severity than what is defined by the rule case, which can reduce signal noise.
+	// The severity is decreased by one level: `CRITICAL` in production becomes `HIGH` in non-production, `HIGH` becomes `MEDIUM` and so on. `INFO` remains `INFO`.
+	// The decrement is applied when the environment tag of the signal starts with `staging`, `test` or `dev`.
+	DecreaseCriticalityBasedOnEnv *bool `json:"decreaseCriticalityBasedOnEnv,omitempty"`
 	// The detection method.
 	DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
 	// A time window is specified to match when at least one of the cases matches true. This is a sliding window
 	// and evaluates in real time. For third party detection method, this field is not used.
 	EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
+	// Hardcoded evaluator type.
+	HardcodedEvaluatorType *SecurityMonitoringRuleHardcodedEvaluatorType `json:"hardcodedEvaluatorType,omitempty"`
 	// Options on impossible travel detection method.
 	ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
 	// Once a signal is generated, the signal will remain "open" if a case is matched at least once within
@@ -81,6 +90,62 @@ func (o *HistoricalJobOptions) SetAnomalyDetectionOptions(v SecurityMonitoringRu
 	o.AnomalyDetectionOptions = &v
 }
 
+// GetComplianceRuleOptions returns the ComplianceRuleOptions field value if set, zero value otherwise.
+func (o *HistoricalJobOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
+	if o == nil || o.ComplianceRuleOptions == nil {
+		var ret CloudConfigurationComplianceRuleOptions
+		return ret
+	}
+	return *o.ComplianceRuleOptions
+}
+
+// GetComplianceRuleOptionsOk returns a tuple with the ComplianceRuleOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobOptions) GetComplianceRuleOptionsOk() (*CloudConfigurationComplianceRuleOptions, bool) {
+	if o == nil || o.ComplianceRuleOptions == nil {
+		return nil, false
+	}
+	return o.ComplianceRuleOptions, true
+}
+
+// HasComplianceRuleOptions returns a boolean if a field has been set.
+func (o *HistoricalJobOptions) HasComplianceRuleOptions() bool {
+	return o != nil && o.ComplianceRuleOptions != nil
+}
+
+// SetComplianceRuleOptions gets a reference to the given CloudConfigurationComplianceRuleOptions and assigns it to the ComplianceRuleOptions field.
+func (o *HistoricalJobOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
+	o.ComplianceRuleOptions = &v
+}
+
+// GetDecreaseCriticalityBasedOnEnv returns the DecreaseCriticalityBasedOnEnv field value if set, zero value otherwise.
+func (o *HistoricalJobOptions) GetDecreaseCriticalityBasedOnEnv() bool {
+	if o == nil || o.DecreaseCriticalityBasedOnEnv == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DecreaseCriticalityBasedOnEnv
+}
+
+// GetDecreaseCriticalityBasedOnEnvOk returns a tuple with the DecreaseCriticalityBasedOnEnv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobOptions) GetDecreaseCriticalityBasedOnEnvOk() (*bool, bool) {
+	if o == nil || o.DecreaseCriticalityBasedOnEnv == nil {
+		return nil, false
+	}
+	return o.DecreaseCriticalityBasedOnEnv, true
+}
+
+// HasDecreaseCriticalityBasedOnEnv returns a boolean if a field has been set.
+func (o *HistoricalJobOptions) HasDecreaseCriticalityBasedOnEnv() bool {
+	return o != nil && o.DecreaseCriticalityBasedOnEnv != nil
+}
+
+// SetDecreaseCriticalityBasedOnEnv gets a reference to the given bool and assigns it to the DecreaseCriticalityBasedOnEnv field.
+func (o *HistoricalJobOptions) SetDecreaseCriticalityBasedOnEnv(v bool) {
+	o.DecreaseCriticalityBasedOnEnv = &v
+}
+
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
 	if o == nil || o.DetectionMethod == nil {
@@ -135,6 +200,34 @@ func (o *HistoricalJobOptions) HasEvaluationWindow() bool {
 // SetEvaluationWindow gets a reference to the given SecurityMonitoringRuleEvaluationWindow and assigns it to the EvaluationWindow field.
 func (o *HistoricalJobOptions) SetEvaluationWindow(v SecurityMonitoringRuleEvaluationWindow) {
 	o.EvaluationWindow = &v
+}
+
+// GetHardcodedEvaluatorType returns the HardcodedEvaluatorType field value if set, zero value otherwise.
+func (o *HistoricalJobOptions) GetHardcodedEvaluatorType() SecurityMonitoringRuleHardcodedEvaluatorType {
+	if o == nil || o.HardcodedEvaluatorType == nil {
+		var ret SecurityMonitoringRuleHardcodedEvaluatorType
+		return ret
+	}
+	return *o.HardcodedEvaluatorType
+}
+
+// GetHardcodedEvaluatorTypeOk returns a tuple with the HardcodedEvaluatorType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobOptions) GetHardcodedEvaluatorTypeOk() (*SecurityMonitoringRuleHardcodedEvaluatorType, bool) {
+	if o == nil || o.HardcodedEvaluatorType == nil {
+		return nil, false
+	}
+	return o.HardcodedEvaluatorType, true
+}
+
+// HasHardcodedEvaluatorType returns a boolean if a field has been set.
+func (o *HistoricalJobOptions) HasHardcodedEvaluatorType() bool {
+	return o != nil && o.HardcodedEvaluatorType != nil
+}
+
+// SetHardcodedEvaluatorType gets a reference to the given SecurityMonitoringRuleHardcodedEvaluatorType and assigns it to the HardcodedEvaluatorType field.
+func (o *HistoricalJobOptions) SetHardcodedEvaluatorType(v SecurityMonitoringRuleHardcodedEvaluatorType) {
+	o.HardcodedEvaluatorType = &v
 }
 
 // GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
@@ -314,11 +407,20 @@ func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
 	if o.AnomalyDetectionOptions != nil {
 		toSerialize["anomalyDetectionOptions"] = o.AnomalyDetectionOptions
 	}
+	if o.ComplianceRuleOptions != nil {
+		toSerialize["complianceRuleOptions"] = o.ComplianceRuleOptions
+	}
+	if o.DecreaseCriticalityBasedOnEnv != nil {
+		toSerialize["decreaseCriticalityBasedOnEnv"] = o.DecreaseCriticalityBasedOnEnv
+	}
 	if o.DetectionMethod != nil {
 		toSerialize["detectionMethod"] = o.DetectionMethod
 	}
 	if o.EvaluationWindow != nil {
 		toSerialize["evaluationWindow"] = o.EvaluationWindow
+	}
+	if o.HardcodedEvaluatorType != nil {
+		toSerialize["hardcodedEvaluatorType"] = o.HardcodedEvaluatorType
 	}
 	if o.ImpossibleTravelOptions != nil {
 		toSerialize["impossibleTravelOptions"] = o.ImpossibleTravelOptions
@@ -348,22 +450,25 @@ func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HistoricalJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AnomalyDetectionOptions  *SecurityMonitoringRuleAnomalyDetectionOptions  `json:"anomalyDetectionOptions,omitempty"`
-		DetectionMethod          *SecurityMonitoringRuleDetectionMethod          `json:"detectionMethod,omitempty"`
-		EvaluationWindow         *SecurityMonitoringRuleEvaluationWindow         `json:"evaluationWindow,omitempty"`
-		ImpossibleTravelOptions  *SecurityMonitoringRuleImpossibleTravelOptions  `json:"impossibleTravelOptions,omitempty"`
-		KeepAlive                *SecurityMonitoringRuleKeepAlive                `json:"keepAlive,omitempty"`
-		MaxSignalDuration        *SecurityMonitoringRuleMaxSignalDuration        `json:"maxSignalDuration,omitempty"`
-		NewValueOptions          *SecurityMonitoringRuleNewValueOptions          `json:"newValueOptions,omitempty"`
-		SequenceDetectionOptions *SecurityMonitoringRuleSequenceDetectionOptions `json:"sequenceDetectionOptions,omitempty"`
-		ThirdPartyRuleOptions    *SecurityMonitoringRuleThirdPartyOptions        `json:"thirdPartyRuleOptions,omitempty"`
+		AnomalyDetectionOptions       *SecurityMonitoringRuleAnomalyDetectionOptions  `json:"anomalyDetectionOptions,omitempty"`
+		ComplianceRuleOptions         *CloudConfigurationComplianceRuleOptions        `json:"complianceRuleOptions,omitempty"`
+		DecreaseCriticalityBasedOnEnv *bool                                           `json:"decreaseCriticalityBasedOnEnv,omitempty"`
+		DetectionMethod               *SecurityMonitoringRuleDetectionMethod          `json:"detectionMethod,omitempty"`
+		EvaluationWindow              *SecurityMonitoringRuleEvaluationWindow         `json:"evaluationWindow,omitempty"`
+		HardcodedEvaluatorType        *SecurityMonitoringRuleHardcodedEvaluatorType   `json:"hardcodedEvaluatorType,omitempty"`
+		ImpossibleTravelOptions       *SecurityMonitoringRuleImpossibleTravelOptions  `json:"impossibleTravelOptions,omitempty"`
+		KeepAlive                     *SecurityMonitoringRuleKeepAlive                `json:"keepAlive,omitempty"`
+		MaxSignalDuration             *SecurityMonitoringRuleMaxSignalDuration        `json:"maxSignalDuration,omitempty"`
+		NewValueOptions               *SecurityMonitoringRuleNewValueOptions          `json:"newValueOptions,omitempty"`
+		SequenceDetectionOptions      *SecurityMonitoringRuleSequenceDetectionOptions `json:"sequenceDetectionOptions,omitempty"`
+		ThirdPartyRuleOptions         *SecurityMonitoringRuleThirdPartyOptions        `json:"thirdPartyRuleOptions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"anomalyDetectionOptions", "detectionMethod", "evaluationWindow", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"anomalyDetectionOptions", "complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
 	} else {
 		return err
 	}
@@ -373,6 +478,11 @@ func (o *HistoricalJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.AnomalyDetectionOptions = all.AnomalyDetectionOptions
+	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ComplianceRuleOptions = all.ComplianceRuleOptions
+	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
 	if all.DetectionMethod != nil && !all.DetectionMethod.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -382,6 +492,11 @@ func (o *HistoricalJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow
+	}
+	if all.HardcodedEvaluatorType != nil && !all.HardcodedEvaluatorType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
 	}
 	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
