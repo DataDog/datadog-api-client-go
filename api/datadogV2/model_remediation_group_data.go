@@ -12,8 +12,7 @@ import (
 
 // RemediationGroupData A remediation group.
 type RemediationGroupData struct {
-	// Attributes of a remediation group. Each group includes one kind object, `package_update` or `image_update`,
-	// depending on its grouping definition.
+	// Attributes of a remediation group. Each group includes one kind object, depending on its grouping definition.
 	Attributes RemediationGroupAttributes `json:"attributes"`
 	// Remediation key of the group: the grouping definition ID, a colon, and the group's dimensions
 	// encoded in base64url. It identifies the group across searches.
