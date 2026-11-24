@@ -10,21 +10,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterEventType The type of RUM events to filter on.
-type RumRetentionFilterEventType string
+// RUMRetentionFilterEventType The type of RUM events to filter on.
+type RUMRetentionFilterEventType string
 
-// List of RumRetentionFilterEventType.
+// List of RUMRetentionFilterEventType.
 const (
-	RUMRETENTIONFILTEREVENTTYPE_SESSION   RumRetentionFilterEventType = "session"
-	RUMRETENTIONFILTEREVENTTYPE_VIEW      RumRetentionFilterEventType = "view"
-	RUMRETENTIONFILTEREVENTTYPE_ACTION    RumRetentionFilterEventType = "action"
-	RUMRETENTIONFILTEREVENTTYPE_ERROR     RumRetentionFilterEventType = "error"
-	RUMRETENTIONFILTEREVENTTYPE_RESOURCE  RumRetentionFilterEventType = "resource"
-	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK RumRetentionFilterEventType = "long_task"
-	RUMRETENTIONFILTEREVENTTYPE_VITAL     RumRetentionFilterEventType = "vital"
+	RUMRETENTIONFILTEREVENTTYPE_SESSION   RUMRetentionFilterEventType = "session"
+	RUMRETENTIONFILTEREVENTTYPE_VIEW      RUMRetentionFilterEventType = "view"
+	RUMRETENTIONFILTEREVENTTYPE_ACTION    RUMRetentionFilterEventType = "action"
+	RUMRETENTIONFILTEREVENTTYPE_ERROR     RUMRetentionFilterEventType = "error"
+	RUMRETENTIONFILTEREVENTTYPE_RESOURCE  RUMRetentionFilterEventType = "resource"
+	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK RUMRetentionFilterEventType = "long_task"
+	RUMRETENTIONFILTEREVENTTYPE_VITAL     RUMRetentionFilterEventType = "vital"
 )
 
-var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType{
+var allowedRUMRetentionFilterEventTypeEnumValues = []RUMRetentionFilterEventType{
 	RUMRETENTIONFILTEREVENTTYPE_SESSION,
 	RUMRETENTIONFILTEREVENTTYPE_VIEW,
 	RUMRETENTIONFILTEREVENTTYPE_ACTION,
@@ -35,34 +35,34 @@ var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionFilterEventType) GetAllowedValues() []RumRetentionFilterEventType {
-	return allowedRumRetentionFilterEventTypeEnumValues
+func (v *RUMRetentionFilterEventType) GetAllowedValues() []RUMRetentionFilterEventType {
+	return allowedRUMRetentionFilterEventTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionFilterEventType) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionFilterEventType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionFilterEventType(value)
+	*v = RUMRetentionFilterEventType(value)
 	return nil
 }
 
-// NewRumRetentionFilterEventTypeFromValue returns a pointer to a valid RumRetentionFilterEventType
+// NewRUMRetentionFilterEventTypeFromValue returns a pointer to a valid RUMRetentionFilterEventType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionFilterEventTypeFromValue(v string) (*RumRetentionFilterEventType, error) {
-	ev := RumRetentionFilterEventType(v)
+func NewRUMRetentionFilterEventTypeFromValue(v string) (*RUMRetentionFilterEventType, error) {
+	ev := RUMRetentionFilterEventType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionFilterEventType: valid values are %v", v, allowedRumRetentionFilterEventTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionFilterEventType: valid values are %v", v, allowedRUMRetentionFilterEventTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionFilterEventType) IsValid() bool {
-	for _, existing := range allowedRumRetentionFilterEventTypeEnumValues {
+func (v RUMRetentionFilterEventType) IsValid() bool {
+	for _, existing := range allowedRUMRetentionFilterEventTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -70,7 +70,7 @@ func (v RumRetentionFilterEventType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionFilterEventType value.
-func (v RumRetentionFilterEventType) Ptr() *RumRetentionFilterEventType {
+// Ptr returns reference to RUMRetentionFilterEventType value.
+func (v RUMRetentionFilterEventType) Ptr() *RUMRetentionFilterEventType {
 	return &v
 }

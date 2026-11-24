@@ -12,8 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumReplaySessionsApi service type
-type RumReplaySessionsApi datadog.Service
+// RUMReplaySessionsApi service type
+type RUMReplaySessionsApi datadog.Service
 
 // GetSegmentsOptionalParameters holds optional parameters for GetSegments.
 type GetSegmentsOptionalParameters struct {
@@ -55,7 +55,7 @@ func (r *GetSegmentsOptionalParameters) WithPaging(paging string) *GetSegmentsOp
 
 // GetSegments Get segments.
 // Get segments for a view.
-func (a *RumReplaySessionsApi) GetSegments(ctx _context.Context, viewId string, sessionId string, o ...GetSegmentsOptionalParameters) (*_nethttp.Response, error) {
+func (a *RUMReplaySessionsApi) GetSegments(ctx _context.Context, viewId string, sessionId string, o ...GetSegmentsOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodGet
 		localVarPostBody   interface{}
@@ -69,7 +69,7 @@ func (a *RumReplaySessionsApi) GetSegments(ctx _context.Context, viewId string, 
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumReplaySessionsApi.GetSegments")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMReplaySessionsApi.GetSegments")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -142,9 +142,9 @@ func (a *RumReplaySessionsApi) GetSegments(ctx _context.Context, viewId string, 
 	return localVarHTTPResponse, nil
 }
 
-// NewRumReplaySessionsApi Returns NewRumReplaySessionsApi.
-func NewRumReplaySessionsApi(client *datadog.APIClient) *RumReplaySessionsApi {
-	return &RumReplaySessionsApi{
+// NewRUMReplaySessionsApi Returns NewRUMReplaySessionsApi.
+func NewRUMReplaySessionsApi(client *datadog.APIClient) *RUMReplaySessionsApi {
+	return &RUMReplaySessionsApi{
 		Client: client,
 	}
 }

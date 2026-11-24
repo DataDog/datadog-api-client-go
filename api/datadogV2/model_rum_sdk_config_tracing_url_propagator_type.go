@@ -10,18 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigTracingUrlPropagatorType A trace propagator type.
-type RumSdkConfigTracingUrlPropagatorType string
+// RUMSdkConfigTracingUrlPropagatorType A trace propagator type.
+type RUMSdkConfigTracingUrlPropagatorType string
 
-// List of RumSdkConfigTracingUrlPropagatorType.
+// List of RUMSdkConfigTracingUrlPropagatorType.
 const (
-	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_DATADOG      RumSdkConfigTracingUrlPropagatorType = "datadog"
-	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3           RumSdkConfigTracingUrlPropagatorType = "b3"
-	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3MULTI      RumSdkConfigTracingUrlPropagatorType = "b3multi"
-	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_TRACECONTEXT RumSdkConfigTracingUrlPropagatorType = "tracecontext"
+	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_DATADOG      RUMSdkConfigTracingUrlPropagatorType = "datadog"
+	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3           RUMSdkConfigTracingUrlPropagatorType = "b3"
+	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3MULTI      RUMSdkConfigTracingUrlPropagatorType = "b3multi"
+	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_TRACECONTEXT RUMSdkConfigTracingUrlPropagatorType = "tracecontext"
 )
 
-var allowedRumSdkConfigTracingUrlPropagatorTypeEnumValues = []RumSdkConfigTracingUrlPropagatorType{
+var allowedRUMSdkConfigTracingUrlPropagatorTypeEnumValues = []RUMSdkConfigTracingUrlPropagatorType{
 	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_DATADOG,
 	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3,
 	RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_B3MULTI,
@@ -29,34 +29,34 @@ var allowedRumSdkConfigTracingUrlPropagatorTypeEnumValues = []RumSdkConfigTracin
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigTracingUrlPropagatorType) GetAllowedValues() []RumSdkConfigTracingUrlPropagatorType {
-	return allowedRumSdkConfigTracingUrlPropagatorTypeEnumValues
+func (v *RUMSdkConfigTracingUrlPropagatorType) GetAllowedValues() []RUMSdkConfigTracingUrlPropagatorType {
+	return allowedRUMSdkConfigTracingUrlPropagatorTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigTracingUrlPropagatorType) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigTracingUrlPropagatorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigTracingUrlPropagatorType(value)
+	*v = RUMSdkConfigTracingUrlPropagatorType(value)
 	return nil
 }
 
-// NewRumSdkConfigTracingUrlPropagatorTypeFromValue returns a pointer to a valid RumSdkConfigTracingUrlPropagatorType
+// NewRUMSdkConfigTracingUrlPropagatorTypeFromValue returns a pointer to a valid RUMSdkConfigTracingUrlPropagatorType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigTracingUrlPropagatorTypeFromValue(v string) (*RumSdkConfigTracingUrlPropagatorType, error) {
-	ev := RumSdkConfigTracingUrlPropagatorType(v)
+func NewRUMSdkConfigTracingUrlPropagatorTypeFromValue(v string) (*RUMSdkConfigTracingUrlPropagatorType, error) {
+	ev := RUMSdkConfigTracingUrlPropagatorType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigTracingUrlPropagatorType: valid values are %v", v, allowedRumSdkConfigTracingUrlPropagatorTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigTracingUrlPropagatorType: valid values are %v", v, allowedRUMSdkConfigTracingUrlPropagatorTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigTracingUrlPropagatorType) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigTracingUrlPropagatorTypeEnumValues {
+func (v RUMSdkConfigTracingUrlPropagatorType) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigTracingUrlPropagatorTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -64,7 +64,7 @@ func (v RumSdkConfigTracingUrlPropagatorType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigTracingUrlPropagatorType value.
-func (v RumSdkConfigTracingUrlPropagatorType) Ptr() *RumSdkConfigTracingUrlPropagatorType {
+// Ptr returns reference to RUMSdkConfigTracingUrlPropagatorType value.
+func (v RUMSdkConfigTracingUrlPropagatorType) Ptr() *RUMSdkConfigTracingUrlPropagatorType {
 	return &v
 }

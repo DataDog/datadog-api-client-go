@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionsSearchAttributes Archived-session query. A window wider than configured archive retention is narrowed before searching.
-type RumArchiveSessionsSearchAttributes struct {
+// RUMArchiveSessionsSearchAttributes Archived-session query. A window wider than configured archive retention is narrowed before searching.
+type RUMArchiveSessionsSearchAttributes struct {
 	// Opaque next-page cursor. Keep the query, time range, and hide_retained value unchanged.
 	Cursor *string `json:"cursor,omitempty"`
 	// Start of the range in Unix milliseconds. Must be positive and earlier than to.
@@ -29,12 +29,12 @@ type RumArchiveSessionsSearchAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionsSearchAttributes instantiates a new RumArchiveSessionsSearchAttributes object.
+// NewRUMArchiveSessionsSearchAttributes instantiates a new RUMArchiveSessionsSearchAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionsSearchAttributes(from int64, query string, to int64) *RumArchiveSessionsSearchAttributes {
-	this := RumArchiveSessionsSearchAttributes{}
+func NewRUMArchiveSessionsSearchAttributes(from int64, query string, to int64) *RUMArchiveSessionsSearchAttributes {
+	this := RUMArchiveSessionsSearchAttributes{}
 	this.From = from
 	var hideRetained bool = false
 	this.HideRetained = &hideRetained
@@ -45,11 +45,11 @@ func NewRumArchiveSessionsSearchAttributes(from int64, query string, to int64) *
 	return &this
 }
 
-// NewRumArchiveSessionsSearchAttributesWithDefaults instantiates a new RumArchiveSessionsSearchAttributes object.
+// NewRUMArchiveSessionsSearchAttributesWithDefaults instantiates a new RUMArchiveSessionsSearchAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionsSearchAttributesWithDefaults() *RumArchiveSessionsSearchAttributes {
-	this := RumArchiveSessionsSearchAttributes{}
+func NewRUMArchiveSessionsSearchAttributesWithDefaults() *RUMArchiveSessionsSearchAttributes {
+	this := RUMArchiveSessionsSearchAttributes{}
 	var hideRetained bool = false
 	this.HideRetained = &hideRetained
 	var limit int32 = 50
@@ -58,7 +58,7 @@ func NewRumArchiveSessionsSearchAttributesWithDefaults() *RumArchiveSessionsSear
 }
 
 // GetCursor returns the Cursor field value if set, zero value otherwise.
-func (o *RumArchiveSessionsSearchAttributes) GetCursor() string {
+func (o *RUMArchiveSessionsSearchAttributes) GetCursor() string {
 	if o == nil || o.Cursor == nil {
 		var ret string
 		return ret
@@ -68,7 +68,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetCursor() string {
 
 // GetCursorOk returns a tuple with the Cursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetCursorOk() (*string, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetCursorOk() (*string, bool) {
 	if o == nil || o.Cursor == nil {
 		return nil, false
 	}
@@ -76,17 +76,17 @@ func (o *RumArchiveSessionsSearchAttributes) GetCursorOk() (*string, bool) {
 }
 
 // HasCursor returns a boolean if a field has been set.
-func (o *RumArchiveSessionsSearchAttributes) HasCursor() bool {
+func (o *RUMArchiveSessionsSearchAttributes) HasCursor() bool {
 	return o != nil && o.Cursor != nil
 }
 
 // SetCursor gets a reference to the given string and assigns it to the Cursor field.
-func (o *RumArchiveSessionsSearchAttributes) SetCursor(v string) {
+func (o *RUMArchiveSessionsSearchAttributes) SetCursor(v string) {
 	o.Cursor = &v
 }
 
 // GetFrom returns the From field value.
-func (o *RumArchiveSessionsSearchAttributes) GetFrom() int64 {
+func (o *RUMArchiveSessionsSearchAttributes) GetFrom() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -96,7 +96,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetFrom() int64 {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetFromOk() (*int64, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetFromOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -104,12 +104,12 @@ func (o *RumArchiveSessionsSearchAttributes) GetFromOk() (*int64, bool) {
 }
 
 // SetFrom sets field value.
-func (o *RumArchiveSessionsSearchAttributes) SetFrom(v int64) {
+func (o *RUMArchiveSessionsSearchAttributes) SetFrom(v int64) {
 	o.From = v
 }
 
 // GetHideRetained returns the HideRetained field value if set, zero value otherwise.
-func (o *RumArchiveSessionsSearchAttributes) GetHideRetained() bool {
+func (o *RUMArchiveSessionsSearchAttributes) GetHideRetained() bool {
 	if o == nil || o.HideRetained == nil {
 		var ret bool
 		return ret
@@ -119,7 +119,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetHideRetained() bool {
 
 // GetHideRetainedOk returns a tuple with the HideRetained field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetHideRetainedOk() (*bool, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetHideRetainedOk() (*bool, bool) {
 	if o == nil || o.HideRetained == nil {
 		return nil, false
 	}
@@ -127,17 +127,17 @@ func (o *RumArchiveSessionsSearchAttributes) GetHideRetainedOk() (*bool, bool) {
 }
 
 // HasHideRetained returns a boolean if a field has been set.
-func (o *RumArchiveSessionsSearchAttributes) HasHideRetained() bool {
+func (o *RUMArchiveSessionsSearchAttributes) HasHideRetained() bool {
 	return o != nil && o.HideRetained != nil
 }
 
 // SetHideRetained gets a reference to the given bool and assigns it to the HideRetained field.
-func (o *RumArchiveSessionsSearchAttributes) SetHideRetained(v bool) {
+func (o *RUMArchiveSessionsSearchAttributes) SetHideRetained(v bool) {
 	o.HideRetained = &v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *RumArchiveSessionsSearchAttributes) GetLimit() int32 {
+func (o *RUMArchiveSessionsSearchAttributes) GetLimit() int32 {
 	if o == nil || o.Limit == nil {
 		var ret int32
 		return ret
@@ -147,7 +147,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetLimit() int32 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetLimitOk() (*int32, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetLimitOk() (*int32, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -155,17 +155,17 @@ func (o *RumArchiveSessionsSearchAttributes) GetLimitOk() (*int32, bool) {
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *RumArchiveSessionsSearchAttributes) HasLimit() bool {
+func (o *RUMArchiveSessionsSearchAttributes) HasLimit() bool {
 	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *RumArchiveSessionsSearchAttributes) SetLimit(v int32) {
+func (o *RUMArchiveSessionsSearchAttributes) SetLimit(v int32) {
 	o.Limit = &v
 }
 
 // GetQuery returns the Query field value.
-func (o *RumArchiveSessionsSearchAttributes) GetQuery() string {
+func (o *RUMArchiveSessionsSearchAttributes) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -175,7 +175,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -183,12 +183,12 @@ func (o *RumArchiveSessionsSearchAttributes) GetQueryOk() (*string, bool) {
 }
 
 // SetQuery sets field value.
-func (o *RumArchiveSessionsSearchAttributes) SetQuery(v string) {
+func (o *RUMArchiveSessionsSearchAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
 // GetTo returns the To field value.
-func (o *RumArchiveSessionsSearchAttributes) GetTo() int64 {
+func (o *RUMArchiveSessionsSearchAttributes) GetTo() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -198,7 +198,7 @@ func (o *RumArchiveSessionsSearchAttributes) GetTo() int64 {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchAttributes) GetToOk() (*int64, bool) {
+func (o *RUMArchiveSessionsSearchAttributes) GetToOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,12 +206,12 @@ func (o *RumArchiveSessionsSearchAttributes) GetToOk() (*int64, bool) {
 }
 
 // SetTo sets field value.
-func (o *RumArchiveSessionsSearchAttributes) SetTo(v int64) {
+func (o *RUMArchiveSessionsSearchAttributes) SetTo(v int64) {
 	o.To = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionsSearchAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionsSearchAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -236,7 +236,7 @@ func (o RumArchiveSessionsSearchAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionsSearchAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionsSearchAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Cursor       *string `json:"cursor,omitempty"`
 		From         *int64  `json:"from"`

@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumPermanentRetentionFilterUpdateRequest{
-		Data: datadogV2.RumPermanentRetentionFilterUpdateData{
-			Attributes: datadogV2.RumPermanentRetentionFilterUpdateAttributes{
-				CrossProductSampling: &datadogV2.RumCrossProductSamplingUpdate{
+	body := datadogV2.RUMPermanentRetentionFilterUpdateRequest{
+		Data: datadogV2.RUMPermanentRetentionFilterUpdateData{
+			Attributes: datadogV2.RUMPermanentRetentionFilterUpdateAttributes{
+				CrossProductSampling: &datadogV2.RUMCrossProductSamplingUpdate{
 					TraceEnabled:    datadog.PtrBool(true),
 					TraceSampleRate: datadog.PtrFloat64(25.0),
 				},
@@ -29,14 +29,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
+	api := datadogV2.NewRUMRetentionFiltersApi(apiClient)
 	resp, r, err := api.UpdatePermanentRetentionFilter(ctx, "app_id", datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.UpdatePermanentRetentionFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionFiltersApi.UpdatePermanentRetentionFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumRetentionFiltersApi.UpdatePermanentRetentionFilter`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionFiltersApi.UpdatePermanentRetentionFilter`:\n%s\n", responseContent)
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatchDataType Rum replay watch resource type.
+// WatchDataType RUM replay watch resource type.
 type WatchDataType string
 
 // List of WatchDataType.

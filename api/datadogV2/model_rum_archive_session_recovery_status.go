@@ -11,39 +11,39 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionRecoveryStatus Session recovery state. A missing recovery record can be represented as null. Optional request_id and recovered_at are omitted when unavailable.
-type RumArchiveSessionRecoveryStatus struct {
+// RUMArchiveSessionRecoveryStatus Session recovery state. A missing recovery record can be represented as null. Optional request_id and recovered_at are omitted when unavailable.
+type RUMArchiveSessionRecoveryStatus struct {
 	// Recovery timestamp, when available.
 	RecoveredAt *time.Time `json:"recovered_at,omitempty"`
 	// Associated recovery request ID.
 	RequestId *string `json:"request_id,omitempty"`
 	// Session availability or recovery state. `RECOVERED` indicates that the session is ready to query.
-	Status RumRecoverySessionStatus `json:"status"`
+	Status RUMRecoverySessionStatus `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionRecoveryStatus instantiates a new RumArchiveSessionRecoveryStatus object.
+// NewRUMArchiveSessionRecoveryStatus instantiates a new RUMArchiveSessionRecoveryStatus object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionRecoveryStatus(status RumRecoverySessionStatus) *RumArchiveSessionRecoveryStatus {
-	this := RumArchiveSessionRecoveryStatus{}
+func NewRUMArchiveSessionRecoveryStatus(status RUMRecoverySessionStatus) *RUMArchiveSessionRecoveryStatus {
+	this := RUMArchiveSessionRecoveryStatus{}
 	this.Status = status
 	return &this
 }
 
-// NewRumArchiveSessionRecoveryStatusWithDefaults instantiates a new RumArchiveSessionRecoveryStatus object.
+// NewRUMArchiveSessionRecoveryStatusWithDefaults instantiates a new RUMArchiveSessionRecoveryStatus object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionRecoveryStatusWithDefaults() *RumArchiveSessionRecoveryStatus {
-	this := RumArchiveSessionRecoveryStatus{}
+func NewRUMArchiveSessionRecoveryStatusWithDefaults() *RUMArchiveSessionRecoveryStatus {
+	this := RUMArchiveSessionRecoveryStatus{}
 	return &this
 }
 
 // GetRecoveredAt returns the RecoveredAt field value if set, zero value otherwise.
-func (o *RumArchiveSessionRecoveryStatus) GetRecoveredAt() time.Time {
+func (o *RUMArchiveSessionRecoveryStatus) GetRecoveredAt() time.Time {
 	if o == nil || o.RecoveredAt == nil {
 		var ret time.Time
 		return ret
@@ -53,7 +53,7 @@ func (o *RumArchiveSessionRecoveryStatus) GetRecoveredAt() time.Time {
 
 // GetRecoveredAtOk returns a tuple with the RecoveredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionRecoveryStatus) GetRecoveredAtOk() (*time.Time, bool) {
+func (o *RUMArchiveSessionRecoveryStatus) GetRecoveredAtOk() (*time.Time, bool) {
 	if o == nil || o.RecoveredAt == nil {
 		return nil, false
 	}
@@ -61,17 +61,17 @@ func (o *RumArchiveSessionRecoveryStatus) GetRecoveredAtOk() (*time.Time, bool) 
 }
 
 // HasRecoveredAt returns a boolean if a field has been set.
-func (o *RumArchiveSessionRecoveryStatus) HasRecoveredAt() bool {
+func (o *RUMArchiveSessionRecoveryStatus) HasRecoveredAt() bool {
 	return o != nil && o.RecoveredAt != nil
 }
 
 // SetRecoveredAt gets a reference to the given time.Time and assigns it to the RecoveredAt field.
-func (o *RumArchiveSessionRecoveryStatus) SetRecoveredAt(v time.Time) {
+func (o *RUMArchiveSessionRecoveryStatus) SetRecoveredAt(v time.Time) {
 	o.RecoveredAt = &v
 }
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
-func (o *RumArchiveSessionRecoveryStatus) GetRequestId() string {
+func (o *RUMArchiveSessionRecoveryStatus) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *RumArchiveSessionRecoveryStatus) GetRequestId() string {
 
 // GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionRecoveryStatus) GetRequestIdOk() (*string, bool) {
+func (o *RUMArchiveSessionRecoveryStatus) GetRequestIdOk() (*string, bool) {
 	if o == nil || o.RequestId == nil {
 		return nil, false
 	}
@@ -89,19 +89,19 @@ func (o *RumArchiveSessionRecoveryStatus) GetRequestIdOk() (*string, bool) {
 }
 
 // HasRequestId returns a boolean if a field has been set.
-func (o *RumArchiveSessionRecoveryStatus) HasRequestId() bool {
+func (o *RUMArchiveSessionRecoveryStatus) HasRequestId() bool {
 	return o != nil && o.RequestId != nil
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
-func (o *RumArchiveSessionRecoveryStatus) SetRequestId(v string) {
+func (o *RUMArchiveSessionRecoveryStatus) SetRequestId(v string) {
 	o.RequestId = &v
 }
 
 // GetStatus returns the Status field value.
-func (o *RumArchiveSessionRecoveryStatus) GetStatus() RumRecoverySessionStatus {
+func (o *RUMArchiveSessionRecoveryStatus) GetStatus() RUMRecoverySessionStatus {
 	if o == nil {
-		var ret RumRecoverySessionStatus
+		var ret RUMRecoverySessionStatus
 		return ret
 	}
 	return o.Status
@@ -109,7 +109,7 @@ func (o *RumArchiveSessionRecoveryStatus) GetStatus() RumRecoverySessionStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionRecoveryStatus) GetStatusOk() (*RumRecoverySessionStatus, bool) {
+func (o *RUMArchiveSessionRecoveryStatus) GetStatusOk() (*RUMRecoverySessionStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,12 +117,12 @@ func (o *RumArchiveSessionRecoveryStatus) GetStatusOk() (*RumRecoverySessionStat
 }
 
 // SetStatus sets field value.
-func (o *RumArchiveSessionRecoveryStatus) SetStatus(v RumRecoverySessionStatus) {
+func (o *RUMArchiveSessionRecoveryStatus) SetStatus(v RUMRecoverySessionStatus) {
 	o.Status = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionRecoveryStatus) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionRecoveryStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -146,11 +146,11 @@ func (o RumArchiveSessionRecoveryStatus) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionRecoveryStatus) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionRecoveryStatus) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		RecoveredAt *time.Time                `json:"recovered_at,omitempty"`
 		RequestId   *string                   `json:"request_id,omitempty"`
-		Status      *RumRecoverySessionStatus `json:"status"`
+		Status      *RUMRecoverySessionStatus `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -185,46 +185,46 @@ func (o *RumArchiveSessionRecoveryStatus) UnmarshalJSON(bytes []byte) (err error
 	return nil
 }
 
-// NullableRumArchiveSessionRecoveryStatus handles when a null is used for RumArchiveSessionRecoveryStatus.
-type NullableRumArchiveSessionRecoveryStatus struct {
-	value *RumArchiveSessionRecoveryStatus
+// NullableRUMArchiveSessionRecoveryStatus handles when a null is used for RUMArchiveSessionRecoveryStatus.
+type NullableRUMArchiveSessionRecoveryStatus struct {
+	value *RUMArchiveSessionRecoveryStatus
 	isSet bool
 }
 
 // Get returns the associated value.
-func (v NullableRumArchiveSessionRecoveryStatus) Get() *RumArchiveSessionRecoveryStatus {
+func (v NullableRUMArchiveSessionRecoveryStatus) Get() *RUMArchiveSessionRecoveryStatus {
 	return v.value
 }
 
 // Set changes the value and indicates it's been called.
-func (v *NullableRumArchiveSessionRecoveryStatus) Set(val *RumArchiveSessionRecoveryStatus) {
+func (v *NullableRUMArchiveSessionRecoveryStatus) Set(val *RUMArchiveSessionRecoveryStatus) {
 	v.value = val
 	v.isSet = true
 }
 
 // IsSet returns whether Set has been called.
-func (v NullableRumArchiveSessionRecoveryStatus) IsSet() bool {
+func (v NullableRUMArchiveSessionRecoveryStatus) IsSet() bool {
 	return v.isSet
 }
 
 // Unset sets the value to nil and resets the set flag/
-func (v *NullableRumArchiveSessionRecoveryStatus) Unset() {
+func (v *NullableRUMArchiveSessionRecoveryStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-// NewNullableRumArchiveSessionRecoveryStatus initializes the struct as if Set has been called.
-func NewNullableRumArchiveSessionRecoveryStatus(val *RumArchiveSessionRecoveryStatus) *NullableRumArchiveSessionRecoveryStatus {
-	return &NullableRumArchiveSessionRecoveryStatus{value: val, isSet: true}
+// NewNullableRUMArchiveSessionRecoveryStatus initializes the struct as if Set has been called.
+func NewNullableRUMArchiveSessionRecoveryStatus(val *RUMArchiveSessionRecoveryStatus) *NullableRUMArchiveSessionRecoveryStatus {
+	return &NullableRUMArchiveSessionRecoveryStatus{value: val, isSet: true}
 }
 
 // MarshalJSON serializes the associated value.
-func (v NullableRumArchiveSessionRecoveryStatus) MarshalJSON() ([]byte, error) {
+func (v NullableRUMArchiveSessionRecoveryStatus) MarshalJSON() ([]byte, error) {
 	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
-func (v *NullableRumArchiveSessionRecoveryStatus) UnmarshalJSON(src []byte) error {
+func (v *NullableRUMArchiveSessionRecoveryStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 
 	// this object is nullable so check if the payload is null or empty string

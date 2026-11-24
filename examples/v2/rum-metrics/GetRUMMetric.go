@@ -1,4 +1,4 @@
-// Get a RUM SDK configuration returns "OK" response
+// Get a RUM-based metric returns "OK" response
 
 package main
 
@@ -13,19 +13,21 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_metric" in the system
+	RumMetricDataID := os.Getenv("RUM_METRIC_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetRumSdkConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRUMRemoteConfigApi(apiClient)
-	resp, r, err := api.GetRumSdkConfig(ctx, "config_id")
+	api := datadogV2.NewRUMMetricsApi(apiClient)
+	resp, r, err := api.GetRUMMetric(ctx, RumMetricDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RUMRemoteConfigApi.GetRumSdkConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMMetricsApi.GetRUMMetric`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RUMRemoteConfigApi.GetRumSdkConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMMetricsApi.GetRUMMetric`:\n%s\n", responseContent)
 }

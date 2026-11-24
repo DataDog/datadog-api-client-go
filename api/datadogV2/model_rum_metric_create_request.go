@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricCreateRequest The new RUM-based metric body.
-type RumMetricCreateRequest struct {
+// RUMMetricCreateRequest The new RUM-based metric body.
+type RUMMetricCreateRequest struct {
 	// The new RUM-based metric properties.
-	Data RumMetricCreateData `json:"data"`
+	Data RUMMetricCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricCreateRequest instantiates a new RumMetricCreateRequest object.
+// NewRUMMetricCreateRequest instantiates a new RUMMetricCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricCreateRequest(data RumMetricCreateData) *RumMetricCreateRequest {
-	this := RumMetricCreateRequest{}
+func NewRUMMetricCreateRequest(data RUMMetricCreateData) *RUMMetricCreateRequest {
+	this := RUMMetricCreateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumMetricCreateRequestWithDefaults instantiates a new RumMetricCreateRequest object.
+// NewRUMMetricCreateRequestWithDefaults instantiates a new RUMMetricCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricCreateRequestWithDefaults() *RumMetricCreateRequest {
-	this := RumMetricCreateRequest{}
+func NewRUMMetricCreateRequestWithDefaults() *RUMMetricCreateRequest {
+	this := RUMMetricCreateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumMetricCreateRequest) GetData() RumMetricCreateData {
+func (o *RUMMetricCreateRequest) GetData() RUMMetricCreateData {
 	if o == nil {
-		var ret RumMetricCreateData
+		var ret RUMMetricCreateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumMetricCreateRequest) GetData() RumMetricCreateData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricCreateRequest) GetDataOk() (*RumMetricCreateData, bool) {
+func (o *RUMMetricCreateRequest) GetDataOk() (*RUMMetricCreateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumMetricCreateRequest) GetDataOk() (*RumMetricCreateData, bool) {
 }
 
 // SetData sets field value.
-func (o *RumMetricCreateRequest) SetData(v RumMetricCreateData) {
+func (o *RUMMetricCreateRequest) SetData(v RUMMetricCreateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricCreateRequest) MarshalJSON() ([]byte, error) {
+func (o RUMMetricCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumMetricCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumMetricCreateData `json:"data"`
+		Data *RUMMetricCreateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

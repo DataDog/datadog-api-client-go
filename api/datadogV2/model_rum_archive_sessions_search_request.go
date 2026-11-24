@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveSessionsSearchRequest JSON:API document.
-type RumArchiveSessionsSearchRequest struct {
+// RUMArchiveSessionsSearchRequest JSON:API document.
+type RUMArchiveSessionsSearchRequest struct {
 	// JSON:API resource.
-	Data RumArchiveSessionsSearchData `json:"data"`
+	Data RUMArchiveSessionsSearchData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveSessionsSearchRequest instantiates a new RumArchiveSessionsSearchRequest object.
+// NewRUMArchiveSessionsSearchRequest instantiates a new RUMArchiveSessionsSearchRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveSessionsSearchRequest(data RumArchiveSessionsSearchData) *RumArchiveSessionsSearchRequest {
-	this := RumArchiveSessionsSearchRequest{}
+func NewRUMArchiveSessionsSearchRequest(data RUMArchiveSessionsSearchData) *RUMArchiveSessionsSearchRequest {
+	this := RUMArchiveSessionsSearchRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumArchiveSessionsSearchRequestWithDefaults instantiates a new RumArchiveSessionsSearchRequest object.
+// NewRUMArchiveSessionsSearchRequestWithDefaults instantiates a new RUMArchiveSessionsSearchRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveSessionsSearchRequestWithDefaults() *RumArchiveSessionsSearchRequest {
-	this := RumArchiveSessionsSearchRequest{}
+func NewRUMArchiveSessionsSearchRequestWithDefaults() *RUMArchiveSessionsSearchRequest {
+	this := RUMArchiveSessionsSearchRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumArchiveSessionsSearchRequest) GetData() RumArchiveSessionsSearchData {
+func (o *RUMArchiveSessionsSearchRequest) GetData() RUMArchiveSessionsSearchData {
 	if o == nil {
-		var ret RumArchiveSessionsSearchData
+		var ret RUMArchiveSessionsSearchData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumArchiveSessionsSearchRequest) GetData() RumArchiveSessionsSearchData
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveSessionsSearchRequest) GetDataOk() (*RumArchiveSessionsSearchData, bool) {
+func (o *RUMArchiveSessionsSearchRequest) GetDataOk() (*RUMArchiveSessionsSearchData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumArchiveSessionsSearchRequest) GetDataOk() (*RumArchiveSessionsSearch
 }
 
 // SetData sets field value.
-func (o *RumArchiveSessionsSearchRequest) SetData(v RumArchiveSessionsSearchData) {
+func (o *RUMArchiveSessionsSearchRequest) SetData(v RUMArchiveSessionsSearchData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveSessionsSearchRequest) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveSessionsSearchRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumArchiveSessionsSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveSessionsSearchRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveSessionsSearchRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumArchiveSessionsSearchData `json:"data"`
+		Data *RUMArchiveSessionsSearchData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

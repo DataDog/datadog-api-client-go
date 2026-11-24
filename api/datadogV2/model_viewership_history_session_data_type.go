@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ViewershipHistorySessionDataType Rum replay session resource type.
+// ViewershipHistorySessionDataType RUM replay session resource type.
 type ViewershipHistorySessionDataType string
 
 // List of ViewershipHistorySessionDataType.

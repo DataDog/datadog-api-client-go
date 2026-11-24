@@ -46,14 +46,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.QueryEventFilteredUsers", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumAudienceManagementApi(apiClient)
+	api := datadogV2.NewRUMAudienceManagementApi(apiClient)
 	resp, r, err := api.QueryEventFilteredUsers(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumAudienceManagementApi.QueryEventFilteredUsers`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMAudienceManagementApi.QueryEventFilteredUsers`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumAudienceManagementApi.QueryEventFilteredUsers`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMAudienceManagementApi.QueryEventFilteredUsers`:\n%s\n", responseContent)
 }

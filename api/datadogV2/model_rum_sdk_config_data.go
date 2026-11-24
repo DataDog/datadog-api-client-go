@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigData The RUM SDK configuration data object.
-type RumSdkConfigData struct {
+// RUMSdkConfigData The RUM SDK configuration data object.
+type RUMSdkConfigData struct {
 	// Attributes of the RUM SDK configuration.
-	Attributes RumSdkConfigAttributes `json:"attributes"`
+	Attributes RUMSdkConfigAttributes `json:"attributes"`
 	// The unique identifier of the RUM SDK configuration.
 	Id string `json:"id"`
 	// Metadata associated with a RUM SDK configuration.
-	Meta *RumSdkConfigMeta `json:"meta,omitempty"`
+	Meta *RUMSdkConfigMeta `json:"meta,omitempty"`
 	// The type of the resource. The value should always be `rum_sdk_config`.
-	Type RumSdkConfigType `json:"type"`
+	Type RUMSdkConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigData instantiates a new RumSdkConfigData object.
+// NewRUMSdkConfigData instantiates a new RUMSdkConfigData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigData(attributes RumSdkConfigAttributes, id string, typeVar RumSdkConfigType) *RumSdkConfigData {
-	this := RumSdkConfigData{}
+func NewRUMSdkConfigData(attributes RUMSdkConfigAttributes, id string, typeVar RUMSdkConfigType) *RUMSdkConfigData {
+	this := RUMSdkConfigData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumSdkConfigDataWithDefaults instantiates a new RumSdkConfigData object.
+// NewRUMSdkConfigDataWithDefaults instantiates a new RUMSdkConfigData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigDataWithDefaults() *RumSdkConfigData {
-	this := RumSdkConfigData{}
-	var typeVar RumSdkConfigType = RUMSDKCONFIGTYPE_RUM_SDK_CONFIG
+func NewRUMSdkConfigDataWithDefaults() *RUMSdkConfigData {
+	this := RUMSdkConfigData{}
+	var typeVar RUMSdkConfigType = RUMSDKCONFIGTYPE_RUM_SDK_CONFIG
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumSdkConfigData) GetAttributes() RumSdkConfigAttributes {
+func (o *RUMSdkConfigData) GetAttributes() RUMSdkConfigAttributes {
 	if o == nil {
-		var ret RumSdkConfigAttributes
+		var ret RUMSdkConfigAttributes
 		return ret
 	}
 	return o.Attributes
@@ -58,7 +58,7 @@ func (o *RumSdkConfigData) GetAttributes() RumSdkConfigAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigData) GetAttributesOk() (*RumSdkConfigAttributes, bool) {
+func (o *RUMSdkConfigData) GetAttributesOk() (*RUMSdkConfigAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *RumSdkConfigData) GetAttributesOk() (*RumSdkConfigAttributes, bool) {
 }
 
 // SetAttributes sets field value.
-func (o *RumSdkConfigData) SetAttributes(v RumSdkConfigAttributes) {
+func (o *RUMSdkConfigData) SetAttributes(v RUMSdkConfigAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumSdkConfigData) GetId() string {
+func (o *RUMSdkConfigData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *RumSdkConfigData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigData) GetIdOk() (*string, bool) {
+func (o *RUMSdkConfigData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,14 +89,14 @@ func (o *RumSdkConfigData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumSdkConfigData) SetId(v string) {
+func (o *RUMSdkConfigData) SetId(v string) {
 	o.Id = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *RumSdkConfigData) GetMeta() RumSdkConfigMeta {
+func (o *RUMSdkConfigData) GetMeta() RUMSdkConfigMeta {
 	if o == nil || o.Meta == nil {
-		var ret RumSdkConfigMeta
+		var ret RUMSdkConfigMeta
 		return ret
 	}
 	return *o.Meta
@@ -104,7 +104,7 @@ func (o *RumSdkConfigData) GetMeta() RumSdkConfigMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigData) GetMetaOk() (*RumSdkConfigMeta, bool) {
+func (o *RUMSdkConfigData) GetMetaOk() (*RUMSdkConfigMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -112,19 +112,19 @@ func (o *RumSdkConfigData) GetMetaOk() (*RumSdkConfigMeta, bool) {
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *RumSdkConfigData) HasMeta() bool {
+func (o *RUMSdkConfigData) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given RumSdkConfigMeta and assigns it to the Meta field.
-func (o *RumSdkConfigData) SetMeta(v RumSdkConfigMeta) {
+// SetMeta gets a reference to the given RUMSdkConfigMeta and assigns it to the Meta field.
+func (o *RUMSdkConfigData) SetMeta(v RUMSdkConfigMeta) {
 	o.Meta = &v
 }
 
 // GetType returns the Type field value.
-func (o *RumSdkConfigData) GetType() RumSdkConfigType {
+func (o *RUMSdkConfigData) GetType() RUMSdkConfigType {
 	if o == nil {
-		var ret RumSdkConfigType
+		var ret RUMSdkConfigType
 		return ret
 	}
 	return o.Type
@@ -132,7 +132,7 @@ func (o *RumSdkConfigData) GetType() RumSdkConfigType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigData) GetTypeOk() (*RumSdkConfigType, bool) {
+func (o *RUMSdkConfigData) GetTypeOk() (*RUMSdkConfigType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,12 +140,12 @@ func (o *RumSdkConfigData) GetTypeOk() (*RumSdkConfigType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumSdkConfigData) SetType(v RumSdkConfigType) {
+func (o *RUMSdkConfigData) SetType(v RUMSdkConfigType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigData) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -164,12 +164,12 @@ func (o RumSdkConfigData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumSdkConfigAttributes `json:"attributes"`
+		Attributes *RUMSdkConfigAttributes `json:"attributes"`
 		Id         *string                 `json:"id"`
-		Meta       *RumSdkConfigMeta       `json:"meta,omitempty"`
-		Type       *RumSdkConfigType       `json:"type"`
+		Meta       *RUMSdkConfigMeta       `json:"meta,omitempty"`
+		Type       *RUMSdkConfigType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

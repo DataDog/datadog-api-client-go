@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchRequestType Query-based batch recovery.
-type RumRecoveryBatchRequestType string
+// RUMRecoveryBatchRequestType Query-based batch recovery.
+type RUMRecoveryBatchRequestType string
 
-// List of RumRecoveryBatchRequestType.
+// List of RUMRecoveryBatchRequestType.
 const (
-	RUMRECOVERYBATCHREQUESTTYPE_BATCH RumRecoveryBatchRequestType = "batch"
+	RUMRECOVERYBATCHREQUESTTYPE_BATCH RUMRecoveryBatchRequestType = "batch"
 )
 
-var allowedRumRecoveryBatchRequestTypeEnumValues = []RumRecoveryBatchRequestType{
+var allowedRUMRecoveryBatchRequestTypeEnumValues = []RUMRecoveryBatchRequestType{
 	RUMRECOVERYBATCHREQUESTTYPE_BATCH,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryBatchRequestType) GetAllowedValues() []RumRecoveryBatchRequestType {
-	return allowedRumRecoveryBatchRequestTypeEnumValues
+func (v *RUMRecoveryBatchRequestType) GetAllowedValues() []RUMRecoveryBatchRequestType {
+	return allowedRUMRecoveryBatchRequestTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryBatchRequestType) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryBatchRequestType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryBatchRequestType(value)
+	*v = RUMRecoveryBatchRequestType(value)
 	return nil
 }
 
-// NewRumRecoveryBatchRequestTypeFromValue returns a pointer to a valid RumRecoveryBatchRequestType
+// NewRUMRecoveryBatchRequestTypeFromValue returns a pointer to a valid RUMRecoveryBatchRequestType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryBatchRequestTypeFromValue(v string) (*RumRecoveryBatchRequestType, error) {
-	ev := RumRecoveryBatchRequestType(v)
+func NewRUMRecoveryBatchRequestTypeFromValue(v string) (*RUMRecoveryBatchRequestType, error) {
+	ev := RUMRecoveryBatchRequestType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryBatchRequestType: valid values are %v", v, allowedRumRecoveryBatchRequestTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryBatchRequestType: valid values are %v", v, allowedRUMRecoveryBatchRequestTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryBatchRequestType) IsValid() bool {
-	for _, existing := range allowedRumRecoveryBatchRequestTypeEnumValues {
+func (v RUMRecoveryBatchRequestType) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryBatchRequestTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRecoveryBatchRequestType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryBatchRequestType value.
-func (v RumRecoveryBatchRequestType) Ptr() *RumRecoveryBatchRequestType {
+// Ptr returns reference to RUMRecoveryBatchRequestType value.
+func (v RUMRecoveryBatchRequestType) Ptr() *RUMRecoveryBatchRequestType {
 	return &v
 }

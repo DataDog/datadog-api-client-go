@@ -10,48 +10,48 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaMode The retention quota mode. `custom` enforces a fixed session limit.
+// RUMRetentionQuotaMode The retention quota mode. `custom` enforces a fixed session limit.
 // `custom` is the only supported mode.
-type RumRetentionQuotaMode string
+type RUMRetentionQuotaMode string
 
-// List of RumRetentionQuotaMode.
+// List of RUMRetentionQuotaMode.
 const (
-	RUMRETENTIONQUOTAMODE_CUSTOM RumRetentionQuotaMode = "custom"
+	RUMRETENTIONQUOTAMODE_CUSTOM RUMRetentionQuotaMode = "custom"
 )
 
-var allowedRumRetentionQuotaModeEnumValues = []RumRetentionQuotaMode{
+var allowedRUMRetentionQuotaModeEnumValues = []RUMRetentionQuotaMode{
 	RUMRETENTIONQUOTAMODE_CUSTOM,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionQuotaMode) GetAllowedValues() []RumRetentionQuotaMode {
-	return allowedRumRetentionQuotaModeEnumValues
+func (v *RUMRetentionQuotaMode) GetAllowedValues() []RUMRetentionQuotaMode {
+	return allowedRUMRetentionQuotaModeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionQuotaMode) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionQuotaMode) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionQuotaMode(value)
+	*v = RUMRetentionQuotaMode(value)
 	return nil
 }
 
-// NewRumRetentionQuotaModeFromValue returns a pointer to a valid RumRetentionQuotaMode
+// NewRUMRetentionQuotaModeFromValue returns a pointer to a valid RUMRetentionQuotaMode
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionQuotaModeFromValue(v string) (*RumRetentionQuotaMode, error) {
-	ev := RumRetentionQuotaMode(v)
+func NewRUMRetentionQuotaModeFromValue(v string) (*RUMRetentionQuotaMode, error) {
+	ev := RUMRetentionQuotaMode(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionQuotaMode: valid values are %v", v, allowedRumRetentionQuotaModeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionQuotaMode: valid values are %v", v, allowedRUMRetentionQuotaModeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionQuotaMode) IsValid() bool {
-	for _, existing := range allowedRumRetentionQuotaModeEnumValues {
+func (v RUMRetentionQuotaMode) IsValid() bool {
+	for _, existing := range allowedRUMRetentionQuotaModeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -59,7 +59,7 @@ func (v RumRetentionQuotaMode) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionQuotaMode value.
-func (v RumRetentionQuotaMode) Ptr() *RumRetentionQuotaMode {
+// Ptr returns reference to RUMRetentionQuotaMode value.
+func (v RUMRetentionQuotaMode) Ptr() *RUMRetentionQuotaMode {
 	return &v
 }

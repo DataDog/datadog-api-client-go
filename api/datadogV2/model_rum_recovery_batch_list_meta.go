@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryBatchListMeta Batch-list pagination metadata.
-type RumRecoveryBatchListMeta struct {
+// RUMRecoveryBatchListMeta Batch-list pagination metadata.
+type RUMRecoveryBatchListMeta struct {
 	// Opaque next-page cursor. Omitted on the final page.
 	NextCursor *string `json:"next_cursor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -17,25 +17,25 @@ type RumRecoveryBatchListMeta struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryBatchListMeta instantiates a new RumRecoveryBatchListMeta object.
+// NewRUMRecoveryBatchListMeta instantiates a new RUMRecoveryBatchListMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryBatchListMeta() *RumRecoveryBatchListMeta {
-	this := RumRecoveryBatchListMeta{}
+func NewRUMRecoveryBatchListMeta() *RUMRecoveryBatchListMeta {
+	this := RUMRecoveryBatchListMeta{}
 	return &this
 }
 
-// NewRumRecoveryBatchListMetaWithDefaults instantiates a new RumRecoveryBatchListMeta object.
+// NewRUMRecoveryBatchListMetaWithDefaults instantiates a new RUMRecoveryBatchListMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryBatchListMetaWithDefaults() *RumRecoveryBatchListMeta {
-	this := RumRecoveryBatchListMeta{}
+func NewRUMRecoveryBatchListMetaWithDefaults() *RUMRecoveryBatchListMeta {
+	this := RUMRecoveryBatchListMeta{}
 	return &this
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
-func (o *RumRecoveryBatchListMeta) GetNextCursor() string {
+func (o *RUMRecoveryBatchListMeta) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
 		var ret string
 		return ret
@@ -45,7 +45,7 @@ func (o *RumRecoveryBatchListMeta) GetNextCursor() string {
 
 // GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryBatchListMeta) GetNextCursorOk() (*string, bool) {
+func (o *RUMRecoveryBatchListMeta) GetNextCursorOk() (*string, bool) {
 	if o == nil || o.NextCursor == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumRecoveryBatchListMeta) GetNextCursorOk() (*string, bool) {
 }
 
 // HasNextCursor returns a boolean if a field has been set.
-func (o *RumRecoveryBatchListMeta) HasNextCursor() bool {
+func (o *RUMRecoveryBatchListMeta) HasNextCursor() bool {
 	return o != nil && o.NextCursor != nil
 }
 
 // SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
-func (o *RumRecoveryBatchListMeta) SetNextCursor(v string) {
+func (o *RUMRecoveryBatchListMeta) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryBatchListMeta) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryBatchListMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,7 +79,7 @@ func (o RumRecoveryBatchListMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryBatchListMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryBatchListMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		NextCursor *string `json:"next_cursor,omitempty"`
 	}{}

@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryRequestType JSON:API resource type.
-type RumRecoveryRequestType string
+// RUMRecoveryRequestType JSON:API resource type.
+type RUMRecoveryRequestType string
 
-// List of RumRecoveryRequestType.
+// List of RUMRecoveryRequestType.
 const (
-	RUMRECOVERYREQUESTTYPE_RUM_RECOVERY_REQUEST RumRecoveryRequestType = "rum_recovery_request"
+	RUMRECOVERYREQUESTTYPE_RUM_RECOVERY_REQUEST RUMRecoveryRequestType = "rum_recovery_request"
 )
 
-var allowedRumRecoveryRequestTypeEnumValues = []RumRecoveryRequestType{
+var allowedRUMRecoveryRequestTypeEnumValues = []RUMRecoveryRequestType{
 	RUMRECOVERYREQUESTTYPE_RUM_RECOVERY_REQUEST,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRecoveryRequestType) GetAllowedValues() []RumRecoveryRequestType {
-	return allowedRumRecoveryRequestTypeEnumValues
+func (v *RUMRecoveryRequestType) GetAllowedValues() []RUMRecoveryRequestType {
+	return allowedRUMRecoveryRequestTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRecoveryRequestType) UnmarshalJSON(src []byte) error {
+func (v *RUMRecoveryRequestType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRecoveryRequestType(value)
+	*v = RUMRecoveryRequestType(value)
 	return nil
 }
 
-// NewRumRecoveryRequestTypeFromValue returns a pointer to a valid RumRecoveryRequestType
+// NewRUMRecoveryRequestTypeFromValue returns a pointer to a valid RUMRecoveryRequestType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRecoveryRequestTypeFromValue(v string) (*RumRecoveryRequestType, error) {
-	ev := RumRecoveryRequestType(v)
+func NewRUMRecoveryRequestTypeFromValue(v string) (*RUMRecoveryRequestType, error) {
+	ev := RUMRecoveryRequestType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRecoveryRequestType: valid values are %v", v, allowedRumRecoveryRequestTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRecoveryRequestType: valid values are %v", v, allowedRUMRecoveryRequestTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRecoveryRequestType) IsValid() bool {
-	for _, existing := range allowedRumRecoveryRequestTypeEnumValues {
+func (v RUMRecoveryRequestType) IsValid() bool {
+	for _, existing := range allowedRUMRecoveryRequestTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRecoveryRequestType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRecoveryRequestType value.
-func (v RumRecoveryRequestType) Ptr() *RumRecoveryRequestType {
+// Ptr returns reference to RUMRecoveryRequestType value.
+func (v RUMRecoveryRequestType) Ptr() *RUMRecoveryRequestType {
 	return &v
 }

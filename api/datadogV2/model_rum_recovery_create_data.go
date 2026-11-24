@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryCreateData JSON:API resource.
-type RumRecoveryCreateData struct {
+// RUMRecoveryCreateData JSON:API resource.
+type RUMRecoveryCreateData struct {
 	// Targeted recovery (the default) or query-based batch recovery.
-	Attributes RumRecoveryCreateAttributes `json:"attributes"`
+	Attributes RUMRecoveryCreateAttributes `json:"attributes"`
 	// JSON:API resource type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,28 +21,28 @@ type RumRecoveryCreateData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryCreateData instantiates a new RumRecoveryCreateData object.
+// NewRUMRecoveryCreateData instantiates a new RUMRecoveryCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryCreateData(attributes RumRecoveryCreateAttributes) *RumRecoveryCreateData {
-	this := RumRecoveryCreateData{}
+func NewRUMRecoveryCreateData(attributes RUMRecoveryCreateAttributes) *RUMRecoveryCreateData {
+	this := RUMRecoveryCreateData{}
 	this.Attributes = attributes
 	return &this
 }
 
-// NewRumRecoveryCreateDataWithDefaults instantiates a new RumRecoveryCreateData object.
+// NewRUMRecoveryCreateDataWithDefaults instantiates a new RUMRecoveryCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryCreateDataWithDefaults() *RumRecoveryCreateData {
-	this := RumRecoveryCreateData{}
+func NewRUMRecoveryCreateDataWithDefaults() *RUMRecoveryCreateData {
+	this := RUMRecoveryCreateData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumRecoveryCreateData) GetAttributes() RumRecoveryCreateAttributes {
+func (o *RUMRecoveryCreateData) GetAttributes() RUMRecoveryCreateAttributes {
 	if o == nil {
-		var ret RumRecoveryCreateAttributes
+		var ret RUMRecoveryCreateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -50,7 +50,7 @@ func (o *RumRecoveryCreateData) GetAttributes() RumRecoveryCreateAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateData) GetAttributesOk() (*RumRecoveryCreateAttributes, bool) {
+func (o *RUMRecoveryCreateData) GetAttributesOk() (*RUMRecoveryCreateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,12 +58,12 @@ func (o *RumRecoveryCreateData) GetAttributesOk() (*RumRecoveryCreateAttributes,
 }
 
 // SetAttributes sets field value.
-func (o *RumRecoveryCreateData) SetAttributes(v RumRecoveryCreateAttributes) {
+func (o *RUMRecoveryCreateData) SetAttributes(v RUMRecoveryCreateAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RumRecoveryCreateData) GetType() string {
+func (o *RUMRecoveryCreateData) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -73,7 +73,7 @@ func (o *RumRecoveryCreateData) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryCreateData) GetTypeOk() (*string, bool) {
+func (o *RUMRecoveryCreateData) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -81,17 +81,17 @@ func (o *RumRecoveryCreateData) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *RumRecoveryCreateData) HasType() bool {
+func (o *RUMRecoveryCreateData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *RumRecoveryCreateData) SetType(v string) {
+func (o *RUMRecoveryCreateData) SetType(v string) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryCreateData) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,9 +108,9 @@ func (o RumRecoveryCreateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumRecoveryCreateAttributes `json:"attributes"`
+		Attributes *RUMRecoveryCreateAttributes `json:"attributes"`
 		Type       *string                      `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

@@ -16,11 +16,11 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplaySessionsApi(apiClient)
+	api := datadogV2.NewRUMReplaySessionsApi(apiClient)
 	r, err := api.GetSegments(ctx, "00000000-0000-0000-0000-000000000002", "00000000-0000-0000-0000-000000000001", *datadogV2.NewGetSegmentsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplaySessionsApi.GetSegments`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplaySessionsApi.GetSegments`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

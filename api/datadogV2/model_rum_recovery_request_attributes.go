@@ -11,12 +11,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoveryRequestAttributes Recovery progress. Batch-only attributes are omitted for targeted requests; request_type is also omitted for targeted requests.
-type RumRecoveryRequestAttributes struct {
+// RUMRecoveryRequestAttributes Recovery progress. Batch-only attributes are omitted for targeted requests; request_type is also omitted for targeted requests.
+type RUMRecoveryRequestAttributes struct {
 	// Creation time.
 	CreatedAt time.Time `json:"created_at"`
 	// Batch discovery state. QUEUED indicates that the request is waiting for processing capacity.
-	DiscoveryStatus *RumRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
+	DiscoveryStatus *RUMRecoveryDiscoveryStatus `json:"discovery_status,omitempty"`
 	// Failure details, if present.
 	ErrorMessage *string `json:"error_message,omitempty"`
 	// Batch estimate stored at creation, when present. New batches use a fresh server estimate; older batches may contain a client-supplied estimate.
@@ -30,9 +30,9 @@ type RumRecoveryRequestAttributes struct {
 	// RUM search query. Not blank, at most 4096 bytes for batch creation and count.
 	Query *string `json:"query,omitempty"`
 	// Query-based batch recovery.
-	RequestType *RumRecoveryBatchRequestType `json:"request_type,omitempty"`
+	RequestType *RUMRecoveryBatchRequestType `json:"request_type,omitempty"`
 	// Targeted session progress. Omitted when empty or not applicable.
-	Sessions []RumRecoveredSession `json:"sessions,omitempty"`
+	Sessions []RUMRecoveredSession `json:"sessions,omitempty"`
 	// Discovered sessions.
 	SessionsDiscovered *int64 `json:"sessions_discovered,omitempty"`
 	// Failed sessions.
@@ -44,7 +44,7 @@ type RumRecoveryRequestAttributes struct {
 	// Failed slices.
 	SlicesFailed *int64 `json:"slices_failed,omitempty"`
 	// Recovery request state.
-	Status RumRecoveryRequestStatus `json:"status"`
+	Status RUMRecoveryRequestStatus `json:"status"`
 	// End of the range in Unix milliseconds.
 	To *int64 `json:"to,omitempty"`
 	// Total targeted sessions. Omitted while a batch total is unknown.
@@ -58,12 +58,12 @@ type RumRecoveryRequestAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoveryRequestAttributes instantiates a new RumRecoveryRequestAttributes object.
+// NewRUMRecoveryRequestAttributes instantiates a new RUMRecoveryRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoveryRequestAttributes(createdAt time.Time, failedSessions int64, processedSessions int64, status RumRecoveryRequestStatus, updatedAt time.Time) *RumRecoveryRequestAttributes {
-	this := RumRecoveryRequestAttributes{}
+func NewRUMRecoveryRequestAttributes(createdAt time.Time, failedSessions int64, processedSessions int64, status RUMRecoveryRequestStatus, updatedAt time.Time) *RUMRecoveryRequestAttributes {
+	this := RUMRecoveryRequestAttributes{}
 	this.CreatedAt = createdAt
 	this.FailedSessions = failedSessions
 	this.ProcessedSessions = processedSessions
@@ -72,16 +72,16 @@ func NewRumRecoveryRequestAttributes(createdAt time.Time, failedSessions int64, 
 	return &this
 }
 
-// NewRumRecoveryRequestAttributesWithDefaults instantiates a new RumRecoveryRequestAttributes object.
+// NewRUMRecoveryRequestAttributesWithDefaults instantiates a new RUMRecoveryRequestAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoveryRequestAttributesWithDefaults() *RumRecoveryRequestAttributes {
-	this := RumRecoveryRequestAttributes{}
+func NewRUMRecoveryRequestAttributesWithDefaults() *RUMRecoveryRequestAttributes {
+	this := RUMRecoveryRequestAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value.
-func (o *RumRecoveryRequestAttributes) GetCreatedAt() time.Time {
+func (o *RUMRecoveryRequestAttributes) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -91,7 +91,7 @@ func (o *RumRecoveryRequestAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryRequestAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,14 +99,14 @@ func (o *RumRecoveryRequestAttributes) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value.
-func (o *RumRecoveryRequestAttributes) SetCreatedAt(v time.Time) {
+func (o *RUMRecoveryRequestAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetDiscoveryStatus returns the DiscoveryStatus field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetDiscoveryStatus() RumRecoveryDiscoveryStatus {
+func (o *RUMRecoveryRequestAttributes) GetDiscoveryStatus() RUMRecoveryDiscoveryStatus {
 	if o == nil || o.DiscoveryStatus == nil {
-		var ret RumRecoveryDiscoveryStatus
+		var ret RUMRecoveryDiscoveryStatus
 		return ret
 	}
 	return *o.DiscoveryStatus
@@ -114,7 +114,7 @@ func (o *RumRecoveryRequestAttributes) GetDiscoveryStatus() RumRecoveryDiscovery
 
 // GetDiscoveryStatusOk returns a tuple with the DiscoveryStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetDiscoveryStatusOk() (*RumRecoveryDiscoveryStatus, bool) {
+func (o *RUMRecoveryRequestAttributes) GetDiscoveryStatusOk() (*RUMRecoveryDiscoveryStatus, bool) {
 	if o == nil || o.DiscoveryStatus == nil {
 		return nil, false
 	}
@@ -122,17 +122,17 @@ func (o *RumRecoveryRequestAttributes) GetDiscoveryStatusOk() (*RumRecoveryDisco
 }
 
 // HasDiscoveryStatus returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasDiscoveryStatus() bool {
+func (o *RUMRecoveryRequestAttributes) HasDiscoveryStatus() bool {
 	return o != nil && o.DiscoveryStatus != nil
 }
 
-// SetDiscoveryStatus gets a reference to the given RumRecoveryDiscoveryStatus and assigns it to the DiscoveryStatus field.
-func (o *RumRecoveryRequestAttributes) SetDiscoveryStatus(v RumRecoveryDiscoveryStatus) {
+// SetDiscoveryStatus gets a reference to the given RUMRecoveryDiscoveryStatus and assigns it to the DiscoveryStatus field.
+func (o *RUMRecoveryRequestAttributes) SetDiscoveryStatus(v RUMRecoveryDiscoveryStatus) {
 	o.DiscoveryStatus = &v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetErrorMessage() string {
+func (o *RUMRecoveryRequestAttributes) GetErrorMessage() string {
 	if o == nil || o.ErrorMessage == nil {
 		var ret string
 		return ret
@@ -142,7 +142,7 @@ func (o *RumRecoveryRequestAttributes) GetErrorMessage() string {
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetErrorMessageOk() (*string, bool) {
+func (o *RUMRecoveryRequestAttributes) GetErrorMessageOk() (*string, bool) {
 	if o == nil || o.ErrorMessage == nil {
 		return nil, false
 	}
@@ -150,17 +150,17 @@ func (o *RumRecoveryRequestAttributes) GetErrorMessageOk() (*string, bool) {
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasErrorMessage() bool {
+func (o *RUMRecoveryRequestAttributes) HasErrorMessage() bool {
 	return o != nil && o.ErrorMessage != nil
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *RumRecoveryRequestAttributes) SetErrorMessage(v string) {
+func (o *RUMRecoveryRequestAttributes) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
 // GetEstimatedCount returns the EstimatedCount field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetEstimatedCount() int64 {
+func (o *RUMRecoveryRequestAttributes) GetEstimatedCount() int64 {
 	if o == nil || o.EstimatedCount == nil {
 		var ret int64
 		return ret
@@ -170,7 +170,7 @@ func (o *RumRecoveryRequestAttributes) GetEstimatedCount() int64 {
 
 // GetEstimatedCountOk returns a tuple with the EstimatedCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetEstimatedCountOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetEstimatedCountOk() (*int64, bool) {
 	if o == nil || o.EstimatedCount == nil {
 		return nil, false
 	}
@@ -178,17 +178,17 @@ func (o *RumRecoveryRequestAttributes) GetEstimatedCountOk() (*int64, bool) {
 }
 
 // HasEstimatedCount returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasEstimatedCount() bool {
+func (o *RUMRecoveryRequestAttributes) HasEstimatedCount() bool {
 	return o != nil && o.EstimatedCount != nil
 }
 
 // SetEstimatedCount gets a reference to the given int64 and assigns it to the EstimatedCount field.
-func (o *RumRecoveryRequestAttributes) SetEstimatedCount(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetEstimatedCount(v int64) {
 	o.EstimatedCount = &v
 }
 
 // GetFailedSessions returns the FailedSessions field value.
-func (o *RumRecoveryRequestAttributes) GetFailedSessions() int64 {
+func (o *RUMRecoveryRequestAttributes) GetFailedSessions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -198,7 +198,7 @@ func (o *RumRecoveryRequestAttributes) GetFailedSessions() int64 {
 
 // GetFailedSessionsOk returns a tuple with the FailedSessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetFailedSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetFailedSessionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,12 +206,12 @@ func (o *RumRecoveryRequestAttributes) GetFailedSessionsOk() (*int64, bool) {
 }
 
 // SetFailedSessions sets field value.
-func (o *RumRecoveryRequestAttributes) SetFailedSessions(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetFailedSessions(v int64) {
 	o.FailedSessions = v
 }
 
 // GetFrom returns the From field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetFrom() int64 {
+func (o *RUMRecoveryRequestAttributes) GetFrom() int64 {
 	if o == nil || o.From == nil {
 		var ret int64
 		return ret
@@ -221,7 +221,7 @@ func (o *RumRecoveryRequestAttributes) GetFrom() int64 {
 
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetFromOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetFromOk() (*int64, bool) {
 	if o == nil || o.From == nil {
 		return nil, false
 	}
@@ -229,17 +229,17 @@ func (o *RumRecoveryRequestAttributes) GetFromOk() (*int64, bool) {
 }
 
 // HasFrom returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasFrom() bool {
+func (o *RUMRecoveryRequestAttributes) HasFrom() bool {
 	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given int64 and assigns it to the From field.
-func (o *RumRecoveryRequestAttributes) SetFrom(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetFrom(v int64) {
 	o.From = &v
 }
 
 // GetProcessedSessions returns the ProcessedSessions field value.
-func (o *RumRecoveryRequestAttributes) GetProcessedSessions() int64 {
+func (o *RUMRecoveryRequestAttributes) GetProcessedSessions() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -249,7 +249,7 @@ func (o *RumRecoveryRequestAttributes) GetProcessedSessions() int64 {
 
 // GetProcessedSessionsOk returns a tuple with the ProcessedSessions field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetProcessedSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetProcessedSessionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -257,12 +257,12 @@ func (o *RumRecoveryRequestAttributes) GetProcessedSessionsOk() (*int64, bool) {
 }
 
 // SetProcessedSessions sets field value.
-func (o *RumRecoveryRequestAttributes) SetProcessedSessions(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetProcessedSessions(v int64) {
 	o.ProcessedSessions = v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetQuery() string {
+func (o *RUMRecoveryRequestAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
 		var ret string
 		return ret
@@ -272,7 +272,7 @@ func (o *RumRecoveryRequestAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMRecoveryRequestAttributes) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
 		return nil, false
 	}
@@ -280,19 +280,19 @@ func (o *RumRecoveryRequestAttributes) GetQueryOk() (*string, bool) {
 }
 
 // HasQuery returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasQuery() bool {
+func (o *RUMRecoveryRequestAttributes) HasQuery() bool {
 	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *RumRecoveryRequestAttributes) SetQuery(v string) {
+func (o *RUMRecoveryRequestAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetRequestType() RumRecoveryBatchRequestType {
+func (o *RUMRecoveryRequestAttributes) GetRequestType() RUMRecoveryBatchRequestType {
 	if o == nil || o.RequestType == nil {
-		var ret RumRecoveryBatchRequestType
+		var ret RUMRecoveryBatchRequestType
 		return ret
 	}
 	return *o.RequestType
@@ -300,7 +300,7 @@ func (o *RumRecoveryRequestAttributes) GetRequestType() RumRecoveryBatchRequestT
 
 // GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetRequestTypeOk() (*RumRecoveryBatchRequestType, bool) {
+func (o *RUMRecoveryRequestAttributes) GetRequestTypeOk() (*RUMRecoveryBatchRequestType, bool) {
 	if o == nil || o.RequestType == nil {
 		return nil, false
 	}
@@ -308,19 +308,19 @@ func (o *RumRecoveryRequestAttributes) GetRequestTypeOk() (*RumRecoveryBatchRequ
 }
 
 // HasRequestType returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasRequestType() bool {
+func (o *RUMRecoveryRequestAttributes) HasRequestType() bool {
 	return o != nil && o.RequestType != nil
 }
 
-// SetRequestType gets a reference to the given RumRecoveryBatchRequestType and assigns it to the RequestType field.
-func (o *RumRecoveryRequestAttributes) SetRequestType(v RumRecoveryBatchRequestType) {
+// SetRequestType gets a reference to the given RUMRecoveryBatchRequestType and assigns it to the RequestType field.
+func (o *RUMRecoveryRequestAttributes) SetRequestType(v RUMRecoveryBatchRequestType) {
 	o.RequestType = &v
 }
 
 // GetSessions returns the Sessions field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSessions() []RumRecoveredSession {
+func (o *RUMRecoveryRequestAttributes) GetSessions() []RUMRecoveredSession {
 	if o == nil || o.Sessions == nil {
-		var ret []RumRecoveredSession
+		var ret []RUMRecoveredSession
 		return ret
 	}
 	return o.Sessions
@@ -328,7 +328,7 @@ func (o *RumRecoveryRequestAttributes) GetSessions() []RumRecoveredSession {
 
 // GetSessionsOk returns a tuple with the Sessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSessionsOk() (*[]RumRecoveredSession, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSessionsOk() (*[]RUMRecoveredSession, bool) {
 	if o == nil || o.Sessions == nil {
 		return nil, false
 	}
@@ -336,17 +336,17 @@ func (o *RumRecoveryRequestAttributes) GetSessionsOk() (*[]RumRecoveredSession, 
 }
 
 // HasSessions returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSessions() bool {
+func (o *RUMRecoveryRequestAttributes) HasSessions() bool {
 	return o != nil && o.Sessions != nil
 }
 
-// SetSessions gets a reference to the given []RumRecoveredSession and assigns it to the Sessions field.
-func (o *RumRecoveryRequestAttributes) SetSessions(v []RumRecoveredSession) {
+// SetSessions gets a reference to the given []RUMRecoveredSession and assigns it to the Sessions field.
+func (o *RUMRecoveryRequestAttributes) SetSessions(v []RUMRecoveredSession) {
 	o.Sessions = v
 }
 
 // GetSessionsDiscovered returns the SessionsDiscovered field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSessionsDiscovered() int64 {
+func (o *RUMRecoveryRequestAttributes) GetSessionsDiscovered() int64 {
 	if o == nil || o.SessionsDiscovered == nil {
 		var ret int64
 		return ret
@@ -356,7 +356,7 @@ func (o *RumRecoveryRequestAttributes) GetSessionsDiscovered() int64 {
 
 // GetSessionsDiscoveredOk returns a tuple with the SessionsDiscovered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSessionsDiscoveredOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSessionsDiscoveredOk() (*int64, bool) {
 	if o == nil || o.SessionsDiscovered == nil {
 		return nil, false
 	}
@@ -364,17 +364,17 @@ func (o *RumRecoveryRequestAttributes) GetSessionsDiscoveredOk() (*int64, bool) 
 }
 
 // HasSessionsDiscovered returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSessionsDiscovered() bool {
+func (o *RUMRecoveryRequestAttributes) HasSessionsDiscovered() bool {
 	return o != nil && o.SessionsDiscovered != nil
 }
 
 // SetSessionsDiscovered gets a reference to the given int64 and assigns it to the SessionsDiscovered field.
-func (o *RumRecoveryRequestAttributes) SetSessionsDiscovered(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetSessionsDiscovered(v int64) {
 	o.SessionsDiscovered = &v
 }
 
 // GetSessionsFailed returns the SessionsFailed field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSessionsFailed() int64 {
+func (o *RUMRecoveryRequestAttributes) GetSessionsFailed() int64 {
 	if o == nil || o.SessionsFailed == nil {
 		var ret int64
 		return ret
@@ -384,7 +384,7 @@ func (o *RumRecoveryRequestAttributes) GetSessionsFailed() int64 {
 
 // GetSessionsFailedOk returns a tuple with the SessionsFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSessionsFailedOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSessionsFailedOk() (*int64, bool) {
 	if o == nil || o.SessionsFailed == nil {
 		return nil, false
 	}
@@ -392,17 +392,17 @@ func (o *RumRecoveryRequestAttributes) GetSessionsFailedOk() (*int64, bool) {
 }
 
 // HasSessionsFailed returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSessionsFailed() bool {
+func (o *RUMRecoveryRequestAttributes) HasSessionsFailed() bool {
 	return o != nil && o.SessionsFailed != nil
 }
 
 // SetSessionsFailed gets a reference to the given int64 and assigns it to the SessionsFailed field.
-func (o *RumRecoveryRequestAttributes) SetSessionsFailed(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetSessionsFailed(v int64) {
 	o.SessionsFailed = &v
 }
 
 // GetSessionsProcessed returns the SessionsProcessed field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSessionsProcessed() int64 {
+func (o *RUMRecoveryRequestAttributes) GetSessionsProcessed() int64 {
 	if o == nil || o.SessionsProcessed == nil {
 		var ret int64
 		return ret
@@ -412,7 +412,7 @@ func (o *RumRecoveryRequestAttributes) GetSessionsProcessed() int64 {
 
 // GetSessionsProcessedOk returns a tuple with the SessionsProcessed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSessionsProcessedOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSessionsProcessedOk() (*int64, bool) {
 	if o == nil || o.SessionsProcessed == nil {
 		return nil, false
 	}
@@ -420,17 +420,17 @@ func (o *RumRecoveryRequestAttributes) GetSessionsProcessedOk() (*int64, bool) {
 }
 
 // HasSessionsProcessed returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSessionsProcessed() bool {
+func (o *RUMRecoveryRequestAttributes) HasSessionsProcessed() bool {
 	return o != nil && o.SessionsProcessed != nil
 }
 
 // SetSessionsProcessed gets a reference to the given int64 and assigns it to the SessionsProcessed field.
-func (o *RumRecoveryRequestAttributes) SetSessionsProcessed(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetSessionsProcessed(v int64) {
 	o.SessionsProcessed = &v
 }
 
 // GetSlicesCompleted returns the SlicesCompleted field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSlicesCompleted() int64 {
+func (o *RUMRecoveryRequestAttributes) GetSlicesCompleted() int64 {
 	if o == nil || o.SlicesCompleted == nil {
 		var ret int64
 		return ret
@@ -440,7 +440,7 @@ func (o *RumRecoveryRequestAttributes) GetSlicesCompleted() int64 {
 
 // GetSlicesCompletedOk returns a tuple with the SlicesCompleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSlicesCompletedOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSlicesCompletedOk() (*int64, bool) {
 	if o == nil || o.SlicesCompleted == nil {
 		return nil, false
 	}
@@ -448,17 +448,17 @@ func (o *RumRecoveryRequestAttributes) GetSlicesCompletedOk() (*int64, bool) {
 }
 
 // HasSlicesCompleted returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSlicesCompleted() bool {
+func (o *RUMRecoveryRequestAttributes) HasSlicesCompleted() bool {
 	return o != nil && o.SlicesCompleted != nil
 }
 
 // SetSlicesCompleted gets a reference to the given int64 and assigns it to the SlicesCompleted field.
-func (o *RumRecoveryRequestAttributes) SetSlicesCompleted(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetSlicesCompleted(v int64) {
 	o.SlicesCompleted = &v
 }
 
 // GetSlicesFailed returns the SlicesFailed field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetSlicesFailed() int64 {
+func (o *RUMRecoveryRequestAttributes) GetSlicesFailed() int64 {
 	if o == nil || o.SlicesFailed == nil {
 		var ret int64
 		return ret
@@ -468,7 +468,7 @@ func (o *RumRecoveryRequestAttributes) GetSlicesFailed() int64 {
 
 // GetSlicesFailedOk returns a tuple with the SlicesFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetSlicesFailedOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetSlicesFailedOk() (*int64, bool) {
 	if o == nil || o.SlicesFailed == nil {
 		return nil, false
 	}
@@ -476,19 +476,19 @@ func (o *RumRecoveryRequestAttributes) GetSlicesFailedOk() (*int64, bool) {
 }
 
 // HasSlicesFailed returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasSlicesFailed() bool {
+func (o *RUMRecoveryRequestAttributes) HasSlicesFailed() bool {
 	return o != nil && o.SlicesFailed != nil
 }
 
 // SetSlicesFailed gets a reference to the given int64 and assigns it to the SlicesFailed field.
-func (o *RumRecoveryRequestAttributes) SetSlicesFailed(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetSlicesFailed(v int64) {
 	o.SlicesFailed = &v
 }
 
 // GetStatus returns the Status field value.
-func (o *RumRecoveryRequestAttributes) GetStatus() RumRecoveryRequestStatus {
+func (o *RUMRecoveryRequestAttributes) GetStatus() RUMRecoveryRequestStatus {
 	if o == nil {
-		var ret RumRecoveryRequestStatus
+		var ret RUMRecoveryRequestStatus
 		return ret
 	}
 	return o.Status
@@ -496,7 +496,7 @@ func (o *RumRecoveryRequestAttributes) GetStatus() RumRecoveryRequestStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetStatusOk() (*RumRecoveryRequestStatus, bool) {
+func (o *RUMRecoveryRequestAttributes) GetStatusOk() (*RUMRecoveryRequestStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -504,12 +504,12 @@ func (o *RumRecoveryRequestAttributes) GetStatusOk() (*RumRecoveryRequestStatus,
 }
 
 // SetStatus sets field value.
-func (o *RumRecoveryRequestAttributes) SetStatus(v RumRecoveryRequestStatus) {
+func (o *RUMRecoveryRequestAttributes) SetStatus(v RUMRecoveryRequestStatus) {
 	o.Status = v
 }
 
 // GetTo returns the To field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetTo() int64 {
+func (o *RUMRecoveryRequestAttributes) GetTo() int64 {
 	if o == nil || o.To == nil {
 		var ret int64
 		return ret
@@ -519,7 +519,7 @@ func (o *RumRecoveryRequestAttributes) GetTo() int64 {
 
 // GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetToOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetToOk() (*int64, bool) {
 	if o == nil || o.To == nil {
 		return nil, false
 	}
@@ -527,17 +527,17 @@ func (o *RumRecoveryRequestAttributes) GetToOk() (*int64, bool) {
 }
 
 // HasTo returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasTo() bool {
+func (o *RUMRecoveryRequestAttributes) HasTo() bool {
 	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given int64 and assigns it to the To field.
-func (o *RumRecoveryRequestAttributes) SetTo(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetTo(v int64) {
 	o.To = &v
 }
 
 // GetTotalSessions returns the TotalSessions field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetTotalSessions() int64 {
+func (o *RUMRecoveryRequestAttributes) GetTotalSessions() int64 {
 	if o == nil || o.TotalSessions == nil {
 		var ret int64
 		return ret
@@ -547,7 +547,7 @@ func (o *RumRecoveryRequestAttributes) GetTotalSessions() int64 {
 
 // GetTotalSessionsOk returns a tuple with the TotalSessions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetTotalSessionsOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetTotalSessionsOk() (*int64, bool) {
 	if o == nil || o.TotalSessions == nil {
 		return nil, false
 	}
@@ -555,17 +555,17 @@ func (o *RumRecoveryRequestAttributes) GetTotalSessionsOk() (*int64, bool) {
 }
 
 // HasTotalSessions returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasTotalSessions() bool {
+func (o *RUMRecoveryRequestAttributes) HasTotalSessions() bool {
 	return o != nil && o.TotalSessions != nil
 }
 
 // SetTotalSessions gets a reference to the given int64 and assigns it to the TotalSessions field.
-func (o *RumRecoveryRequestAttributes) SetTotalSessions(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetTotalSessions(v int64) {
 	o.TotalSessions = &v
 }
 
 // GetTotalSlices returns the TotalSlices field value if set, zero value otherwise.
-func (o *RumRecoveryRequestAttributes) GetTotalSlices() int64 {
+func (o *RUMRecoveryRequestAttributes) GetTotalSlices() int64 {
 	if o == nil || o.TotalSlices == nil {
 		var ret int64
 		return ret
@@ -575,7 +575,7 @@ func (o *RumRecoveryRequestAttributes) GetTotalSlices() int64 {
 
 // GetTotalSlicesOk returns a tuple with the TotalSlices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetTotalSlicesOk() (*int64, bool) {
+func (o *RUMRecoveryRequestAttributes) GetTotalSlicesOk() (*int64, bool) {
 	if o == nil || o.TotalSlices == nil {
 		return nil, false
 	}
@@ -583,17 +583,17 @@ func (o *RumRecoveryRequestAttributes) GetTotalSlicesOk() (*int64, bool) {
 }
 
 // HasTotalSlices returns a boolean if a field has been set.
-func (o *RumRecoveryRequestAttributes) HasTotalSlices() bool {
+func (o *RUMRecoveryRequestAttributes) HasTotalSlices() bool {
 	return o != nil && o.TotalSlices != nil
 }
 
 // SetTotalSlices gets a reference to the given int64 and assigns it to the TotalSlices field.
-func (o *RumRecoveryRequestAttributes) SetTotalSlices(v int64) {
+func (o *RUMRecoveryRequestAttributes) SetTotalSlices(v int64) {
 	o.TotalSlices = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value.
-func (o *RumRecoveryRequestAttributes) GetUpdatedAt() time.Time {
+func (o *RUMRecoveryRequestAttributes) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -603,7 +603,7 @@ func (o *RumRecoveryRequestAttributes) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoveryRequestAttributes) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *RUMRecoveryRequestAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -611,12 +611,12 @@ func (o *RumRecoveryRequestAttributes) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // SetUpdatedAt sets field value.
-func (o *RumRecoveryRequestAttributes) SetUpdatedAt(v time.Time) {
+func (o *RUMRecoveryRequestAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoveryRequestAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRecoveryRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -687,24 +687,24 @@ func (o RumRecoveryRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoveryRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoveryRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt          *time.Time                   `json:"created_at"`
-		DiscoveryStatus    *RumRecoveryDiscoveryStatus  `json:"discovery_status,omitempty"`
+		DiscoveryStatus    *RUMRecoveryDiscoveryStatus  `json:"discovery_status,omitempty"`
 		ErrorMessage       *string                      `json:"error_message,omitempty"`
 		EstimatedCount     *int64                       `json:"estimated_count,omitempty"`
 		FailedSessions     *int64                       `json:"failed_sessions"`
 		From               *int64                       `json:"from,omitempty"`
 		ProcessedSessions  *int64                       `json:"processed_sessions"`
 		Query              *string                      `json:"query,omitempty"`
-		RequestType        *RumRecoveryBatchRequestType `json:"request_type,omitempty"`
-		Sessions           []RumRecoveredSession        `json:"sessions,omitempty"`
+		RequestType        *RUMRecoveryBatchRequestType `json:"request_type,omitempty"`
+		Sessions           []RUMRecoveredSession        `json:"sessions,omitempty"`
 		SessionsDiscovered *int64                       `json:"sessions_discovered,omitempty"`
 		SessionsFailed     *int64                       `json:"sessions_failed,omitempty"`
 		SessionsProcessed  *int64                       `json:"sessions_processed,omitempty"`
 		SlicesCompleted    *int64                       `json:"slices_completed,omitempty"`
 		SlicesFailed       *int64                       `json:"slices_failed,omitempty"`
-		Status             *RumRecoveryRequestStatus    `json:"status"`
+		Status             *RUMRecoveryRequestStatus    `json:"status"`
 		To                 *int64                       `json:"to,omitempty"`
 		TotalSessions      *int64                       `json:"total_sessions,omitempty"`
 		TotalSlices        *int64                       `json:"total_slices,omitempty"`

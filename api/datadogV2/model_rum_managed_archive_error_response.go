@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumManagedArchiveErrorResponse API error response.
-type RumManagedArchiveErrorResponse struct {
+// RUMManagedArchiveErrorResponse API error response.
+type RUMManagedArchiveErrorResponse struct {
 	// Errors as plain-text messages or JSON:API error objects containing status, title, and detail.
 	Errors []interface{} `json:"errors"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,26 +19,26 @@ type RumManagedArchiveErrorResponse struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumManagedArchiveErrorResponse instantiates a new RumManagedArchiveErrorResponse object.
+// NewRUMManagedArchiveErrorResponse instantiates a new RUMManagedArchiveErrorResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumManagedArchiveErrorResponse(errors []interface{}) *RumManagedArchiveErrorResponse {
-	this := RumManagedArchiveErrorResponse{}
+func NewRUMManagedArchiveErrorResponse(errors []interface{}) *RUMManagedArchiveErrorResponse {
+	this := RUMManagedArchiveErrorResponse{}
 	this.Errors = errors
 	return &this
 }
 
-// NewRumManagedArchiveErrorResponseWithDefaults instantiates a new RumManagedArchiveErrorResponse object.
+// NewRUMManagedArchiveErrorResponseWithDefaults instantiates a new RUMManagedArchiveErrorResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumManagedArchiveErrorResponseWithDefaults() *RumManagedArchiveErrorResponse {
-	this := RumManagedArchiveErrorResponse{}
+func NewRUMManagedArchiveErrorResponseWithDefaults() *RUMManagedArchiveErrorResponse {
+	this := RUMManagedArchiveErrorResponse{}
 	return &this
 }
 
 // GetErrors returns the Errors field value.
-func (o *RumManagedArchiveErrorResponse) GetErrors() []interface{} {
+func (o *RUMManagedArchiveErrorResponse) GetErrors() []interface{} {
 	if o == nil {
 		var ret []interface{}
 		return ret
@@ -48,7 +48,7 @@ func (o *RumManagedArchiveErrorResponse) GetErrors() []interface{} {
 
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-func (o *RumManagedArchiveErrorResponse) GetErrorsOk() (*[]interface{}, bool) {
+func (o *RUMManagedArchiveErrorResponse) GetErrorsOk() (*[]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumManagedArchiveErrorResponse) GetErrorsOk() (*[]interface{}, bool) {
 }
 
 // SetErrors sets field value.
-func (o *RumManagedArchiveErrorResponse) SetErrors(v []interface{}) {
+func (o *RUMManagedArchiveErrorResponse) SetErrors(v []interface{}) {
 	o.Errors = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumManagedArchiveErrorResponse) MarshalJSON() ([]byte, error) {
+func (o RUMManagedArchiveErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,7 +75,7 @@ func (o RumManagedArchiveErrorResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumManagedArchiveErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMManagedArchiveErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Errors *[]interface{} `json:"errors"`
 	}{}

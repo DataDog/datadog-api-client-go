@@ -8,14 +8,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterUpdateAttributes The attributes of an exclusion filter that can be updated.
+// RUMExclusionFilterUpdateAttributes The attributes of an exclusion filter that can be updated.
 // For the built-in Error Tracking exclusion filter, only `enabled` can be set;
 // `name`, `event_type`, and `query` must be omitted.
-type RumExclusionFilterUpdateAttributes struct {
+type RUMExclusionFilterUpdateAttributes struct {
 	// Whether the exclusion filter is active.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The type of RUM events to filter on.
-	EventType *RumExclusionFilterEventType `json:"event_type,omitempty"`
+	EventType *RUMExclusionFilterEventType `json:"event_type,omitempty"`
 	// The name of the exclusion filter.
 	Name *string `json:"name,omitempty"`
 	// Additional query used to further restrict which RUM events are excluded.
@@ -26,25 +26,25 @@ type RumExclusionFilterUpdateAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumExclusionFilterUpdateAttributes instantiates a new RumExclusionFilterUpdateAttributes object.
+// NewRUMExclusionFilterUpdateAttributes instantiates a new RUMExclusionFilterUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumExclusionFilterUpdateAttributes() *RumExclusionFilterUpdateAttributes {
-	this := RumExclusionFilterUpdateAttributes{}
+func NewRUMExclusionFilterUpdateAttributes() *RUMExclusionFilterUpdateAttributes {
+	this := RUMExclusionFilterUpdateAttributes{}
 	return &this
 }
 
-// NewRumExclusionFilterUpdateAttributesWithDefaults instantiates a new RumExclusionFilterUpdateAttributes object.
+// NewRUMExclusionFilterUpdateAttributesWithDefaults instantiates a new RUMExclusionFilterUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumExclusionFilterUpdateAttributesWithDefaults() *RumExclusionFilterUpdateAttributes {
-	this := RumExclusionFilterUpdateAttributes{}
+func NewRUMExclusionFilterUpdateAttributesWithDefaults() *RUMExclusionFilterUpdateAttributes {
+	this := RUMExclusionFilterUpdateAttributes{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *RumExclusionFilterUpdateAttributes) GetEnabled() bool {
+func (o *RUMExclusionFilterUpdateAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
@@ -54,7 +54,7 @@ func (o *RumExclusionFilterUpdateAttributes) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateAttributes) GetEnabledOk() (*bool, bool) {
+func (o *RUMExclusionFilterUpdateAttributes) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
 		return nil, false
 	}
@@ -62,19 +62,19 @@ func (o *RumExclusionFilterUpdateAttributes) GetEnabledOk() (*bool, bool) {
 }
 
 // HasEnabled returns a boolean if a field has been set.
-func (o *RumExclusionFilterUpdateAttributes) HasEnabled() bool {
+func (o *RUMExclusionFilterUpdateAttributes) HasEnabled() bool {
 	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *RumExclusionFilterUpdateAttributes) SetEnabled(v bool) {
+func (o *RUMExclusionFilterUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
-func (o *RumExclusionFilterUpdateAttributes) GetEventType() RumExclusionFilterEventType {
+func (o *RUMExclusionFilterUpdateAttributes) GetEventType() RUMExclusionFilterEventType {
 	if o == nil || o.EventType == nil {
-		var ret RumExclusionFilterEventType
+		var ret RUMExclusionFilterEventType
 		return ret
 	}
 	return *o.EventType
@@ -82,7 +82,7 @@ func (o *RumExclusionFilterUpdateAttributes) GetEventType() RumExclusionFilterEv
 
 // GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateAttributes) GetEventTypeOk() (*RumExclusionFilterEventType, bool) {
+func (o *RUMExclusionFilterUpdateAttributes) GetEventTypeOk() (*RUMExclusionFilterEventType, bool) {
 	if o == nil || o.EventType == nil {
 		return nil, false
 	}
@@ -90,17 +90,17 @@ func (o *RumExclusionFilterUpdateAttributes) GetEventTypeOk() (*RumExclusionFilt
 }
 
 // HasEventType returns a boolean if a field has been set.
-func (o *RumExclusionFilterUpdateAttributes) HasEventType() bool {
+func (o *RUMExclusionFilterUpdateAttributes) HasEventType() bool {
 	return o != nil && o.EventType != nil
 }
 
-// SetEventType gets a reference to the given RumExclusionFilterEventType and assigns it to the EventType field.
-func (o *RumExclusionFilterUpdateAttributes) SetEventType(v RumExclusionFilterEventType) {
+// SetEventType gets a reference to the given RUMExclusionFilterEventType and assigns it to the EventType field.
+func (o *RUMExclusionFilterUpdateAttributes) SetEventType(v RUMExclusionFilterEventType) {
 	o.EventType = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *RumExclusionFilterUpdateAttributes) GetName() string {
+func (o *RUMExclusionFilterUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -110,7 +110,7 @@ func (o *RumExclusionFilterUpdateAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateAttributes) GetNameOk() (*string, bool) {
+func (o *RUMExclusionFilterUpdateAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -118,17 +118,17 @@ func (o *RumExclusionFilterUpdateAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *RumExclusionFilterUpdateAttributes) HasName() bool {
+func (o *RUMExclusionFilterUpdateAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *RumExclusionFilterUpdateAttributes) SetName(v string) {
+func (o *RUMExclusionFilterUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
-func (o *RumExclusionFilterUpdateAttributes) GetQuery() string {
+func (o *RUMExclusionFilterUpdateAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
 		var ret string
 		return ret
@@ -138,7 +138,7 @@ func (o *RumExclusionFilterUpdateAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumExclusionFilterUpdateAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMExclusionFilterUpdateAttributes) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
 		return nil, false
 	}
@@ -146,17 +146,17 @@ func (o *RumExclusionFilterUpdateAttributes) GetQueryOk() (*string, bool) {
 }
 
 // HasQuery returns a boolean if a field has been set.
-func (o *RumExclusionFilterUpdateAttributes) HasQuery() bool {
+func (o *RUMExclusionFilterUpdateAttributes) HasQuery() bool {
 	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *RumExclusionFilterUpdateAttributes) SetQuery(v string) {
+func (o *RUMExclusionFilterUpdateAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumExclusionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMExclusionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -181,10 +181,10 @@ func (o RumExclusionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumExclusionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMExclusionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enabled   *bool                        `json:"enabled,omitempty"`
-		EventType *RumExclusionFilterEventType `json:"event_type,omitempty"`
+		EventType *RUMExclusionFilterEventType `json:"event_type,omitempty"`
 		Name      *string                      `json:"name,omitempty"`
 		Query     *string                      `json:"query,omitempty"`
 	}{}

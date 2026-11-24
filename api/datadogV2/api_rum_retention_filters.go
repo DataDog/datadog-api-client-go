@@ -12,20 +12,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFiltersApi service type
-type RumRetentionFiltersApi datadog.Service
+// RUMRetentionFiltersApi service type
+type RUMRetentionFiltersApi datadog.Service
 
 // CreateExclusionFilter Create a RUM exclusion filter.
 // Create an exclusion filter for a RUM application.
 // Returns the created exclusion filter when the request is successful.
-func (a *RumRetentionFiltersApi) CreateExclusionFilter(ctx _context.Context, appId string, body RumExclusionFilterCreateRequest) (RumExclusionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) CreateExclusionFilter(ctx _context.Context, appId string, body RUMExclusionFilterCreateRequest) (RUMExclusionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RumExclusionFilterResponse
+		localVarReturnValue RUMExclusionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.CreateExclusionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.CreateExclusionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -100,14 +100,14 @@ func (a *RumRetentionFiltersApi) CreateExclusionFilter(ctx _context.Context, app
 // CreateRetentionFilter Create a RUM retention filter.
 // Create a RUM retention filter for a RUM application.
 // Returns RUM retention filter objects from the request body when the request is successful.
-func (a *RumRetentionFiltersApi) CreateRetentionFilter(ctx _context.Context, appId string, body RumRetentionFilterCreateRequest) (RumRetentionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) CreateRetentionFilter(ctx _context.Context, appId string, body RUMRetentionFilterCreateRequest) (RUMRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionFilterResponse
+		localVarReturnValue RUMRetentionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.CreateRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.CreateRetentionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -183,13 +183,13 @@ func (a *RumRetentionFiltersApi) CreateRetentionFilter(ctx _context.Context, app
 // Delete an exclusion filter for a RUM application.
 // The built-in Error Tracking exclusion filter (`error_tracking_exclusion_filter`) cannot be deleted;
 // attempting to do so returns a `405 Method Not Allowed` response.
-func (a *RumRetentionFiltersApi) DeleteExclusionFilter(ctx _context.Context, appId string, efId string) (*_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) DeleteExclusionFilter(ctx _context.Context, appId string, efId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.DeleteExclusionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.DeleteExclusionFilter")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -252,13 +252,13 @@ func (a *RumRetentionFiltersApi) DeleteExclusionFilter(ctx _context.Context, app
 
 // DeleteRetentionFilter Delete a RUM retention filter.
 // Delete a RUM retention filter for a RUM application.
-func (a *RumRetentionFiltersApi) DeleteRetentionFilter(ctx _context.Context, appId string, rfId string) (*_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) DeleteRetentionFilter(ctx _context.Context, appId string, rfId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.DeleteRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.DeleteRetentionFilter")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -321,14 +321,14 @@ func (a *RumRetentionFiltersApi) DeleteRetentionFilter(ctx _context.Context, app
 
 // GetExclusionFilter Get a RUM exclusion filter.
 // Get a single exclusion filter for a RUM application.
-func (a *RumRetentionFiltersApi) GetExclusionFilter(ctx _context.Context, appId string, efId string) (RumExclusionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) GetExclusionFilter(ctx _context.Context, appId string, efId string) (RUMExclusionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumExclusionFilterResponse
+		localVarReturnValue RUMExclusionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.GetExclusionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.GetExclusionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -400,14 +400,14 @@ func (a *RumRetentionFiltersApi) GetExclusionFilter(ctx _context.Context, appId 
 
 // GetPermanentRetentionFilter Get a permanent RUM retention filter.
 // Get a permanent RUM retention filter for a RUM application by its identifier.
-func (a *RumRetentionFiltersApi) GetPermanentRetentionFilter(ctx _context.Context, appId string, permanentRfId RumPermanentRetentionFilterID) (RumPermanentRetentionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) GetPermanentRetentionFilter(ctx _context.Context, appId string, permanentRfId RUMPermanentRetentionFilterID) (RUMPermanentRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumPermanentRetentionFilterResponse
+		localVarReturnValue RUMPermanentRetentionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.GetPermanentRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.GetPermanentRetentionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -479,14 +479,14 @@ func (a *RumRetentionFiltersApi) GetPermanentRetentionFilter(ctx _context.Contex
 
 // GetRetentionFilter Get a RUM retention filter.
 // Get a RUM retention filter for a RUM application.
-func (a *RumRetentionFiltersApi) GetRetentionFilter(ctx _context.Context, appId string, rfId string) (RumRetentionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) GetRetentionFilter(ctx _context.Context, appId string, rfId string) (RUMRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionFilterResponse
+		localVarReturnValue RUMRetentionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.GetRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.GetRetentionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -559,14 +559,14 @@ func (a *RumRetentionFiltersApi) GetRetentionFilter(ctx _context.Context, appId 
 // ListExclusionFilters Get all RUM exclusion filters.
 // Get the list of exclusion filters for a RUM application.
 // The built-in Error Tracking exclusion filter (`error_tracking_exclusion_filter`) is always returned first.
-func (a *RumRetentionFiltersApi) ListExclusionFilters(ctx _context.Context, appId string) (RumExclusionFiltersResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) ListExclusionFilters(ctx _context.Context, appId string) (RUMExclusionFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumExclusionFiltersResponse
+		localVarReturnValue RUMExclusionFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.ListExclusionFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.ListExclusionFilters")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -639,14 +639,14 @@ func (a *RumRetentionFiltersApi) ListExclusionFilters(ctx _context.Context, appI
 // Get the list of permanent RUM retention filters for a RUM application.
 // Permanent retention filters are predefined filters that cannot be created or deleted.
 // For each filter, the `editability` block indicates which cross-product fields can be updated.
-func (a *RumRetentionFiltersApi) ListPermanentRetentionFilters(ctx _context.Context, appId string) (RumPermanentRetentionFiltersResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) ListPermanentRetentionFilters(ctx _context.Context, appId string) (RUMPermanentRetentionFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumPermanentRetentionFiltersResponse
+		localVarReturnValue RUMPermanentRetentionFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.ListPermanentRetentionFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.ListPermanentRetentionFilters")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -717,14 +717,14 @@ func (a *RumRetentionFiltersApi) ListPermanentRetentionFilters(ctx _context.Cont
 
 // ListRetentionFilters Get all RUM retention filters.
 // Get the list of RUM retention filters for a RUM application.
-func (a *RumRetentionFiltersApi) ListRetentionFilters(ctx _context.Context, appId string) (RumRetentionFiltersResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) ListRetentionFilters(ctx _context.Context, appId string) (RUMRetentionFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionFiltersResponse
+		localVarReturnValue RUMRetentionFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.ListRetentionFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.ListRetentionFilters")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -796,14 +796,14 @@ func (a *RumRetentionFiltersApi) ListRetentionFilters(ctx _context.Context, appI
 // OrderRetentionFilters Order RUM retention filters.
 // Order RUM retention filters for a RUM application.
 // Returns RUM retention filter objects without attributes from the request body when the request is successful.
-func (a *RumRetentionFiltersApi) OrderRetentionFilters(ctx _context.Context, appId string, body RumRetentionFiltersOrderRequest) (RumRetentionFiltersOrderResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) OrderRetentionFilters(ctx _context.Context, appId string, body RUMRetentionFiltersOrderRequest) (RUMRetentionFiltersOrderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionFiltersOrderResponse
+		localVarReturnValue RUMRetentionFiltersOrderResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.OrderRetentionFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.OrderRetentionFilters")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -880,14 +880,14 @@ func (a *RumRetentionFiltersApi) OrderRetentionFilters(ctx _context.Context, app
 // For the built-in Error Tracking exclusion filter (`error_tracking_exclusion_filter`), only `enabled` can be
 // updated; `name`, `event_type`, and `query` must be omitted.
 // Returns the updated exclusion filter when the request is successful.
-func (a *RumRetentionFiltersApi) UpdateExclusionFilter(ctx _context.Context, appId string, efId string, body RumExclusionFilterUpdateRequest) (RumExclusionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) UpdateExclusionFilter(ctx _context.Context, appId string, efId string, body RUMExclusionFilterUpdateRequest) (RUMExclusionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue RumExclusionFilterResponse
+		localVarReturnValue RUMExclusionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.UpdateExclusionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.UpdateExclusionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -964,14 +964,14 @@ func (a *RumRetentionFiltersApi) UpdateExclusionFilter(ctx _context.Context, app
 // Update the cross-product sampling configuration of a permanent RUM retention filter for a RUM application.
 // Only fields marked as editable in the `editability` block of the filter can be updated.
 // Updating a non-editable field returns a `400` response.
-func (a *RumRetentionFiltersApi) UpdatePermanentRetentionFilter(ctx _context.Context, appId string, permanentRfId RumPermanentRetentionFilterID, body RumPermanentRetentionFilterUpdateRequest) (RumPermanentRetentionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) UpdatePermanentRetentionFilter(ctx _context.Context, appId string, permanentRfId RUMPermanentRetentionFilterID, body RUMPermanentRetentionFilterUpdateRequest) (RUMPermanentRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue RumPermanentRetentionFilterResponse
+		localVarReturnValue RUMPermanentRetentionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.UpdatePermanentRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.UpdatePermanentRetentionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1047,14 +1047,14 @@ func (a *RumRetentionFiltersApi) UpdatePermanentRetentionFilter(ctx _context.Con
 // UpdateRetentionFilter Update a RUM retention filter.
 // Update a RUM retention filter for a RUM application.
 // Returns RUM retention filter objects from the request body when the request is successful.
-func (a *RumRetentionFiltersApi) UpdateRetentionFilter(ctx _context.Context, appId string, rfId string, body RumRetentionFilterUpdateRequest) (RumRetentionFilterResponse, *_nethttp.Response, error) {
+func (a *RUMRetentionFiltersApi) UpdateRetentionFilter(ctx _context.Context, appId string, rfId string, body RUMRetentionFilterUpdateRequest) (RUMRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue RumRetentionFilterResponse
+		localVarReturnValue RUMRetentionFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumRetentionFiltersApi.UpdateRetentionFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMRetentionFiltersApi.UpdateRetentionFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1127,9 +1127,9 @@ func (a *RumRetentionFiltersApi) UpdateRetentionFilter(ctx _context.Context, app
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewRumRetentionFiltersApi Returns NewRumRetentionFiltersApi.
-func NewRumRetentionFiltersApi(client *datadog.APIClient) *RumRetentionFiltersApi {
-	return &RumRetentionFiltersApi{
+// NewRUMRetentionFiltersApi Returns NewRUMRetentionFiltersApi.
+func NewRUMRetentionFiltersApi(client *datadog.APIClient) *RUMRetentionFiltersApi {
+	return &RUMRetentionFiltersApi{
 		Client: client,
 	}
 }

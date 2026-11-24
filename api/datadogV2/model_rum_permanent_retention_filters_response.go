@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumPermanentRetentionFiltersResponse All permanent RUM retention filters for a RUM application.
-type RumPermanentRetentionFiltersResponse struct {
+// RUMPermanentRetentionFiltersResponse All permanent RUM retention filters for a RUM application.
+type RUMPermanentRetentionFiltersResponse struct {
 	// A list of permanent RUM retention filters.
-	Data []RumPermanentRetentionFilterData `json:"data,omitempty"`
+	Data []RUMPermanentRetentionFilterData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumPermanentRetentionFiltersResponse instantiates a new RumPermanentRetentionFiltersResponse object.
+// NewRUMPermanentRetentionFiltersResponse instantiates a new RUMPermanentRetentionFiltersResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumPermanentRetentionFiltersResponse() *RumPermanentRetentionFiltersResponse {
-	this := RumPermanentRetentionFiltersResponse{}
+func NewRUMPermanentRetentionFiltersResponse() *RUMPermanentRetentionFiltersResponse {
+	this := RUMPermanentRetentionFiltersResponse{}
 	return &this
 }
 
-// NewRumPermanentRetentionFiltersResponseWithDefaults instantiates a new RumPermanentRetentionFiltersResponse object.
+// NewRUMPermanentRetentionFiltersResponseWithDefaults instantiates a new RUMPermanentRetentionFiltersResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumPermanentRetentionFiltersResponseWithDefaults() *RumPermanentRetentionFiltersResponse {
-	this := RumPermanentRetentionFiltersResponse{}
+func NewRUMPermanentRetentionFiltersResponseWithDefaults() *RUMPermanentRetentionFiltersResponse {
+	this := RUMPermanentRetentionFiltersResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFiltersResponse) GetData() []RumPermanentRetentionFilterData {
+func (o *RUMPermanentRetentionFiltersResponse) GetData() []RUMPermanentRetentionFilterData {
 	if o == nil || o.Data == nil {
-		var ret []RumPermanentRetentionFilterData
+		var ret []RUMPermanentRetentionFilterData
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *RumPermanentRetentionFiltersResponse) GetData() []RumPermanentRetention
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFiltersResponse) GetDataOk() (*[]RumPermanentRetentionFilterData, bool) {
+func (o *RUMPermanentRetentionFiltersResponse) GetDataOk() (*[]RUMPermanentRetentionFilterData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumPermanentRetentionFiltersResponse) GetDataOk() (*[]RumPermanentReten
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFiltersResponse) HasData() bool {
+func (o *RUMPermanentRetentionFiltersResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []RumPermanentRetentionFilterData and assigns it to the Data field.
-func (o *RumPermanentRetentionFiltersResponse) SetData(v []RumPermanentRetentionFilterData) {
+// SetData gets a reference to the given []RUMPermanentRetentionFilterData and assigns it to the Data field.
+func (o *RUMPermanentRetentionFiltersResponse) SetData(v []RUMPermanentRetentionFilterData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumPermanentRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
+func (o RUMPermanentRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RumPermanentRetentionFiltersResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumPermanentRetentionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMPermanentRetentionFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []RumPermanentRetentionFilterData `json:"data,omitempty"`
+		Data []RUMPermanentRetentionFilterData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

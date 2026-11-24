@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaConfigUpdateAttributes The RUM retention quota configuration properties to create or update.
-type RumRetentionQuotaConfigUpdateAttributes struct {
+// RUMRetentionQuotaConfigUpdateAttributes The RUM retention quota configuration properties to create or update.
+type RUMRetentionQuotaConfigUpdateAttributes struct {
 	// The configuration used when `mode` is `custom`.
-	Custom *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
+	Custom *RUMRetentionQuotaCustomConfig `json:"custom,omitempty"`
 	// The retention quota mode. `custom` enforces a fixed session limit.
 	// `custom` is the only supported mode.
-	Mode RumRetentionQuotaMode `json:"mode"`
+	Mode RUMRetentionQuotaMode `json:"mode"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionQuotaConfigUpdateAttributes instantiates a new RumRetentionQuotaConfigUpdateAttributes object.
+// NewRUMRetentionQuotaConfigUpdateAttributes instantiates a new RUMRetentionQuotaConfigUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionQuotaConfigUpdateAttributes(mode RumRetentionQuotaMode) *RumRetentionQuotaConfigUpdateAttributes {
-	this := RumRetentionQuotaConfigUpdateAttributes{}
+func NewRUMRetentionQuotaConfigUpdateAttributes(mode RUMRetentionQuotaMode) *RUMRetentionQuotaConfigUpdateAttributes {
+	this := RUMRetentionQuotaConfigUpdateAttributes{}
 	this.Mode = mode
 	return &this
 }
 
-// NewRumRetentionQuotaConfigUpdateAttributesWithDefaults instantiates a new RumRetentionQuotaConfigUpdateAttributes object.
+// NewRUMRetentionQuotaConfigUpdateAttributesWithDefaults instantiates a new RUMRetentionQuotaConfigUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionQuotaConfigUpdateAttributesWithDefaults() *RumRetentionQuotaConfigUpdateAttributes {
-	this := RumRetentionQuotaConfigUpdateAttributes{}
+func NewRUMRetentionQuotaConfigUpdateAttributesWithDefaults() *RUMRetentionQuotaConfigUpdateAttributes {
+	this := RUMRetentionQuotaConfigUpdateAttributes{}
 	return &this
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetCustom() RumRetentionQuotaCustomConfig {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) GetCustom() RUMRetentionQuotaCustomConfig {
 	if o == nil || o.Custom == nil {
-		var ret RumRetentionQuotaCustomConfig
+		var ret RUMRetentionQuotaCustomConfig
 		return ret
 	}
 	return *o.Custom
@@ -51,7 +51,7 @@ func (o *RumRetentionQuotaConfigUpdateAttributes) GetCustom() RumRetentionQuotaC
 
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetCustomOk() (*RumRetentionQuotaCustomConfig, bool) {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) GetCustomOk() (*RUMRetentionQuotaCustomConfig, bool) {
 	if o == nil || o.Custom == nil {
 		return nil, false
 	}
@@ -59,19 +59,19 @@ func (o *RumRetentionQuotaConfigUpdateAttributes) GetCustomOk() (*RumRetentionQu
 }
 
 // HasCustom returns a boolean if a field has been set.
-func (o *RumRetentionQuotaConfigUpdateAttributes) HasCustom() bool {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) HasCustom() bool {
 	return o != nil && o.Custom != nil
 }
 
-// SetCustom gets a reference to the given RumRetentionQuotaCustomConfig and assigns it to the Custom field.
-func (o *RumRetentionQuotaConfigUpdateAttributes) SetCustom(v RumRetentionQuotaCustomConfig) {
+// SetCustom gets a reference to the given RUMRetentionQuotaCustomConfig and assigns it to the Custom field.
+func (o *RUMRetentionQuotaConfigUpdateAttributes) SetCustom(v RUMRetentionQuotaCustomConfig) {
 	o.Custom = &v
 }
 
 // GetMode returns the Mode field value.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetMode() RumRetentionQuotaMode {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) GetMode() RUMRetentionQuotaMode {
 	if o == nil {
-		var ret RumRetentionQuotaMode
+		var ret RUMRetentionQuotaMode
 		return ret
 	}
 	return o.Mode
@@ -79,7 +79,7 @@ func (o *RumRetentionQuotaConfigUpdateAttributes) GetMode() RumRetentionQuotaMod
 
 // GetModeOk returns a tuple with the Mode field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetModeOk() (*RumRetentionQuotaMode, bool) {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) GetModeOk() (*RUMRetentionQuotaMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,12 +87,12 @@ func (o *RumRetentionQuotaConfigUpdateAttributes) GetModeOk() (*RumRetentionQuot
 }
 
 // SetMode sets field value.
-func (o *RumRetentionQuotaConfigUpdateAttributes) SetMode(v RumRetentionQuotaMode) {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) SetMode(v RUMRetentionQuotaMode) {
 	o.Mode = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionQuotaConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionQuotaConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -109,10 +109,10 @@ func (o RumRetentionQuotaConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionQuotaConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionQuotaConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Custom *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
-		Mode   *RumRetentionQuotaMode         `json:"mode"`
+		Custom *RUMRetentionQuotaCustomConfig `json:"custom,omitempty"`
+		Mode   *RUMRetentionQuotaMode         `json:"mode"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

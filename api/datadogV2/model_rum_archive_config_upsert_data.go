@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigUpsertData JSON:API resource.
-type RumArchiveConfigUpsertData struct {
+// RUMArchiveConfigUpsertData JSON:API resource.
+type RUMArchiveConfigUpsertData struct {
 	// Archive configuration to save. When enabled is true, retention_days is required and must be 30, 90, or 180. When disabled, retention_days can be omitted.
-	Attributes RumArchiveConfigUpsertAttributes `json:"attributes"`
+	Attributes RUMArchiveConfigUpsertAttributes `json:"attributes"`
 	// Resource identifier.
 	Id string `json:"id"`
 	// JSON:API resource type.
-	Type RumArchiveConfigType `json:"type"`
+	Type RUMArchiveConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigUpsertData instantiates a new RumArchiveConfigUpsertData object.
+// NewRUMArchiveConfigUpsertData instantiates a new RUMArchiveConfigUpsertData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigUpsertData(attributes RumArchiveConfigUpsertAttributes, id string, typeVar RumArchiveConfigType) *RumArchiveConfigUpsertData {
-	this := RumArchiveConfigUpsertData{}
+func NewRUMArchiveConfigUpsertData(attributes RUMArchiveConfigUpsertAttributes, id string, typeVar RUMArchiveConfigType) *RUMArchiveConfigUpsertData {
+	this := RUMArchiveConfigUpsertData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumArchiveConfigUpsertDataWithDefaults instantiates a new RumArchiveConfigUpsertData object.
+// NewRUMArchiveConfigUpsertDataWithDefaults instantiates a new RUMArchiveConfigUpsertData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigUpsertDataWithDefaults() *RumArchiveConfigUpsertData {
-	this := RumArchiveConfigUpsertData{}
+func NewRUMArchiveConfigUpsertDataWithDefaults() *RUMArchiveConfigUpsertData {
+	this := RUMArchiveConfigUpsertData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumArchiveConfigUpsertData) GetAttributes() RumArchiveConfigUpsertAttributes {
+func (o *RUMArchiveConfigUpsertData) GetAttributes() RUMArchiveConfigUpsertAttributes {
 	if o == nil {
-		var ret RumArchiveConfigUpsertAttributes
+		var ret RUMArchiveConfigUpsertAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *RumArchiveConfigUpsertData) GetAttributes() RumArchiveConfigUpsertAttri
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertData) GetAttributesOk() (*RumArchiveConfigUpsertAttributes, bool) {
+func (o *RUMArchiveConfigUpsertData) GetAttributesOk() (*RUMArchiveConfigUpsertAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *RumArchiveConfigUpsertData) GetAttributesOk() (*RumArchiveConfigUpsertA
 }
 
 // SetAttributes sets field value.
-func (o *RumArchiveConfigUpsertData) SetAttributes(v RumArchiveConfigUpsertAttributes) {
+func (o *RUMArchiveConfigUpsertData) SetAttributes(v RUMArchiveConfigUpsertAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumArchiveConfigUpsertData) GetId() string {
+func (o *RUMArchiveConfigUpsertData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RumArchiveConfigUpsertData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertData) GetIdOk() (*string, bool) {
+func (o *RUMArchiveConfigUpsertData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *RumArchiveConfigUpsertData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumArchiveConfigUpsertData) SetId(v string) {
+func (o *RUMArchiveConfigUpsertData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumArchiveConfigUpsertData) GetType() RumArchiveConfigType {
+func (o *RUMArchiveConfigUpsertData) GetType() RUMArchiveConfigType {
 	if o == nil {
-		var ret RumArchiveConfigType
+		var ret RUMArchiveConfigType
 		return ret
 	}
 	return o.Type
@@ -100,7 +100,7 @@ func (o *RumArchiveConfigUpsertData) GetType() RumArchiveConfigType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertData) GetTypeOk() (*RumArchiveConfigType, bool) {
+func (o *RUMArchiveConfigUpsertData) GetTypeOk() (*RUMArchiveConfigType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *RumArchiveConfigUpsertData) GetTypeOk() (*RumArchiveConfigType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumArchiveConfigUpsertData) SetType(v RumArchiveConfigType) {
+func (o *RUMArchiveConfigUpsertData) SetType(v RUMArchiveConfigType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigUpsertData) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigUpsertData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +129,11 @@ func (o RumArchiveConfigUpsertData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigUpsertData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigUpsertData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumArchiveConfigUpsertAttributes `json:"attributes"`
+		Attributes *RUMArchiveConfigUpsertAttributes `json:"attributes"`
 		Id         *string                           `json:"id"`
-		Type       *RumArchiveConfigType             `json:"type"`
+		Type       *RUMArchiveConfigType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

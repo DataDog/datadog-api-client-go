@@ -43,14 +43,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.QueryUsers", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumAudienceManagementApi(apiClient)
+	api := datadogV2.NewRUMAudienceManagementApi(apiClient)
 	resp, r, err := api.QueryUsers(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumAudienceManagementApi.QueryUsers`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMAudienceManagementApi.QueryUsers`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumAudienceManagementApi.QueryUsers`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMAudienceManagementApi.QueryUsers`:\n%s\n", responseContent)
 }

@@ -16,13 +16,13 @@ import (
 	"github.com/google/uuid"
 )
 
-// RumTeamsOwnershipApi service type
-type RumTeamsOwnershipApi datadog.Service
+// RUMTeamsOwnershipApi service type
+type RUMTeamsOwnershipApi datadog.Service
 
 // CreateTeamsOwnershipMapping Create a teams ownership mapping.
 // Create a teams ownership mapping for your organization.
 // Returns the teams ownership mapping object from the request body when the request is successful.
-func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMapping(ctx _context.Context, body TeamsOwnershipMappingCreateRequest) (TeamsOwnershipMappingResponse, *_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) CreateTeamsOwnershipMapping(ctx _context.Context, body TeamsOwnershipMappingCreateRequest) (TeamsOwnershipMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -38,7 +38,7 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMapping(ctx _context.Context,
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.CreateTeamsOwnershipMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.CreateTeamsOwnershipMapping")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -115,7 +115,7 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMapping(ctx _context.Context,
 // Operations are applied together: if any operation is invalid, none of the operations are applied.
 // Add operations are processed before remove operations, so results may not appear in the same
 // order as the request.
-func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Context, body TeamsOwnershipMappingBatchRequest) (TeamsOwnershipMappingBatchResponse, *_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Context, body TeamsOwnershipMappingBatchRequest) (TeamsOwnershipMappingBatchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -131,7 +131,7 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Co
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.CreateTeamsOwnershipMappingsBatch")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.CreateTeamsOwnershipMappingsBatch")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -213,7 +213,7 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Co
 
 // DeleteTeamsOwnershipMapping Delete a teams ownership mapping.
 // Delete a specific teams ownership mapping from your organization.
-func (a *RumTeamsOwnershipApi) DeleteTeamsOwnershipMapping(ctx _context.Context, id string) (*_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) DeleteTeamsOwnershipMapping(ctx _context.Context, id string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -228,7 +228,7 @@ func (a *RumTeamsOwnershipApi) DeleteTeamsOwnershipMapping(ctx _context.Context,
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.DeleteTeamsOwnershipMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.DeleteTeamsOwnershipMapping")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -290,7 +290,7 @@ func (a *RumTeamsOwnershipApi) DeleteTeamsOwnershipMapping(ctx _context.Context,
 
 // GetTeamsOwnershipMapping Get a teams ownership mapping.
 // Get a specific teams ownership mapping from your organization.
-func (a *RumTeamsOwnershipApi) GetTeamsOwnershipMapping(ctx _context.Context, id string) (TeamsOwnershipMappingResponse, *_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) GetTeamsOwnershipMapping(ctx _context.Context, id string) (TeamsOwnershipMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -306,7 +306,7 @@ func (a *RumTeamsOwnershipApi) GetTeamsOwnershipMapping(ctx _context.Context, id
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.GetTeamsOwnershipMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.GetTeamsOwnershipMapping")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -415,7 +415,7 @@ func (r *ListTeamsOwnershipMappingsOptionalParameters) WithFilterService(filterS
 
 // ListTeamsOwnershipMappings List teams ownership mappings.
 // Get the list of teams ownership mappings for your organization, optionally filtered.
-func (a *RumTeamsOwnershipApi) ListTeamsOwnershipMappings(ctx _context.Context, o ...ListTeamsOwnershipMappingsOptionalParameters) (TeamsOwnershipMappingsResponse, *_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) ListTeamsOwnershipMappings(ctx _context.Context, o ...ListTeamsOwnershipMappingsOptionalParameters) (TeamsOwnershipMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -439,7 +439,7 @@ func (a *RumTeamsOwnershipApi) ListTeamsOwnershipMappings(ctx _context.Context, 
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.ListTeamsOwnershipMappings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.ListTeamsOwnershipMappings")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -593,7 +593,7 @@ func (r *ListTeamsOwnershipRulesOptionalParameters) WithFilterService(filterServ
 // Get the list of teams ownership rules for your organization, optionally filtered.
 // Rules group the underlying mappings by `view_name`, `application_id`, `service`, and `match_type`,
 // collapsing every team that owns the same view into a single entry.
-func (a *RumTeamsOwnershipApi) ListTeamsOwnershipRules(ctx _context.Context, o ...ListTeamsOwnershipRulesOptionalParameters) (TeamsOwnershipRulesResponse, *_nethttp.Response, error) {
+func (a *RUMTeamsOwnershipApi) ListTeamsOwnershipRules(ctx _context.Context, o ...ListTeamsOwnershipRulesOptionalParameters) (TeamsOwnershipRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -617,7 +617,7 @@ func (a *RumTeamsOwnershipApi) ListTeamsOwnershipRules(ctx _context.Context, o .
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.ListTeamsOwnershipRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMTeamsOwnershipApi.ListTeamsOwnershipRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -729,9 +729,9 @@ func (a *RumTeamsOwnershipApi) ListTeamsOwnershipRules(ctx _context.Context, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewRumTeamsOwnershipApi Returns NewRumTeamsOwnershipApi.
-func NewRumTeamsOwnershipApi(client *datadog.APIClient) *RumTeamsOwnershipApi {
-	return &RumTeamsOwnershipApi{
+// NewRUMTeamsOwnershipApi Returns NewRUMTeamsOwnershipApi.
+func NewRUMTeamsOwnershipApi(client *datadog.APIClient) *RUMTeamsOwnershipApi {
+	return &RUMTeamsOwnershipApi{
 		Client: client,
 	}
 }

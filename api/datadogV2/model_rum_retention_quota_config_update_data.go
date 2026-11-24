@@ -10,46 +10,46 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaConfigUpdateData The RUM retention quota configuration to create or update.
-type RumRetentionQuotaConfigUpdateData struct {
+// RUMRetentionQuotaConfigUpdateData The RUM retention quota configuration to create or update.
+type RUMRetentionQuotaConfigUpdateData struct {
 	// The RUM retention quota configuration properties to create or update.
-	Attributes RumRetentionQuotaConfigUpdateAttributes `json:"attributes"`
+	Attributes RUMRetentionQuotaConfigUpdateAttributes `json:"attributes"`
 	// The identifier of the scope the retention quota configuration applies to.
 	// Must match `scope_id` in the path.
 	Id string `json:"id"`
 	// The type of the resource, always `rum_quota_config`.
-	Type RumRetentionQuotaConfigType `json:"type"`
+	Type RUMRetentionQuotaConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionQuotaConfigUpdateData instantiates a new RumRetentionQuotaConfigUpdateData object.
+// NewRUMRetentionQuotaConfigUpdateData instantiates a new RUMRetentionQuotaConfigUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionQuotaConfigUpdateData(attributes RumRetentionQuotaConfigUpdateAttributes, id string, typeVar RumRetentionQuotaConfigType) *RumRetentionQuotaConfigUpdateData {
-	this := RumRetentionQuotaConfigUpdateData{}
+func NewRUMRetentionQuotaConfigUpdateData(attributes RUMRetentionQuotaConfigUpdateAttributes, id string, typeVar RUMRetentionQuotaConfigType) *RUMRetentionQuotaConfigUpdateData {
+	this := RUMRetentionQuotaConfigUpdateData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumRetentionQuotaConfigUpdateDataWithDefaults instantiates a new RumRetentionQuotaConfigUpdateData object.
+// NewRUMRetentionQuotaConfigUpdateDataWithDefaults instantiates a new RUMRetentionQuotaConfigUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionQuotaConfigUpdateDataWithDefaults() *RumRetentionQuotaConfigUpdateData {
-	this := RumRetentionQuotaConfigUpdateData{}
-	var typeVar RumRetentionQuotaConfigType = RUMRETENTIONQUOTACONFIGTYPE_RUM_QUOTA_CONFIG
+func NewRUMRetentionQuotaConfigUpdateDataWithDefaults() *RUMRetentionQuotaConfigUpdateData {
+	this := RUMRetentionQuotaConfigUpdateData{}
+	var typeVar RUMRetentionQuotaConfigType = RUMRETENTIONQUOTACONFIGTYPE_RUM_QUOTA_CONFIG
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumRetentionQuotaConfigUpdateData) GetAttributes() RumRetentionQuotaConfigUpdateAttributes {
+func (o *RUMRetentionQuotaConfigUpdateData) GetAttributes() RUMRetentionQuotaConfigUpdateAttributes {
 	if o == nil {
-		var ret RumRetentionQuotaConfigUpdateAttributes
+		var ret RUMRetentionQuotaConfigUpdateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -57,7 +57,7 @@ func (o *RumRetentionQuotaConfigUpdateData) GetAttributes() RumRetentionQuotaCon
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateData) GetAttributesOk() (*RumRetentionQuotaConfigUpdateAttributes, bool) {
+func (o *RUMRetentionQuotaConfigUpdateData) GetAttributesOk() (*RUMRetentionQuotaConfigUpdateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,12 +65,12 @@ func (o *RumRetentionQuotaConfigUpdateData) GetAttributesOk() (*RumRetentionQuot
 }
 
 // SetAttributes sets field value.
-func (o *RumRetentionQuotaConfigUpdateData) SetAttributes(v RumRetentionQuotaConfigUpdateAttributes) {
+func (o *RUMRetentionQuotaConfigUpdateData) SetAttributes(v RUMRetentionQuotaConfigUpdateAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumRetentionQuotaConfigUpdateData) GetId() string {
+func (o *RUMRetentionQuotaConfigUpdateData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -80,7 +80,7 @@ func (o *RumRetentionQuotaConfigUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateData) GetIdOk() (*string, bool) {
+func (o *RUMRetentionQuotaConfigUpdateData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,14 +88,14 @@ func (o *RumRetentionQuotaConfigUpdateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumRetentionQuotaConfigUpdateData) SetId(v string) {
+func (o *RUMRetentionQuotaConfigUpdateData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumRetentionQuotaConfigUpdateData) GetType() RumRetentionQuotaConfigType {
+func (o *RUMRetentionQuotaConfigUpdateData) GetType() RUMRetentionQuotaConfigType {
 	if o == nil {
-		var ret RumRetentionQuotaConfigType
+		var ret RUMRetentionQuotaConfigType
 		return ret
 	}
 	return o.Type
@@ -103,7 +103,7 @@ func (o *RumRetentionQuotaConfigUpdateData) GetType() RumRetentionQuotaConfigTyp
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateData) GetTypeOk() (*RumRetentionQuotaConfigType, bool) {
+func (o *RUMRetentionQuotaConfigUpdateData) GetTypeOk() (*RUMRetentionQuotaConfigType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,12 +111,12 @@ func (o *RumRetentionQuotaConfigUpdateData) GetTypeOk() (*RumRetentionQuotaConfi
 }
 
 // SetType sets field value.
-func (o *RumRetentionQuotaConfigUpdateData) SetType(v RumRetentionQuotaConfigType) {
+func (o *RUMRetentionQuotaConfigUpdateData) SetType(v RUMRetentionQuotaConfigType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionQuotaConfigUpdateData) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionQuotaConfigUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -132,11 +132,11 @@ func (o RumRetentionQuotaConfigUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionQuotaConfigUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionQuotaConfigUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumRetentionQuotaConfigUpdateAttributes `json:"attributes"`
+		Attributes *RUMRetentionQuotaConfigUpdateAttributes `json:"attributes"`
 		Id         *string                                  `json:"id"`
-		Type       *RumRetentionQuotaConfigType             `json:"type"`
+		Type       *RUMRetentionQuotaConfigType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -1,4 +1,4 @@
-// Get RUM replay playlist returns "OK" response
+// Get a RUM SDK configuration returns "OK" response
 
 package main
 
@@ -16,15 +16,16 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetRUMSdkConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	resp, r, err := api.GetRumReplayPlaylist(ctx, 1234567)
+	api := datadogV2.NewRUMRemoteConfigApi(apiClient)
+	resp, r, err := api.GetRUMSdkConfig(ctx, "config_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.GetRumReplayPlaylist`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRemoteConfigApi.GetRUMSdkConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayPlaylistsApi.GetRumReplayPlaylist`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRemoteConfigApi.GetRUMSdkConfig`:\n%s\n", responseContent)
 }

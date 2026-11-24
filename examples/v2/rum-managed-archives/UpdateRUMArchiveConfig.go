@@ -14,9 +14,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumArchiveConfigUpsertRequest{
-		Data: datadogV2.RumArchiveConfigUpsertData{
-			Attributes: datadogV2.RumArchiveConfigUpsertAttributes{
+	body := datadogV2.RUMArchiveConfigUpsertRequest{
+		Data: datadogV2.RUMArchiveConfigUpsertData{
+			Attributes: datadogV2.RUMArchiveConfigUpsertAttributes{
 				Enabled:       true,
 				RetentionDays: datadog.PtrInt32(90),
 			},

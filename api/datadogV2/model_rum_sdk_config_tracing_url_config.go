@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigTracingUrlConfig Configuration for a URL that should have distributed tracing enabled.
-type RumSdkConfigTracingUrlConfig struct {
+// RUMSdkConfigTracingUrlConfig Configuration for a URL that should have distributed tracing enabled.
+type RUMSdkConfigTracingUrlConfig struct {
 	// A match option used for URL or origin pattern matching.
-	Match RumSdkConfigMatchOption `json:"match"`
+	Match RUMSdkConfigMatchOption `json:"match"`
 	// The list of trace propagator types to use for this URL.
-	PropagatorTypes []RumSdkConfigTracingUrlPropagatorType `json:"propagator_types"`
+	PropagatorTypes []RUMSdkConfigTracingUrlPropagatorType `json:"propagator_types"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumSdkConfigTracingUrlConfig instantiates a new RumSdkConfigTracingUrlConfig object.
+// NewRUMSdkConfigTracingUrlConfig instantiates a new RUMSdkConfigTracingUrlConfig object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumSdkConfigTracingUrlConfig(match RumSdkConfigMatchOption, propagatorTypes []RumSdkConfigTracingUrlPropagatorType) *RumSdkConfigTracingUrlConfig {
-	this := RumSdkConfigTracingUrlConfig{}
+func NewRUMSdkConfigTracingUrlConfig(match RUMSdkConfigMatchOption, propagatorTypes []RUMSdkConfigTracingUrlPropagatorType) *RUMSdkConfigTracingUrlConfig {
+	this := RUMSdkConfigTracingUrlConfig{}
 	this.Match = match
 	this.PropagatorTypes = propagatorTypes
 	return &this
 }
 
-// NewRumSdkConfigTracingUrlConfigWithDefaults instantiates a new RumSdkConfigTracingUrlConfig object.
+// NewRUMSdkConfigTracingUrlConfigWithDefaults instantiates a new RUMSdkConfigTracingUrlConfig object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumSdkConfigTracingUrlConfigWithDefaults() *RumSdkConfigTracingUrlConfig {
-	this := RumSdkConfigTracingUrlConfig{}
+func NewRUMSdkConfigTracingUrlConfigWithDefaults() *RUMSdkConfigTracingUrlConfig {
+	this := RUMSdkConfigTracingUrlConfig{}
 	return &this
 }
 
 // GetMatch returns the Match field value.
-func (o *RumSdkConfigTracingUrlConfig) GetMatch() RumSdkConfigMatchOption {
+func (o *RUMSdkConfigTracingUrlConfig) GetMatch() RUMSdkConfigMatchOption {
 	if o == nil {
-		var ret RumSdkConfigMatchOption
+		var ret RUMSdkConfigMatchOption
 		return ret
 	}
 	return o.Match
@@ -51,7 +51,7 @@ func (o *RumSdkConfigTracingUrlConfig) GetMatch() RumSdkConfigMatchOption {
 
 // GetMatchOk returns a tuple with the Match field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigTracingUrlConfig) GetMatchOk() (*RumSdkConfigMatchOption, bool) {
+func (o *RUMSdkConfigTracingUrlConfig) GetMatchOk() (*RUMSdkConfigMatchOption, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,14 +59,14 @@ func (o *RumSdkConfigTracingUrlConfig) GetMatchOk() (*RumSdkConfigMatchOption, b
 }
 
 // SetMatch sets field value.
-func (o *RumSdkConfigTracingUrlConfig) SetMatch(v RumSdkConfigMatchOption) {
+func (o *RUMSdkConfigTracingUrlConfig) SetMatch(v RUMSdkConfigMatchOption) {
 	o.Match = v
 }
 
 // GetPropagatorTypes returns the PropagatorTypes field value.
-func (o *RumSdkConfigTracingUrlConfig) GetPropagatorTypes() []RumSdkConfigTracingUrlPropagatorType {
+func (o *RUMSdkConfigTracingUrlConfig) GetPropagatorTypes() []RUMSdkConfigTracingUrlPropagatorType {
 	if o == nil {
-		var ret []RumSdkConfigTracingUrlPropagatorType
+		var ret []RUMSdkConfigTracingUrlPropagatorType
 		return ret
 	}
 	return o.PropagatorTypes
@@ -74,7 +74,7 @@ func (o *RumSdkConfigTracingUrlConfig) GetPropagatorTypes() []RumSdkConfigTracin
 
 // GetPropagatorTypesOk returns a tuple with the PropagatorTypes field value
 // and a boolean to check if the value has been set.
-func (o *RumSdkConfigTracingUrlConfig) GetPropagatorTypesOk() (*[]RumSdkConfigTracingUrlPropagatorType, bool) {
+func (o *RUMSdkConfigTracingUrlConfig) GetPropagatorTypesOk() (*[]RUMSdkConfigTracingUrlPropagatorType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,12 +82,12 @@ func (o *RumSdkConfigTracingUrlConfig) GetPropagatorTypesOk() (*[]RumSdkConfigTr
 }
 
 // SetPropagatorTypes sets field value.
-func (o *RumSdkConfigTracingUrlConfig) SetPropagatorTypes(v []RumSdkConfigTracingUrlPropagatorType) {
+func (o *RUMSdkConfigTracingUrlConfig) SetPropagatorTypes(v []RUMSdkConfigTracingUrlPropagatorType) {
 	o.PropagatorTypes = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumSdkConfigTracingUrlConfig) MarshalJSON() ([]byte, error) {
+func (o RUMSdkConfigTracingUrlConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -102,10 +102,10 @@ func (o RumSdkConfigTracingUrlConfig) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumSdkConfigTracingUrlConfig) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMSdkConfigTracingUrlConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Match           *RumSdkConfigMatchOption                `json:"match"`
-		PropagatorTypes *[]RumSdkConfigTracingUrlPropagatorType `json:"propagator_types"`
+		Match           *RUMSdkConfigMatchOption                `json:"match"`
+		PropagatorTypes *[]RUMSdkConfigTracingUrlPropagatorType `json:"propagator_types"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

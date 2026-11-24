@@ -10,14 +10,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterCreateAttributes The object describing attributes of a RUM retention filter to create.
-type RumRetentionFilterCreateAttributes struct {
+// RUMRetentionFilterCreateAttributes The object describing attributes of a RUM retention filter to create.
+type RUMRetentionFilterCreateAttributes struct {
 	// The configuration for cross-product retention filters.
-	CrossProductSampling *RumCrossProductSamplingCreate `json:"cross_product_sampling,omitempty"`
+	CrossProductSampling *RUMCrossProductSamplingCreate `json:"cross_product_sampling,omitempty"`
 	// Whether the retention filter is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The type of RUM events to filter on.
-	EventType RumRetentionFilterEventType `json:"event_type"`
+	EventType RUMRetentionFilterEventType `json:"event_type"`
 	// The name of a RUM retention filter.
 	Name string `json:"name"`
 	// The query string for a RUM retention filter.
@@ -29,30 +29,30 @@ type RumRetentionFilterCreateAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionFilterCreateAttributes instantiates a new RumRetentionFilterCreateAttributes object.
+// NewRUMRetentionFilterCreateAttributes instantiates a new RUMRetentionFilterCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionFilterCreateAttributes(eventType RumRetentionFilterEventType, name string, sampleRate float64) *RumRetentionFilterCreateAttributes {
-	this := RumRetentionFilterCreateAttributes{}
+func NewRUMRetentionFilterCreateAttributes(eventType RUMRetentionFilterEventType, name string, sampleRate float64) *RUMRetentionFilterCreateAttributes {
+	this := RUMRetentionFilterCreateAttributes{}
 	this.EventType = eventType
 	this.Name = name
 	this.SampleRate = sampleRate
 	return &this
 }
 
-// NewRumRetentionFilterCreateAttributesWithDefaults instantiates a new RumRetentionFilterCreateAttributes object.
+// NewRUMRetentionFilterCreateAttributesWithDefaults instantiates a new RUMRetentionFilterCreateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionFilterCreateAttributesWithDefaults() *RumRetentionFilterCreateAttributes {
-	this := RumRetentionFilterCreateAttributes{}
+func NewRUMRetentionFilterCreateAttributesWithDefaults() *RUMRetentionFilterCreateAttributes {
+	this := RUMRetentionFilterCreateAttributes{}
 	return &this
 }
 
 // GetCrossProductSampling returns the CrossProductSampling field value if set, zero value otherwise.
-func (o *RumRetentionFilterCreateAttributes) GetCrossProductSampling() RumCrossProductSamplingCreate {
+func (o *RUMRetentionFilterCreateAttributes) GetCrossProductSampling() RUMCrossProductSamplingCreate {
 	if o == nil || o.CrossProductSampling == nil {
-		var ret RumCrossProductSamplingCreate
+		var ret RUMCrossProductSamplingCreate
 		return ret
 	}
 	return *o.CrossProductSampling
@@ -60,7 +60,7 @@ func (o *RumRetentionFilterCreateAttributes) GetCrossProductSampling() RumCrossP
 
 // GetCrossProductSamplingOk returns a tuple with the CrossProductSampling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetCrossProductSamplingOk() (*RumCrossProductSamplingCreate, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetCrossProductSamplingOk() (*RUMCrossProductSamplingCreate, bool) {
 	if o == nil || o.CrossProductSampling == nil {
 		return nil, false
 	}
@@ -68,17 +68,17 @@ func (o *RumRetentionFilterCreateAttributes) GetCrossProductSamplingOk() (*RumCr
 }
 
 // HasCrossProductSampling returns a boolean if a field has been set.
-func (o *RumRetentionFilterCreateAttributes) HasCrossProductSampling() bool {
+func (o *RUMRetentionFilterCreateAttributes) HasCrossProductSampling() bool {
 	return o != nil && o.CrossProductSampling != nil
 }
 
-// SetCrossProductSampling gets a reference to the given RumCrossProductSamplingCreate and assigns it to the CrossProductSampling field.
-func (o *RumRetentionFilterCreateAttributes) SetCrossProductSampling(v RumCrossProductSamplingCreate) {
+// SetCrossProductSampling gets a reference to the given RUMCrossProductSamplingCreate and assigns it to the CrossProductSampling field.
+func (o *RUMRetentionFilterCreateAttributes) SetCrossProductSampling(v RUMCrossProductSamplingCreate) {
 	o.CrossProductSampling = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *RumRetentionFilterCreateAttributes) GetEnabled() bool {
+func (o *RUMRetentionFilterCreateAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
@@ -88,7 +88,7 @@ func (o *RumRetentionFilterCreateAttributes) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetEnabledOk() (*bool, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
 		return nil, false
 	}
@@ -96,19 +96,19 @@ func (o *RumRetentionFilterCreateAttributes) GetEnabledOk() (*bool, bool) {
 }
 
 // HasEnabled returns a boolean if a field has been set.
-func (o *RumRetentionFilterCreateAttributes) HasEnabled() bool {
+func (o *RUMRetentionFilterCreateAttributes) HasEnabled() bool {
 	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *RumRetentionFilterCreateAttributes) SetEnabled(v bool) {
+func (o *RUMRetentionFilterCreateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
 // GetEventType returns the EventType field value.
-func (o *RumRetentionFilterCreateAttributes) GetEventType() RumRetentionFilterEventType {
+func (o *RUMRetentionFilterCreateAttributes) GetEventType() RUMRetentionFilterEventType {
 	if o == nil {
-		var ret RumRetentionFilterEventType
+		var ret RUMRetentionFilterEventType
 		return ret
 	}
 	return o.EventType
@@ -116,7 +116,7 @@ func (o *RumRetentionFilterCreateAttributes) GetEventType() RumRetentionFilterEv
 
 // GetEventTypeOk returns a tuple with the EventType field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetEventTypeOk() (*RumRetentionFilterEventType, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetEventTypeOk() (*RUMRetentionFilterEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,12 +124,12 @@ func (o *RumRetentionFilterCreateAttributes) GetEventTypeOk() (*RumRetentionFilt
 }
 
 // SetEventType sets field value.
-func (o *RumRetentionFilterCreateAttributes) SetEventType(v RumRetentionFilterEventType) {
+func (o *RUMRetentionFilterCreateAttributes) SetEventType(v RUMRetentionFilterEventType) {
 	o.EventType = v
 }
 
 // GetName returns the Name field value.
-func (o *RumRetentionFilterCreateAttributes) GetName() string {
+func (o *RUMRetentionFilterCreateAttributes) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -139,7 +139,7 @@ func (o *RumRetentionFilterCreateAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetNameOk() (*string, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,12 +147,12 @@ func (o *RumRetentionFilterCreateAttributes) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value.
-func (o *RumRetentionFilterCreateAttributes) SetName(v string) {
+func (o *RUMRetentionFilterCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
-func (o *RumRetentionFilterCreateAttributes) GetQuery() string {
+func (o *RUMRetentionFilterCreateAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
 		var ret string
 		return ret
@@ -162,7 +162,7 @@ func (o *RumRetentionFilterCreateAttributes) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetQueryOk() (*string, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
 		return nil, false
 	}
@@ -170,17 +170,17 @@ func (o *RumRetentionFilterCreateAttributes) GetQueryOk() (*string, bool) {
 }
 
 // HasQuery returns a boolean if a field has been set.
-func (o *RumRetentionFilterCreateAttributes) HasQuery() bool {
+func (o *RUMRetentionFilterCreateAttributes) HasQuery() bool {
 	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *RumRetentionFilterCreateAttributes) SetQuery(v string) {
+func (o *RUMRetentionFilterCreateAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
 // GetSampleRate returns the SampleRate field value.
-func (o *RumRetentionFilterCreateAttributes) GetSampleRate() float64 {
+func (o *RUMRetentionFilterCreateAttributes) GetSampleRate() float64 {
 	if o == nil {
 		var ret float64
 		return ret
@@ -190,7 +190,7 @@ func (o *RumRetentionFilterCreateAttributes) GetSampleRate() float64 {
 
 // GetSampleRateOk returns a tuple with the SampleRate field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*float64, bool) {
+func (o *RUMRetentionFilterCreateAttributes) GetSampleRateOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -198,12 +198,12 @@ func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*float64, bool) 
 }
 
 // SetSampleRate sets field value.
-func (o *RumRetentionFilterCreateAttributes) SetSampleRate(v float64) {
+func (o *RUMRetentionFilterCreateAttributes) SetSampleRate(v float64) {
 	o.SampleRate = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionFilterCreateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -228,11 +228,11 @@ func (o RumRetentionFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CrossProductSampling *RumCrossProductSamplingCreate `json:"cross_product_sampling,omitempty"`
+		CrossProductSampling *RUMCrossProductSamplingCreate `json:"cross_product_sampling,omitempty"`
 		Enabled              *bool                          `json:"enabled,omitempty"`
-		EventType            *RumRetentionFilterEventType   `json:"event_type"`
+		EventType            *RUMRetentionFilterEventType   `json:"event_type"`
 		Name                 *string                        `json:"name"`
 		Query                *string                        `json:"query,omitempty"`
 		SampleRate           *float64                       `json:"sample_rate"`
