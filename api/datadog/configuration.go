@@ -1135,6 +1135,7 @@ func NewConfiguration() *Configuration {
 			"v2.DisableSecurityFindingsAutomationDefaultInboxRule":      false,
 			"v2.EnableSecurityFindingsAutomationDefaultInboxRule":       false,
 			"v2.ExportSecurityMonitoringTerraformResource":              false,
+			"v2.GetAWSIdentityCenterAWSAccounts":                        false,
 			"v2.GetContentPacksStates":                                  false,
 			"v2.GetEntityContext":                                       false,
 			"v2.GetEntityContextRecentlyUpdated":                        false,

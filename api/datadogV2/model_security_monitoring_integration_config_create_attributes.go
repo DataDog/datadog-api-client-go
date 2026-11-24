@@ -10,11 +10,12 @@ import (
 
 // SecurityMonitoringIntegrationConfigCreateAttributes - The attributes of the entity context sync configuration to create.
 type SecurityMonitoringIntegrationConfigCreateAttributes struct {
-	SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes *SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes
-	SecurityMonitoringOktaIntegrationConfigCreateAttributes            *SecurityMonitoringOktaIntegrationConfigCreateAttributes
-	SecurityMonitoringEntraIdIntegrationConfigCreateAttributes         *SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
-	SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes     *SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
-	SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes     *SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes
+	SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes   *SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes
+	SecurityMonitoringOktaIntegrationConfigCreateAttributes              *SecurityMonitoringOktaIntegrationConfigCreateAttributes
+	SecurityMonitoringEntraIdIntegrationConfigCreateAttributes           *SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
+	SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes *SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes
+	SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes       *SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
+	SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes       *SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -33,6 +34,11 @@ func SecurityMonitoringOktaIntegrationConfigCreateAttributesAsSecurityMonitoring
 // SecurityMonitoringEntraIdIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringEntraIdIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
 func SecurityMonitoringEntraIdIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringEntraIdIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
 	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringEntraIdIntegrationConfigCreateAttributes: v}
+}
+
+// SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
+func SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
+	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes: v}
 }
 
 // SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
@@ -100,6 +106,23 @@ func (obj *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(da
 		obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes = nil
 	}
 
+	// try to unmarshal data into SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes)
+	if err == nil {
+		if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes != nil && obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes.UnparsedObject == nil {
+			jsonSecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes, _ := datadog.Marshal(obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes)
+			if string(jsonSecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes) == "{}" { // empty struct
+				obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes = nil
+		}
+	} else {
+		obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes = nil
+	}
+
 	// try to unmarshal data into SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
 	err = datadog.Unmarshal(data, &obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes)
 	if err == nil {
@@ -139,6 +162,7 @@ func (obj *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(da
 		obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes = nil
 		obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes = nil
 		obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes = nil
+		obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes = nil
 		obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes = nil
 		obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
@@ -158,6 +182,10 @@ func (obj SecurityMonitoringIntegrationConfigCreateAttributes) MarshalJSON() ([]
 
 	if obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes != nil {
 		return datadog.Marshal(&obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes)
+	}
+
+	if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes != nil {
+		return datadog.Marshal(&obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes)
 	}
 
 	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes != nil {
@@ -186,6 +214,10 @@ func (obj *SecurityMonitoringIntegrationConfigCreateAttributes) GetActualInstanc
 
 	if obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes != nil {
 		return obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
+	}
+
+	if obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes != nil {
+		return obj.SecurityMonitoringAWSIdentityCenterIntegrationConfigCreateAttributes
 	}
 
 	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes != nil {
