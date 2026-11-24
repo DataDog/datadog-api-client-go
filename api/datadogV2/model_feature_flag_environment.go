@@ -40,6 +40,10 @@ type FeatureFlagEnvironment struct {
 	RequireFeatureFlagApproval *bool `json:"require_feature_flag_approval,omitempty"`
 	// The status of a feature flag in an environment.
 	Status FeatureFlagStatus `json:"status"`
+	// The environment's associated Custom OIDC provider ID, or `null` when no provider is associated.
+	SubjectAuthorizationOidcProviderId datadog.NullableUUID `json:"subject_authorization_oidc_provider_id,omitempty"`
+	// Whether assignment requests for this environment require subject authorization. Allowed values are `disabled` and `enabled`. Enabling requires a provider ID formatted as a nonzero UUID. If omitted on create, defaults to `disabled`. If omitted on update, the stored state is preserved. `null` is not accepted. This setting applies only to the current Datadog site and is not copied to other sites. Before you enable it, configure an eligible Custom OIDC provider in the same organization and site, and verify that the provider's keys are published. Assignment requests fail when the required verification configuration is unavailable.
+	SubjectAuthorizationState *EnvironmentSubjectAuthorizationState `json:"subject_authorization_state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -452,6 +456,73 @@ func (o *FeatureFlagEnvironment) SetStatus(v FeatureFlagStatus) {
 	o.Status = v
 }
 
+// GetSubjectAuthorizationOidcProviderId returns the SubjectAuthorizationOidcProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FeatureFlagEnvironment) GetSubjectAuthorizationOidcProviderId() uuid.UUID {
+	if o == nil || o.SubjectAuthorizationOidcProviderId.Get() == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return *o.SubjectAuthorizationOidcProviderId.Get()
+}
+
+// GetSubjectAuthorizationOidcProviderIdOk returns a tuple with the SubjectAuthorizationOidcProviderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *FeatureFlagEnvironment) GetSubjectAuthorizationOidcProviderIdOk() (*uuid.UUID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubjectAuthorizationOidcProviderId.Get(), o.SubjectAuthorizationOidcProviderId.IsSet()
+}
+
+// HasSubjectAuthorizationOidcProviderId returns a boolean if a field has been set.
+func (o *FeatureFlagEnvironment) HasSubjectAuthorizationOidcProviderId() bool {
+	return o != nil && o.SubjectAuthorizationOidcProviderId.IsSet()
+}
+
+// SetSubjectAuthorizationOidcProviderId gets a reference to the given datadog.NullableUUID and assigns it to the SubjectAuthorizationOidcProviderId field.
+func (o *FeatureFlagEnvironment) SetSubjectAuthorizationOidcProviderId(v uuid.UUID) {
+	o.SubjectAuthorizationOidcProviderId.Set(&v)
+}
+
+// SetSubjectAuthorizationOidcProviderIdNil sets the value for SubjectAuthorizationOidcProviderId to be an explicit nil.
+func (o *FeatureFlagEnvironment) SetSubjectAuthorizationOidcProviderIdNil() {
+	o.SubjectAuthorizationOidcProviderId.Set(nil)
+}
+
+// UnsetSubjectAuthorizationOidcProviderId ensures that no value is present for SubjectAuthorizationOidcProviderId, not even an explicit nil.
+func (o *FeatureFlagEnvironment) UnsetSubjectAuthorizationOidcProviderId() {
+	o.SubjectAuthorizationOidcProviderId.Unset()
+}
+
+// GetSubjectAuthorizationState returns the SubjectAuthorizationState field value if set, zero value otherwise.
+func (o *FeatureFlagEnvironment) GetSubjectAuthorizationState() EnvironmentSubjectAuthorizationState {
+	if o == nil || o.SubjectAuthorizationState == nil {
+		var ret EnvironmentSubjectAuthorizationState
+		return ret
+	}
+	return *o.SubjectAuthorizationState
+}
+
+// GetSubjectAuthorizationStateOk returns a tuple with the SubjectAuthorizationState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagEnvironment) GetSubjectAuthorizationStateOk() (*EnvironmentSubjectAuthorizationState, bool) {
+	if o == nil || o.SubjectAuthorizationState == nil {
+		return nil, false
+	}
+	return o.SubjectAuthorizationState, true
+}
+
+// HasSubjectAuthorizationState returns a boolean if a field has been set.
+func (o *FeatureFlagEnvironment) HasSubjectAuthorizationState() bool {
+	return o != nil && o.SubjectAuthorizationState != nil
+}
+
+// SetSubjectAuthorizationState gets a reference to the given EnvironmentSubjectAuthorizationState and assigns it to the SubjectAuthorizationState field.
+func (o *FeatureFlagEnvironment) SetSubjectAuthorizationState(v EnvironmentSubjectAuthorizationState) {
+	o.SubjectAuthorizationState = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FeatureFlagEnvironment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -493,6 +564,12 @@ func (o FeatureFlagEnvironment) MarshalJSON() ([]byte, error) {
 		toSerialize["require_feature_flag_approval"] = o.RequireFeatureFlagApproval
 	}
 	toSerialize["status"] = o.Status
+	if o.SubjectAuthorizationOidcProviderId.IsSet() {
+		toSerialize["subject_authorization_oidc_provider_id"] = o.SubjectAuthorizationOidcProviderId.Get()
+	}
+	if o.SubjectAuthorizationState != nil {
+		toSerialize["subject_authorization_state"] = o.SubjectAuthorizationState
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -503,19 +580,21 @@ func (o FeatureFlagEnvironment) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Allocations                map[string]interface{} `json:"allocations,omitempty"`
-		DefaultAllocationKey       *string                `json:"default_allocation_key,omitempty"`
-		DefaultVariantId           datadog.NullableString `json:"default_variant_id,omitempty"`
-		EnvironmentId              *uuid.UUID             `json:"environment_id"`
-		EnvironmentName            *string                `json:"environment_name,omitempty"`
-		EnvironmentQueries         []string               `json:"environment_queries,omitempty"`
-		IsProduction               *bool                  `json:"is_production,omitempty"`
-		ObserveFullEvaluationData  *bool                  `json:"observe_full_evaluation_data,omitempty"`
-		OverrideAllocationKey      *string                `json:"override_allocation_key,omitempty"`
-		OverrideVariantId          datadog.NullableString `json:"override_variant_id,omitempty"`
-		PendingSuggestionId        datadog.NullableString `json:"pending_suggestion_id,omitempty"`
-		RequireFeatureFlagApproval *bool                  `json:"require_feature_flag_approval,omitempty"`
-		Status                     *FeatureFlagStatus     `json:"status"`
+		Allocations                        map[string]interface{}                `json:"allocations,omitempty"`
+		DefaultAllocationKey               *string                               `json:"default_allocation_key,omitempty"`
+		DefaultVariantId                   datadog.NullableString                `json:"default_variant_id,omitempty"`
+		EnvironmentId                      *uuid.UUID                            `json:"environment_id"`
+		EnvironmentName                    *string                               `json:"environment_name,omitempty"`
+		EnvironmentQueries                 []string                              `json:"environment_queries,omitempty"`
+		IsProduction                       *bool                                 `json:"is_production,omitempty"`
+		ObserveFullEvaluationData          *bool                                 `json:"observe_full_evaluation_data,omitempty"`
+		OverrideAllocationKey              *string                               `json:"override_allocation_key,omitempty"`
+		OverrideVariantId                  datadog.NullableString                `json:"override_variant_id,omitempty"`
+		PendingSuggestionId                datadog.NullableString                `json:"pending_suggestion_id,omitempty"`
+		RequireFeatureFlagApproval         *bool                                 `json:"require_feature_flag_approval,omitempty"`
+		Status                             *FeatureFlagStatus                    `json:"status"`
+		SubjectAuthorizationOidcProviderId datadog.NullableUUID                  `json:"subject_authorization_oidc_provider_id,omitempty"`
+		SubjectAuthorizationState          *EnvironmentSubjectAuthorizationState `json:"subject_authorization_state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -528,7 +607,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "observe_full_evaluation_data", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "observe_full_evaluation_data", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "status", "subject_authorization_oidc_provider_id", "subject_authorization_state"})
 	} else {
 		return err
 	}
@@ -550,6 +629,12 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Status = *all.Status
+	}
+	o.SubjectAuthorizationOidcProviderId = all.SubjectAuthorizationOidcProviderId
+	if all.SubjectAuthorizationState != nil && !all.SubjectAuthorizationState.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SubjectAuthorizationState = all.SubjectAuthorizationState
 	}
 
 	if len(additionalProperties) > 0 {

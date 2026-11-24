@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -20,6 +22,10 @@ type UpdateEnvironmentAttributes struct {
 	Queries []string `json:"queries,omitempty"`
 	// Indicates whether feature flag changes require approval in this environment. If omitted, resets to false. Include the existing value to preserve it.
 	RequireFeatureFlagApproval *bool `json:"require_feature_flag_approval,omitempty"`
+	// The ID of a Custom OIDC provider, formatted as a nonzero UUID. If omitted, the stored association is preserved. Set to `null` to clear the association, which is allowed only when the resulting `subject_authorization_state` is `disabled`. A new non-null ID must be registered in the current organization and site, even when subject authorization is disabled. An unregistered ID returns `400 Bad Request`, and an unavailable registry returns `503 Service Unavailable`. Omitted, cleared, and unchanged IDs skip this check, including when you enable a retained provider. An ID that matches the stored ID in a different format, such as different letter case, is treated as unchanged. Saving does not verify provider eligibility or key publication.
+	SubjectAuthorizationOidcProviderId datadog.NullableUUID `json:"subject_authorization_oidc_provider_id,omitempty"`
+	// Whether assignment requests for this environment require subject authorization. Allowed values are `disabled` and `enabled`. Enabling requires a provider ID formatted as a nonzero UUID. If omitted on create, defaults to `disabled`. If omitted on update, the stored state is preserved. `null` is not accepted. This setting applies only to the current Datadog site and is not copied to other sites. Before you enable it, configure an eligible Custom OIDC provider in the same organization and site, and verify that the provider's keys are published. Assignment requests fail when the required verification configuration is unavailable.
+	SubjectAuthorizationState *EnvironmentSubjectAuthorizationState `json:"subject_authorization_state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -182,6 +188,73 @@ func (o *UpdateEnvironmentAttributes) SetRequireFeatureFlagApproval(v bool) {
 	o.RequireFeatureFlagApproval = &v
 }
 
+// GetSubjectAuthorizationOidcProviderId returns the SubjectAuthorizationOidcProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateEnvironmentAttributes) GetSubjectAuthorizationOidcProviderId() uuid.UUID {
+	if o == nil || o.SubjectAuthorizationOidcProviderId.Get() == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return *o.SubjectAuthorizationOidcProviderId.Get()
+}
+
+// GetSubjectAuthorizationOidcProviderIdOk returns a tuple with the SubjectAuthorizationOidcProviderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *UpdateEnvironmentAttributes) GetSubjectAuthorizationOidcProviderIdOk() (*uuid.UUID, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubjectAuthorizationOidcProviderId.Get(), o.SubjectAuthorizationOidcProviderId.IsSet()
+}
+
+// HasSubjectAuthorizationOidcProviderId returns a boolean if a field has been set.
+func (o *UpdateEnvironmentAttributes) HasSubjectAuthorizationOidcProviderId() bool {
+	return o != nil && o.SubjectAuthorizationOidcProviderId.IsSet()
+}
+
+// SetSubjectAuthorizationOidcProviderId gets a reference to the given datadog.NullableUUID and assigns it to the SubjectAuthorizationOidcProviderId field.
+func (o *UpdateEnvironmentAttributes) SetSubjectAuthorizationOidcProviderId(v uuid.UUID) {
+	o.SubjectAuthorizationOidcProviderId.Set(&v)
+}
+
+// SetSubjectAuthorizationOidcProviderIdNil sets the value for SubjectAuthorizationOidcProviderId to be an explicit nil.
+func (o *UpdateEnvironmentAttributes) SetSubjectAuthorizationOidcProviderIdNil() {
+	o.SubjectAuthorizationOidcProviderId.Set(nil)
+}
+
+// UnsetSubjectAuthorizationOidcProviderId ensures that no value is present for SubjectAuthorizationOidcProviderId, not even an explicit nil.
+func (o *UpdateEnvironmentAttributes) UnsetSubjectAuthorizationOidcProviderId() {
+	o.SubjectAuthorizationOidcProviderId.Unset()
+}
+
+// GetSubjectAuthorizationState returns the SubjectAuthorizationState field value if set, zero value otherwise.
+func (o *UpdateEnvironmentAttributes) GetSubjectAuthorizationState() EnvironmentSubjectAuthorizationState {
+	if o == nil || o.SubjectAuthorizationState == nil {
+		var ret EnvironmentSubjectAuthorizationState
+		return ret
+	}
+	return *o.SubjectAuthorizationState
+}
+
+// GetSubjectAuthorizationStateOk returns a tuple with the SubjectAuthorizationState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateEnvironmentAttributes) GetSubjectAuthorizationStateOk() (*EnvironmentSubjectAuthorizationState, bool) {
+	if o == nil || o.SubjectAuthorizationState == nil {
+		return nil, false
+	}
+	return o.SubjectAuthorizationState, true
+}
+
+// HasSubjectAuthorizationState returns a boolean if a field has been set.
+func (o *UpdateEnvironmentAttributes) HasSubjectAuthorizationState() bool {
+	return o != nil && o.SubjectAuthorizationState != nil
+}
+
+// SetSubjectAuthorizationState gets a reference to the given EnvironmentSubjectAuthorizationState and assigns it to the SubjectAuthorizationState field.
+func (o *UpdateEnvironmentAttributes) SetSubjectAuthorizationState(v EnvironmentSubjectAuthorizationState) {
+	o.SubjectAuthorizationState = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateEnvironmentAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,6 +276,12 @@ func (o UpdateEnvironmentAttributes) MarshalJSON() ([]byte, error) {
 	if o.RequireFeatureFlagApproval != nil {
 		toSerialize["require_feature_flag_approval"] = o.RequireFeatureFlagApproval
 	}
+	if o.SubjectAuthorizationOidcProviderId.IsSet() {
+		toSerialize["subject_authorization_oidc_provider_id"] = o.SubjectAuthorizationOidcProviderId.Get()
+	}
+	if o.SubjectAuthorizationState != nil {
+		toSerialize["subject_authorization_state"] = o.SubjectAuthorizationState
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -213,29 +292,43 @@ func (o UpdateEnvironmentAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateEnvironmentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsProduction               *bool    `json:"is_production,omitempty"`
-		Name                       *string  `json:"name,omitempty"`
-		ObserveFullEvaluationData  *bool    `json:"observe_full_evaluation_data,omitempty"`
-		Queries                    []string `json:"queries,omitempty"`
-		RequireFeatureFlagApproval *bool    `json:"require_feature_flag_approval,omitempty"`
+		IsProduction                       *bool                                 `json:"is_production,omitempty"`
+		Name                               *string                               `json:"name,omitempty"`
+		ObserveFullEvaluationData          *bool                                 `json:"observe_full_evaluation_data,omitempty"`
+		Queries                            []string                              `json:"queries,omitempty"`
+		RequireFeatureFlagApproval         *bool                                 `json:"require_feature_flag_approval,omitempty"`
+		SubjectAuthorizationOidcProviderId datadog.NullableUUID                  `json:"subject_authorization_oidc_provider_id,omitempty"`
+		SubjectAuthorizationState          *EnvironmentSubjectAuthorizationState `json:"subject_authorization_state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_production", "name", "observe_full_evaluation_data", "queries", "require_feature_flag_approval", "subject_authorization_oidc_provider_id", "subject_authorization_state"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.IsProduction = all.IsProduction
 	o.Name = all.Name
 	o.ObserveFullEvaluationData = all.ObserveFullEvaluationData
 	o.Queries = all.Queries
 	o.RequireFeatureFlagApproval = all.RequireFeatureFlagApproval
+	o.SubjectAuthorizationOidcProviderId = all.SubjectAuthorizationOidcProviderId
+	if all.SubjectAuthorizationState != nil && !all.SubjectAuthorizationState.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SubjectAuthorizationState = all.SubjectAuthorizationState
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

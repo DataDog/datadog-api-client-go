@@ -260,7 +260,9 @@ func (a *FeatureFlagsApi) CreateFeatureFlag(ctx _context.Context, body CreateFea
 }
 
 // CreateFeatureFlagsEnvironment Create an environment.
-// Creates a new environment for organizing feature flags.
+// Creates an environment for organizing feature flags. A non-null subject authorization provider ID
+// must be registered in the current organization and site, even when authorization is disabled. An unknown
+// ID returns `400 Bad Request`; an unavailable registry returns `503 Service Unavailable`.
 func (a *FeatureFlagsApi) CreateFeatureFlagsEnvironment(ctx _context.Context, body CreateEnvironmentRequest) (EnvironmentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2396,11 +2398,11 @@ func (a *FeatureFlagsApi) UpdateFeatureFlag(ctx _context.Context, featureFlagId 
 // UpdateFeatureFlagsEnvironment Update an environment.
 // Updates an environment's name, DD_ENV values, and settings.
 //
-// Every request must include `name` and `queries`, even when changing only `observe_full_evaluation_data`.
+// Every request must include `name` and `queries`, even when changing only subject authorization or evaluation data settings.
 // To preserve the current name and DD_ENV values, get the environment first and include those values in the request.
 //
 // Omitting `is_production` or `require_feature_flag_approval` resets that setting to `false`.
-// Include their current values to preserve them. Omitting `observe_full_evaluation_data` preserves its current value.
+// Include their current values to preserve them. Omitting `observe_full_evaluation_data` preserves its current value. Omitting either subject authorization field preserves its stored value. Set `subject_authorization_oidc_provider_id` to `null` to clear the association while subject authorization is disabled. The following requests return `400 Bad Request`: enabling subject authorization without a provider, an unrecognized `subject_authorization_state` value, a malformed or zero UUID provider ID, or an unregistered provider ID. If the provider registry is unavailable, a new provider ID returns `503 Service Unavailable`. Omitted, cleared, or unchanged provider IDs skip the registry check, including when enabling a retained provider. Saving does not verify provider eligibility or key publication, so a successful save does not mean the environment is ready for assignment requests. Concurrent policy changes return `409 Conflict`; reload the environment and retry.
 func (a *FeatureFlagsApi) UpdateFeatureFlagsEnvironment(ctx _context.Context, environmentId uuid.UUID, body UpdateEnvironmentRequest) (EnvironmentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -2459,6 +2461,15 @@ func (a *FeatureFlagsApi) UpdateFeatureFlagsEnvironment(ctx _context.Context, en
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
