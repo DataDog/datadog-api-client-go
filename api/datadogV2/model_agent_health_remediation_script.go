@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -19,7 +21,7 @@ type AgentHealthRemediationScript struct {
 	// The language version used by the script.
 	LanguageVersion *string `json:"language_version,omitempty"`
 	// Whether the script requires root privileges.
-	RequiresRoot *bool `json:"requires_root,omitempty"`
+	RequiresRoot bool `json:"requires_root"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,8 +31,9 @@ type AgentHealthRemediationScript struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthRemediationScript() *AgentHealthRemediationScript {
+func NewAgentHealthRemediationScript(requiresRoot bool) *AgentHealthRemediationScript {
 	this := AgentHealthRemediationScript{}
+	this.RequiresRoot = requiresRoot
 	return &this
 }
 
@@ -154,32 +157,27 @@ func (o *AgentHealthRemediationScript) SetLanguageVersion(v string) {
 	o.LanguageVersion = &v
 }
 
-// GetRequiresRoot returns the RequiresRoot field value if set, zero value otherwise.
+// GetRequiresRoot returns the RequiresRoot field value.
 func (o *AgentHealthRemediationScript) GetRequiresRoot() bool {
-	if o == nil || o.RequiresRoot == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.RequiresRoot
+	return o.RequiresRoot
 }
 
-// GetRequiresRootOk returns a tuple with the RequiresRoot field value if set, nil otherwise
+// GetRequiresRootOk returns a tuple with the RequiresRoot field value
 // and a boolean to check if the value has been set.
 func (o *AgentHealthRemediationScript) GetRequiresRootOk() (*bool, bool) {
-	if o == nil || o.RequiresRoot == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RequiresRoot, true
+	return &o.RequiresRoot, true
 }
 
-// HasRequiresRoot returns a boolean if a field has been set.
-func (o *AgentHealthRemediationScript) HasRequiresRoot() bool {
-	return o != nil && o.RequiresRoot != nil
-}
-
-// SetRequiresRoot gets a reference to the given bool and assigns it to the RequiresRoot field.
+// SetRequiresRoot sets field value.
 func (o *AgentHealthRemediationScript) SetRequiresRoot(v bool) {
-	o.RequiresRoot = &v
+	o.RequiresRoot = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -200,9 +198,7 @@ func (o AgentHealthRemediationScript) MarshalJSON() ([]byte, error) {
 	if o.LanguageVersion != nil {
 		toSerialize["language_version"] = o.LanguageVersion
 	}
-	if o.RequiresRoot != nil {
-		toSerialize["requires_root"] = o.RequiresRoot
-	}
+	toSerialize["requires_root"] = o.RequiresRoot
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -217,10 +213,13 @@ func (o *AgentHealthRemediationScript) UnmarshalJSON(bytes []byte) (err error) {
 		Filename        *string `json:"filename,omitempty"`
 		Language        *string `json:"language,omitempty"`
 		LanguageVersion *string `json:"language_version,omitempty"`
-		RequiresRoot    *bool   `json:"requires_root,omitempty"`
+		RequiresRoot    *bool   `json:"requires_root"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.RequiresRoot == nil {
+		return fmt.Errorf("required field requires_root missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -232,7 +231,7 @@ func (o *AgentHealthRemediationScript) UnmarshalJSON(bytes []byte) (err error) {
 	o.Filename = all.Filename
 	o.Language = all.Language
 	o.LanguageVersion = all.LanguageVersion
-	o.RequiresRoot = all.RequiresRoot
+	o.RequiresRoot = *all.RequiresRoot
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

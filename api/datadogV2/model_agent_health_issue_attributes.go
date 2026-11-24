@@ -29,13 +29,13 @@ type AgentHealthIssueAttributes struct {
 	Remediation *AgentHealthRemediation `json:"remediation,omitempty"`
 	// The identifier of the affected resource, interpreted according to `resource_kind`: hostname for `host`, DaemonSet UID for `deployment` (node Agent), cluster UUID for `cluster`, hostname of the host running the Cluster Agent for `cluster_agent`, or OpenTelemetry collector ID for `otel`.
 	ResourceId string `json:"resource_id"`
-	// The kind of affected resource. Known values are `host`, `deployment`, `cluster`, `cluster_agent`, and `otel`.
-	ResourceKind string `json:"resource_kind"`
+	// The kind of affected resource. The meaning of `resource_id` depends on this: hostname for `host`, DaemonSet UID for `deployment` (node Agent), cluster UUID for `cluster`, hostname of the host running the Cluster Agent for `cluster_agent`, or OpenTelemetry collector ID for `otel`.
+	ResourceKind AgentHealthIssueResourceKind `json:"resource_kind"`
 	// The type of the affected resource. Omitted when empty.
 	ResourceType *string `json:"resource_type,omitempty"`
-	// The severity of the issue. Known values are `low`, `medium`, `high`, and `unknown`.
-	Severity string `json:"severity"`
-	// The state of the issue. Only issues with state `open` are returned.
+	// The severity of the issue.
+	Severity AgentHealthIssueSeverity `json:"severity"`
+	// The state of the issue, such as `open`.
 	State string `json:"state"`
 	// Tags associated with the issue. Omitted when empty.
 	Tags []string `json:"tags,omitempty"`
@@ -52,7 +52,7 @@ type AgentHealthIssueAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAgentHealthIssueAttributes(issueName string, issueType string, resourceId string, resourceKind string, severity string, state string) *AgentHealthIssueAttributes {
+func NewAgentHealthIssueAttributes(issueName string, issueType string, resourceId string, resourceKind AgentHealthIssueResourceKind, severity AgentHealthIssueSeverity, state string) *AgentHealthIssueAttributes {
 	this := AgentHealthIssueAttributes{}
 	this.IssueName = issueName
 	this.IssueType = issueType
@@ -281,9 +281,9 @@ func (o *AgentHealthIssueAttributes) SetResourceId(v string) {
 }
 
 // GetResourceKind returns the ResourceKind field value.
-func (o *AgentHealthIssueAttributes) GetResourceKind() string {
+func (o *AgentHealthIssueAttributes) GetResourceKind() AgentHealthIssueResourceKind {
 	if o == nil {
-		var ret string
+		var ret AgentHealthIssueResourceKind
 		return ret
 	}
 	return o.ResourceKind
@@ -291,7 +291,7 @@ func (o *AgentHealthIssueAttributes) GetResourceKind() string {
 
 // GetResourceKindOk returns a tuple with the ResourceKind field value
 // and a boolean to check if the value has been set.
-func (o *AgentHealthIssueAttributes) GetResourceKindOk() (*string, bool) {
+func (o *AgentHealthIssueAttributes) GetResourceKindOk() (*AgentHealthIssueResourceKind, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -299,7 +299,7 @@ func (o *AgentHealthIssueAttributes) GetResourceKindOk() (*string, bool) {
 }
 
 // SetResourceKind sets field value.
-func (o *AgentHealthIssueAttributes) SetResourceKind(v string) {
+func (o *AgentHealthIssueAttributes) SetResourceKind(v AgentHealthIssueResourceKind) {
 	o.ResourceKind = v
 }
 
@@ -332,9 +332,9 @@ func (o *AgentHealthIssueAttributes) SetResourceType(v string) {
 }
 
 // GetSeverity returns the Severity field value.
-func (o *AgentHealthIssueAttributes) GetSeverity() string {
+func (o *AgentHealthIssueAttributes) GetSeverity() AgentHealthIssueSeverity {
 	if o == nil {
-		var ret string
+		var ret AgentHealthIssueSeverity
 		return ret
 	}
 	return o.Severity
@@ -342,7 +342,7 @@ func (o *AgentHealthIssueAttributes) GetSeverity() string {
 
 // GetSeverityOk returns a tuple with the Severity field value
 // and a boolean to check if the value has been set.
-func (o *AgentHealthIssueAttributes) GetSeverityOk() (*string, bool) {
+func (o *AgentHealthIssueAttributes) GetSeverityOk() (*AgentHealthIssueSeverity, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -350,7 +350,7 @@ func (o *AgentHealthIssueAttributes) GetSeverityOk() (*string, bool) {
 }
 
 // SetSeverity sets field value.
-func (o *AgentHealthIssueAttributes) SetSeverity(v string) {
+func (o *AgentHealthIssueAttributes) SetSeverity(v AgentHealthIssueSeverity) {
 	o.Severity = v
 }
 
@@ -518,21 +518,21 @@ func (o AgentHealthIssueAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AgentHealthIssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category     *string                 `json:"category,omitempty"`
-		Description  *string                 `json:"description,omitempty"`
-		Extra        map[string]interface{}  `json:"extra,omitempty"`
-		FirstSeenAt  *time.Time              `json:"first_seen_at,omitempty"`
-		IssueName    *string                 `json:"issue_name"`
-		IssueType    *string                 `json:"issue_type"`
-		Remediation  *AgentHealthRemediation `json:"remediation,omitempty"`
-		ResourceId   *string                 `json:"resource_id"`
-		ResourceKind *string                 `json:"resource_kind"`
-		ResourceType *string                 `json:"resource_type,omitempty"`
-		Severity     *string                 `json:"severity"`
-		State        *string                 `json:"state"`
-		Tags         []string                `json:"tags,omitempty"`
-		Title        *string                 `json:"title,omitempty"`
-		UpdatedAt    *time.Time              `json:"updated_at,omitempty"`
+		Category     *string                       `json:"category,omitempty"`
+		Description  *string                       `json:"description,omitempty"`
+		Extra        map[string]interface{}        `json:"extra,omitempty"`
+		FirstSeenAt  *time.Time                    `json:"first_seen_at,omitempty"`
+		IssueName    *string                       `json:"issue_name"`
+		IssueType    *string                       `json:"issue_type"`
+		Remediation  *AgentHealthRemediation       `json:"remediation,omitempty"`
+		ResourceId   *string                       `json:"resource_id"`
+		ResourceKind *AgentHealthIssueResourceKind `json:"resource_kind"`
+		ResourceType *string                       `json:"resource_type,omitempty"`
+		Severity     *AgentHealthIssueSeverity     `json:"severity"`
+		State        *string                       `json:"state"`
+		Tags         []string                      `json:"tags,omitempty"`
+		Title        *string                       `json:"title,omitempty"`
+		UpdatedAt    *time.Time                    `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -574,9 +574,17 @@ func (o *AgentHealthIssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Remediation = all.Remediation
 	o.ResourceId = *all.ResourceId
-	o.ResourceKind = *all.ResourceKind
+	if !all.ResourceKind.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ResourceKind = *all.ResourceKind
+	}
 	o.ResourceType = all.ResourceType
-	o.Severity = *all.Severity
+	if !all.Severity.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Severity = *all.Severity
+	}
 	o.State = *all.State
 	o.Tags = all.Tags
 	o.Title = all.Title
