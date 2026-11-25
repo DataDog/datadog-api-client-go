@@ -21,8 +21,8 @@ type ObservabilityPipelineSplunkHecSource struct {
 	// When `true`, the Splunk HEC token from the incoming request is stored in the event metadata.
 	// This allows downstream components to forward the token to other Splunk HEC destinations.
 	StoreHecToken *bool `json:"store_hec_token,omitempty"`
-	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients.
-	Tls *ObservabilityPipelineMtlsServerTls `json:"tls,omitempty"`
+	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients, or mutual TLS when `verify_certificate` is `true`. Mutual TLS also enables an optional allowlist of client certificate identities.
+	Tls *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
 	// The source type. Always `splunk_hec`.
 	Type ObservabilityPipelineSplunkHecSourceType `json:"type"`
 	// A list of tokens that are accepted for authenticating incoming HEC requests. When set, the source
@@ -134,9 +134,9 @@ func (o *ObservabilityPipelineSplunkHecSource) SetStoreHecToken(v bool) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSplunkHecSource) GetTls() ObservabilityPipelineMtlsServerTls {
+func (o *ObservabilityPipelineSplunkHecSource) GetTls() ObservabilityPipelineMtlsServerTlsWithClientIdentity {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineMtlsServerTls
+		var ret ObservabilityPipelineMtlsServerTlsWithClientIdentity
 		return ret
 	}
 	return *o.Tls
@@ -144,7 +144,7 @@ func (o *ObservabilityPipelineSplunkHecSource) GetTls() ObservabilityPipelineMtl
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSplunkHecSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTls, bool) {
+func (o *ObservabilityPipelineSplunkHecSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTlsWithClientIdentity, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *ObservabilityPipelineSplunkHecSource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineSplunkHecSource) SetTls(v ObservabilityPipelineMtlsServerTls) {
+// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTlsWithClientIdentity and assigns it to the Tls field.
+func (o *ObservabilityPipelineSplunkHecSource) SetTls(v ObservabilityPipelineMtlsServerTlsWithClientIdentity) {
 	o.Tls = &v
 }
 
@@ -242,12 +242,12 @@ func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddressKey    *string                                          `json:"address_key,omitempty"`
-		Id            *string                                          `json:"id"`
-		StoreHecToken *bool                                            `json:"store_hec_token,omitempty"`
-		Tls           *ObservabilityPipelineMtlsServerTls              `json:"tls,omitempty"`
-		Type          *ObservabilityPipelineSplunkHecSourceType        `json:"type"`
-		ValidTokens   []ObservabilityPipelineSplunkHecSourceValidToken `json:"valid_tokens,omitempty"`
+		AddressKey    *string                                               `json:"address_key,omitempty"`
+		Id            *string                                               `json:"id"`
+		StoreHecToken *bool                                                 `json:"store_hec_token,omitempty"`
+		Tls           *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
+		Type          *ObservabilityPipelineSplunkHecSourceType             `json:"type"`
+		ValidTokens   []ObservabilityPipelineSplunkHecSourceValidToken      `json:"valid_tokens,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

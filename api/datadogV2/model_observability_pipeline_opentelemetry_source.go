@@ -20,8 +20,8 @@ type ObservabilityPipelineOpentelemetrySource struct {
 	HttpAddressKey *string `json:"http_address_key,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
-	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients.
-	Tls *ObservabilityPipelineMtlsServerTls `json:"tls,omitempty"`
+	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients, or mutual TLS when `verify_certificate` is `true`. Mutual TLS also enables an optional allowlist of client certificate identities.
+	Tls *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
 	// The source type. The value should always be `opentelemetry`.
 	Type ObservabilityPipelineOpentelemetrySourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -130,9 +130,9 @@ func (o *ObservabilityPipelineOpentelemetrySource) SetId(v string) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineOpentelemetrySource) GetTls() ObservabilityPipelineMtlsServerTls {
+func (o *ObservabilityPipelineOpentelemetrySource) GetTls() ObservabilityPipelineMtlsServerTlsWithClientIdentity {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineMtlsServerTls
+		var ret ObservabilityPipelineMtlsServerTlsWithClientIdentity
 		return ret
 	}
 	return *o.Tls
@@ -140,7 +140,7 @@ func (o *ObservabilityPipelineOpentelemetrySource) GetTls() ObservabilityPipelin
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineOpentelemetrySource) GetTlsOk() (*ObservabilityPipelineMtlsServerTls, bool) {
+func (o *ObservabilityPipelineOpentelemetrySource) GetTlsOk() (*ObservabilityPipelineMtlsServerTlsWithClientIdentity, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -152,8 +152,8 @@ func (o *ObservabilityPipelineOpentelemetrySource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineOpentelemetrySource) SetTls(v ObservabilityPipelineMtlsServerTls) {
+// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTlsWithClientIdentity and assigns it to the Tls field.
+func (o *ObservabilityPipelineOpentelemetrySource) SetTls(v ObservabilityPipelineMtlsServerTlsWithClientIdentity) {
 	o.Tls = &v
 }
 
@@ -207,11 +207,11 @@ func (o ObservabilityPipelineOpentelemetrySource) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOpentelemetrySource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GrpcAddressKey *string                                       `json:"grpc_address_key,omitempty"`
-		HttpAddressKey *string                                       `json:"http_address_key,omitempty"`
-		Id             *string                                       `json:"id"`
-		Tls            *ObservabilityPipelineMtlsServerTls           `json:"tls,omitempty"`
-		Type           *ObservabilityPipelineOpentelemetrySourceType `json:"type"`
+		GrpcAddressKey *string                                               `json:"grpc_address_key,omitempty"`
+		HttpAddressKey *string                                               `json:"http_address_key,omitempty"`
+		Id             *string                                               `json:"id"`
+		Tls            *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
+		Type           *ObservabilityPipelineOpentelemetrySourceType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
