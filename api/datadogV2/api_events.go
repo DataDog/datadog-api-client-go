@@ -245,6 +245,17 @@ func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEvent
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to see your latest events.
+//
+// Query syntax: Attributes take `@` (`@evt.integration_id:kubernetes`, `@evt.category:alert`), while tags and
+// reserved fields don't (`kube_cluster_name:gizmo`, `service:web`, `source:oom_kill`). A name that needs `@`
+// matches nothing without it. To filter by integration, prefer `@evt.integration_id`, whose values use hyphens
+// (`oom-kill`), over `source`, whose values use underscores (`oom_kill`). Bare words search the event text.
+// Quoted phrases, `OR`, `-` negation, and value wildcards are supported. Wildcards in attribute names, such as
+// `@*.name`, are not supported.
+//
+// Without `filter[from]`, the endpoint searches only the last 15 minutes. Widen the time window before concluding that no event exists.
+// Each event's own fields are under `data[].attributes.attributes`, for example `evt.integration_id`, `evt.category`,
+// `title`, and `service`. To fetch one event with `GetEvent`, use its `evt.id` or `evt.uid`, not the top-level `data[].id`.
 func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -426,6 +437,17 @@ func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *Searc
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to build complex events filtering and search.
+//
+// Query syntax: Attributes take `@` (`@evt.integration_id:kubernetes`, `@evt.category:alert`), while tags and
+// reserved fields don't (`kube_cluster_name:gizmo`, `service:web`, `source:oom_kill`). A name that needs `@`
+// matches nothing without it. To filter by integration, prefer `@evt.integration_id`, whose values use hyphens
+// (`oom-kill`), over `source`, whose values use underscores (`oom_kill`). Bare words search the event text.
+// Quoted phrases, `OR`, `-` negation, and value wildcards are supported. Wildcards in attribute names, such as
+// `@*.name`, are not supported.
+//
+// Without `filter.from`, the endpoint searches only the last 15 minutes. Widen the time window before concluding that no event exists.
+// Each event's own fields are under `data[].attributes.attributes`, for example `evt.integration_id`, `evt.category`,
+// `title`, and `service`. To fetch one event with `GetEvent`, use its `evt.id` or `evt.uid`, not the top-level `data[].id`.
 func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
