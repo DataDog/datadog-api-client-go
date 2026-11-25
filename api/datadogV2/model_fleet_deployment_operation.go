@@ -17,7 +17,9 @@ type FleetDeploymentOperation struct {
 	//   Creates the file if it doesn't exist.
 	// - `delete`: Removes the specified configuration file from the target hosts.
 	FileOp FleetDeploymentFileOp `json:"file_op"`
-	// Absolute path to the target configuration file on the host.
+	// Path to the target configuration file, relative to the Agent's configuration directory.
+	// For example, `/datadog.yaml` or `/conf.d/postgres.d/conf.yaml`. Absolute host paths,
+	// such as `/etc/datadog-agent/datadog.yaml`, are rejected.
 	FilePath string `json:"file_path"`
 	// Patch data in JSON format to apply to the configuration file.
 	// When using `merge-patch`, this object is merged with the existing configuration,
