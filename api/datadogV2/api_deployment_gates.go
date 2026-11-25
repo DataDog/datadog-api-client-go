@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -30,15 +28,6 @@ func (a *DeploymentGatesApi) CreateDeploymentGate(ctx _context.Context, body Cre
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentGateResponse
 	)
-
-	operationId := "v2.CreateDeploymentGate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.CreateDeploymentGate")
 	if err != nil {
@@ -138,15 +127,6 @@ func (a *DeploymentGatesApi) CreateDeploymentRule(ctx _context.Context, gateId s
 		localVarReturnValue DeploymentRuleResponse
 	)
 
-	operationId := "v2.CreateDeploymentRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.CreateDeploymentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -245,15 +225,6 @@ func (a *DeploymentGatesApi) DeleteDeploymentGate(ctx _context.Context, id strin
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteDeploymentGate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.DeleteDeploymentGate")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -348,15 +319,6 @@ func (a *DeploymentGatesApi) DeleteDeploymentRule(ctx _context.Context, gateId s
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteDeploymentRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.DeleteDeploymentRule")
 	if err != nil {
@@ -454,15 +416,6 @@ func (a *DeploymentGatesApi) GetDeploymentGate(ctx _context.Context, id string) 
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentGateResponse
 	)
-
-	operationId := "v2.GetDeploymentGate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.GetDeploymentGate")
 	if err != nil {
@@ -569,15 +522,6 @@ func (a *DeploymentGatesApi) GetDeploymentGateRules(ctx _context.Context, gateId
 		localVarReturnValue DeploymentGateRulesResponse
 	)
 
-	operationId := "v2.GetDeploymentGateRules"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.GetDeploymentGateRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -677,15 +621,6 @@ func (a *DeploymentGatesApi) GetDeploymentGatesEvaluationResult(ctx _context.Con
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentGatesEvaluationResultResponse
 	)
-
-	operationId := "v2.GetDeploymentGatesEvaluationResult"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.GetDeploymentGatesEvaluationResult")
 	if err != nil {
@@ -791,15 +726,6 @@ func (a *DeploymentGatesApi) GetDeploymentRule(ctx _context.Context, gateId stri
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentRuleResponse
 	)
-
-	operationId := "v2.GetDeploymentRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.GetDeploymentRule")
 	if err != nil {
@@ -1009,15 +935,6 @@ func (a *DeploymentGatesApi) ListDeploymentGateEvaluations(ctx _context.Context,
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListDeploymentGateEvaluations"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.ListDeploymentGateEvaluations")
@@ -1301,15 +1218,6 @@ func (a *DeploymentGatesApi) ListDeploymentGates(ctx _context.Context, o ...List
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListDeploymentGates"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.ListDeploymentGates")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1563,15 +1471,6 @@ func (a *DeploymentGatesApi) ListDeploymentRuleEvaluations(ctx _context.Context,
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListDeploymentRuleEvaluations"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.ListDeploymentRuleEvaluations")
@@ -1831,15 +1730,6 @@ func (a *DeploymentGatesApi) TriggerDeploymentGatesEvaluation(ctx _context.Conte
 		localVarReturnValue DeploymentGatesEvaluationResponse
 	)
 
-	operationId := "v2.TriggerDeploymentGatesEvaluation"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.TriggerDeploymentGatesEvaluation")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1946,15 +1836,6 @@ func (a *DeploymentGatesApi) UpdateDeploymentGate(ctx _context.Context, id strin
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentGateResponse
 	)
-
-	operationId := "v2.UpdateDeploymentGate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.UpdateDeploymentGate")
 	if err != nil {
@@ -2063,15 +1944,6 @@ func (a *DeploymentGatesApi) UpdateDeploymentRule(ctx _context.Context, gateId s
 		localVarPostBody    interface{}
 		localVarReturnValue DeploymentRuleResponse
 	)
-
-	operationId := "v2.UpdateDeploymentRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DeploymentGatesApi.UpdateDeploymentRule")
 	if err != nil {
