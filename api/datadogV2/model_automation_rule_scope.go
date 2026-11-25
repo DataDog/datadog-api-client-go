@@ -12,7 +12,11 @@ import (
 
 // AutomationRuleScope Defines the scope of findings to which the automation rule applies.
 type AutomationRuleScope struct {
-	// The list of security finding types that the automation rule applies to.
+	// The security finding types that the automation rule applies to. At least one is required, and
+	// each type may appear only once. Allowed values: `api_security`, `attack_path`,
+	// `host_and_container_vulnerability`, `iac_misconfiguration`, `identity_risk`,
+	// `library_vulnerability`, `misconfiguration`, `runtime_code_vulnerability`, `secret`,
+	// `static_code_vulnerability`, and `workload_activity`.
 	FindingTypes []SecurityFindingType `json:"finding_types"`
 	// A search query to further filter the findings matched by this rule. The `@workflow.*` namespace and `@status` fields are not permitted. For a reference of available fields, see the [Security Findings schema documentation](https://docs.datadoghq.com/security/guide/findings-schema/).
 	Query *string `json:"query,omitempty"`

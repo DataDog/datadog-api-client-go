@@ -14,7 +14,7 @@ import (
 type MuteRuleAttributesCreate struct {
 	// The action to take when the mute rule matches a finding.
 	Action MuteRuleAction `json:"action"`
-	// Whether the mute rule is enabled.
+	// Whether the mute rule is enabled. If it is omitted, the API saves it as `false` and the rule doesn't apply.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the mute rule.
 	Name string `json:"name"`

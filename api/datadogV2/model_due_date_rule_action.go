@@ -12,7 +12,7 @@ import (
 
 // DueDateRuleAction The action to take when the due date rule matches a finding.
 type DueDateRuleAction struct {
-	// A list of severity-to-due-date mappings. Each severity may appear at most once.
+	// A list of severity-to-due-date mappings. Each severity may appear at most once. The rule only matches findings whose severity is listed here.
 	DueDaysPerSeverity []DueDatePerSeverityItem `json:"due_days_per_severity"`
 	// The reference point from which the due date is calculated. When `fix_available` is selected but not applicable to the finding type, `first_seen` is used instead.
 	DueFrom DueDateFrom `json:"due_from"`

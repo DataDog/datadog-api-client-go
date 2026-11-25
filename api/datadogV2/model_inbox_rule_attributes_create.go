@@ -14,7 +14,7 @@ import (
 type InboxRuleAttributesCreate struct {
 	// The action to take when the inbox rule matches a finding.
 	Action InboxRuleAction `json:"action"`
-	// Whether the inbox rule is enabled.
+	// Whether the inbox rule is enabled. If it is omitted, the API saves it as `false` and the rule doesn't apply.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the inbox rule.
 	Name string `json:"name"`
