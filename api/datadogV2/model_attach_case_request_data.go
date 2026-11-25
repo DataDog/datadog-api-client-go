@@ -12,7 +12,7 @@ import (
 
 // AttachCaseRequestData Data of the case to attach security findings to.
 type AttachCaseRequestData struct {
-	// Unique identifier of the case.
+	// Unique identifier of the case. This field is required but not used: the API attaches security findings to the case in the `case_id` path parameter.
 	Id string `json:"id"`
 	// Relationships of the case to attach security findings to.
 	Relationships *AttachCaseRequestDataRelationships `json:"relationships,omitempty"`
