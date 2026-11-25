@@ -21,8 +21,8 @@ type ObservabilityPipelineSplunkTcpSource struct {
 	Id string `json:"id"`
 	// Maximum duration, in seconds, that a connection can remain open before it is closed. When unset, connections can remain open indefinitely.
 	MaxConnectionDurationSecs *int64 `json:"max_connection_duration_secs,omitempty"`
-	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients.
-	Tls *ObservabilityPipelineMtlsServerTls `json:"tls,omitempty"`
+	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients, or mutual TLS when `verify_certificate` is `true`. Mutual TLS also enables an optional allowlist of client certificate identities.
+	Tls *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
 	// The source type. Always `splunk_tcp`.
 	Type ObservabilityPipelineSplunkTcpSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -131,9 +131,9 @@ func (o *ObservabilityPipelineSplunkTcpSource) SetMaxConnectionDurationSecs(v in
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSplunkTcpSource) GetTls() ObservabilityPipelineMtlsServerTls {
+func (o *ObservabilityPipelineSplunkTcpSource) GetTls() ObservabilityPipelineMtlsServerTlsWithClientIdentity {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineMtlsServerTls
+		var ret ObservabilityPipelineMtlsServerTlsWithClientIdentity
 		return ret
 	}
 	return *o.Tls
@@ -141,7 +141,7 @@ func (o *ObservabilityPipelineSplunkTcpSource) GetTls() ObservabilityPipelineMtl
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSplunkTcpSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTls, bool) {
+func (o *ObservabilityPipelineSplunkTcpSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTlsWithClientIdentity, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -153,8 +153,8 @@ func (o *ObservabilityPipelineSplunkTcpSource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineSplunkTcpSource) SetTls(v ObservabilityPipelineMtlsServerTls) {
+// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTlsWithClientIdentity and assigns it to the Tls field.
+func (o *ObservabilityPipelineSplunkTcpSource) SetTls(v ObservabilityPipelineMtlsServerTlsWithClientIdentity) {
 	o.Tls = &v
 }
 
@@ -208,11 +208,11 @@ func (o ObservabilityPipelineSplunkTcpSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkTcpSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddressKey                *string                                   `json:"address_key,omitempty"`
-		Id                        *string                                   `json:"id"`
-		MaxConnectionDurationSecs *int64                                    `json:"max_connection_duration_secs,omitempty"`
-		Tls                       *ObservabilityPipelineMtlsServerTls       `json:"tls,omitempty"`
-		Type                      *ObservabilityPipelineSplunkTcpSourceType `json:"type"`
+		AddressKey                *string                                               `json:"address_key,omitempty"`
+		Id                        *string                                               `json:"id"`
+		MaxConnectionDurationSecs *int64                                                `json:"max_connection_duration_secs,omitempty"`
+		Tls                       *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
+		Type                      *ObservabilityPipelineSplunkTcpSourceType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

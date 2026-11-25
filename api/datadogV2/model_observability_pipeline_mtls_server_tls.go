@@ -14,7 +14,7 @@ import (
 type ObservabilityPipelineMtlsServerTls struct {
 	// Path to the Certificate Authority (CA) file used to validate connecting clients' TLS certificates.
 	CaFile *string `json:"ca_file,omitempty"`
-	// Path to the TLS server certificate file used to used to identify the pipeline component to connecting clients.
+	// Path to the TLS server certificate file used to identify the pipeline component to connecting clients.
 	CrtFile string `json:"crt_file"`
 	// Path to the private key file associated with the TLS server certificate.
 	KeyFile *string `json:"key_file,omitempty"`

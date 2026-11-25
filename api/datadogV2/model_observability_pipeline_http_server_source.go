@@ -26,8 +26,8 @@ type ObservabilityPipelineHttpServerSource struct {
 	Id string `json:"id"`
 	// Name of the environment variable or secret that holds the password (used when `auth_strategy` is `plain`).
 	PasswordKey *string `json:"password_key,omitempty"`
-	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients.
-	Tls *ObservabilityPipelineMtlsServerTls `json:"tls,omitempty"`
+	// Configuration for enabling TLS encryption between the pipeline component and external connecting clients, or mutual TLS when `verify_certificate` is `true`. Mutual TLS also enables an optional allowlist of client certificate identities.
+	Tls *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
 	// The source type. The value should always be `http_server`.
 	Type ObservabilityPipelineHttpServerSourceType `json:"type"`
 	// Name of the environment variable or secret that holds the username (used when `auth_strategy` is `plain`).
@@ -218,9 +218,9 @@ func (o *ObservabilityPipelineHttpServerSource) SetPasswordKey(v string) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineHttpServerSource) GetTls() ObservabilityPipelineMtlsServerTls {
+func (o *ObservabilityPipelineHttpServerSource) GetTls() ObservabilityPipelineMtlsServerTlsWithClientIdentity {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineMtlsServerTls
+		var ret ObservabilityPipelineMtlsServerTlsWithClientIdentity
 		return ret
 	}
 	return *o.Tls
@@ -228,7 +228,7 @@ func (o *ObservabilityPipelineHttpServerSource) GetTls() ObservabilityPipelineMt
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineHttpServerSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTls, bool) {
+func (o *ObservabilityPipelineHttpServerSource) GetTlsOk() (*ObservabilityPipelineMtlsServerTlsWithClientIdentity, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *ObservabilityPipelineHttpServerSource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineHttpServerSource) SetTls(v ObservabilityPipelineMtlsServerTls) {
+// SetTls gets a reference to the given ObservabilityPipelineMtlsServerTlsWithClientIdentity and assigns it to the Tls field.
+func (o *ObservabilityPipelineHttpServerSource) SetTls(v ObservabilityPipelineMtlsServerTlsWithClientIdentity) {
 	o.Tls = &v
 }
 
@@ -362,16 +362,16 @@ func (o ObservabilityPipelineHttpServerSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddressKey   *string                                            `json:"address_key,omitempty"`
-		AuthStrategy *ObservabilityPipelineHttpServerSourceAuthStrategy `json:"auth_strategy"`
-		CustomKey    *string                                            `json:"custom_key,omitempty"`
-		Decoding     *ObservabilityPipelineDecoding                     `json:"decoding"`
-		Id           *string                                            `json:"id"`
-		PasswordKey  *string                                            `json:"password_key,omitempty"`
-		Tls          *ObservabilityPipelineMtlsServerTls                `json:"tls,omitempty"`
-		Type         *ObservabilityPipelineHttpServerSourceType         `json:"type"`
-		UsernameKey  *string                                            `json:"username_key,omitempty"`
-		ValidTokens  []ObservabilityPipelineHttpServerSourceValidToken  `json:"valid_tokens,omitempty"`
+		AddressKey   *string                                               `json:"address_key,omitempty"`
+		AuthStrategy *ObservabilityPipelineHttpServerSourceAuthStrategy    `json:"auth_strategy"`
+		CustomKey    *string                                               `json:"custom_key,omitempty"`
+		Decoding     *ObservabilityPipelineDecoding                        `json:"decoding"`
+		Id           *string                                               `json:"id"`
+		PasswordKey  *string                                               `json:"password_key,omitempty"`
+		Tls          *ObservabilityPipelineMtlsServerTlsWithClientIdentity `json:"tls,omitempty"`
+		Type         *ObservabilityPipelineHttpServerSourceType            `json:"type"`
+		UsernameKey  *string                                               `json:"username_key,omitempty"`
+		ValidTokens  []ObservabilityPipelineHttpServerSourceValidToken     `json:"valid_tokens,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
