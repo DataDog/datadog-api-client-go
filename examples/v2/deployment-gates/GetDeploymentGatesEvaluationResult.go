@@ -17,7 +17,6 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetDeploymentGatesEvaluationResult", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDeploymentGatesApi(apiClient)
 	resp, r, err := api.GetDeploymentGatesEvaluationResult(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"))
