@@ -12,7 +12,7 @@ import (
 
 // NotificationRulePreviewResult The preview result for a single rule type.
 type NotificationRulePreviewResult struct {
-	// The notification status for the given rule type. `SUCCESS` means a matching event was found and the notification was sent successfully. `DEFAULT` means no matching event was found and a default placeholder notification was sent instead. `ERROR` means an error occurred while sending the notification.
+	// The notification status for the given rule type. `SUCCESS` means a matching event was found and the test notification was queued. `DEFAULT` means no matching event was found and a placeholder test notification was queued instead. `ERROR` means the test notification couldn't be built or queued. A queued notification can still fail to reach its target later, and this status doesn't report it.
 	NotificationStatus NotificationRulePreviewNotificationStatus `json:"notification_status"`
 	// Security rule type which can be used in security rules.
 	// Signal-based notification rules can filter signals based on rule types application_security, log_detection,
