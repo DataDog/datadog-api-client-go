@@ -10,8 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SavedFilterPermissionDeniedAttributes The caller lacks edit permission on one or more feature flags that reference this saved filter.
+// SavedFilterPermissionDeniedAttributes The caller lacks edit permission on one or more feature flags that reference this saved filter, or on one or more of their environments.
 type SavedFilterPermissionDeniedAttributes struct {
+	// Environments preventing this update.
+	DeniedEnvironments []SavedFilterEnvironmentReference `json:"denied_environments,omitempty"`
 	// Feature flags preventing this update.
 	DeniedFlags []SavedFilterFlagReference `json:"denied_flags"`
 	// The reason the saved filter update was rejected.
@@ -38,6 +40,34 @@ func NewSavedFilterPermissionDeniedAttributes(deniedFlags []SavedFilterFlagRefer
 func NewSavedFilterPermissionDeniedAttributesWithDefaults() *SavedFilterPermissionDeniedAttributes {
 	this := SavedFilterPermissionDeniedAttributes{}
 	return &this
+}
+
+// GetDeniedEnvironments returns the DeniedEnvironments field value if set, zero value otherwise.
+func (o *SavedFilterPermissionDeniedAttributes) GetDeniedEnvironments() []SavedFilterEnvironmentReference {
+	if o == nil || o.DeniedEnvironments == nil {
+		var ret []SavedFilterEnvironmentReference
+		return ret
+	}
+	return o.DeniedEnvironments
+}
+
+// GetDeniedEnvironmentsOk returns a tuple with the DeniedEnvironments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SavedFilterPermissionDeniedAttributes) GetDeniedEnvironmentsOk() (*[]SavedFilterEnvironmentReference, bool) {
+	if o == nil || o.DeniedEnvironments == nil {
+		return nil, false
+	}
+	return &o.DeniedEnvironments, true
+}
+
+// HasDeniedEnvironments returns a boolean if a field has been set.
+func (o *SavedFilterPermissionDeniedAttributes) HasDeniedEnvironments() bool {
+	return o != nil && o.DeniedEnvironments != nil
+}
+
+// SetDeniedEnvironments gets a reference to the given []SavedFilterEnvironmentReference and assigns it to the DeniedEnvironments field.
+func (o *SavedFilterPermissionDeniedAttributes) SetDeniedEnvironments(v []SavedFilterEnvironmentReference) {
+	o.DeniedEnvironments = v
 }
 
 // GetDeniedFlags returns the DeniedFlags field value.
@@ -92,6 +122,9 @@ func (o SavedFilterPermissionDeniedAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.DeniedEnvironments != nil {
+		toSerialize["denied_environments"] = o.DeniedEnvironments
+	}
 	toSerialize["denied_flags"] = o.DeniedFlags
 	toSerialize["message"] = o.Message
 
@@ -104,8 +137,9 @@ func (o SavedFilterPermissionDeniedAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SavedFilterPermissionDeniedAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DeniedFlags *[]SavedFilterFlagReference `json:"denied_flags"`
-		Message     *string                     `json:"message"`
+		DeniedEnvironments []SavedFilterEnvironmentReference `json:"denied_environments,omitempty"`
+		DeniedFlags        *[]SavedFilterFlagReference       `json:"denied_flags"`
+		Message            *string                           `json:"message"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,10 +152,11 @@ func (o *SavedFilterPermissionDeniedAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"denied_flags", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"denied_environments", "denied_flags", "message"})
 	} else {
 		return err
 	}
+	o.DeniedEnvironments = all.DeniedEnvironments
 	o.DeniedFlags = *all.DeniedFlags
 	o.Message = *all.Message
 

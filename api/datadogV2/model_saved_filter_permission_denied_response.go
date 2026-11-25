@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SavedFilterPermissionDeniedResponse The caller lacks edit permission on one or more feature flags that reference this saved filter.
+// SavedFilterPermissionDeniedResponse The caller lacks edit permission on one or more feature flags that reference this saved filter, or on one or more of their environments.
 type SavedFilterPermissionDeniedResponse struct {
-	// The caller lacks edit permission on one or more feature flags that reference this saved filter.
+	// The caller lacks edit permission on one or more feature flags that reference this saved filter, or on one or more of their environments.
 	Data SavedFilterPermissionDeniedData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
