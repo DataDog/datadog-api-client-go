@@ -15,13 +15,23 @@ import (
 // Only the trigger_source field is required.
 type Selectors struct {
 	// The query is composed of one or several key:value pairs, which can be used to filter security issues on tags and attributes.
+	// It is at most 6,000 characters. Finding-based rules can't filter on attributes in the `@workflow` or `@_dd`
+	// namespaces, on `@status`, or on `@compliance.evaluation`.
 	Query *string `json:"query,omitempty"`
 	// Security rule types used as filters in security rules.
+	// Signal-based notification rules accept `application_security`, `log_detection`, `workload_security`, and
+	// `signal_correlation`.
+	// Finding-based notification rules accept `application_code_vulnerability`,
+	// `application_library_vulnerability`, `attack_path`, `container_image_vulnerability`, `identity_risk`,
+	// `misconfiguration`, `api_security`, `host_vulnerability`, `iac_misconfiguration`, `sast_vulnerability`,
+	// `secret_vulnerability`, `workload_activity`, `sensitive_data`, and `serverless_function_code_vulnerability`.
+	// Rule types that don't match the rule's `trigger_source` are rejected.
 	RuleTypes []RuleTypesItems `json:"rule_types,omitempty"`
 	// The security rules severities to consider.
+	// Allowed values are `critical`, `high`, `medium`, `low`, and `info`; `unknown` is rejected.
 	Severities []RuleSeverity `json:"severities,omitempty"`
 	// The type of security issues on which the rule applies. Notification rules based on security signals need to use the trigger source "security_signals",
-	// while notification rules based on security vulnerabilities need to use the trigger source "security_findings".
+	// while notification rules based on security findings need to use the trigger source "security_findings".
 	TriggerSource TriggerSource `json:"trigger_source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

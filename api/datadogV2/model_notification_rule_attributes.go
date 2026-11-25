@@ -22,7 +22,7 @@ type NotificationRuleAttributes struct {
 	ModifiedAt int64 `json:"modified_at"`
 	// User creating or modifying a rule.
 	ModifiedBy RuleUser `json:"modified_by"`
-	// Name of the notification rule.
+	// Name of the notification rule. At most 500 characters, and unique in the organization (case-insensitive).
 	Name string `json:"name"`
 	// Selectors are used to filter security issues for which notifications should be generated.
 	// Users can specify rule severities, rule types, a query to filter security issues on tags and attributes, and the trigger source.
@@ -31,14 +31,24 @@ type NotificationRuleAttributes struct {
 	// List of recipients to notify when a notification rule is triggered. Many different target types are supported,
 	// such as email addresses, Slack channels, and PagerDuty services.
 	// The appropriate integrations need to be properly configured to send notifications to the specified targets.
+	// Each target is a handle that starts with `@`. Use `@<EMAIL>` for an email address
+	// (for example, `@john.doe@email.com`), and `@<INTEGRATION_NAME>-<VALUES>` for an integration, such as
+	// `@slack-<VALUES>`, `@pagerduty-<VALUES>`, `@jira-<VALUES>`, `@teams-<VALUES>`, `@servicenow-<VALUES>`,
+	// or `@webhook-<WEBHOOK_NAME>`.
+	// Handles that include parentheses are not supported.
+	// A rule can have at most 20 targets, each at most 500 characters long. Finding-based rules don't accept
+	// `case`, `incident`, `jira`, or `linear` targets; use an automatic ticket creation rule for cases,
+	// Jira, and Linear.
 	Targets []string `json:"targets"`
 	// Time aggregation period (in seconds) is used to aggregate the results of the notification rule evaluation.
 	// Results are aggregated over a selected time frame using a rolling window, which updates with each new evaluation.
 	// Notifications are only sent for new issues discovered during the window.
-	// Time aggregation is only available for vulnerability-based notification rules. When omitted or set to 0, no aggregation
-	// is done.
+	// Time aggregation is only available for finding-based notification rules. When omitted or set to 0, no aggregation
+	// is done. Otherwise, it must be between 1800 (30 minutes) and 2592000 (30 days).
 	TimeAggregation *int64 `json:"time_aggregation,omitempty"`
 	// Version of the notification rule. It is updated when the rule is modified.
+	// When patching a rule, send the current `version` returned by the get or list operation; an older
+	// `version` returns 409.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
