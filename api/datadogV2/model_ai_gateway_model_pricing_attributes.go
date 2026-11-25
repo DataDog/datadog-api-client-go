@@ -10,9 +10,9 @@ import (
 
 // AiGatewayModelPricingAttributes Attributes of a model pricing resource.
 type AiGatewayModelPricingAttributes struct {
-	// True when models.dev pricing is authoritative for this organization and provider.
+	// True when automatic pricing is authoritative for this organization and provider.
 	Authoritative *bool `json:"authoritative,omitempty"`
-	// The published models.dev price. Present only when it is the effective price.
+	// The automatically synced published price. Present only when it is the effective price.
 	AutomaticPricing *AiGatewayModelAutomaticPricing `json:"automatic_pricing,omitempty"`
 	// True when a `BLOCK` budget covering this model rejects its requests before they reach the provider.
 	BlocksBudgetedRequests *bool `json:"blocks_budgeted_requests,omitempty"`

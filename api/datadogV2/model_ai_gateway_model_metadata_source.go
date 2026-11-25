@@ -17,8 +17,6 @@ type AiGatewayModelMetadataSource struct {
 	MatchedBy AiGatewayModelMetadataSourceMatchedBy `json:"matched_by"`
 	// Model identifier in the metadata source provider catalog.
 	ModelId string `json:"model_id"`
-	// Metadata source name.
-	Name string `json:"name"`
 	// Last successful observation of this valid source record. Retained invalid entries keep their previous timestamp.
 	ObservedAt *time.Time `json:"observed_at,omitempty"`
 	// Provider namespace in the metadata source, or canonical for a shared model record.
@@ -34,11 +32,10 @@ type AiGatewayModelMetadataSource struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAiGatewayModelMetadataSource(matchedBy AiGatewayModelMetadataSourceMatchedBy, modelId string, name string, provider string) *AiGatewayModelMetadataSource {
+func NewAiGatewayModelMetadataSource(matchedBy AiGatewayModelMetadataSourceMatchedBy, modelId string, provider string) *AiGatewayModelMetadataSource {
 	this := AiGatewayModelMetadataSource{}
 	this.MatchedBy = matchedBy
 	this.ModelId = modelId
-	this.Name = name
 	this.Provider = provider
 	return &this
 }
@@ -95,29 +92,6 @@ func (o *AiGatewayModelMetadataSource) GetModelIdOk() (*string, bool) {
 // SetModelId sets field value.
 func (o *AiGatewayModelMetadataSource) SetModelId(v string) {
 	o.ModelId = v
-}
-
-// GetName returns the Name field value.
-func (o *AiGatewayModelMetadataSource) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *AiGatewayModelMetadataSource) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value.
-func (o *AiGatewayModelMetadataSource) SetName(v string) {
-	o.Name = v
 }
 
 // GetObservedAt returns the ObservedAt field value if set, zero value otherwise.
@@ -207,7 +181,6 @@ func (o AiGatewayModelMetadataSource) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["matched_by"] = o.MatchedBy
 	toSerialize["model_id"] = o.ModelId
-	toSerialize["name"] = o.Name
 	if o.ObservedAt != nil {
 		if o.ObservedAt.Nanosecond() == 0 {
 			toSerialize["observed_at"] = o.ObservedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -231,7 +204,6 @@ func (o *AiGatewayModelMetadataSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		MatchedBy  *AiGatewayModelMetadataSourceMatchedBy `json:"matched_by"`
 		ModelId    *string                                `json:"model_id"`
-		Name       *string                                `json:"name"`
 		ObservedAt *time.Time                             `json:"observed_at,omitempty"`
 		Provider   *string                                `json:"provider"`
 		Revision   *string                                `json:"revision,omitempty"`
@@ -245,15 +217,12 @@ func (o *AiGatewayModelMetadataSource) UnmarshalJSON(bytes []byte) (err error) {
 	if all.ModelId == nil {
 		return fmt.Errorf("required field model_id missing")
 	}
-	if all.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
 	if all.Provider == nil {
 		return fmt.Errorf("required field provider missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"matched_by", "model_id", "name", "observed_at", "provider", "revision"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"matched_by", "model_id", "observed_at", "provider", "revision"})
 	} else {
 		return err
 	}
@@ -265,7 +234,6 @@ func (o *AiGatewayModelMetadataSource) UnmarshalJSON(bytes []byte) (err error) {
 		o.MatchedBy = *all.MatchedBy
 	}
 	o.ModelId = *all.ModelId
-	o.Name = *all.Name
 	o.ObservedAt = all.ObservedAt
 	o.Provider = *all.Provider
 	o.Revision = all.Revision
