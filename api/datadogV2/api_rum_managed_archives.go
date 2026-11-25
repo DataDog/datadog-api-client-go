@@ -304,6 +304,54 @@ func (a *RUMManagedArchivesApi) ListRUMArchiveConfigs(ctx _context.Context, o ..
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListRUMArchiveConfigsWithPagination provides a paginated version of ListRUMArchiveConfigs returning a channel with all items.
+func (a *RUMManagedArchivesApi) ListRUMArchiveConfigsWithPagination(ctx _context.Context, o ...ListRUMArchiveConfigsOptionalParameters) (<-chan datadog.PaginationResult[RumArchiveConfig], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(20)
+	if len(o) == 0 {
+		o = append(o, ListRUMArchiveConfigsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int32(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[RumArchiveConfig], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListRUMArchiveConfigs(ctx, o...)
+			if err != nil {
+				var returnItem RumArchiveConfig
+				items <- datadog.PaginationResult[RumArchiveConfig]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[RumArchiveConfig]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // UpdateRUMArchiveConfig Create or update an archive configuration.
 // Create or update the archive configuration for a RUM application. The application ID in the path must match `data.id`. Disabling archiving does not delete archived sessions.
 func (a *RUMManagedArchivesApi) UpdateRUMArchiveConfig(ctx _context.Context, appId uuid.UUID, body RumArchiveConfigUpsertRequest) (RumArchiveConfigResponse, *_nethttp.Response, error) {

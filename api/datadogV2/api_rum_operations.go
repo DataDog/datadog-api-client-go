@@ -671,6 +671,56 @@ func (a *RUMOperationsApi) ListRUMOperationStrongLinks(ctx _context.Context, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListRUMOperationStrongLinksWithPagination provides a paginated version of ListRUMOperationStrongLinks returning a channel with all items.
+func (a *RUMOperationsApi) ListRUMOperationStrongLinksWithPagination(ctx _context.Context, o ...ListRUMOperationStrongLinksOptionalParameters) (<-chan datadog.PaginationResult[RUMOperationStrongLinkResponseData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(50)
+	if len(o) == 0 {
+		o = append(o, ListRUMOperationStrongLinksOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[RUMOperationStrongLinkResponseData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListRUMOperationStrongLinks(ctx, o...)
+			if err != nil {
+				var returnItem RUMOperationStrongLinkResponseData
+				items <- datadog.PaginationResult[RUMOperationStrongLinkResponseData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[RUMOperationStrongLinkResponseData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListRUMOperationsOptionalParameters holds optional parameters for ListRUMOperations.
 type ListRUMOperationsOptionalParameters struct {
 	Query         *string
@@ -844,6 +894,56 @@ func (a *RUMOperationsApi) ListRUMOperations(ctx _context.Context, o ...ListRUMO
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListRUMOperationsWithPagination provides a paginated version of ListRUMOperations returning a channel with all items.
+func (a *RUMOperationsApi) ListRUMOperationsWithPagination(ctx _context.Context, o ...ListRUMOperationsOptionalParameters) (<-chan datadog.PaginationResult[RUMOperationResponseData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(50)
+	if len(o) == 0 {
+		o = append(o, ListRUMOperationsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[RUMOperationResponseData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListRUMOperations(ctx, o...)
+			if err != nil {
+				var returnItem RUMOperationResponseData
+				items <- datadog.PaginationResult[RUMOperationResponseData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[RUMOperationResponseData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // UpdateRUMOperation Update a RUM operation.
