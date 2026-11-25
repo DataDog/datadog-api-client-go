@@ -32,7 +32,8 @@ type DowntimeResponseAttributes struct {
 	NotifyEndStates []DowntimeNotifyEndStateTypes `json:"notify_end_states,omitempty"`
 	// Actions that will trigger a monitor notification if the downtime is in the `notify_end_types` state.
 	NotifyEndTypes []DowntimeNotifyEndStateActions `json:"notify_end_types,omitempty"`
-	// The principals (users, roles, or teams) allowed to act on behalf of the downtime.
+	// The user the downtime runs as. The downtime only silences monitors this user can mute. On update, omitting
+	// `run_as` resets it to the user making the update.
 	//
 	// **Note**: This feature is currently in Preview and may not be available for all organizations.
 	RunAs []DowntimeRunAsItem `json:"run_as,omitempty"`

@@ -24,6 +24,11 @@ type DowntimeUpdateRequestAttributes struct {
 	NotifyEndStates []DowntimeNotifyEndStateTypes `json:"notify_end_states,omitempty"`
 	// Actions that will trigger a monitor notification if the downtime is in the `notify_end_types` state.
 	NotifyEndTypes []DowntimeNotifyEndStateActions `json:"notify_end_types,omitempty"`
+	// The user the downtime runs as. The downtime only silences monitors this user can mute. On update, omitting
+	// `run_as` resets it to the user making the update.
+	//
+	// **Note**: This feature is currently in Preview and may not be available for all organizations.
+	RunAs []DowntimeRunAsItem `json:"run_as,omitempty"`
 	// Schedule for the downtime.
 	Schedule *DowntimeScheduleUpdateRequest `json:"schedule,omitempty"`
 	// The scope to which the downtime applies. Must follow the [common search syntax](https://docs.datadoghq.com/logs/explorer/search_syntax/).
@@ -244,6 +249,34 @@ func (o *DowntimeUpdateRequestAttributes) SetNotifyEndTypes(v []DowntimeNotifyEn
 	o.NotifyEndTypes = v
 }
 
+// GetRunAs returns the RunAs field value if set, zero value otherwise.
+func (o *DowntimeUpdateRequestAttributes) GetRunAs() []DowntimeRunAsItem {
+	if o == nil || o.RunAs == nil {
+		var ret []DowntimeRunAsItem
+		return ret
+	}
+	return o.RunAs
+}
+
+// GetRunAsOk returns a tuple with the RunAs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DowntimeUpdateRequestAttributes) GetRunAsOk() (*[]DowntimeRunAsItem, bool) {
+	if o == nil || o.RunAs == nil {
+		return nil, false
+	}
+	return &o.RunAs, true
+}
+
+// HasRunAs returns a boolean if a field has been set.
+func (o *DowntimeUpdateRequestAttributes) HasRunAs() bool {
+	return o != nil && o.RunAs != nil
+}
+
+// SetRunAs gets a reference to the given []DowntimeRunAsItem and assigns it to the RunAs field.
+func (o *DowntimeUpdateRequestAttributes) SetRunAs(v []DowntimeRunAsItem) {
+	o.RunAs = v
+}
+
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *DowntimeUpdateRequestAttributes) GetSchedule() DowntimeScheduleUpdateRequest {
 	if o == nil || o.Schedule == nil {
@@ -324,6 +357,9 @@ func (o DowntimeUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.NotifyEndTypes != nil {
 		toSerialize["notify_end_types"] = o.NotifyEndTypes
 	}
+	if o.RunAs != nil {
+		toSerialize["run_as"] = o.RunAs
+	}
 	if o.Schedule != nil {
 		toSerialize["schedule"] = o.Schedule
 	}
@@ -346,6 +382,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 		MuteFirstRecoveryNotification *bool                           `json:"mute_first_recovery_notification,omitempty"`
 		NotifyEndStates               []DowntimeNotifyEndStateTypes   `json:"notify_end_states,omitempty"`
 		NotifyEndTypes                []DowntimeNotifyEndStateActions `json:"notify_end_types,omitempty"`
+		RunAs                         []DowntimeRunAsItem             `json:"run_as,omitempty"`
 		Schedule                      *DowntimeScheduleUpdateRequest  `json:"schedule,omitempty"`
 		Scope                         *string                         `json:"scope,omitempty"`
 	}{}
@@ -354,7 +391,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_timezone", "message", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "schedule", "scope"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_timezone", "message", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "run_as", "schedule", "scope"})
 	} else {
 		return err
 	}
@@ -364,6 +401,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.MuteFirstRecoveryNotification = all.MuteFirstRecoveryNotification
 	o.NotifyEndStates = all.NotifyEndStates
 	o.NotifyEndTypes = all.NotifyEndTypes
+	o.RunAs = all.RunAs
 	o.Schedule = all.Schedule
 	o.Scope = all.Scope
 
