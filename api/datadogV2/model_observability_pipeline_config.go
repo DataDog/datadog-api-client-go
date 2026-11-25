@@ -12,8 +12,14 @@ import (
 
 // ObservabilityPipelineConfig Specifies the pipeline's configuration, including its sources, processors, and destinations.
 type ObservabilityPipelineConfig struct {
+	// Anomaly detection settings for the pipeline.
+	// Only applies to `logs` pipelines. Requires Observability Pipelines Worker 2.25 or later.
+	AnomalyDetection *ObservabilityPipelineAnomalyDetection `json:"anomaly_detection,omitempty"`
 	// A list of destination components where processed logs are sent.
 	Destinations []ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+	// Set to `true` to enable end-to-end acknowledgments for the pipeline.
+	// Requires Observability Pipelines Worker 2.14 or later.
+	EndToEndAcknowledgements *bool `json:"end_to_end_acknowledgements,omitempty"`
 	// The type of data being ingested. Defaults to `logs` if not specified.
 	PipelineType *ObservabilityPipelineConfigPipelineType `json:"pipeline_type,omitempty"`
 	// A list of processor groups that transform or enrich log data.
@@ -59,6 +65,34 @@ func NewObservabilityPipelineConfigWithDefaults() *ObservabilityPipelineConfig {
 	return &this
 }
 
+// GetAnomalyDetection returns the AnomalyDetection field value if set, zero value otherwise.
+func (o *ObservabilityPipelineConfig) GetAnomalyDetection() ObservabilityPipelineAnomalyDetection {
+	if o == nil || o.AnomalyDetection == nil {
+		var ret ObservabilityPipelineAnomalyDetection
+		return ret
+	}
+	return *o.AnomalyDetection
+}
+
+// GetAnomalyDetectionOk returns a tuple with the AnomalyDetection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineConfig) GetAnomalyDetectionOk() (*ObservabilityPipelineAnomalyDetection, bool) {
+	if o == nil || o.AnomalyDetection == nil {
+		return nil, false
+	}
+	return o.AnomalyDetection, true
+}
+
+// HasAnomalyDetection returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasAnomalyDetection() bool {
+	return o != nil && o.AnomalyDetection != nil
+}
+
+// SetAnomalyDetection gets a reference to the given ObservabilityPipelineAnomalyDetection and assigns it to the AnomalyDetection field.
+func (o *ObservabilityPipelineConfig) SetAnomalyDetection(v ObservabilityPipelineAnomalyDetection) {
+	o.AnomalyDetection = &v
+}
+
 // GetDestinations returns the Destinations field value.
 func (o *ObservabilityPipelineConfig) GetDestinations() []ObservabilityPipelineConfigDestinationItem {
 	if o == nil {
@@ -80,6 +114,34 @@ func (o *ObservabilityPipelineConfig) GetDestinationsOk() (*[]ObservabilityPipel
 // SetDestinations sets field value.
 func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineConfigDestinationItem) {
 	o.Destinations = v
+}
+
+// GetEndToEndAcknowledgements returns the EndToEndAcknowledgements field value if set, zero value otherwise.
+func (o *ObservabilityPipelineConfig) GetEndToEndAcknowledgements() bool {
+	if o == nil || o.EndToEndAcknowledgements == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EndToEndAcknowledgements
+}
+
+// GetEndToEndAcknowledgementsOk returns a tuple with the EndToEndAcknowledgements field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineConfig) GetEndToEndAcknowledgementsOk() (*bool, bool) {
+	if o == nil || o.EndToEndAcknowledgements == nil {
+		return nil, false
+	}
+	return o.EndToEndAcknowledgements, true
+}
+
+// HasEndToEndAcknowledgements returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasEndToEndAcknowledgements() bool {
+	return o != nil && o.EndToEndAcknowledgements != nil
+}
+
+// SetEndToEndAcknowledgements gets a reference to the given bool and assigns it to the EndToEndAcknowledgements field.
+func (o *ObservabilityPipelineConfig) SetEndToEndAcknowledgements(v bool) {
+	o.EndToEndAcknowledgements = &v
 }
 
 // GetPipelineType returns the PipelineType field value if set, zero value otherwise.
@@ -226,7 +288,13 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AnomalyDetection != nil {
+		toSerialize["anomaly_detection"] = o.AnomalyDetection
+	}
 	toSerialize["destinations"] = o.Destinations
+	if o.EndToEndAcknowledgements != nil {
+		toSerialize["end_to_end_acknowledgements"] = o.EndToEndAcknowledgements
+	}
 	if o.PipelineType != nil {
 		toSerialize["pipeline_type"] = o.PipelineType
 	}
@@ -250,12 +318,14 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destinations          *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
-		PipelineType          *ObservabilityPipelineConfigPipelineType      `json:"pipeline_type,omitempty"`
-		ProcessorGroups       []ObservabilityPipelineConfigProcessorGroup   `json:"processor_groups,omitempty"`
-		Processors            []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
-		Sources               *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
-		UseLegacySearchSyntax *bool                                         `json:"use_legacy_search_syntax,omitempty"`
+		AnomalyDetection         *ObservabilityPipelineAnomalyDetection        `json:"anomaly_detection,omitempty"`
+		Destinations             *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+		EndToEndAcknowledgements *bool                                         `json:"end_to_end_acknowledgements,omitempty"`
+		PipelineType             *ObservabilityPipelineConfigPipelineType      `json:"pipeline_type,omitempty"`
+		ProcessorGroups          []ObservabilityPipelineConfigProcessorGroup   `json:"processor_groups,omitempty"`
+		Processors               []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
+		Sources                  *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
+		UseLegacySearchSyntax    *bool                                         `json:"use_legacy_search_syntax,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -268,13 +338,18 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "pipeline_type", "processor_groups", "processors", "sources", "use_legacy_search_syntax"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"anomaly_detection", "destinations", "end_to_end_acknowledgements", "pipeline_type", "processor_groups", "processors", "sources", "use_legacy_search_syntax"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.AnomalyDetection != nil && all.AnomalyDetection.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.AnomalyDetection = all.AnomalyDetection
 	o.Destinations = *all.Destinations
+	o.EndToEndAcknowledgements = all.EndToEndAcknowledgements
 	if all.PipelineType != nil && !all.PipelineType.IsValid() {
 		hasInvalidField = true
 	} else {
