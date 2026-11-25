@@ -18,6 +18,8 @@ type LLMObsExperimentEvalMetricEvent struct {
 	CategoricalValue datadog.NullableString `json:"categorical_value,omitempty"`
 	// Source type of the evaluation.
 	EvalSourceType *string `json:"eval_source_type,omitempty"`
+	// Whether a higher numeric score is better. Omitted when no direction was specified.
+	HigherIsBetter *bool `json:"higher_is_better,omitempty"`
 	// Unique identifier of the evaluation metric event.
 	Id *string `json:"id,omitempty"`
 	// JSON value. Present when `metric_type` is `json`.
@@ -196,6 +198,34 @@ func (o *LLMObsExperimentEvalMetricEvent) HasEvalSourceType() bool {
 // SetEvalSourceType gets a reference to the given string and assigns it to the EvalSourceType field.
 func (o *LLMObsExperimentEvalMetricEvent) SetEvalSourceType(v string) {
 	o.EvalSourceType = &v
+}
+
+// GetHigherIsBetter returns the HigherIsBetter field value if set, zero value otherwise.
+func (o *LLMObsExperimentEvalMetricEvent) GetHigherIsBetter() bool {
+	if o == nil || o.HigherIsBetter == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HigherIsBetter
+}
+
+// GetHigherIsBetterOk returns a tuple with the HigherIsBetter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsExperimentEvalMetricEvent) GetHigherIsBetterOk() (*bool, bool) {
+	if o == nil || o.HigherIsBetter == nil {
+		return nil, false
+	}
+	return o.HigherIsBetter, true
+}
+
+// HasHigherIsBetter returns a boolean if a field has been set.
+func (o *LLMObsExperimentEvalMetricEvent) HasHigherIsBetter() bool {
+	return o != nil && o.HigherIsBetter != nil
+}
+
+// SetHigherIsBetter gets a reference to the given bool and assigns it to the HigherIsBetter field.
+func (o *LLMObsExperimentEvalMetricEvent) SetHigherIsBetter(v bool) {
+	o.HigherIsBetter = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -576,6 +606,9 @@ func (o LLMObsExperimentEvalMetricEvent) MarshalJSON() ([]byte, error) {
 	if o.EvalSourceType != nil {
 		toSerialize["eval_source_type"] = o.EvalSourceType
 	}
+	if o.HigherIsBetter != nil {
+		toSerialize["higher_is_better"] = o.HigherIsBetter
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -626,6 +659,7 @@ func (o *LLMObsExperimentEvalMetricEvent) UnmarshalJSON(bytes []byte) (err error
 		BooleanValue     datadog.NullableBool    `json:"boolean_value,omitempty"`
 		CategoricalValue datadog.NullableString  `json:"categorical_value,omitempty"`
 		EvalSourceType   *string                 `json:"eval_source_type,omitempty"`
+		HigherIsBetter   *bool                   `json:"higher_is_better,omitempty"`
 		Id               *string                 `json:"id,omitempty"`
 		JsonValue        map[string]interface{}  `json:"json_value,omitempty"`
 		Label            *string                 `json:"label,omitempty"`
@@ -644,7 +678,7 @@ func (o *LLMObsExperimentEvalMetricEvent) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "boolean_value", "categorical_value", "eval_source_type", "id", "json_value", "label", "metadata", "metric_source", "metric_type", "reasoning", "score_value", "span_id", "tags", "timestamp_ms", "trace_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "boolean_value", "categorical_value", "eval_source_type", "higher_is_better", "id", "json_value", "label", "metadata", "metric_source", "metric_type", "reasoning", "score_value", "span_id", "tags", "timestamp_ms", "trace_id"})
 	} else {
 		return err
 	}
@@ -658,6 +692,7 @@ func (o *LLMObsExperimentEvalMetricEvent) UnmarshalJSON(bytes []byte) (err error
 	o.BooleanValue = all.BooleanValue
 	o.CategoricalValue = all.CategoricalValue
 	o.EvalSourceType = all.EvalSourceType
+	o.HigherIsBetter = all.HigherIsBetter
 	o.Id = all.Id
 	o.JsonValue = all.JsonValue
 	o.Label = all.Label

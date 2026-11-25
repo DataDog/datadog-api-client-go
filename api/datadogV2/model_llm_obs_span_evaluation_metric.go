@@ -14,6 +14,8 @@ type LLMObsSpanEvaluationMetric struct {
 	Assessment *string `json:"assessment,omitempty"`
 	// Type of the evaluation metric (e.g., score, categorical, boolean).
 	EvalMetricType *string `json:"eval_metric_type,omitempty"`
+	// Whether a higher numeric score is better. Omitted when no direction was specified.
+	HigherIsBetter *bool `json:"higher_is_better,omitempty"`
 	// Human-readable reasoning for the evaluation result.
 	Reasoning *string `json:"reasoning,omitempty"`
 	// Status of the evaluation execution.
@@ -98,6 +100,34 @@ func (o *LLMObsSpanEvaluationMetric) HasEvalMetricType() bool {
 // SetEvalMetricType gets a reference to the given string and assigns it to the EvalMetricType field.
 func (o *LLMObsSpanEvaluationMetric) SetEvalMetricType(v string) {
 	o.EvalMetricType = &v
+}
+
+// GetHigherIsBetter returns the HigherIsBetter field value if set, zero value otherwise.
+func (o *LLMObsSpanEvaluationMetric) GetHigherIsBetter() bool {
+	if o == nil || o.HigherIsBetter == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HigherIsBetter
+}
+
+// GetHigherIsBetterOk returns a tuple with the HigherIsBetter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsSpanEvaluationMetric) GetHigherIsBetterOk() (*bool, bool) {
+	if o == nil || o.HigherIsBetter == nil {
+		return nil, false
+	}
+	return o.HigherIsBetter, true
+}
+
+// HasHigherIsBetter returns a boolean if a field has been set.
+func (o *LLMObsSpanEvaluationMetric) HasHigherIsBetter() bool {
+	return o != nil && o.HigherIsBetter != nil
+}
+
+// SetHigherIsBetter gets a reference to the given bool and assigns it to the HigherIsBetter field.
+func (o *LLMObsSpanEvaluationMetric) SetHigherIsBetter(v bool) {
+	o.HigherIsBetter = &v
 }
 
 // GetReasoning returns the Reasoning field value if set, zero value otherwise.
@@ -224,6 +254,9 @@ func (o LLMObsSpanEvaluationMetric) MarshalJSON() ([]byte, error) {
 	if o.EvalMetricType != nil {
 		toSerialize["eval_metric_type"] = o.EvalMetricType
 	}
+	if o.HigherIsBetter != nil {
+		toSerialize["higher_is_better"] = o.HigherIsBetter
+	}
 	if o.Reasoning != nil {
 		toSerialize["reasoning"] = o.Reasoning
 	}
@@ -248,6 +281,7 @@ func (o *LLMObsSpanEvaluationMetric) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Assessment     *string     `json:"assessment,omitempty"`
 		EvalMetricType *string     `json:"eval_metric_type,omitempty"`
+		HigherIsBetter *bool       `json:"higher_is_better,omitempty"`
 		Reasoning      *string     `json:"reasoning,omitempty"`
 		Status         *string     `json:"status,omitempty"`
 		Tags           []string    `json:"tags,omitempty"`
@@ -258,12 +292,13 @@ func (o *LLMObsSpanEvaluationMetric) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "eval_metric_type", "reasoning", "status", "tags", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "eval_metric_type", "higher_is_better", "reasoning", "status", "tags", "value"})
 	} else {
 		return err
 	}
 	o.Assessment = all.Assessment
 	o.EvalMetricType = all.EvalMetricType
+	o.HigherIsBetter = all.HigherIsBetter
 	o.Reasoning = all.Reasoning
 	o.Status = all.Status
 	o.Tags = all.Tags
