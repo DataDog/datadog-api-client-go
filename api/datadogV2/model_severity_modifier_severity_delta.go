@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeverityModifierSeverityDelta The direction in which to shift the severity of matched findings by one rank.
+// SeverityModifierSeverityDelta The direction in which to shift the severity of matched findings by one rank. Shifting down stops at the lowest severity available for the finding type.
 type SeverityModifierSeverityDelta string
 
 // List of SeverityModifierSeverityDelta.

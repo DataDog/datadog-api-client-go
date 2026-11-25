@@ -26,9 +26,9 @@ type TicketCreationRuleActionResponse struct {
 	Fields interface{} `json:"fields,omitempty"`
 	// The maximum number of tickets the rule may create per day. If exceeded, one final ticket will be created, explaining the limit was hit and link back to the responsible rule.
 	MaxTicketsPerDay int64 `json:"max_tickets_per_day"`
-	// The UUID of the case management project.
+	// The UUID of the Datadog Work Management (formerly Case Management) project.
 	ProjectId uuid.UUID `json:"project_id"`
-	// The ticketing system to create tickets in.
+	// The ticketing system to create tickets in. `case_management` is Datadog Work Management, formerly called Case Management.
 	Target TicketCreationTarget `json:"target"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

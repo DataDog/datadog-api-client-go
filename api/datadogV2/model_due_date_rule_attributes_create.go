@@ -14,7 +14,7 @@ import (
 type DueDateRuleAttributesCreate struct {
 	// The action to take when the due date rule matches a finding.
 	Action DueDateRuleAction `json:"action"`
-	// Whether the due date rule is enabled.
+	// Whether the due date rule is enabled. If it is omitted, the API saves it as `false` and the rule doesn't apply.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the due date rule.
 	Name string `json:"name"`

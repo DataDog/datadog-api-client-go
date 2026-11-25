@@ -14,7 +14,7 @@ import (
 type TicketCreationRuleAttributesCreate struct {
 	// The action to take when the ticket creation rule matches a finding.
 	Action TicketCreationRuleAction `json:"action"`
-	// Whether the ticket creation rule is enabled.
+	// Whether the ticket creation rule is enabled. If it is omitted, the API saves it as `false` and the rule doesn't apply.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the ticket creation rule.
 	Name string `json:"name"`

@@ -12,7 +12,7 @@ import (
 
 // MuteRuleAction The action to take when the mute rule matches a finding.
 type MuteRuleAction struct {
-	// The Unix timestamp in milliseconds at which the mute expires. If omitted, the mute does not expire.
+	// The Unix timestamp in milliseconds at which the mute expires. It must be in the future. If the timestamp is omitted, the mute does not expire.
 	ExpireAt *int64 `json:"expire_at,omitempty"`
 	// The reason for muting a security finding.
 	Reason MuteReason `json:"reason"`

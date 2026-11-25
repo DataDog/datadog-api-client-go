@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TicketCreationTarget The ticketing system to create tickets in.
+// TicketCreationTarget The ticketing system to create tickets in. `case_management` is Datadog Work Management, formerly called Case Management.
 type TicketCreationTarget string
 
 // List of TicketCreationTarget.

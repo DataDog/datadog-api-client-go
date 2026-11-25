@@ -14,11 +14,13 @@ import (
 type SeverityModifierRuleAttributesCreate struct {
 	// The action to take when a severity modifier rule matches a finding. This is a discriminated union on `type`: `set` assigns a fixed severity, while `shift` moves the severity up or down by one rank.
 	//
+	// With `type: set`, send `severity` (`info_none`, `low`, `medium`, `high`, or `critical`) and no `severity_delta`. With `type: shift`, send `severity_delta` (`up_one` or `down_one`) and no `severity`. Both accept an optional `description`. A `shift` rule doesn't match findings with an unknown severity.
+	//
 	// A severity modifier rule's `rule.query` must not filter on `@severity` or on the `@severity_details.user_adjusted.*` namespace.
 	//
 	// Use `@severity_details.adjusted.value` instead, which reflects the severity before user-defined adjustments.
 	Action SeverityModifierRuleAction `json:"action"`
-	// Whether the severity modifier rule is enabled.
+	// Whether the severity modifier rule is enabled. If it is omitted, the API saves it as `false` and the rule doesn't apply.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the severity modifier rule.
 	Name string `json:"name"`
