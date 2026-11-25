@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumArchiveSessionsSearchRequest{
-		Data: datadogV2.RumArchiveSessionsSearchData{
-			Attributes: datadogV2.RumArchiveSessionsSearchAttributes{
+	body := datadogV2.RUMArchiveSessionsSearchRequest{
+		Data: datadogV2.RUMArchiveSessionsSearchData{
+			Attributes: datadogV2.RUMArchiveSessionsSearchAttributes{
 				Cursor:       datadog.PtrString("example"),
 				From:         1789905600000,
 				HideRetained: datadog.PtrBool(false),

@@ -1,4 +1,4 @@
-// List RUM replay playlists returns "OK" response
+// Get a RUM retention quota configuration returns "OK" response
 
 package main
 
@@ -17,14 +17,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	resp, r, err := api.ListRumReplayPlaylists(ctx, *datadogV2.NewListRumReplayPlaylistsOptionalParameters())
+	api := datadogV2.NewRUMRetentionQuotasApi(apiClient)
+	resp, r, err := api.GetRUMQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.ListRumReplayPlaylists`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.GetRUMQuotaConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayPlaylistsApi.ListRumReplayPlaylists`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionQuotasApi.GetRUMQuotaConfig`:\n%s\n", responseContent)
 }

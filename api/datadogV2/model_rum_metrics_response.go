@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricsResponse All the available RUM-based metric objects.
-type RumMetricsResponse struct {
+// RUMMetricsResponse All the available RUM-based metric objects.
+type RUMMetricsResponse struct {
 	// A list of RUM-based metric objects.
-	Data []RumMetricResponseData `json:"data,omitempty"`
+	Data []RUMMetricResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricsResponse instantiates a new RumMetricsResponse object.
+// NewRUMMetricsResponse instantiates a new RUMMetricsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricsResponse() *RumMetricsResponse {
-	this := RumMetricsResponse{}
+func NewRUMMetricsResponse() *RUMMetricsResponse {
+	this := RUMMetricsResponse{}
 	return &this
 }
 
-// NewRumMetricsResponseWithDefaults instantiates a new RumMetricsResponse object.
+// NewRUMMetricsResponseWithDefaults instantiates a new RUMMetricsResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricsResponseWithDefaults() *RumMetricsResponse {
-	this := RumMetricsResponse{}
+func NewRUMMetricsResponseWithDefaults() *RUMMetricsResponse {
+	this := RUMMetricsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RumMetricsResponse) GetData() []RumMetricResponseData {
+func (o *RUMMetricsResponse) GetData() []RUMMetricResponseData {
 	if o == nil || o.Data == nil {
-		var ret []RumMetricResponseData
+		var ret []RUMMetricResponseData
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *RumMetricsResponse) GetData() []RumMetricResponseData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricsResponse) GetDataOk() (*[]RumMetricResponseData, bool) {
+func (o *RUMMetricsResponse) GetDataOk() (*[]RUMMetricResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumMetricsResponse) GetDataOk() (*[]RumMetricResponseData, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RumMetricsResponse) HasData() bool {
+func (o *RUMMetricsResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []RumMetricResponseData and assigns it to the Data field.
-func (o *RumMetricsResponse) SetData(v []RumMetricResponseData) {
+// SetData gets a reference to the given []RUMMetricResponseData and assigns it to the Data field.
+func (o *RUMMetricsResponse) SetData(v []RUMMetricResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricsResponse) MarshalJSON() ([]byte, error) {
+func (o RUMMetricsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RumMetricsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []RumMetricResponseData `json:"data,omitempty"`
+		Data []RUMMetricResponseData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

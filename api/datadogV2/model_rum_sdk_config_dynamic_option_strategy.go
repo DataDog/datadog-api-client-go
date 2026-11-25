@@ -10,18 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigDynamicOptionStrategy The strategy used to extract the dynamic value.
-type RumSdkConfigDynamicOptionStrategy string
+// RUMSdkConfigDynamicOptionStrategy The strategy used to extract the dynamic value.
+type RUMSdkConfigDynamicOptionStrategy string
 
-// List of RumSdkConfigDynamicOptionStrategy.
+// List of RUMSdkConfigDynamicOptionStrategy.
 const (
-	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_JS            RumSdkConfigDynamicOptionStrategy = "js"
-	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_COOKIE        RumSdkConfigDynamicOptionStrategy = "cookie"
-	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_DOM           RumSdkConfigDynamicOptionStrategy = "dom"
-	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_LOCAL_STORAGE RumSdkConfigDynamicOptionStrategy = "localStorage"
+	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_JS            RUMSdkConfigDynamicOptionStrategy = "js"
+	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_COOKIE        RUMSdkConfigDynamicOptionStrategy = "cookie"
+	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_DOM           RUMSdkConfigDynamicOptionStrategy = "dom"
+	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_LOCAL_STORAGE RUMSdkConfigDynamicOptionStrategy = "localStorage"
 )
 
-var allowedRumSdkConfigDynamicOptionStrategyEnumValues = []RumSdkConfigDynamicOptionStrategy{
+var allowedRUMSdkConfigDynamicOptionStrategyEnumValues = []RUMSdkConfigDynamicOptionStrategy{
 	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_JS,
 	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_COOKIE,
 	RUMSDKCONFIGDYNAMICOPTIONSTRATEGY_DOM,
@@ -29,34 +29,34 @@ var allowedRumSdkConfigDynamicOptionStrategyEnumValues = []RumSdkConfigDynamicOp
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigDynamicOptionStrategy) GetAllowedValues() []RumSdkConfigDynamicOptionStrategy {
-	return allowedRumSdkConfigDynamicOptionStrategyEnumValues
+func (v *RUMSdkConfigDynamicOptionStrategy) GetAllowedValues() []RUMSdkConfigDynamicOptionStrategy {
+	return allowedRUMSdkConfigDynamicOptionStrategyEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigDynamicOptionStrategy) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigDynamicOptionStrategy) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigDynamicOptionStrategy(value)
+	*v = RUMSdkConfigDynamicOptionStrategy(value)
 	return nil
 }
 
-// NewRumSdkConfigDynamicOptionStrategyFromValue returns a pointer to a valid RumSdkConfigDynamicOptionStrategy
+// NewRUMSdkConfigDynamicOptionStrategyFromValue returns a pointer to a valid RUMSdkConfigDynamicOptionStrategy
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigDynamicOptionStrategyFromValue(v string) (*RumSdkConfigDynamicOptionStrategy, error) {
-	ev := RumSdkConfigDynamicOptionStrategy(v)
+func NewRUMSdkConfigDynamicOptionStrategyFromValue(v string) (*RUMSdkConfigDynamicOptionStrategy, error) {
+	ev := RUMSdkConfigDynamicOptionStrategy(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigDynamicOptionStrategy: valid values are %v", v, allowedRumSdkConfigDynamicOptionStrategyEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigDynamicOptionStrategy: valid values are %v", v, allowedRUMSdkConfigDynamicOptionStrategyEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigDynamicOptionStrategy) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigDynamicOptionStrategyEnumValues {
+func (v RUMSdkConfigDynamicOptionStrategy) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigDynamicOptionStrategyEnumValues {
 		if existing == v {
 			return true
 		}
@@ -64,7 +64,7 @@ func (v RumSdkConfigDynamicOptionStrategy) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigDynamicOptionStrategy value.
-func (v RumSdkConfigDynamicOptionStrategy) Ptr() *RumSdkConfigDynamicOptionStrategy {
+// Ptr returns reference to RUMSdkConfigDynamicOptionStrategy value.
+func (v RUMSdkConfigDynamicOptionStrategy) Ptr() *RUMSdkConfigDynamicOptionStrategy {
 	return &v
 }

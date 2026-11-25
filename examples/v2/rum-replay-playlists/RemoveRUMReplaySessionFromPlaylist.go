@@ -1,4 +1,4 @@
-// Delete a RUM-based metric returns "No Content" response
+// Remove RUM replay session from playlist returns "No Content" response
 
 package main
 
@@ -12,18 +12,15 @@ import (
 )
 
 func main() {
-	// there is a valid "rum_metric" in the system
-	RumMetricDataID := os.Getenv("RUM_METRIC_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumMetricsApi(apiClient)
-	r, err := api.DeleteRumMetric(ctx, RumMetricDataID)
+	api := datadogV2.NewRUMReplayPlaylistsApi(apiClient)
+	r, err := api.RemoveRUMReplaySessionFromPlaylist(ctx, 1234567, "00000000-0000-0000-0000-000000000001")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumMetricsApi.DeleteRumMetric`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayPlaylistsApi.RemoveRUMReplaySessionFromPlaylist`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

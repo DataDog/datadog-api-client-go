@@ -14,9 +14,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRecoveryCancelRequest{
-		Data: datadogV2.RumRecoveryCancelData{
-			Attributes: datadogV2.RumRecoveryCancelAttributes{
+	body := datadogV2.RUMRecoveryCancelRequest{
+		Data: datadogV2.RUMRecoveryCancelData{
+			Attributes: datadogV2.RUMRecoveryCancelAttributes{
 				Status: datadogV2.RUMRECOVERYCANCELSTATUS_CANCELLED,
 			},
 			Id:   datadog.PtrString("11111111-1111-4111-8111-111111111111"),

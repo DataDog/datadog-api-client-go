@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterType The type of the resource. The value should always be retention_filters.
-type RumRetentionFilterType string
+// RUMRetentionFilterType The type of the resource. The value should always be retention_filters.
+type RUMRetentionFilterType string
 
-// List of RumRetentionFilterType.
+// List of RUMRetentionFilterType.
 const (
-	RUMRETENTIONFILTERTYPE_RETENTION_FILTERS RumRetentionFilterType = "retention_filters"
+	RUMRETENTIONFILTERTYPE_RETENTION_FILTERS RUMRetentionFilterType = "retention_filters"
 )
 
-var allowedRumRetentionFilterTypeEnumValues = []RumRetentionFilterType{
+var allowedRUMRetentionFilterTypeEnumValues = []RUMRetentionFilterType{
 	RUMRETENTIONFILTERTYPE_RETENTION_FILTERS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionFilterType) GetAllowedValues() []RumRetentionFilterType {
-	return allowedRumRetentionFilterTypeEnumValues
+func (v *RUMRetentionFilterType) GetAllowedValues() []RUMRetentionFilterType {
+	return allowedRUMRetentionFilterTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionFilterType) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionFilterType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionFilterType(value)
+	*v = RUMRetentionFilterType(value)
 	return nil
 }
 
-// NewRumRetentionFilterTypeFromValue returns a pointer to a valid RumRetentionFilterType
+// NewRUMRetentionFilterTypeFromValue returns a pointer to a valid RUMRetentionFilterType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionFilterTypeFromValue(v string) (*RumRetentionFilterType, error) {
-	ev := RumRetentionFilterType(v)
+func NewRUMRetentionFilterTypeFromValue(v string) (*RUMRetentionFilterType, error) {
+	ev := RUMRetentionFilterType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionFilterType: valid values are %v", v, allowedRumRetentionFilterTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionFilterType: valid values are %v", v, allowedRUMRetentionFilterTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionFilterType) IsValid() bool {
-	for _, existing := range allowedRumRetentionFilterTypeEnumValues {
+func (v RUMRetentionFilterType) IsValid() bool {
+	for _, existing := range allowedRUMRetentionFilterTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumRetentionFilterType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionFilterType value.
-func (v RumRetentionFilterType) Ptr() *RumRetentionFilterType {
+// Ptr returns reference to RUMRetentionFilterType value.
+func (v RUMRetentionFilterType) Ptr() *RUMRetentionFilterType {
 	return &v
 }

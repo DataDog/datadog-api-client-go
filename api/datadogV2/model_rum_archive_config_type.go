@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigType JSON:API resource type.
-type RumArchiveConfigType string
+// RUMArchiveConfigType JSON:API resource type.
+type RUMArchiveConfigType string
 
-// List of RumArchiveConfigType.
+// List of RUMArchiveConfigType.
 const (
-	RUMARCHIVECONFIGTYPE_RUM_ARCHIVE_CONFIG RumArchiveConfigType = "rum_archive_config"
+	RUMARCHIVECONFIGTYPE_RUM_ARCHIVE_CONFIG RUMArchiveConfigType = "rum_archive_config"
 )
 
-var allowedRumArchiveConfigTypeEnumValues = []RumArchiveConfigType{
+var allowedRUMArchiveConfigTypeEnumValues = []RUMArchiveConfigType{
 	RUMARCHIVECONFIGTYPE_RUM_ARCHIVE_CONFIG,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumArchiveConfigType) GetAllowedValues() []RumArchiveConfigType {
-	return allowedRumArchiveConfigTypeEnumValues
+func (v *RUMArchiveConfigType) GetAllowedValues() []RUMArchiveConfigType {
+	return allowedRUMArchiveConfigTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumArchiveConfigType) UnmarshalJSON(src []byte) error {
+func (v *RUMArchiveConfigType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumArchiveConfigType(value)
+	*v = RUMArchiveConfigType(value)
 	return nil
 }
 
-// NewRumArchiveConfigTypeFromValue returns a pointer to a valid RumArchiveConfigType
+// NewRUMArchiveConfigTypeFromValue returns a pointer to a valid RUMArchiveConfigType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumArchiveConfigTypeFromValue(v string) (*RumArchiveConfigType, error) {
-	ev := RumArchiveConfigType(v)
+func NewRUMArchiveConfigTypeFromValue(v string) (*RUMArchiveConfigType, error) {
+	ev := RUMArchiveConfigType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumArchiveConfigType: valid values are %v", v, allowedRumArchiveConfigTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMArchiveConfigType: valid values are %v", v, allowedRUMArchiveConfigTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumArchiveConfigType) IsValid() bool {
-	for _, existing := range allowedRumArchiveConfigTypeEnumValues {
+func (v RUMArchiveConfigType) IsValid() bool {
+	for _, existing := range allowedRUMArchiveConfigTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumArchiveConfigType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumArchiveConfigType value.
-func (v RumArchiveConfigType) Ptr() *RumArchiveConfigType {
+// Ptr returns reference to RUMArchiveConfigType value.
+func (v RUMArchiveConfigType) Ptr() *RUMArchiveConfigType {
 	return &v
 }

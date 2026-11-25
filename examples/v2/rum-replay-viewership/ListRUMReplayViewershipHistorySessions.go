@@ -1,4 +1,4 @@
-// Add RUM replay session to playlist returns "OK" response
+// List RUM replay viewership history sessions returns "OK" response
 
 package main
 
@@ -17,14 +17,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayPlaylistsApi(apiClient)
-	resp, r, err := api.AddRumReplaySessionToPlaylist(ctx, 1704067200000, 1234567, "00000000-0000-0000-0000-000000000001", *datadogV2.NewAddRumReplaySessionToPlaylistOptionalParameters())
+	api := datadogV2.NewRUMReplayViewershipApi(apiClient)
+	resp, r, err := api.ListRUMReplayViewershipHistorySessions(ctx, *datadogV2.NewListRUMReplayViewershipHistorySessionsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayPlaylistsApi.AddRumReplaySessionToPlaylist`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayViewershipApi.ListRUMReplayViewershipHistorySessions`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayPlaylistsApi.AddRumReplaySessionToPlaylist`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMReplayViewershipApi.ListRUMReplayViewershipHistorySessions`:\n%s\n", responseContent)
 }

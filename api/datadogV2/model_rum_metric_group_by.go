@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricGroupBy A group by rule.
-type RumMetricGroupBy struct {
+// RUMMetricGroupBy A group by rule.
+type RUMMetricGroupBy struct {
 	// The path of the RUM event attribute to group the metric by.
 	Path string `json:"path"`
 	// Name of the tag that gets created on the metric. By default, `path` is used as the tag name.
@@ -22,26 +22,26 @@ type RumMetricGroupBy struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumMetricGroupBy instantiates a new RumMetricGroupBy object.
+// NewRUMMetricGroupBy instantiates a new RUMMetricGroupBy object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumMetricGroupBy(path string) *RumMetricGroupBy {
-	this := RumMetricGroupBy{}
+func NewRUMMetricGroupBy(path string) *RUMMetricGroupBy {
+	this := RUMMetricGroupBy{}
 	this.Path = path
 	return &this
 }
 
-// NewRumMetricGroupByWithDefaults instantiates a new RumMetricGroupBy object.
+// NewRUMMetricGroupByWithDefaults instantiates a new RUMMetricGroupBy object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumMetricGroupByWithDefaults() *RumMetricGroupBy {
-	this := RumMetricGroupBy{}
+func NewRUMMetricGroupByWithDefaults() *RUMMetricGroupBy {
+	this := RUMMetricGroupBy{}
 	return &this
 }
 
 // GetPath returns the Path field value.
-func (o *RumMetricGroupBy) GetPath() string {
+func (o *RUMMetricGroupBy) GetPath() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *RumMetricGroupBy) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value
 // and a boolean to check if the value has been set.
-func (o *RumMetricGroupBy) GetPathOk() (*string, bool) {
+func (o *RUMMetricGroupBy) GetPathOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,12 +59,12 @@ func (o *RumMetricGroupBy) GetPathOk() (*string, bool) {
 }
 
 // SetPath sets field value.
-func (o *RumMetricGroupBy) SetPath(v string) {
+func (o *RUMMetricGroupBy) SetPath(v string) {
 	o.Path = v
 }
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
-func (o *RumMetricGroupBy) GetTagName() string {
+func (o *RUMMetricGroupBy) GetTagName() string {
 	if o == nil || o.TagName == nil {
 		var ret string
 		return ret
@@ -74,7 +74,7 @@ func (o *RumMetricGroupBy) GetTagName() string {
 
 // GetTagNameOk returns a tuple with the TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumMetricGroupBy) GetTagNameOk() (*string, bool) {
+func (o *RUMMetricGroupBy) GetTagNameOk() (*string, bool) {
 	if o == nil || o.TagName == nil {
 		return nil, false
 	}
@@ -82,17 +82,17 @@ func (o *RumMetricGroupBy) GetTagNameOk() (*string, bool) {
 }
 
 // HasTagName returns a boolean if a field has been set.
-func (o *RumMetricGroupBy) HasTagName() bool {
+func (o *RUMMetricGroupBy) HasTagName() bool {
 	return o != nil && o.TagName != nil
 }
 
 // SetTagName gets a reference to the given string and assigns it to the TagName field.
-func (o *RumMetricGroupBy) SetTagName(v string) {
+func (o *RUMMetricGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumMetricGroupBy) MarshalJSON() ([]byte, error) {
+func (o RUMMetricGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -109,7 +109,7 @@ func (o RumMetricGroupBy) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Path    *string `json:"path"`
 		TagName *string `json:"tag_name,omitempty"`

@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumPermanentRetentionFilterUpdateAttributes The configuration to update on a permanent RUM retention filter.
-type RumPermanentRetentionFilterUpdateAttributes struct {
+// RUMPermanentRetentionFilterUpdateAttributes The configuration to update on a permanent RUM retention filter.
+type RUMPermanentRetentionFilterUpdateAttributes struct {
 	// The configuration for cross-product retention filters. All fields are optional for partial updates.
-	CrossProductSampling *RumCrossProductSamplingUpdate `json:"cross_product_sampling,omitempty"`
+	CrossProductSampling *RUMCrossProductSamplingUpdate `json:"cross_product_sampling,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumPermanentRetentionFilterUpdateAttributes instantiates a new RumPermanentRetentionFilterUpdateAttributes object.
+// NewRUMPermanentRetentionFilterUpdateAttributes instantiates a new RUMPermanentRetentionFilterUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumPermanentRetentionFilterUpdateAttributes() *RumPermanentRetentionFilterUpdateAttributes {
-	this := RumPermanentRetentionFilterUpdateAttributes{}
+func NewRUMPermanentRetentionFilterUpdateAttributes() *RUMPermanentRetentionFilterUpdateAttributes {
+	this := RUMPermanentRetentionFilterUpdateAttributes{}
 	return &this
 }
 
-// NewRumPermanentRetentionFilterUpdateAttributesWithDefaults instantiates a new RumPermanentRetentionFilterUpdateAttributes object.
+// NewRUMPermanentRetentionFilterUpdateAttributesWithDefaults instantiates a new RUMPermanentRetentionFilterUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumPermanentRetentionFilterUpdateAttributesWithDefaults() *RumPermanentRetentionFilterUpdateAttributes {
-	this := RumPermanentRetentionFilterUpdateAttributes{}
+func NewRUMPermanentRetentionFilterUpdateAttributesWithDefaults() *RUMPermanentRetentionFilterUpdateAttributes {
+	this := RUMPermanentRetentionFilterUpdateAttributes{}
 	return &this
 }
 
 // GetCrossProductSampling returns the CrossProductSampling field value if set, zero value otherwise.
-func (o *RumPermanentRetentionFilterUpdateAttributes) GetCrossProductSampling() RumCrossProductSamplingUpdate {
+func (o *RUMPermanentRetentionFilterUpdateAttributes) GetCrossProductSampling() RUMCrossProductSamplingUpdate {
 	if o == nil || o.CrossProductSampling == nil {
-		var ret RumCrossProductSamplingUpdate
+		var ret RUMCrossProductSamplingUpdate
 		return ret
 	}
 	return *o.CrossProductSampling
@@ -45,7 +45,7 @@ func (o *RumPermanentRetentionFilterUpdateAttributes) GetCrossProductSampling() 
 
 // GetCrossProductSamplingOk returns a tuple with the CrossProductSampling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumPermanentRetentionFilterUpdateAttributes) GetCrossProductSamplingOk() (*RumCrossProductSamplingUpdate, bool) {
+func (o *RUMPermanentRetentionFilterUpdateAttributes) GetCrossProductSamplingOk() (*RUMCrossProductSamplingUpdate, bool) {
 	if o == nil || o.CrossProductSampling == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RumPermanentRetentionFilterUpdateAttributes) GetCrossProductSamplingOk(
 }
 
 // HasCrossProductSampling returns a boolean if a field has been set.
-func (o *RumPermanentRetentionFilterUpdateAttributes) HasCrossProductSampling() bool {
+func (o *RUMPermanentRetentionFilterUpdateAttributes) HasCrossProductSampling() bool {
 	return o != nil && o.CrossProductSampling != nil
 }
 
-// SetCrossProductSampling gets a reference to the given RumCrossProductSamplingUpdate and assigns it to the CrossProductSampling field.
-func (o *RumPermanentRetentionFilterUpdateAttributes) SetCrossProductSampling(v RumCrossProductSamplingUpdate) {
+// SetCrossProductSampling gets a reference to the given RUMCrossProductSamplingUpdate and assigns it to the CrossProductSampling field.
+func (o *RUMPermanentRetentionFilterUpdateAttributes) SetCrossProductSampling(v RUMCrossProductSamplingUpdate) {
 	o.CrossProductSampling = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumPermanentRetentionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMPermanentRetentionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RumPermanentRetentionFilterUpdateAttributes) MarshalJSON() ([]byte, erro
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumPermanentRetentionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMPermanentRetentionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CrossProductSampling *RumCrossProductSamplingUpdate `json:"cross_product_sampling,omitempty"`
+		CrossProductSampling *RUMCrossProductSamplingUpdate `json:"cross_product_sampling,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

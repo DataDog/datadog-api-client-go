@@ -1,4 +1,4 @@
-// Get a RUM-based metric returns "OK" response
+// List RUM replay playlists returns "OK" response
 
 package main
 
@@ -13,21 +13,18 @@ import (
 )
 
 func main() {
-	// there is a valid "rum_metric" in the system
-	RumMetricDataID := os.Getenv("RUM_METRIC_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumMetricsApi(apiClient)
-	resp, r, err := api.GetRumMetric(ctx, RumMetricDataID)
+	api := datadogV2.NewRUMReplayPlaylistsApi(apiClient)
+	resp, r, err := api.ListRUMReplayPlaylists(ctx, *datadogV2.NewListRUMReplayPlaylistsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumMetricsApi.GetRumMetric`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayPlaylistsApi.ListRUMReplayPlaylists`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumMetricsApi.GetRumMetric`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMReplayPlaylistsApi.ListRUMReplayPlaylists`:\n%s\n", responseContent)
 }

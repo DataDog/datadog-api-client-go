@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumRetentionQuotaConfigUpdateRequest{
-		Data: datadogV2.RumRetentionQuotaConfigUpdateData{
-			Attributes: datadogV2.RumRetentionQuotaConfigUpdateAttributes{
-				Custom: &datadogV2.RumRetentionQuotaCustomConfig{
+	body := datadogV2.RUMRetentionQuotaConfigUpdateRequest{
+		Data: datadogV2.RUMRetentionQuotaConfigUpdateData{
+			Attributes: datadogV2.RUMRetentionQuotaConfigUpdateAttributes{
+				Custom: &datadogV2.RUMRetentionQuotaCustomConfig{
 					DailyResetTime:     "08:00",
 					DailyResetTimezone: "+09:00",
 					QuotaReachedAction: datadogV2.RUMRETENTIONQUOTAREACHEDACTION_STOP,
@@ -34,13 +34,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMRetentionQuotasApi(apiClient)
-	resp, r, err := api.UpsertRumQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b", body)
+	resp, r, err := api.UpsertRUMQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.UpsertRumQuotaConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.UpsertRUMQuotaConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionQuotasApi.UpsertRumQuotaConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionQuotasApi.UpsertRUMQuotaConfig`:\n%s\n", responseContent)
 }

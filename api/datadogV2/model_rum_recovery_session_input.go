@@ -12,8 +12,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRecoverySessionInput Archived session to recover.
-type RumRecoverySessionInput struct {
+// RUMRecoverySessionInput Archived session to recover.
+type RUMRecoverySessionInput struct {
 	// Application UUID.
 	ApplicationId uuid.UUID `json:"application_id"`
 	// Session UUID.
@@ -23,27 +23,27 @@ type RumRecoverySessionInput struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRecoverySessionInput instantiates a new RumRecoverySessionInput object.
+// NewRUMRecoverySessionInput instantiates a new RUMRecoverySessionInput object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRecoverySessionInput(applicationId uuid.UUID, sessionId uuid.UUID) *RumRecoverySessionInput {
-	this := RumRecoverySessionInput{}
+func NewRUMRecoverySessionInput(applicationId uuid.UUID, sessionId uuid.UUID) *RUMRecoverySessionInput {
+	this := RUMRecoverySessionInput{}
 	this.ApplicationId = applicationId
 	this.SessionId = sessionId
 	return &this
 }
 
-// NewRumRecoverySessionInputWithDefaults instantiates a new RumRecoverySessionInput object.
+// NewRUMRecoverySessionInputWithDefaults instantiates a new RUMRecoverySessionInput object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRecoverySessionInputWithDefaults() *RumRecoverySessionInput {
-	this := RumRecoverySessionInput{}
+func NewRUMRecoverySessionInputWithDefaults() *RUMRecoverySessionInput {
+	this := RUMRecoverySessionInput{}
 	return &this
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *RumRecoverySessionInput) GetApplicationId() uuid.UUID {
+func (o *RUMRecoverySessionInput) GetApplicationId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -53,7 +53,7 @@ func (o *RumRecoverySessionInput) GetApplicationId() uuid.UUID {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoverySessionInput) GetApplicationIdOk() (*uuid.UUID, bool) {
+func (o *RUMRecoverySessionInput) GetApplicationIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *RumRecoverySessionInput) GetApplicationIdOk() (*uuid.UUID, bool) {
 }
 
 // SetApplicationId sets field value.
-func (o *RumRecoverySessionInput) SetApplicationId(v uuid.UUID) {
+func (o *RUMRecoverySessionInput) SetApplicationId(v uuid.UUID) {
 	o.ApplicationId = v
 }
 
 // GetSessionId returns the SessionId field value.
-func (o *RumRecoverySessionInput) GetSessionId() uuid.UUID {
+func (o *RUMRecoverySessionInput) GetSessionId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -76,7 +76,7 @@ func (o *RumRecoverySessionInput) GetSessionId() uuid.UUID {
 
 // GetSessionIdOk returns a tuple with the SessionId field value
 // and a boolean to check if the value has been set.
-func (o *RumRecoverySessionInput) GetSessionIdOk() (*uuid.UUID, bool) {
+func (o *RUMRecoverySessionInput) GetSessionIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *RumRecoverySessionInput) GetSessionIdOk() (*uuid.UUID, bool) {
 }
 
 // SetSessionId sets field value.
-func (o *RumRecoverySessionInput) SetSessionId(v uuid.UUID) {
+func (o *RUMRecoverySessionInput) SetSessionId(v uuid.UUID) {
 	o.SessionId = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRecoverySessionInput) MarshalJSON() ([]byte, error) {
+func (o RUMRecoverySessionInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,7 +104,7 @@ func (o RumRecoverySessionInput) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRecoverySessionInput) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRecoverySessionInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApplicationId *uuid.UUID `json:"application_id"`
 		SessionId     *uuid.UUID `json:"session_id"`

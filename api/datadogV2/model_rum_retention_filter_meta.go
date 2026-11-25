@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterMeta Metadata about the retention filter.
-type RumRetentionFilterMeta struct {
+// RUMRetentionFilterMeta Metadata about the retention filter.
+type RUMRetentionFilterMeta struct {
 	// The types of changes the retention filter accepts. `complete` filters can be updated and deleted.
 	// `limited` filters are default retention filters that can't be deleted.
-	EditionMode *RumRetentionFilterEditionMode `json:"edition_mode,omitempty"`
+	EditionMode *RUMRetentionFilterEditionMode `json:"edition_mode,omitempty"`
 	// The source of the last update to the retention filter. The value is `unknown` if the request doesn't specify a source.
-	Source *RumRetentionFilterMetaSource `json:"source,omitempty"`
+	Source *RUMRetentionFilterMetaSource `json:"source,omitempty"`
 	// The time of the last update, as a Unix timestamp in milliseconds.
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	// The handle of the user who last updated the retention filter.
@@ -24,27 +24,27 @@ type RumRetentionFilterMeta struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionFilterMeta instantiates a new RumRetentionFilterMeta object.
+// NewRUMRetentionFilterMeta instantiates a new RUMRetentionFilterMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionFilterMeta() *RumRetentionFilterMeta {
-	this := RumRetentionFilterMeta{}
+func NewRUMRetentionFilterMeta() *RUMRetentionFilterMeta {
+	this := RUMRetentionFilterMeta{}
 	return &this
 }
 
-// NewRumRetentionFilterMetaWithDefaults instantiates a new RumRetentionFilterMeta object.
+// NewRUMRetentionFilterMetaWithDefaults instantiates a new RUMRetentionFilterMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionFilterMetaWithDefaults() *RumRetentionFilterMeta {
-	this := RumRetentionFilterMeta{}
+func NewRUMRetentionFilterMetaWithDefaults() *RUMRetentionFilterMeta {
+	this := RUMRetentionFilterMeta{}
 	return &this
 }
 
 // GetEditionMode returns the EditionMode field value if set, zero value otherwise.
-func (o *RumRetentionFilterMeta) GetEditionMode() RumRetentionFilterEditionMode {
+func (o *RUMRetentionFilterMeta) GetEditionMode() RUMRetentionFilterEditionMode {
 	if o == nil || o.EditionMode == nil {
-		var ret RumRetentionFilterEditionMode
+		var ret RUMRetentionFilterEditionMode
 		return ret
 	}
 	return *o.EditionMode
@@ -52,7 +52,7 @@ func (o *RumRetentionFilterMeta) GetEditionMode() RumRetentionFilterEditionMode 
 
 // GetEditionModeOk returns a tuple with the EditionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterMeta) GetEditionModeOk() (*RumRetentionFilterEditionMode, bool) {
+func (o *RUMRetentionFilterMeta) GetEditionModeOk() (*RUMRetentionFilterEditionMode, bool) {
 	if o == nil || o.EditionMode == nil {
 		return nil, false
 	}
@@ -60,19 +60,19 @@ func (o *RumRetentionFilterMeta) GetEditionModeOk() (*RumRetentionFilterEditionM
 }
 
 // HasEditionMode returns a boolean if a field has been set.
-func (o *RumRetentionFilterMeta) HasEditionMode() bool {
+func (o *RUMRetentionFilterMeta) HasEditionMode() bool {
 	return o != nil && o.EditionMode != nil
 }
 
-// SetEditionMode gets a reference to the given RumRetentionFilterEditionMode and assigns it to the EditionMode field.
-func (o *RumRetentionFilterMeta) SetEditionMode(v RumRetentionFilterEditionMode) {
+// SetEditionMode gets a reference to the given RUMRetentionFilterEditionMode and assigns it to the EditionMode field.
+func (o *RUMRetentionFilterMeta) SetEditionMode(v RUMRetentionFilterEditionMode) {
 	o.EditionMode = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *RumRetentionFilterMeta) GetSource() RumRetentionFilterMetaSource {
+func (o *RUMRetentionFilterMeta) GetSource() RUMRetentionFilterMetaSource {
 	if o == nil || o.Source == nil {
-		var ret RumRetentionFilterMetaSource
+		var ret RUMRetentionFilterMetaSource
 		return ret
 	}
 	return *o.Source
@@ -80,7 +80,7 @@ func (o *RumRetentionFilterMeta) GetSource() RumRetentionFilterMetaSource {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterMeta) GetSourceOk() (*RumRetentionFilterMetaSource, bool) {
+func (o *RUMRetentionFilterMeta) GetSourceOk() (*RUMRetentionFilterMetaSource, bool) {
 	if o == nil || o.Source == nil {
 		return nil, false
 	}
@@ -88,17 +88,17 @@ func (o *RumRetentionFilterMeta) GetSourceOk() (*RumRetentionFilterMetaSource, b
 }
 
 // HasSource returns a boolean if a field has been set.
-func (o *RumRetentionFilterMeta) HasSource() bool {
+func (o *RUMRetentionFilterMeta) HasSource() bool {
 	return o != nil && o.Source != nil
 }
 
-// SetSource gets a reference to the given RumRetentionFilterMetaSource and assigns it to the Source field.
-func (o *RumRetentionFilterMeta) SetSource(v RumRetentionFilterMetaSource) {
+// SetSource gets a reference to the given RUMRetentionFilterMetaSource and assigns it to the Source field.
+func (o *RUMRetentionFilterMeta) SetSource(v RUMRetentionFilterMetaSource) {
 	o.Source = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *RumRetentionFilterMeta) GetUpdatedAt() int64 {
+func (o *RUMRetentionFilterMeta) GetUpdatedAt() int64 {
 	if o == nil || o.UpdatedAt == nil {
 		var ret int64
 		return ret
@@ -108,7 +108,7 @@ func (o *RumRetentionFilterMeta) GetUpdatedAt() int64 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
+func (o *RUMRetentionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -116,17 +116,17 @@ func (o *RumRetentionFilterMeta) GetUpdatedAtOk() (*int64, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *RumRetentionFilterMeta) HasUpdatedAt() bool {
+func (o *RUMRetentionFilterMeta) HasUpdatedAt() bool {
 	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
-func (o *RumRetentionFilterMeta) SetUpdatedAt(v int64) {
+func (o *RUMRetentionFilterMeta) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedByHandle returns the UpdatedByHandle field value if set, zero value otherwise.
-func (o *RumRetentionFilterMeta) GetUpdatedByHandle() string {
+func (o *RUMRetentionFilterMeta) GetUpdatedByHandle() string {
 	if o == nil || o.UpdatedByHandle == nil {
 		var ret string
 		return ret
@@ -136,7 +136,7 @@ func (o *RumRetentionFilterMeta) GetUpdatedByHandle() string {
 
 // GetUpdatedByHandleOk returns a tuple with the UpdatedByHandle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
+func (o *RUMRetentionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
 	if o == nil || o.UpdatedByHandle == nil {
 		return nil, false
 	}
@@ -144,17 +144,17 @@ func (o *RumRetentionFilterMeta) GetUpdatedByHandleOk() (*string, bool) {
 }
 
 // HasUpdatedByHandle returns a boolean if a field has been set.
-func (o *RumRetentionFilterMeta) HasUpdatedByHandle() bool {
+func (o *RUMRetentionFilterMeta) HasUpdatedByHandle() bool {
 	return o != nil && o.UpdatedByHandle != nil
 }
 
 // SetUpdatedByHandle gets a reference to the given string and assigns it to the UpdatedByHandle field.
-func (o *RumRetentionFilterMeta) SetUpdatedByHandle(v string) {
+func (o *RUMRetentionFilterMeta) SetUpdatedByHandle(v string) {
 	o.UpdatedByHandle = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionFilterMeta) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionFilterMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -179,10 +179,10 @@ func (o RumRetentionFilterMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EditionMode     *RumRetentionFilterEditionMode `json:"edition_mode,omitempty"`
-		Source          *RumRetentionFilterMetaSource  `json:"source,omitempty"`
+		EditionMode     *RUMRetentionFilterEditionMode `json:"edition_mode,omitempty"`
+		Source          *RUMRetentionFilterMetaSource  `json:"source,omitempty"`
 		UpdatedAt       *int64                         `json:"updated_at,omitempty"`
 		UpdatedByHandle *string                        `json:"updated_by_handle,omitempty"`
 	}{}

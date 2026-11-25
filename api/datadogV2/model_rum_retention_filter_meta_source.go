@@ -10,18 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterMetaSource The source of the last update to the retention filter. The value is `unknown` if the request doesn't specify a source.
-type RumRetentionFilterMetaSource string
+// RUMRetentionFilterMetaSource The source of the last update to the retention filter. The value is `unknown` if the request doesn't specify a source.
+type RUMRetentionFilterMetaSource string
 
-// List of RumRetentionFilterMetaSource.
+// List of RUMRetentionFilterMetaSource.
 const (
-	RUMRETENTIONFILTERMETASOURCE_DEFAULT   RumRetentionFilterMetaSource = "default"
-	RUMRETENTIONFILTERMETASOURCE_UI        RumRetentionFilterMetaSource = "ui"
-	RUMRETENTIONFILTERMETASOURCE_TERRAFORM RumRetentionFilterMetaSource = "terraform"
-	RUMRETENTIONFILTERMETASOURCE_UNKNOWN   RumRetentionFilterMetaSource = "unknown"
+	RUMRETENTIONFILTERMETASOURCE_DEFAULT   RUMRetentionFilterMetaSource = "default"
+	RUMRETENTIONFILTERMETASOURCE_UI        RUMRetentionFilterMetaSource = "ui"
+	RUMRETENTIONFILTERMETASOURCE_TERRAFORM RUMRetentionFilterMetaSource = "terraform"
+	RUMRETENTIONFILTERMETASOURCE_UNKNOWN   RUMRetentionFilterMetaSource = "unknown"
 )
 
-var allowedRumRetentionFilterMetaSourceEnumValues = []RumRetentionFilterMetaSource{
+var allowedRUMRetentionFilterMetaSourceEnumValues = []RUMRetentionFilterMetaSource{
 	RUMRETENTIONFILTERMETASOURCE_DEFAULT,
 	RUMRETENTIONFILTERMETASOURCE_UI,
 	RUMRETENTIONFILTERMETASOURCE_TERRAFORM,
@@ -29,34 +29,34 @@ var allowedRumRetentionFilterMetaSourceEnumValues = []RumRetentionFilterMetaSour
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionFilterMetaSource) GetAllowedValues() []RumRetentionFilterMetaSource {
-	return allowedRumRetentionFilterMetaSourceEnumValues
+func (v *RUMRetentionFilterMetaSource) GetAllowedValues() []RUMRetentionFilterMetaSource {
+	return allowedRUMRetentionFilterMetaSourceEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionFilterMetaSource) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionFilterMetaSource) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionFilterMetaSource(value)
+	*v = RUMRetentionFilterMetaSource(value)
 	return nil
 }
 
-// NewRumRetentionFilterMetaSourceFromValue returns a pointer to a valid RumRetentionFilterMetaSource
+// NewRUMRetentionFilterMetaSourceFromValue returns a pointer to a valid RUMRetentionFilterMetaSource
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionFilterMetaSourceFromValue(v string) (*RumRetentionFilterMetaSource, error) {
-	ev := RumRetentionFilterMetaSource(v)
+func NewRUMRetentionFilterMetaSourceFromValue(v string) (*RUMRetentionFilterMetaSource, error) {
+	ev := RUMRetentionFilterMetaSource(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionFilterMetaSource: valid values are %v", v, allowedRumRetentionFilterMetaSourceEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionFilterMetaSource: valid values are %v", v, allowedRUMRetentionFilterMetaSourceEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionFilterMetaSource) IsValid() bool {
-	for _, existing := range allowedRumRetentionFilterMetaSourceEnumValues {
+func (v RUMRetentionFilterMetaSource) IsValid() bool {
+	for _, existing := range allowedRUMRetentionFilterMetaSourceEnumValues {
 		if existing == v {
 			return true
 		}
@@ -64,7 +64,7 @@ func (v RumRetentionFilterMetaSource) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionFilterMetaSource value.
-func (v RumRetentionFilterMetaSource) Ptr() *RumRetentionFilterMetaSource {
+// Ptr returns reference to RUMRetentionFilterMetaSource value.
+func (v RUMRetentionFilterMetaSource) Ptr() *RUMRetentionFilterMetaSource {
 	return &v
 }

@@ -10,49 +10,49 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaReachedAction The action to take when the session quota is reached.
-type RumRetentionQuotaReachedAction string
+// RUMRetentionQuotaReachedAction The action to take when the session quota is reached.
+type RUMRetentionQuotaReachedAction string
 
-// List of RumRetentionQuotaReachedAction.
+// List of RUMRetentionQuotaReachedAction.
 const (
-	RUMRETENTIONQUOTAREACHEDACTION_STOP     RumRetentionQuotaReachedAction = "stop"
-	RUMRETENTIONQUOTAREACHEDACTION_SLOWDOWN RumRetentionQuotaReachedAction = "slowdown"
+	RUMRETENTIONQUOTAREACHEDACTION_STOP     RUMRetentionQuotaReachedAction = "stop"
+	RUMRETENTIONQUOTAREACHEDACTION_SLOWDOWN RUMRetentionQuotaReachedAction = "slowdown"
 )
 
-var allowedRumRetentionQuotaReachedActionEnumValues = []RumRetentionQuotaReachedAction{
+var allowedRUMRetentionQuotaReachedActionEnumValues = []RUMRetentionQuotaReachedAction{
 	RUMRETENTIONQUOTAREACHEDACTION_STOP,
 	RUMRETENTIONQUOTAREACHEDACTION_SLOWDOWN,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumRetentionQuotaReachedAction) GetAllowedValues() []RumRetentionQuotaReachedAction {
-	return allowedRumRetentionQuotaReachedActionEnumValues
+func (v *RUMRetentionQuotaReachedAction) GetAllowedValues() []RUMRetentionQuotaReachedAction {
+	return allowedRUMRetentionQuotaReachedActionEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumRetentionQuotaReachedAction) UnmarshalJSON(src []byte) error {
+func (v *RUMRetentionQuotaReachedAction) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumRetentionQuotaReachedAction(value)
+	*v = RUMRetentionQuotaReachedAction(value)
 	return nil
 }
 
-// NewRumRetentionQuotaReachedActionFromValue returns a pointer to a valid RumRetentionQuotaReachedAction
+// NewRUMRetentionQuotaReachedActionFromValue returns a pointer to a valid RUMRetentionQuotaReachedAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumRetentionQuotaReachedActionFromValue(v string) (*RumRetentionQuotaReachedAction, error) {
-	ev := RumRetentionQuotaReachedAction(v)
+func NewRUMRetentionQuotaReachedActionFromValue(v string) (*RUMRetentionQuotaReachedAction, error) {
+	ev := RUMRetentionQuotaReachedAction(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumRetentionQuotaReachedAction: valid values are %v", v, allowedRumRetentionQuotaReachedActionEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMRetentionQuotaReachedAction: valid values are %v", v, allowedRUMRetentionQuotaReachedActionEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumRetentionQuotaReachedAction) IsValid() bool {
-	for _, existing := range allowedRumRetentionQuotaReachedActionEnumValues {
+func (v RUMRetentionQuotaReachedAction) IsValid() bool {
+	for _, existing := range allowedRUMRetentionQuotaReachedActionEnumValues {
 		if existing == v {
 			return true
 		}
@@ -60,7 +60,7 @@ func (v RumRetentionQuotaReachedAction) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumRetentionQuotaReachedAction value.
-func (v RumRetentionQuotaReachedAction) Ptr() *RumRetentionQuotaReachedAction {
+// Ptr returns reference to RUMRetentionQuotaReachedAction value.
+func (v RUMRetentionQuotaReachedAction) Ptr() *RUMRetentionQuotaReachedAction {
 	return &v
 }

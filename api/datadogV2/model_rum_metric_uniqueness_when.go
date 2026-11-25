@@ -10,49 +10,49 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUniquenessWhen When to count updatable events. `match` when the event is first seen, or `end` when the event is complete. Sessions and views are updated over time, and each one is counted once.
-type RumMetricUniquenessWhen string
+// RUMMetricUniquenessWhen When to count updatable events. `match` when the event is first seen, or `end` when the event is complete. Sessions and views are updated over time, and each one is counted once.
+type RUMMetricUniquenessWhen string
 
-// List of RumMetricUniquenessWhen.
+// List of RUMMetricUniquenessWhen.
 const (
-	RUMMETRICUNIQUENESSWHEN_WHEN_MATCH RumMetricUniquenessWhen = "match"
-	RUMMETRICUNIQUENESSWHEN_WHEN_END   RumMetricUniquenessWhen = "end"
+	RUMMETRICUNIQUENESSWHEN_WHEN_MATCH RUMMetricUniquenessWhen = "match"
+	RUMMETRICUNIQUENESSWHEN_WHEN_END   RUMMetricUniquenessWhen = "end"
 )
 
-var allowedRumMetricUniquenessWhenEnumValues = []RumMetricUniquenessWhen{
+var allowedRUMMetricUniquenessWhenEnumValues = []RUMMetricUniquenessWhen{
 	RUMMETRICUNIQUENESSWHEN_WHEN_MATCH,
 	RUMMETRICUNIQUENESSWHEN_WHEN_END,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumMetricUniquenessWhen) GetAllowedValues() []RumMetricUniquenessWhen {
-	return allowedRumMetricUniquenessWhenEnumValues
+func (v *RUMMetricUniquenessWhen) GetAllowedValues() []RUMMetricUniquenessWhen {
+	return allowedRUMMetricUniquenessWhenEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumMetricUniquenessWhen) UnmarshalJSON(src []byte) error {
+func (v *RUMMetricUniquenessWhen) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumMetricUniquenessWhen(value)
+	*v = RUMMetricUniquenessWhen(value)
 	return nil
 }
 
-// NewRumMetricUniquenessWhenFromValue returns a pointer to a valid RumMetricUniquenessWhen
+// NewRUMMetricUniquenessWhenFromValue returns a pointer to a valid RUMMetricUniquenessWhen
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumMetricUniquenessWhenFromValue(v string) (*RumMetricUniquenessWhen, error) {
-	ev := RumMetricUniquenessWhen(v)
+func NewRUMMetricUniquenessWhenFromValue(v string) (*RUMMetricUniquenessWhen, error) {
+	ev := RUMMetricUniquenessWhen(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumMetricUniquenessWhen: valid values are %v", v, allowedRumMetricUniquenessWhenEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMMetricUniquenessWhen: valid values are %v", v, allowedRUMMetricUniquenessWhenEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumMetricUniquenessWhen) IsValid() bool {
-	for _, existing := range allowedRumMetricUniquenessWhenEnumValues {
+func (v RUMMetricUniquenessWhen) IsValid() bool {
+	for _, existing := range allowedRUMMetricUniquenessWhenEnumValues {
 		if existing == v {
 			return true
 		}
@@ -60,7 +60,7 @@ func (v RumMetricUniquenessWhen) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumMetricUniquenessWhen value.
-func (v RumMetricUniquenessWhen) Ptr() *RumMetricUniquenessWhen {
+// Ptr returns reference to RUMMetricUniquenessWhen value.
+func (v RUMMetricUniquenessWhen) Ptr() *RUMMetricUniquenessWhen {
 	return &v
 }

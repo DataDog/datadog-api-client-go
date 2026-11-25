@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumExclusionFilterType The resource type. The value must be `exclusion_filters`.
-type RumExclusionFilterType string
+// RUMExclusionFilterType The resource type. The value must be `exclusion_filters`.
+type RUMExclusionFilterType string
 
-// List of RumExclusionFilterType.
+// List of RUMExclusionFilterType.
 const (
-	RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS RumExclusionFilterType = "exclusion_filters"
+	RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS RUMExclusionFilterType = "exclusion_filters"
 )
 
-var allowedRumExclusionFilterTypeEnumValues = []RumExclusionFilterType{
+var allowedRUMExclusionFilterTypeEnumValues = []RUMExclusionFilterType{
 	RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumExclusionFilterType) GetAllowedValues() []RumExclusionFilterType {
-	return allowedRumExclusionFilterTypeEnumValues
+func (v *RUMExclusionFilterType) GetAllowedValues() []RUMExclusionFilterType {
+	return allowedRUMExclusionFilterTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumExclusionFilterType) UnmarshalJSON(src []byte) error {
+func (v *RUMExclusionFilterType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumExclusionFilterType(value)
+	*v = RUMExclusionFilterType(value)
 	return nil
 }
 
-// NewRumExclusionFilterTypeFromValue returns a pointer to a valid RumExclusionFilterType
+// NewRUMExclusionFilterTypeFromValue returns a pointer to a valid RUMExclusionFilterType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumExclusionFilterTypeFromValue(v string) (*RumExclusionFilterType, error) {
-	ev := RumExclusionFilterType(v)
+func NewRUMExclusionFilterTypeFromValue(v string) (*RUMExclusionFilterType, error) {
+	ev := RUMExclusionFilterType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumExclusionFilterType: valid values are %v", v, allowedRumExclusionFilterTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMExclusionFilterType: valid values are %v", v, allowedRUMExclusionFilterTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumExclusionFilterType) IsValid() bool {
-	for _, existing := range allowedRumExclusionFilterTypeEnumValues {
+func (v RUMExclusionFilterType) IsValid() bool {
+	for _, existing := range allowedRUMExclusionFilterTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumExclusionFilterType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumExclusionFilterType value.
-func (v RumExclusionFilterType) Ptr() *RumExclusionFilterType {
+// Ptr returns reference to RUMExclusionFilterType value.
+func (v RUMExclusionFilterType) Ptr() *RUMExclusionFilterType {
 	return &v
 }

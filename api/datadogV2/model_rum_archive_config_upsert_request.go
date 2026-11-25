@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumArchiveConfigUpsertRequest JSON:API document.
-type RumArchiveConfigUpsertRequest struct {
+// RUMArchiveConfigUpsertRequest JSON:API document.
+type RUMArchiveConfigUpsertRequest struct {
 	// JSON:API resource.
-	Data RumArchiveConfigUpsertData `json:"data"`
+	Data RUMArchiveConfigUpsertData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumArchiveConfigUpsertRequest instantiates a new RumArchiveConfigUpsertRequest object.
+// NewRUMArchiveConfigUpsertRequest instantiates a new RUMArchiveConfigUpsertRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumArchiveConfigUpsertRequest(data RumArchiveConfigUpsertData) *RumArchiveConfigUpsertRequest {
-	this := RumArchiveConfigUpsertRequest{}
+func NewRUMArchiveConfigUpsertRequest(data RUMArchiveConfigUpsertData) *RUMArchiveConfigUpsertRequest {
+	this := RUMArchiveConfigUpsertRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRumArchiveConfigUpsertRequestWithDefaults instantiates a new RumArchiveConfigUpsertRequest object.
+// NewRUMArchiveConfigUpsertRequestWithDefaults instantiates a new RUMArchiveConfigUpsertRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumArchiveConfigUpsertRequestWithDefaults() *RumArchiveConfigUpsertRequest {
-	this := RumArchiveConfigUpsertRequest{}
+func NewRUMArchiveConfigUpsertRequestWithDefaults() *RUMArchiveConfigUpsertRequest {
+	this := RUMArchiveConfigUpsertRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RumArchiveConfigUpsertRequest) GetData() RumArchiveConfigUpsertData {
+func (o *RUMArchiveConfigUpsertRequest) GetData() RUMArchiveConfigUpsertData {
 	if o == nil {
-		var ret RumArchiveConfigUpsertData
+		var ret RUMArchiveConfigUpsertData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *RumArchiveConfigUpsertRequest) GetData() RumArchiveConfigUpsertData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RumArchiveConfigUpsertRequest) GetDataOk() (*RumArchiveConfigUpsertData, bool) {
+func (o *RUMArchiveConfigUpsertRequest) GetDataOk() (*RUMArchiveConfigUpsertData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *RumArchiveConfigUpsertRequest) GetDataOk() (*RumArchiveConfigUpsertData
 }
 
 // SetData sets field value.
-func (o *RumArchiveConfigUpsertRequest) SetData(v RumArchiveConfigUpsertData) {
+func (o *RUMArchiveConfigUpsertRequest) SetData(v RUMArchiveConfigUpsertData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumArchiveConfigUpsertRequest) MarshalJSON() ([]byte, error) {
+func (o RUMArchiveConfigUpsertRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o RumArchiveConfigUpsertRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumArchiveConfigUpsertRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMArchiveConfigUpsertRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RumArchiveConfigUpsertData `json:"data"`
+		Data *RUMArchiveConfigUpsertData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

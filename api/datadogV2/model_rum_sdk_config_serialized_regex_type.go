@@ -10,47 +10,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumSdkConfigSerializedRegexType The type identifier for a serialized regex. Always `regex`.
-type RumSdkConfigSerializedRegexType string
+// RUMSdkConfigSerializedRegexType The type identifier for a serialized regex. Always `regex`.
+type RUMSdkConfigSerializedRegexType string
 
-// List of RumSdkConfigSerializedRegexType.
+// List of RUMSdkConfigSerializedRegexType.
 const (
-	RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX RumSdkConfigSerializedRegexType = "regex"
+	RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX RUMSdkConfigSerializedRegexType = "regex"
 )
 
-var allowedRumSdkConfigSerializedRegexTypeEnumValues = []RumSdkConfigSerializedRegexType{
+var allowedRUMSdkConfigSerializedRegexTypeEnumValues = []RUMSdkConfigSerializedRegexType{
 	RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumSdkConfigSerializedRegexType) GetAllowedValues() []RumSdkConfigSerializedRegexType {
-	return allowedRumSdkConfigSerializedRegexTypeEnumValues
+func (v *RUMSdkConfigSerializedRegexType) GetAllowedValues() []RUMSdkConfigSerializedRegexType {
+	return allowedRUMSdkConfigSerializedRegexTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumSdkConfigSerializedRegexType) UnmarshalJSON(src []byte) error {
+func (v *RUMSdkConfigSerializedRegexType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumSdkConfigSerializedRegexType(value)
+	*v = RUMSdkConfigSerializedRegexType(value)
 	return nil
 }
 
-// NewRumSdkConfigSerializedRegexTypeFromValue returns a pointer to a valid RumSdkConfigSerializedRegexType
+// NewRUMSdkConfigSerializedRegexTypeFromValue returns a pointer to a valid RUMSdkConfigSerializedRegexType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumSdkConfigSerializedRegexTypeFromValue(v string) (*RumSdkConfigSerializedRegexType, error) {
-	ev := RumSdkConfigSerializedRegexType(v)
+func NewRUMSdkConfigSerializedRegexTypeFromValue(v string) (*RUMSdkConfigSerializedRegexType, error) {
+	ev := RUMSdkConfigSerializedRegexType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumSdkConfigSerializedRegexType: valid values are %v", v, allowedRumSdkConfigSerializedRegexTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMSdkConfigSerializedRegexType: valid values are %v", v, allowedRUMSdkConfigSerializedRegexTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumSdkConfigSerializedRegexType) IsValid() bool {
-	for _, existing := range allowedRumSdkConfigSerializedRegexTypeEnumValues {
+func (v RUMSdkConfigSerializedRegexType) IsValid() bool {
+	for _, existing := range allowedRUMSdkConfigSerializedRegexTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v RumSdkConfigSerializedRegexType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumSdkConfigSerializedRegexType value.
-func (v RumSdkConfigSerializedRegexType) Ptr() *RumSdkConfigSerializedRegexType {
+// Ptr returns reference to RUMSdkConfigSerializedRegexType value.
+func (v RUMSdkConfigSerializedRegexType) Ptr() *RUMSdkConfigSerializedRegexType {
 	return &v
 }

@@ -10,45 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumConfigData The RUM configuration data.
-type RumConfigData struct {
+// RUMConfigData The RUM configuration data.
+type RUMConfigData struct {
 	// Attributes of the RUM configuration.
-	Attributes RumConfigAttributes `json:"attributes"`
+	Attributes RUMConfigAttributes `json:"attributes"`
 	// The organization ID associated with the RUM configuration.
 	Id string `json:"id"`
 	// The type of the resource. The value should always be `rum_config`.
-	Type RumConfigType `json:"type"`
+	Type RUMConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumConfigData instantiates a new RumConfigData object.
+// NewRUMConfigData instantiates a new RUMConfigData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumConfigData(attributes RumConfigAttributes, id string, typeVar RumConfigType) *RumConfigData {
-	this := RumConfigData{}
+func NewRUMConfigData(attributes RUMConfigAttributes, id string, typeVar RUMConfigType) *RUMConfigData {
+	this := RUMConfigData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumConfigDataWithDefaults instantiates a new RumConfigData object.
+// NewRUMConfigDataWithDefaults instantiates a new RUMConfigData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumConfigDataWithDefaults() *RumConfigData {
-	this := RumConfigData{}
-	var typeVar RumConfigType = RUMCONFIGTYPE_RUM_CONFIG
+func NewRUMConfigDataWithDefaults() *RUMConfigData {
+	this := RUMConfigData{}
+	var typeVar RUMConfigType = RUMCONFIGTYPE_RUM_CONFIG
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumConfigData) GetAttributes() RumConfigAttributes {
+func (o *RUMConfigData) GetAttributes() RUMConfigAttributes {
 	if o == nil {
-		var ret RumConfigAttributes
+		var ret RUMConfigAttributes
 		return ret
 	}
 	return o.Attributes
@@ -56,7 +56,7 @@ func (o *RumConfigData) GetAttributes() RumConfigAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigData) GetAttributesOk() (*RumConfigAttributes, bool) {
+func (o *RUMConfigData) GetAttributesOk() (*RUMConfigAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,12 +64,12 @@ func (o *RumConfigData) GetAttributesOk() (*RumConfigAttributes, bool) {
 }
 
 // SetAttributes sets field value.
-func (o *RumConfigData) SetAttributes(v RumConfigAttributes) {
+func (o *RUMConfigData) SetAttributes(v RUMConfigAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *RumConfigData) GetId() string {
+func (o *RUMConfigData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *RumConfigData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigData) GetIdOk() (*string, bool) {
+func (o *RUMConfigData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,14 +87,14 @@ func (o *RumConfigData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *RumConfigData) SetId(v string) {
+func (o *RUMConfigData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *RumConfigData) GetType() RumConfigType {
+func (o *RUMConfigData) GetType() RUMConfigType {
 	if o == nil {
-		var ret RumConfigType
+		var ret RUMConfigType
 		return ret
 	}
 	return o.Type
@@ -102,7 +102,7 @@ func (o *RumConfigData) GetType() RumConfigType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumConfigData) GetTypeOk() (*RumConfigType, bool) {
+func (o *RUMConfigData) GetTypeOk() (*RUMConfigType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,12 +110,12 @@ func (o *RumConfigData) GetTypeOk() (*RumConfigType, bool) {
 }
 
 // SetType sets field value.
-func (o *RumConfigData) SetType(v RumConfigType) {
+func (o *RUMConfigData) SetType(v RUMConfigType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumConfigData) MarshalJSON() ([]byte, error) {
+func (o RUMConfigData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -131,11 +131,11 @@ func (o RumConfigData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumConfigData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMConfigData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumConfigAttributes `json:"attributes"`
+		Attributes *RUMConfigAttributes `json:"attributes"`
 		Id         *string              `json:"id"`
-		Type       *RumConfigType       `json:"type"`
+		Type       *RUMConfigType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

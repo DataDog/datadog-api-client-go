@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumExclusionFilterCreateRequest{
-		Data: datadogV2.RumExclusionFilterCreateData{
-			Attributes: datadogV2.RumExclusionFilterCreateAttributes{
+	body := datadogV2.RUMExclusionFilterCreateRequest{
+		Data: datadogV2.RUMExclusionFilterCreateData{
+			Attributes: datadogV2.RUMExclusionFilterCreateAttributes{
 				Enabled:   datadog.PtrBool(true),
 				EventType: datadogV2.RUMEXCLUSIONFILTEREVENTTYPE_ERROR.Ptr(),
 				Name:      "Exclude noisy browser extension errors",
@@ -28,14 +28,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
+	api := datadogV2.NewRUMRetentionFiltersApi(apiClient)
 	resp, r, err := api.CreateExclusionFilter(ctx, "app_id", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.CreateExclusionFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionFiltersApi.CreateExclusionFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumRetentionFiltersApi.CreateExclusionFilter`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionFiltersApi.CreateExclusionFilter`:\n%s\n", responseContent)
 }

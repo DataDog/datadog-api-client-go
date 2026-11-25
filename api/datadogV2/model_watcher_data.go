@@ -16,7 +16,7 @@ type WatcherData struct {
 	Attributes *WatcherDataAttributes `json:"attributes,omitempty"`
 	// Unique identifier of the watcher user.
 	Id *string `json:"id,omitempty"`
-	// Rum replay watcher resource type.
+	// RUM replay watcher resource type.
 	Type WatcherDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

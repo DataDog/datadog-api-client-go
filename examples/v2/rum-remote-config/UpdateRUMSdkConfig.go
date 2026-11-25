@@ -13,34 +13,34 @@ import (
 )
 
 func main() {
-	body := datadogV2.RumSdkConfigUpdateRequest{
-		Data: datadogV2.RumSdkConfigUpdateData{
-			Attributes: datadogV2.RumSdkConfigUpdateAttributes{
-				Rum: datadogV2.RumSdkConfigRumUpdateAttributes{
-					AllowedTracingUrls: []datadogV2.RumSdkConfigTracingUrlConfig{
+	body := datadogV2.RUMSdkConfigUpdateRequest{
+		Data: datadogV2.RUMSdkConfigUpdateData{
+			Attributes: datadogV2.RUMSdkConfigUpdateAttributes{
+				Rum: datadogV2.RUMSdkConfigRUMUpdateAttributes{
+					AllowedTracingUrls: []datadogV2.RUMSdkConfigTracingUrlConfig{
 						{
-							Match: datadogV2.RumSdkConfigMatchOption{
+							Match: datadogV2.RUMSdkConfigMatchOption{
 								RcSerializedType: datadogV2.RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_STRING,
 								Value:            "https://app.datadoghq.com",
 							},
-							PropagatorTypes: []datadogV2.RumSdkConfigTracingUrlPropagatorType{
+							PropagatorTypes: []datadogV2.RUMSdkConfigTracingUrlPropagatorType{
 								datadogV2.RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_DATADOG,
 								datadogV2.RUMSDKCONFIGTRACINGURLPROPAGATORTYPE_TRACECONTEXT,
 							},
 						},
 					},
-					AllowedTrackingOrigins: []datadogV2.RumSdkConfigMatchOption{
+					AllowedTrackingOrigins: []datadogV2.RUMSdkConfigMatchOption{
 						{
 							RcSerializedType: datadogV2.RUMSDKCONFIGMATCHOPTIONSERIALIZEDTYPE_STRING,
 							Value:            "https://app.datadoghq.com",
 						},
 					},
-					Context: []datadogV2.RumSdkConfigDynamicOptionPair{
+					Context: []datadogV2.RUMSdkConfigDynamicOptionPair{
 						{
 							Key: "id",
-							Value: datadogV2.RumSdkConfigDynamicOption{
+							Value: datadogV2.RUMSdkConfigDynamicOption{
 								Attribute: datadog.PtrString("data-version"),
-								Extractor: &datadogV2.RumSdkConfigSerializedRegex{
+								Extractor: &datadogV2.RUMSdkConfigSerializedRegex{
 									RcSerializedType: datadogV2.RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX,
 									Value:            "^https://app-.*.datadoghq.com",
 								},
@@ -61,12 +61,12 @@ func main() {
 					SessionSampleRate:            75,
 					TraceSampleRate:              datadog.PtrInt64(100),
 					TrackSessionAcrossSubdomains: datadog.PtrBool(false),
-					User: []datadogV2.RumSdkConfigDynamicOptionPair{
+					User: []datadogV2.RUMSdkConfigDynamicOptionPair{
 						{
 							Key: "id",
-							Value: datadogV2.RumSdkConfigDynamicOption{
+							Value: datadogV2.RUMSdkConfigDynamicOption{
 								Attribute: datadog.PtrString("data-version"),
-								Extractor: &datadogV2.RumSdkConfigSerializedRegex{
+								Extractor: &datadogV2.RUMSdkConfigSerializedRegex{
 									RcSerializedType: datadogV2.RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX,
 									Value:            "^https://app-.*.datadoghq.com",
 								},
@@ -79,9 +79,9 @@ func main() {
 							},
 						},
 					},
-					Version: &datadogV2.RumSdkConfigDynamicOption{
+					Version: &datadogV2.RUMSdkConfigDynamicOption{
 						Attribute: datadog.PtrString("data-version"),
-						Extractor: &datadogV2.RumSdkConfigSerializedRegex{
+						Extractor: &datadogV2.RUMSdkConfigSerializedRegex{
 							RcSerializedType: datadogV2.RUMSDKCONFIGSERIALIZEDREGEXTYPE_REGEX,
 							Value:            "^https://app-.*.datadoghq.com",
 						},
@@ -101,16 +101,16 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateRumSdkConfig", true)
+	configuration.SetUnstableOperationEnabled("v2.UpdateRUMSdkConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMRemoteConfigApi(apiClient)
-	resp, r, err := api.UpdateRumSdkConfig(ctx, "config_id", body)
+	resp, r, err := api.UpdateRUMSdkConfig(ctx, "config_id", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RUMRemoteConfigApi.UpdateRumSdkConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRemoteConfigApi.UpdateRUMSdkConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RUMRemoteConfigApi.UpdateRumSdkConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRemoteConfigApi.UpdateRUMSdkConfig`:\n%s\n", responseContent)
 }

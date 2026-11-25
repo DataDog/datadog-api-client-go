@@ -10,50 +10,50 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricComputeAggregationType The type of aggregation to use.
+// RUMMetricComputeAggregationType The type of aggregation to use.
 // `count` counts the matching events. `distribution` aggregates the values found at `path`.
-type RumMetricComputeAggregationType string
+type RUMMetricComputeAggregationType string
 
-// List of RumMetricComputeAggregationType.
+// List of RUMMetricComputeAggregationType.
 const (
-	RUMMETRICCOMPUTEAGGREGATIONTYPE_COUNT        RumMetricComputeAggregationType = "count"
-	RUMMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION RumMetricComputeAggregationType = "distribution"
+	RUMMETRICCOMPUTEAGGREGATIONTYPE_COUNT        RUMMetricComputeAggregationType = "count"
+	RUMMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION RUMMetricComputeAggregationType = "distribution"
 )
 
-var allowedRumMetricComputeAggregationTypeEnumValues = []RumMetricComputeAggregationType{
+var allowedRUMMetricComputeAggregationTypeEnumValues = []RUMMetricComputeAggregationType{
 	RUMMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
 	RUMMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *RumMetricComputeAggregationType) GetAllowedValues() []RumMetricComputeAggregationType {
-	return allowedRumMetricComputeAggregationTypeEnumValues
+func (v *RUMMetricComputeAggregationType) GetAllowedValues() []RUMMetricComputeAggregationType {
+	return allowedRUMMetricComputeAggregationTypeEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *RumMetricComputeAggregationType) UnmarshalJSON(src []byte) error {
+func (v *RUMMetricComputeAggregationType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = RumMetricComputeAggregationType(value)
+	*v = RUMMetricComputeAggregationType(value)
 	return nil
 }
 
-// NewRumMetricComputeAggregationTypeFromValue returns a pointer to a valid RumMetricComputeAggregationType
+// NewRUMMetricComputeAggregationTypeFromValue returns a pointer to a valid RUMMetricComputeAggregationType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewRumMetricComputeAggregationTypeFromValue(v string) (*RumMetricComputeAggregationType, error) {
-	ev := RumMetricComputeAggregationType(v)
+func NewRUMMetricComputeAggregationTypeFromValue(v string) (*RUMMetricComputeAggregationType, error) {
+	ev := RUMMetricComputeAggregationType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for RumMetricComputeAggregationType: valid values are %v", v, allowedRumMetricComputeAggregationTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for RUMMetricComputeAggregationType: valid values are %v", v, allowedRUMMetricComputeAggregationTypeEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v RumMetricComputeAggregationType) IsValid() bool {
-	for _, existing := range allowedRumMetricComputeAggregationTypeEnumValues {
+func (v RUMMetricComputeAggregationType) IsValid() bool {
+	for _, existing := range allowedRUMMetricComputeAggregationTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -61,7 +61,7 @@ func (v RumMetricComputeAggregationType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to RumMetricComputeAggregationType value.
-func (v RumMetricComputeAggregationType) Ptr() *RumMetricComputeAggregationType {
+// Ptr returns reference to RUMMetricComputeAggregationType value.
+func (v RUMMetricComputeAggregationType) Ptr() *RUMMetricComputeAggregationType {
 	return &v
 }

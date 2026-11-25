@@ -10,42 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterCreateData The new RUM retention filter properties to create.
-type RumRetentionFilterCreateData struct {
+// RUMRetentionFilterCreateData The new RUM retention filter properties to create.
+type RUMRetentionFilterCreateData struct {
 	// The object describing attributes of a RUM retention filter to create.
-	Attributes RumRetentionFilterCreateAttributes `json:"attributes"`
+	Attributes RUMRetentionFilterCreateAttributes `json:"attributes"`
 	// The type of the resource. The value should always be retention_filters.
-	Type RumRetentionFilterType `json:"type"`
+	Type RUMRetentionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRumRetentionFilterCreateData instantiates a new RumRetentionFilterCreateData object.
+// NewRUMRetentionFilterCreateData instantiates a new RUMRetentionFilterCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionFilterCreateData(attributes RumRetentionFilterCreateAttributes, typeVar RumRetentionFilterType) *RumRetentionFilterCreateData {
-	this := RumRetentionFilterCreateData{}
+func NewRUMRetentionFilterCreateData(attributes RUMRetentionFilterCreateAttributes, typeVar RUMRetentionFilterType) *RUMRetentionFilterCreateData {
+	this := RUMRetentionFilterCreateData{}
 	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewRumRetentionFilterCreateDataWithDefaults instantiates a new RumRetentionFilterCreateData object.
+// NewRUMRetentionFilterCreateDataWithDefaults instantiates a new RUMRetentionFilterCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRumRetentionFilterCreateDataWithDefaults() *RumRetentionFilterCreateData {
-	this := RumRetentionFilterCreateData{}
-	var typeVar RumRetentionFilterType = RUMRETENTIONFILTERTYPE_RETENTION_FILTERS
+func NewRUMRetentionFilterCreateDataWithDefaults() *RUMRetentionFilterCreateData {
+	this := RUMRetentionFilterCreateData{}
+	var typeVar RUMRetentionFilterType = RUMRETENTIONFILTERTYPE_RETENTION_FILTERS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *RumRetentionFilterCreateData) GetAttributes() RumRetentionFilterCreateAttributes {
+func (o *RUMRetentionFilterCreateData) GetAttributes() RUMRetentionFilterCreateAttributes {
 	if o == nil {
-		var ret RumRetentionFilterCreateAttributes
+		var ret RUMRetentionFilterCreateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -53,7 +53,7 @@ func (o *RumRetentionFilterCreateData) GetAttributes() RumRetentionFilterCreateA
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateData) GetAttributesOk() (*RumRetentionFilterCreateAttributes, bool) {
+func (o *RUMRetentionFilterCreateData) GetAttributesOk() (*RUMRetentionFilterCreateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *RumRetentionFilterCreateData) GetAttributesOk() (*RumRetentionFilterCre
 }
 
 // SetAttributes sets field value.
-func (o *RumRetentionFilterCreateData) SetAttributes(v RumRetentionFilterCreateAttributes) {
+func (o *RUMRetentionFilterCreateData) SetAttributes(v RUMRetentionFilterCreateAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *RumRetentionFilterCreateData) GetType() RumRetentionFilterType {
+func (o *RUMRetentionFilterCreateData) GetType() RUMRetentionFilterType {
 	if o == nil {
-		var ret RumRetentionFilterType
+		var ret RUMRetentionFilterType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *RumRetentionFilterCreateData) GetType() RumRetentionFilterType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateData) GetTypeOk() (*RumRetentionFilterType, bool) {
+func (o *RUMRetentionFilterCreateData) GetTypeOk() (*RUMRetentionFilterType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *RumRetentionFilterCreateData) GetTypeOk() (*RumRetentionFilterType, boo
 }
 
 // SetType sets field value.
-func (o *RumRetentionFilterCreateData) SetType(v RumRetentionFilterType) {
+func (o *RUMRetentionFilterCreateData) SetType(v RUMRetentionFilterType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
+func (o RUMRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RumRetentionFilterCreateAttributes `json:"attributes"`
-		Type       *RumRetentionFilterType             `json:"type"`
+		Attributes *RUMRetentionFilterCreateAttributes `json:"attributes"`
+		Type       *RUMRetentionFilterType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

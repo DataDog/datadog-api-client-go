@@ -17,14 +17,14 @@ func main() {
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRumReplayHeatmapsApi(apiClient)
+	api := datadogV2.NewRUMReplayHeatmapsApi(apiClient)
 	resp, r, err := api.ListReplayHeatmapSnapshots(ctx, "/home", *datadogV2.NewListReplayHeatmapSnapshotsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RumReplayHeatmapsApi.ListReplayHeatmapSnapshots`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMReplayHeatmapsApi.ListReplayHeatmapSnapshots`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RumReplayHeatmapsApi.ListReplayHeatmapSnapshots`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMReplayHeatmapsApi.ListReplayHeatmapSnapshots`:\n%s\n", responseContent)
 }

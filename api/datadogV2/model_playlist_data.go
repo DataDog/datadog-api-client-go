@@ -16,7 +16,7 @@ type PlaylistData struct {
 	Attributes *PlaylistDataAttributes `json:"attributes,omitempty"`
 	// Unique identifier of the playlist.
 	Id *string `json:"id,omitempty"`
-	// Rum replay playlist resource type.
+	// RUM replay playlist resource type.
 	Type PlaylistDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
