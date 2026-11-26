@@ -13,16 +13,20 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_operation" in the system
+	RumOperationDataID := os.Getenv("RUM_OPERATION_DATA_ID")
+
 	body := datadogV2.RUMOperationStrongLinkCreateRequest{
 		Data: datadogV2.RUMOperationStrongLinkCreateRequestData{
-			Attributes: datadogV2.RUMOperationStrongLinkCreateRequestAttributes{
-				Description: *datadog.NewNullableString(nil),
-				FeatureId:   "journey-123",
-				OperationId: datadog.PtrString("abc12345-1234-5678-abcd-ef1234567890"),
-				Status:      datadogV2.RUMOPERATIONSTRONGLINKSTATUS_CONFIRMED.Ptr(),
-				Tags:        []string{},
-			},
 			Type: datadogV2.RUMOPERATIONSTRONGLINKTYPE_STRONG_LINKS,
+			Attributes: datadogV2.RUMOperationStrongLinkCreateRequestAttributes{
+				OperationId: datadog.PtrString(RumOperationDataID),
+				FeatureId:   "bdd-examplerumoperation",
+				Status:      datadogV2.RUMOPERATIONSTRONGLINKSTATUS_DRAFT.Ptr(),
+				Tags: []string{
+					"team:rum-backend",
+				},
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.RumConfigUpdateRequest{
 		Data: datadogV2.RumConfigUpdateData{
 			Attributes: datadogV2.RumConfigUpdateAttributes{
-				EnforcedApplicationTags: true,
+				EnforcedApplicationTags: false,
 			},
 			Type: datadogV2.RUMCONFIGTYPE_RUM_CONFIG,
 		},

@@ -10,46 +10,44 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	"github.com/google/uuid"
 )
 
 func main() {
+	// there is a valid "rum_operation" in the system
+	RumOperationDataAttributesName := os.Getenv("RUM_OPERATION_DATA_ATTRIBUTES_NAME")
+	RumOperationDataID := os.Getenv("RUM_OPERATION_DATA_ID")
+
 	body := datadogV2.RUMOperationUpdateRequest{
 		Data: datadogV2.RUMOperationUpdateRequestData{
+			Id:   RumOperationDataID,
+			Type: datadogV2.RUMOPERATIONTYPE_OPERATIONS,
 			Attributes: datadogV2.RUMOperationRequestAttributes{
-				ApplicationId: datadog.PtrUUID(uuid.MustParse("abc12345-1234-5678-abcd-ef1234567890")),
-				Category:      *datadog.NewNullableString(nil),
-				Description:   *datadog.NewNullableString(nil),
-				DisplayName:   datadog.PtrString("Checkout completed"),
-				FeatureIds:    []string{},
+				Name:        RumOperationDataAttributesName,
+				DisplayName: datadog.PtrString("BDD operation updated"),
+				Tags: []string{
+					"team:rum-backend",
+				},
 				JourneyRum: datadogV2.RUMOperationJourneyRum{
 					RumSteps: *datadog.NewNullableList(&[]datadogV2.RUMOperationJourneyStep{
 						{
-							Composite: &datadogV2.RUMOperationJourneyCompositeRule{
-								Kind:        datadogV2.RUMOPERATIONJOURNEYCOMPOSITERULEKIND_ALL_OF,
-								MaxWindowMs: datadog.PtrInt64(30000),
-								Predicates: []datadogV2.RUMOperationJourneyPredicate{
-									{
-										Query: "@type:action @action.type:click",
-									},
-								},
-							},
+							Type: datadogV2.RUMOPERATIONJOURNEYSTEPTYPE_START,
 							Nodes: []datadogV2.RUMOperationJourneyNode{
 								{
 									Query: "@type:action @action.type:click",
 								},
 							},
-							Type: datadogV2.RUMOPERATIONJOURNEYSTEPTYPE_START,
+						},
+						{
+							Type: datadogV2.RUMOPERATIONJOURNEYSTEPTYPE_STOP,
+							Nodes: []datadogV2.RUMOperationJourneyNode{
+								{
+									Query: "@type:view",
+								},
+							},
 						},
 					}),
 				},
-				Name: "checkout_completed",
-				Tags: []string{
-					"team:checkout",
-				},
 			},
-			Id:   "abc12345-1234-5678-abcd-ef1234567890",
-			Type: datadogV2.RUMOPERATIONTYPE_OPERATIONS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
@@ -57,7 +55,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	resp, r, err := api.UpdateRUMOperation(ctx, "rum_operation_id", body)
+	resp, r, err := api.UpdateRUMOperation(ctx, RumOperationDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.UpdateRUMOperation`: %v\n", err)
