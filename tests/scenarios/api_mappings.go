@@ -6,6 +6,7 @@ import (
     "reflect"
 
     "github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadogV1_20270101"
     "github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
@@ -42,6 +43,9 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "TagsApi": reflect.ValueOf(datadogV1.NewTagsApi),
 	    "UsersApi": reflect.ValueOf(datadogV1.NewUsersApi),
 	    "AuthenticationApi": reflect.ValueOf(datadogV1.NewAuthenticationApi),
+	},
+	"v1_20270101": {
+	    "DashboardsApi": reflect.ValueOf(datadogV1_20270101.NewDashboardsApi),
 	},
 	"v2": {
 	    "FleetAutomationApi": reflect.ValueOf(datadogV2.NewFleetAutomationApi),
