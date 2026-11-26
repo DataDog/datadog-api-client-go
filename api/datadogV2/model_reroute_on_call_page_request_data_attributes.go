@@ -12,7 +12,7 @@ import (
 
 // RerouteOnCallPageRequestDataAttributes Details about where to reroute the On-Call Page.
 type RerouteOnCallPageRequestDataAttributes struct {
-	// An optional comment explaining why the page is being rerouted.
+	// An optional comment explaining why the Page is being rerouted.
 	Comment *string `json:"comment,omitempty"`
 	// Information about the target to notify (such as a team or user).
 	Target CreatePageRequestDataAttributesTarget `json:"target"`
