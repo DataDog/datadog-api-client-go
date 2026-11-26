@@ -16,7 +16,7 @@ type RUMAggregateSort struct {
 	Metric *string `json:"metric,omitempty"`
 	// The order to use, ascending or descending.
 	Order *RUMSortOrder `json:"order,omitempty"`
-	// The type of sorting algorithm. `alphabetical` sorts buckets by the facet value. `measure` sorts them by a computed aggregation.
+	// The type of sorting algorithm. `alphabetical` sorts buckets by the facet value. `measure` sorts them by a computed aggregation, and is required when the sort sets `aggregation` or `metric`.
 	Type *RUMAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
