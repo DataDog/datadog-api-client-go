@@ -15,6 +15,9 @@ type ProductAnalyticsRetentionListQuery struct {
 	// The attribute columns to include in each returned row.
 	Columns []ProductAnalyticsRetentionListColumn `json:"columns,omitempty"`
 	// Narrows a retention query to a single cell, at the intersection of one cohort and one return period.
+	// Both indexes are zero-based. The cohort index plus the return period index must be lower than the number
+	// of cohorts in the query window. For example, return period `1` of cohort `0` needs a window with at least
+	// two cohort intervals, such as two weeks for weekly cohorts. Otherwise the request fails with `invalid index`.
 	ComputationScope ProductAnalyticsRetentionCellScope `json:"computation_scope"`
 	// Maximum number of rows to return. Use `0` for no limit.
 	Limit *int64 `json:"limit,omitempty"`

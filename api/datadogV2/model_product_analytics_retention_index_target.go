@@ -14,7 +14,8 @@ import (
 type ProductAnalyticsRetentionIndexTarget struct {
 	// The discriminator identifying a target selected by index.
 	Type ProductAnalyticsRetentionIndexTargetType `json:"type"`
-	// Zero-based index of the targeted cohort or return period.
+	// Zero-based index of the targeted cohort or return period. It must be lower than the number of cohorts
+	// in the query window, which is the number of cohort intervals that start between `from` and `to`.
 	Value int64 `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

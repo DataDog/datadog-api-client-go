@@ -14,7 +14,8 @@ import (
 type ProductAnalyticsRetentionCompute struct {
 	// The aggregation function applied to the metric, such as `count` or `avg`.
 	Aggregation string `json:"aggregation"`
-	// The retention metric to compute, either an absolute count or a rate.
+	// The retention metric to compute. Use `__dd.retention` for the number of retained entities,
+	// or `__dd.retention_rate` for the share of the cohort that was retained. No other value is accepted.
 	Metric ProductAnalyticsRetentionComputeMetric `json:"metric"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

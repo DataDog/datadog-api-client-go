@@ -18,8 +18,9 @@ type ProductAnalyticsJourneyFunnelResponseAttributes struct {
 	EndToEndElapsedTime ProductAnalyticsElapsedTime `json:"end_to_end_elapsed_time"`
 	// The funnel steps, in the order given by the search expression.
 	FunnelSteps []ProductAnalyticsJourneyFunnelStep `json:"funnel_steps"`
-	// Number of entities that entered the funnel.
-	InitialCount int64 `json:"initial_count"`
+	// Number of entities that entered the funnel. The service does not return it today; use the `value`
+	// of the first entry in `funnel_steps` instead.
+	InitialCount *int64 `json:"initial_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,12 +30,11 @@ type ProductAnalyticsJourneyFunnelResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewProductAnalyticsJourneyFunnelResponseAttributes(endToEndConversionRate float64, endToEndElapsedTime ProductAnalyticsElapsedTime, funnelSteps []ProductAnalyticsJourneyFunnelStep, initialCount int64) *ProductAnalyticsJourneyFunnelResponseAttributes {
+func NewProductAnalyticsJourneyFunnelResponseAttributes(endToEndConversionRate float64, endToEndElapsedTime ProductAnalyticsElapsedTime, funnelSteps []ProductAnalyticsJourneyFunnelStep) *ProductAnalyticsJourneyFunnelResponseAttributes {
 	this := ProductAnalyticsJourneyFunnelResponseAttributes{}
 	this.EndToEndConversionRate = endToEndConversionRate
 	this.EndToEndElapsedTime = endToEndElapsedTime
 	this.FunnelSteps = funnelSteps
-	this.InitialCount = initialCount
 	return &this
 }
 
@@ -115,27 +115,32 @@ func (o *ProductAnalyticsJourneyFunnelResponseAttributes) SetFunnelSteps(v []Pro
 	o.FunnelSteps = v
 }
 
-// GetInitialCount returns the InitialCount field value.
+// GetInitialCount returns the InitialCount field value if set, zero value otherwise.
 func (o *ProductAnalyticsJourneyFunnelResponseAttributes) GetInitialCount() int64 {
-	if o == nil {
+	if o == nil || o.InitialCount == nil {
 		var ret int64
 		return ret
 	}
-	return o.InitialCount
+	return *o.InitialCount
 }
 
-// GetInitialCountOk returns a tuple with the InitialCount field value
+// GetInitialCountOk returns a tuple with the InitialCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProductAnalyticsJourneyFunnelResponseAttributes) GetInitialCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.InitialCount == nil {
 		return nil, false
 	}
-	return &o.InitialCount, true
+	return o.InitialCount, true
 }
 
-// SetInitialCount sets field value.
+// HasInitialCount returns a boolean if a field has been set.
+func (o *ProductAnalyticsJourneyFunnelResponseAttributes) HasInitialCount() bool {
+	return o != nil && o.InitialCount != nil
+}
+
+// SetInitialCount gets a reference to the given int64 and assigns it to the InitialCount field.
 func (o *ProductAnalyticsJourneyFunnelResponseAttributes) SetInitialCount(v int64) {
-	o.InitialCount = v
+	o.InitialCount = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -147,7 +152,9 @@ func (o ProductAnalyticsJourneyFunnelResponseAttributes) MarshalJSON() ([]byte, 
 	toSerialize["end_to_end_conversion_rate"] = o.EndToEndConversionRate
 	toSerialize["end_to_end_elapsed_time"] = o.EndToEndElapsedTime
 	toSerialize["funnel_steps"] = o.FunnelSteps
-	toSerialize["initial_count"] = o.InitialCount
+	if o.InitialCount != nil {
+		toSerialize["initial_count"] = o.InitialCount
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,7 +168,7 @@ func (o *ProductAnalyticsJourneyFunnelResponseAttributes) UnmarshalJSON(bytes []
 		EndToEndConversionRate *float64                             `json:"end_to_end_conversion_rate"`
 		EndToEndElapsedTime    *ProductAnalyticsElapsedTime         `json:"end_to_end_elapsed_time"`
 		FunnelSteps            *[]ProductAnalyticsJourneyFunnelStep `json:"funnel_steps"`
-		InitialCount           *int64                               `json:"initial_count"`
+		InitialCount           *int64                               `json:"initial_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -174,9 +181,6 @@ func (o *ProductAnalyticsJourneyFunnelResponseAttributes) UnmarshalJSON(bytes []
 	}
 	if all.FunnelSteps == nil {
 		return fmt.Errorf("required field funnel_steps missing")
-	}
-	if all.InitialCount == nil {
-		return fmt.Errorf("required field initial_count missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -192,7 +196,7 @@ func (o *ProductAnalyticsJourneyFunnelResponseAttributes) UnmarshalJSON(bytes []
 	}
 	o.EndToEndElapsedTime = *all.EndToEndElapsedTime
 	o.FunnelSteps = *all.FunnelSteps
-	o.InitialCount = *all.InitialCount
+	o.InitialCount = all.InitialCount
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
