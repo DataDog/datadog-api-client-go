@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -28,15 +26,6 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMapping(ctx _context.Context,
 		localVarPostBody    interface{}
 		localVarReturnValue TeamsOwnershipMappingResponse
 	)
-
-	operationId := "v2.CreateTeamsOwnershipMapping"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.CreateTeamsOwnershipMapping")
 	if err != nil {
@@ -121,15 +110,6 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Co
 		localVarPostBody    interface{}
 		localVarReturnValue TeamsOwnershipMappingBatchResponse
 	)
-
-	operationId := "v2.CreateTeamsOwnershipMappingsBatch"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.CreateTeamsOwnershipMappingsBatch")
 	if err != nil {
@@ -219,15 +199,6 @@ func (a *RumTeamsOwnershipApi) DeleteTeamsOwnershipMapping(ctx _context.Context,
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteTeamsOwnershipMapping"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.DeleteTeamsOwnershipMapping")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -296,15 +267,6 @@ func (a *RumTeamsOwnershipApi) GetTeamsOwnershipMapping(ctx _context.Context, id
 		localVarPostBody    interface{}
 		localVarReturnValue TeamsOwnershipMappingResponse
 	)
-
-	operationId := "v2.GetTeamsOwnershipMapping"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.GetTeamsOwnershipMapping")
 	if err != nil {
@@ -428,15 +390,6 @@ func (a *RumTeamsOwnershipApi) ListTeamsOwnershipMappings(ctx _context.Context, 
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListTeamsOwnershipMappings"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.ListTeamsOwnershipMappings")
@@ -606,15 +559,6 @@ func (a *RumTeamsOwnershipApi) ListTeamsOwnershipRules(ctx _context.Context, o .
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListTeamsOwnershipRules"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RumTeamsOwnershipApi.ListTeamsOwnershipRules")
