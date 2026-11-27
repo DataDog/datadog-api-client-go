@@ -13,16 +13,19 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_application" in the system
+	RumApplicationDataID := os.Getenv("RUM_APPLICATION_DATA_ID")
+
 	body := datadogV2.RumPermanentRetentionFilterUpdateRequest{
 		Data: datadogV2.RumPermanentRetentionFilterUpdateData{
+			Id:   datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS,
+			Type: datadogV2.RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS,
 			Attributes: datadogV2.RumPermanentRetentionFilterUpdateAttributes{
 				CrossProductSampling: &datadogV2.RumCrossProductSamplingUpdate{
 					TraceEnabled:    datadog.PtrBool(true),
 					TraceSampleRate: datadog.PtrFloat64(25.0),
 				},
 			},
-			Id:   datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS,
-			Type: datadogV2.RUMPERMANENTRETENTIONFILTERTYPE_PERMANENT_RETENTION_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
@@ -30,7 +33,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
-	resp, r, err := api.UpdatePermanentRetentionFilter(ctx, "app_id", datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS, body)
+	resp, r, err := api.UpdatePermanentRetentionFilter(ctx, RumApplicationDataID, datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.UpdatePermanentRetentionFilter`: %v\n", err)
