@@ -12,12 +12,15 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_application" in the system
+	RumApplicationDataID := os.Getenv("RUM_APPLICATION_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMRetentionQuotasApi(apiClient)
-	r, err := api.DeleteRumQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b")
+	r, err := api.DeleteRumQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, RumApplicationDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.DeleteRumQuotaConfig`: %v\n", err)
