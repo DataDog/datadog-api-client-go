@@ -11,7 +11,7 @@ import (
 // RUMAggregateRequest The object sent with the request to retrieve aggregation buckets of RUM events from your organization.
 // `filter.indexes` is not supported and is ignored.
 type RUMAggregateRequest struct {
-	// The list of metrics or timeseries to compute for the retrieved buckets.
+	// The list of metrics or timeseries to compute for the retrieved buckets. All rules must have the same `type`; mixing `total` and `timeseries` rules is rejected.
 	Compute []RUMCompute `json:"compute,omitempty"`
 	// The search and filter query settings.
 	Filter *RUMQueryFilter `json:"filter,omitempty"`
