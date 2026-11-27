@@ -1,4 +1,4 @@
-// Get Agent Observability Scanning Group returns "OK" response
+// Get Target Scanning Group returns "OK" response
 
 package main
 

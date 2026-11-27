@@ -1,4 +1,4 @@
-// List Agent Observability Scanning Groups returns "OK" response
+// List Target Scanning Groups returns "OK" response
 
 package main
 
