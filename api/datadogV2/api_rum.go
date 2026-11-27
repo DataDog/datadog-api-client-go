@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -433,15 +431,6 @@ func (a *RUMApi) DeleteSourcemaps(ctx _context.Context, mapkind SourcemapMapKind
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.DeleteSourcemaps"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMApi.DeleteSourcemaps")
@@ -948,15 +937,6 @@ func (a *RUMApi) GetServiceRepositoryInfo(ctx _context.Context, body ServiceRepo
 		localVarReturnValue ServiceRepositoryInfoResponse
 	)
 
-	operationId := "v2.GetServiceRepositoryInfo"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMApi.GetServiceRepositoryInfo")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1126,15 +1106,6 @@ func (a *RUMApi) GetSourcemaps(ctx _context.Context, o ...GetSourcemapsOptionalP
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.GetSourcemaps"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMApi.GetSourcemaps")
@@ -1730,15 +1701,6 @@ func (a *RUMApi) ListSourcemaps(ctx _context.Context, o ...ListSourcemapsOptiona
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListSourcemaps"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMApi.ListSourcemaps")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2152,15 +2114,6 @@ func (a *RUMApi) RestoreSourcemaps(ctx _context.Context, mapkind SourcemapMapKin
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.RestoreSourcemaps"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RUMApi.RestoreSourcemaps")
