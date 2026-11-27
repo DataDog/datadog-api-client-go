@@ -9,15 +9,17 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	"github.com/google/uuid"
 )
 
 func main() {
+	// there is a valid "rum_application" in the system
+	RumApplicationDataID := os.Getenv("RUM_APPLICATION_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMManagedArchivesApi(apiClient)
-	r, err := api.DeleteRUMArchiveConfig(ctx, uuid.MustParse("a33671aa-24fd-4dcd-ba4b-5bbdbafe7690"))
+	r, err := api.DeleteRUMArchiveConfig(ctx, RumApplicationDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMManagedArchivesApi.DeleteRUMArchiveConfig`: %v\n", err)
