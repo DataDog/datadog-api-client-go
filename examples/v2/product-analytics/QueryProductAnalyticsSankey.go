@@ -20,8 +20,8 @@ func main() {
 				Definition: datadogV2.ProductAnalyticsSankeyDefinition{
 					EntriesPerStep: datadog.PtrInt64(10),
 					NumberOfSteps:  datadog.PtrInt64(3),
-					Source:         "@view.name",
-					Target:         "@view.name",
+					Source:         `@type:view @view.name:"/logs"`,
+					Target:         "",
 				},
 				Search: datadogV2.ProductAnalyticsSankeySearch{
 					AudienceFilters: &datadogV2.ProductAnalyticsAudienceFilters{

@@ -17,6 +17,7 @@ type ProductAnalyticsJourneyListQuery struct {
 	// Whether to return the entities that converted at the target step, or those that dropped off.
 	ConversionType *ProductAnalyticsJourneyConversionType `json:"conversion_type,omitempty"`
 	// Attribute columns to return for each row, in addition to the identity join key and `timestamp`.
+	// For example, `@usr.id` returns the user of each session.
 	EntityColumns []string `json:"entity_columns,omitempty"`
 	// Additional search query applied to the returned rows.
 	EntityFilters *string `json:"entity_filters,omitempty"`

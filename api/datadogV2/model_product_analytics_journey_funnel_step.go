@@ -14,11 +14,11 @@ import (
 type ProductAnalyticsJourneyFunnelStep struct {
 	// Elapsed time statistics (min/max/avg in milliseconds).
 	ElapsedTimeToNextStep ProductAnalyticsElapsedTime `json:"elapsed_time_to_next_step"`
-	// Breakdown of this step by the requested group-by facets.
-	Groups []ProductAnalyticsJourneyFunnelStepGroup `json:"groups"`
+	// Breakdown of this step by the requested group-by facets. Omitted when the query has no group-by.
+	Groups []ProductAnalyticsJourneyFunnelStepGroup `json:"groups,omitempty"`
 	// Label of the step, derived from the node alias.
 	Label string `json:"label"`
-	// Unit of the elapsed time values.
+	// The entity counted in `value`, such as `session` or `user`, set by the join key.
 	Unit string `json:"unit"`
 	// Value of the computed metric at this step.
 	Value float64 `json:"value"`
@@ -31,10 +31,9 @@ type ProductAnalyticsJourneyFunnelStep struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewProductAnalyticsJourneyFunnelStep(elapsedTimeToNextStep ProductAnalyticsElapsedTime, groups []ProductAnalyticsJourneyFunnelStepGroup, label string, unit string, value float64) *ProductAnalyticsJourneyFunnelStep {
+func NewProductAnalyticsJourneyFunnelStep(elapsedTimeToNextStep ProductAnalyticsElapsedTime, label string, unit string, value float64) *ProductAnalyticsJourneyFunnelStep {
 	this := ProductAnalyticsJourneyFunnelStep{}
 	this.ElapsedTimeToNextStep = elapsedTimeToNextStep
-	this.Groups = groups
 	this.Label = label
 	this.Unit = unit
 	this.Value = value
@@ -72,25 +71,30 @@ func (o *ProductAnalyticsJourneyFunnelStep) SetElapsedTimeToNextStep(v ProductAn
 	o.ElapsedTimeToNextStep = v
 }
 
-// GetGroups returns the Groups field value.
+// GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *ProductAnalyticsJourneyFunnelStep) GetGroups() []ProductAnalyticsJourneyFunnelStepGroup {
-	if o == nil {
+	if o == nil || o.Groups == nil {
 		var ret []ProductAnalyticsJourneyFunnelStepGroup
 		return ret
 	}
 	return o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field value
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProductAnalyticsJourneyFunnelStep) GetGroupsOk() (*[]ProductAnalyticsJourneyFunnelStepGroup, bool) {
-	if o == nil {
+	if o == nil || o.Groups == nil {
 		return nil, false
 	}
 	return &o.Groups, true
 }
 
-// SetGroups sets field value.
+// HasGroups returns a boolean if a field has been set.
+func (o *ProductAnalyticsJourneyFunnelStep) HasGroups() bool {
+	return o != nil && o.Groups != nil
+}
+
+// SetGroups gets a reference to the given []ProductAnalyticsJourneyFunnelStepGroup and assigns it to the Groups field.
 func (o *ProductAnalyticsJourneyFunnelStep) SetGroups(v []ProductAnalyticsJourneyFunnelStepGroup) {
 	o.Groups = v
 }
@@ -171,7 +175,9 @@ func (o ProductAnalyticsJourneyFunnelStep) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["elapsed_time_to_next_step"] = o.ElapsedTimeToNextStep
-	toSerialize["groups"] = o.Groups
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
+	}
 	toSerialize["label"] = o.Label
 	toSerialize["unit"] = o.Unit
 	toSerialize["value"] = o.Value
@@ -185,20 +191,17 @@ func (o ProductAnalyticsJourneyFunnelStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProductAnalyticsJourneyFunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ElapsedTimeToNextStep *ProductAnalyticsElapsedTime              `json:"elapsed_time_to_next_step"`
-		Groups                *[]ProductAnalyticsJourneyFunnelStepGroup `json:"groups"`
-		Label                 *string                                   `json:"label"`
-		Unit                  *string                                   `json:"unit"`
-		Value                 *float64                                  `json:"value"`
+		ElapsedTimeToNextStep *ProductAnalyticsElapsedTime             `json:"elapsed_time_to_next_step"`
+		Groups                []ProductAnalyticsJourneyFunnelStepGroup `json:"groups,omitempty"`
+		Label                 *string                                  `json:"label"`
+		Unit                  *string                                  `json:"unit"`
+		Value                 *float64                                 `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ElapsedTimeToNextStep == nil {
 		return fmt.Errorf("required field elapsed_time_to_next_step missing")
-	}
-	if all.Groups == nil {
-		return fmt.Errorf("required field groups missing")
 	}
 	if all.Label == nil {
 		return fmt.Errorf("required field label missing")
@@ -221,7 +224,7 @@ func (o *ProductAnalyticsJourneyFunnelStep) UnmarshalJSON(bytes []byte) (err err
 		hasInvalidField = true
 	}
 	o.ElapsedTimeToNextStep = *all.ElapsedTimeToNextStep
-	o.Groups = *all.Groups
+	o.Groups = all.Groups
 	o.Label = *all.Label
 	o.Unit = *all.Unit
 	o.Value = *all.Value

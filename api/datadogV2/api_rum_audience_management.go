@@ -177,7 +177,8 @@ func (a *RumAudienceManagementApi) DeleteConnection(ctx _context.Context, id str
 
 // DeleteUserProfile Delete a user profile.
 // Delete a Product Analytics user profile.
-// Deletion is asynchronous: the request is accepted and the profile is removed shortly after, usually within a few minutes.
+// Deletion is asynchronous: the request is accepted and the profile is removed shortly after, usually within a few
+// minutes.
 // This only deletes the user profile. To delete the RUM events of the user, use the RUM data deletion API.
 func (a *RumAudienceManagementApi) DeleteUserProfile(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	var (
@@ -705,7 +706,10 @@ func (a *RumAudienceManagementApi) QueryAccounts(ctx _context.Context, body Quer
 }
 
 // QueryEventFilteredUsers Query event filtered users.
-// Query users filtered by both user properties and event platform data
+// Query users filtered by both user properties and event platform data.
+// `event_query.query` selects users who have matching events in `event_query.time_frame`, which is in
+// milliseconds.
+// `query` and `select_columns` use user profile attribute names, not event facets.
 func (a *RumAudienceManagementApi) QueryEventFilteredUsers(ctx _context.Context, body QueryEventFilteredUsersRequest) (QueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
