@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
@@ -24,10 +25,10 @@ func main() {
 					Min:    datadog.PtrFloat64(2.5),
 				},
 				Filter:                  datadog.PtrString("@session.type:user"),
-				From:                    1762437564,
+				From:                    time.Now().Add(time.Hour * -1).Unix(),
 				IncludeGlobalAppearance: datadog.PtrBool(false),
 				SampleSize:              20,
-				To:                      1762523964,
+				To:                      time.Now().Unix(),
 				ViewName:                "/account/login(/:type)",
 			},
 			Type: datadogV2.AGGREGATEDWATERFALLREQUESTTYPE_AGGREGATED_WATERFALL,

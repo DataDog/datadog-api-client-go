@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_operation" in the system
+	RumOperationDataAttributesName := os.Getenv("RUM_OPERATION_DATA_ATTRIBUTES_NAME")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	resp, r, err := api.ListRUMOperations(ctx, *datadogV2.NewListRUMOperationsOptionalParameters())
+	resp, r, err := api.ListRUMOperations(ctx, *datadogV2.NewListRUMOperationsOptionalParameters().WithQuery(RumOperationDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.ListRUMOperations`: %v\n", err)

@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_operation" in the system
+	RumOperationDataID := os.Getenv("RUM_OPERATION_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	resp, r, err := api.ListRUMOperationStrongLinks(ctx, *datadogV2.NewListRUMOperationStrongLinksOptionalParameters())
+	resp, r, err := api.ListRUMOperationStrongLinks(ctx, *datadogV2.NewListRUMOperationStrongLinksOptionalParameters().WithOperationId(RumOperationDataID))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.ListRUMOperationStrongLinks`: %v\n", err)

@@ -13,12 +13,16 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_operation_strong_link" in the system
+	RumOperationStrongLinkDataAttributesFeatureID := os.Getenv("RUM_OPERATION_STRONG_LINK_DATA_ATTRIBUTES_FEATURE_ID")
+	RumOperationStrongLinkDataAttributesOperationID := os.Getenv("RUM_OPERATION_STRONG_LINK_DATA_ATTRIBUTES_OPERATION_ID")
+
 	body := datadogV2.RUMOperationStrongLinkUpdateRequest{
 		Data: datadogV2.RUMOperationStrongLinkUpdateRequestData{
-			Attributes: datadogV2.RUMOperationStrongLinkUpdateRequestAttributes{
-				Status: datadogV2.RUMOPERATIONSTRONGLINKUPDATESTATUS_CONFIRMED,
-			},
 			Type: datadogV2.RUMOPERATIONSTRONGLINKTYPE_STRONG_LINKS,
+			Attributes: datadogV2.RUMOperationStrongLinkUpdateRequestAttributes{
+				Status: datadogV2.RUMOPERATIONSTRONGLINKUPDATESTATUS_REJECTED,
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
@@ -26,7 +30,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMOperationsApi(apiClient)
-	resp, r, err := api.UpdateRUMOperationStrongLink(ctx, "rum_operation_id", "feature_id", body)
+	resp, r, err := api.UpdateRUMOperationStrongLink(ctx, RumOperationStrongLinkDataAttributesOperationID, RumOperationStrongLinkDataAttributesFeatureID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMOperationsApi.UpdateRUMOperationStrongLink`: %v\n", err)
