@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_exclusion_filter" in the system
+	RumExclusionFilterDataID := os.Getenv("RUM_EXCLUSION_FILTER_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
-	resp, r, err := api.GetExclusionFilter(ctx, "app_id", "ef_id")
+	resp, r, err := api.GetExclusionFilter(ctx, "a33671aa-24fd-4dcd-ba4b-5bbdbafe7690", RumExclusionFilterDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.GetExclusionFilter`: %v\n", err)

@@ -13,16 +13,17 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_exclusion_filter" in the system
+	RumExclusionFilterDataID := os.Getenv("RUM_EXCLUSION_FILTER_DATA_ID")
+
 	body := datadogV2.RumExclusionFilterUpdateRequest{
 		Data: datadogV2.RumExclusionFilterUpdateData{
-			Attributes: datadogV2.RumExclusionFilterUpdateAttributes{
-				Enabled:   datadog.PtrBool(true),
-				EventType: datadogV2.RUMEXCLUSIONFILTEREVENTTYPE_ERROR.Ptr(),
-				Name:      datadog.PtrString("Exclude noisy browser extension errors"),
-				Query:     datadog.PtrString("@error.message:*extension*"),
-			},
-			Id:   "051601eb-54a0-abc0-03f9-cc02efa18892",
+			Id:   RumExclusionFilterDataID,
 			Type: datadogV2.RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS,
+			Attributes: datadogV2.RumExclusionFilterUpdateAttributes{
+				Enabled: datadog.PtrBool(false),
+				Name:    datadog.PtrString("Example-Rum-Retention-Filter-updated"),
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
@@ -30,7 +31,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
-	resp, r, err := api.UpdateExclusionFilter(ctx, "app_id", "ef_id", body)
+	resp, r, err := api.UpdateExclusionFilter(ctx, "a33671aa-24fd-4dcd-ba4b-5bbdbafe7690", RumExclusionFilterDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.UpdateExclusionFilter`: %v\n", err)

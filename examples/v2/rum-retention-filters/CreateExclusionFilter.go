@@ -15,13 +15,13 @@ import (
 func main() {
 	body := datadogV2.RumExclusionFilterCreateRequest{
 		Data: datadogV2.RumExclusionFilterCreateData{
+			Type: datadogV2.RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS,
 			Attributes: datadogV2.RumExclusionFilterCreateAttributes{
+				Name:      "Example-Rum-Retention-Filter",
 				Enabled:   datadog.PtrBool(true),
 				EventType: datadogV2.RUMEXCLUSIONFILTEREVENTTYPE_ERROR.Ptr(),
-				Name:      "Exclude noisy browser extension errors",
 				Query:     datadog.PtrString("@error.message:*extension*"),
 			},
-			Type: datadogV2.RUMEXCLUSIONFILTERTYPE_EXCLUSION_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
@@ -29,7 +29,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
-	resp, r, err := api.CreateExclusionFilter(ctx, "app_id", body)
+	resp, r, err := api.CreateExclusionFilter(ctx, "a33671aa-24fd-4dcd-ba4b-5bbdbafe7690", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.CreateExclusionFilter`: %v\n", err)

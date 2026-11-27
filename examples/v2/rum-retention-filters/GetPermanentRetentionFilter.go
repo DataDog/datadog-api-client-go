@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_application" in the system
+	RumApplicationDataID := os.Getenv("RUM_APPLICATION_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	ctx = context.WithValue(ctx, datadog.ContextAccessToken, os.Getenv("DD_BEARER_TOKEN"))
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRumRetentionFiltersApi(apiClient)
-	resp, r, err := api.GetPermanentRetentionFilter(ctx, "app_id", datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS)
+	resp, r, err := api.GetPermanentRetentionFilter(ctx, RumApplicationDataID, datadogV2.RUMPERMANENTRETENTIONFILTERID_SYNTHETICS_SESSIONS)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RumRetentionFiltersApi.GetPermanentRetentionFilter`: %v\n", err)
