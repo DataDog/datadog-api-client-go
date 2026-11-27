@@ -1,0 +1,62 @@
+{
+  "api": "ExecutionPolicy",
+  "expected_status": 201,
+  "feature": "Execution Policy",
+  "id": "v2/Execution Policy/Create an execution policy with literal remote shell commands returns \"Created\" response",
+  "operation_id": "CreateExecutionPolicy",
+  "request": {
+    "body": {
+      "schema": {
+        "format": null,
+        "ref": "ExecutionPolicyCreateRequest",
+        "type": "object"
+      },
+      "source": "inline",
+      "value": {
+        "data": {
+          "attributes": {
+            "action_pattern": {
+              "action_fqns": [
+                "com.datadoghq.remoteaction.rshell.runCommand"
+              ],
+              "integration": "INTEGRATION_REMOTE_ACTION"
+            },
+            "effect": "allow",
+            "name": "Literal remote shell policy {{ unique_lower_alnum }}",
+            "scope": {
+              "remote_action_rshell": {
+                "allowed_commands": {
+                  "commands": [
+                    {
+                      "command": "rshell:cat"
+                    },
+                    {
+                      "command": "rshell:ls"
+                    }
+                  ]
+                },
+                "rules": [
+                  {
+                    "access": "read_only",
+                    "target_paths": [
+                      "/var/log"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "type": "execution_policy"
+        }
+      }
+    },
+    "content_type": "application/json",
+    "method": "POST",
+    "pagination": false,
+    "parameters": [],
+    "path": "/api/v2/actions/execution-policies"
+  },
+  "scenario": "Create an execution policy with literal remote shell commands returns \"Created\" response",
+  "schema_version": 1,
+  "version": "v2"
+}
