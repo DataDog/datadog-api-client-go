@@ -159,7 +159,7 @@ func (a *RumTeamsOwnershipApi) CreateTeamsOwnershipMappingsBatch(ctx _context.Co
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
