@@ -10,20 +10,18 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.TeamsOwnershipMappingCreateRequest{
 		Data: datadogV2.TeamsOwnershipMappingCreateData{
-			Attributes: datadogV2.TeamsOwnershipMappingCreateDataAttributes{
-				ApplicationId: datadog.PtrUUID(uuid.MustParse("11111111-2222-3333-4444-555555555555")),
-				MatchType:     datadogV2.TEAMSOWNERSHIPMATCHTYPE_EXACT.Ptr(),
-				Service:       datadog.PtrString("web-checkout"),
-				TeamHandle:    "team-rum",
-				ViewName:      "/checkout",
-			},
 			Type: datadogV2.TEAMSOWNERSHIPMAPPINGTYPE_TEAMS_OWNERSHIP_MAPPINGS,
+			Attributes: datadogV2.TeamsOwnershipMappingCreateDataAttributes{
+				TeamHandle: "team-rum",
+				ViewName:   "/checkout-examplerumteamsownership",
+				Service:    datadog.PtrString("web-checkout-examplerumteamsownership"),
+				MatchType:  datadogV2.TEAMSOWNERSHIPMATCHTYPE_EXACT.Ptr(),
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
