@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SensitiveDataScannerGroupTargetType Type of target whose scanning groups are served by the target-scoped group routes. `llm_observability` is Agent Observability.
+// SensitiveDataScannerGroupTargetType Type of target whose scanning groups are served by the target-scoped group routes. `llm_observability` is Agent Observability, `ai_guard` is AI Guard.
 type SensitiveDataScannerGroupTargetType string
 
 // List of SensitiveDataScannerGroupTargetType.
 const (
 	SENSITIVEDATASCANNERGROUPTARGETTYPE_LLM_OBSERVABILITY SensitiveDataScannerGroupTargetType = "llm_observability"
+	SENSITIVEDATASCANNERGROUPTARGETTYPE_AI_GUARD          SensitiveDataScannerGroupTargetType = "ai_guard"
 )
 
 var allowedSensitiveDataScannerGroupTargetTypeEnumValues = []SensitiveDataScannerGroupTargetType{
 	SENSITIVEDATASCANNERGROUPTARGETTYPE_LLM_OBSERVABILITY,
+	SENSITIVEDATASCANNERGROUPTARGETTYPE_AI_GUARD,
 }
 
 // GetAllowedValues reeturns the list of possible values.

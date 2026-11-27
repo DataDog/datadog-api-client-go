@@ -12,7 +12,7 @@ import (
 
 // SensitiveDataScannerGroupTarget A target the scanning group applies to.
 type SensitiveDataScannerGroupTarget struct {
-	// Type of target whose scanning groups are served by the target-scoped group routes. `llm_observability` is Agent Observability.
+	// Type of target whose scanning groups are served by the target-scoped group routes. `llm_observability` is Agent Observability, `ai_guard` is AI Guard.
 	Type SensitiveDataScannerGroupTargetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

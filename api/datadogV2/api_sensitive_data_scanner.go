@@ -345,8 +345,8 @@ func (a *SensitiveDataScannerApi) DeleteScanningRule(ctx _context.Context, ruleI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetScanningGroup Get Agent Observability Scanning Group.
-// Get an Agent Observability scanning group, with its rules included.
+// GetScanningGroup Get Target Scanning Group.
+// Get an Agent Observability or AI Guard scanning group, with its rules included.
 // Scanning groups of logs, RUM, events, and APM are reported as not found.
 func (a *SensitiveDataScannerApi) GetScanningGroup(ctx _context.Context, groupId string) (SensitiveDataScannerTargetGroupResponse, *_nethttp.Response, error) {
 	var (
@@ -587,9 +587,9 @@ func (a *SensitiveDataScannerApi) ListStandardPatterns(ctx _context.Context) (Se
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListTargetScanningGroups List Agent Observability Scanning Groups.
-// List the Agent Observability scanning groups, with their rules included.
-// The list always includes the default Agent Observability scanning group.
+// ListTargetScanningGroups List Target Scanning Groups.
+// List the scanning groups of a target, such as Agent Observability or AI Guard, with their rules included.
+// The list always includes the default scanning group of the target.
 // Scanning groups of logs, RUM, events, and APM are listed by the List Scanning Groups endpoint.
 func (a *SensitiveDataScannerApi) ListTargetScanningGroups(ctx _context.Context, filterTarget SensitiveDataScannerGroupTargetType) (SensitiveDataScannerTargetGroupListResponse, *_nethttp.Response, error) {
 	var (
