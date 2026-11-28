@@ -14,6 +14,8 @@ type CloudConfigurationComplianceRuleOptions struct {
 	// Whether the rule is a complex one.
 	// Must be set to true if `regoRule.resourceTypes` contains more than one item. Defaults to false.
 	ComplexRule *bool `json:"complexRule,omitempty"`
+	// Compliance framework requirements the rule maps to.
+	ComplianceFrameworks []CloudConfigurationComplianceFramework `json:"complianceFrameworks,omitempty"`
 	// Rule details.
 	RegoRule *CloudConfigurationRegoRule `json:"regoRule,omitempty"`
 	// Main resource type to be checked by the rule. It should be specified again in `regoRule.resourceTypes`.
@@ -66,6 +68,34 @@ func (o *CloudConfigurationComplianceRuleOptions) HasComplexRule() bool {
 // SetComplexRule gets a reference to the given bool and assigns it to the ComplexRule field.
 func (o *CloudConfigurationComplianceRuleOptions) SetComplexRule(v bool) {
 	o.ComplexRule = &v
+}
+
+// GetComplianceFrameworks returns the ComplianceFrameworks field value if set, zero value otherwise.
+func (o *CloudConfigurationComplianceRuleOptions) GetComplianceFrameworks() []CloudConfigurationComplianceFramework {
+	if o == nil || o.ComplianceFrameworks == nil {
+		var ret []CloudConfigurationComplianceFramework
+		return ret
+	}
+	return o.ComplianceFrameworks
+}
+
+// GetComplianceFrameworksOk returns a tuple with the ComplianceFrameworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudConfigurationComplianceRuleOptions) GetComplianceFrameworksOk() (*[]CloudConfigurationComplianceFramework, bool) {
+	if o == nil || o.ComplianceFrameworks == nil {
+		return nil, false
+	}
+	return &o.ComplianceFrameworks, true
+}
+
+// HasComplianceFrameworks returns a boolean if a field has been set.
+func (o *CloudConfigurationComplianceRuleOptions) HasComplianceFrameworks() bool {
+	return o != nil && o.ComplianceFrameworks != nil
+}
+
+// SetComplianceFrameworks gets a reference to the given []CloudConfigurationComplianceFramework and assigns it to the ComplianceFrameworks field.
+func (o *CloudConfigurationComplianceRuleOptions) SetComplianceFrameworks(v []CloudConfigurationComplianceFramework) {
+	o.ComplianceFrameworks = v
 }
 
 // GetRegoRule returns the RegoRule field value if set, zero value otherwise.
@@ -133,6 +163,9 @@ func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.ComplexRule != nil {
 		toSerialize["complexRule"] = o.ComplexRule
 	}
+	if o.ComplianceFrameworks != nil {
+		toSerialize["complianceFrameworks"] = o.ComplianceFrameworks
+	}
 	if o.RegoRule != nil {
 		toSerialize["regoRule"] = o.RegoRule
 	}
@@ -149,22 +182,24 @@ func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ComplexRule  *bool                       `json:"complexRule,omitempty"`
-		RegoRule     *CloudConfigurationRegoRule `json:"regoRule,omitempty"`
-		ResourceType *string                     `json:"resourceType,omitempty"`
+		ComplexRule          *bool                                   `json:"complexRule,omitempty"`
+		ComplianceFrameworks []CloudConfigurationComplianceFramework `json:"complianceFrameworks,omitempty"`
+		RegoRule             *CloudConfigurationRegoRule             `json:"regoRule,omitempty"`
+		ResourceType         *string                                 `json:"resourceType,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"complexRule", "regoRule", "resourceType"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"complexRule", "complianceFrameworks", "regoRule", "resourceType"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ComplexRule = all.ComplexRule
+	o.ComplianceFrameworks = all.ComplianceFrameworks
 	if all.RegoRule != nil && all.RegoRule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
