@@ -18,6 +18,8 @@ type SecurityMonitoringRuleAnomalyDetectionOptions struct {
 	DetectionTolerance *SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance `json:"detectionTolerance,omitempty"`
 	// When set to true, Datadog uses previous values that fall within the defined learning window to construct the baseline, enabling the system to establish an accurate baseline more rapidly rather than relying solely on gradual learning over time.
 	InstantaneousBaseline *bool `json:"instantaneousBaseline,omitempty"`
+	// Maximum time in minutes to build the instantaneous baseline. Only used when `instantaneousBaseline` is true.
+	InstantaneousBaselineTimeoutMinutes *int32 `json:"instantaneousBaselineTimeoutMinutes,omitempty"`
 	// Learning duration in hours. Anomaly detection waits for at least this amount of historical data before it starts evaluating.
 	LearningDuration *SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration `json:"learningDuration,omitempty"`
 	// An optional override baseline to apply while the rule is in the learning period. Must be greater than or equal to 0.
@@ -128,6 +130,34 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) SetInstantaneousBaseline
 	o.InstantaneousBaseline = &v
 }
 
+// GetInstantaneousBaselineTimeoutMinutes returns the InstantaneousBaselineTimeoutMinutes field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetInstantaneousBaselineTimeoutMinutes() int32 {
+	if o == nil || o.InstantaneousBaselineTimeoutMinutes == nil {
+		var ret int32
+		return ret
+	}
+	return *o.InstantaneousBaselineTimeoutMinutes
+}
+
+// GetInstantaneousBaselineTimeoutMinutesOk returns a tuple with the InstantaneousBaselineTimeoutMinutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetInstantaneousBaselineTimeoutMinutesOk() (*int32, bool) {
+	if o == nil || o.InstantaneousBaselineTimeoutMinutes == nil {
+		return nil, false
+	}
+	return o.InstantaneousBaselineTimeoutMinutes, true
+}
+
+// HasInstantaneousBaselineTimeoutMinutes returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) HasInstantaneousBaselineTimeoutMinutes() bool {
+	return o != nil && o.InstantaneousBaselineTimeoutMinutes != nil
+}
+
+// SetInstantaneousBaselineTimeoutMinutes gets a reference to the given int32 and assigns it to the InstantaneousBaselineTimeoutMinutes field.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) SetInstantaneousBaselineTimeoutMinutes(v int32) {
+	o.InstantaneousBaselineTimeoutMinutes = &v
+}
+
 // GetLearningDuration returns the LearningDuration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetLearningDuration() SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration {
 	if o == nil || o.LearningDuration == nil {
@@ -199,6 +229,9 @@ func (o SecurityMonitoringRuleAnomalyDetectionOptions) MarshalJSON() ([]byte, er
 	if o.InstantaneousBaseline != nil {
 		toSerialize["instantaneousBaseline"] = o.InstantaneousBaseline
 	}
+	if o.InstantaneousBaselineTimeoutMinutes != nil {
+		toSerialize["instantaneousBaselineTimeoutMinutes"] = o.InstantaneousBaselineTimeoutMinutes
+	}
 	if o.LearningDuration != nil {
 		toSerialize["learningDuration"] = o.LearningDuration
 	}
@@ -215,18 +248,19 @@ func (o SecurityMonitoringRuleAnomalyDetectionOptions) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleAnomalyDetectionOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BucketDuration         *SecurityMonitoringRuleAnomalyDetectionOptionsBucketDuration     `json:"bucketDuration,omitempty"`
-		DetectionTolerance     *SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance `json:"detectionTolerance,omitempty"`
-		InstantaneousBaseline  *bool                                                            `json:"instantaneousBaseline,omitempty"`
-		LearningDuration       *SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration   `json:"learningDuration,omitempty"`
-		LearningPeriodBaseline *int64                                                           `json:"learningPeriodBaseline,omitempty"`
+		BucketDuration                      *SecurityMonitoringRuleAnomalyDetectionOptionsBucketDuration     `json:"bucketDuration,omitempty"`
+		DetectionTolerance                  *SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance `json:"detectionTolerance,omitempty"`
+		InstantaneousBaseline               *bool                                                            `json:"instantaneousBaseline,omitempty"`
+		InstantaneousBaselineTimeoutMinutes *int32                                                           `json:"instantaneousBaselineTimeoutMinutes,omitempty"`
+		LearningDuration                    *SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration   `json:"learningDuration,omitempty"`
+		LearningPeriodBaseline              *int64                                                           `json:"learningPeriodBaseline,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bucketDuration", "detectionTolerance", "instantaneousBaseline", "learningDuration", "learningPeriodBaseline"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bucketDuration", "detectionTolerance", "instantaneousBaseline", "instantaneousBaselineTimeoutMinutes", "learningDuration", "learningPeriodBaseline"})
 	} else {
 		return err
 	}
@@ -243,6 +277,7 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) UnmarshalJSON(bytes []by
 		o.DetectionTolerance = all.DetectionTolerance
 	}
 	o.InstantaneousBaseline = all.InstantaneousBaseline
+	o.InstantaneousBaselineTimeoutMinutes = all.InstantaneousBaselineTimeoutMinutes
 	if all.LearningDuration != nil && !all.LearningDuration.IsValid() {
 		hasInvalidField = true
 	} else {
